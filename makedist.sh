@@ -11,4 +11,4 @@ latexmk -lualatex -latexoption="-interaction nonstopmode -halt-on-error -file-li
 # We process all the latex files in parallel and wait for them to finish
 wait $(jobs -p)
 
-cp linearalgebra*.pdf ../dist/
+cp odes*.pdf ../dist/

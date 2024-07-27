@@ -37,18 +37,6 @@
 	\lfoot{}
 	\renewcommand{\headrulewidth}{0pt}
 }
-\fancypagestyle{iola}{%
-	\rfoot{\footnotesize\it \copyright\,IOLA Team \url{iola.math.vt.edu} \ \makebox(30,5){\includegraphics[height=2.2em]{images/iolalogo.png}}}
-	\lfoot{}
-	\renewcommand{\headrulewidth}{0pt}
-}
-
-\DeclareDocumentEnvironment{iola}{o}{%
-	\newpage
-	\pagestyle{iola}
-}{%
-	\newpage
-}
 
 
 %%
@@ -362,10 +350,8 @@
 		\end{notes}
 	\end{annotation}We will use column vector notation and the idea of equating
 	coordinates in order to solve problems.
-
 \end{lesson}
 
-\begin{iola}
 \begin{slide}
 \section*{The Magic Carpet Ride}
 \addcontentsline{toc}{subsection}{The Magic Carpet Ride}
@@ -407,35 +393,6 @@ gifts. Specifically, they give you two forms of transportation: a hover board an
 a magic carpet. Your parents inform you that both the hover board and the magic carpet
 have restrictions in how they operate:
 
-\begin{minipage}{\linewidth}
-	\vspace{.5cm}
-	\begin{wrapfigure}{l}{1in}
-	\vspace{-.8cm}
-	\includegraphics[width=1in]{images/HoverBoard-small.png}
-	\end{wrapfigure}
-
-	We denote the restriction on the hover board's movement by the vector
-	$\mat{3 \\1}$. By this we mean that if
-	the hover board traveled ``forward'' for one hour, it would move along a
-	``diagonal'' path that would result in a displacement of 3 km East and
-	1 km North of its starting location.
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-	\vspace{.5cm}
-	\begin{wrapfigure}{l}{1in}
-	\vspace{-.8cm}
-	\includegraphics[width=1in]{images/MagicCarpet2-small.png}
-	\end{wrapfigure}
-
-	We denote the restriction on the magic carpet's movement by the vector
-	$\mat{1 \\2 }$. By this we mean that if the
-	magic carpet traveled ``forward'' for one hour, it would move along a
-	``diagonal'' path that would result in a displacement of 1 km East and
-	2 km North of its starting location.
-\end{minipage}
-
-\lfoot{\footnotesize Drawings by \url{@DavidsonJohnR} (twitter)}
 
 \vspace{10mm}
 \end{slide}
@@ -463,7 +420,6 @@ get to the cabin with these modes of transportation, why is that the case?
 % point(s).
 
 \end{slide}
-\end{iola}
 
 \begin{lesson}
 	\Title{Linear Combinations}
@@ -502,7 +458,6 @@ get to the cabin with these modes of transportation, why is that the case?
 
 \end{lesson}
 
-\begin{iola}
 \begin{slide}
 \section*{The Magic Carpet Ride, Hide and Seek}
 \addcontentsline{toc}{subsection}{The Magic Carpet Ride, Hide and Seek}
@@ -543,34 +498,6 @@ hover board and the magic carpet have restrictions in how they operate:
 
 
 
-\begin{minipage}{\linewidth}
-	\vspace{.5cm}
-	\begin{wrapfigure}{l}{1in}
-	\vspace{-.8cm}
-	\includegraphics[width=1in]{images/HoverBoard-small.png}
-	\end{wrapfigure}
-
-	We denote the restriction on the hover board's movement by the vector
-	$\mat{3 \\1}$. By this we mean that if
-	the hover board traveled ``forward'' for one hour, it would move along a
-	``diagonal'' path that would result in a displacement of 3 km East and
-	1 km North of its starting location.
-\end{minipage}
-
-\begin{minipage}{\linewidth}
-	\vspace{.5cm}
-	\begin{wrapfigure}{l}{1in}
-	\vspace{-.8cm}
-	\includegraphics[width=1in]{images/MagicCarpet2-small.png}
-	\end{wrapfigure}
-
-	We denote the restriction on the magic carpet's movement by the vector
-	$\mat{1 \\2 }$. By this we mean that if the
-	magic carpet traveled ``forward'' for one hour, it would move along a
-	``diagonal'' path that would result in a displacement of 1 km East and
-	2 km North of its starting location.
-	\vspace{1cm}
-\end{minipage}
 
 \end{slide}
 \begin{slide}
@@ -596,7 +523,6 @@ argument supporting your answer.
 %group's whiteboard as a space to write out our work as your work together
 %on this problem.}
 \end{slide}
-\end{iola}
 
 
 
@@ -997,6 +923,7 @@ argument supporting your answer.
 \end{slide}
 
 
+\begin{bookonly}
 \begin{appendix}\label{APPSLEI}
 	\Title{Systems of Linear Equations I}
 
