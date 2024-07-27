@@ -1,0 +1,1034 @@
+\documentclass{workbook}
+
+\newcommand{\copyrightdate}{2015--2024}
+
+\usepackage{ifxetex}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{hyperxmp} % Embed meta data into the PDF
+\hypersetup{%
+	hidelinks=true,
+	linkcolor = {0 0 1},
+	% Metadata to be embedded by hyperxmp
+	pdftitle={Ordinary Differential Equations (\jobname)},
+	pdfauthor={Jason Siefken},
+	pdfauthortitle={Author},
+	pdfcopyright={Copyright (C) \copyrightdate, Jason Siefken},
+	pdfsubject={Ordinary Differential Equations textbook/workbook},
+	pdfkeywords={ordinary differential equations, ODEs, modeling, vectors, mathematics, textbook},
+	pdfurl={https://github.com/siefkenj/IBLODEs/},
+	pdflicenseurl={https://creativecommons.org/licenses/by-sa/4.0/},
+}
+
+%%%
+% import all needed packages and macros
+%%%
+\usepackage[yyyymmdd]{datetime}
+\input{common/preamble.tex}
+
+\usepackage{breqn}
+
+%%%
+% Set up the footers to have the correct copyright notices
+%%%
+
+\fancypagestyle{siefken}{%
+	\rfoot{\footnotesize\it \copyright\,Jason Siefken, \copyrightdate \ \makebox(30,5){\includegraphics[height=1.2em]{by-sa.pdf}}}
+	\lfoot{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+\fancypagestyle{iola}{%
+	\rfoot{\footnotesize\it \copyright\,IOLA Team \url{iola.math.vt.edu} \ \makebox(30,5){\includegraphics[height=2.2em]{images/iolalogo.png}}}
+	\lfoot{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+\DeclareDocumentEnvironment{iola}{o}{%
+	\newpage
+	\pagestyle{iola}
+}{%
+	\newpage
+}
+
+
+%%
+% Allow hiding of environments
+%%
+\usepackage{environ}% http://ctan.org/pkg/environ
+\makeatletter
+\newcommand{\voidenvironment}[1]{%
+  \expandafter\providecommand\csname env@#1@save@env\endcsname{}%
+  \expandafter\providecommand\csname env@#1@process\endcsname{}%
+  \@ifundefined{#1}{}{\RenewEnviron{#1}{}}%
+}
+\makeatother
+% allow pagebreaks that only display in `standard` mode
+\newcommand{\displayonlynewpage}{\begin{displayonly}\newpage\end{displayonly}}
+% allow pagebreaks that only display in `book` mode
+\newcommand{\bookonlynewpage}{\begin{bookonly}\newpage\end{bookonly}}
+
+
+%
+% Set up the three render modes: standard, instructor, and solutions.
+% These render with varying amounts of extra data (like solutions and notes)
+%
+\newtoggle{instructor}
+\newtoggle{standard}
+\newtoggle{solutions}
+\newtoggle{book}
+\newtoggle{slides}
+\newcommand{\setinstructor}{
+	\toggletrue{instructor}
+	\togglefalse{standard}
+	\togglefalse{solutions}
+	\togglefalse{book}
+	\togglefalse{slides}
+}
+\newcommand{\setstandard}{
+	\togglefalse{instructor}
+	\toggletrue{standard}
+	\togglefalse{solutions}
+	\togglefalse{book}
+	\togglefalse{slides}
+}
+\newcommand{\setsolutions}{
+	\togglefalse{instructor}
+	\togglefalse{standard}
+	\toggletrue{solutions}
+	\togglefalse{book}
+	\togglefalse{slides}
+}
+\newcommand{\setbook}{
+	\togglefalse{instructor}
+	\togglefalse{standard}
+	\togglefalse{solutions}
+	\toggletrue{book}
+	\togglefalse{slides}
+}
+\newcommand{\setslides}{
+	\togglefalse{instructor}
+	\togglefalse{standard}
+	\togglefalse{solutions}
+	\togglefalse{book}
+	\toggletrue{slides}
+}
+
+
+%
+% Infer the document level from the \jobname
+%
+\usepackage{xstring}
+\IfSubStr{\jobname}{\detokenize{book}}{\setbook}{
+	\IfSubStr{\jobname}{\detokenize{solutions}}{\setsolutions}{
+		\IfSubStr{\jobname}{\detokenize{instructor}}{\setinstructor}{
+			\IfSubStr{\jobname}{\detokenize{slides}}{\setslides}{
+				\setstandard
+			}
+		}
+	}
+}
+
+
+\setbookoptions{
+	twosided = false,
+	inline solutions = false,
+}
+
+
+\NewColoredEnvironment{
+	name = lesson,
+	display name = Lesson,
+	banner color = Plum,
+	title color = Plum,
+	banner on left = true,
+	open right = false,
+}
+\NewColoredEnvironment{
+	name = module,
+	display name = Module,
+	banner color = Turquoise,
+	title color = Cerulean,
+	definition color = Cerulean,
+	theorem color = myorange,
+}
+\NewColoredEnvironment{
+	name = appendix,
+	display name = Appendix,
+	banner color = LimeGreen,
+	title color = LimeGreen!70!Green!80!black,
+	definition color = Cerulean,
+	theorem color = myorange,
+}
+\NewColoredEnvironment{
+	name = indices,
+	display name = Indices,
+	banner color = Green,
+	title color = Green,
+}
+\NewColoredEnvironment{
+	name = tutorial,
+	display name = Tutorial,
+	banner color = Peach,
+	title color = Peach!80!black,
+	emphbox color = Peach,
+	% We will print tutorial worksheets back-to-back to save space
+	open right = false,
+}
+
+
+
+
+\loadgeometry{default}
+
+%
+% Hide the non-problem environments
+%
+\newcommand{\coversubtitle}{} % we override the subtitle in each mode, so make sure the command exists to override.
+\iftoggle{instructor}{
+	\voidenvironment{module}
+	\voidenvironment{appendix}
+	\voidenvironment{bookonly}
+	\voidenvironment{displayonly}
+	\renewcommand{\coversubtitle}{Instructor Guide}
+}{}
+\iftoggle{solutions}{
+	\voidenvironment{module}
+	\voidenvironment{appendix}
+	\voidenvironment{bookonly}
+	\voidenvironment{displayonly}
+	\voidenvironment{lesson}
+	\voidenvironment{notes}
+	\renewcommand{\coversubtitle}{Solutions}
+}{}
+\iftoggle{standard}{
+	\voidenvironment{module}
+	\voidenvironment{appendix}
+	\voidenvironment{bookonly}
+	\voidenvironment{solution}
+	\voidenvironment{annotation}
+	\voidenvironment{lesson}
+	\renewcommand{\coversubtitle}{MAT223 Notes}
+	\loadgeometry{default}
+}{}
+\iftoggle{book}{
+	\voidenvironment{displayonly}
+	\voidenvironment{solution}
+	\voidenvironment{annotation}
+	\voidenvironment{lesson}
+	\renewcommand{\coversubtitle}{{\hspace{-5pt}\begin{tabular}{l}MAT223 Workbook\\\small\today{} Edition\end{tabular}}}
+	\setbookoptions{
+		twosided = true,
+		inline solutions = false,
+	}
+	\loadgeometry{book}
+}{}
+\iftoggle{slides}{
+	\voidenvironment{module}
+	\voidenvironment{appendix}
+	\voidenvironment{bookonly}
+	\voidenvironment{solution}
+	\voidenvironment{annotation}
+	\voidenvironment{lesson}
+	\renewcommand{\coversubtitle}{MAT223 Slides}
+	\loadgeometry{slides}
+	\initSlides
+}{}
+%\voidenvironment{solution}
+%\voidenvironment{annotation}
+%\voidenvironment{lesson}
+%%\voidenvironment{notes}
+%%\voidenvironment{displayonly}
+
+% Allow an index to be created
+\makeindex[title=Index of Terms, columns=3]
+\makeindex[name=definitions, title=Index of Definitions, columns=3]
+\makeindex[name=symbols, title=Index of Symbols, columns=3]
+
+\indexsetup{
+	level=\Heading,
+	noclearpage
+}
+
+\begin{document}
+%%
+%% Import definitions from definition.tex; all definitions can be restated multiple times
+%%
+
+\input{common/definitions.tex}
+
+%%
+%% End Definitions
+%%
+
+
+
+
+% Needed to get different PDF bookmarks from the TOC entries
+\hypersetup{bookmarksdepth=3}
+
+\pagestyle{empty}
+
+\input{common/cover.tex}
+
+\newpage
+
+\begin{bookonly}
+	\clearpage
+	\hbox{}
+	\newpage
+	\input{modules/preface.tex}
+	\section*{Contributors}
+	\input{common/contributors.tex}
+	\section*{Dedication}
+	\begin{center}
+		This book is dedicated to
+		\href{https://www.gazettetimes.com/news/local/obituaries/dr-robert-main-burton/article_9c087f07-c005-515a-bb3f-2c9c6a6b7332.html}{\color{blue}Dr.~Bob Burton}---friend and mentor.
+
+		\emph{\large ``Sometimes you have to walk the mystical path with practical feet.''}
+	\end{center}
+	\newpage
+	\mbox{}
+	{
+		\pagestyle{empty}
+		\setcounter{tocdepth}{1}
+		\tableofcontents
+		\thispagestyle{empty}
+	}
+	\newpage
+	\mbox{}
+	\newpage
+\end{bookonly}
+
+\setcounter{page}{1}
+\pagestyle{siefken}
+
+
+\addcontentsline{toc}{chapter}{Lessons}
+
+\begin{module}\label{module1}
+	\Title{Sets, Vectors \& Notation}
+
+	In this module you will learn
+	\begin{itemize}
+		\item The basics of sets and set-builder notation.
+		\item The definition of vectors and how they relate to points.
+		\item Column vector notation and how to represent vectors in drawings.
+		\item How to compute linear combinations of vectors and use systems of linear
+			equations to answer questions about linear combinations of vectors.
+	\end{itemize}
+
+	\input{modules/module1.tex}
+	\input{modules/module1-exercises.tex}
+\end{module}
+
+\begin{lesson}
+	\Title{Linear Combinations}
+
+	\Heading{Textbook}
+	Module 1
+
+	\Heading{Objectives}
+	\begin{itemize}
+		\item Internalize vectors as geometric objects representing displacements.
+
+		\item Use column vector notation to write vectors.
+
+		\item Relate points and vectors and be able to interpret a point as
+			a vector and a vector as a point.
+
+		\item Solve simple equations involving vectors.
+	\end{itemize}
+
+	\Heading{Motivation} Students have differing levels of experience with vectors.
+	We want to establish a common notation for vectors and use vector notation
+	along with algebra to solve simple questions. E.g., ``How can I get to location
+	$A$ given that I can only walk parallel to the lines $y=4x$ and $y=-x$?''
+
+
+	\begin{annotation}
+		\begin{notes}
+			\begin{itemize}
+			\item
+			We will use the language \emph{component of $\vec v$ in
+			the direction $\vec u$} in the future and it will be a \emph{vector}.
+			For this reason, try to refer to the entries of a column
+			vector as \emph{coordinates} or \emph{entries} instead of components.
+
+			\item
+			Though we will almost exclusively use
+			column vector notation in this course, students should be able to parse
+			questions phrased in terms of row vectors.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}We will use column vector notation and the idea of equating
+	coordinates in order to solve problems.
+
+\end{lesson}
+
+\begin{iola}
+\begin{slide}
+\section*{The Magic Carpet Ride}
+\addcontentsline{toc}{subsection}{The Magic Carpet Ride}
+
+\question
+\begin{annotation}
+	\begin{goals}
+		\Goal{Hands-on experience with vectors as displacements.}
+		\begin{itemize}
+			\item Internalize vectors as geometric objects representing
+				displacements.
+
+			\item Use column vector notation to write vectors.
+
+			\item Use pre-existing knowledge of algebra to answer vector
+				questions.
+		\end{itemize}
+	\end{goals}
+	\begin{notes}
+
+		\begin{itemize}
+			\item There are many ways to solve this problem.
+				Some students
+				might start with equations. After they use their
+				equations to solve the problem, make them draw a picture
+				and come up with a graphical solution.
+
+			\item When the students start coming up with vector equations,
+				give them the vocabulary of \emph{linear
+				combinations}
+				and \emph{column vector notation}.
+		\end{itemize}
+	\end{notes}
+\end{annotation}
+You are a young adventurer. Having spent most of your time in the mythical city of Oronto,
+	you decide to leave home for the first time. Your parents
+want to help you on your journey, so just before your departure, they give you two
+gifts. Specifically, they give you two forms of transportation: a hover board and
+a magic carpet. Your parents inform you that both the hover board and the magic carpet
+have restrictions in how they operate:
+
+\begin{minipage}{\linewidth}
+	\vspace{.5cm}
+	\begin{wrapfigure}{l}{1in}
+	\vspace{-.8cm}
+	\includegraphics[width=1in]{images/HoverBoard-small.png}
+	\end{wrapfigure}
+
+	We denote the restriction on the hover board's movement by the vector
+	$\mat{3 \\1}$. By this we mean that if
+	the hover board traveled ``forward'' for one hour, it would move along a
+	``diagonal'' path that would result in a displacement of 3 km East and
+	1 km North of its starting location.
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+	\vspace{.5cm}
+	\begin{wrapfigure}{l}{1in}
+	\vspace{-.8cm}
+	\includegraphics[width=1in]{images/MagicCarpet2-small.png}
+	\end{wrapfigure}
+
+	We denote the restriction on the magic carpet's movement by the vector
+	$\mat{1 \\2 }$. By this we mean that if the
+	magic carpet traveled ``forward'' for one hour, it would move along a
+	``diagonal'' path that would result in a displacement of 1 km East and
+	2 km North of its starting location.
+\end{minipage}
+
+\lfoot{\footnotesize Drawings by \url{@DavidsonJohnR} (twitter)}
+
+\vspace{10mm}
+\end{slide}
+
+\begin{slide}
+% Scenario Section
+\textbf{Scenario One: The Maiden Voyage}
+
+Your Uncle Cramer suggests that your first adventure should be to go visit
+the wise man, Old Man Gauss. Uncle Cramer tells you that Old Man Gauss
+lives in a cabin that is 107 km East and 64 km North of your home.
+
+\vspace{5mm}
+
+\textbf{Task:}
+\par
+Investigate whether or not you can use the hover board and the magic
+carpet to get to Gauss's cabin. If so, how? If it is not possible to
+get to the cabin with these modes of transportation, why is that the case?
+
+%\vspace{5mm}
+% As a group, state and explain your answer(s) on the group whiteboard. Use
+% the vector notation for each mode of transportation as part of your
+% explanation and use a diagram or graphic to help illustrate your
+% point(s).
+
+\end{slide}
+\end{iola}
+
+\begin{lesson}
+	\Title{Linear Combinations}
+
+	\Heading{Textbook}
+	Module 1
+
+	\Heading{Objectives}
+	\begin{itemize}
+		\item Set up and solve vector equations $a\vec v+b\vec u=\vec w$. The solving
+			method may be ad hoc.
+		\item Use set notation and set operations/relations $\cup$, $\cap$, $\in$, $\subseteq$.
+		\item Translate between set-builder notation and words in multiple ways.
+	\end{itemize}
+
+	\Heading{Motivation}
+	We revisit questions about linear combinations more formally and generate a need for
+	algebra. The algebra we do to solve vector equations will become algorithmic when
+	we learn row reduction, but at the moment, any method is fine.
+
+	\begin{annotation}
+		\begin{notes}
+			You will have a mix of MAT135/136 and MAT137 students.
+			The MAT137 students will be doing logic and sets in their
+			class. The MAT135 students won't. Make sure not to leave them
+			behind!
+		\end{notes}
+	\end{annotation}
+	As we talk about more complex objects, we need precise ways to talk about
+	groups of vectors. I.e., we need sets and set-builder notation. This preview of set-builder
+	notation will take some of the difficulty away when we define span as a set of vectors.
+
+	In this course we will be using formal and precise language. Part of this lesson
+	is that there are multiple correct ways (and multiple incorrect ways) to use formal
+	language. Gone are the days of ``there's only one right answer and it is 4''!
+
+\end{lesson}
+
+\begin{iola}
+\begin{slide}
+\section*{The Magic Carpet Ride, Hide and Seek}
+\addcontentsline{toc}{subsection}{The Magic Carpet Ride, Hide and Seek}
+\question
+
+\begin{annotation}
+	\begin{goals}
+		\Goal{Address an existential question involving vectors: ``Is it possible
+		to find a linear combination that does\ldots?''}
+
+		The goal of this problem is to
+		\begin{itemize}
+			\item Formalize geometric questions using the language of vectors.
+			\item Find both geometric and algebraic arguments to support the same
+				conclusion.
+			\item Establish what a ``negative multiple'' of a vector should be.
+		\end{itemize}
+	\end{goals}
+	\begin{notes}
+		\begin{itemize}
+			\item Both \emph{yes} and \emph{no} are valid answers to
+				this question depending on whether you are allowed
+				to go backwards. Establish that ``negative'' multiples of
+				a vector mean traveling backwards along that vector.
+			\item This problem can be solved with algebra by finding a formula
+				for the coefficients for an arbitrary position or with geometry,
+				with arguments eventually hinging on the fact that non-parallel
+				lines intersect.
+		\end{itemize}
+	\end{notes}
+\end{annotation}
+You are a young adventurer. Having spent most of your time in the mythical city of Oronto,
+	you decide to leave home for the first time. Your parents
+want to help you on your journey, so just before your departure, they give
+you two gifts. Specifically, they give you two forms of transportation:
+a hover board and a magic carpet. Your parents inform you that both the
+hover board and the magic carpet have restrictions in how they operate:
+
+
+
+\begin{minipage}{\linewidth}
+	\vspace{.5cm}
+	\begin{wrapfigure}{l}{1in}
+	\vspace{-.8cm}
+	\includegraphics[width=1in]{images/HoverBoard-small.png}
+	\end{wrapfigure}
+
+	We denote the restriction on the hover board's movement by the vector
+	$\mat{3 \\1}$. By this we mean that if
+	the hover board traveled ``forward'' for one hour, it would move along a
+	``diagonal'' path that would result in a displacement of 3 km East and
+	1 km North of its starting location.
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+	\vspace{.5cm}
+	\begin{wrapfigure}{l}{1in}
+	\vspace{-.8cm}
+	\includegraphics[width=1in]{images/MagicCarpet2-small.png}
+	\end{wrapfigure}
+
+	We denote the restriction on the magic carpet's movement by the vector
+	$\mat{1 \\2 }$. By this we mean that if the
+	magic carpet traveled ``forward'' for one hour, it would move along a
+	``diagonal'' path that would result in a displacement of 1 km East and
+	2 km North of its starting location.
+	\vspace{1cm}
+\end{minipage}
+
+\end{slide}
+\begin{slide}
+
+\textbf{Scenario Two: Hide-and-Seek}
+
+Old Man Gauss wants to move to a cabin in a different location. You are
+not sure whether Gauss is just trying to test your wits at finding him
+or if he actually wants to hide somewhere that you can't visit him.
+
+\vspace{5mm}
+
+\textbf{Are there some locations that he can hide and you cannot reach him
+with these two modes of transportation?}
+
+Describe the places that you
+can reach using a combination of the hover board and the magic carpet and
+those you cannot. Specify these geometrically and algebraically. Include
+a symbolic representation using vector notation. Also, include a convincing
+argument supporting your answer.
+
+%\vspace{5mm} \par \textbf{Use your
+%group's whiteboard as a space to write out our work as your work together
+%on this problem.}
+\end{slide}
+\end{iola}
+
+
+
+
+
+\begin{slide}[+1]
+
+\section*{Sets and Set Notation}
+\vspace{-.5cm}
+
+	\SavedDefinitionRender{Set}
+
+	\begin{definition}
+		\raggedright
+		Some common sets are
+		\begin{itemize}
+			\item[] $\N=\Set{\text{natural numbers}} = \Set{\text{non-negative whole numbers}}$.
+			\item[] $\Z=\Set{\text{integers}} = \Set{\text{whole numbers, including negatives}}$.
+			\item[] $\R=\Set{\text{real numbers}}$.
+			\item[] $\R^n=\Set{\text{vectors in $n$-dimensional Euclidean space}}$.
+		\end{itemize}
+	\end{definition}
+\end{slide}
+\begin{slide}
+
+	\question
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Practice reading sets and set-builder notation.}
+
+			The goal of this problem is to
+			\begin{itemize}
+				\item Become familiar with $\in$, $\subseteq$, and $=$ in
+					the context of sets.
+				\item Distinguish between $\in$ and $\subseteq$.
+				\item Use quantifiers with sets.
+			\end{itemize}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item Most are easy up through (h).
+				\item Make students ``fix'' (i) so it
+					becomes true.
+				\item (j) and (k) are an opportunity to use
+					the definition of set equality. Students don't
+					realize that $=$'s has a definition.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+	\begin{parts}
+		\item Which of the following statements are true?
+		\begin{enumerate}
+			\item $3\in\Set{1,2,3}$.
+				\begin{solution}[inline]True\end{solution}
+			\item $1.5\in\Set{1,2,3}$.
+				\begin{solution}[inline]False\end{solution}
+			\item $4\in\Set{1,2,3}$.
+				\begin{solution}[inline]False\end{solution}
+			\item ``b''$\in \Set{ x \given x\text{ is an English letter}}$.
+				\begin{solution}[inline]True\end{solution}
+			\item ``\`o''$\in \Set{x \given x\text{ is an English letter}}$.
+				\begin{solution}[inline]False\end{solution}
+			\item $\Set{1,2} \subseteq \Set{1,2,3}$.
+				\begin{solution}[inline]True\end{solution}
+			\item For some $a\in \Set{1,2,3}$, $a \geq 3$.
+				\begin{solution}[inline]True\end{solution}
+			\item For any $a\in \Set{1,2,3}$, $a\geq 3$.
+				\begin{solution}[inline]False\end{solution}
+			\item $1 \subseteq \Set{1,2,3}$.
+				\begin{solution}[inline]False\end{solution}
+			\item $\Set{1,2,3}=\Set{x\in\R \given 1\leq x\leq 3}$.
+				\begin{solution}[inline]False\end{solution}
+			\item $\Set{1,2,3}=\Set{x\in\Z \given 1\leq x\leq 3}$.
+				\begin{solution}[inline]True\end{solution}
+		\end{enumerate}
+	\end{parts}
+\end{slide}
+\begin{slide}
+	\bookonlynewpage
+	\question
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Practice writing sets using set-builder notation.}
+
+			The goal of this problem is to
+			\begin{itemize}
+				\item Express English descriptions using math notation.
+				\item Recognize there is more than one correct way to
+					write formal math.
+				\item Preview vector form of a line.
+			\end{itemize}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item There are multiple correct ways to write
+					each of these sets. It's a good opportunity
+					to get many correct and incorrect sets up on the
+					board for discussing.
+				\item Don't worry about the geometry of $B$. That's coming
+					in a later problem.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+		Write the following in set-builder notation
+	\begin{parts}
+			\item The subset $A\subseteq \R$ of real numbers larger than $\sqrt{2}$.
+				\begin{solution}
+					$\Set*{x\in\R \given x>\sqrt{2}}$.
+				\end{solution}
+			\item The subset $B\subseteq \R^2$ of vectors whose first coordinate
+			is twice the second.
+				\begin{solution}
+					$\Set*{\vec v\in\R^2\given \vec v=\mat{a\\b}\text{ with }a=2b}$
+					or
+					$\Set*{\vec v\in\R^2\given\vec v=\mat{2t\\t}\text{ for some }t\in \R}$\\
+					or
+					$\Set*{\mat{a\\b}\in\R^2\given a=2b}$.
+				\end{solution}
+	\end{parts}
+\end{slide}
+\begin{slide}
+	\displayonlynewpage
+	\begin{bookonly}\vspace{\stretch{1}}\end{bookonly}
+	\SavedDefinitionRender{UnionsIntersections}
+
+	\question
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Apply the definition of $\cup$ and $\cap$.}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item It's not important to emphasize that $\cup$ and $\cap$ are binary
+			operations but we ask for $X\cup Y\cup Z$ without parenthesis.
+			Students won't worry if you don't bring it up.
+				\item It won't be clear to them how to write the empty set.
+					Some will write $\{\emptyset\}$. Make sure this comes out.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+	Let $X=\Set{1,2,3}$ and $Y=\Set{2,3,4,5}$ and $Z=\Set{4,5,6}$.  Compute
+	\begin{parts}
+		\item $X\cup Y$ \begin{solution}[inline]$\Set{1,2,3,4,5}$\end{solution}
+		\item $X\cap Y$ \begin{solution}[inline]$\Set{2,3}$\end{solution}
+		\item $X\cup Y\cup Z$ \begin{solution}[inline]$\Set{1,2,3,4,5,6}$\end{solution}
+		\item $X\cap Y\cap Z$ \begin{solution}[inline]$\emptyset=\Set{}$\end{solution}
+	\end{parts}
+	\begin{bookonly}\vspace{\stretch{1}}\end{bookonly}
+\end{slide}
+
+%\begin{module}
+%All Defs:
+%\edef\mylist{\pgfkeysvalueof{/definitions/all}}
+%\foreach \x in \mylist {
+%	\x
+%	\SavedDefinitionRender{\x}
+%}
+%\end{module}
+
+
+
+
+
+
+
+
+
+\begin{lesson}
+	\Title{Visualizing Sets, Formal Language of Linear Combinations}
+
+	\Heading{Textbook}
+	Module 1
+
+	\Heading{Objectives}
+	\begin{itemize}
+		\item Draw pictures of formally-described subsets of $\R^2$.
+		\item Graphically represent $\cup$ and $\cap$ for subsets of $\R^2$.
+		\item Graphically represent linear combinations and then come up with
+			algebraic arguments to support graphical intuition.
+	\end{itemize}
+
+	\Heading{Motivation}
+
+	We want to build a bridge between the formal language of linear combinations
+	and set-builder notation and geometric intuition. Where as last time
+	the focus was on formal language, this time the focus is on linking geometry
+	to formal descriptions.
+
+
+\end{lesson}
+
+\begin{slide}
+	\bookonlynewpage
+	\question
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Visualize sets of vectors.}
+
+			The goal of this problem is to
+			\begin{itemize}
+				\item Apply set-builder notation in the context of vectors.
+				\item Distinguish between ``for all'' and ``for some''
+					in set builder notation.
+				\item Practice unions and intersections.
+				\item Practice thinking about set equality.
+			\end{itemize}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item 1--3 will be easy.
+				\item Have a discussion about when you
+					should draw vectors as arrows
+					vs\mbox{.} as points.
+				\item 4 gets at a subtle point that will come up again
+					when we define span.
+				\item Many will miss 7. Writing a proof for this is
+					good practice.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+	Draw the following subsets of $\R^2$.
+	\begin{parts}
+		\item $V=\Set*{\vec x\in\R^2 \given \vec x=\mat{0\\t}\text{ for some }t\in\R}$.
+		\item $H=\Set*{\vec x\in\R^2 \given \vec x=\mat{t\\0}\text{ for some }t\in\R}$.
+		\item $D=\Set*{\vec x\in\R^2 \given \vec x=t\mat{1\\1}\text{ for some }t\in\R}$.
+		\begin{solution}
+	\begin{tikzpicture}[scale=1.2, >=latex]
+    \begin{axis}[scale=1,
+		    axis equal image,
+		    axis line style={draw=none},
+		    tick style={draw=none},
+		    yticklabels={,,},
+		    xticklabels={,,},
+		 xmin=-4.5,
+		 xmax=4.5,
+		 ymin=-4.5,
+		 ymax=4.5,
+		 major grid style={dotted, gray},
+                 xtick={-10,-9,...,10},
+                 ytick={-10,-9,...,10},
+                 grid=both,
+		 anchor=origin]
+
+	    \draw[Green, very thick] (-5,0) -- (5,0) node[near end, below] {$H$};
+	    \draw[cyan!80!black, very thick] (0,-5) -- (0,5) node[near end, right] {$V$};
+	    \draw[orange!80!black, very thick] (-5,-5) -- (5,5) node[near end, below right] {$D$};
+
+	    \fill[fill=black] (0,0) circle[radius=2pt] node[below right, xshift=5pt] {\color{black}$\vec 0$};
+    \end{axis}
+\end{tikzpicture}
+		\end{solution}
+		\item $N=\Set*{\vec x\in\R^2 \given \vec x=t\mat{1\\1}\text{ for all }t\in\R}$.
+				\begin{solution}[inline]
+			$N=\Set{}$.
+		\end{solution}
+
+		\item $V\cup H$.
+			\begin{solution}[inline]
+			$V\cup H$ looks like a ``$+$'' going through the origin.
+		\end{solution}
+		\item $V\cap H$.
+			\begin{solution}[inline]
+				$V\cap H=\Set{\vec 0}$ is just the origin.
+		\end{solution}
+		\item Does $V\cup H=\R^2$?
+			\begin{solution}
+				No. $V\cup H$ does not contain $\mat{1\\1}$ while $\R^2$ does contain
+				$\mat{1\\1}$.
+			\end{solution}
+	\end{parts}
+
+	\begin{bookonly}\begin{center}\hspace{-2cm}\triplegrid\hspace{-2cm}\triplegrid\end{center}\end{bookonly}
+	\bookonlynewpage
+	\displayonlynewpage
+\section*{Vector Combinations}
+	\vspace{-1em}
+
+\end{slide}
+\begin{slide}
+
+	\SavedDefinitionRender{LinearCombination}
+
+	\question
+	\label{ProbSkewBasis}
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Practice linear combinations.}
+
+			The goal of this problem is to
+			\begin{itemize}
+				\item Practice using the formal term \emph{linear combination}.
+				\item Foreshadow span.
+			\end{itemize}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item In 2, the question should arise: ``Is $3\vec v_1$
+					a linear combination of $\vec v_1$ \emph{and}
+					$\vec v_2$?'' Address this.
+				\item Refer to the magic carpet ride for 5. You don't
+					need to do a full proof.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+	Let $\vec v_1=\mat{1\\1}$, $\vec v_2=\mat{1\\-1}$, and $\vec w=2\vec v_1+\vec v_2$.
+	\begin{parts}
+		\item Write $\vec w$ as a column vector. When $\vec w$ is written as a
+			linear combination of $\vec v_1$ and $\vec v_2$, what are the
+			coefficients of $\vec v_1$ and $\vec v_2$?
+			\begin{solution}
+				$\vec w=\mat{3\\1}$; the coefficients are $(2,1)$.
+			\end{solution}
+		\item Is $\mat{3\\3}$ a linear combination of $\vec v_1$ and $\vec v_2$?
+			\begin{solution}[inline]
+				Yes. $\mat{3\\3}=3\vec v_1+0\vec v_2$.
+			\end{solution}
+
+		\item Is $\mat{0\\0}$ a linear combination of $\vec v_1$ and $\vec v_2$?
+			\begin{solution}[inline]
+				Yes. $\vec 0=0\vec v_1+0\vec v_2$.
+			\end{solution}
+		\item Is $\mat{4\\0}$ a linear combination of $\vec v_1$ and $\vec v_2$?
+			\begin{solution}[inline]
+				Yes. $\mat{4\\0}=2\vec v_1+2\vec v_2$.
+			\end{solution}
+		\item Can you find a vector in $\R^2$ that isn't a linear combination of
+		$\vec v_1$ and $\vec v_2$?
+			\begin{solution}
+				No. $\mat{1\\0}=\tfrac{1}{2}\vec v_1+\tfrac{1}{2}\vec v_2$ and
+				$\mat{0\\1}=\tfrac{1}{2}\vec v_1-\tfrac{1}{2}\vec v_2$.
+				Therefore
+				\[
+					\mat{a\\b}
+					= a\mat{1\\0}+b\mat{0\\1}
+					= a(\tfrac{1}{2}\vec v_1+\tfrac{1}{2}\vec v_2)
+						+b(\tfrac{1}{2}\vec v_1-\tfrac{1}{2}\vec v_2)
+					=(\tfrac{a+b}{2})\vec v_1+(\tfrac{a-b}{2})\vec v_2.
+				\]
+				Therefore any vector in $\R^2$ can be written as linear combinations
+				of $\vec v_1$ and $\vec v_2$.
+			\end{solution}
+		\item Can you find a vector in $\R^2$ that isn't a linear combination of
+			$\vec v_1$?
+			\begin{solution}
+				Yes. All linear combinations of $\vec v_1$ have equal $x$ and
+				$y$ coordinates, therefore $\vec w=\mat{2\\1}$ is not a linear
+				combination of $\vec v_1$.
+			\end{solution}
+	\end{parts}
+\end{slide}
+\begin{slide}
+
+	\bookonlynewpage
+	\question
+	\begin{annotation}
+		\begin{goals}
+			\Goal{Practice formal writing.}
+		\end{goals}
+
+		\begin{notes}
+			\begin{itemize}
+				\item Make everyone \emph{write}. They will think
+					they can do it, but they will find it hard if
+					they try.
+			\end{itemize}
+		\end{notes}
+	\end{annotation}
+	Recall the \emph{Magic Carpet Ride} task where the hover board could
+	travel in the direction $\vec h=\mat{3\\1}$ and the magic carpet could
+	move in the direction $\vec m=\mat{1\\2}$.
+	\begin{parts}
+		\item Rephrase the sentence \emph{``Gauss can be reached using just the
+			magic carpet and the hover board''} using formal mathematical
+			language.
+			\begin{solution}
+				Gauss's location can be written as a linear combination of
+				$\vec m$ and $\vec h$.
+			\end{solution}
+		\item Rephrase the sentence \emph{``There is nowhere Gauss can hide
+			where he is inaccessible by magic carpet and hover board''} using
+			formal mathematical language.
+			\begin{solution}
+				Every vector in $\R^2$ can be written as a linear combination
+				of $\vec m$ and	$\vec h$.
+			\end{solution}
+		\item Rephrase the sentence \emph{``$\R^2$ is the set of all linear
+			combinations of $\vec h$ and $\vec m$''} using formal mathematical
+			language.
+			\begin{solution}
+				$\R^2=\Set{\vec v\given \vec v=t\vec m+s\vec h\text{ for some }t,s\in \R}$.
+			\end{solution}
+	\end{parts}
+\end{slide}
+
+
+\begin{appendix}\label{APPSLEI}
+	\Title{Systems of Linear Equations I}
+
+	In this appendix you will learn
+	\begin{itemize}
+		\item What a system of linear equations is.
+		\item What the solution set to a system of equations is, and what it means for a system of equations
+			to be consistent or inconsistent.
+		\item How augmented matrices can be used to solve systems of linear equations.
+		\item How to apply row reduction to find a unique solution to a system of linear
+			equations and to determine if a system of linear equations is consistent or inconsistent.
+	\end{itemize}
+
+	\input{modules/appendix1.tex}
+	\input{modules/appendix1-exercises.tex}
+\end{appendix}
+
+
+\begin{appendix}
+	\PrintExerciseSolutions
+\end{appendix}
+	\begin{indices}*
+		\Title{Indices}
+
+		\printindex[symbols]
+
+		\bigskip
+		\printindex
+
+		\bigskip
+		\printindex[definitions]
+	\end{indices}
+\end{bookonly}
+
+\end{document}
