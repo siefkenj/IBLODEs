@@ -67,19 +67,189 @@ that uses \emph{differential equations} at its core.
 \Heading{Types of Models}
 
 \begin{definition}[Mathematical Model]
-A \emph{mathematical model} is a description of the world
+A \emph{mathematical model}\index{model} is a description of the world
 	\begin{enumerate}
 		\item created in the service of answering a question, and
-		\item where the complexity of the world has been abstracted away to numbers, quantities, and their relationships\footnote{Other
+		\item where the complexity of the world has been abstracted away to numbers, quantities, and their relationships\footnote{ Other
 mathematical objects are also allowed.}.
 	\end{enumerate}
 \end{definition}
 
 In the previous situation, the \emph{question} you were trying to answer was ``how many ants are there at a given minute?''.
-And, we sidestepped difficult issues like, ``Is an ant that is missing three legs still an ant?'' by using the common-sense
-convention that ``the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant''.
+We sidestepped difficult issues like, ``Is an ant that is missing three legs still an ant?'' by using the common-sense
+convention that ``the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant''; thus,
+we could use single numbers to represent our quantity of interest (the ants).
+
+You and your friend already came up with two types of models.
+\begin{itemize}
+	\item An \textbf{analytic} model based on known functions.
+	\item A \textbf{recursive} model where subsequent terms are based on previous terms and initial conditions.
+\end{itemize}
+
+If we define $A(n)$ to be the number of ants corssing the sidewalk at minute $n$, the \emph{analytic} model presented for green ants is
+\[
+	A(n)=2^{n-1}\cdot 10
+\]
+and the \emph{recursive} model presented is
+\begin{align*}
+	A(1) &= 10\\
+	A(n) &= 2\cdot A(n-1).
+\end{align*}
+
+Each type of model has pros and cons. For example, the analytic model allows you to calculate the number of ants at any minute
+with few button presses on a calculator, whereas the recursive model is more difficult to calculate but
+makes it clear that the number of ants is doubling every minute.
+
+Often times recursive models are easier to write down than analytic models\footnote{ In fact, in many real-world situations, an analytic model
+doesn't exist}, but they maybe harder to analyze. A third type of model has similarities to both analytic and recursive models, and
+brings the power of calculus to modeling.
+
+\begin{itemize}
+	\item A \textbf{differential-equations} model is a model based on a relationship between a function's derivative(s), its values, and initial conditions.
+\end{itemize}
+
+\emph{Differential-equations} models are useful because derivatives correspond to rates of change---and things in the world are always changing.
+Let's try to come up with a differential equations model for the ants.
+
+We'd like an equation relating $A(n)$, the number of ants at minute $n$, to $A'(n)$, the \emph{instantaneous rate of change} of the number of ants at minute $n$.
+Making a table, we see
+
+\begin{center}
+	\begin{tabular}{c|c|c}
+		Minute & \#Brown Ants & Change (from prev. minute)\\
+		\hline
+		1 & 3 & ?\\
+		2 & 6 & 3\\
+		3 & 12 & 6\\
+		4 & 24 & 12\\
+	\end{tabular}
+\end{center}
+
+or
+
+\begin{center}
+	\begin{tabular}{c|c|c}
+		Minute & \#Brown Ants & Change (from next minute)\\
+		\hline
+		1 & 3 & 3\\
+		2 & 6 & 6\\
+		3 & 12 & 12\\
+		4 & 24 & ?\\
+	\end{tabular}
+\end{center}
+
+depending on whether we record the change from the previous minute or up to the subsequent minute. Neither table gives the \emph{instantaneous} rate of
+change, but in both tables, the change is proportional to the number of ants. So, we can set up a model
+\[
+	A'(n) = kA(n)
+\]
+where $k$ is a constant of proportionality that we will try to determine later. We've just written down a \emph{differential equation} with an undetermined parameter, $k$.
+
+\begin{definition}[Differential Equation]
+	A \emph{differential equation}\index{differential equation} is an equation relating a function to one or more of its derivatives.
+\end{definition}
+
+We'd like to figure out what $k$ is. One way to do so is to solve the differential equation and find the values of $k$ so that our model
+correctly predicts the data. This is called \emph{fitting} the model to data.
+
+\begin{definition}[Fitting a Model]
+	Given a model $M$ with parameters $k_1$, $k_2$, $\ldots$ and data $D$, \emph{fitting the model $M$ to the data $D$}
+	is the process of finding values for the parameters $k_1$, $k_2$, $\ldots$ so that $M$ most accurately predicts the data $D$.
+\end{definition}
+
+Note that, in general, fitting a model to data doesn't necessarily produce \emph{unique} values for the unknown parameters, and a fitted model
+(especially when the data comes from real-world observations) usually doesn't reproduce the data exactly. However, in the case of these ants, we
+just might get lucky.
+
+\Heading{Solving Differential Equations}
+
+In general, \emph{there is no algorithm for solving differential equations}. Fortunately, it is easy to check whether any particular
+function is a solution to a differential equation, since there \emph{is} an algorithm to differentiate functions\footnote{ More specifically, there is an algorithm
+to differentiate the \emph{elementary} functions, those functions formed by compositions, sums, products, and quotients of polynomials, trig, exponentials, and logs.}.
+Because of this, \emph{guess and check} will be our primary method for solving differential equations.
+
+\begin{example}
+Use educated guessing to solve $A'(n)=kA(n)$.
+
+Since $A'\approx A$, we might start with a function that is equal to its own derivative. There is a famous one: $e^n$. Testing, we see
+\[
+	\frac{\d}{\d n}e^n=e^n=ke^n
+\]
+if $k=1$, but it doesn't work for other $k$'s. Trying $e^{kn}$ instead yields
+\[
+	\frac{\d}{\d n}e^{kn}=ke^{kn}
+\]
+which holds for all $k$. Thus $A(n)=e^{kn}$ is \emph{a} solution to $A'(n)=kA(n)$. However, there are other solutions, because
+\[
+	\frac{\d}{\d n}Ce^{kn}=C\left(ke^{kn}\right)=k\left(Ce^{kn}\right),
+\]
+and so for every $C$, the function $A(n)=Ce^{kn}$ is a solution to $A'(n)=kA(n)$.
+\end{example}
+
+By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=kA(n)$.  It's now time to fit our
+model to the data.
+
+\begin{example}
+	Find values of $C$ and $k$ so that $A(n)=Ce^{kn}$ best models brown ants.
+
+	Taking two rows from our brown ants table, we see
+	\begin{align*}
+		A(1) &= Ce^{k} = 3\\
+		A(2) & = Ce^{2k}=6.
+	\end{align*}
+
+	Since $e^k$ can never be zero, from the first equation we get $C=3/e^k$. Combining with the second equation we find
+	\[
+		Ce^{2k}=\frac{3}{e^k}e^{2k}=3e^k=6
+	\]
+	and so $e^k=2$. In other words $k=\ln 2$. Plugging this back in, we find $C=3/2$. Thus our fitted model is
+	\[
+		A(n)=\tfrac{3}{2}e^{n\ln 2}.
+	\]
+\end{example}
+
+Upon inspection, we can see that $\tfrac{3}{2}e^{n\ln 2} = 3\cdot 2^{n-1}$, which is the analytic model
+that was first guessed for brown ants.
 
 
+
+%One of the beauties of the guess-and-check method is that it \emph{cannot} produce an incorrect answer,
+%since you're always checking (though it may fail to produce answers, any answer that it \emph{does} produce
+%will be correct). Thus, even if you did some mathematically-dubious steps to produce a guess, if it passes the checks,
+%the final answer is valid.
+%
+%\begin{example}
+%Use Leibniz notation, integral calculus, and guess-and-check to come up with solutions to $A'(n)=kA(n)$.
+%
+%In Leibniz notation, $A'(n)$ is written as $\displaystyle\frac{\d A}{\d n}$, and we may suppress the function variable and write $A$ in place of $A(n)$. Thus, our equation becomes
+%\[
+%	\frac{\d A}{\d n}=kA.
+%\]
+%Treating $\d A/\d n$ as an actual ratio, we can bring all $A$'s to the left and $n$'s to the right, giving
+%\[
+%	\frac{1}{A}\d A = k\d n.
+%\]
+%Integrating both sides gives
+%\[
+%	\int \frac{1}{A}\d A = \ln A + C_1 \qquad =\qquad  \int k\d n = kn + C_2,
+%\]
+%and so
+%\[
+%	\ln A + C_1 = kn + C_2 \qquad \iff \qquad \ln A = kn + (C_2-C_1) = kn + C_3.
+%\]
+%Solving for $A$ by exponentiating both sides gives
+%\[
+%	A = e^{\ln A} = e^{kn + C_3} = C_4 e^{kn}.
+%\]
+%Much of what we've done in the preceding calculation \emph{was not rigorous mathematics}, but that's okay, because
+%it leads us to the guess: $A(n)=Ce^{kn}$. Finally, we can test our guess and verify
+%\[
+%	\frac{\d}{\d n}Ce^{kn}=C\left(ke^{kn}\right)=k\left(Ce^{kn}\right),
+%\]
+%and so $A(n)=Ce^{kn}$ is a solution for every $C$.\footnote{ Notice that in our ``guess work'', $C_4$ was actually restricted to be a positive
+%number, but our solution works with $C$ being positive or negative.}
+%
+%\end{example}
 
 
 
