@@ -371,61 +371,57 @@
 
 \begin{slide}
 	\question
-	Exploring \textbf{M$_\infty$}
+	Exploring \textbf{M$_n$}
 
 	We can rewrite the assumptions of \textbf{M$_n$} as follows:
 	\begin{itemize}
 		\item At time $t$ there are $P_n(t)$ starfish.
 		\item $P_n(0)=10$
-		\item During the time interval $(t, t+1/n)$ there will be $k/n$ new children per starfish.
+		\item During the time interval $(t, t+1/n)$ there will be (on average) $K/n$ new children per starfish.
 	\end{itemize}
 
 	\begin{parts}
 		\item Write an expression for $P_n(t+1/n)$ in terms of $P_n(t)$.
+		\item Write an expression for $\Delta P$, the change in population from time $t$ to $t+\Delta t$.
+		\item Write an expression for $\frac{\Delta P}{\Delta t}$.
+		\item Write down a \emph{differential equation} relating $P'(t)$ to $P(t)$ where $\displaystyle P(t)=\lim_{n\to\infty} P_n(t)$.
 	\end{parts}
 \end{slide}
 
 \begin{slide}
 	\question
-	\begin{annotation}
-		\begin{goals}
-			\Goal{Practice formal writing.}
-		\end{goals}
+	Define the model \textbf{M$_\infty$} by
+	\begin{itemize}
+		\item $P(0)=10$
+		\item $P'(t) = kP(t)$
+	\end{itemize}
+	and recall the model \textbf{M$_1$} defined by
+	\begin{itemize}
+		\item $P_1(0)=10$
+		\item $P_1(t+1) = KP(t)$ for $t\geq 0$ years and $K=1.1$.
+	\end{itemize}
 
-		\begin{notes}
-			\begin{itemize}
-				\item Make everyone \emph{write}. They will think
-					they can do it, but they will find it hard if
-					they try.
-			\end{itemize}
-		\end{notes}
-	\end{annotation}
-fd
 
-	Recall the \emph{Magic Carpet Ride} task where the hover board could
-	travel in the direction $\vec h=\mat{3\\1}$ and the magic carpet could
-	move in the direction $\vec m=\mat{1\\2}$.
 	\begin{parts}
-		\item Rephrase the sentence \emph{``Gauss can be reached using just the
-			magic carpet and the hover board''} using formal mathematical
-			language.
-			\begin{solution}
-				Gauss's location can be written as a linear combination of
-				$\vec m$ and $\vec h$.
-			\end{solution}
-		\item Rephrase the sentence \emph{``There is nowhere Gauss can hide
-			where he is inaccessible by magic carpet and hover board''} using
-			formal mathematical language.
-			\begin{solution}
-				Every vector in $\R^2$ can be written as a linear combination
-				of $\vec m$ and	$\vec h$.
-			\end{solution}
-		\item Rephrase the sentence \emph{``$\R^2$ is the set of all linear
-			combinations of $\vec h$ and $\vec m$''} using formal mathematical
-			language.
-			\begin{solution}
-				$\R^2=\Set{\vec v\given \vec v=t\vec m+s\vec h\text{ for some }t,s\in \R}$.
-			\end{solution}
+		\item If $k=K=1.1$, does the model \textbf{M$_\infty$} produce the same population estimates as \textbf{M$_1$}?
+		\item Suppose that \textbf{M$_1$} accurately predicts the population. Can you find a value of $k$ so that \textbf{M$_\infty$}
+		accurately predicts the population?
+		\item What are some advantages and disadvantages of the models \textbf{M$_1$} and \textbf{M$_\infty$}?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	After more observations, scientists notice a seasonal effect on starfish. They propose a new model called \textbf{S}:
+	\begin{itemize}
+		\item $P(0)=10$
+		\item $P'(t) = k\cdot P(t)\cdot |\sin(2\pi t)|$
+	\end{itemize}
+	
+	\begin{parts}
+		\item Produce a graph of population vs. time for $k=1.1$. 
+		\item How do \textbf{S} and \textbf{M$_\infty$} compare (with the same $k$)?
+		\item Can you come up with a discrete model for \textbf{S} with a time-step of one year? Why or why not?
 	\end{parts}
 \end{slide}
 
