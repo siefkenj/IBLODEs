@@ -1149,7 +1149,7 @@
 
 \DeclareDocumentCommand{\SlideTitle}{o}{
 	\textbf{\sffamily
-		Core~Exercise~\int_eval:n {\thequestion + (\IfNoValueTF{#1}{0}{#1})}
+		Exercise~\int_eval:n {\thequestion + (\IfNoValueTF{#1}{0}{#1})}
 	}
 }
 \DeclareDocumentCommand{\TypesetSlideFooter}{m}{
@@ -1313,6 +1313,7 @@
 		}{
 			\prop_item:Nn \g_workbook_slide_info_prop {margin_bottom}
 		}{
+			\parskip=\_workbook_current_parskip
 			##2
 		}
 		\prop_put:Nnx \g_workbook_slide_info_prop {question_at_end} {\thequestion}
