@@ -419,11 +419,116 @@
 	\end{itemize}
 	
 	\begin{parts}
-		\item Produce a graph of population vs. time for $k=1.1$. 
-		\item How do \textbf{S} and \textbf{M$_\infty$} compare (with the same $k$)?
-		\item Can you come up with a discrete model for \textbf{S} with a time-step of one year? Why or why not?
+		\item What can you tell about the population (without trying to compute it)?
+		\item Assuming $k=1.1$, estimate the population after 10 years.
+		\item Assuming $k=1.1$, estimate the population after 10.3 years.
 	\end{parts}
 \end{slide}
+
+\begin{slide}
+	\question
+	Consider the following argument:
+	\begin{quote}
+		\color{blue}
+		At $t=0$, the change in population $\approx P'(0)=0$, so
+		\[
+			P(1) \approx P(0)+P'(0)\cdot 1 = P(0)=10.
+		\]
+		At $t=1$, the change in population $\approx P'(1)=0$, so
+		\[
+			P(2) \approx P(2)+P'(2)\cdot 1 = P(0)=10.
+		\]
+		And so on.
+
+		So, the population of starfish remains constant.
+	\end{quote}
+	
+	\begin{parts}
+		\item Do you believe this argument? Can it be improved?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	(Simulating \textbf{M$_\infty$} with different $\Delta$s)
+	
+	\begin{center}
+	\begin{tabular}{l|l|l|l}
+		Time & Pop. ($\Delta=0.1$) & Time & Pop. ($\Delta=0.2$)\\
+		\hline
+		0.0&	10&		0.0&	10\\
+		0.1&	11.1&		0.2&	12.2\\
+		0.2&	12.321&		0.4&	14.884\\
+		0.3&	13.67631&	0.6&	18.15848\\
+		0.4&	15.1807041&	0.8&	22.1533456
+	\end{tabular}
+	\end{center}
+
+	\begin{parts}
+		\item Compare $\Delta=0.1$ and $\Delta=0.2$. Which approximation grows faster?
+		\item Graph the population estimates for $\Delta=0.1$ and $\Delta=0.2$ on the same plot. What does the graph show?
+
+		\vspace{1cm}
+		\item What $\Delta$s give the largest estimate for the population at time $t$?
+		\item Is there a limit as $\Delta\to 0$?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	(Simulating \textbf{M$_\infty$} with different $\Delta$s)
+	
+	% https://www.desmos.com/calculator/x7qbgv6mkc
+	\includegraphics[width=2.5in]{compare-deltas.png}
+
+	\begin{parts}
+		\item Compare $\Delta=0.1$ and $\Delta=0.2$. Which approximation grows faster?
+		\item Graph the population estimates for $\Delta=0.1$ and $\Delta=0.2$ on the same plot. What does the graph show?
+
+		\vspace{1cm}
+		\item What $\Delta$s give the largest estimate for the population at time $t$?
+		\item Is there a limit as $\Delta\to 0$?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	\label{many-models}
+	Consider the following models for starfish growth
+	\begin{itemize}
+		\item[\textbf{M}] \# new children per year $\sim$ current population
+		\item[\textbf{N}] \# new children per year $\sim$ resources available per individual
+		\item[\textbf{O}] \# new children per year $\sim$ current population times the fraction of total resources remaining
+	\end{itemize}
+
+	\begin{parts}
+		\item Guess what the population vs. time curves look like for each model. \label{model-guess-part}
+		\item Create a differential equation for each model.
+		\item Simulate population vs. time curves for each model (but pick a common initial population).
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall the models
+	\begin{itemize}
+		\item[\textbf{M}] \# new children per year $\sim$ current population
+		\item[\textbf{N}] \# new children per year $\sim$ resources available per individual
+		\item[\textbf{O}] \# new children per year $\sim$ current population times the fraction of total resources remaining
+	\end{itemize}
+
+	\begin{parts}
+		\item Determine which population grows fastest in the short term and which grows fastest in the long term.
+		\item Are some models more sensitive to your choice of $\Delta$ when simulating?
+		\item Are your simulations for each model consistently underestimates? Overestimates?
+		\item Compare your simulated results with your guesses from question \ref{many-models}.\ref{model-guess-part}.
+		What did you guess correctly? Where were you off the mark?
+	\end{parts}
+\end{slide}
+
+
+
+
+
 
 
 \begin{bookonly}
