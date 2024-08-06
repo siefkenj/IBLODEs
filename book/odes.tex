@@ -305,8 +305,11 @@
 	%\input{modules/module1-exercises.tex}
 \end{module}
 
-\begin{slide}
+%
+% Hours 1-6
+%
 
+\begin{slide}
 	\question
 	You are observing starfish that made their way to a previously uninhabited tide-pool.
 	You'd like to predict the year-on-year population of these starfish.
@@ -524,6 +527,213 @@
 		What did you guess correctly? Where were you off the mark?
 	\end{parts}
 \end{slide}
+
+%
+% Hours 7-9
+%
+
+
+\begin{slide}
+	\question
+	A simple model for population growth has the form
+	\[
+		P'(t) = kP(t)
+	\]
+	where $k$ is the \emph{birth rate}.
+
+	\begin{parts}
+		\item Create a better model for population that includes both births and deaths.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	The \emph{Lotka-Volterra Predator-Prey} models two populations, $F$ (foxes) and $R$ (rabbits), simultaneously. It takes the form
+	\begin{align*}
+		F'(t) &= (B_F - D_F)\cdot F(t)\\
+		R'(t) &= (B_R - D_R)\cdot R(t)
+	\end{align*}
+	where $B_{?}$ stands for births and $D_{?}$ stands for deaths.
+
+	\begin{parts}
+		\item Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$, given your knowledge about
+		how foxes and rabbits might interact.
+		\item When would $B_F$ and $D_F$ be at their max/min?
+		\item When would $B_R$ and $D_R$ be at their max/min?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Suppose the population of $F$ (foxes) and $R$ (rabbits) evolves over time following the rule
+	\begin{align*}
+		F'(t) &= (0.01\cdot R(t) - 1.1)\cdot F(t)\\
+		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
+	\end{align*}
+
+	\begin{parts}
+		\item Simulate the population of foxes and rabbits with a spreadsheet.
+		\item Do the populations continue to grow/shrink forever? Are they cyclic?
+		\item Should the humps/valleys in the rabbit and fox populations be in phase? Out of phase?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	% https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
+	Open the spreadsheet
+
+	\url{https://uoft.me/foxes-and-rabbits}
+
+	which contains an Euler approximation for the Foxes and Rabbits population.
+	\begin{align*}
+		F'(t) &= (0.01\cdot R(t) - 1.1)\cdot F(t)\\
+		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
+	\end{align*}
+
+	\begin{parts}
+		\item Is the max population of the rabbits being over/under estimated? Sometimes over, sometimes under?
+		\item What about the foxes?
+		\item What about the min populations?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	% https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
+	Open the spreadsheet
+
+	\url{https://uoft.me/foxes-and-rabbits}
+
+	which contains an Euler approximation for the Foxes and Rabbits population.
+	\begin{align*}
+		F'(t) &= (0.01\cdot R(t) - 1.1)\cdot F(t)\\
+		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
+	\end{align*}
+
+	\begin{parts}
+		\item Make a \emph{phase portrait} of Fox vs.~Rabbit population. 
+		\item Should your phase portrait show a closed curve or a spiral?
+		\item What ``direction'' do points move along the curve as time increases? Justify by referring to the model.
+		\item What is easier to see from a phase portrait than from component graphs (the graphs of
+		fox and rabbit population vs. time)?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	% https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
+	Open the spreadsheet
+
+	\url{https://uoft.me/foxes-and-rabbits}
+
+	which contains an Euler approximation for the Foxes and Rabbits population.
+	\begin{align*}
+		F'(t) &= (0.01\cdot R(t) - 1.1)\cdot F(t)\\
+		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
+	\end{align*}
+
+	\begin{definition}[Equilibrium Solution]
+	An \emph{equilibrium solution} to a differential equation or system of differential equations is a
+	solution that is constant in the independent variable(s).
+	\end{definition}
+
+	\begin{parts}
+		\item By changing initial conditions, what is the ``smallest'' curve you can get in the phase portrait? What happens at
+		those initial conditions?
+		\item What should $F'$ and $R'$ be if $F$ and $R$ are \emph{equilibrium solutions}?
+		\item How many equilibrium solutions are there for the fox-and-rabbit system? Justify your answer.
+		\item What do the equilibrium solutions look like in the phase portrait? What about their component graphs?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall the logistic model for starfish growth:
+	\begin{itemize}
+		\item[\textbf{O}] \# new children per year $\sim$ current population times the fraction of total resources remaining
+	\end{itemize}
+	which can be modeled with the equation
+	\[
+		P'(t) = k\cdot P(t)\cdot (R-R_i\cdot P(t))
+	\]
+	where 
+	\begin{itemize}
+		\item $P(t)$ is the population at time $t$
+		\item $k$ is a constant of proportionality 
+		\item $R$ is the total number of resources
+		\item $R_i$ is the resources that one starfish consumes
+	\end{itemize}
+
+	Use $k=1.1$, $R=1$, and $R_i=0.1$ unless instructed otherwise.
+
+	\begin{parts}
+		\item What are the equilibrium solutions for model \textbf{O}?
+		\item What does a phase portrait for model \textbf{O} look like? What do graphs of equilibrium solutions look like?
+		\item Classify the behaviour of solutions that lie \emph{between} the equilibrium solutions. E.g., are they increasing, decreasing, oscillating?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+
+	\begin{definition}[Classification of Equilibria]
+		An equilibrium solution \emph{$f$} is called
+		\begin{itemize}
+			\item \emph{attracting} if solutions locally converge to $f$
+			\item \emph{repelling} if solutions locally diverge from $f$
+			\item \emph{stable} if solutions do not locally diverge from $f$
+			\item \emph{unstable} if solutions do not locally converge to $f$
+			\item \emph{semi-stable} if solutions locally converge to $f$ from one side and
+			locally diverge from $f$ on another.
+		\end{itemize}
+	\end{definition}
+
+	Let
+	\[
+		F'(t) =\ ?
+	\]
+	be an unknown differential equation with equilibrium solution $f(t)=1$.
+
+	\begin{parts}
+		\item Draw an example of what solutions might look like if $f$ is \emph{attracting}.
+		\item Draw an example of what solutions might look like if $f$ is \emph{repelling}.
+		\item Draw an example of what solutions might look like if $f$ is \emph{stable}.
+		\item Could $f$ be stable but \emph{not} attracting?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	\begin{definition}[Classification of Equilibria]
+		An equilibrium solution \emph{$f$} is called
+		\begin{itemize}
+			\item \emph{attracting} if solutions locally converge to $f$
+			\item \emph{repelling} if solutions locally diverge from $f$
+			\item \emph{stable} if solutions do not locally diverge from $f$
+			\item \emph{unstable} if solutions do not locally converge to $f$
+			\item \emph{semi-stable} if solutions locally converge to $f$ from one side and
+			locally diverge from $f$ on another.
+		\end{itemize}
+	\end{definition}
+	
+	Recall the starfish population model \textbf{O} given by
+	\[
+		P'(t) = k\cdot P(t)\cdot (R-R_i\cdot P(t))
+	\]
+	Use $k=1.1$, $R=1$, and $R_i=0.1$ unless instructed otherwise.
+
+
+	\begin{parts}
+		\item Classify the equilibrium solutions for model \textbf{O} as attracting/repelling/stable/unstable/semi-stable.
+		\item Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
+	\end{parts}
+\end{slide}
+
+
+
+
+
 
 
 
