@@ -611,9 +611,12 @@
 		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
 	\end{align*}
 
-	\begin{definition}[Phase Plane]
+	\begin{definition}[Component Graph \& Phase Plane]
 		For a differential equation involving the functions $F_1$, $F_2$, \ldots, $F_n$, and the variable $t$,
-		the \emph{phase plane} or \emph{phase space} is the $n$-dimensional space with axes corresponding to
+		the \emph{component graphs} are the $n$ graphs of $(t, F_1)$, $(t, F_n)$, \ldots.
+		
+		The \emph{phase plane} or \emph{phase space} associated with the differential equation
+		is the $n$-dimensional space with axes corresponding to
 		the values of $F_1$, $F_2$, \ldots, $F_n$.
 	\end{definition}
 
@@ -661,7 +664,7 @@
 	\end{itemize}
 	which can be modeled with the equation
 	\[
-		P'(t) = k\cdot P(t)\cdot (R-R_i\cdot P(t))
+		P'(t) = k\cdot P(t)\cdot \left(1-\tfrac{R_i}{R}\cdot P(t)\right)
 	\]
 	where 
 	\begin{itemize}
@@ -725,7 +728,7 @@
 	
 	Recall the starfish population model \textbf{O} given by
 	\[
-		P'(t) = k\cdot P(t)\cdot (R-R_i\cdot P(t))
+		P'(t) = k\cdot P(t)\cdot \left(1-\tfrac{R_i}{R}\cdot P(t)\right)
 	\]
 	Use $k=1.1$, $R=1$, and $R_i=0.1$ unless instructed otherwise.
 
@@ -736,12 +739,34 @@
 	\end{parts}
 \end{slide}
 
-% XXX Some stuff to figure out about vocab: phase portrait's multiple uses?
-
 %
 % Hours 10-12
 %
 
+\begin{slide}
+	% https://www.desmos.com/calculator/ghavqzqqjn
+
+	\question
+	
+	\begin{center}
+	\includegraphics[width=2.5in]{slope-field-for-O.png}
+	\end{center}
+
+	A \emph{slope field} is a plot of small segments of would-be tangent lines
+	to solutions of a differential equation at different initial conditions.
+	
+	On the left is a slope field for model \textbf{O}, available at
+
+	\url{https://www.desmos.com/calculator/ghavqzqqjn}
+
+	\begin{parts}
+		\item If you were sketching the slope field for model \textbf{O} by hand, what line would you sketch
+		(a segment of) at $(5,3)$? Write an equation for the line.
+		\item How can you recognize equilibrium solutions in a slope field?
+		\item Describe different solutions to the \emph{differential equation} using words. Do all
+		of those solutions make sense in terms of \emph{model \textbf{O}}?
+	\end{parts}
+\end{slide}
 
 
 
