@@ -768,7 +768,192 @@
 	\end{parts}
 \end{slide}
 
+\begin{slide}
+	% https://www.desmos.com/3d/fsfbhvy2h9
 
+	\question
+	
+	\begin{center}
+		\includegraphics[width=2in]{slope-field-3d.png}
+	\end{center}
+
+	3d slope fields are possible, but hard to interpret.
+
+	On the left is a slope field for the Foxes--Rabbits model.
+
+	\url{https://www.desmos.com/3d/fsfbhvy2h9}
+
+	\begin{parts}
+		\item What are the three dimensions in the plot?
+		\item What should the graph of an equilibrium solution look like?
+		\item What should the graph of a typical solution look like?
+		\item What are ways to simplify the picture so we can more easily analyze solutions?
+	\end{parts}
+\end{slide}
+
+
+\begin{slide}
+	% https://www.desmos.com/calculator/wdgtznxndp
+	%
+	% Without Euler's built in:
+	% https://www.desmos.com/calculator/vrk0q4espx
+
+	\question
+	
+	\begin{center}
+		\includegraphics[width=2.5in]{phase-portrait-foxes-wolves.png}
+	\end{center}
+
+
+	\begin{definition}[Phase Portrait]
+		A \emph{phase portrait} or \emph{phase diagram} is the plot of a vector field in phase space
+		where each vector rooted at $(x,y)$ is tangent to a solution curve passing through $(x,y)$
+		and its length is given by the speed of a solution when passing through $(x,y)$.
+	\end{definition}
+
+	On the left is a phase portrait for the Foxes--Rabbits model.
+
+	\url{https://www.desmos.com/calculator/vrk0q4espx}
+
+	\begin{parts}
+		\item What do the $x$ and $y$ axes correspond to?
+		\item Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
+		\item Classify each equilibrium as stable/unstable.
+		\item Why is the vectors at $(30,300)$ longer than the vector at $(5,50)$? Justify numerically.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	% https://www.desmos.com/calculator/wdgtznxndp
+	%
+	% Without Euler's built in:
+	% https://www.desmos.com/calculator/vrk0q4espx
+
+	\question
+
+	Use the phase portrait plotter
+
+	\url{https://www.desmos.com/calculator/vrk0q4espx}
+
+	to create a system of differential equations where:
+
+	\begin{parts}
+		\item There is an attracting equilibrium solution.
+		\item There is a repelling equilibrium solution.
+		\item There are no equilibrium solutions.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	% https://www.desmos.com/calculator/ghavqzqqjn
+
+	\question
+	
+	\begin{center}
+	\includegraphics[width=2.5in]{slope-field-for-O.png}
+	\end{center}
+
+	Recall the slope field for model \textbf{O}.
+
+	\begin{parts}
+		\item What would a phase portrait for model \textbf{O} look like? Draw it.
+		\item Where are the arrows the longest? Shortest?
+		\item How could you tell from a 1d phase portrait whether an equilibrium solution is
+		attracting/repelling/etc.?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	%
+	% Completed phase portrait in desmos:
+	% https://www.desmos.com/calculator/tvjag852ja
+	\question
+	\label{q-phase}
+	The following differential equation models the life cycle of a tree.
+	In the model
+	\begin{itemize}
+		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
+		\item $A(t)\ =$ combined surface area (in square meters) of all leaves at time $t$
+	\end{itemize}
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	and $0 < b< 2$
+
+	\bigskip
+	\phantom{x}
+	\begin{parts}
+		\item 
+		\label{part-phase}
+		Modify 
+
+		{\small
+		\url{https://www.desmos.com/calculator/vrk0q4espx}
+		}
+
+		to make a phase portrait for the tree model.
+		\item What do equilibrium solutions mean in terms of tree growth?
+		\item For $b=1$ what are the equilibrium solution(s)?
+	\end{parts}
+	\bigskip
+	\phantom{x}
+\end{slide}
+
+\begin{slide}
+	%
+	% Completed phase portrait in desmos:
+	% https://www.desmos.com/calculator/tvjag852ja
+	\question
+	The following differential equation models the life cycle of a tree.
+	In the model
+	\begin{itemize}
+		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
+		\item $A(t)\ =$ combined surface area (in square meters) of all leaves at time $t$
+	\end{itemize}
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	and $0 < b< 2$
+
+	\bigskip
+	\phantom{x}
+	\begin{parts}
+		\item Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial conditions.
+		Plot the results on your phase portrait from \ref{q-phase}.\ref{part-phase}.
+		\item What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
+		\item What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
+	\end{parts}
+	\bigskip
+	\phantom{x}
+\end{slide}
+
+\begin{slide}
+	The tree model
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	was based on the premises
+	\begin{itemize}[leftmargin=3em]
+		\item[ $P_{\text{height 1}}$] CO$_2$ is absorbed by the leaves and turned directly into trunk height.
+		\item[ $P_{\text{height 2}}$] The tree is in a swamp and constantly sinks at a speed proportional to its height.
+		\item[ $P_{\text{leaves 1}}$] Leaves grow proportionality to the energy available.
+		\item[ $P_{\text{energy 1}}$] The tree absorbs energy from the sun proportionality to the leaf area.
+		\item[ $P_{\text{energy 2}}$] It costs energy proportional to the square of the height for the tree to maintain its current size.
+	\end{itemize}
+
+	\begin{parts}
+		\item How are the premises expressed in the differential equations?
+		\item What does the parameter $b$ represent?
+		\item Simulations show solutions with negative values for $H$ and $A$. What actually happens to the tree when this occurs?
+	\end{parts}
+\end{slide}
+
+%
+% Hours 13-14
+%
 
 
 
