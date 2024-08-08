@@ -11,9 +11,9 @@
 	linkcolor = {0 0 1},
 	% Metadata to be embedded by hyperxmp
 	pdftitle={Ordinary Differential Equations (\jobname)},
-	pdfauthor={Bernardo Galvao-Souza, Jason Siefken},
+	pdfauthor={Bernardo Galv\~ao-Sousa, Jason Siefken},
 	pdfauthortitle={Author},
-	pdfcopyright={Copyright (C) \copyrightdate, Bernardo Galvao-Souza, Jason Siefken},
+	pdfcopyright={Copyright (C) \copyrightdate, Bernardo Galv\~ao-Sousa, Jason Siefken},
 	pdfsubject={Ordinary Differential Equations textbook/workbook},
 	pdfkeywords={ordinary differential equations, ODEs, modeling, vectors, mathematics, textbook},
 	pdfurl={https://github.com/siefkenj/IBLODEs/},
@@ -33,7 +33,7 @@
 %%%
 
 \fancypagestyle{siefken}{%
-	\rfoot{\footnotesize\it \copyright\,Bernardo Galvao-Souza \& Jason Siefken, \copyrightdate \ \makebox(30,5){\includegraphics[height=1.2em]{by-sa.pdf}}}
+	\rfoot{\footnotesize\it \copyright\,Bernardo Galv\~ao-Sousa \& Jason Siefken, \copyrightdate \ \makebox(30,5){\includegraphics[height=1.2em]{by-sa.pdf}}}
 	\lfoot{}
 	\renewcommand{\headrulewidth}{0pt}
 }
@@ -613,7 +613,7 @@
 
 	\begin{definition}[Component Graph \& Phase Plane]
 		For a differential equation involving the functions $F_1$, $F_2$, \ldots, $F_n$, and the variable $t$,
-		the \emph{component graphs} are the $n$ graphs of $(t, F_1)$, $(t, F_n)$, \ldots.
+		the \emph{component graphs} are the $n$ graphs of $(t, F_1(t))$, $(t, F_2(t))$, \ldots.
 		
 		The \emph{phase plane} or \emph{phase space} associated with the differential equation
 		is the $n$-dimensional space with axes corresponding to
@@ -671,7 +671,7 @@
 		\item $P(t)$ is the population at time $t$
 		\item $k$ is a constant of proportionality 
 		\item $R$ is the total number of resources
-		\item $R_i$ is the resources that one starfish consumes
+		\item $R_i$ is the resources that one starfish wants to consume
 	\end{itemize}
 
 	Use $k=1.1$, $R=1$, and $R_i=0.1$ unless instructed otherwise.
@@ -752,7 +752,7 @@
 	\includegraphics[width=2.5in]{slope-field-for-O.png}
 	\end{center}
 
-	A \emph{slope field} is a plot of small segments of would-be tangent lines
+	A \emph{slope field} is a plot of small segments of tangent lines
 	to solutions of a differential equation at different initial conditions.
 	
 	On the left is a slope field for model \textbf{O}, available at
@@ -761,7 +761,7 @@
 
 	\begin{parts}
 		\item If you were sketching the slope field for model \textbf{O} by hand, what line would you sketch
-		(a segment of) at $(5,3)$? Write an equation for the line.
+		(a segment of) at $(5,3)$? Write an equation for that line.
 		\item How can you recognize equilibrium solutions in a slope field?
 		\item Describe different solutions to the \emph{differential equation} using words. Do all
 		of those solutions make sense in terms of \emph{model \textbf{O}}?
@@ -808,7 +808,7 @@
 	\begin{definition}[Phase Portrait]
 		A \emph{phase portrait} or \emph{phase diagram} is the plot of a vector field in phase space
 		where each vector rooted at $(x,y)$ is tangent to a solution curve passing through $(x,y)$
-		and its length is given by the speed of a solution when passing through $(x,y)$.
+		and its length is given by the speed of a solution passing through $(x,y)$.
 	\end{definition}
 
 	On the left is a phase portrait for the Foxes--Rabbits model.
@@ -819,7 +819,7 @@
 		\item What do the $x$ and $y$ axes correspond to?
 		\item Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
 		\item Classify each equilibrium as stable/unstable.
-		\item Why is the vectors at $(30,300)$ longer than the vector at $(5,50)$? Justify numerically.
+		\item Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
 	\end{parts}
 \end{slide}
 
@@ -830,17 +830,12 @@
 	% https://www.desmos.com/calculator/vrk0q4espx
 
 	\question
-
-	Use the phase portrait plotter
-
-	\url{https://www.desmos.com/calculator/vrk0q4espx}
-
-	to create a system of differential equations where:
+	Sketch your own vector field where the corresponding system of differential equations:
 
 	\begin{parts}
-		\item There is an attracting equilibrium solution.
-		\item There is a repelling equilibrium solution.
-		\item There are no equilibrium solutions.
+		\item Has an attracting equilibrium solution.
+		\item Has a repelling equilibrium solution.
+		\item Has no equilibrium solutions.
 	\end{parts}
 \end{slide}
 
@@ -873,13 +868,13 @@
 	In the model
 	\begin{itemize}
 		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
-		\item $A(t)\ =$ combined surface area (in square meters) of all leaves at time $t$
+		\item $A(t)\ =$ surface area (in square meters) of all leaves at time $t$
 	\end{itemize}
 	\begin{align*}
 		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
 		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
 	\end{align*}
-	and $0 < b< 2$
+	and $0 \leq b \leq 2$
 
 	\bigskip
 	\phantom{x}
@@ -909,7 +904,7 @@
 	In the model
 	\begin{itemize}
 		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
-		\item $A(t)\ =$ combined surface area (in square meters) of all leaves at time $t$
+		\item $A(t)\ =$ surface area (in square meters) of all leaves at time $t$
 	\end{itemize}
 	\begin{align*}
 		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
@@ -948,7 +943,8 @@
 	\begin{parts}
 		\item How are the premises expressed in the differential equations?
 		\item What does the parameter $b$ represent?
-		\item Simulations show solutions with negative values for $H$ and $A$. What actually happens to the tree when this occurs?
+		\item Applying Euler's method to this system shows solutions that pass from the 1st to 4th quadrants of the phase plane.
+			Is this realistic? Describe the life cycle of such a tree?
 	\end{parts}
 \end{slide}
 
@@ -964,6 +960,14 @@
 		\item Find all equilibrium solutions for $0\leq b\leq 2$.
 		\item For which $b$ does a tree have the possibility of living forever? If the wind occasionally blew off a few random leaves,
 		would that change your answer?
+		\item
+		Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
+
+		Find a value $b_{12}$ of $b$ so that there is an equilibrium with $H=12$.
+		
+		\item
+		Predict what happens to a tree near equilibrium in condition $b_5$ and a tree near equilibrium in condition $b_{12}$.
+
 	\end{parts}
 \end{slide}
 
@@ -971,6 +975,27 @@
 % Hours 13-14
 %
 
+\begin{slide}
+	\question
+	Consider the system of differential equations
+	\begin{align*}
+		x'(t) &= x(t)\\
+		y'(t) &= 2y(t)
+	\end{align*}
+
+	\begin{parts}
+		\item Make a phase portrait for the system.
+		\item What are the equilibrium solution(s) of the system?
+		\item 
+		Find a formula for $x(t)$ and $y(t)$ that satisfy the initial conditions $(x(0), y(0))=(x_0, y_0)$.
+		\item Let $\vec r(t)=(x(t),y(t))$. Find a matrix $A$ so that the differential equation can be equivalently expressed
+		as
+		\[
+			\vec r'(t) = A\vec r(t).
+		\]
+		\item Write yo
+	\end{parts}
+\end{slide}
 
 
 
