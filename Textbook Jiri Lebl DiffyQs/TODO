@@ -1,0 +1,53 @@
+* Make everything be in some subsection, the "introduction" divisions in
+  pretext may be screwing up and just dropping certain things on the floor.
+  This requires a new edition since there are going to be probably page
+  number changes.  If this is done, we could drop the manual introduction
+  %mbxINTROSUBSECTION thing and do it automatically again perhaps.
+
+Pretext/HTML:
+
+* https://pretextbook.org/doc/guide/html/processing-directory-management.html
+
+Further down the road perhaps (some of them could be doable in next
+minor version):
+
+SMALLER THINGS MAYBE:
+
+* Add smallish subsection to 6.2 about transform of periodic functions.
+  After that, readd the WeBWorK exercises with the periodic functions.
+
+* Expand discussion of vector fields and how they are drawn in 3.1.
+* Add maybe a few more exercises for setting up applications in 3.1
+* In 3.6 add more exercises on forced, and also improve the exposition wrt
+  the units.
+* In 3.4 (or earlier?) Add some exercises on constant nonhomogeneity for
+  an invertible A, that just translates the point.
+* Include annihilator method at least in exercises of section of 2.5 
+* Perhaps change name of \vec{x}_1 solutions to avoid confusion with x_1
+  components, see what other books do.
+* Add factorization idea in wave equation (d'Alembert) to write it as
+  two vector fields applied to y perhaps?  Makes more sense if we have 
+  first order before this.
+* Perhaps mention somewhere in 2.2 how the correspondence is with $y^{(n)}$
+  going to $r^n$ in the characteristic equation, might make it simpler to
+  see.
+* More detail in 7.1, work more with the expanded series
+* Another example in 7.2, perhaps nonlinear to show that one can keep
+  cranking out the coefficients.
+
+LARGER THINGS MAYBE:
+
+MAYBE IN CASE OF BIG CHANGE (incompatible edition) in the Star Trek
+future (quite probably never):
+* Split Fourier Series - PDE, probably move the "applications of eigen-series"
+  to the PDE chapter.  In this case, first order PDEs might make sense
+  before the second order ones since it leads naturally into d'Alembert,
+  but they are in chapter 1, where they might make more sense.
+  This requires much more thought, maybe forget about it.
+
+PROBABLY NOT/VAGUE:
+* Perhaps an appendix with more info on existence uniqueness, linear
+  independence (maybe wronskian, though perhaps it might be best to avoid
+  wronskian, to avoid plug and play maddness), some proofs and extra
+  information in general, basically some extra optional sections.  etc..
+  Need more ideas for this.

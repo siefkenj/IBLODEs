@@ -1,0 +1,105 @@
+\chapter{Complex numbers and Euler's formula}\label{complex:appendix}
+
+A polynomial may have complex roots.  The
+equation $r^2 + 1 = 0$ has no real roots, but it does have two complex roots.
+Here we review some properties of complex numbers\index{complex number}.
+
+Complex numbers may seem a strange concept, especially because of the
+terminology.  There is nothing imaginary or really complicated about complex
+numbers.
+A complex number is simply a pair of real numbers, $(a,b)$.  
+Think of a complex number as a point in the plane.  We add complex numbers
+in the straightforward way: $(a,b)+(c,d)=(a+c,b+d)$.  We define
+multiplication\index{multiplication of complex numbers} by
+\begin{equation*}
+(a,b) \times (c,d) \overset{\text{def}}{=} (ac-bd,ad+bc) .
+\end{equation*}
+It turns out that with this multiplication rule, all the standard properties
+of arithmetic hold.  Further, and most importantly $(0,1) \times (0,1) =
+(-1,0)$.
+
+Generally we write $(a,b)$ as $a+ib$, and we treat $i$ as if it were an
+unknown.  When $b$ is zero, then $(a,0)$ is just the number $a$.
+We do arithmetic with complex numbers just as we would
+with polynomials.
+The property we just mentioned becomes $i^2 = -1$.
+So whenever we see $i^2$, we replace it by $-1$.
+For example,
+\begin{equation*}
+(2+3i)(4i) - 5i = 
+(2\times 4)i + (3 \times 4) i^2 - 5i
+=
+8i + 12 (-1) - 5i
+=
+-12 + 3i .
+\end{equation*}
+
+The numbers
+$i$ and $-i$ are the two roots of $r^2 + 1 = 0$.
+Some engineers use the letter $j$ instead of $i$ for the square
+root of $-1$.  We use the mathematicians' convention and use $i$.
+
+\begin{exercise}
+Make sure you understand (that you can justify)
+the following identities:
+\begin{tasks}(2)
+\task $i^2 = -1$, $i^3 = -i$, $i^4 = 1$,
+\task $\dfrac{1}{i} = -i$,
+\task $(3-7i)(-2-9i) = \cdots = -69-13i$,
+\task $(3-2i)(3+2i) = 3^2 - {(2i)}^2 = 3^2 + 2^2 = 13$,
+\task $\frac{1}{3-2i} = \frac{1}{3-2i} \frac{3+2i}{3+2i} = \frac{3+2i}{13}
+= \frac{3}{13}+\frac{2}{13}i$.
+\end{tasks}
+\end{exercise}
+
+\pagebreak[2]
+We also define the exponential $e^{a+ib}$ of a complex number.  We do
+this by writing down the Taylor series and plugging in the complex
+number.  Because most properties of the exponential can be proved by looking
+at the Taylor series, these
+properties still hold for the complex
+exponential.  For example the very important property: $e^{x+y} = e^x e^y$.  This means that
+$e^{a+ib} = e^a e^{ib}$.  Hence if we can compute $e^{ib}$, we can
+compute $e^{a+ib}$.  For $e^{ib}$ we use the so-called
+\emph{\myindex{Euler's formula}}.
+
+\begin{theorem}[Euler's formula] \label{eulersformula}
+\begin{equation*}
+\mybxbg{~~
+e^{i \theta} = \cos \theta + i \sin \theta
+\qquad \text{ and } \qquad
+e^{- i \theta} = \cos \theta - i \sin \theta .
+~~}
+\end{equation*}
+\end{theorem}
+
+In other words, $e^{a+ib} = e^a \bigl( \cos(b) + i \sin(b) \bigr) = e^a \cos(b) + i e^a \sin(b)$.
+
+\begin{exercise}
+Using Euler's formula, check the identities:
+\begin{equation*}
+\cos \theta = \frac{e^{i \theta} + e^{-i \theta}}{2}
+\qquad \text{and} \qquad
+\sin \theta = \frac{e^{i \theta} - e^{-i \theta}}{2i}.
+\end{equation*}
+\end{exercise}
+
+\begin{exercise}
+Double angle identities:
+Start with $e^{i(2\theta)} = {\bigl(e^{i \theta} \bigr)}^2$.  Use Euler on
+each side and deduce:
+\begin{equation*}
+\cos (2\theta) = \cos^2 \theta - \sin^2 \theta
+\qquad \text{and} \qquad
+\sin (2\theta) = 2 \sin \theta \cos \theta .
+\end{equation*}
+\end{exercise}
+
+For a complex number $a+ib$ we call
+$a$ the \emph{\myindex{real part}} and $b$ the \emph{\myindex{imaginary part}} of the number.
+Often the following notation is used,
+\begin{equation*}
+\operatorname{Re}(a+ib) = a
+\qquad \text{and} \qquad
+\operatorname{Im}(a+ib) = b.
+\end{equation*}
