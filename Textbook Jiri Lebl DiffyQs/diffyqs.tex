@@ -1,0 +1,483 @@
+\documentclass[12pt]{book}
+%\usepackage{pdf14}
+%Paper saving
+%\documentclass[12pt,openany]{book}
+%\documentclass[10pt,openany]{book}
+%\documentclass[8pt,openany]{extbook}
+
+%FIXME: for PRINT run for lulu or kdp, search for %PRINT  (also
+%search diffyqssetup.sty)
+
+
+%See text for 
+%FIXMEevillayouthack
+% for evil layout hacks
+
+\usepackage{diffyqssetup}
+
+% Useful for making up drafts
+%\usepackage{draftwatermark}
+%\SetWatermarkText{Draft of v6.0 as of \today. May still change!}
+%\SetWatermarkAngle{90}
+%\SetWatermarkHorCenter{0.5in}
+%\SetWatermarkColor[gray]{0.7}
+%\SetWatermarkScale{0.18}
+
+% This is useful for debugging
+%\overfullrule=2cm
+
+\author{Ji\v{r}\'i Lebl}
+
+\title{Notes on Diffy Qs: Differential Equations for MAT244}
+
+% Set up our index
+\makeindex
+
+%mbx <!--BEFORE book-->
+
+%mbxdocinfo    <website>
+%mbxdocinfo        <title>www.jirka.org/diffyqs/</title>
+%mbxdocinfo        <url>https://www.jirka.org/diffyqs/</url>
+%mbxdocinfo    </website>
+%mbxdocinfo
+%mbxdocinfo    <brandlogo source="logo.png" url="https://www.jirka.org/diffyqs/" />
+%mbxdocinfo
+%mbxdocinfo    <rename element="inlineexercise">Exercise</rename>
+%mbxdocinfo    <rename element="divisionalexercise">Exercise</rename>
+%mbxdocinfo
+%mbxdocinfo    <math-package latex-name="cancel" mathjax-name="cancel"/>
+%mbxdocinfo
+%mbxdocinfo    <initialism>DIFFYQS</initialism>
+
+
+%mbxmacro \newcommand{\nicefrac}[2]{{{}^{#1}}\!/\!{{}_{#2}}}
+%mbxmacro \newcommand{\unitfrac}[3][\!\!]{#1 \,\, {{}^{#2}}\!/\!{{}_{#3}}}
+%mbxmacro \newcommand{\unit}[2][\!\!]{#1 \,\, #2}
+%mbxmacro \newcommand{\noalign}[1]{}
+%mbxmacro \newcommand{\qed}{\qquad \Box}
+%mbxmacro \newcommand{\mybxbg}[1]{\boxed{#1}}
+%mbxmacro \newcommand{\mybxsm}[1]{\boxed{#1}}
+%mbxmacro \newcommand{\allowbreak}{}
+
+\begin{document}
+
+%mbx <title>Notes on Diffy Qs</title>
+%mbx <subtitle>Differential Equations for MAT244</subtitle>
+%mbx
+%mbx <frontmatter>
+%mbx   <titlepage>
+%mbx
+%mbx     <author>
+%mbx       <personname>Jiří Lebl</personname>
+%mbx       <department>Department of Mathematics</department>
+%mbx       <institution>Oklahoma State University</institution>
+%mbx       <email>jiri.lebl@gmail.com</email>
+%mbx     </author>
+%mbx
+%mbx     <date><today /></date>
+%mbx
+%mbx   </titlepage>
+%mbx
+%mbx   <colophon>
+%mbx
+%mbx     <copyright>
+%mbx       <year>2008<ndash />2024</year>
+%mbx       <holder>Jiří Lebl</holder>
+%mbx       <minilicense>Creative Commons Attribution-Non-commercial-Share Alike 4.0 International License and the Creative Commons Attribution-Share Alike 4.0 International License</minilicense>
+%mbx       <shortlicense>
+%mbx         This work is dual licensed under the Creative Commons Attribution-Non-commercial-Share Alike 4.0 International License and
+%mbx         the Creative Commons Attribution-Share Alike 4.0 International License.  To view a copy of these licenses, visit
+%mbx         <url href="https://creativecommons.org/licenses/by-nc-sa/4.0/" /> or
+%mbx         <url href="https://creativecommons.org/licenses/by-sa/4.0/" />
+%mbx         or send a letter to Creative Commons PO Box 1866, Mountain View, CA 94042, USA.
+%mbx       </shortlicense>
+%mbx     </copyright>
+%mbx     <p>
+%mbx        Version 6.7
+%mbx     </p>
+%mbx     <p>
+%mbx       You can use, print, duplicate, and share this book as much as you want.  You can
+%mbx       base your own notes on it and reuse parts if you keep the license the
+%mbx       same.  You can assume the license is either CC-BY-NC-SA or CC-BY-SA,
+%mbx       whichever is compatible with what you wish to do.
+%mbx       Your derivative work must use at least one of the licenses.
+%mbx       Derivative works must be prominently marked as such.
+%mbx     </p>
+%mbx     <p>
+%mbx       During the writing of this book, 
+%mbx       the author was in part supported by NSF grant DMS-0900885 and
+%mbx       DMS-1362337.
+%mbx     </p>
+%mbx     <p>
+%mbx       The date is the main identifier of version.  The major version / edition
+%mbx       number is raised only if there have been substantial changes.
+%mbx       Edition number started at 5, that is, version 5.0, as it was not kept track of
+%mbx       before.
+%mbx     </p>
+%mbx     <p>
+%mbx       See <url href="https://www.jirka.org/diffyqs/" />
+%mbx       for more information
+%mbx       (including contact information).
+%mbx       The LaTeX source for the book is available for possible modification and customization
+%mbx       at github: <url href="https://github.com/jirilebl/diffyqs" />
+%mbx     </p>
+%mbx
+%mbx   </colophon>
+%mbx </frontmatter>
+
+%mbxSTARTIGNORE
+
+%also fix above
+\newcommand{\theversion}{6.7}
+\makediffytitlepage
+
+\newpage
+
+\vspace*{\fill}
+
+\begin{small}
+\noindent
+Typeset in \LaTeX.
+
+\bigskip
+
+\noindent
+Copyright \copyright 2008--2024 Ji\v{r}\'i Lebl
+
+%PRINT
+% not for lulu
+%\medskip
+%\noindent
+%Amazon KDP edition\\
+%ISBN-13: 978-1-70623-023-6
+
+%PRINT
+% not for lulu
+%\medskip
+%\noindent
+%Cover image: Arch in St.\ Louis, \copyright 2008 Ji{\v r}\'i Lebl, all rights reserved.  Cover
+%image cannot be reused in derivative works.
+
+\bigskip
+
+%\begin{floatingfigure}{1.4in}
+%\vspace{-0.05in}
+\noindent
+\includegraphics[width=1.38in]{figures/license}
+\quad
+\includegraphics[width=1.38in]{figures/license2}
+%\end{floatingfigure}
+
+\bigskip
+
+\noindent
+This work
+%PRINT
+% not for lulu
+%(except the cover art)
+is dual licensed under
+the Creative Commons
+Attribution-Non\-commercial-Share Alike 4.0 International License and
+the Creative Commons
+Attribution-Share Alike 4.0 International License.
+To view a
+copy of these licenses, visit
+\url{https://creativecommons.org/licenses/by-nc-sa/4.0/}
+or
+\url{https://creativecommons.org/licenses/by-sa/4.0/}
+or send a letter to
+Creative Commons
+PO Box 1866, Mountain View, CA 94042, USA\@.
+%Creative Commons, 171 Second Street, Suite 300, San Francisco, California,
+%94105, USA.
+
+\bigskip
+
+\noindent
+You can use, print, duplicate, and share this book as much as you want.  You can
+base your own notes on it and reuse parts if you keep the license the
+same.  You can assume the license is either CC-BY-NC-SA or CC-BY-SA\@,
+whichever is compatible with what you wish to do.
+Your derivative work must use at least one of the licenses.
+Derivative works must be prominently marked as such.
+%If you plan to use it commercially (sell it for more than just
+%duplicating cost), then you need to contact me and we will work something out.
+%If you are printing a course pack for your students, then it is fine if the 
+%duplication service is charging a fee for printing and selling the printed
+%copy.  I consider that duplicating cost.
+
+\bigskip
+
+\noindent
+During the writing of this book, 
+the author was in part supported by NSF grant DMS-0900885 and
+DMS-1362337.
+
+\bigskip
+
+\noindent
+The date is the main identifier of version.  The major version / edition
+number is raised only if there have been substantial changes.
+%, if only
+%very minor changes or fixes are done only the minor version is raised.
+Edition
+number started at 5, that is, version 5.0, as it was not kept track of
+before.
+%The Createspace edition ISBN number identifies the major version, and is not
+%changed for minor updates fixing errata.
+%The edition given with the ISBN number is the major version.
+
+\bigskip
+
+\noindent
+See \url{https://www.jirka.org/diffyqs/} for more information
+(including contact information).
+
+\bigskip
+
+\noindent
+The \LaTeX\ source for the book is available
+for possible modification and customization
+at github: \url{https://github.com/jirilebl/diffyqs}
+\end{small}
+
+\diffytableofcontents
+
+\newpage
+
+%mbxENDIGNORE
+
+%mbx <!--HERE IS WHERE WE ADD MBX PREAMBLE AFTER book-->
+%mbx <!--HERE IS WHERE WE ADD MBX PREAMBLE 2-->
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Introduction chapter
+\input{ch-intro.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% First order ODEs chapter
+\input{ch-first-order-ode.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Systems of ODEs chapter
+\input{ch-systems.tex}
+
+%mbxSTARTIGNORE
+%This makes contents fit if needed
+%FIXMEevillayouthack
+\addextraspacetotoc
+%mbxENDIGNORE
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Higher order linear ODEs chapter
+%\input{ch-higher-order-ode.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Fourier series and PDEs chapter
+%\input{ch-fourier-and-pde.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Eigenvalue problems chapter
+%\input{ch-eigenvalue-probs.tex}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The Laplace transform chapter
+%\input{ch-laplace.tex}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Power series methods chapter
+%\input{ch-power-ser.tex}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Nonlinear systems chapter
+\input{ch-nonlin-systems.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% mbx wants appendices to be in backmatter it seems
+
+%mbx <backmatter>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Linear algebra appendix
+\input{ap-linear-algebra.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Linear algebra appendix
+\input{ap-complex-numbers.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% Nonlinear systems chapter
+%\input{ap-laplace-list.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%must be in separate "paragraph" (empty lines before and after)
+% This closes the chapters/appedices above and starts actual backmatter
+%mbxCLOSECHAPTER
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%mbxSTARTIGNORE
+
+%This makes contents fit if needed
+%FIXMEevillayouthack
+%\addextraspacetotoc
+
+\renewcommand{\bibname}{Further Reading}
+
+\begin{thebibliography}{MM}
+
+\addfakecontentsline{Further Reading}
+
+\label{furtherreading:chapter}
+
+\bibitem[BM]{BM}
+ Paul W.\ Berg and James L.\ McGregor, 
+ \emph{\href{https://books.google.com/books?id=EfJQAAAAMAAJ}{Elementary
+Partial Differential Equations}}, 
+ Holden-Day,
+ San Francisco, CA\@,
+ 1966.
+
+\bibitem[BD]{BD}
+ William E.\ Boyce and
+ Richard C.\ DiPrima,
+ \emph{\href{https://books.google.com/books?id=nYWcQgAACAAJ}{Elementary
+Differential Equations and Boundary Value Problems}},
+ 11th edition,
+ John Wiley \& Sons Inc.,
+ New York, NY\@, 2017.
+
+\bibitem[EP]{EP}
+ C.H.\ Edwards and D.E.\ Penney,
+ \emph{\href{https://books.google.com/books?id=wuWvoAEACAAJ}{Differential
+Equations and Boundary Value Problems: Computing and Modeling}},
+ 5th edition,
+ Pearson,
+ 2014.
+
+\bibitem[F]{F}
+ Stanley J.\ Farlow,
+ \emph{\href{https://books.google.com/books?id=_ozWAAAAMAAJ}{An Introduction
+to Differential Equations and Their Applications}},
+ McGraw-Hill, Inc.,
+ Princeton, NJ\@,
+ 1994.  (Published also by Dover Publications, 2006.)
+
+\bibitem[I]{I}
+ E.L.\ Ince,
+ \emph{\href{https://books.google.com/books?id=uYz-pqUD75gC}{Ordinary
+Differential Equations}},
+ Dover Publications, Inc.,
+ New York, NY\@,
+ 1956.
+
+\bibitem[T]{T}
+ William F.\ Trench,
+ \emph{Elementary Differential Equations with Boundary Value
+Problems}. Books and Monographs. Book 9.  2013.
+\url{https://digitalcommons.trinity.edu/mono/9}
+
+\end{thebibliography}
+%mbxENDIGNORE
+
+%mbx <references xml:id="furtherreading_chapter">
+%mbx   <title>Further Reading</title>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-BM" tag="BM">Paul W. Berg and
+%mbx     James L. McGregor, 
+%mbx     <title><url href="https://books.google.com/books?id=EfJQAAAAMAAJ"
+%mbx                 visual="books.google.com/books?id=EfJQAAAAMAAJ"
+%mbx     >Elementary Partial Differential Equations</url></title>,
+%mbx     Holden-Day, San Francisco, CA, 1966.</biblio>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-BD" tag="BD">William E. Boyce and
+%mbx     Richard C. DiPrima,
+%mbx     <title><url href="https://books.google.com/books?id=SyaVDwAAQBAJ"
+%mbx                 visual="books.google.com/books?id=SyaVDwAAQBAJ"
+%mbx     >Elementary Differential Equations and Boundary Value
+%mbx     Problems</url></title>,
+%mbx     11th edition, John Wiley &amp; Sons Inc., New York, NY, 2017.</biblio>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-EP" tag="EP">C.H. Edwards
+%mbx     and D.E. Penney,
+%mbx     <title><url href="https://books.google.com/books?id=wuWvoAEACAAJ"
+%mbx                 visual="books.google.com/books?id=wuWvoAEACAAJ"
+%mbx     >Differential Equations and Boundary Value Problems: Computing and
+%mbx     Modeling</url></title>,
+%mbx     5th edition, Pearson, 2014.</biblio>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-F" tag="F">Stanley J. Farlow,
+%mbx     <title><url href="https://books.google.com/books?id=_ozWAAAAMAAJ"
+%mbx                 visual="books.google.com/books?id=_ozWAAAAMAAJ"
+%mbx     >An Introduction to Differential Equations and Their
+%mbx     Applications</url></title>,
+%mbx     McGraw-Hill, Inc., Princeton, NJ, 1994.  (Published also by Dover
+%mbx     Publications, 2006.)</biblio>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-I" tag="I">E.L. Ince,
+%mbx     <title><url href="https://books.google.com/books?id=uYz-pqUD75gC"
+%mbx                 visual="books.google.com/books?id=uYz-pqUD75gC"
+%mbx     >Ordinary Differential Equations</url></title>,
+%mbx     Dover Publications, Inc., New York, NY, 1956.</biblio>
+%mbx
+%mbx   <biblio type="raw" xml:id="biblio-T" tag="T">William F. Trench,
+%mbx     <title>Elementary Differential Equations with Boundary Value
+%mbx     Problems</title>, Books and Monographs, Book 9,  2013,
+%mbx     <url href="https://digitalcommons.trinity.edu/mono/9" />.</biblio>
+%mbx
+%mbx </references>
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%mbxSTARTIGNORE
+\printanswers
+%mbxENDIGNORE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%mbxSTARTIGNORE
+\diffyindex
+%mbxENDIGNORE
+
+%mbx   <index>
+%mbx     <title>Index</title>
+%mbx     <index-list />
+%mbx   </index>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%mbx </backmatter>
+
+\end{document}
+
