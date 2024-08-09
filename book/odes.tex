@@ -611,14 +611,7 @@
 		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
 	\end{align*}
 
-	\begin{definition}[Component Graph \& Phase Plane]
-		For a differential equation involving the functions $F_1$, $F_2$, \ldots, $F_n$, and the variable $t$,
-		the \emph{component graphs} are the $n$ graphs of $(t, F_1(t))$, $(t, F_2(t))$, \ldots.
-		
-		The \emph{phase plane} or \emph{phase space} associated with the differential equation
-		is the $n$-dimensional space with axes corresponding to
-		the values of $F_1$, $F_2$, \ldots, $F_n$.
-	\end{definition}
+	\SavedDefinitionRender{ComponentGraphAndPhasePlane}
 
 	\begin{parts}
 		\item Plot the Fox vs.~Rabbit population in the \emph{phase plane}. 
@@ -642,10 +635,7 @@
 		R'(t) &= (1.1 - 0.1\cdot F(t))\cdot R(t)
 	\end{align*}
 
-	\begin{definition}[Equilibrium Solution]
-	An \emph{equilibrium solution} to a differential equation or system of differential equations is a
-	solution that is constant in the independent variable(s).
-	\end{definition}
+	\SavedDefinitionRender{EquilibriumSolution}
 
 	\begin{parts}
 		\item By changing initial conditions, what is the ``smallest'' curve you can get in the phase plane? What happens at
@@ -686,17 +676,7 @@
 \begin{slide}
 	\question
 
-	\begin{definition}[Classification of Equilibria]
-		An equilibrium solution \emph{$f$} is called
-		\begin{itemize}
-			\item \emph{attracting} if solutions locally converge to $f$
-			\item \emph{repelling} if solutions locally diverge from $f$
-			\item \emph{stable} if solutions do not locally diverge from $f$
-			\item \emph{unstable} if solutions do not locally converge to $f$
-			\item \emph{semi-stable} if solutions locally converge to $f$ from one side and
-			locally diverge from $f$ on another.
-		\end{itemize}
-	\end{definition}
+	\SavedDefinitionRender{ClassificationOfEquilibria}
 
 	Let
 	\[
@@ -714,17 +694,8 @@
 
 \begin{slide}
 	\question
-	\begin{definition}[Classification of Equilibria]
-		An equilibrium solution \emph{$f$} is called
-		\begin{itemize}
-			\item \emph{attracting} if solutions locally converge to $f$
-			\item \emph{repelling} if solutions locally diverge from $f$
-			\item \emph{stable} if solutions do not locally diverge from $f$
-			\item \emph{unstable} if solutions do not locally converge to $f$
-			\item \emph{semi-stable} if solutions locally converge to $f$ from one side and
-			locally diverge from $f$ on another.
-		\end{itemize}
-	\end{definition}
+	
+	\SavedDefinitionRender{ClassificationOfEquilibria}
 	
 	Recall the starfish population model \textbf{O} given by
 	\[
@@ -805,11 +776,7 @@
 	\end{center}
 
 
-	\begin{definition}[Phase Portrait]
-		A \emph{phase portrait} or \emph{phase diagram} is the plot of a vector field in phase space
-		where each vector rooted at $(x,y)$ is tangent to a solution curve passing through $(x,y)$
-		and its length is given by the speed of a solution passing through $(x,y)$.
-	\end{definition}
+	\SavedDefinitionRender{PhasePortrait}
 
 	On the left is a phase portrait for the Foxes--Rabbits model.
 
@@ -998,6 +965,128 @@
 \end{slide}
 
 
+\begin{slide}
+	\question
+	Let $A$ be an unknown matrix and suppose $\vec p$ and $\vec q$ are solutions to $\vec r'=A\,\vec r$.
+
+	\begin{parts}
+		\item Is $\vec s(t)=\vec p(t)+\vec q(t)$ a solution to $\vec r'=A\,\vec r$? Justify your answer.
+		\item Can you construct other solutions from $\vec p$ and $\vec q$? If yes, how so?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall from MAT223:
+	\SavedDefinitionRender{LinearlyDependentIndependentAlgebraic}
+
+	Define
+	\[
+		\vec p(t) = \mat{e^t\\0}\qquad
+		\vec q(t) = \mat{4e^t\\0}\qquad
+		\vec h(t) = \mat{0\\ e^{2t}}\qquad
+		\vec z(t) = \mat{0\\ e^{3t}}.
+	\]
+
+
+	\begin{parts}
+		\item Are $\vec p$ and $\vec q$ linearly independent or linearly dependent? Justify with the definition.
+		\item Are $\vec p$ and $\vec h$ linearly independent or linearly dependent? Justify with the definition.
+		\item Are $\vec h$ and $\vec z$ linearly independent or linearly dependent? Justify with the definition.
+		\item Is the set of three functions  $\Set{\vec p,\vec h,\vec z}$ linearly independent or linearly dependent? Justify with the definition.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall
+	\[
+		\vec p(t) = \mat{e^t\\0}\qquad
+		\vec q(t) = \mat{4e^t\\0}\qquad
+		\vec h(t) = \mat{0\\ e^{2t}}\qquad
+		\vec z(t) = \mat{0\\ e^{3t}}.
+	\]
+
+
+	\begin{parts}
+		\item Intuitively, describe $\Span\Set{\vec p, \vec h}$. What is its dimension? What is a basis for it?
+		\item Let $S$ be the set of all solutions to $\vec r'(t) = \mat{1&0\\0&2}\vec r(t)$. {\ w
+		\small(You've seen this equation before.)}
+		Intuitively, is $S$ a subspace? If so, what is its dimension?
+		\item Provided $S$ is a subspace, give a basis for $S$.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Consider the differential equation
+	\[
+		y'(t) = 2\cdot y(t).
+	\]
+
+
+	\begin{parts}
+		\item Write a solution whose graph passes through the point $(t,y)=(0,3)$.
+		\item Write a solution whose graph passes through the point $(t,y)=(0,y_0)$.
+		\item Write a solution whose graph passes through the point $(t,y)=(t_0,y_0)$.
+		\item Consider the following argument:
+		\begin{quote}
+			For every point $(t_0, y_0)$, there is a corresponding solution to $y'(t) = 2\cdot y(t)$.
+
+			Since $\Set{(t_0,y_0):t_0,y_0\in \R}$ is two dimensional, this means the set of solutions
+			to $y'(t) = 2\cdot y(t)$ is two dimensional.
+		\end{quote}
+		Do you agree? Explain.
+
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	\begin{theorem}
+		For an \emph{autonomous} ordinary differential equation (whose solutions are defined on all of $\R$),
+		a solution that passes through $(t_0, y_0)$ also passes through $(0,y_0^*)$ for some $y_0^*$.
+	\end{theorem}
+	\begin{theorem}[(Uniqueness 1)]
+		The differential equation $y'(t) = a\cdot y(t) + b$ has a unique solution passing through every point.
+	\end{theorem}
+
+	\begin{parts}
+		\item Explain why the \emph{autonomous} condition is important for the first theorem.
+		\item Suppose that $f$ and $g$ are solutions to $y'=a\cdot y+b$. If the graph of $f$ passes through $(0,1)$ and the
+		graph of $g$ passes through $(1,0)$, does the second theorem (Uniqueness 1) say that $f\neq g$? Explain.
+		\item Consider the following argument:
+		\begin{quote}
+			For every point $(t_0, y_0)$, there is a corresponding solution to $y'(t) = 2\cdot y(t)$.
+
+			Since $\Set{(t_0,y_0):t_0,y_0\in \R}$ is two dimensional, this means the set of solutions
+			to $y'(t) = 2\cdot y(t)$ is two dimensional.
+		\end{quote}
+
+		Apply the above theorems to decide if the argument is true or false.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	\begin{theorem}
+		For an \emph{autonomous} ordinary differential equation (whose solutions are defined on all of $\R$),
+		a solution that passes through $(t_0, y_0)$ also passes through $(0,y_0^*)$ for some $y_0^*$.
+	\end{theorem}
+	\begin{theorem}[(Uniqueness 1)]
+		The differential equation $y'(t) = a\cdot y(t) + b$ has a unique solution passing through every point.
+	\end{theorem}
+
+	Let $S$ be the set of all solutions to $\vec r'(t) = \mat{1&0\\0&2}\vec r(t)$.
+
+	\begin{parts}
+		\item What is the dimension of $S$? Justify your answer.
+	\end{parts}
+\end{slide}
+
+%
+% Hours 15-18
+%
 
 
 
