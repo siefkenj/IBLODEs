@@ -1,0 +1,364 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+
+% All the boilerplate is in deslides.sty
+\usepackage{deslides}
+
+\author{Ji\v{r}\'i Lebl}
+
+\institute[OSU]{%
+Oklahoma State University%
+%Departemento pri Matematiko de Oklahoma {\^S}tata Universitato%
+}
+
+\title{15. Constant coefficient second order linear ODEs (part 2)\\(Notes on Diffy Qs, 2.2)}
+
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+
+%\bigskip
+
+\begin{center}
+The textbook: \url{https://www.jirka.org/diffyqs/}
+\end{center}
+\end{frame}
+
+\begin{frame}
+Review: Given
+\quad
+$a y'' + b y' + c y = 0$
+
+\medskip
+
+Try $y = e^{rx}$:
+\quad
+$a r^2 e^{rx} + 
+b r e^{rx} + 
+c e^{rx} = 0$
+
+\medskip
+\pause
+Divide by $e^{rx}$ to get the
+\emph{characteristic equation} of the ODE:
+\[
+a r^2 + 
+b r + 
+c = 0 .
+\]
+\pause
+Solve for the $r$:
+\qquad 
+$r_1, r_2 = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+
+\medskip
+\pause
+
+\wthus $e^{r_1 x}$ and $e^{r_2 x}$ are linearly independent solutions.
+
+\medskip
+\pause
+
+If $r=r_1=r_2$, then $e^{rx}$ and $xe^{rx}$ are linearly independent
+solutions.
+
+\medskip
+\pause
+
+But, what if the characteristic equation has no real roots?
+E.g., $r^2+1=0$.
+\end{frame}
+
+\begin{frame}
+$r^2+1=0$ has \emph{complex} roots.  If $i$ is such that
+$i^2=-1$, then $i^2+1=0$ and $(-i)^2+1 = 0$.
+
+\pause
+\medskip
+
+\textbf{Remark:} Engineers sometimes use $j$ instead of $i$.
+
+\medskip
+\pause
+
+More generally, \emph{complex} numbers are just a pair of real numbers
+$(a,b)$, where we decree that
+\[
+(a,b)+(c,d)\overset{\text{def}}{=}(a+c,b+d) \qquad  \text{and} \qquad
+(a,b) \times (c,d) \overset{\text{def}}{=} (ac-bd,ad+bc)
+\]
+\pause
+For real numbers we say $a = (a,0)$, and we write $i=(0,1)$.
+
+\medskip
+\pause
+
+Then $i^2 \pause = i \times i \pause = (0,1) \times (0,1) \pause = (-1,0)
+\pause = -1$.
+
+\medskip
+\pause
+
+We write $a+ib = (a,b)$.
+
+\pause
+$a$ is the \emph{real part}, write $\Re (a+ib) = a$.
+
+\pause
+$b$ is the \emph{imaginary part}, write $\Im (a+ib) = b$.
+
+\medskip
+\pause
+
+\textbf{Example:}
+\quad
+$(2+3i)(4i) - 5i
+\pause
+=
+(2\times 4)i + (3 \times 4) i^2 - 5i
+\pause
+=
+8i + 12 (-1) - 5i
+\pause
+=
+-12 + 3i$
+
+\medskip
+\pause
+
+\textbf{Example:}
+\quad
+$(3+2i)(3-2i)
+\pause
+= 3^2-(2i)^2
+\pause
+= 3^2+2^2
+=13$
+
+\medskip
+\pause
+
+\textbf{Example:}
+\quad
+$\displaystyle \frac{1}{3-2i}
+\pause
+= \frac{1}{3-2i} \frac{3+2i}{3+2i}
+\pause
+= \frac{3+2i}{13}
+\pause
+= \frac{3}{13}+\frac{2}{13}i$.
+\end{frame}
+
+\begin{frame}
+The exponential should satisfy $e^{x+y} = e^xe^y$.
+
+\medskip
+\pause
+
+So $e^{a+ib} = e^a e^{ib}$.
+
+\medskip
+\pause
+
+\textbf{Euler's formula:}
+\quad
+$e^{i \theta} = \cos \theta + i \sin \theta$
+\quad and \quad
+$e^{- i \theta} = \cos \theta - i \sin \theta$
+
+\medskip
+\pause
+
+\thus\quad
+$e^{a+ib} 
+\pause
+= e^a e^{ib}
+\pause
+=
+e^a (\cos b + i \sin b)
+\pause
+=
+e^a \cos b + i e^a \sin b$
+
+\medskip
+\pause
+
+\textbf{Exercise:}
+Check the identities:
+\quad
+$\cos \theta = \dfrac{e^{i \theta} + e^{-i \theta}}{2}$
+\quad and \quad
+$\sin \theta = \dfrac{e^{i \theta} - e^{-i \theta}}{2i}$.
+
+\medskip
+\pause
+
+\textbf{Remark:} Most trig identities follow from $e^{z+w} = e^ze^w$ for
+complex numbers.
+
+\end{frame}
+
+\begin{frame}
+$ay'' + by' + cy = 0$ has the characteristic equation $a r^2 + b r + c = 0$.
+
+\medskip
+\pause
+
+Suppose the roots are complex, that is, $b^2 - 4ac < 0$.
+
+\medskip
+\pause
+
+The roots are (quadratic formula)
+\quad
+$r_1,r_2
+=
+\dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\pause
+=
+\dfrac{-b}{2a} \pm i\dfrac{\sqrt{4ac - b^2}}{2a}$.
+
+\medskip
+\pause
+
+The roots are always a pair of the form $\alpha \pm i \beta$.
+
+\medskip
+\pause
+
+The general solution is
+\quad
+$y = C_1 e^{(\alpha+i\beta)x} + C_2 e^{(\alpha-i\beta)x}$.
+
+\medskip
+\pause
+
+The exponential is complex valued and so must be $C_1$, $C_2$.
+Let's do better.
+
+\medskip
+\pause
+
+Write
+\quad
+$y_1
+= e^{(\alpha+i\beta)x}
+\pause
+=
+e^{\alpha x} \cos (\beta x) + i e^{\alpha x} \sin (\beta x)$,
+\pause
+\quad
+$y_2
+= e^{(\alpha-i\beta)x}
+\pause
+=
+e^{\alpha x} \cos (\beta x) - i e^{\alpha x} \sin (\beta x)$.
+
+\medskip
+\pause
+
+These are also solutions:
+\quad
+$y_3 = \dfrac{y_1 + y_2}{2}
+\pause 
+= e^{\alpha x} \cos (\beta x)$
+\pause
+\quad
+$y_4  = \dfrac{y_1 - y_2}{2i}
+\pause
+= e^{\alpha x} \sin (\beta x)$
+
+\pause
+\begin{theorem}
+If the characteristic equation has the roots $\alpha \pm i \beta$
+(i.e., $b^2 - 4ac < 0$),
+then the general solution is
+\[
+y = C_1 e^{\alpha x} \cos (\beta x) + C_2 e^{\alpha x} \sin (\beta x) .
+\]
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+
+\textbf{Example:} Solve \quad $y'' + k^2 y = 0$, \quad for a constant $k > 0$.
+
+\medskip
+\pause
+
+Characteristic equation is $r^2 + k^2 = 0$,
+\pause
+roots are $r = \pm ik$,
+\pause
+the general solution is
+\[
+y = C_1 \cos (kx) + C_2 \sin (kx) .
+\]
+
+\medskip
+\pause
+
+\textbf{Example:}
+Solve \quad $y'' - 6 y' + 13 y = 0$, \quad $y(0) = 0$, $y'(0) = 10$.
+
+\medskip
+\pause
+
+Characteristic equation is $r^2 - 6 r + 13 = 0$.
+
+\pause
+Complete the square ${(r-3)}^2 + 2^2 = 0$,
+\pause
+so $r = 3 \pm 2i$,
+\pause
+the general solution is
+\[
+y =
+C_1 e^{3x} \cos (2x) + C_2 e^{3x} \sin (2x).
+\]
+
+\medskip
+\pause
+
+$0 = y(0)
+\pause
+= C_1 e^{0} \cos 0 + C_2 e^{0} \sin 0
+\pause
+= C_1$
+\pause
+\wthus $C_1 = 0$ and $y = C_2 e^{3x} \sin (2x)$.
+
+\medskip
+\pause
+$y' = 3C_2 e^{3x} \sin (2x) + 2C_2 e^{3x} \cos (2x)$
+\pause
+\wthus $10 = y'(0) = 2C_2$, or $C_2 = 5$.
+
+\medskip
+\pause
+The solution is
+\[
+y = 5 e^{3x} \sin (2x) 
+\]
+
+\end{frame}
+
+\begin{frame}
+Complex numbers are useful also for the Cauchy--Euler equations.
+
+\medskip
+
+\textbf{Exercise:}
+Suppose ${(b-a)}^2-4ac < 0$.  Find a formula for the general solution
+of $a x^2 y'' + b x y' + c y = 0$.  Hint: Try $y=x^r$ and note $x^r = e^{r \ln x}$.
+
+\medskip
+\pause
+
+Try it with something simple like $x^2 y'' + y = 0$.
+
+\end{frame}
+
+\end{document}
