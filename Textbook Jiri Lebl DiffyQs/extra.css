@@ -1,0 +1,96 @@
+#ptx-content {
+ max-width: 800px !important; text-align: justify !important;
+}
+#ptx-masthead {
+ max-width: 1104px !important;
+ z-index:19;
+}
+#ptx-navbar {
+ max-width: 1104px !important;
+}
+#ptx-page-footer {
+ max-width: 1104px !important;
+}
+.container.has-sidebar-left, .has-sidebar-left .container {
+ max-width: 1104px !important;
+}
+.ptx-navbar .index-button {
+  width: 90px;
+}
+/* Some fixes, perhaps will not be needed later*/
+/*.ptx-navbar .toc-toggle .icon {
+  bottom: 0.2em;
+}*/
+/* bad fix for floating pics running into displaymath */
+.displaymath {
+  clear: both;
+}
+@media screen and (max-width:700px) { 
+  .figure-like , .table-like , .displaymath { 
+    margin-left: 0px !important; 
+    margin-right: 0px !important; 
+  } 
+} 
+@media screen and (max-width:943px) { 
+ .figure-like , .table-like , .displaymath {
+  overflow-x: auto;
+ }
+}
+.figure-like , .table-like , .displaymath {
+ background-image: 
+ linear-gradient(to right, white, white),
+ linear-gradient(to right, white, white),
+ linear-gradient(to right, rgba(0,0,0,.25), rgba(255,255,255,0)),
+ linear-gradient(to left, rgba(0,0,0,.25), rgba(255,255,255,0));
+
+ background-position: left center, right center, left center, right center;
+ background-repeat: no-repeat;
+ background-color: white;
+ background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+ 
+ background-attachment: local, local, scroll, scroll;
+}
+.knowl .figure-like , .knowl .table-like , .knowl .displaymath {
+ background-image: 
+ linear-gradient(to right, #f5f5ff, #f5f5ff),
+ linear-gradient(to right, #f5f5ff, #f5f5ff),
+ linear-gradient(to right, rgba(0,0,0,.25), rgba(255,255,255,0)),
+ linear-gradient(to left, rgba(0,0,0,.25), rgba(255,255,255,0));
+
+ background-position: left center, right center, left center, right center;
+ background-repeat: no-repeat;
+ background-color: #f5f5ff;
+ background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+ 
+ background-attachment: local, local, scroll, scroll;
+}
+
+/* get rid of boldness in definitions */
+.pretext-content .definition-like p > em {
+	font-weight:normal;
+}
+
+ol.lower-roman > li::marker { content: "(" counter(list-item, lower-roman) ")"; }
+ol.lower-alpha > li::marker { content: counter(list-item, lower-alpha) ")"; }
+ol.decimal > li::marker { content: counter(list-item, decimal) ")"; }
+li { display: list-item; }
+
+.diffyimg { margin:auto; vertical-align:middle; }
+
+@media (min-width: 600px) {
+  .diffyfloatright { float:right; margin-left:15px!important;}
+  .diffyfloatleft { float:left; margin-right:15px!important;}
+}
+
+/* in mainline now, but doesn't seem to work */
+@media print {
+	.navbar { display:none; }
+	.sidebar { display:none; }
+	.searchwrapper { display:none; }
+	.has-sidebar-left.mathbook-loaded.sidebar-left-open .main { margin-left:0px!important; left:auto!important; }
+}
+hr.diffyqshr {
+    border-style: none;
+    height: 0px;
+    border-top: thin solid #bbb;
+}

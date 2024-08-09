@@ -1,0 +1,6872 @@
+\chapter{Linear algebra} \label{linalg:appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Vectors, mappings, and matrices}
+\label{vecsandmaps:section}
+
+%mbxINTROSUBSECTION
+
+\sectionnotes{2 lectures}
+
+In real life, there is most often more than one variable.
+We wish to organize dealing with multiple variables in a consistent
+manner, and in particular organize dealing with linear equations and linear
+mappings, as those are both rather useful and rather easy to handle.
+Mathematicians joke that
+\myquote{to an engineer every problem is linear, and everything is a
+matrix.}
+And well, they (the engineers) are not wrong. 
+Quite often, solving an engineering problem is figuring out the
+right finite-dimensional linear problem to solve, which is then
+solved with some matrix manipulation.
+Most importantly, linear problems are the ones that we know how to solve,
+and we have many tools to solve them.
+For engineers, mathematicians, physicists, and anybody else in a technical
+field, it is absolutely vital to learn linear algebra.
+
+As motivation, suppose we wish to solve
+\begin{equation*}
+\begin{aligned}
+& x-y = 2 , \\
+& 2x+y = 4 ,
+\end{aligned}
+\end{equation*}
+for $x$ and $y$.
+That is, we desire numbers $x$ and $y$ such that the two
+equations are satisfied.
+Let us perhaps start by adding the equations together to find
+\begin{equation*}
+x+2x-y+y = 2+4, \qquad \text{or} \qquad 3x = 6 .
+\end{equation*}
+In other words, $x=2$.  Once we have that, we plug $x=2$ into the
+first equation to find $2-y=2$, so $y=0$.  OK\@, that was easy.  What is all
+this fuss about linear equations.  Well, try doing this if you have
+5000 unknowns\footnote{One of the downsides of making everything look like a
+linear problem is that the number of variables tends to become huge.}.
+Also, we may have such equations not just of numbers,
+but of functions and derivatives of functions in differential equations.
+Clearly we need a systematic way of doing things.
+A nice consequence of making things systematic and simpler to write down
+is that it becomes easier to have computers do the work for us.
+Computers are rather stupid, they do not think,
+but are very good at doing lots of repetitive
+tasks precisely, as long as we figure out a systematic way for them to
+perform the tasks.
+
+\subsection{Vectors and operations on vectors}
+
+Consider $n$ real numbers as an $n$-tuple:
+\begin{equation*}
+(x_1,x_2,\ldots,x_n). 
+\end{equation*}
+The set of such $n$-tuples is the so-called
+\emph{$n$-dimensional space}\index{n-dimensional space@$n$-dimensional space},
+often denoted by ${\mathbb R}^n$.
+Sometimes we call this the $n$-dimensional
+\emph{\myindex{euclidean space}}%
+\footnote{Named after the ancient Greek mathematician
+\href{https://en.wikipedia.org/wiki/Euclid}{Euclid of Alexandria}
+(around 300 BC), possibly the most famous of mathematicians; even
+small towns often have Euclid Street or Euclid Avenue.}. 
+In two dimensions, ${\mathbb R}^2$ is called the
+\emph{\myindex{cartesian plane}}%
+\footnote{Named after the French mathematician
+\href{https://en.wikipedia.org/wiki/Descartes}{Ren\'e Descartes}
+(1596--1650).  It is \myquote{cartesian} as his name in Latin is Renatus
+Cartesius.}.
+Each such $n$-tuple represents a point in the $n$-dimensional space.
+For example, the point
+$(1,2)$ in the plane ${\mathbb R}^2$
+is one unit to the right and two units up from the
+origin.
+
+When we do algebra with these $n$-tuples of numbers we call them
+\emph{vectors}\index{vector}\footnote{%
+A common notation to distinguish vectors from points is to write $(1,2)$
+for the point and $\langle 1,2 \rangle$ for the vector.  We write both as
+$(1,2)$.}.  Mathematicians are keen on separating
+what is a vector and what is a point of the space or in the plane,
+and it turns out
+to be an important distinction, however, for the purposes of linear algebra
+we can think of everything being represented by a vector.
+A way to think of a vector, which is especially useful in calculus
+and differential equations, is an arrow.  It is an object that has
+a \emph{\myindex{direction}} and a \emph{magnitude}.
+For instance, the vector $(1,2)$
+is the arrow from the origin to the point $(1,2)$ in the plane.
+The magnitude is the length of the arrow.
+See \figurevref{linalg-vecarrow:fig}.
+If we think of vectors as arrows,
+the arrow does not always have to start at the origin.  If we do move it
+around, however, it should always keep the same direction and the same magnitude.
+
+\begin{myfig}
+\capstart
+\inputpdft{linalg-vecarrow}
+\caption{The vector $(1,2)$ drawn as an arrow from the origin to the point
+$(1,2)$.\label{linalg-vecarrow:fig}}
+\end{myfig}
+
+As vectors are arrows, when we want to give a name to a vector,
+we draw a little arrow above it:
+\begin{equation*}
+\vec{x}
+\end{equation*}
+Another popular notation is a bold $\mathbf{x}$, although we will use the little
+arrows.  It may be easy to write a bold letter in a book, but it is not so
+easy to write it by hand on paper or on the board.
+Mathematicians often do not even write the arrows.  A mathematician would
+write $x$ and remember that $x$ is a vector and not a number.
+Just like you remember that Bob is your uncle, and you don't have to
+keep repeating \myquote{Uncle Bob} and you can just say \myquote{Bob.}
+In this book, however, we will call Bob \myquote{Uncle Bob}
+and write vectors with the little arrows.
+
+The \emph{\myindex{magnitude}} can be computed using the Pythagorean theorem.
+The vector $(1,2)$ drawn in the figure has magnitude $\sqrt{1^2+2^2} =
+\sqrt{5}$.  The magnitude is denoted by $\lVert \vec{x} \rVert$,
+and, in any number of dimensions, it can be computed in the same way:
+\begin{equation*}
+\lVert \vec{x} \rVert
+=
+\lVert (x_1,x_2,\ldots,x_n) \rVert
+=
+\sqrt{x_1^2+x_2^2+\cdots+x_n^2} .
+\end{equation*}
+
+For reasons that will become clear in the next section, we often
+write vectors as so-called
+\emph{column vectors}\index{column vector}:
+\begin{equation*}
+\vec{x} = 
+\begin{bmatrix}
+x_{1} \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix} .
+\end{equation*}
+Don't worry.  It is just a different way of writing the same thing.
+For example, the vector $(1,2)$ can be written as
+\begin{equation*}
+\begin{bmatrix}
+1 \\ 2
+\end{bmatrix} .
+\end{equation*}
+
+The fact that we write arrows above vectors allows us to write several
+vectors $\vec{x}_1$, $\vec{x}_2$, etc., without confusing these with the
+components of some other vector $\vec{x}$.
+
+So where is the \emph{algebra} from \emph{linear algebra}?
+Well, arrows can be added, subtracted,
+and multiplied by numbers.
+First we consider \emph{addition}\index{adding vectors}.
+If we have two arrows, we simply
+move along one, and then along the other.  See
+\figurevref{linalg-vecadd:fig}.
+
+\begin{myfig}
+\capstart
+\inputpdft{linalg-vecadd}
+\caption{Adding the vectors $(1,2)$, drawn dotted, and $(2,-3)$, drawn dashed.  The
+result, $(3,-1)$, is drawn as a solid arrow.\label{linalg-vecadd:fig}}
+\end{myfig}
+
+It is rather easy to see what it does to the numbers that represent the
+vectors.  Suppose we want to add $(1,2)$ to $(2,-3)$ as in the figure.
+We travel along $(1,2)$
+and then we travel along $(2,-3)$.
+What we did was travel one unit right, two units up, and then
+we travelled two units right, and three units down (the negative three).  That
+means that we ended up at $\bigl(1+2,2+(-3)\bigr) = (3,-1)$.
+And that's how addition always works:
+\begin{equation*}
+\begin{bmatrix}
+x_{1} \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix} +
+\begin{bmatrix}
+y_{1} \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix} =
+\begin{bmatrix}
+x_1 + y_{1} \\ x_2+ y_2 \\ \vdots \\ x_n + y_n
+\end{bmatrix} .
+\end{equation*}
+
+\emph{Subtracting}\index{subtracting vectors} is similar.
+What $\vec{x}- \vec{y}$ means visually is that
+we first travel along $\vec{x}$, and then we travel
+backwards along $\vec{y}$.
+See \figurevref{linalg-vecsub:fig}.
+It is like adding
+$\vec{x}+ (- \vec{y})$ where $-\vec{y}$
+is the arrow we obtain by erasing the arrow head
+from one side and drawing it on the other side, that is, we reverse the
+direction.  In terms of the numbers, we simply go backwards both
+horizontally and vertically,
+so we negate both numbers.  For instance, if $\vec{y}$ is $(-2,1)$,
+then $-\vec{y}$ is $(2,-1)$.
+
+\begin{myfig}
+\capstart
+\inputpdft{linalg-vecsub}
+\caption{Subtraction, the vector $(1,2)$, drawn dotted, minus $(-2,1)$,
+drawn dashed.  The
+result, $(3,1)$, is drawn as a solid arrow.\label{linalg-vecsub:fig}}
+\end{myfig}
+
+Another intuitive thing to do to a vector is to
+\emph{scale}\index{scale a vector} it.
+We represent this by multiplication of a number with a vector.
+Because of this, when we wish to distinguish between vectors and numbers, we
+call the numbers \emph{scalars}\index{scalar}.
+For example,
+suppose we want to travel three times further.  If the vector is $(1,2)$,
+travelling 3 times further means going 3 units to the right and 6 units up,
+so we get the vector $(3,6)$.
+We just multiply each number in the vector by 3.
+If $\alpha$ is a number, then
+\begin{equation*}
+\alpha
+\begin{bmatrix}
+x_{1} \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix} =
+\begin{bmatrix}
+\alpha x_{1} \\ \alpha x_2 \\ \vdots \\ \alpha x_n
+\end{bmatrix} .
+\end{equation*}
+Scaling (by a positive number) multiplies the magnitude
+and leaves direction untouched.
+The magnitude of $(1,2)$
+is $\sqrt{5}$.  The magnitude of 3 times $(1,2)$, that is, $(3,6)$, is
+$3\sqrt{5}$.
+
+When the scalar is negative, then when we multiply a vector by it, the
+vector is not only scaled, but it also switches direction.
+Multiplying $(1,2)$ by $-3$ means we should go 3 times further but in the
+opposite direction, so 3 units to the left and 6 units down, or in other
+words, $(-3,-6)$.  As we mentioned above, $-\vec{y}$ is a reverse of
+$\vec{y}$, and this is the same as $(-1)\vec{y}$.
+
+In \figurevref{linalg-vecscale:fig}, you can see a couple of examples of
+what scaling a vector means visually.
+
+\begin{myfig}
+\capstart
+\inputpdft{linalg-vecscale}
+\caption{A vector $\vec{x}$, the vector $2\vec{x}$ (same direction,
+double the magnitude), and the vector $-1.5\vec{x}$ (opposite direction,
+1.5 times the magnitude).\label{linalg-vecscale:fig}}
+\end{myfig}
+
+We put all of these operations together to work out more complicated expressions.
+Let us compute a small example:
+\begin{equation*}
+3
+\begin{bmatrix}
+1 \\ 2
+\end{bmatrix}
++
+2
+\begin{bmatrix}
+-4 \\ -1
+\end{bmatrix} 
+-
+3
+\begin{bmatrix}
+-2 \\ 2
+\end{bmatrix} 
+=
+\begin{bmatrix}
+3(1)+2(-4)-3(-2) \\ 3(2)+2(-1)-3(2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\ -2
+\end{bmatrix}
+.
+\end{equation*}
+
+\medskip
+
+As we said a vector is a direction and a magnitude.  Magnitude is easy to
+represent, it is just a number.  The \emph{\myindex{direction}} is usually
+given by a vector with magnitude one.  We call such a vector a
+\emph{\myindex{unit vector}}.  That is, $\vec{u}$ is a unit vector when
+$\lVert \vec{u} \rVert = 1$.  For instance, the vectors $(1,0)$,
+$(\nicefrac{1}{\sqrt{2}},\nicefrac{1}{\sqrt{2}})$, and $(0,-1)$ are all
+unit vectors.
+
+To represent the direction of a vector $\vec{x}$, we need to find the 
+unit vector in the same direction.  To do so, we simply rescale
+$\vec{x}$ by the reciprocal of the magnitude, that is
+$\frac{1}{\lVert \vec{x} \rVert} \vec{x}$, or more concisely
+$\frac{\vec{x}}{\lVert \vec{x} \rVert}$.
+
+As an example, the unit vector in the direction of $(1,2)$ is the vector
+\begin{equation*}
+\frac{1}{\sqrt{1^2+2^2}} (1,2)
+=
+\left( \frac{1}{\sqrt{5}}, \frac{2}{\sqrt{5}} \right) .
+\end{equation*}
+
+\subsection{Linear mappings and matrices}
+
+A \emph{\myindex{vector-valued function}}
+$F$ is a rule that takes a vector $\vec{x}$ and returns another vector
+$\vec{y}$.  For example, $F$ could be a scaling that doubles the size of
+vectors:
+\begin{equation*}
+F(\vec{x}) = 2 \vec{x} .
+\end{equation*}
+Applied to say $(1,3)$ we get
+\begin{equation*}
+F
+\left( \begin{bmatrix} 1 \\ 3 \end{bmatrix} \right)
+=
+2
+\begin{bmatrix} 1 \\ 3 \end{bmatrix}
+=
+\begin{bmatrix} 2 \\ 6 \end{bmatrix} .
+\end{equation*}
+If $F$ is a mapping that takes vectors in
+${\mathbb R}^2$ to 
+${\mathbb R}^2$ (such as the above), we write
+\begin{equation*}
+F \colon {\mathbb R}^2 \to {\mathbb R}^2 .
+\end{equation*}
+The words \emph{function} and \emph{mapping} are used rather interchangeably,
+although more often than not, \emph{mapping} is used when talking about a
+vector-valued function, and the word \emph{function} is often used when the
+function is scalar-valued.
+
+A beginning student of mathematics (and many a seasoned mathematician),
+that
+sees an expression such as
+\begin{equation*}
+f(3x+8y)
+\end{equation*}
+yearns to write
+\begin{equation*}
+3f(x)+8f(y) .
+\end{equation*}
+After all, who hasn't wanted to write $\sqrt{x+y} = \sqrt{x} + \sqrt{y}$ or
+something like that at some point in their mathematical lives.
+Wouldn't life be simple if we could do that?
+Of course we cannot always do that (for example, not with the square roots!)
+But there are many other functions where
+we can do exactly the above.  Such functions are called \emph{linear}.
+
+A mapping $F \colon {\mathbb R}^n \to {\mathbb R}^m$
+is called \emph{linear}\index{linear mapping} if
+\begin{equation*}
+F(\vec{x}+\vec{y}) = F(\vec{x})+F(\vec{y}),
+\end{equation*}
+for any vectors $\vec{x}$ and $\vec{y}$,
+and also
+\begin{equation*}
+F(\alpha \vec{x}) = \alpha F(\vec{x}) ,
+\end{equation*}
+for any scalar $\alpha$.
+The $F$ we defined above that doubles the size of all vectors is linear.  Let
+us check:
+\begin{equation*}
+F(\vec{x}+\vec{y})
+=
+2(\vec{x}+\vec{y})
+=
+2\vec{x}+2\vec{y}
+=
+F(\vec{x})+F(\vec{y}) ,
+\end{equation*}
+and also
+\begin{equation*}
+F(\alpha \vec{x}) = 2 \alpha \vec{x} = \alpha 2 \vec{x} = \alpha F(\vec{x}) .
+\end{equation*}
+
+We also call a linear function a
+\emph{linear transformation}\index{transformation}.
+If you want to be really fancy and impress your friends, you can call it a
+\emph{linear operator}\index{operator}.
+When a mapping is linear we often do not write the parentheses.  We write
+simply
+\begin{equation*}
+F \vec{x}
+\end{equation*}
+instead of $F(\vec{x})$.  We do this because linearity means that the
+mapping $F$
+behaves like multiplying $\vec{x}$ by \myquote{something.}
+That something is a matrix.
+
+A \emph{\myindex{matrix}}
+is an $m
+\times n$ array of numbers ($m$ rows and $n$ columns).  A
+$3 \times 5$ matrix is
+\begin{equation*}
+A = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} & a_{15} \\
+a_{21} & a_{22} & a_{23} & a_{24} & a_{25} \\
+a_{31} & a_{32} & a_{33} & a_{34} & a_{35}
+\end{bmatrix} .
+\end{equation*}
+The numbers $a_{ij}$ are called \emph{elements}\index{element of a matrix}
+or \emph{entries}\index{entry of a matrix}.
+
+A column vector is simply an $m \times 1$ matrix.  Similarly to
+a column vector there is also a 
+\emph{\myindex{row vector}}, which is a $1 \times n$ matrix.
+If we have an $n \times n$ matrix, then we say that it is a
+\emph{\myindex{square matrix}}.
+
+Now how does a matrix $A$ relate to a linear mapping?
+Well a matrix tells you where
+certain special vectors go.  Let's give a name to those certain vectors.
+The \emph{\myindex{standard basis vectors}} of ${\mathbb R}^n$ are
+\begin{equation*}
+\vec{e}_1 =
+\begin{bmatrix}
+1 \\ 0 \\ 0 \\ \vdots \\ 0
+\end{bmatrix} ,
+\qquad
+\vec{e}_2 =
+\begin{bmatrix}
+0 \\ 1 \\ 0 \\ \vdots \\ 0
+\end{bmatrix} ,
+\qquad
+\vec{e}_3 =
+\begin{bmatrix}
+0 \\ 0 \\ 1 \\ \vdots \\ 0
+\end{bmatrix} ,
+\qquad
+\cdots ,
+\qquad
+\vec{e}_n =
+\begin{bmatrix}
+0 \\ 0 \\ 0 \\ \vdots \\ 1
+\end{bmatrix} .
+\end{equation*}
+In ${\mathbb R}^3$ these vectors are
+\begin{equation*}
+\vec{e}_1 =
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix} ,
+\qquad
+\vec{e}_2 =
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix} ,
+\qquad
+\vec{e}_3 =
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix} .
+\end{equation*}
+You may recall from calculus of several variables that these are
+sometimes called $\vec{\imath}$, $\vec{\jmath}$, $\vec{k}$.
+
+The reason these are called a \emph{\myindex{basis}} is that every other
+vector can be written as a \emph{\myindex{linear combination}} of them.
+For example, in ${\mathbb R}^3$ the vector $(4,5,6)$ can be written as
+\begin{equation*}
+4 \vec{e}_1 + 
+5 \vec{e}_2 + 
+6 \vec{e}_3
+=
+4
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
++
+5
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix}
++
+6
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\ 5 \\ 6
+\end{bmatrix} .
+\end{equation*}
+
+So how does a matrix represent a linear mapping?
+Well, the columns of the matrix are the vectors where $A$ as a linear
+mapping takes $\vec{e}_1$, $\vec{e}_2$, etc.
+For instance, consider
+\begin{equation*}
+M = 
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix} .
+\end{equation*}
+As a linear mapping $M \colon {\mathbb R}^2 \to {\mathbb R}^2$ takes
+$\vec{e}_1 = \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]$ to
+$\left[ \begin{smallmatrix} 1 \\ 3 \end{smallmatrix} \right]$
+and
+$\vec{e}_2 = \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right]$ to
+$\left[ \begin{smallmatrix} 2 \\ 4 \end{smallmatrix} \right]$.  In other
+words,
+\begin{equation*}
+M \vec{e}_1 =
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\ 3
+\end{bmatrix},
+\qquad
+\text{and}
+\qquad
+M \vec{e}_2 =
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 \\ 4
+\end{bmatrix}.
+\end{equation*}
+
+More generally, if we have an $n \times m$ matrix $A$, that is, we have $n$ rows
+and $m$ columns, then the mapping $A \colon {\mathbb R}^m \to {\mathbb R}^n$
+takes $\vec{e}_j$ to the $j^{\text{th}}$ column of $A$.
+For example,
+\begin{equation*}
+A = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} & a_{15} \\
+a_{21} & a_{22} & a_{23} & a_{24} & a_{25} \\
+a_{31} & a_{32} & a_{33} & a_{34} & a_{35}
+\end{bmatrix}
+\end{equation*}
+represents a mapping from ${\mathbb R}^5$ to ${\mathbb R}^3$ that does
+\begin{equation*}
+A \vec{e}_1 =
+\begin{bmatrix}
+a_{11} \\ a_{21} \\ a_{31}
+\end{bmatrix} ,
+\qquad
+A \vec{e}_2 =
+\begin{bmatrix}
+a_{12} \\ a_{22} \\ a_{32}
+\end{bmatrix} ,
+\qquad
+A \vec{e}_3 =
+\begin{bmatrix}
+a_{13} \\ a_{23} \\ a_{33}
+\end{bmatrix} ,
+\qquad
+A \vec{e}_4 =
+\begin{bmatrix}
+a_{14} \\ a_{24} \\ a_{34}
+\end{bmatrix} ,
+\qquad
+A \vec{e}_5 =
+\begin{bmatrix}
+a_{15} \\ a_{25} \\ a_{35}
+\end{bmatrix} .
+\end{equation*}
+
+What about another vector $\vec{x}$ that is not in the standard basis?
+Where does it go?  We use
+linearity.  First, we write the vector as a linear combination of the standard
+basis vectors:
+\begin{equation*}
+\vec{x} =
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+\end{bmatrix}
+=
+x_1
+\begin{bmatrix}
+1 \\ 0 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++
+x_2
+\begin{bmatrix}
+0 \\ 1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++
+x_3
+\begin{bmatrix}
+0 \\ 0 \\ 1 \\ 0 \\ 0
+\end{bmatrix}
++
+x_4
+\begin{bmatrix}
+0 \\ 0 \\ 0 \\ 1 \\ 0
+\end{bmatrix}
++
+x_5
+\begin{bmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ 1
+\end{bmatrix}
+=
+x_1 \vec{e}_1 + 
+x_2 \vec{e}_2 + 
+x_3 \vec{e}_3 + 
+x_4 \vec{e}_4 + 
+x_5 \vec{e}_5 .
+\end{equation*}
+Then
+\begin{equation*}
+A \vec{x}
+=
+A ( 
+x_1 \vec{e}_1 + 
+x_2 \vec{e}_2 + 
+x_3 \vec{e}_3 + 
+x_4 \vec{e}_4 + 
+x_5 \vec{e}_5 
+)
+=
+x_1 A\vec{e}_1 + 
+x_2 A\vec{e}_2 + 
+x_3 A\vec{e}_3 + 
+x_4 A\vec{e}_4 + 
+x_5 A\vec{e}_5 .
+\end{equation*}
+If we know where $A$ takes all the basis vectors, we know where it takes
+all vectors.
+
+Suppose $M$ is the $2 \times 2$ matrix from above,
+then
+\begin{equation*}
+M
+\begin{bmatrix}
+-2 \\ 0.1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+-2 \\ 0.1
+\end{bmatrix}
+=
+-2
+\begin{bmatrix}
+1 \\ 3
+\end{bmatrix}
++
+0.1
+\begin{bmatrix}
+2 \\ 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+-1.8 \\ -5.6
+\end{bmatrix} .
+\end{equation*}
+
+Every linear mapping from ${\mathbb R}^m$ to ${\mathbb R}^n$ can be
+represented by an $n \times m$ matrix.  You just figure out where it
+takes the standard basis vectors.  Conversely, every $n \times m$ matrix
+represents a linear mapping.  Hence, we may think of matrices being
+linear mappings, and linear mappings being matrices.
+
+Or can we?  In this book we study mostly linear differential operators,
+and linear differential operators are linear mappings, although they are
+not acting on ${\mathbb R}^n$, but on 
+an infinite-dimensional space of functions:
+\begin{equation*}
+L f = g .
+\end{equation*}
+For a function $f$ we get a function $g$, and $L$ is linear in the sense that
+\begin{equation*}
+L ( f + h) = Lf + Lh, \qquad \text{and} \qquad
+L (\alpha f) = \alpha Lf .
+\end{equation*}
+for any number (scalar) $\alpha$ and all functions $f$ and $h$.
+
+So the answer is not really.  But if we consider vectors in
+finite-dimensional spaces ${\mathbb R}^n$ then yes, every linear mapping is a
+matrix.
+We have mentioned at the beginning of this section, that we can
+\myquote{make everything a vector.}  That's not strictly true, but
+it is true
+approximately.  Those \myquote{infinite-dimensional} spaces of functions can
+be approximated by a finite-dimensional space, and then linear operators
+are just matrices.  So approximately, this is true.  And as far as actual
+computations that we can do on a computer, we can work only with
+finitely many dimensions anyway.  If you ask a computer or your calculator
+to plot a function,
+it samples the function at finitely many points and then
+connects the dots\footnote{If you have ever used Matlab, you may have
+noticed that to plot a function, we take a vector of inputs, ask Matlab
+to compute the corresponding vector of values of the function, and then we ask
+it to plot the result.}.
+It does not actually give you infinitely many values.
+The way that you have been using the computer or your calculator so far has
+already been a certain approximation of the space of functions by a
+finite-dimensional space.
+
+\medskip
+
+To end the section, we notice how $A \vec{x}$ can be written more succintly.
+Suppose
+\begin{equation*}
+A = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\qquad \text{and} \qquad
+\vec{x} = 
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3 
+\end{bmatrix} .
+\end{equation*}
+Then
+\begin{equation*}
+A \vec{x} = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3 
+\end{bmatrix} 
+=
+\begin{bmatrix}
+a_{11} x_1 + a_{12} x_2 + a_{13} x_3 \\
+a_{21} x_1 + a_{22} x_2 + a_{23} x_3
+\end{bmatrix}  .
+\end{equation*}
+For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ -1
+\end{bmatrix} 
+=
+\begin{bmatrix}
+1 \cdot 2 + 2 \cdot (-1) \\
+3 \cdot 2 + 4 \cdot (-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 2
+\end{bmatrix}  .
+\end{equation*}
+That is, you take the entries in a row of the matrix, you multiply them by the
+entries in your vector, you add things up, and that's the corresponding
+entry in the resulting vector.
+
+
+\subsection{Exercises}
+
+\begin{exercise}
+On a piece of graph paper draw the vectors:
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+2 \\
+5 
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+-2 \\
+-4
+\end{bmatrix}
+$
+\task
+$(3,-4)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+On a piece of graph paper draw the vector $(1,2)$ starting at (based at) the
+given point:
+\begin{tasks}(3)
+\task
+based at $(0,0)$
+\task
+based at $(1,2)$
+\task
+based at $(0,-1)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+On a piece of graph paper draw the following
+operations.  Draw and label the vectors involved in the operations
+as well as the result:
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+1 \\
+-4
+\end{bmatrix}
++
+\begin{bmatrix}
+2 \\
+3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-3 \\
+2
+\end{bmatrix}
+-
+\begin{bmatrix}
+1 \\
+3
+\end{bmatrix}$
+\task
+$3\begin{bmatrix}
+2 \\
+1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Compute the magnitude of
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+7 \\
+2 
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+-2 \\
+3 \\
+1
+\end{bmatrix}
+$
+\task
+$(1,3,-4)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+\pagebreak[2]
+Compute
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+2 \\
+3 
+\end{bmatrix}
++
+\begin{bmatrix}
+7 \\
+-8
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+-2 \\
+3 
+\end{bmatrix}
+-
+\begin{bmatrix}
+6 \\
+-4
+\end{bmatrix}
+$
+\task
+$
+-\begin{bmatrix}
+-3 \\
+2 
+\end{bmatrix}
+$
+\task
+$
+4\begin{bmatrix}
+-1 \\
+5 
+\end{bmatrix}
+$
+\task
+$
+5\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
++
+9
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+$
+\task
+$
+3\begin{bmatrix}
+1 \\
+-8 
+\end{bmatrix}
+-
+2
+\begin{bmatrix}
+3 \\
+-1
+\end{bmatrix}
+$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Find the unit vector in the direction of the given vector
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+1 \\
+-3 
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+2 \\
+1 \\
+-1
+\end{bmatrix}
+$
+\task
+$(3,1,-2)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+If $\vec{x} = (1,2)$ and $\vec{y}$ are added together, we find
+$\vec{x}+\vec{y} = (0,2)$.  What is $\vec{y}$?
+\end{exercise}
+
+\begin{exercise}
+Write $(1,2,3)$ as a linear combination of the standard basis vectors
+$\vec{e}_1$, $\vec{e}_2$, and $\vec{e}_3$.
+\end{exercise}
+
+\begin{exercise}
+If the magnitude of $\vec{x}$ is 4, what is the magnitude of
+\begin{tasks}(6)
+\task
+$0\vec{x}$
+\task
+$3\vec{x}$
+\task
+$-\vec{x}$
+\task
+$-4\vec{x}$
+\task
+$\vec{x}+\vec{x}$
+\task
+$\vec{x}-\vec{x}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Suppose a linear mapping $F \colon {\mathbb R}^2 \to {\mathbb R}^2$
+takes $(1,0)$ to $(2,-1)$ and it takes $(0,1)$ to $(3,3)$. 
+Where does it take
+\begin{tasks}(3)
+\task
+$(1,1)$
+\task
+$(2,0)$
+\task
+$(2,-1)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Suppose a linear mapping $F \colon {\mathbb R}^3 \to {\mathbb R}^2$
+takes $(1,0,0)$ to $(2,1)$, it takes $(0,1,0)$ to $(3,4)$, and
+it takes $(0,0,1)$ to $(5,6)$.  Write down the matrix representing
+the mapping $F$.
+\end{exercise}
+
+\begin{exercise}
+Suppose that a mapping $F \colon {\mathbb R}^2 \to \mathbb{R}^2$ takes
+$(1,0)$ to $(1,2)$, $(0,1)$ to $(3,4)$, and $(1,1)$ to $(0,-1)$.
+Explain why $F$ is not linear.
+\end{exercise}
+
+\begin{exercise}[challenging]
+Let ${\mathbb R}^3$ represent the space of quadratic polynomials
+in $t$: a point $(a_0,a_1,a_2)$ in ${\mathbb R}^3$ represents
+the polynomial $a_0 + a_1 t + a_2 t^2$.
+Consider the derivative $\frac{d}{dt}$ as a mapping of ${\mathbb R}^3$ to
+${\mathbb R}^3$,
+and note that $\frac{d}{dt}$ is linear.
+Write down $\frac{d}{dt}$ as a $3 \times 3$ matrix.
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+Compute the magnitude of
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+1 \\
+3
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+2 \\
+3 \\
+-1
+\end{bmatrix}
+$
+\task
+$(-2,1,-2)$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\sqrt{10}$
+\quad b)~$\sqrt{14}$
+\quad c)~$3$
+}
+
+\begin{exercise}
+Find the unit vector in the direction of the given vector
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+-1 \\
+1 
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+1 \\
+-1 \\
+2
+\end{bmatrix}
+$
+\task
+$(2,-5,2)$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~
+$\begin{bmatrix}
+\frac{-1}{\sqrt{2}} \\
+\frac{1}{\sqrt{2}}
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+\frac{1}{\sqrt{6}} \\
+\frac{-1}{\sqrt{6}} \\
+\frac{2}{\sqrt{6}}
+\end{bmatrix}$
+\quad
+c)~$\left( \frac{2}{\sqrt{33}},\frac{-5}{\sqrt{33}},\frac{2}{\sqrt{33}} \right)$
+}
+
+\begin{exercise}
+\pagebreak[2]
+Compute
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+3 \\
+1 
+\end{bmatrix}
++
+\begin{bmatrix}
+6 \\
+-3
+\end{bmatrix}
+$
+\task
+$\begin{bmatrix}
+-1 \\
+2 
+\end{bmatrix}
+-
+\begin{bmatrix}
+2 \\
+-1
+\end{bmatrix}
+$
+\task
+$
+-\begin{bmatrix}
+-5 \\
+3 
+\end{bmatrix}
+$
+\task
+$
+2\begin{bmatrix}
+-2 \\
+4 
+\end{bmatrix}
+$
+\task
+$
+3\begin{bmatrix}
+1 \\
+0 
+\end{bmatrix}
++
+7
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+$
+\task
+$
+2\begin{bmatrix}
+2 \\
+-3 
+\end{bmatrix}
+-
+6
+\begin{bmatrix}
+2 \\
+-1
+\end{bmatrix}
+$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+9 \\
+-2
+\end{bmatrix}$
+\quad b)~$\begin{bmatrix}
+-3 \\
+3
+\end{bmatrix}$
+\quad c)~$\begin{bmatrix}
+5 \\
+-3
+\end{bmatrix}$
+\quad d)~$\begin{bmatrix}
+-4 \\
+8
+\end{bmatrix}$
+\quad e)~$\begin{bmatrix}
+3 \\
+7
+\end{bmatrix}$
+\quad f)~$\begin{bmatrix}
+-8 \\
+3
+\end{bmatrix}$
+}
+
+\begin{exercise}
+If the magnitude of $\vec{x}$ is 5, what is the magnitude of
+\begin{tasks}(3)
+\task
+$4\vec{x}$
+\task
+$-2\vec{x}$
+\task
+$-4\vec{x}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$20$
+\quad b)~$10$
+\quad c)~$20$
+}
+
+\begin{exercise}
+Suppose a linear mapping $F \colon {\mathbb R}^2 \to {\mathbb R}^2$
+takes $(1,0)$ to $(1,-1)$ and it takes $(0,1)$ to $(2,0)$. 
+Where does it take
+\begin{tasks}(3)
+\task
+$(1,1)$
+\task
+$(0,2)$
+\task
+$(1,-1)$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$(3,-1)$ \quad b)~$(4,0)$ \quad c)~$(-1,-1)$
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectionnewpage
+\section{Matrix algebra}
+\label{matalg:section}
+
+%mbxINTROSUBSECTION
+
+\sectionnotes{2--3 lectures}
+
+\subsection{One-by-one matrices}
+
+Let us motivate what we want to achieve with matrices.
+Real-valued linear mappings of the real line, linear functions
+that eat numbers and spit out numbers, are just multiplications by a
+number.  Consider a mapping defined by multiplying by a
+number.  Let's call this number $\alpha$.   The mapping then takes $x$ to
+$\alpha x$.  We can
+\emph{add} such mappings:
+If we have another mapping $\beta$, then
+\begin{equation*}
+\alpha x + \beta x = (\alpha + \beta) x .
+\end{equation*}
+We get a new mapping $\alpha+\beta$ that multiplies $x$ by, well,
+$\alpha+\beta$.  If $D$ is a mapping that doubles its input, 
+$Dx = 2x$, and $T$ is a mapping that triples, $Tx = 3x$, then
+$D+T$ is a mapping that multiplies by $5$, $(D+T)x = 5x$.
+
+Similarly we can \emph{compose} such mappings, that
+is, we could apply one and then the other.  We take $x$, we run it through
+the first mapping $\alpha$ to get $\alpha$ times $x$, then we run
+$\alpha x$ through the second mapping $\beta$.  In other words,
+\begin{equation*}
+\beta ( \alpha x ) = (\beta \alpha) x .
+\end{equation*}
+We just multiply those two numbers.  Using our doubling
+and tripling mappings, if we double and then triple, that is $T(Dx)$ then
+we obtain $3(2x) = 6x$.  The composition $TD$ is the mapping that multiplies
+by $6$.  For larger matrices, composition also ends up being a kind of
+multiplication.
+
+\subsection{Matrix addition and scalar multiplication}
+
+The mappings that multiply numbers by numbers are just $1 \times 1$ matrices.  The
+number $\alpha$ above could be written as a matrix $[\alpha]$.
+Perhaps we would want to do to all matrices the same things that we
+did to those $1 \times 1$ matrices at the start of this section above.
+First, let us add matrices.
+If we have a matrix $A$ and a matrix $B$ that are of the same size,
+say $m \times n$, then they are mappings from
+${\mathbb{R}}^n$ to ${\mathbb{R}}^m$.  The mapping $A+B$ should also be a mapping from
+${\mathbb{R}}^n$ to ${\mathbb{R}}^m$, and it should do the following to
+vectors:
+\begin{equation*}
+(A+B) \vec{x} = A\vec{x} + B \vec{x} .
+\end{equation*}
+It turns out you just add the matrices element-wise:  If the
+$ij^{\text{th}}$ entry of $A$ is $a_{ij}$, and the
+$ij^{\text{th}}$ entry of $B$ is $b_{ij}$, then the
+$ij^{\text{th}}$ entry of $A+B$ is $a_{ij} + b_{ij}$.  If
+\begin{equation*}
+A = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13}  \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\qquad \text{and} \qquad
+B = 
+\begin{bmatrix}
+b_{11} & b_{12} & b_{13}  \\
+b_{21} & b_{22} & b_{23}
+\end{bmatrix} ,
+\end{equation*}
+then
+\begin{equation*}
+A+B = 
+\begin{bmatrix}
+a_{11} + b_{11} & a_{12} + b_{12} & a_{13} + b_{13}  \\
+a_{21} + b_{21} & a_{22} + b_{22} & a_{23} + b_{23}
+\end{bmatrix} .
+\end{equation*}
+Let us illustrate on a more concrete example:
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6
+\end{bmatrix}
++
+\begin{bmatrix}
+7 & 8 \\
+9 & 10 \\
+11 & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1+7 & 2+8 \\
+3+9 & 4+10 \\
+5+11 & 6-1
+\end{bmatrix}
+=
+\begin{bmatrix}
+8 & 10 \\
+12 & 14 \\
+16 & 5
+\end{bmatrix} .
+\end{equation*}
+Let's check that this does the right thing to a vector.  Let's use some
+of the vector algebra that we already know, and
+regroup things:
+\begin{equation*}
+\begin{split}
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ -1
+\end{bmatrix}
++
+\begin{bmatrix}
+7 & 8 \\
+9 & 10 \\
+11 & -1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ -1
+\end{bmatrix}
+& =
+\left(
+2
+\begin{bmatrix}
+1 \\
+3 \\
+5
+\end{bmatrix}
+-
+\begin{bmatrix}
+2 \\
+4 \\
+6
+\end{bmatrix}
+\right)
++
+\left(
+2
+\begin{bmatrix}
+7 \\
+9 \\
+11
+\end{bmatrix}
+-
+\begin{bmatrix}
+8 \\
+10 \\
+-1
+\end{bmatrix}
+\right)
+\\
+& = 
+2
+\left(
+\begin{bmatrix}
+1 \\
+3 \\
+5
+\end{bmatrix}
++
+\begin{bmatrix}
+7 \\
+9 \\
+11
+\end{bmatrix}
+\right)
+-
+\left(
+\begin{bmatrix}
+2 \\
+4 \\
+6
+\end{bmatrix}
++
+\begin{bmatrix}
+8 \\
+10 \\
+-1
+\end{bmatrix}
+\right)
+\\
+& = 
+2
+\begin{bmatrix}
+1+7 \\
+3+9 \\
+5+11
+\end{bmatrix}
+-
+\begin{bmatrix}
+2+8 \\
+4+10 \\
+6-1
+\end{bmatrix}
+=
+2
+\begin{bmatrix}
+8 \\
+12 \\
+16
+\end{bmatrix}
+-
+\begin{bmatrix}
+10 \\
+14 \\
+5
+\end{bmatrix}
+\\
+& =
+\begin{bmatrix}
+8 & 10 \\
+12 & 14 \\
+16 & 5
+\end{bmatrix}
+\begin{bmatrix}
+2 \\
+-1
+\end{bmatrix} 
+\quad
+\left(
+=
+\begin{bmatrix}
+2(8)- 10 \\
+2(12) - 14 \\
+2(16) - 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+6 \\
+10 \\
+27
+\end{bmatrix}
+\right) .
+\end{split}
+\end{equation*}
+If we replaced the numbers by letters that would constitute a proof!
+Notice that we did not really have to compute what the
+result is to convince ourselves that the two expressions were equal.
+
+If the sizes of the matrices do not match, then addition is undefined.
+If $A$ is $3 \times 2$ and $B$ is $2 \times 5$, then we cannot add
+the matrices.  We do not know what that could possibly mean.
+
+\medskip
+
+It is also useful to have a matrix that when added to any other matrix
+does nothing.  This is the zero matrix, the matrix of all zeros:
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & 0 \\
+0 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix} .
+\end{equation*}
+We often denote the zero matrix
+by $0$ without specifying size.  We would then just write $A + 0$, where we
+just assume that $0$ is the zero matrix of the same size as $A$.
+
+\medskip
+
+There are really two things we can multiply matrices by.  We can multiply
+matrices by scalars or we can multiply by other matrices.  Let us first
+consider multiplication by scalars.
+For a matrix $A$ and a scalar $\alpha$, we want $\alpha A$ to be the matrix
+that accomplishes
+\begin{equation*}
+(\alpha A) \vec{x} = \alpha (A \vec{x}) .
+\end{equation*}
+That is just scaling the result by $\alpha$.  If you think about it,
+scaling every term in $A$ by $\alpha$ achieves just that:
+If
+\begin{equation*}
+A = 
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13}  \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix},
+\qquad\text{then} \qquad
+\alpha A = 
+\begin{bmatrix}
+\alpha a_{11} & \alpha a_{12} & \alpha a_{13}  \\
+\alpha a_{21} & \alpha a_{22} & \alpha a_{23}
+\end{bmatrix} .
+\end{equation*}
+For example,
+\begin{equation*}
+2
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix} =
+\begin{bmatrix}
+2 & 4 & 6 \\
+8 & 10 & 12
+\end{bmatrix} .
+\end{equation*}
+
+Let us list some properties of matrix addition and scalar multiplication.
+Denote by $0$ the zero matrix, by
+$\alpha$, $\beta$ scalars, and by $A$, $B$, $C$ matrices.  Then:
+\begin{align*}
+A + 0 & = A = 0 + A , \\
+A + B & = B + A , \\
+(A + B) + C & = A + (B + C) , \\
+\alpha(A+B) & = \alpha A+\alpha B, \\
+(\alpha+\beta)A & = \alpha A + \beta A.
+\end{align*}
+These rules should look very familiar.
+
+\subsection{Matrix multiplication}
+
+As we mentioned above, composition of linear mappings is also a
+multiplication of matrices.  Suppose $A$ is an $m \times n$ matrix,
+that is, $A$ takes
+${\mathbb R}^n$ to
+${\mathbb R}^m$,
+and $B$ is an $n \times p$ matrix, that is, $B$ takes
+${\mathbb R}^p$ to
+${\mathbb R}^n$.  The composition $AB$ should work as follows
+\begin{equation*}
+AB\vec{x} = A(B\vec{x}) .
+\end{equation*}
+First, a vector $\vec{x}$ in ${\mathbb R}^p$ gets taken to 
+the vector $B\vec{x}$ in
+${\mathbb R}^n$.  Then the mapping $A$ takes it to the vector $A(B\vec{x})$
+in ${\mathbb R}^m$.  In other words, the composition $AB$ should be an $m
+\times p$ matrix.  In terms of sizes we should have
+\begin{equation*}
+%mbxSTARTIGNORE
+\text{``}
+%mbxENDIGNORE
+%mbxlatex \text{"}
+\quad
+[ m \times n ]
+\,
+[ n \times p ]
+=
+[ m \times p ] . \quad
+%mbxSTARTIGNORE
+\text{''}
+%mbxENDIGNORE
+%mbxlatex \text{"}
+\end{equation*}
+Notice how the middle size must match.
+
+OK\@, now we know what sizes of matrices we should be able to multiply,
+and what the product should be.
+Let us see how to actually compute matrix multiplication.
+We start with the so-called
+\emph{\myindex{dot product}} (or \emph{\myindex{inner product}}) of two vectors.
+Usually this is a row vector multiplied
+with a column vector of the same size.  Dot product multiplies
+each pair of entries from the first and the second vector and sums these
+products.  The result is a single number.
+For example,
+\begin{equation*}
+\begin{bmatrix}
+a_1 & a_2 & a_3
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3
+\end{bmatrix}
+= a_1 b_1 + a_2 b_2 + a_3 b_3 .
+\end{equation*}
+And similarly for larger (or smaller) vectors.
+A dot product is really a product of two matrices: a $1 \times n$ matrix
+and an $n \times 1$ matrix resulting in a $1 \times 1$ matrix, that is, a
+number.
+
+Armed with the dot product we define the
+\emph{\myindex{product of matrices}}\index{matrix product}.
+We denote by $\operatorname{row}_i(A)$ the $i^{\text{th}}$ row
+of $A$ and by
+$\operatorname{column}_j(A)$ the $j^{\text{th}}$ column of $A$.
+For an $m \times n$ matrix $A$ and an $n \times p$ matrix $B$
+we can compute the product $AB$:  The matrix $AB$ is an $m \times p$
+matrix whose $ij^{\text{th}}$ entry is the dot product
+\begin{equation*}
+\operatorname{row}_i(A) \cdot
+\operatorname{column}_j(B) .
+\end{equation*}
+For example, given a $2 \times 3$ and a $3 \times 2$ matrix
+we should end up with a $2 \times 2$ matrix:
+\begin{equation} \label{linalg:eqmatrixmulex}
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} \\
+b_{31} & b_{32}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} b_{11} + 
+a_{12} b_{21} + 
+a_{13} b_{31} & &
+a_{11} b_{12} + 
+a_{12} b_{22} + 
+a_{13} b_{32} \\
+a_{21} b_{11} + 
+a_{22} b_{21} + 
+a_{23} b_{31} & &
+a_{21} b_{12} + 
+a_{22} b_{22} + 
+a_{23} b_{32}
+\end{bmatrix} ,
+\end{equation}
+or with some numbers:
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+\begin{bmatrix}
+-1 & 2 \\
+-7 & 0 \\
+1 & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\cdot (-1) + 2\cdot (-7) + 3 \cdot 1 &  &
+1\cdot 2 + 2\cdot 0 + 3 \cdot (-1) \\
+4\cdot (-1) + 5\cdot (-7) + 6 \cdot 1 &  &
+4\cdot 2 + 5\cdot 0 + 6 \cdot (-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+-12 & -1 \\
+-33 & 2
+\end{bmatrix} .
+\end{equation*}
+
+A useful consequence of the definition is that the evaluation
+$A \vec{x}$ for a matrix $A$
+and a (column) vector $\vec{x}$ is also matrix multiplication.
+That is really why we think of
+vectors as column vectors, or $n \times 1$ matrices.
+For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ -1
+\end{bmatrix} 
+=
+\begin{bmatrix}
+1 \cdot 2 + 2 \cdot (-1) \\
+3 \cdot 2 + 4 \cdot (-1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 2
+\end{bmatrix}  .
+\end{equation*}
+If you look at the last section, that is precisely the last
+example we gave.
+
+You should stare at the computation of multiplication of matrices $AB$
+and
+the previous definition of $A\vec{y}$ as a mapping
+for a moment.
+What we are doing with matrix multiplication is applying
+the mapping $A$ to the columns of $B$.  This is usually written as follows.
+Suppose we write the $n \times p$ matrix
+$B = [ \vec{b}_1 ~ \vec{b}_2 ~ \cdots ~ \vec{b}_p ]$, where
+$\vec{b}_1, \vec{b}_2, \ldots, \vec{b}_p$ are the columns of $B$.  Then
+for an $m \times n$ matrix $A$,
+\begin{equation*}
+AB = 
+A [ \vec{b}_1 ~ \vec{b}_2 ~ \cdots ~ \vec{b}_p ]
+=
+[ A\vec{b}_1 ~ A\vec{b}_2 ~ \cdots ~ A\vec{b}_p ] .
+\end{equation*}
+The columns of the $m \times p$ matrix $AB$
+are the
+vectors $A\vec{b}_1, A\vec{b}_2, \ldots, A\vec{b}_p$.
+For example, in \eqref{linalg:eqmatrixmulex},
+the columns of 
+\begin{equation*}
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} \\
+b_{31} & b_{32}
+\end{bmatrix}
+\end{equation*}
+are
+\begin{equation*}
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+b_{11} \\
+b_{21} \\
+b_{31}
+\end{bmatrix}
+\qquad
+\text{and}
+\qquad
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix}
+\begin{bmatrix}
+b_{12} \\
+b_{22} \\
+b_{32}
+\end{bmatrix} .
+\end{equation*}
+This is a very useful way to understand what matrix multiplication is.
+It should also make it easier to remember how to perform matrix multiplication.
+
+\subsection{Some rules of matrix algebra}
+
+For multiplication we want an analogue of a 1.  That is,
+we desire a matrix that just leaves everything as it found it.
+This analogue is the
+so-called \emph{\myindex{identity matrix}}.
+The identity matrix is a square matrix with 1s on the
+main diagonal and zeros everywhere else.  It is usually denoted by $I$.
+For each size we have a different identity matrix and so sometimes we may denote
+the size as a subscript.  For example, $I_3$ is the $3 \times 3$
+identity matrix
+\begin{equation*}
+I = I_3 =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} .
+\end{equation*}
+Let us see how the matrix works on a smaller example,
+\begin{equation*}
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} 
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} =
+\begin{bmatrix}
+a_{11} \cdot 1 + a_{12} \cdot 0
+& &
+a_{11} \cdot 0 + a_{12} \cdot 1
+\\
+a_{21} \cdot 1 + a_{22} \cdot 0
+& &
+a_{21} \cdot 0 + a_{22} \cdot 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} 
+\end{bmatrix} .
+\end{equation*}
+Multiplication by the identity from the left looks similar, and also
+does not touch anything.
+
+\medskip
+
+We have the following rules for matrix multiplication.  Suppose that
+$A$, $B$, $C$ are matrices of the correct sizes so that the following
+make sense.  Let $\alpha$ denote a scalar (number).  Then
+\begin{align*}
+A(BC) & = (AB)C & & \text{(\myindex{associative law})} , \\
+A(B+C) & = AB + AC & & \text{(\myindex{distributive law})} , \\
+(B+C)A & = BA + CA & & \text{(distributive law)} , \\
+\alpha(AB) & = (\alpha A)B = A(\alpha B) , & &  \\
+IA & = A = AI & & \text{(identity)}.
+\end{align*}
+
+\begin{example}
+Let us demonstrate a couple of these rules.  For example, the associative
+law:
+\begin{equation*}
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\biggl(
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+\underbrace{
+\begin{bmatrix}
+-1 & 4 \\ 5 & 2
+\end{bmatrix}
+}_C
+\biggr)
+=
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\underbrace{
+\begin{bmatrix}
+16 & 24 \\ -16 & -2
+\end{bmatrix}
+}_{BC}
+=
+\underbrace{
+\begin{bmatrix}
+-96 & -78 \\ 64 & 52
+\end{bmatrix}
+}_{A(BC)} ,
+\end{equation*}
+and
+\begin{equation*}
+\biggl(
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+\biggr)
+\underbrace{
+\begin{bmatrix}
+-1 & 4 \\ 5 & 2
+\end{bmatrix}
+}_C
+=
+\underbrace{
+\begin{bmatrix}
+-9 & -21 \\ 6 & 14
+\end{bmatrix}
+}_{AB}
+\underbrace{
+\begin{bmatrix}
+-1 & 4 \\ 5 & 2
+\end{bmatrix}
+}_C
+=
+\underbrace{
+\begin{bmatrix}
+-96 & -78 \\ 64 & 52
+\end{bmatrix}
+}_{(AB)C} .
+\end{equation*}
+Or how about multiplication by scalars:
+\begin{equation*}
+10
+\biggl(
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+\biggr)
+=
+10
+\underbrace{
+\begin{bmatrix}
+-9 & -21 \\ 6 & 14
+\end{bmatrix}
+}_{A B} 
+=
+\underbrace{
+\begin{bmatrix}
+-90 & -210 \\ 60 & 140
+\end{bmatrix}
+}_{10 (AB)} ,
+\end{equation*}
+\begin{equation*}
+\biggl(
+10
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\biggr)
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+=
+\underbrace{
+\begin{bmatrix}
+-30 & 30 \\ 20 & -20
+\end{bmatrix}
+}_{10 A}
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+=
+\underbrace{
+\begin{bmatrix}
+-90 & -210 \\ 60 & 140
+\end{bmatrix}
+}_{(10 A)B} ,
+\end{equation*}
+and
+\begin{equation*}
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_A
+\biggl(
+10
+\underbrace{
+\begin{bmatrix}
+4 & 4 \\ 1 & -3
+\end{bmatrix}
+}_B
+\biggr)
+=
+\underbrace{
+\begin{bmatrix}
+-3 & 3 \\ 2 & -2
+\end{bmatrix}
+}_{A}
+\underbrace{
+\begin{bmatrix}
+40 & 40 \\ 10 & -30
+\end{bmatrix}
+}_{10B}
+=
+\underbrace{
+\begin{bmatrix}
+-90 & -210 \\ 60 & 140
+\end{bmatrix}
+}_{A(10B)} .
+\end{equation*}
+\end{example}
+
+A multiplication rule, one you have used since primary school on numbers,
+is quite conspicuously missing for matrices.
+That is, matrix multiplication is
+not commutative.  Firstly, just because $AB$ makes sense, it may be
+that $BA$ is not even defined.  For example, if $A$ is $2 \times 3$, and
+$B$ is $3 \times 4$, the we can multiply $AB$ but not $BA$.
+
+Even if $AB$ and $BA$ are both defined, does not mean that they are equal.
+For example, take
+$A = \left[ \begin{smallmatrix} 1 & 1 \\ 1 & 1 \end{smallmatrix} \right]$
+and
+$B = \left[ \begin{smallmatrix} 1 & 0 \\ 0 & 2 \end{smallmatrix} \right]$:
+\begin{equation*}
+AB = 
+\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}
+\begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}
+=
+\begin{bmatrix} 1 & 2 \\ 1 & 2 \end{bmatrix}
+\qquad
+\not=
+\qquad
+\begin{bmatrix} 1 & 1 \\ 2 & 2 \end{bmatrix}
+=
+\begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}
+\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}
+=
+BA .
+\end{equation*}
+
+\subsection{Inverse}
+
+A couple of other algebra rules you know for numbers do not quite
+work on matrices:
+\begin{enumerate}[(i)]
+\item $AB = AC$ does not necessarily imply $B=C$, even if $A$ is not 0.
+\item $AB = 0$ does not necessarily mean that $A=0$ or $B=0$.
+\end{enumerate}
+For example:
+\begin{equation*}
+\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
+\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
+=
+\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
+=
+\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}
+\begin{bmatrix} 0 & 2 \\ 0 & 0 \end{bmatrix} .
+\end{equation*}
+
+To make these rules hold, we do not just need one of the matrices to not be zero,
+we would need to \myquote{divide} by
+a matrix.  This is where the \emph{\myindex{matrix inverse}} comes in.
+Suppose that $A$ and $B$ are $n \times n$ matrices such that
+\begin{equation*}
+AB = I = BA .
+\end{equation*}
+Then we call $B$ the inverse of $A$ and we denote $B$ by $A^{-1}$.
+Perhaps not surprisingly, ${(A^{-1})}^{-1} = A$, since if the inverse of $A$ 
+is $B$, then the inverse of $B$ is $A$.
+If the inverse of $A$ exists, then we say $A$ is
+\emph{invertible\index{invertible matrix}}.
+If $A$ is not invertible, we say $A$ is
+\emph{singular\index{singular matrix}}.
+
+If $A = [a]$ is a $1 \times 1$ matrix, then $A^{-1}$ is $a^{-1} =
+\frac{1}{a}$.  That is where the notation comes from.  The computation is not nearly as simple when $A$ is
+larger.
+
+%Singular matrices are those you cannot \myquote{divide by.}
+%So the mistake of \myquote{division by zero} is replaced by the mistake
+%\myquote{inverting a singular matrix.}
+
+The proper formulation of the cancellation rule is:
+\begin{center}
+\emph{If $A$ is invertible,
+then
+$AB = AC$ implies $B=C$.}
+\end{center}
+%Similarly:
+%\emph{If $A$ is invertible,
+%then
+%$BA = CA$ implies $B=C$.}
+The computation is what you would do in regular algebra with numbers,
+but you have to
+be careful never to commute matrices:
+\begin{align*}
+AB & = AC , \\
+A^{-1}AB & = A^{-1}AC , \\
+IB & = IC , \\
+B & = C .
+\end{align*}
+And similarly for cancellation on the right:
+\begin{center}
+\emph{If $A$ is invertible,
+then $BA = CA$ implies $B=C$.}
+\end{center}
+
+The rule says, among other things, that the
+inverse of a matrix is unique if it exists:  If $AB = I = AC$, then $A$ is
+invertible and $B=C$.
+
+We will see later how to compute an inverse of a matrix
+in general.  For now,
+let us note that there is a simple formula for the inverse of
+a $2 \times 2$ matrix
+\begin{equation*}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}^{-1}
+=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix} .
+\end{equation*}
+
+For example:
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 \\
+2 & 4
+\end{bmatrix}^{-1}
+=
+\frac{1}{1\cdot 4-1 \cdot 2}
+\begin{bmatrix}
+4 & -1 \\
+-2 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & \nicefrac{-1}{2} \\
+-1 & \nicefrac{1}{2}
+\end{bmatrix} .
+\end{equation*}
+Let's try it:
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 \\
+2 & 4
+\end{bmatrix}
+\begin{bmatrix}
+2 & \nicefrac{-1}{2} \\
+-1 & \nicefrac{1}{2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\qquad
+\text{and}
+\qquad
+\begin{bmatrix}
+2 & \nicefrac{-1}{2} \\
+-1 & \nicefrac{1}{2}
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 \\
+2 & 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} .
+\end{equation*}
+Just as we cannot divide by every number, not every matrix is
+invertible.  In the case of matrices however we may have singular
+matrices that are not zero.  For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 \\
+2 & 2
+\end{bmatrix}
+\end{equation*}
+is a singular matrix.  But didn't we just give a formula for an inverse?
+Let us try it:
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 \\
+2 & 2
+\end{bmatrix}^{-1}
+=
+\frac{1}{1\cdot 2-1 \cdot 2}
+\begin{bmatrix}
+2 & -1 \\
+-2 & 1
+\end{bmatrix}
+=
+%mbxSTARTIGNORE
+\text{\Huge ?}
+%mbxENDIGNORE
+%mbxlatex \text{???}
+\end{equation*}
+We get into a bit of trouble; we are trying to divide by zero.
+%The matrix is not invertible, it is singular.
+
+So a $2 \times 2$ matrix $A$ is invertible whenever
+\begin{equation*}
+ad - bc \not= 0
+\end{equation*}
+and otherwise it is singular.  The expression $ad-bc$ is called
+the \emph{determinant} and we will look at it 
+more carefully in a later section.
+There is a similar expression for a square
+matrix of any size.
+
+\subsection{Diagonal matrices}
+
+A simple (and surprisingly useful) type of a square matrix is a so-called
+\emph{\myindex{diagonal matrix}}.  It is a matrix whose entries are all zero
+except those on the main diagonal from top left to bottom right.  For
+example a $4 \times 4$ diagonal matrix is of the form
+\begin{equation*}
+\begin{bmatrix}
+d_1 & 0 & 0 & 0 \\
+0 & d_2 & 0 & 0 \\
+0 & 0 & d_3 & 0 \\
+0 & 0 & 0 & d_4
+\end{bmatrix} .
+\end{equation*}
+Such matrices have nice properties when we multiply by them.  If we multiply
+them by a vector, they multiply the $k^{\text{th}}$ entry by $d_k$.  For
+example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+4 \\ 5 \\ 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \cdot 4 \\ 2 \cdot 5 \\ 3 \cdot 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 \\ 10 \\ 18
+\end{bmatrix} .
+\end{equation*}
+Similarly, when they multiply another matrix from the left, they multiply
+the $k^{\text{th}}$ row by $d_k$.  For example,
+\begin{equation*}
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & -1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+1 & 1 & 1 
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 2 & 2 \\
+3 & 3 & 3 \\
+-1 & -1 & -1 
+\end{bmatrix} .
+\end{equation*}
+On the other hand, multiplying on the right, they multiply the columns:
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+1 & 1 & 1 
+\end{bmatrix}
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 3 & -1 \\
+2 & 3 & -1 \\
+2 & 3 & -1 
+\end{bmatrix} .
+\end{equation*}
+And it is really easy to multiply two diagonal matrices together---we
+multiply the entries:
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 3 
+\end{bmatrix}
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \cdot 2 & 0 & 0 \\
+0 & 2 \cdot 3 & 0 \\
+0 & 0 & 3 \cdot (-1) 
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 6 & 0 \\
+0 & 0 & -3 
+\end{bmatrix} .
+\end{equation*}
+
+For this last reason, they are easy to invert, you simply invert
+each diagonal element:
+\begin{equation*}
+\begin{bmatrix}
+d_1 & 0 & 0 \\
+0 & d_2 & 0 \\
+0 & 0 & d_3 
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+d_1^{-1} & 0 & 0 \\
+0 & d_2^{-1} & 0 \\
+0 & 0 & d_3^{-1} 
+\end{bmatrix} .
+\end{equation*}
+Let us check an example
+\begin{equation*}
+\underbrace{
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 
+\end{bmatrix}^{-1}
+}_{A^{-1}}
+\underbrace{
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 
+\end{bmatrix}
+}_{A}
+=
+\underbrace{
+\begin{bmatrix}
+\frac{1}{2} & 0 & 0 \\
+0 & \frac{1}{3} & 0 \\
+0 & 0 & \frac{1}{4} 
+\end{bmatrix}
+}_{A^{-1}}
+\underbrace{
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 
+\end{bmatrix}
+}_{A}
+=
+\underbrace{
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+}_{I} .
+\end{equation*}
+It is no wonder that the way we solve many problems in linear algebra
+(and in differential equations) is to try to reduce the problem to the
+case of diagonal matrices.
+
+\subsection{Transpose}
+
+Vectors do not always have to be column vectors,
+that is just a convention.
+Swapping rows and columns is from time to time needed.
+The operation that swaps rows and columns is the so-called
+\emph{\myindex{transpose}}.
+The transpose of $A$ is denoted by $A^T$.  Example:
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}^T =
+\begin{bmatrix}
+1 & 4 \\
+2 & 5 \\
+3 & 6 
+\end{bmatrix} .
+\end{equation*}
+Transpose takes an $m \times n$ matrix to an $n \times m$ matrix.
+
+A key feature of the transpose is that if the product $AB$ makes sense,
+then $B^TA^T$ also makes sense, at least from the point of view of sizes.
+In fact, we get precisely the transpose of $AB$.  That is:
+\begin{equation*}
+{(AB)}^T = B^TA^T .
+\end{equation*}
+For example,
+\begin{equation*}
+{\left(
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
+\begin{bmatrix}
+0 & 1 \\
+1 & 0 \\
+2 & -2
+\end{bmatrix}
+\right)}^T =
+\begin{bmatrix}
+0 & 1 & 2 \\
+1 & 0 & -2
+\end{bmatrix}
+\begin{bmatrix}
+1 & 4 \\
+2 & 5 \\
+3 & 6 
+\end{bmatrix} .
+\end{equation*}
+It is left to the reader to verify that computing the matrix product on the
+left and then transposing is the same as computing the matrix product on the
+right.
+
+If we have a column vector $\vec{x}$ to which we apply a matrix $A$
+and we transpose the result,
+then the row vector $\vec{x}^T$ applies to $A^T$ from the left:
+\begin{equation*}
+{(A\vec{x})}^T = \vec{x}^TA^T .
+\end{equation*}
+
+Another place where transpose is useful is when we wish to apply the dot
+product\footnote{As a side note, mathematicians
+write $\vec{y}^T\vec{x}$ and physicists
+write $\vec{x}^T\vec{y}$.  Shhh\ldots don't tell anyone, but the physicists
+are probably right on this.}
+to two column vectors:
+\begin{equation*}
+\vec{x} \cdot \vec{y} = \vec{y}^T \vec{x} .
+\end{equation*}
+That is the way that one often writes the dot product in software.
+
+We say a matrix $A$ is \emph{symmetric}\index{symmetric matrix}
+if $A = A^T$.  For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 4 & 5 \\
+3 & 5 & 6
+\end{bmatrix}
+\end{equation*}
+is a symmetric matrix.  Notice that a symmetric matrix is always
+square, that is, $n \times n$.  Symmetric matrices 
+have many nice properties\footnote{Although so far we have not learned
+enough about matrices to really appreciate them.},
+and come up quite often in applications.
+
+\subsection{Exercises}
+
+\begin{exercise}
+Add the following matrices
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+-1 & 2 & 2 \\
+5 & 8 & -1
+\end{bmatrix}
++
+\begin{bmatrix}
+3 & 2 & 3 \\
+8 & 3 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 4 \\
+2 & 3 & 1 \\
+0 & 5 & 1
+\end{bmatrix}
++
+\begin{bmatrix}
+2 & -8 & -3 \\
+3 & 1 & 0 \\
+6 & -4 & 1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Compute
+\begin{tasks}(2)
+\task
+$3\begin{bmatrix}
+0 & 3 \\
+-2 & 2
+\end{bmatrix}
++
+6
+\begin{bmatrix}
+1 & 5 \\
+-1 & 5
+\end{bmatrix}$
+\task
+$2\begin{bmatrix}
+-3 & 1 \\
+2 & 2
+\end{bmatrix}
+-
+3
+\begin{bmatrix}
+2 & -1 \\
+3 & 2
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Multiply the following matrices
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+-1 & 2 \\
+3 & 1 \\
+5 & 8
+\end{bmatrix}
+\begin{bmatrix}
+3 & -1 & 3 & 1 \\
+8 & 3 & 2 & -3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 3 \\
+3 & 1 & 1 \\
+1 & 0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+2 & 3 & 1 & 7 \\
+1 & 2 & 3 & -1 \\
+1 & -1 & 3 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+4 & 1 & 6 & 3 \\
+5 & 6 & 5 & 0 \\
+4 & 6 & 6 & 0
+\end{bmatrix}
+\begin{bmatrix}
+2 & 5 \\
+1 & 2 \\
+3 & 5 \\
+5 & 6
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 1 & 4 \\
+0 & 5 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 & 2 \\
+1 & 0 \\
+6 & 4
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+-3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 4 \\
+1 & 3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 2 \\
+1 & 4
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+-2 & 0 \\
+0 & 1 
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 0 & 0 \\
+0 & -2 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0 \\ 
+0 & 0 & 0.01 & 0 \\
+0 & 0 & 0 & -5
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+Add the following matrices
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+2 & 1 & 0 \\
+1 & 1 & -1
+\end{bmatrix}
++
+\begin{bmatrix}
+5 & 3 & 4 \\
+1 & 2 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+6 & -2 & 3 \\
+7 & 3 & 3 \\
+8 & -1 & 2
+\end{bmatrix}
++
+\begin{bmatrix}
+-1 & -1 & -3 \\
+6 & 7 & 3 \\
+-9 & 4 & -1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+7 & 4 & 4 \\
+2 & 3 & 4
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+5 & -3 & 0 \\
+13 & 10 & 6 \\
+-1 & 3 & 1
+\end{bmatrix}$
+}
+
+\begin{exercise}
+Compute
+\begin{tasks}(2)
+\task
+$2\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
++
+3
+\begin{bmatrix}
+-1 & 3 \\
+1 & 2
+\end{bmatrix}$
+\task
+$3\begin{bmatrix}
+2 & -1 \\
+1 & 3
+\end{bmatrix}
+-
+2
+\begin{bmatrix}
+2 & 1 \\
+-1 & 2
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+-1 & 13 \\
+9 & 14
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+2 & -5 \\
+5 & 5
+\end{bmatrix}$
+}
+
+\begin{exercise}
+\pagebreak[2]
+Multiply the following matrices
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+2 & 1 & 4 \\
+3 & 4 & 4
+\end{bmatrix}
+\begin{bmatrix}
+2 & 4 \\
+6 & 3 \\
+3 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 3 & 3 \\
+2 & -2 & 1 \\
+3 & 5 & -2
+\end{bmatrix}
+\begin{bmatrix}
+6 & 6 & 2 \\
+4 & 6 & 0 \\
+2 & 0 & 4
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 4 & 1 \\
+2 & -1 & 0 \\
+4 & -1 & 5
+\end{bmatrix}
+\begin{bmatrix}
+0 & 2 & 5 & 0 \\
+2 & 0 & 5 & 2 \\
+3 & 6 & 1 & 6
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-2 & -2 \\
+5 & 3 \\
+2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 & 3 \\
+1 & 3
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+22 & 31 \\
+42 & 44
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+18 & 18 & 12 \\
+6 & 0 & 8 \\
+34 & 48 & -2
+\end{bmatrix}$
+\quad
+c)~$\begin{bmatrix}
+11 & 12 & 36 & 14 \\
+-2 & 4 & 5 & -2 \\
+13 & 38 & 20 & 28
+\end{bmatrix}$
+\quad
+d)~$\begin{bmatrix}
+-2 & -12 \\
+3 & 24 \\
+1 & 9
+\end{bmatrix}$
+}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 \\
+3 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+4 & 2 \\
+4 & 4
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)
+$\begin{bmatrix}
+\nicefrac{1}{2}
+\end{bmatrix}$
+\quad b)
+$\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}$
+\quad c)
+$\begin{bmatrix}
+-5 & 2 \\
+3 & -1
+\end{bmatrix}$
+\quad d)
+$\begin{bmatrix}
+\nicefrac{1}{2} & \nicefrac{-1}{4} \\
+\nicefrac{-1}{2} & \nicefrac{1}{2}
+\end{bmatrix}$
+}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+2 & 0 \\
+0 & 3 
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+4 & 0 & 0 \\
+0 & 5 & 0 \\ 
+0 & 0 & -1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-1 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\ 
+0 & 0 & 3 & 0 \\
+0 & 0 & 0 & 0.1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+\nicefrac{1}{2} & 0 \\
+0 & \nicefrac{1}{3} 
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+\nicefrac{1}{4} & 0 & 0 \\
+0 & \nicefrac{1}{5} & 0 \\ 
+0 & 0 & -1
+\end{bmatrix}$
+\quad
+c)~$\begin{bmatrix}
+-1 & 0 & 0 & 0 \\
+0 & \nicefrac{1}{2} & 0 & 0 \\ 
+0 & 0 & \nicefrac{1}{3} & 0 \\
+0 & 0 & 0 & 10
+\end{bmatrix}$
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectionnewpage
+\section{Elimination}
+\label{elim:section}
+
+%mbxINTROSUBSECTION
+
+\sectionnotes{2--3 lectures}
+
+\subsection{Linear systems of equations}
+
+One application of matrices is to solve systems of
+linear equations\footnote{Although perhaps we have this backwards,
+quite often we solve a linear system of equations
+to find out something about matrices, rather than vice versa.}.
+Consider the following system of linear equations
+\begin{equation} \label{linalg:elim:eq}
+\begin{aligned}
+          2 x_1 +           2 x_2 +           2 x_3 & = 2 , \\
+\phantom{9} x_1 + \phantom{9} x_2 +           3 x_3 & = 5 , \\
+\phantom{9} x_1 +           4 x_2 + \phantom{9} x_3 & = 10 .
+\end{aligned}
+\end{equation}
+
+There is a systematic procedure
+called \emph{\myindex{elimination}} to solve such a system.
+In this procedure,
+we attempt to eliminate each variable from all but one equation.
+We want to end up with equations
+such as $x_3 = 2$, where we can just read off the answer.
+
+We write a system of linear equations as a matrix equation:
+\begin{equation*}
+A \vec{x} = \vec{b} .
+\end{equation*}
+The system \eqref{linalg:elim:eq} is written as
+\begin{equation*}
+\underbrace{
+\begin{bmatrix}
+2 & 2 & 2 \\
+1 & 1 & 3 \\
+1 & 4 & 1 
+\end{bmatrix}
+}_{A}
+\underbrace{
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix} 
+}_{\vec{x}}
+=
+\underbrace{
+\begin{bmatrix}
+2 \\
+5 \\
+10
+\end{bmatrix}
+}_{\vec{b}} .
+\end{equation*}
+If we knew the inverse of $A$, then we would be done; we would simply solve
+the equation:
+\begin{equation*}
+\vec{x} = A^{-1} A \vec{x} = A^{-1} \vec{b} .
+\end{equation*}
+Well, but that is part of the problem, we do not know how to compute the
+inverse for matrices bigger than $2 \times 2$.
+We will see later that to compute the inverse we are really solving
+$A \vec{x} = \vec{b}$ for several different $\vec{b}$.  In other words, 
+we will need to do elimination to find $A^{-1}$.
+In addition, we may wish to solve $A \vec{x} = \vec{b}$
+if $A$ is not invertible, or perhaps not even square.
+
+\medskip
+
+Let us return to the equations themselves and see how we can manipulate
+them.
+There are a few operations we can perform on the equations that do not change
+the solution.  First, perhaps an operation that may seem stupid, we can swap 
+two equations in \eqref{linalg:elim:eq}:
+\begin{equation*}
+\begin{aligned}
+\phantom{9} x_1 + \phantom{9} x_2 +           3 x_3 & = 5 , \\
+          2 x_1 +           2 x_2 +           2 x_3 & = 2 , \\
+\phantom{9} x_1 +           4 x_2 + \phantom{9} x_3 & = 10 .
+\end{aligned}
+\end{equation*}
+Clearly these new equations have the same solutions $x_1,x_2,x_3$.
+A second operation is that we can multiply an equation by a nonzero number.  For
+example, we multiply the third equation in \eqref{linalg:elim:eq}
+by 3:
+\begin{equation*}
+\begin{aligned}
+          2 x_1 + \phantom{9}  2 x_2 + 2 x_3 & = 2 , \\
+\phantom{9} x_1 + \phantom{99}   x_2 + 3 x_3 & = 5 , \\
+          3 x_1 +             12 x_2 + 3 x_3 & = 30 .
+\end{aligned}
+\end{equation*}
+Finally, we can add a multiple of one equation to another equation.
+For instance, we add 3 times the third equation in \eqref{linalg:elim:eq}
+to the second equation:
+\begin{equation*}
+\begin{aligned}
+\phantom{(1+3)} 2 x_1 + \phantom{(1+12)}  2 x_2 + \phantom{(3+3)} 2 x_3 & = 2 , \\
+\phantom{2} (1+3) x_1 + \phantom{2}(1+12)   x_2 + \phantom{2} (3+3) x_3 & = 5+30 , \\
+\phantom{2 (1+3)} x_1 + \phantom{(1+12)}  4 x_2 + \phantom{(3+3) 2} x_3 & = 10 .
+\end{aligned}
+\end{equation*}
+The same $x_1,x_2,x_3$ should still be solutions
+to the new equations.
+These were just examples; we did not get any closer to the solution.
+We must to do these three operations in some more logical manner,
+but it turns out
+these three operations suffice to solve every linear equation.
+
+The first thing is to write the equations in a more compact manner.  Given
+\begin{equation*}
+A \vec{x} = \vec{b} ,
+\end{equation*}
+we write down the so-called \emph{\myindex{augmented matrix}}
+\begin{equation*}
+[ A ~|~ \vec{b} ] ,
+\end{equation*}
+where the vertical line is just a marker for us to know where the
+\myquote{right-hand side} of the equation starts.
+For the system \eqref{linalg:elim:eq} the augmented matrix is
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+2 & 2 & 2 & 2 \\
+1 & 1 & 3 & 5 \\
+1 & 4 & 1 & 10
+\end{array}
+\right] .
+\end{equation*}
+The entire process of elimination, which we will describe,
+is often applied to any sort of matrix,
+not just an
+augmented matrix.
+Simply think of the matrix as the $3 \times 4$ matrix
+\begin{equation*}
+\begin{bmatrix}
+2 & 2 & 2 & 2 \\
+1 & 1 & 3 & 5 \\
+1 & 4 & 1 & 10
+\end{bmatrix} .
+\end{equation*}
+
+\subsection{Row echelon form and elementary operations}
+
+We apply the three operations above to the matrix.  We call these
+the \emph{\myindex{elementary operations}} or
+\emph{\myindex{elementary row operations}}.
+Translating the operations to the matrix setting,
+the operations become:
+\begin{enumerate}[(i)]
+\item Swap two rows.
+\item Multiply a row by a nonzero number.
+\item Add a multiple of one row to another row.
+\end{enumerate}
+\pagebreak[2]
+We run these operations until we 
+get into a state where it is easy to read off the answer,
+or until we get into a contradiction indicating no solution.
+
+More specifically, we run the operations until we obtain the so-called
+\emph{\myindex{row echelon form}}\index{echelon form}.
+Let us call
+the first (from the left) nonzero entry in each row the
+\emph{\myindex{leading entry}}.  
+A matrix is in \emph{row echelon form} if
+the following conditions are satisfied:
+\begin{enumerate}[(i)]
+\item The leading entry in any row is strictly to the right of
+the leading entry of the row above.
+\item Any zero rows are below all the nonzero rows.
+\item All leading entries are 1.
+\end{enumerate}
+A matrix is in \emph{\myindex{reduced row echelon form}}
+if furthermore the following condition is satisfied.
+\begin{enumerate}[(i),resume]
+\item All the entries above a leading entry are zero.
+\end{enumerate}
+
+Note that the definition applies to matrices of any size.
+
+\begin{example}
+The following matrices are in row echelon form.  The leading
+entries are marked:
+\begin{equation*}
+\begin{bmatrix}
+\mybxsm{1} & 2 & 9 & 3 \\
+0 & 0 & \mybxsm{1} & 5 \\
+0 & 0 & 0 & \mybxsm{1}
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+\mybxsm{1} & -1 & -3  \\
+0 & \mybxsm{1} & 5  \\
+0 & 0 & \mybxsm{1}
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+\mybxsm{1} & 2 & 1 \\
+0 & \mybxsm{1} & 2 \\
+0 & 0 & 0
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+0 & \mybxsm{1} & -5 & 2 \\
+0 & 0 & 0 & \mybxsm{1} \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation*}
+None of the matrices above are in \emph{reduced} row echelon form.  For
+example, in the first matrix none of the entries above the second and third
+leading entries are zero; they are 9, 3, and 5.
+The following matrices are in reduced row echelon form.  The leading
+entries are marked:
+\begin{equation*}
+\begin{bmatrix}
+\mybxsm{1} & 3 & 0 & 8 \\
+0 & 0 & \mybxsm{1} & 6 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+\mybxsm{1} & 0 & 2 &  0  \\
+0 & \mybxsm{1} & 3 & 0  \\
+0 & 0 & 0 & \mybxsm{1}
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+\mybxsm{1} & 0 & 3 \\
+0 & \mybxsm{1} & -2 \\
+0 & 0 & 0
+\end{bmatrix}
+\qquad
+\begin{bmatrix}
+0 & \mybxsm{1} & 2 & 0 \\
+0 & 0 & 0 & \mybxsm{1} \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation*}
+\end{example}
+
+The procedure we will describe to find a reduced row echelon form
+of a matrix
+is called \emph{\myindex{Gauss--Jordan elimination}}.
+The first part of it, which obtains a row echelon form, is called 
+\emph{\myindex{Gaussian elimination}} or
+\emph{\myindex{row reduction}}.  For some problems, a row echelon
+form is sufficient, and it is a bit less work to only do this first part.
+
+To attain the row echelon form we work systematically.
+We go column by column, starting at the first column.  We find topmost
+entry in the first column that is not zero, and we call it the
+\emph{\myindex{pivot}}.  If there is no nonzero entry
+we move to the next column.  We swap rows to put the row with
+the pivot as the first row.  We divide the first row
+by the pivot to make the pivot entry be a 1.  Now look at all the rows below
+and subtract the correct multiple of the pivot row so that all the entries
+below the pivot become zero.
+
+After this procedure we forget that we had a first row (it is now fixed),
+and we forget about the column with the pivot and all the preceding zero
+columns.
+Below the pivot row, all the entries in these columns are just
+zero.  Then we focus on the smaller matrix and we repeat the steps
+above.
+
+It is best shown by example, so let us go back to the 
+example from the beginning of the section.
+We keep the vertical line in the matrix,
+even though the procedure works on any matrix, not just
+an augmented matrix.
+We start with the first column and we locate the pivot, in this
+case the first entry of the first column.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+\mybxsm{2} & 2 & 2 & 2 \\
+1 & 1 & 3 & 5 \\
+1 & 4 & 1 & 10
+\end{array}
+\right]
+\end{equation*}
+We multiply the first row by
+$\nicefrac{1}{2}$.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+\mybxsm{1} & 1 & 1 & 1 \\
+1 & 1 & 3 & 5 \\
+1 & 4 & 1 & 10
+\end{array}
+\right]
+\end{equation*}
+We subtract the first row from the second and third row (two elementary
+operations).
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & 0 & 2 & 4 \\
+0 & 3 & 0 & 9
+\end{array}
+\right]
+\end{equation*}
+We are done with the first column and the first row for now.  We almost
+pretend the matrix does not have the first column and the first row.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+* & * & * & * \\
+* & 0 & 2 & 4 \\
+* & 3 & 0 & 9
+\end{array}
+\right]
+\end{equation*}
+OK\@, look at the second column, and notice that now the pivot is in the
+third row.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & 0 & 2 & 4 \\
+0 & \mybxsm{3} & 0 & 9
+\end{array}
+\right]
+\end{equation*}
+We swap rows.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & \mybxsm{3} & 0 & 9 \\
+0 & 0 & 2 & 4
+\end{array}
+\right]
+\end{equation*}
+And we divide the pivot row by 3.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & \mybxsm{1} & 0 & 3 \\
+0 & 0 & 2 & 4
+\end{array}
+\right]
+\end{equation*}
+We do not need to subtract anything as everything below the pivot is already
+zero.  We move on, we again start ignoring the second row and second
+column and focus on 
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+* & * & * & * \\
+* & * & * & * \\
+* & * & 2 & 4
+\end{array}
+\right] .
+\end{equation*}
+We find the pivot, then divide that row by 2:
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 3 \\
+0 & 0 & \mybxsm{2} & 4
+\end{array}
+\right] 
+\qquad \to \qquad
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 3 \\
+0 & 0 & 1 & 2
+\end{array}
+\right] .
+\end{equation*}
+The matrix is now in row echelon form.
+
+The equation corresponding to the last row is $x_3 = 2$.
+We know $x_3$ and we
+could substitute it into the first two equations to get equations for
+$x_1$ and $x_2$.  Then we could do the same thing with $x_2$, until we solve
+for all 3 variables.  This procedure is called
+\emph{\myindex{backsubstitution}} and we can achieve it via elementary
+operations.
+We start from the lowest pivot (leading entry in the row
+echelon form) and subtract the right multiple from the row above to
+make all the entries above this pivot zero.
+Then we move to the next pivot and so on.
+After we are done, we will have a matrix in reduced row echelon form.
+
+We continue our example.
+Subtract the last row from the first to get
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 1 & 0 & -1 \\
+0 & 1 & 0 & 3 \\
+0 & 0 & 1 & 2 
+\end{array}
+\right] .
+\end{equation*}
+The entry above the pivot in the second row is already zero.
+So we move onto the next pivot, the one in the second row.  We subtract
+this row from the top row to get
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 0 & 0 & -4 \\
+0 & 1 & 0 & 3 \\
+0 & 0 & 1 & 2 
+\end{array}
+\right] .
+\end{equation*}
+The matrix is in reduced row echelon form.
+
+If we now write down the equations for $x_1,x_2,x_3$, we find
+\begin{equation*}
+x_1 = -4, \qquad x_2 = 3, \qquad x_3 = 2 .
+\end{equation*}
+In other words, we have solved the system.
+
+\subsection{Non-unique solutions and inconsistent systems}
+
+It is
+possible that the solution of a linear system of equations
+is not unique, or that no solution exists.  Suppose for a moment
+that the row echelon form we found was
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 3 & 4 \\
+0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 1 
+\end{array}
+\right] .
+\end{equation*}
+Then we have an equation $0=1$ coming from the last row.  That is impossible
+and the equations are what we call \emph{\myindex{inconsistent}}.  There is no solution
+to $A \vec{x} = \vec{b}$.
+
+
+On the other hand, if we find a row echelon form
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 3 & 4 \\
+0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 0 
+\end{array}
+\right] ,
+\end{equation*}
+then there is no issue with finding solutions.  In fact, we will find way too
+many.  Let us continue with backsubstitution (subtracting 3 times the third
+row from the first) to find the reduced row echelon form and let's mark the
+pivots.
+\begin{equation*}
+\left[
+\begin{array}{ccc|c}
+\mybxsm{1} & 2 & 0 & -5 \\
+0 & 0 & \mybxsm{1} & 3 \\
+0 & 0 & 0 & 0 
+\end{array}
+\right]
+\end{equation*}
+The last row is all zeros; it just says $0=0$ and we ignore it.
+The two remaining equations are 
+\begin{equation*}
+x_1 + 2 x_2 = -5 , \qquad
+x_3 = 3 .
+\end{equation*}
+Let us solve for the variables that corresponded to the
+pivots, that is $x_1$ and $x_3$ as there was a pivot in the first column
+and in the third column:
+\begin{align*}
+& x_1 = - 2 x_2 -5 , \\
+& x_3 = 3 .
+\end{align*}
+The variable $x_2$ can be anything you wish and we still get a solution.
+The $x_2$ is called a \emph{\myindex{free variable}}.
+There are infinitely many solutions, one for every choice of $x_2$.
+If we pick $x_2=0$,
+then $x_1 = -5$, and $x_3 = 3$ give a solution.  But we also get a solution
+by picking say $x_2 = 1$, in which case $x_1 = -9$ and $x_3 = 3$,
+or by picking $x_2 = -5$ in which case $x_1 = 5$ and $x_3 = 3$.
+
+\medskip
+
+The general idea is that
+if any row has all zeros in the columns corresponding to the
+variables, but a nonzero entry in the column corresponding to the
+right-hand side $\vec{b}$, then the system is inconsistent and has no solutions.
+In other words, the system is inconsistent if you find a pivot on the right
+side of the vertical line drawn in the augmented matrix.  Otherwise, the
+system is \emph{\myindex{consistent}}, and at least one solution exists.
+\pagebreak[2]
+
+Suppose the system is consistent (at least one solution exists):
+\begin{enumerate}[(i)]
+\item If every column corresponding to a variable has a pivot element,
+then the solution is unique.
+\item If there are columns corresponding to variables with no pivot,
+then those are \emph{free variables} that can be chosen
+arbitrarily, and there are infinitely many solutions.
+\end{enumerate}
+
+\medskip
+
+When $\vec{b} = \vec{0}$, we have a so-called
+\emph{\myindex{homogeneous matrix equation}}
+\begin{equation*}
+A \vec{x} = \vec{0} .
+\end{equation*}
+There is no need to write an augmented matrix in this
+case.  As the elementary operations do not do anything to a zero column, it
+always stays a zero column.  Moreover, $A \vec{x} = \vec{0}$ always has at
+least one solution, namely $\vec{x} = \vec{0}$.  Such a system
+is always consistent.  It may have other solutions:  If you find
+any free variables, then you get infinitely many solutions.
+
+The set of solutions of $A \vec{x} = \vec{0}$ comes up quite often
+so people give it a name.  It is called the
+\emph{\myindex{nullspace}} or the 
+\emph{\myindex{kernel}} of $A$.
+One place where the kernel comes up is invertibility of a square matrix $A$.
+If the kernel of $A$ contains a nonzero vector, then it contains
+infinitely many vectors (there was a free variable).  But then it is
+impossible to invert $\vec{0}$, since infinitely many vectors go to
+$\vec{0}$, so there is no unique vector that $A$ takes to $\vec{0}$.
+So if the kernel is nontrivial, that is, if there are any nonzero vectors in
+the kernel,
+in other words, if there are any free variables, or in yet other words,
+if the row echelon form of $A$ has columns without pivots,
+then $A$ is not invertible.  We will return to this idea later.
+
+\subsection{Linear independence and rank}
+
+If rows of a matrix correspond to equations, it may be good to find out
+how many equations we really need to find the same set of solutions.
+Similarly, if we find a number of solutions to a linear equation
+$A \vec{x} = \vec{0}$, we may ask if we found enough 
+so that all other solutions can be formed out of the given set.
+The concept we want is that of linear independence.
+That same concept is useful for differential equations, for
+example in \chapterref{ho:chapter}.
+
+Given row or column vectors $\vec{y}_1, \vec{y}_2, \ldots, \vec{y}_n$,
+a \emph{\myindex{linear combination}} is an expression of the form
+\begin{equation*}
+\alpha_1 \vec{y}_1 + 
+\alpha_2 \vec{y}_2 + 
+\cdots +
+\alpha_n \vec{y}_n ,
+\end{equation*}
+where $\alpha_1, \alpha_2, \ldots, \alpha_n$ are all scalars.
+For example,
+$3 \vec{y}_1 + \vec{y}_2 - 5 \vec{y}_3$ is a linear combination
+of $\vec{y}_1$, $\vec{y}_2$, and $\vec{y}_3$.
+
+We have seen linear combinations before.  The expression
+\begin{equation*}
+A \vec{x}
+\end{equation*}
+is a linear combination of the columns of $A$, while
+\begin{equation*}
+\vec{x}^T A = (A^T \vec{x})^T
+\avoidbreak
+\end{equation*}
+is a linear combination of the rows of $A$.
+
+The way linear combinations come up in our study of differential
+equations is similar to the following computation.  Suppose that
+$\vec{x}_1$, $\vec{x}_2$, \ldots, $\vec{x}_n$ are solutions
+to $A \vec{x}_1 = \vec{0}$, 
+$A \vec{x}_2 = \vec{0}$, \ldots,
+$A \vec{x}_n = \vec{0}$.
+Then the linear combination
+\begin{equation*}
+\vec{y} = \alpha_1 \vec{x}_1 + 
+\alpha_2 \vec{x}_2 + 
+\cdots +
+\alpha_n \vec{x}_n 
+\end{equation*}
+is a solution to $A \vec{y} = \vec{0}$:
+\begin{multline*}
+A \vec{y} =
+A (\alpha_1 \vec{x}_1 + 
+\alpha_2 \vec{x}_2 + 
+\cdots +
+\alpha_n \vec{x}_n )
+=
+\\
+=
+\alpha_1 A \vec{x}_1 + 
+\alpha_2 A \vec{x}_2 + 
+\cdots +
+\alpha_n A \vec{x}_n
+=
+\alpha_1 \vec{0} + 
+\alpha_2 \vec{0} + 
+\cdots +
+\alpha_n \vec{0} = \vec{0} .
+\end{multline*}
+
+So if you have found enough solutions, you have them all.  The question is,
+when did we find enough of them?
+
+We say the vectors $\vec{y}_1$, $\vec{y}_2$, \ldots, $\vec{y}_n$ are
+\emph{\myindex{linearly independent}} if the only solution to
+\begin{equation*}
+\alpha_1 \vec{x}_1 + 
+\alpha_2 \vec{x}_2 + 
+\cdots +
+\alpha_n \vec{x}_n 
+=
+\vec{0}
+\end{equation*}
+is $\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0$.
+Otherwise, we say the vectors are \emph{\myindex{linearly dependent}}.
+
+For example, the vectors
+$\left[ \begin{smallmatrix} 1 \\ 2 \end{smallmatrix} \right]$
+and
+$\left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right]$
+are linearly independent.  Let's try:
+\begin{equation*}
+\alpha_1
+\begin{bmatrix} 1 \\ 2 \end{bmatrix}
++
+\alpha_2
+\begin{bmatrix} 0 \\ 1 \end{bmatrix}
+=
+\begin{bmatrix} \alpha_1 \\ 2 \alpha_1 + \alpha_2 \end{bmatrix}
+=
+\vec{0} =
+\begin{bmatrix} 0 \\ 0 \end{bmatrix} .
+\end{equation*}
+So $\alpha_1 = 0$, and then it is clear that $\alpha_2 = 0$ as well.  In
+other words, the two vectors are linearly independent.
+
+If a set of vectors is linearly dependent, that is, some of the $\alpha_j$s
+are nonzero, then we can solve for one vector in terms of the others.
+Suppose $\alpha_1 \not= 0$.  Since
+$\alpha_1 \vec{x}_1 + 
+\alpha_2 \vec{x}_2 + 
+\cdots +
+\alpha_n \vec{x}_n 
+=
+\vec{0}$, then
+\begin{equation*}
+\vec{x}_1 
+=
+\frac{-\alpha_2}{\alpha_1}
+\vec{x}_2 - 
+\frac{-\alpha_3}{\alpha_1}
+\vec{x}_3 + 
+\cdots +
+\frac{-\alpha_n}{\alpha_1}
+\vec{x}_n .
+\end{equation*}
+For example,
+\begin{equation*}
+2
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+-4
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
++
+2 \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} ,
+\end{equation*}
+and so
+\begin{equation*}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+=
+2
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+-
+\begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix} .
+\end{equation*}
+
+You may have noticed that solving for those $\alpha_j$s is just solving
+linear equations, and so you may not be surprised that to check
+if a set of vectors is linearly independent we use row reduction.
+
+Given a set of vectors, we may not be interested in just finding if they
+are linearly independent or not, we may be interested in finding a linearly
+independent subset.  Or perhaps we may want to find some other vectors that
+give the same linear combinations and are linearly independent.
+The way to figure this out is to form a matrix out of our vectors.  If we
+have row vectors we consider them as rows of a matrix.  If we have
+column vectors we consider them columns of a matrix.
+The set of all linear combinations of a set of vectors is called their
+\emph{\myindex{span}}.
+\begin{equation*}
+\operatorname{span} \bigl\{ \vec{x}_1, \vec{x}_2 , \ldots , \vec{x}_n \bigr\}
+=
+\bigl\{
+\text{Set of all linear combinations of
+$\vec{x}_1, \vec{x}_2 , \ldots , \vec{x}_n$}
+\bigr\} .
+\end{equation*}
+
+
+Given a matrix $A$, the maximal number of linearly independent rows is called
+the \emph{\myindex{rank}} of $A$, and we write
+\myquote{$\operatorname{rank} A$} for the rank.
+For example,
+\begin{equation*}
+\operatorname{rank}
+\begin{bmatrix}
+1 & 1 & 1 \\
+2 & 2 & 2 \\
+-1 & -1 & -1
+\end{bmatrix}
+=
+1 .
+\end{equation*}
+The second and third
+row are multiples of the first one.  We cannot choose more than one row and
+still have a linearly independent set.   But what is
+\begin{equation*}
+\operatorname{rank}
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix} \quad = \quad ?
+\end{equation*}
+That seems to be a tougher question to answer.  The
+first two rows are linearly independent (neither is a multiple of the other),
+so the rank is at least
+two.  If we would set up the equations for the $\alpha_1$, $\alpha_2$, and
+$\alpha_3$, we would find a system with infinitely many solutions.  One
+solution is
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix} -2
+\begin{bmatrix}
+4 & 5 & 6 
+\end{bmatrix} +
+\begin{bmatrix}
+7 & 8 & 9
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 0 & 0
+\end{bmatrix} .
+\end{equation*}
+So the set of all three rows is linearly dependent, the rank cannot be
+3.  Therefore the rank is 2.
+
+But how can we do this in a more systematic way?  We find the row echelon
+form!
+\begin{equation*}
+\text{Row echelon form of}
+\quad
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6  \\
+7 & 8 & 9
+\end{bmatrix}
+\quad
+\text{is}
+\quad
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2  \\
+0 & 0 & 0
+\end{bmatrix} .
+\end{equation*}
+The elementary row operations do not change the set of linear combinations of
+the rows (that was one of the main reasons for defining them as they were).
+In other words, the span of the rows of the $A$ is the same
+as the span of the rows of the row echelon form of $A$.
+In particular, the number of linearly independent rows is the same.
+And in the row echelon form, all nonzero rows are linearly independent.
+This is not hard to see.
+Consider the two nonzero rows in the example above.
+Suppose we 
+tried to solve for the $\alpha_1$ and $\alpha_2$
+in
+\begin{equation*}
+\alpha_1
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix} 
++
+\alpha_2
+\begin{bmatrix}
+0 & 1 & 2 
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 0 & 0
+\end{bmatrix} .
+\end{equation*}
+Since the first column
+of the row echelon matrix has zeros except in the first row means that
+$\alpha_1 = 0$.  For the same reason, $\alpha_2$ is zero.
+We only have two nonzero rows,
+and they are linearly independent, so the rank of the matrix is 2.
+
+The span of the rows is called the \emph{\myindex{row space}}.
+The row space of $A$ and the row echelon form of $A$ are the same.
+In the example,
+\begin{equation*}
+\begin{split}
+\text{row space of }
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+& =
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+,
+\begin{bmatrix}
+4 & 5 & 6
+\end{bmatrix}
+,
+\begin{bmatrix}
+7 & 8 & 9
+\end{bmatrix}
+\right\}
+\\
+& =
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+,
+\begin{bmatrix}
+0 & 1 & 2
+\end{bmatrix}
+\right\} .
+\end{split}
+\end{equation*}
+
+\medskip
+
+Similarly to row space, the span of columns is called the
+\emph{\myindex{column space}}.
+\begin{equation*}
+\text{column space of }
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+=
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 \\ 4 \\ 7
+\end{bmatrix}
+,
+\begin{bmatrix}
+2 \\ 5 \\ 8
+\end{bmatrix}
+,
+\begin{bmatrix}
+3 \\ 6 \\ 9
+\end{bmatrix}
+\right\} .
+\end{equation*}
+
+So it may also be good to find the number of linearly independent columns
+of $A$.  One way to do that is to find the number of linearly independent
+rows of $A^T$.  It is a tremendously useful fact that the number of
+linearly independent
+columns is always the same as the number of linearly independent rows:
+
+\begin{theorem}
+$\operatorname{rank} A = \operatorname{rank} A^T$
+\end{theorem}
+
+In particular, to find a set of linearly independent columns we need to
+look at where the pivots were.  If you recall above, when solving $A \vec{x}
+= \vec{0}$ the key was finding the pivots, any non-pivot columns corresponded to
+free variables.  That means we can solve for the non-pivot columns in terms
+of the pivot columns.  Let's see an example.  First we reduce some
+random matrix:
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix} .
+\end{equation*}
+We find a pivot and reduce the rows below:
+\begin{equation*}
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix} 
+\to
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+0 & 0 & -1 & -2 \\
+3 & 6 & 7 & 8
+\end{bmatrix} 
+\to
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+0 & 0 & -1 & -2 \\
+0 & 0 & -2 & -4
+\end{bmatrix} .
+\end{equation*}
+We find the next pivot, make it one, and rinse and repeat:
+\begin{equation*}
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+0 & 0 & \mybxsm{-1} & -2 \\
+0 & 0 & -2 & -4
+\end{bmatrix} 
+\to
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+0 & 0 & \mybxsm{1} & 2 \\
+0 & 0 & -2 & -4
+\end{bmatrix} 
+\to
+\begin{bmatrix}
+\mybxsm{1} & 2 & 3 & 4 \\
+0 & 0 & \mybxsm{1} & 2 \\
+0 & 0 & 0 & 0
+\end{bmatrix} . 
+\end{equation*}
+The final matrix is the row echelon form of the matrix.
+Consider the pivots that we marked.
+The pivot columns are the first and the third
+column.  All other columns correspond to free variables when solving
+$A \vec{x} = \vec{0}$, so all other columns can be solved in terms of the first and
+the third column.  In other words
+\begin{equation*}
+\text{column space of }
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix}
+=
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 \\
+2 \\
+3 
+\end{bmatrix}
+,
+\begin{bmatrix}
+2 \\
+4 \\
+6
+\end{bmatrix}
+,
+\begin{bmatrix}
+3 \\
+5 \\
+7
+\end{bmatrix}
+,
+\begin{bmatrix}
+4 \\
+6 \\
+8
+\end{bmatrix}
+\right\}
+=
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 \\
+2 \\
+3
+\end{bmatrix}
+,
+\begin{bmatrix}
+3 \\
+5 \\
+7
+\end{bmatrix}
+\right\} .
+\end{equation*}
+We could perhaps use another pair of columns to get the same span, but the
+first and the third are guaranteed to work because they are pivot columns.
+
+The discussion above could be expanded into a proof of the theorem if
+we wanted.
+As each nonzero row
+in the row echelon form contains a pivot, then the rank is the number of
+pivots, which is the same as the maximal number of linearly independent
+columns.
+
+\medskip
+
+The idea also works in reverse.  Suppose we have a bunch of column vectors
+and we just need to find a linearly independent set.  For example, suppose
+we started with the vectors
+\begin{equation*}
+\vec{v}_1 =
+\begin{bmatrix}
+1 \\
+2 \\
+3 
+\end{bmatrix}
+,
+\quad
+\vec{v}_2 =
+\begin{bmatrix}
+2 \\
+4 \\
+6
+\end{bmatrix}
+,
+\quad
+\vec{v}_3 =
+\begin{bmatrix}
+3 \\
+5 \\
+7
+\end{bmatrix}
+,
+\quad
+\vec{v}_4 =
+\begin{bmatrix}
+4 \\
+6 \\
+8
+\end{bmatrix} .
+\end{equation*}
+These vectors are not linearly independent as we saw above.  In particular,
+the span of $\vec{v}_1$ and $\vec{v}_3$ is the same as
+the span of all four of the vectors.  So $\vec{v}_2$ and $\vec{v}_4$
+can both be written as linear combinations of $\vec{v}_1$ and $\vec{v}_3$.
+A common thing that comes up in practice is that one gets a set of vectors
+whose span is the set of solutions of some problem.  But perhaps we get way
+too many vectors, we want to simplify.  For example above, all vectors in
+the span of
+$\vec{v}_1, \vec{v}_2, \vec{v}_3, \vec{v}_4$ can be written
+$\alpha_1 \vec{v}_1 + \alpha_2 \vec{v}_2 + \alpha_3 \vec{v}_3 + \alpha_4
+\vec{v}_4$ for some numbers $\alpha_1,\alpha_2,\alpha_3,\alpha_4$.  But
+it is also true that every such vector can be written as
+$a \vec{v}_1 + b \vec{v}_3$ for two numbers $a$ and $b$.  And one has to
+admit, that looks much simpler.  Moreover, these numbers $a$ and $b$ are
+unique.  More on that in the next section.
+
+To find this linearly independent set we simply take our vectors
+and form the matrix $[ \vec{v}_1 ~ \vec{v}_2 ~ \vec{v}_3 ~ \vec{v}_4 ]$,
+that is, the matrix
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix} .
+\end{equation*}
+We crank up the row-reduction machine, feed this matrix into it, find
+the pivot columns, and pick those.  In this case, $\vec{v}_1$ and
+$\vec{v}_3$.
+
+\subsection{Computing the inverse}
+
+If the matrix $A$ is square and there exists a unique solution
+$\vec{x}$ to $A \vec{x} = \vec{b}$ for any $\vec{b}$ (there are no free
+variables), then $A$ is invertible.
+This is equivalent to the $n \times n$ matrix $A$ being of rank $n$.
+
+In particular, if $A \vec{x} = \vec{b}$ then $\vec{x} = A^{-1} \vec{b}$.
+Now we just need to compute what $A^{-1}$ is.  We can surely 
+do elimination every time we want to find $A^{-1} \vec{b}$, but that
+would be ridiculous.  The mapping $A^{-1}$ is linear and
+hence given by a matrix, and we have seen that to figure out the matrix
+we just need to find where $A^{-1}$ takes the standard basis vectors
+$\vec{e}_1$, 
+$\vec{e}_2$, \ldots,
+$\vec{e}_n$.
+
+That is, to find the first column of $A^{-1}$, we solve
+$A \vec{x} = \vec{e}_1$, because then $A^{-1} \vec{e}_1 = \vec{x}$.
+To find the second column of $A^{-1}$, we solve
+$A \vec{x} = \vec{e}_2$.  And so on.  It is really just $n$
+eliminations that we need to do.  But it gets even easier.
+If you think about it, the elimination is the same for
+everything on the left side of the augmented matrix.  Doing
+$n$ eliminations separately we would redo most of the computations.
+Best is to do all at once.
+
+Therefore, to find the inverse of $A$, we write an $n
+\times 2n$ augmented matrix $[ \,A ~|~ I\, ]$, where $I$ is the identity
+matrix, whose columns are precisely the standard basis vectors.
+We then perform row reduction until we arrive at the reduced row echelon
+form.  If $A$ is invertible, then pivots can be found in every column of $A$,
+and so the 
+reduced row echelon form of $[ \,A ~|~ I\, ]$ 
+looks like $[ \,I ~|~ A^{-1}\, ]$.
+We then just read off the inverse $A^{-1}$.
+If you do not find a pivot in every
+one of the first $n$ columns of the augmented matrix, then 
+$A$ is not invertible.
+
+This is best seen by example.  Suppose we wish to invert the matrix
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 0 & 1 \\
+3 & 1 & 0
+\end{bmatrix} .
+\end{equation*}
+We write the augmented matrix and we start reducing:
+\begin{align*}
+& \left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 3 & 1 & 0 & 0\\
+2 & 0 & 1 & 0 & 1 & 0 \\
+3 & 1 & 0 & 0 & 0 & 1
+\end{array}
+\right]
+\to
+& &
+\left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 3 & 1 & 0 & 0\\
+0 & -4 & -5 & -2 & 1 & 0 \\
+0 & -5 & -9 & -3 & 0 & 1
+\end{array}
+\right]
+\to
+\\
+\to
+& \left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 3 & 1 & 0 & 0\\
+0 & \mybxsm{1} & \nicefrac{5}{4} & \nicefrac{1}{2} & \nicefrac{1}{4} & 0 \\
+0 & -5 & -9 & -3 & 0 & 1
+\end{array}
+\right]
+\to
+& &
+\left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 3 & 1 & 0 & 0\\
+0 & \mybxsm{1} & \nicefrac{5}{4} & \nicefrac{1}{2} & \nicefrac{1}{4} & 0 \\
+0 & 0 & \nicefrac{-11}{4} & \nicefrac{-1}{2} & \nicefrac{-5}{4} & 1
+\end{array}
+\right]
+\to
+\\
+\to
+& \left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 3 & 1 & 0 & 0\\
+0 & \mybxsm{1} & \nicefrac{5}{4} & \nicefrac{1}{2} & \nicefrac{1}{4} & 0 \\
+0 & 0 & \mybxsm{1} & \nicefrac{2}{11} & \nicefrac{5}{11} & \nicefrac{-4}{11}
+\end{array}
+\right]
+\to
+& &
+\left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 2 & 0 & \nicefrac{5}{11} & \nicefrac{-5}{11} & \nicefrac{12}{11} \\
+0 & \mybxsm{1} & 0 & \nicefrac{3}{11} & \nicefrac{-9}{11} & \nicefrac{5}{11} \\
+0 & 0 & \mybxsm{1} & \nicefrac{2}{11} & \nicefrac{5}{11} & \nicefrac{-4}{11}
+\end{array}
+\right]
+\to
+\\
+\to
+& \left[
+\begin{array}{ccc|ccc}
+\mybxsm{1} & 0 & 0 & \nicefrac{-1}{11} & \nicefrac{3}{11} & \nicefrac{2}{11} \\
+0 & \mybxsm{1} & 0 & \nicefrac{3}{11} & \nicefrac{-9}{11} & \nicefrac{5}{11} \\
+0 & 0 & \mybxsm{1} & \nicefrac{2}{11} & \nicefrac{5}{11} & \nicefrac{-4}{11}
+\end{array}
+\right] .
+\end{align*}
+So
+\begin{equation*}
+{\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 0 & 1 \\
+3 & 1 & 0
+\end{bmatrix}}^{-1}
+=
+\begin{bmatrix}
+\nicefrac{-1}{11} & \nicefrac{3}{11} & \nicefrac{2}{11} \\
+\nicefrac{3}{11} & \nicefrac{-9}{11} & \nicefrac{5}{11} \\
+\nicefrac{2}{11} & \nicefrac{5}{11} & \nicefrac{-4}{11}
+\end{bmatrix} .
+\end{equation*}
+Not too terrible, no?  Perhaps harder than inverting a $2 \times 2$ matrix
+for which we had a simple formula, but not too bad.  Really in practice this 
+is done efficiently by a computer.
+
+\subsection{Exercises}
+
+\begin{samepage}
+\begin{exercise}
+Compute the reduced row echelon form for the following matrices:
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+1 & 3 & 1 \\
+0 & 1 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 3 \\
+6 & -3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 6 \\
+-2 & -3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+6 & 6 & 7 & 7 \\
+1 & 1 & 0 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+9 & 3 & 0 & 2 \\
+8 & 6 & 3 & 6 \\
+7 & 9 & 7 & 9
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 1 & 3 & -3 \\
+6 & 0 & 0 & -1 \\
+-2 & 4 & 4 & 3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+6 & 6 & 5 \\
+0 & -2 & 2 \\
+6 & 5 & 6
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 2 & 0 & -1 \\
+6 & 6 & -3 & 3 \\
+6 & 2 & -3 & 5
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\end{samepage}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 1 & 1 \\
+0 & 2 & 1 \\
+0 & 0 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 0 & 1 \\
+0 & 2 & 1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Solve (find all solutions), or show no solution exists
+\begin{tasks}(2)
+\task
+$\begin{aligned}
+ 4x_1+3x_2 & = -2 \\
+ -x_1+\phantom{3} x_2 & = 4
+\end{aligned}$
+\task
+$\begin{aligned}
+  x_1+5x_2+3x_3 & = 7 \\
+ 8x_1+7x_2+8x_3 & = 8 \\
+ 4x_1+8x_2+6x_3 & = 4
+\end{aligned}$
+\task
+$\begin{aligned}
+ 4x_1+8x_2+2x_3 & = 3 \\
+ -x_1-2x_2+3x_3 & = 1 \\
+ 4x_1+8x_2 \phantom{{}+3x_3} & = 2
+\end{aligned}$
+\task
+$\begin{aligned}
+  x+2y+3z & = 4 \\
+2  x-\phantom{2} y+3z & = 1 \\
+3  x+\phantom{2} y+6z & = 6
+\end{aligned}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+By computing the inverse,
+solve the following systems for $\vec{x}$.
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+4 & 1 \\
+-1 & 3
+\end{bmatrix} \vec{x} =
+\begin{bmatrix} 13 \\ 26 \end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 3 \\
+3 & 4
+\end{bmatrix} \vec{x} =
+\begin{bmatrix} 2 \\ -1 \end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise} \label{exercise:rankmatrix}
+Compute the rank of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+6 & 3 & 5 \\
+1 & 4 & 1 \\
+7 & 7 & 6
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+5 & -2 & -1 \\
+3 & 0 & 6 \\
+2 & 4 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 3 \\
+-1 & -2 & -3 \\
+2 & 4 & 6
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+For the matrices in \exerciseref{exercise:rankmatrix}, find
+a linearly independent set of row vectors that span the row space
+(they do not need to be rows of the matrix).
+\end{exercise}
+
+\begin{exercise}
+For the matrices in \exerciseref{exercise:rankmatrix}, find
+a linearly independent set of columns that span the column space.
+That is, find the pivot columns of the matrices.
+\end{exercise}
+
+\begin{exercise}
+Find a linearly independent subset of the following vectors that has
+the same span.
+\begin{equation*}
+\begin{bmatrix}
+-1 \\ 1 \\ 2
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ -2 \\ -4
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-2 \\ 4 \\ 1
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-1 \\ 3 \\ -2
+\end{bmatrix}
+\end{equation*}
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+Compute the reduced row echelon form for the following matrices:
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+1 & 0 & 1 \\
+0 & 1 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 1 \\
+-2 & -2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & -3 & 1 \\
+4 & 6 & -2 \\
+-2 & 6 & -2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 2 & 5 & 2 \\
+1 & -2 & 4 & -1 \\
+0 & 3 & 1 & -2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-2 & 6 & 4 & 3 \\
+6 & 0 & -3 & 0 \\
+4 & 2 & -1 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 3 & 3 \\
+1 & 2 & 3 & 5
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+1 & 0 & 1 \\
+0 & 1 & 0
+\end{bmatrix}$
+\quad b)~$\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}$
+\quad c)~$\begin{bmatrix}
+1 & 1 \\
+0 & 0
+\end{bmatrix}$
+\quad d)~$\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & -1/3 \\
+0 & 0 & 0
+\end{bmatrix}$
+\quad e)~$\begin{bmatrix}
+1 & 0 & 0 & 77/15 \\
+0 & 1 & 0 & -2/15 \\
+0 & 0 & 1 & -8/5
+\end{bmatrix}$
+\quad f)~$\begin{bmatrix}
+1 & 0 & -1/2 & 0 \\
+0 & 1 & 1/2 & 1/2 \\
+0 & 0 & 0 & 0
+\end{bmatrix}$
+\quad g)~$\begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}$
+\quad h)~$\begin{bmatrix}
+1 & 2 & 3 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}$
+}
+
+\begin{exercise}
+Compute the inverse of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+0 & 1 & 0 \\
+-1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 0 \\
+1 & 0 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 4 & 0 \\
+2 & 2 & 3 \\
+2 & 4 & 1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 1 & -1 \\
+1 & -1 & 0
+\end{bmatrix}$
+\quad
+c)~$\begin{bmatrix}
+\nicefrac{5}{2} & 1 & -3 \\
+-1 & \nicefrac{-1}{2} & \nicefrac{3}{2} \\
+-1 & 0 & 1
+\end{bmatrix}$
+}
+
+\begin{exercise}
+Solve (find all solutions), or show no solution exists
+\begin{tasks}(2)
+\task
+$\begin{aligned}
+4x_1+3x_2 & = -1 \\
+5x_1+6x_2 & = 4
+\end{aligned}$
+\task
+$\begin{aligned}
+ 5x+6y+5z & = 7 \\
+ 6x+8y+6z & = -1 \\
+ 5x+2y+5z & = 2
+\end{aligned}$
+\task
+$\begin{aligned}
+a+\phantom{5}b+\phantom{6}c & = -1 \\
+a+5b+6c & = -1 \\
+-2a+5b+6c & = 8
+\end{aligned}$
+\task
+$\begin{aligned}
+-2 x_1+2x_2+8x_3 & = 6 \\
+x_2+\phantom{8}x_3 & = 2 \\
+x_1+4x_2+\phantom{8}x_3 & = 7
+\end{aligned}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a) $x_1=-2$, $x_2 = \nicefrac{7}{3}$
+\quad
+b)~no solution
+\quad
+c)~$a = -3$, $b=10$, $c=-8$
+\quad
+d)~$x_3$ is free, $x_1 = -1+3x_3$, $x_2 = 2-x_3$
+}
+
+\begin{exercise}
+By computing the inverse,
+solve the following systems for $\vec{x}$.
+\begin{tasks}(2)
+\task
+$\begin{bmatrix}
+-1 & 1 \\
+3 & 3
+\end{bmatrix} \vec{x} =
+\begin{bmatrix} 4 \\ 6 \end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 7 \\
+1 & 6
+\end{bmatrix} \vec{x} =
+\begin{bmatrix} 1 \\ 3 \end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix} -1 \\ 3 \end{bmatrix}$ \quad
+b)~$\begin{bmatrix} -3 \\ 1 \end{bmatrix}$
+}
+
+\begin{exercise} \label{exercise:rankmatrixans}
+Compute the rank of the given matrices
+\begin{tasks}(3)
+\task
+$\begin{bmatrix}
+7 & -1 & 6 \\
+7 & 7 & 7 \\
+7 & 6 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 1 \\
+2 & 2 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 3 & -1 \\
+6 & 3 & 1 \\
+4 & 7 & -1
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a) 3 \quad b) 1 \quad c) 2
+}
+
+\begin{exercise}
+For the matrices in \exerciseref{exercise:rankmatrixans}, find
+a linearly independent set of row vectors that span the row space
+(they do not need to be rows of the matrix).
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix} 1 & 0 & 0\end{bmatrix}$,
+$\begin{bmatrix} 0 & 1 & 0\end{bmatrix}$,
+$\begin{bmatrix} 0 & 0 & 1\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix} 1 & 1 & 1\end{bmatrix}$
+\quad
+c)~$\begin{bmatrix} 1 & 0 & \nicefrac{1}{3}\end{bmatrix}$,
+$\begin{bmatrix} 0 & 1 & \nicefrac{-1}{3}\end{bmatrix}$
+}
+
+\begin{exercise}
+For the matrices in \exerciseref{exercise:rankmatrixans}, find
+a linearly independent set of columns that span the column space.
+That is, find the pivot columns of the matrices.
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix} 7 \\ 7 \\ 7\end{bmatrix}$,
+$\begin{bmatrix} -1 \\ 7 \\ 6\end{bmatrix}$,
+$\begin{bmatrix} 7 \\ 6 \\ 2\end{bmatrix}$
+\quad
+b)~$\begin{bmatrix} 1 \\ 1 \\ 2\end{bmatrix}$
+\quad
+c)~$\begin{bmatrix} 0 \\ 6 \\ 4\end{bmatrix}$,
+$\begin{bmatrix} 3 \\ 3 \\ 7\end{bmatrix}$
+}
+
+\begin{exercise}
+Find a linearly independent subset of the following vectors that has
+the same span.
+\begin{equation*}
+\begin{bmatrix}
+0 \\ 0 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+3 \\ 1 \\ -5
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ 3 \\ -1
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-3 \\ 2 \\ 4
+\end{bmatrix}
+\end{equation*}
+\end{exercise}
+\exsol{%
+$\begin{bmatrix}
+3 \\ 1 \\ -5
+\end{bmatrix}
+, 
+\begin{bmatrix}
+0 \\ 3 \\ -1
+\end{bmatrix}$
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectionnewpage
+\section{Subspaces, dimension, and the kernel}
+\label{subspaces:section}
+
+%mbxINTROSUBSECTION
+
+\sectionnotes{1 lecture}
+
+\subsection{Subspaces, basis, and dimension}
+
+We often find ourselves looking at the set of
+solutions of a linear equation $L\vec{x} = \vec{0}$ for some matrix $L$,
+that is, we are interested in the kernel of $L$.
+%Unless the only solution to the equation is $\vec{x} = \vec{0}$,
+The set of all such solutions has a nice structure:  It looks and
+acts a lot like some euclidean space ${\mathbb R}^k$.
+
+We say that a set $S$ of vectors in ${\mathbb R}^n$ is a
+\emph{\myindex{subspace}} if
+whenever $\vec{x}$ and $\vec{y}$ are members of $S$ and
+$\alpha$ is a scalar, then
+\begin{equation*}
+\vec{x} + \vec{y}, \qquad \text{and} \qquad \alpha \vec{x}
+\end{equation*}
+are also members of $S$.  That is, we can add and multiply by scalars
+and we still land in $S$.  So every linear combination of vectors of
+$S$ is still in $S$.  That is really what a subspace is.  It is a subset
+where we can take linear combinations and still end up being in the subset.
+Consequently the span of a number of vectors is automatically a subspace.
+
+\begin{example} \label{example:simplesubspaces}
+If we let $S = {\mathbb R}^n$, then this $S$ is a subspace of
+${\mathbb R}^n$.  Adding any two vectors in ${\mathbb R}^n$ gets a vector in
+${\mathbb R}^n$, and so does multiplying by scalars.
+
+The set $S' = \{ \vec{0} \}$, that is,
+the set of the zero vector by itself, is 
+also a subspace of ${\mathbb R}^n$.  There is only one vector in this
+subspace, so we only need to verify the definition for that one vector, and everything checks
+out: $\vec{0}+\vec{0} = \vec{0}$ and $\alpha \vec{0} = \vec{0}$.
+
+The set $S''$ of all the vectors of the form
+$(a,a)$ for any real number $a$, such as $(1,1)$, $(3,3)$, or $(-0.5,-0.5)$
+is a subspace of ${\mathbb R}^2$.  Adding two such vectors, say
+$(1,1)+(3,3) = (4,4)$ again gets a vector of the same form, and so does
+multiplying by a scalar, say $8(1,1) = (8,8)$.
+\end{example}
+
+If $S$ is a subspace and we can find $k$ linearly independent vectors in $S$
+\begin{equation*}
+\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k ,
+\end{equation*}
+such that every other vector in $S$ is a linear combination of $\vec{v}_1,
+\vec{v}_2,\ldots, \vec{v}_k$,
+then the set 
+$\{ \vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k \}$ is called a
+\emph{\myindex{basis}} of $S$.  In other words, $S$
+is the span of 
+$\{ \vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k \}$.
+We say that $S$ has dimension $k$,
+and we write 
+\begin{equation*}
+\dim S = k .
+\end{equation*}
+
+\begin{theorem}
+If $S \subset {\mathbb R}^n$ is a subspace and $S$ is not the trivial
+subspace $\{ \vec{0} \}$, then there exists a
+unique positive integer $k$ (the dimension) and a (not unique)
+basis
+$\{ \vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k \}$, such that every
+$\vec{w}$ in $S$ can be uniquely represented by
+\begin{equation*}
+\vec{w} = 
+\alpha_1 \vec{v}_1 + 
+\alpha_2 \vec{v}_2 + 
+\cdots
++
+\alpha_k \vec{v}_k ,
+\end{equation*}
+for some scalars $\alpha_1$, $\alpha_2$, \ldots, $\alpha_k$.
+\end{theorem}
+
+Just as a vector in ${\mathbb R}^k$ is represented by a $k$-tuple of
+numbers, so is a vector in a $k$-dimensional subspace of ${\mathbb R}^n$
+represented by a $k$-tuple of numbers.  At least once we have fixed a basis.
+A different basis would give a different $k$-tuple of numbers for the same
+vector.
+
+We should reiterate that while $k$ is unique (a subspace cannot have two different
+dimensions), the set of basis vectors is not at all unique.  There are lots
+of different bases for any given subspace.  Finding just the right basis for
+a subspace is a large part of what one does in linear algebra.  In fact,
+that is what we spend a lot of time on in
+linear differential equations, although at first glance
+it may not seem like that is what we are doing.
+
+\begin{example}
+The standard basis
+\begin{equation*}
+\vec{e}_1, \vec{e}_2, \ldots, \vec{e}_n ,
+\end{equation*}
+is a basis of ${\mathbb R}^n$, (hence the name).
+So as expected
+\begin{equation*}
+\dim {\mathbb R}^n = n .
+\end{equation*}
+
+On the other hand the subspace $\{ \vec{0} \}$ is of dimension $0$.
+
+The subspace $S''$ from \exampleref{example:simplesubspaces}, that is, the set of
+vectors $(a,a)$, is of dimension~1.  One possible basis is simply
+$\{ (1,1) \}$, the single
+vector $(1,1)$: every vector in $S''$ can be represented by $a (1,1) =
+(a,a)$.  Similarly another possible basis would be $\{ (-1,-1) \}$.  Then
+the vector $(a,a)$ would be represented as $(-a) (1,1)$.
+\end{example}
+
+Row and column spaces of a matrix are also examples of
+subspaces,
+as they are given as the span of vectors.
+We can use
+what we know about rank, row spaces, and column spaces
+from the previous section to find a basis.
+
+\begin{example}
+In the last section, we considered the matrix
+\begin{equation*}
+A =
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix} .
+\end{equation*}
+Using row reduction to find the pivot columns, we found
+\begin{equation*}
+\text{column space of $A$} \left(
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+2 & 4 & 5 & 6 \\
+3 & 6 & 7 & 8
+\end{bmatrix} 
+\right)
+=
+\operatorname{span}
+\left\{
+\begin{bmatrix}
+1 \\
+2 \\
+3 
+\end{bmatrix} 
+,
+\begin{bmatrix}
+3 \\
+5 \\
+7 
+\end{bmatrix} 
+\right\} .
+\end{equation*}
+What we did was we found the basis of the column space.
+The basis has two elements, and so the column space of $A$ is two-dimensional.
+Notice that the rank of $A$ is two.
+\end{example}
+
+We would have followed the same procedure if we wanted to find the basis of
+the subspace $X$ spanned by
+\begin{equation*}
+\begin{bmatrix}
+1 \\
+2 \\
+3 
+\end{bmatrix} 
+,
+\begin{bmatrix}
+2 \\
+4 \\
+6 
+\end{bmatrix} 
+,
+\begin{bmatrix}
+3 \\
+5 \\
+7 
+\end{bmatrix} 
+,
+\begin{bmatrix}
+4 \\
+6 \\
+8 
+\end{bmatrix}
+.
+\end{equation*}
+We would have simply formed the matrix $A$ with these vectors as columns
+and repeated the computation above.  The subspace $X$ is then the column space of
+$A$.
+
+\begin{example}
+Consider the matrix 
+\begin{equation*}
+L =
+\begin{bmatrix}
+{1} & 2 & 0 & 0 & 3 \\
+0 & 0 & {1} & 0 & 4 \\
+0 & 0 & 0 & {1} & 5
+\end{bmatrix} .
+\end{equation*}
+Conveniently, the matrix is in reduced row echelon form.
+The matrix is of rank 3.
+The column space is the span of the pivot columns.
+It is the 3-dimensional space
+\begin{equation*}
+\text{column space of $L$} =
+\operatorname{span} \left\{
+\begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix} 
+,
+\begin{bmatrix}
+0 \\
+1 \\
+0
+\end{bmatrix} 
+,
+\begin{bmatrix}
+0 \\
+0 \\
+1
+\end{bmatrix} 
+\right\}
+= {\mathbb{R}}^3 .
+\end{equation*}
+The row space is the 3-dimensional space
+\begin{equation*}
+\text{row space of $L$} =
+\operatorname{span} \left\{
+\begin{bmatrix}
+1 & 2 & 0 & 0 & 3
+\end{bmatrix} 
+,
+\begin{bmatrix}
+0 & 0 & 1 & 0 & 4
+\end{bmatrix} 
+,
+\begin{bmatrix}
+0 & 0 & 0 & 1 & 5
+\end{bmatrix} 
+\right\} .
+\end{equation*}
+As these vectors have 5 components, we think of the row space of $L$
+as a subspace of ${\mathbb{R}}^5$.
+\end{example}
+
+The way the dimensions worked out in the examples is not 
+an accident.  Since the number of vectors that we needed to take
+was always the same as the number of pivots, and the number of pivots
+is the rank, we get the following result.
+
+\begin{theorem}[Rank]
+The dimension of the column space and the dimension of the row space 
+of a matrix $A$ are both equal to the rank of $A$.
+\end{theorem}
+
+\subsection{Kernel}
+
+The set of solutions of a linear equation $L\vec{x} = \vec{0}$, 
+the kernel of $L$, is a subspace:
+If $\vec{x}$ and $\vec{y}$ are solutions,
+then
+\begin{equation*}
+L(\vec{x}+\vec{y}) = 
+L\vec{x}+L\vec{y} = 
+\vec{0}+\vec{0} = \vec{0} ,
+\qquad \text{and} \qquad
+L(\alpha \vec{x}) = 
+\alpha L \vec{x} = 
+\alpha \vec{0} = \vec{0}.
+\end{equation*}
+So $\vec{x}+\vec{y}$ and $\alpha \vec{x}$ are solutions.
+%In other words, the kernel of $L$ is a subspace.
+The dimension of the kernel is called the \emph{\myindex{nullity}} of the
+matrix.
+
+The same sort of idea governs the solutions of linear differential
+equations.  We try to describe the kernel of a linear differential 
+operator, and as it is a subspace, we look for a basis of this
+kernel.  Much of this book is dedicated to finding such bases.
+
+The kernel of a matrix is the same as the kernel of its reduced row echelon
+form.  For a matrix in reduced row echelon form, the kernel is rather easy to
+find.  If a vector $\vec{x}$ is applied to a matrix $L$, then each entry in
+$\vec{x}$ corresponds to a column of $L$, the column that the entry
+multiplies.
+To find the kernel,
+pick a 
+non-pivot column make a vector that has a $-1$ in the entry
+corresponding to this non-pivot column and zeros at all the other entries
+corresponding to the other non-pivot columns.
+Then for all the entries
+corresponding to pivot columns make it precisely the value in the
+corresponding row of the non-pivot column to make the vector be a
+solution to $L \vec{x} = \vec{0}$.
+This procedure is best understood by example.
+
+\begin{example}
+Consider
+\begin{equation*}
+L = 
+\begin{bmatrix}
+\mybxsm{1} & 2 & 0 & 0 & 3 \\
+0 & 0 & \mybxsm{1} & 0 & 4 \\
+0 & 0 & 0 & \mybxsm{1} & 5
+\end{bmatrix} .
+\end{equation*}
+This matrix is in reduced row echelon form, the pivots are marked.
+There are two non-pivot columns, so the kernel has dimension 2, that
+is, it is the span of 2 vectors.  Let us find the first vector.
+We look at the first non-pivot column, the $2^{\text{nd}}$ column, 
+and we put a $-1$ in the
+$2^{\text{nd}}$ entry of our vector.  We put a $0$ in the $5^{\text{th}}$
+entry as the $5^{\text{th}}$ column is also a non-pivot column:
+\begin{equation*}
+\begin{bmatrix}
+? \\ -1 \\ ? \\ ? \\ 0
+\end{bmatrix} .
+\end{equation*}
+Let us fill the rest.  When this vector hits the first row, we get a
+$-2$ and $1$ times whatever the first question mark is.  So make the first
+question mark $2$.  For the second and third rows, it is sufficient to make
+it the question marks zero.  We are really filling in the non-pivot column
+into the remaining entries. Let us check while marking which numbers went
+where:
+\begin{equation*}
+\begin{bmatrix}
+1 & \mybxsm{2} & 0 & 0 & 3 \\
+0 & \mybxsm{0} & 1 & 0 & 4 \\
+0 & \mybxsm{0} & 0 & 1 & 5
+\end{bmatrix} 
+\begin{bmatrix}
+\mybxsm{2} \\ -1 \\ \mybxsm{0} \\ \mybxsm{0} \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 0 \\ 0
+\end{bmatrix}
+.
+\end{equation*}
+Yay!  How about the second vector.  We start with
+\begin{equation*}
+\begin{bmatrix}
+? \\ 0 \\ ? \\ ? \\ -1 .
+\end{bmatrix}
+\end{equation*}
+We set the first question mark to 3, the second to 4, and the
+third to 5.  Let us check, marking things as previously,
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 0 & 0 & \mybxsm{3} \\
+0 & 0 & 1 & 0 & \mybxsm{4} \\
+0 & 0 & 0 & 1 & \mybxsm{5}
+\end{bmatrix} 
+\begin{bmatrix}
+\mybxsm{3} \\ 0 \\ \mybxsm{4} \\ \mybxsm{5} \\ -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 0 \\ 0
+\end{bmatrix}
+.
+\end{equation*}
+There are two non-pivot columns, so we only need two vectors.
+We have found the basis of the kernel.  So,
+\begin{equation*}
+\text{kernel of $L$} =
+\operatorname{span} \left\{
+\begin{bmatrix}
+2 \\ -1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
+,
+\begin{bmatrix}
+3 \\ 0 \\ 4 \\ 5 \\ -1
+\end{bmatrix}
+\right\}
+\end{equation*}
+\end{example}
+
+What we did in finding a basis of the kernel is we expressed all
+solutions of
+$L \vec{x} = \vec{0}$ as a linear combination of some given vectors.
+
+\pagebreak[2]
+The procedure to find the basis of the kernel of a matrix $L$:
+\begin{enumerate}[(i)]
+\item Find the reduced row echelon form of $L$.
+\item Write down the basis of the kernel as above, one vector for each
+non-pivot column.
+\end{enumerate}
+
+
+The rank of a matrix is the dimension of the column space, and that is
+the span on the pivot columns, while the kernel is the span of vectors
+one for each non-pivot column.  So the two numbers must add to the number of
+columns.
+
+\begin{theorem}[Rank--Nullity]
+If a matrix $A$ has $n$ columns, rank $r$, and nullity $k$ (dimension of the
+kernel), then
+\begin{equation*}
+n = r+k .
+\end{equation*}
+\end{theorem}
+
+The theorem is immensely useful in applications.  It allows one to compute
+the rank $r$ if one knows the nullity $k$ and vice versa, without doing any
+extra work.
+
+Let us consider an example application, a simple version of the so-called
+\emph{\myindex{Fredholm alternative}}.  A similar result is true for
+differential equations.  Consider
+\begin{equation*}
+A \vec{x} = \vec{b} ,
+\end{equation*}
+where $A$ is a square $n \times n$ matrix.
+There are then two mutually exclusive possibilities:
+\begin{enumerate}[(i)]
+\item
+A nonzero solution $\vec{x}$ to $A \vec{x} = \vec{0}$ exists.
+\item
+The equation $A \vec{x} = \vec{b}$ has a unique solution $\vec{x}$ for every
+$\vec{b}$.
+\end{enumerate}
+How does the Rank--Nullity theorem come into the picture?  Well, if $A$ has
+a nonzero solution $\vec{x}$ to $A \vec{x} = \vec{0}$, then the nullity $k$ is
+positive.  But then the rank $r = n-k$ must be less than $n$.
+It means that the column space of $A$ is of dimension less than $n$, so it is
+a subspace that does not include everything in ${\mathbb{R}}^n$.
+So ${\mathbb{R}}^n$ has to
+contain some vector $\vec{b}$ not in the column space of $A$.  In fact, most
+vectors in ${\mathbb{R}}^n$ are not in the column space of $A$.
+
+
+
+\subsection{Exercises}
+
+\begin{exercise}
+For the following sets of vectors, find a basis for the subspace spanned by
+the vectors, and find the dimension of the subspace.
+\begin{tasks}(3)
+\task
+$
+\begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-1 \\ -1 \\ -1
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 0 \\ 5
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ -1 \\ 0
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+-4 \\ -3 \\ 5
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 3 \\ 3
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 0 \\ 2
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 3 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ 2 \\ 2
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-1 \\ -1 \\ 2
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 3
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ 2
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-1 \\ -1
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+3 \\ 1 \\ 3
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 4 \\ -4
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-5 \\ -5 \\ -2
+\end{bmatrix}
+$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+\pagebreak[2]
+For the following matrices, find a basis for the kernel (nullspace).
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+1 & 1 & 1 \\
+1 & 1 & 5 \\
+1 & 1 & -4
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & -1 & -3 \\
+4 & 0 & -4 \\
+-1 & 1 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-4 & 4 & 4 \\
+-1 & 1 & 1 \\
+-5 & 5 & 5
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+-2 & 1 & 1 & 1 \\
+-4 & 2 & 2 & 2 \\
+1 & 0 & 4 & 3
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Suppose a $5 \times 5$ matrix $A$ has rank 3.  What is the nullity?
+\end{exercise}
+
+\begin{exercise}
+Suppose that $X$ is the set of all the vectors of ${\mathbb{R}}^3$ whose
+third component is zero.  Is $X$ a subspace?  And if so, find a basis
+and the dimension.
+\end{exercise}
+
+\begin{exercise}
+Consider a square matrix $A$, and suppose that $\vec{x}$ is a nonzero
+vector such that $A \vec{x} = \vec{0}$.  What does the Fredholm alternative
+say about invertibility of $A$.
+\end{exercise}
+
+\begin{exercise}
+Consider
+\begin{equation*}
+M =
+\begin{bmatrix}
+1 & 2 & 3 \\
+2 & ? & ? \\
+-1 & ? & ?
+\end{bmatrix} .
+\end{equation*}
+If the nullity of this matrix is 2, fill in the question marks.  Hint: What
+is the rank?
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+For the following sets of vectors, find a basis for the subspace spanned by
+the vectors, and find the dimension of the subspace.
+\begin{tasks}(3)
+\task
+$
+\begin{bmatrix}
+1 \\ 2
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 2 \\ 2
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+1 \\ 1 \\ 2
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+5 \\ 3 \\ 1
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+5 \\ -1 \\ 5
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+-1 \\ 3 \\ -4
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+2 \\ 2 \\ 4
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 2 \\ 3
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+4 \\ 4 \\ -3
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+3 \\ 0
+\end{bmatrix}
+$
+\task
+$
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+2 \\ 0 \\ 0
+\end{bmatrix}
+, \quad
+\begin{bmatrix}
+0 \\ 1 \\ 2
+\end{bmatrix}
+$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix}
+1 \\ 2
+\end{bmatrix}
+, 
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}$ dimension 2,
+\quad
+b)~$
+\begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}
+,
+\begin{bmatrix}
+1 \\ 1 \\ 2
+\end{bmatrix}$ dimension 2,
+\quad
+c)~$
+\begin{bmatrix}
+5 \\ 3 \\ 1
+\end{bmatrix}
+,
+\begin{bmatrix}
+5 \\ -1 \\ 5
+\end{bmatrix}
+,
+\begin{bmatrix}
+-1 \\ 3 \\ -4
+\end{bmatrix}
+$ dimension 3,
+\quad
+d)~$
+\begin{bmatrix}
+2 \\ 2 \\ 4
+\end{bmatrix}
+,
+\begin{bmatrix}
+2 \\ 2 \\ 3
+\end{bmatrix}
+$ dimension 2,
+\quad
+e)~$\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}$ dimension 1,
+\quad
+f)~$\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
+,
+\begin{bmatrix}
+0 \\ 1 \\ 2
+\end{bmatrix}
+$ dimension~2
+}
+
+\begin{exercise}
+For the following matrices, find a basis for the kernel (nullspace).
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+2 & 6 & 1 & 9 \\
+1 & 3 & 2 & 9 \\
+3 & 9 & 0 & 9
+\end{bmatrix}$
+\task
+$
+\begin{bmatrix}
+2 & -2 & -5 \\
+-1 & 1 & 5 \\
+-5 & 5 & -3
+\end{bmatrix}$
+\task
+$
+\begin{bmatrix}
+1 & -5 & -4 \\
+2 & 3 & 5 \\
+-3 & 5 & 2
+\end{bmatrix}$
+\task
+$
+\begin{bmatrix}
+0 & 4 & 4 \\
+0 & 1 & 1 \\
+0 & 5 & 5
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$\begin{bmatrix} 3 \\ -1 \\ 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 3 \\
+0 \\ 3 \\ -1 \end{bmatrix}$
+\quad
+b)~$\begin{bmatrix} -1 \\ -1 \\ 0 \end{bmatrix}$
+\quad
+c)~$\begin{bmatrix} 1 \\ 1 \\ -1 \end{bmatrix}$
+\quad
+d)~$\begin{bmatrix} -1 \\ 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix}$
+}
+
+\begin{exercise}
+Suppose the column space of a $9 \times 5$ matrix $A$ of dimension 3.  Find
+\begin{tasks}(2)
+\task
+Rank of $A$.
+\task
+Nullity of $A$.
+\task
+Dimension of the row space of $A$.
+\task
+Dimension of the nullspace of $A$.
+\task
+Size of the maximum subset of
+linearly independent rows of $A$.
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~3 \quad b)~2 \quad c)~3 \quad d)~2 \quad e)~3
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectionnewpage
+\section{Inner product and projections}
+\label{innerproduct:section}
+
+%mbxINTROSUBSECTION
+
+\sectionnotes{1--2 lectures}
+
+\subsection{Inner product and orthogonality}
+
+To do basic geometry, we need length, and we need angles.
+We have already seen the euclidean length, so let us figure out how to
+compute angles. 
+ Mostly, we are worried about 
+the right angle\footnote{When Euclid defined angles in his
+\emph{Elements}, the only angle he ever really defined was the right angle.}.
+
+Given two (column) vectors in ${\mathbb{R}}^n$,
+we define the (standard)
+\emph{\myindex{inner product}}\index{standard inner product} as
+the dot product:
+\begin{equation*}
+\langle \vec{x} , \vec{y} \rangle =
+\vec{x} \cdot \vec{y}
+=
+\vec{y}^T \vec{x}
+=
+x_1 y_1 + x_2 y_2 + \cdots + x_n y_n
+=
+\sum_{i=1}^n x_i y_i .
+\end{equation*}
+Why do we seemingly give a new notation for the dot product?  
+Because there are other possible inner products, which are not the dot
+product, although we will not worry about others here.
+An inner product can even be defined on spaces of functions
+as we do in
+\chapterref{FS:chapter}:
+\begin{equation*}
+\langle f(t) , g(t) \rangle =
+\int_{a}^{b}
+f(t) g(t) \, dt .
+\end{equation*}
+But we digress.
+
+The inner product satisfies the following rules:
+\begin{enumerate}[(i)]
+\item $\langle \vec{x} , \vec{x} \rangle \geq 0$, and
+$\langle \vec{x} , \vec{x} \rangle = 0$ if and only if $\vec{x} = 0$,
+\item $\langle \vec{x} , \vec{y} \rangle = \langle \vec{y} , \vec{x}
+\rangle$,
+\item $\langle a\vec{x} , \vec{y} \rangle =
+\langle \vec{x} , a\vec{y} \rangle =
+a \langle \vec{x} , \vec{y} \rangle$,
+\item $\langle \vec{x} +  \vec{y} , \vec{z} \rangle =
+\langle \vec{x} , \vec{z} \rangle +
+\langle \vec{y} , \vec{z} \rangle$ and
+$\langle \vec{x}, \vec{y} + \vec{z} \rangle =
+\langle \vec{x} , \vec{y} \rangle +
+\langle \vec{x} , \vec{z} \rangle$.
+\end{enumerate}
+Anything that satisfies the properties above can be called an inner
+product, although in this section we are concerned with the
+standard inner product in ${\mathbb{R}}^n$.
+
+\medskip
+
+The standard inner product gives the euclidean length:
+\begin{equation*}
+\lVert{\vec{x}}\rVert = \sqrt{\langle \vec{x}, \vec{x} \rangle}
+= \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} .
+\end{equation*}
+How does it give angles?
+%  If we take two vectors $\vec{x}$ and $\vec{y}$
+%and base them at the same point, they make an angle $\theta$.  How do
+%we compute $\theta$?
+
+You may recall from multivariable calculus, that in
+two or three dimensions, the standard inner product (the dot product)
+gives you the angle between the vectors:
+\begin{equation*}
+\langle \vec{x}, \vec{y} \rangle
+=
+\lVert{\vec{x}}\rVert \lVert{\vec{y}}\rVert \cos \theta.
+\end{equation*}
+That is, $\theta$ is the angle that $\vec{x}$ and $\vec{y}$ make
+when they are based at the same point.
+
+In ${\mathbb{R}}^n$ (any dimension), we are simply going to say that $\theta$
+from the formula is what the angle is.
+This makes sense as any two vectors based at the origin
+lie in a 2-dimensional plane (subspace),
+and the formula works in 2 dimensions.
+In fact, one could even talk about angles between functions this way, and
+we do in \chapterref{FS:chapter}, where we talk about orthogonal functions
+(functions at right angle to each other).
+
+%FIXME: not sure if it makes sense to explain
+%To see why the formula should work, consider $\vec{v} = (1,0)$, a unit
+%vector in the positive $x$ direction if we think of ${\mathbb{R}}^2$
+%as the normal $xy$-plane.
+%which points horizontally and to the right on the 
+%
+%and $\vec{y}
+%= (\cos\theta,\sin\theta)$.  The vector $\vec{x}$ points is horizontal   Both are unit vectors and $\vec{x} \cdot
+%\vec{y} = \cos \theta$.
+
+To compute the angle we compute
+\begin{equation*}
+\cos \theta
+=
+\frac{\langle \vec{x}, \vec{y} \rangle}{\lVert{\vec{x}}\rVert
+\lVert{\vec{y}}\rVert} .
+\end{equation*}
+Our angles are always in radians.
+We are computing the cosine of the angle,
+which is really the best
+we can do.  Given two vectors at an angle $\theta$, we can give the angle as
+$-\theta$, $2\pi-\theta$, etc.,
+see \figurevref{vec-angle:fig}.
+Fortunately,
+$\cos \theta = \cos (-\theta) = \cos(2\pi - \theta)$.
+If we solve for $\theta$ using the inverse cosine $\cos^{-1}$,
+we can just decree that $0 \leq \theta \leq \pi$.
+
+\begin{myfig}
+%\begin{mywrapfig}{3.25in}
+\capstart
+\inputpdft{vec-angle}
+\caption{Angle between vectors.\label{vec-angle:fig}}
+\end{myfig}
+%\end{mywrapfig}
+
+\begin{example}
+Let us compute the angle between the vectors $(3,0)$ and $(1,1)$ in the
+plane.
+Compute
+\begin{equation*}
+\cos \theta =
+\frac{\bigl\langle (3,0) , (1,1) \bigr\rangle}{\lVert(3,0)\rVert \lVert(1,1)\rVert}
+=
+\frac{3 + 0}{3 \sqrt{2}} = \frac{1}{\sqrt{2}} .
+\end{equation*}
+Therefore $\theta = \nicefrac{\pi}{4}$.
+\end{example}
+
+%While we do not have any real model for ${\mathbb{R}}^n$ when $n$ is not 2
+%or 3, 
+%we simply define the angle between two vectors using the formula above.
+%This makes sense as any two vectors based at the origin
+%lie in a 2-dimensional plane (subspace),
+%and the formula works in 2 dimensions.
+%
+%\medskip
+
+As we said, the most important angle is the right angle.  A right angle
+is $\nicefrac{\pi}{2}$ radians, and $\cos (\nicefrac{\pi}{2}) = 0$, so the
+formula is particularly easy in this case.
+We say
+vectors $\vec{x}$ and $\vec{y}$
+are \emph{\myindex{orthogonal}} if they are at right
+angles, that is if
+\begin{equation*}
+\langle \vec{x} , \vec{y} \rangle
+=
+0 .
+\end{equation*}
+The vectors $(1,0,0,1)$ and $(1,2,3,-1)$ are orthogonal.  So
+are $(1,1)$ and $(1,-1)$.  However, $(1,1)$ and $(1,2)$ are not orthogonal as
+their inner product is $3$ and not 0.
+
+\subsection{Orthogonal projection}
+
+A typical application of linear algebra is to take a difficult problem,
+write everything in the right basis, and in this new basis the problem
+becomes simple.  A particularly useful basis is an orthogonal basis, that is
+a basis where all the basis vectors are orthogonal.  When we draw a
+coordinate system in two or three dimensions, we almost always draw our axes
+as orthogonal to each other.
+
+Generalizing this concept to functions,
+it is particularly useful in \chapterref{FS:chapter} to express a
+function using a particular orthogonal basis, the Fourier series.
+
+To express one vector in terms of an orthogonal basis, we need to first
+\emph{project} one vector onto another.
+Given a nonzero vector $\vec{v}$, we define the
+\emph{\myindex{orthogonal projection}}\index{projection!orthogonal}
+of $\vec{w}$ onto $\vec{v}$ as
+\begin{equation*}
+\operatorname{proj}_{\vec{v}}(\vec{w})
+=
+\left(
+\frac{\langle \vec{w} , \vec{v} \rangle}{ \langle \vec{v} , \vec{v} \rangle}
+\right)
+\vec{v} .
+\end{equation*}
+For the geometric idea, see \figurevref{vec-orthoproj:fig}.  That is, we
+find the \myquote{shadow of $\vec{w}$} on the line spanned by $\vec{v}$ if the
+direction of the sun's rays
+were exactly perpendicular to the line. 
+Another way of thinking about it is that the tip of the arrow of
+$\operatorname{proj}_{\vec{v}}(\vec{w})$ is the closest point on the line
+spanned by $\vec{v}$ to the tip of the arrow of $\vec{w}$.
+In terms of euclidean distance, 
+$\vec{u} = \operatorname{proj}_{\vec{v}}(\vec{w})$ minimizes the
+distance
+$\lVert \vec{w} - \vec{u} \rVert$ among all vectors $\vec{u}$ that are
+multiples of $\vec{v}$.
+Because of this, this projection comes up often in applied
+mathematics in all sorts of contexts we cannot solve a problem
+exactly: We cannot always solve
+\myquote{Find $\vec{w}$ as a multiple of
+$\vec{v}$,}
+but $\operatorname{proj}_{\vec{v}}(\vec{w})$ is the best \myquote{solution.}
+
+\begin{myfig}
+\capstart
+\inputpdft{vec-orthoproj}
+\caption{Orthogonal projection.\label{vec-orthoproj:fig}}
+\end{myfig}
+
+The formula follows from basic trigonometry.  The length of
+$\operatorname{proj}_{\vec{v}}(\vec{w})$ should be
+$\cos \theta$ times the length of $\vec{w}$, that is $(\cos \theta)\lVert\vec{w}\rVert$.
+We take the unit vector in the direction of $\vec{v}$, that is,
+$\frac{\vec{v}}{\lVert \vec{v} \rVert}$ and we multiply it by the length of
+the projection.  In other words,
+\begin{equation*}
+\operatorname{proj}_{\vec{v}}(\vec{w})
+=
+(\cos \theta) \lVert \vec{w} \rVert
+\frac{\vec{v}}{\lVert \vec{v} \rVert}
+=
+\frac{(\cos \theta) \lVert \vec{w} \rVert \lVert \vec{v} \rVert}{
+{\lVert \vec{v} \rVert}^2
+}
+\vec{v}
+=
+\frac{\langle \vec{w}, \vec{v} \rangle}{
+\langle \vec{v}, \vec{v} \rangle
+}
+\vec{v} .
+\end{equation*}
+
+\begin{example}
+Suppose we wish to project the vector $(3,2,1)$ onto the vector $(1,2,3)$.
+Compute
+\begin{equation*}
+\begin{split}
+\operatorname{proj}_{(1,2,3)} \bigl( (3,2,1) \bigr)
+=
+\frac{\langle (3,2,1) , (1,2,3) \rangle}{\langle (1,2,3) , (1,2,3) \rangle}
+(1,2,3)
+& =
+\frac{3 \cdot 1 + 2 \cdot 2 + 1 \cdot 3}{ 1 \cdot 1 + 2 \cdot 2 + 3 \cdot 3}
+(1,2,3)
+\\
+& =
+\frac{10}{14}
+(1,2,3)
+=
+\left(\frac{5}{7},\frac{10}{7},\frac{15}{7}\right) .
+\end{split}
+\end{equation*}
+
+Let us double check that the projection is orthogonal.  That is
+$\vec{w}-\operatorname{proj}_{\vec{v}}(\vec{w})$ ought to be orthogonal to
+$\vec{v}$, see the right angle in \figurevref{vec-orthoproj:fig}.  That is,
+\begin{equation*}
+(3,2,1) - \operatorname{proj}_{(1,2,3)} \bigl( (3,2,1) \bigr)
+=
+\left(3-\frac{5}{7},2-\frac{10}{7},1-\frac{15}{7}\right)
+=
+\left(\frac{16}{7},\frac{4}{7},\frac{-8}{7}\right)
+\end{equation*}
+ought to be orthogonal to $(1,2,3)$.  We compute the inner product and we
+had better get zero:
+\begin{equation*}
+\left\langle
+\left(\frac{16}{7},\frac{4}{7},\frac{-8}{7}\right)
+,
+(1,2,3)
+\right\rangle
+=
+\frac{16}{7} \cdot 1 + \frac{4}{7} \cdot 2 -\frac{8}{7} \cdot 3
+=
+0 .
+\end{equation*}
+\end{example}
+
+\subsection{Orthogonal basis}
+
+As we said, a basis $\vec{v}_1,\vec{v}_2,\ldots,\vec{v}_n$
+is an \emph{\myindex{orthogonal basis}} if all vectors in the
+basis are orthogonal to each other, that is, if
+\begin{equation*}
+\langle \vec{v}_j , \vec{v}_k \rangle = 0
+\end{equation*}
+for all choices of $j$ and $k$ where $j \not= k$ (a nonzero vector cannot be
+orthogonal to itself).
+A basis is furthermore called an \emph{\myindex{orthonormal basis}} if all
+the vectors in a basis are also unit vectors, that is, if all the vectors
+have magnitude 1.
+For example, the standard basis $\{ (1,0,0), (0,1,0), (0,0,1) \}$ is an
+orthonormal basis of ${\mathbb{R}}^3$:
+Any pair is orthogonal, and each vector is of unit
+magnitude.
+
+The reason why we are interested in orthogonal (or orthonormal) bases is
+that they make it really simple to represent a vector (or a projection onto
+a subspace) in the basis.  The simple formula for the orthogonal projection
+onto a vector gives us the coefficients.  In 
+\chapterref{FS:chapter}, we use the same idea by finding the correct 
+orthogonal basis for the set of solutions of a differential equation.
+We are then able to find any particular solution by simply applying the
+orthogonal projection formula, which is just a couple of a inner products.
+
+Let us come back to linear algebra.  Suppose that we have a subspace
+and an orthogonal
+basis $\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_n$.  We wish to
+express $\vec{x}$ in terms of the basis.  If $\vec{x}$ is not in the span
+of the basis (when it is not in the given subspace),
+then of course it is not possible,
+but the following formula
+gives us at least the orthogonal projection onto the subspace,
+or in other words, the best approximation in the subspace.
+
+First suppose that $\vec{x}$ is in the span.  Then it is the sum of the
+orthogonal projections:
+\begin{equation*}
+\vec{x} = 
+\operatorname{proj}_{\vec{v}_1} ( \vec{x} )
++
+\operatorname{proj}_{\vec{v}_2} ( \vec{x} )
++
+\cdots
++
+\operatorname{proj}_{\vec{v}_n} ( \vec{x} )
+=
+\frac{\langle \vec{x}, \vec{v}_1 \rangle}{
+\langle \vec{v}_1, \vec{v}_1 \rangle
+}
+\vec{v}_1
++
+\frac{\langle \vec{x}, \vec{v}_2 \rangle}{
+\langle \vec{v}_2, \vec{v}_2 \rangle
+}
+\vec{v}_2
++
+\cdots
++
+\frac{\langle \vec{x}, \vec{v}_n \rangle}{
+\langle \vec{v}_n, \vec{v}_n \rangle
+}
+\vec{v}_n .
+\end{equation*}
+In other words, if we want to write
+$\vec{x} =
+a_1 \vec{v}_1 + 
+a_2 \vec{v}_2 + \cdots +
+a_n \vec{v}_n$, then
+\begin{equation*}
+a_1 = 
+\frac{\langle \vec{x}, \vec{v}_1 \rangle}{
+\langle \vec{v}_1, \vec{v}_1 \rangle
+} , \quad
+a_2 = 
+\frac{\langle \vec{x}, \vec{v}_2 \rangle}{
+\langle \vec{v}_2, \vec{v}_2 \rangle
+} , \quad \ldots , \quad
+a_n = 
+\frac{\langle \vec{x}, \vec{v}_n \rangle}{
+\langle \vec{v}_n, \vec{v}_n \rangle
+} .
+\end{equation*}
+
+Another way to derive this formula is to work in reverse.  Suppose that
+$\vec{x} =
+a_1 \vec{v}_1 + 
+a_2 \vec{v}_2 + \cdots +
+a_n \vec{v}_n$.  Take an inner product with $\vec{v}_j$, and
+use the properties of the inner product:
+\begin{equation*}
+\begin{split}
+\langle \vec{x} , \vec{v}_j \rangle
+& =
+\langle a_1 \vec{v}_1 + 
+a_2 \vec{v}_2 + \cdots +
+a_n \vec{v}_n , \vec{v}_j \rangle
+\\
+& =
+a_1 \langle \vec{v}_1 , \vec{v}_j \rangle + 
+a_2 \langle \vec{v}_2 , \vec{v}_j \rangle + 
+\cdots +
+a_n \langle \vec{v}_n , \vec{v}_j \rangle .
+\end{split}
+\end{equation*}
+As the basis is orthogonal, then
+$\langle \vec{v}_k , \vec{v}_j \rangle = 0$ whenever
+$k \not= j$.  That means that only one of the terms, the $j^{\text{th}}$ one,
+on the right-hand side is nonzero and we get
+\begin{equation*}
+\langle \vec{x} , \vec{v}_j \rangle
+=
+a_j \langle \vec{v}_j , \vec{v}_j \rangle .
+\end{equation*}
+Solving for $a_j$ we find $a_j =
+\frac{\langle \vec{x}, \vec{v}_j \rangle}{
+\langle \vec{v}_j, \vec{v}_j \rangle
+}$ as before.
+
+\begin{example}
+The vectors $(1,1)$ and $(1,-1)$ form an orthogonal basis of ${\mathbb{R}}^2$.
+Suppose we wish to represent $(3,4)$ in terms of this basis,
+that is, we wish to find $a_1$ and $a_2$ such that
+\begin{equation*}
+(3,4) = a_1 (1,1) + a_2 (1,-1) .
+\end{equation*}
+We compute:
+\begin{equation*}
+a_1 = 
+\frac{\langle (3,4), (1,1) \rangle}{
+\langle (1,1), (1,1) \rangle
+}
+=
+\frac{7}{2}, \qquad
+a_2 = 
+\frac{\langle (3,4), (1,-1) \rangle}{
+\langle (1,-1), (1,-1) \rangle
+}
+=
+\frac{-1}{2} .
+\end{equation*}
+So
+\begin{equation*}
+(3,4) = \frac{7}{2} (1,1) + \frac{-1}{2} (1,-1) .
+\end{equation*}
+\end{example}
+
+If the basis is orthonormal rather than orthogonal,
+then all the denominators are one.
+It is easy to make a basis orthonormal---divide all the vectors by their size.
+If you want to decompose many vectors,
+it may be better to find an orthonormal basis.
+In the example above, the orthonormal basis we would thus create is
+\begin{equation*}
+\left( \frac{1}{\sqrt{2}} , \frac{1}{\sqrt{2}} \right) , \quad
+\left( \frac{1}{\sqrt{2}} , \frac{-1}{\sqrt{2}} \right) .
+\end{equation*}
+Then the computation would have been
+\begin{equation*}
+\begin{split}
+(3,4)
+& =
+\left\langle
+(3,4)
+,
+\left( \frac{1}{\sqrt{2}} , \frac{1}{\sqrt{2}} \right)
+\right\rangle
+\left( \frac{1}{\sqrt{2}} , \frac{1}{\sqrt{2}} \right)
++
+\left\langle
+(3,4)
+,
+\left( \frac{1}{\sqrt{2}} , \frac{-1}{\sqrt{2}} \right)
+\right\rangle
+\left( \frac{1}{\sqrt{2}} , \frac{-1}{\sqrt{2}} \right)
+\\
+& =
+\frac{7}{\sqrt{2}}
+\left( \frac{1}{\sqrt{2}} , \frac{1}{\sqrt{2}} \right)
++
+\frac{-1}{\sqrt{2}}
+\left( \frac{1}{\sqrt{2}} , \frac{-1}{\sqrt{2}} \right) .
+\end{split}
+\end{equation*}
+
+Maybe the example is not so awe inspiring, but given
+vectors in ${\mathbb{R}}^{20}$ rather than ${\mathbb{R}}^2$,
+then surely one would much rather do 20 inner products
+(or 40 if we did not have an orthonormal basis) rather than
+solving a system of twenty equations in twenty unknowns
+using row reduction of a $20 \times 21$ matrix.
+
+As we said above, the formula still works even if $\vec{x}$ is not in the
+subspace, although then it does not get us the vector $\vec{x}$
+but its projection.  More concretely, suppose that $S$ is a subspace
+that is the span of $\vec{v}_1,\vec{v}_2,\ldots,\vec{v}_n$ and $\vec{x}$
+is any vector.  Let $\operatorname{proj}_{S}(\vec{x})$ be the vector in $S$
+that is the closest to $\vec{x}$.  Then
+\begin{equation*}
+\operatorname{proj}_{S}(\vec{x}) = 
+\frac{\langle \vec{x}, \vec{v}_1 \rangle}{
+\langle \vec{v}_1, \vec{v}_1 \rangle
+}
+\vec{v}_1
++
+\frac{\langle \vec{x}, \vec{v}_2 \rangle}{
+\langle \vec{v}_2, \vec{v}_2 \rangle
+}
+\vec{v}_2
++
+\cdots
++
+\frac{\langle \vec{x}, \vec{v}_n \rangle}{
+\langle \vec{v}_n, \vec{v}_n \rangle
+}
+\vec{v}_n .
+\end{equation*}
+
+Of course, if $\vec{x}$ is in $S$, then $\operatorname{proj}_{S}(\vec{x}) =
+\vec{x}$, as the closest vector in $S$ to $\vec{x}$ is $\vec{x}$ itself.
+But true utility is obtained when $\vec{x}$ is not in $S$.
+In much of applied mathematics, we cannot find an exact solution to a problem,
+but we try
+to find the best solution out of a small subset (subspace).  The partial sums of
+Fourier series from \chapterref{FS:chapter} are one example.  Another
+example is least square approximation to fit a curve to data.  Yet another
+example is given by
+the most commonly used numerical methods to solve partial differential
+equations, the finite element methods.
+
+\begin{example}
+The vectors $(1,2,3)$ and $(3,0,-1)$ are orthogonal, and so they are
+an orthogonal basis of a subspace $S$:
+\begin{equation*}
+S = 
+\operatorname{span} \bigl\{ (1,2,3), (3,0,-1) \bigr\} .
+\end{equation*}
+Let us find the vector in $S$ that is closest to $(2,1,0)$.  That is,
+let us find $\operatorname{proj}_{S}\bigl((2,1,0)\bigr)$.
+\begin{equation*}
+\begin{split}
+\operatorname{proj}_{S}\bigl((2,1,0)\bigr)
+& =
+\frac{\langle (2,1,0), (1,2,3) \rangle}{
+\langle (1,2,3), (1,2,3) \rangle
+}
+(1,2,3)
++
+\frac{\langle (2,1,0), (3,0,-1) \rangle}{
+\langle (3,0,-1), (3,0,-1) \rangle
+}
+(3,0,-1)
+\\
+& =
+\frac{2}{7}
+(1,2,3)
++
+\frac{3}{5}
+(3,0,-1)
+\\
+&=
+\left( \frac{73}{35} , \frac{4}{7} , \frac{9}{35} \right) .
+\end{split}
+\end{equation*}
+\end{example}
+
+\subsection{The Gram--Schmidt process}
+
+Before leaving orthogonal bases, let us note a procedure for manufacturing
+them out of any old basis.  It may not be difficult to come up with an
+orthogonal basis for a 2-dimensional subspace, but for a 20-dimensional subspace,
+it seems a daunting task.  Fortunately, the orthogonal projection can be
+used to \myquote{project away} the bits of the vectors that are making them
+not orthogonal.  It is called the \emph{\myindex{Gram--Schmidt process}}.
+
+We start with a basis of vectors $\vec{v}_1,\vec{v}_2, \ldots,
+\vec{v}_n$.  We construct an orthogonal basis $\vec{w}_1, \vec{w}_2,
+\ldots, \vec{w}_n$ as follows.
+\begin{align*}
+\vec{w}_1 & = \vec{v}_1 , \displaybreak[0]\\
+\vec{w}_2 & = \vec{v}_2
+- \operatorname{proj}_{\vec{w}_1}(\vec{v}_2) , \displaybreak[0]\\
+\vec{w}_3 & = \vec{v}_3
+- \operatorname{proj}_{\vec{w}_1}(\vec{v}_3)
+- \operatorname{proj}_{\vec{w}_2}(\vec{v}_3) , \displaybreak[0]\\
+\vec{w}_4 & = \vec{v}_4
+- \operatorname{proj}_{\vec{w}_1}(\vec{v}_4)
+- \operatorname{proj}_{\vec{w}_2}(\vec{v}_4)
+- \operatorname{proj}_{\vec{w}_3}(\vec{v}_4) , \\
+& \vdots \\
+\vec{w}_n & = \vec{v}_n
+- \operatorname{proj}_{\vec{w}_1}(\vec{v}_n)
+- \operatorname{proj}_{\vec{w}_2}(\vec{v}_n)
+- \cdots
+- \operatorname{proj}_{\vec{w}_{n-1}}(\vec{v}_n) .
+\end{align*}
+What we do is at the $k^{\text{th}}$ step, we take $\vec{v}_k$ and we
+subtract the projection of $\vec{v}_k$ to the subspace spanned by
+$\vec{w}_1,\vec{w}_2,\ldots,\vec{w}_{k-1}$.
+
+\begin{example}
+Consider the vectors $(1,2,-1)$, and $(0,5,-2)$ and call $S$ the span
+of the two vectors.  Let us find an orthogonal basis of $S$:
+\begin{align*}
+\vec{w}_1 & = (1,2,-1) , \\
+\vec{w}_2 & = (0,5,-2) 
+- \operatorname{proj}_{(1,2,-1)}\bigl((0,2,-2)\bigr)
+\\
+& =
+(0,1,-1) -
+\frac{\langle (0,5,-2), (1,2,-1) \rangle}{
+\langle (1,2,-1), (1,2,-1) \rangle
+}
+(1,2,-1)
+=
+(0,5,-2) -
+2
+(1,2,-1)
+=
+(-2,1,0) .
+\end{align*}
+So $(1,2,-1)$ and $(-2,1,0)$ span $S$ and are orthogonal.  Let us check:
+$\langle (1,2,-1) , (-2,1,0) \rangle = 0$.
+
+Suppose we wish to find an orthonormal basis, not just an orthogonal one.
+Well, we simply make the
+vectors into unit vectors by dividing them by their magnitude.  The two vectors
+making up the orthonormal basis of $S$ are:
+\begin{equation*}
+\frac{1}{\sqrt{6}} (1,2,-1) = \left(
+\frac{1}{\sqrt{6}},
+\frac{2}{\sqrt{6}},
+\frac{-1}{\sqrt{6}}
+\right) ,
+\qquad
+\frac{1}{\sqrt{5}} (-2,1,0) = \left(
+\frac{-2}{\sqrt{5}},
+\frac{1}{\sqrt{5}},
+0
+\right) .
+\end{equation*}
+\end{example}
+
+\subsection{Exercises}
+
+\begin{exercise}
+Find the $s$ that makes the following vectors orthogonal:
+$(1,2,3)$, $(1,1,s)$.
+\end{exercise}
+
+\begin{exercise}
+Find the angle $\theta$ between
+$(1,3,1)$, $(2,1,-1)$.
+\end{exercise}
+
+\begin{exercise}
+Given that $\langle \vec{v} , \vec{w} \rangle = 3$ and
+$\langle \vec{v} , \vec{u} \rangle = -1$ compute
+\begin{tasks}(3)
+\task $\langle \vec{u} , 2 \vec{v} \rangle$
+\task $\langle \vec{v} , 2 \vec{w} + 3 \vec{u} \rangle$
+\task $\langle \vec{w} + 3 \vec{u}, \vec{v} \rangle$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Suppose $\vec{v} = (1,1,-1)$.  Find
+\begin{tasks}(3)
+\task $\operatorname{proj}_{\vec{v}}\bigl( (1,0,0) \bigr)$
+\task $\operatorname{proj}_{\vec{v}}\bigl( (1,2,3) \bigr)$
+\task $\operatorname{proj}_{\vec{v}}\bigl( (1,-1,0) \bigr)$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+\pagebreak[2]
+Consider the vectors $(1,2,3)$, $(-3,0,1)$, $(1,-5,3)$.
+\begin{tasks}(2)
+\task Check that the vectors are linearly independent and so form a basis.
+\task Check that the vectors are mutually orthogonal, and are therefore
+an orthogonal basis.
+\task Represent $(1,1,1)$ as a linear combination of this basis.
+\task Make the basis orthonormal.
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Let $S$ be the subspace spanned by
+$(1,3,-1)$, $(1,1,1)$.  Find an orthogonal basis of $S$
+by the Gram-Schmidt process.
+\end{exercise}
+
+\begin{exercise}
+Starting with $(1,2,3)$, $(1,1,1)$, $(2,2,0)$, follow the Gram-Schmidt
+process to find an orthogonal basis of ${\mathbb{R}}^3$.
+\end{exercise}
+
+\begin{exercise}
+Find an orthogonal basis of ${\mathbb{R}}^3$ such that $(3,1,-2)$
+is one of the vectors.  Hint: First find two extra vectors to make a
+linearly independent set.
+\end{exercise}
+
+\begin{exercise}
+Using cosines and sines of $\theta$, find a unit vector $\vec{u}$
+in ${\mathbb{R}}^2$ that
+makes angle $\theta$ with $\vec{\imath} = (1,0)$.  What is
+$\langle \vec{\imath} , \vec{u} \rangle$?
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+Find the $s$ that makes the following vectors orthogonal:
+$(1,1,1)$, $(1,s,1)$.
+\end{exercise}
+\exsol{%
+$s=-2$
+}
+
+\begin{exercise}
+Find the angle $\theta$ between
+$(1,2,3)$, $(1,1,1)$.
+\end{exercise}
+\exsol{%
+$\theta \approx 0.3876$
+}
+
+\begin{exercise}
+Given that $\langle \vec{v} , \vec{w} \rangle = 1$ and
+$\langle \vec{v} , \vec{u} \rangle = -1$  and
+$\lVert \vec{v} \rVert = 3$  and
+\begin{tasks}(3)
+\task $\langle 3 \vec{u} , 5 \vec{v} \rangle$
+\task $\langle \vec{v} , 2 \vec{w} + 3 \vec{u} \rangle$
+\task $\langle \vec{w} + 3 \vec{v}, \vec{v} \rangle$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~-15 \quad
+b)~-1 \quad
+c)~28
+}
+
+\begin{exercise}
+Suppose $\vec{v} = (1,0,-1)$.  Find
+\begin{tasks}(3)
+\task $\operatorname{proj}_{\vec{v}}\bigl( (0,2,1) \bigr)$
+\task $\operatorname{proj}_{\vec{v}}\bigl( (1,0,1) \bigr)$
+\task $\operatorname{proj}_{\vec{v}}\bigl( (4,-1,0) \bigr)$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$(\nicefrac{-1}{2},0,\frac{1}{2})$ \quad
+b)~$(0,0,0)$ \quad
+c)~$(2,0,-2)$
+}
+
+\begin{exercise}
+The vectors $(1,1,-1)$, $(2,-1,1)$, $(1,-5,3)$ form an orthogonal basis.
+Represent the following vectors in terms of this basis:
+\begin{tasks}(3)
+\task $(1,-8,4)$
+\task $(5,-7,5)$
+\task $(0,-6,2)$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$(1,1,-1)-(2,-1,1)+2(1,-5,3)$ \quad
+b)~$2(2,-1,1)+(1,-5,3)$ \quad
+c)~$2(1,1,-1)-2(2,-1,1)+2(1,-5,3)$
+}
+
+\begin{exercise}
+Let $S$ be the subspace spanned by
+$(2,-1,1)$, $(2,2,2)$.  Find an orthogonal basis of $S$
+by the Gram-Schmidt process.
+\end{exercise}
+\exsol{%
+$(2,-1,1)$, $(\nicefrac{2}{3},\nicefrac{8}{3},\nicefrac{4}{3})$
+}
+
+\begin{exercise}
+Starting with $(1,1,-1)$, $(2,3,-1)$, $(1,-1,1)$, follow the Gram-Schmidt
+process to find an orthogonal basis of ${\mathbb{R}}^3$.
+\end{exercise}
+\exsol{%
+$(1,1,-1)$, $(0,1,1)$, $(\nicefrac{4}{3},\nicefrac{-2}{3},\nicefrac{2}{3})$
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sectionnewpage
+\section{Determinant}
+\label{det:section}
+
+\sectionnotes{1 lecture}
+
+For square matrices we define a useful quantity called the
+\emph{\myindex{determinant}}.  Define
+the determinant of a $1 \times 1$ matrix as the value of its only entry
+\begin{equation*}
+\det \left(
+\begin{bmatrix}
+a 
+\end{bmatrix}
+\right)
+\overset{\text{def}}{=}
+a .
+\end{equation*}
+For a $2 \times 2$ matrix, define
+\begin{equation*}
+\det \left(
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\right)
+\overset{\text{def}}{=}
+ad-bc .
+\end{equation*}
+
+Before defining the
+determinant for larger matrices, we note
+the meaning of the determinant.
+An $n \times n$ matrix
+gives a mapping of the $n$-dimensional euclidean space ${\mathbb{R}}^n$ to 
+itself.
+So a $2 \times 2$ matrix $A$ is a mapping of
+the plane to itself.  The determinant of 
+$A$ is the factor by which the area of objects changes. 
+If we take the unit square (square of side 1) in the plane, then
+$A$ takes the square to a parallelogram of area $\lvert\det(A)\rvert$.  The sign
+of $\det(A)$ denotes a change of orientation (negative if the axes get flipped).  For
+example, let
+\begin{equation*}
+A =
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix} .
+\end{equation*}
+Then $\det(A) = 1+1 = 2$.
+Let us see where $A$ sends the unit square---the square with vertices
+$(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$.
+The point $(0,0)$ gets sent
+to $(0,0)$.  
+\begin{equation*}
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix} =
+\begin{bmatrix}
+1 \\
+-1 
+\end{bmatrix}
+,
+\qquad
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+1 \\
+1 
+\end{bmatrix}
+,
+\qquad
+\begin{bmatrix}
+1 & 1 \\
+-1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+2 \\
+0 
+\end{bmatrix}
+.
+\end{equation*}
+The image of the square is another square with vertices $(0,0)$, $(1,-1)$,
+$(1,1)$, and $(2,0)$.  The
+image square has
+a side of length $\sqrt{2}$, and it is therefore of area 2.  See
+\figurevref{linalg-imagesquare:fig}.
+
+\begin{myfig}
+\capstart
+\inputpdft{linalg-imagesquare}
+\caption{Image of the unit quare via the mapping
+$A$.\label{linalg-imagesquare:fig}}
+\end{myfig}
+
+In general, the image of a square is going to be a \myindex{parallelogram}.
+In high school geometry, you may have seen a formula for
+computing the area of a \myindex{parallelogram}
+with vertices $(0,0)$, $(a,c)$, $(b,d)$
+and $(a+b,c+d)$.  The area is
+\begin{equation*}
+\left\lvert \, \det \left(
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+\right) \, \right\lvert
+=
+\lvert
+a d - b c
+\rvert
+.
+\end{equation*}
+The vertical lines above mean absolute value.
+The matrix $\left[ \begin{smallmatrix} a & b \\ c & d \end{smallmatrix}
+\right]$
+carries the unit square to the given parallelogram.
+
+\medskip
+
+There are a number of ways to define the determinant for an $n \times n$
+matrix.  Let us use the so-called \emph{\myindex{cofactor expansion}}.
+We define $A_{ij}$ as
+the matrix $A$ with the $i^{\text{th}}$ row and the $j^{\text{th}}$ column
+deleted.  For example, if
+\begin{equation*}
+\text{If} \qquad
+A = 
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix} ,
+\qquad
+\text{then}
+\qquad
+A_{12} = 
+\begin{bmatrix}
+4 & 6 \\
+7 & 9
+\end{bmatrix}
+\qquad
+\text{and}
+\qquad
+A_{23} = 
+\begin{bmatrix}
+1 & 2 \\
+7 & 8
+\end{bmatrix} .
+\end{equation*}
+We now define the determinant recursively
+\begin{equation*}
+\det (A)
+\overset{\text{def}}{=}
+\sum_{j=1}^n
+{(-1)}^{1+j}
+a_{1j} \det (A_{1j}) ,
+\end{equation*}
+or in other words
+\begin{equation*}
+\det (A) =
+a_{11} \det (A_{11}) - 
+a_{12} \det (A_{12}) + 
+a_{13} \det (A_{13}) - 
+\cdots
+\begin{cases}
++ a_{1n} \det (A_{1n}) & \text{if } n \text{ is odd,} \\
+- a_{1n} \det (A_{1n}) & \text{if } n \text{ even.}
+\end{cases}
+\end{equation*}
+For a $3 \times 3$ matrix,
+we get $\det (A) = a_{11} \det (A_{11}) -
+a_{12} \det (A_{12}) + a_{13} \det (A_{13})$.  For example,
+\begin{equation*}
+\begin{split}
+\det \left(
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\right)
+& =
+1 \cdot
+\det \left(
+\begin{bmatrix}
+5 & 6 \\
+8 & 9
+\end{bmatrix}
+\right)
+-
+2 \cdot
+\det \left(
+\begin{bmatrix}
+4 & 6 \\
+7 & 9
+\end{bmatrix}
+\right)
++
+3 \cdot
+\det \left(
+\begin{bmatrix}
+4 & 5 \\
+7 & 8
+\end{bmatrix}
+\right) \\
+& =
+1 (5 \cdot 9 - 6 \cdot 8)
+-
+2 (4 \cdot 9 - 6 \cdot 7)
++
+3 (4 \cdot 8 - 5 \cdot 7)
+= 0 .
+\end{split}
+\end{equation*}
+
+It turns out that we did not have to necessarily use the first row.  That is
+for any $i$,
+\begin{equation*}
+\det (A)
+=
+\sum_{j=1}^n
+{(-1)}^{i+j}
+a_{ij} \det (A_{ij}) .
+\end{equation*}
+It is sometimes useful to use a row other than the first.  In the following
+example it is more convenient to expand along the second row.  Notice that for the
+second row we are starting with a negative sign.
+\begin{equation*}
+\begin{split}
+\det \left(
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 5 & 0 \\
+7 & 8 & 9
+\end{bmatrix}
+\right)
+& =
+- 0 \cdot
+\det \left(
+\begin{bmatrix}
+2 & 3 \\
+8 & 9
+\end{bmatrix}
+\right)
++
+5 \cdot
+\det \left(
+\begin{bmatrix}
+1 & 3 \\
+7 & 9
+\end{bmatrix}
+\right)
+-
+0 \cdot
+\det \left(
+\begin{bmatrix}
+1 & 2 \\
+7 & 8
+\end{bmatrix}
+\right) \\
+& =
+0
++
+5 (1 \cdot 9 - 3 \cdot 7)
++
+0
+= -60 .
+\end{split}
+\end{equation*}
+Let us check if it is really the same as expanding along the first row,
+\begin{equation*}
+\begin{split}
+\det \left(
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 5 & 0 \\
+7 & 8 & 9
+\end{bmatrix}
+\right)
+& =
+1 \cdot
+\det \left(
+\begin{bmatrix}
+5 & 0 \\
+8 & 9
+\end{bmatrix}
+\right)
+-
+2 \cdot
+\det \left(
+\begin{bmatrix}
+0 & 0 \\
+7 & 9
+\end{bmatrix}
+\right)
++
+3 \cdot
+\det \left(
+\begin{bmatrix}
+0 & 5 \\
+7 & 8
+\end{bmatrix}
+\right) \\
+& =
+1 (5 \cdot 9 - 0 \cdot 8)
+-
+2 (0 \cdot 9 - 0 \cdot 7)
++
+3 (0 \cdot 8 - 5 \cdot 7)
+= -60 .
+\end{split}
+\end{equation*}
+
+
+
+In computing the determinant,
+we alternately add and subtract the determinants of the submatrices
+$A_{ij}$ multiplied by $a_{ij}$ for a fixed $i$ and all $j$.
+The numbers ${(-1)}^{i+j}\det(A_{ij})$ are called
+\emph{cofactors\index{cofactor}}
+of the matrix.  And that is why
+this method of computing the determinant is called the
+\emph{cofactor expansion}.
+
+Similarly we do not need to expand along a row, we can expand
+along a column.  For any $j$,
+\begin{equation*}
+\det (A)
+=
+\sum_{i=1}^n
+{(-1)}^{i+j}
+a_{ij} \det (A_{ij}) .
+\end{equation*}
+A related fact is that
+\begin{equation*}
+\det (A) = \det (A^T) .
+\end{equation*}
+
+\medskip
+
+A matrix is \emph{\myindex{upper triangular}} if all elements below
+the main diagonal are 0.  For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 5 & 6 \\
+0 & 0 & 9
+\end{bmatrix}
+\end{equation*}
+is upper triangular.  Similarly a \emph{\myindex{lower triangular}}
+matrix is one where everything above the diagonal is zero.  For example,
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & 0 \\
+4 & 5 & 0 \\
+7 & 8 & 9
+\end{bmatrix} .
+\end{equation*}
+
+The determinant for triangular matrices is very simple to compute.  
+Consider the lower triangular matrix.  If we expand along the
+first row, we find that the determinant is 1 times the determinant
+of the lower triangular matrix $\left[ \begin{smallmatrix} 5 & 0 \\ 8 & 9
+\end{smallmatrix} \right]$.  So the deteriminant is just the
+product of the diagonal entries:
+\begin{equation*}
+\det \left(
+\begin{bmatrix}
+1 & 0 & 0 \\
+4 & 5 & 0 \\
+7 & 8 & 9
+\end{bmatrix} 
+\right)
+=
+1 \cdot 5 \cdot 9 = 45 .
+\end{equation*}
+Similarly for upper triangular matrices
+\begin{equation*}
+\det \left(
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 5 & 6 \\
+0 & 0 & 9
+\end{bmatrix}
+\right)
+=
+1 \cdot 5 \cdot 9 = 45 .
+\end{equation*}
+In general, if $A$ is triangular, then
+\begin{equation*}
+\det (A) = a_{11} a_{22} \cdots a_{nn} .
+\end{equation*}
+
+If $A$ is diagonal, then it is also triangular (upper and lower), so
+same formula applies.  For example,
+\begin{equation*}
+\det \left(
+\begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 5
+\end{bmatrix}
+\right)
+=
+2 \cdot 3 \cdot 5 = 30 .
+\end{equation*}
+
+In particular, the identity matrix $I$ is diagonal, and the diagonal entries
+are all 1.  Thus,
+\begin{equation*}
+\det(I) = 1 .
+\end{equation*}
+
+\medskip
+
+The determinant is telling you how geometric objects scale.
+If $B$ doubles the sizes of geometric objects and $A$ triples them,
+then $AB$ (which applies $B$ to an object and then it applies $A$) should make size
+go up by a factor of $6$.  This is true in general:
+
+\begin{theorem}
+\begin{equation*}
+\det(AB) = \det(A)\det(B) .
+\end{equation*}
+\end{theorem}
+
+This property is one of the most useful, and it is employed often to 
+actually compute determinants.  A particularly interesting consequence is to
+note what it means for the existence of inverses.
+Take $A$ and $B$ to be inverses, that is $AB=I$.  Then
+\begin{equation*}
+\det(A)\det(B) = \det(AB) = \det(I) = 1 .
+\end{equation*}
+Neither $\det(A)$ nor $\det(B)$ can be zero.
+This fact is an extremely useful property of the determinant, and one
+which is used often in this book:
+
+\begin{theorem}
+An $n \times n$ matrix $A$ is invertible if and only if $\det (A) \not= 0$.
+\end{theorem}
+
+In fact, $\det(A^{-1}) \det(A) = 1$ says that
+\begin{equation*}
+\det(A^{-1}) =
+\frac{1}{\det(A)}.
+\end{equation*}
+So we know what the determinant of $A^{-1}$ is
+without computing $A^{-1}$.
+
+Let us return to the formula for the inverse of a $2 \times 2$ matrix:
+\begin{equation*}
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}^{-1}
+=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix} .
+\end{equation*}
+Notice the determinant of the matrix
+$[\begin{smallmatrix}a&b\\c&d\end{smallmatrix}]$
+in the denominator of the fraction.
+The formula only works if the determinant is nonzero, otherwise we are
+dividing by zero.
+
+%\medskip
+%
+%FIXME: perhaps computing using elimination
+
+\medskip
+
+
+A common notation for the determinant is a pair of vertical
+lines:
+\begin{equation*}
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix}
+=
+\det \left(
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\right) .
+\end{equation*}
+Personally, I find this notation confusing as vertical lines usually
+mean a positive quantity, while determinants can be negative.  Also
+think about how to write the absolute value of a determinant.
+This notation is not used in this book.
+
+\subsection{Exercises}
+
+\begin{exercise}
+Compute the determinant of the following matrices:
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 3 \\
+2 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 1 \\
+4 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 4 & 5 \\
+0 & 0 & 6
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 1 & 0 \\
+-2 & 7 & -3 \\
+0 & 2 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 1 & 3 \\
+8 & 6 & 3 \\
+7 & 9 & 7
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 & 2 & 5 & 7 \\
+0 & 0 & 2 & -3 \\
+3 & 4 & 5 & 7 \\
+0 & 0 & 2 & 4
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+0 &  1 &  2 &  0 \\
+1 &  1 & -1 & 2 \\
+1 &  1 &  2 & 1 \\
+2 & -1 & -2 & 3
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+For which $x$ are the following matrices singular (not invertible).
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+2 & 3 \\
+2 & x
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & x \\
+1 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+x & 1 \\
+4 & x
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+x & 0 & 1 \\
+1 & 4 & 2 \\
+1 & 6 & 2
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+
+\begin{exercise}
+Compute
+\begin{equation*}
+\det \left( \begin{bmatrix}
+2 & 1 & 2 & 3 \\
+0 & 8 & 6 & 5 \\
+0 & 0 & 3 & 9 \\
+0 & 0 & 0 & 1
+\end{bmatrix}^{-1}
+\right)
+\end{equation*}
+without computing the inverse.
+\end{exercise}
+
+\begin{exercise}
+Suppose
+\begin{equation*}
+L = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+2 & 1 & 0 & 0 \\
+7 & \pi & 1 & 0 \\
+2^8 & 5 & -99 & 1
+\end{bmatrix}
+\qquad \text{and} \qquad
+U = \begin{bmatrix}
+5 & 9 & 1 & -\sin(1) \\
+0 & 1 & 88 & -1 \\
+0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 1
+\end{bmatrix} .
+\end{equation*}
+Let $A = LU$.  Compute $\det(A)$ in a simple way, without computing what is $A$.
+Hint: First read off $\det(L)$ and $\det(U)$.
+\end{exercise}
+
+\begin{exercise}
+Consider the linear mapping from ${\mathbb R}^2$ to ${\mathbb R}^2$
+given by the  matrix
+$A = \left[ \begin{smallmatrix}
+1 & x \\
+2 & 1
+\end{smallmatrix} \right]$
+for some number $x$.  You wish to make $A$ such that it doubles the area of
+every geometric figure.  What are the possibilities for $x$ (there are two
+answers).
+\end{exercise}
+
+\begin{exercise}
+Suppose $A$ and $S$ are $n \times n$ matrices, and $S$ is invertible.
+Suppose that $\det(A) = 3$.  Compute $\det(S^{-1}AS)$ and 
+$\det(SAS^{-1})$.  Justify your answer using the theorems in this section.
+\end{exercise}
+
+\begin{exercise}
+Let $A$ be an $n \times n$ matrix such that $\det(A)=1$.
+Compute $\det(x A)$ given a number $x$.\linebreak[2]
+Hint: First try computing
+$\det(xI)$, then note that $xA = (xI)A$.
+\end{exercise}
+
+\setcounter{exercise}{100}
+
+\begin{exercise}
+\pagebreak[2]
+Compute the determinant of the following matrices:
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+-2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & -2 \\
+1 & 3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 2 \\
+2 & 2
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 9 & -11 \\
+0 & -1 & 5 \\
+0 & 0 & 3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+2 & 1 & 0 \\
+-2 & 7 & 3 \\
+1 & 1 & 0
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+5 & 1 & 3 \\
+4 & 1 & 1 \\
+4 & 5 & 1
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & 2 & 5 & 7 \\
+0 & 0 & 2 & 0 \\
+0 & 4 & 5 & 0 \\
+2 & 1 & 2 & 4
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+ 0 &  2 &  1 &  0 \\
+ 1 &  2 & -3 &  4 \\
+ 5 &  6 & -7 &  8 \\
+ 1 &  2 &  3 & -2
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$-2$
+\quad b)~$8$
+\quad c)~$0$
+\quad d)~$-6$
+\quad e)~$-3$
+\quad f)~$28$
+\quad g)~$16$
+\quad h)~$-24$
+}
+
+\begin{exercise}
+For which $x$ are the following matrices singular (not invertible).
+\begin{tasks}(4)
+\task
+$\begin{bmatrix}
+1 & 3 \\
+1 & x
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+3 & x \\
+1 & 3
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+x & 3 \\
+3 & x
+\end{bmatrix}$
+\task
+$\begin{bmatrix}
+x & 1 & 0 \\
+1 & 4 & 0 \\
+1 & 6 & 2
+\end{bmatrix}$
+\end{tasks}
+\end{exercise}
+\exsol{%
+a)~$3$
+\quad b)~$9$
+\quad c)~$3$
+\quad d)~$\nicefrac{1}{4}$
+}
+
+\begin{exercise}
+Compute
+\begin{equation*}
+\det \left( \begin{bmatrix}
+3 & 4 & 7 & 12 \\
+0 & -1 & 9 & -8 \\
+0 & 0 & -2 & 4 \\
+0 & 0 & 0 & 2
+\end{bmatrix}^{-1}
+\right)
+\end{equation*}
+without computing the inverse.
+\end{exercise}
+\exsol{%
+$12$
+}
+
+\begin{exercise}[challenging]
+Find all the $x$ that make the matrix inverse
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\ 1 & x
+\end{bmatrix}^{-1}
+\end{equation*}
+have only integer entries (no fractions).
+Note that there are two answers.
+\end{exercise}
+\exsol{%
+$1$ and $3$
+}

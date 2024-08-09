@@ -1,0 +1,403 @@
+%FIXME: for PRINT run for lulu or kdp, search for %PRINT  (also
+%search diffyqs.tex)
+
+\usepackage{ifpdf}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{color}
+
+% Times
+%\usepackage{txfonts}
+% NewTX fonts are nicer, though slightly looser.  Using these we
+% can get rid of the extra spaces e.g. {\vec{x}\,}', if going back
+% to txfonts, these would need to be stuck back in.  One disadvantage
+% is that newtx fonts seem to be changing from time to time leading
+% to possible changes in pagination ...
+%\usepackage[tighter,defaultsups]{newtxtext}
+%\usepackage[vvarbb]{newtxmath}
+%STIX
+%\usepackage{stix}
+%\usepackage{stix2}
+%KP
+%\usepackage{kpfonts}
+
+%Palatino
+%\usepackage{mathpazo}
+%\usepackage[scaled]{helvet}
+\usepackage{newpxtext}
+\usepackage[vvarbb]{newpxmath}
+\linespread{1.05}
+
+% Utopia
+%\usepackage{fourier}
+%\usepackage[scaled]{helvet}
+
+%\usepackage{fouriernc}
+
+
+% San Serif fonts
+%\renewcommand{\familydefault}{\sfdefault}
+
+
+\usepackage[T1]{fontenc}
+
+\usepackage{perpage}
+
+\usepackage{tasks}
+\usepackage{footnote}
+\makesavenoteenv{tasks}
+
+\usepackage[shortlabels]{enumitem}
+
+%\usepackage{graphics}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{theorems}
+
+% Remove page numbers on chapter opens
+\usepackage{titlesec}
+\assignpagestyle{\chapter}{empty}
+
+\usepackage[headings]{fullpage}
+
+% smaller margins top/bottom margins
+\addtolength{\textheight}{0.8in}
+\addtolength{\topmargin}{-0.3in}
+
+%PRINT
+%First offset even/odd pages a bit
+% not for the coil bound version, we want large margins there
+%\addtolength{\oddsidemargin}{0.2in}
+%\addtolength{\evensidemargin}{-0.2in}
+
+%PRINT
+%Now cut page size a bit.  I'll run it through ghostcript anyway
+%to convert to the right size, but this is good for crown quatro
+%conversion, don't use for the full letter size (coil) versions
+%\addtolength{\paperwidth}{-0.3in}
+%\addtolength{\paperheight}{-1in}
+%\addtolength{\topmargin}{-0.5in}
+%\addtolength{\oddsidemargin}{-0.15in}
+%\addtolength{\evensidemargin}{-0.15in}
+
+\usepackage{url}
+\usepackage{varioref}
+\usepackage{makeidx}
+\usepackage{hyperref} % do NOT set [ocgcolorlinks] here!
+
+%If you have an older tex installation you might need
+%to comment out the next line:
+%PRINT (COMMENT OUT FOR PRINT)
+\usepackage[ocgcolorlinks]{ocgx2} %run without for lulu/kdp
+
+\usepackage{hypcap}
+\usepackage[font={small,it}]{caption}
+\usepackage{tikz-cd}
+\usepackage{units}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{cancel}
+% This is my modified wrapfig that doesn't use intextsep
+\usepackage{mywrapfig}
+\usepackage{import}
+
+% Footnotes should use symbols, not numbers.  Numbered footnotes are
+% evil, not using footmisc as it conflicts with hyperref
+%\usepackage[perpage,symbol*]{footmisc}
+
+% The [2] would not use star
+%\MakePerPage[2]{footnote}
+\MakePerPage{footnote}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% to avoid counter error on footnotes on first pass
+\makeatletter
+\gdef\@ctrerr{%
+  \@latex@warning{Counter too large}}
+\makeatother
+
+% discourage pagebreak at end of display, put before \end{equation}
+\newcommand{\avoidbreak}{\postdisplaypenalty=100}
+
+\definecolor{mypersianblue}{rgb}{0.11, 0.22, 0.73}
+
+\hypersetup{
+    pdfborderstyle={/S/U/W 0.5},
+    %PRINT do this (and comment out the above):
+    %pdfborder={0 0 0},
+    citecolor=mypersianblue,
+    filecolor=mypersianblue,
+    linkcolor=mypersianblue,
+    urlcolor=mypersianblue,
+    pdftitle={Notes on Diffy Qs: Differential Equations for MAT244},
+    pdfsubject={Differential Equations},
+    pdfkeywords={differential equations, ODE, PDE, Fourier series, Laplace
+transform},
+    pdfauthor={Jiri Lebl}
+}
+
+% Set up our index
+\makeindex
+
+% Very simple indexing
+\newcommand{\myindex}[1]{#1\index{#1}}
+
+% Quotes
+\newcommand{\myquote}[1]{``#1''}
+
+% define this to be empty to kill notes
+\newcommand{\sectionnotes}[1]{\noindent \emph{Note: #1} \medskip \par}
+
+% Define this to be empty to not skip page before the sections to
+% save some paper
+\newcommand{\sectionnewpage}{\clearpage}
+%\newcommand{\sectionnewpage}{}
+
+% This is used throughout for less obtrusive references to EP.
+% Make it blank to remove unnecessary references to EP.
+\newcommand{\EPref}[1]{#1}
+%\newcommand{\EPref}[1]{}
+
+%references to BD
+\newcommand{\BDref}[1]{#1}
+%\newcommand{\BDref}[1]{}
+
+% Don't include subsections
+\setcounter{tocdepth}{1}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheoremstyle{exercise}% name
+  {}% Space above
+  {}% Space below
+  {\itshape}% Body font
+  {}% Indent amount 1
+  {\bfseries \itshape}% Theorem head font
+  {:}% Punctuation after theorem head
+  {.5em}% Space after theorem head 2
+  {}% Theorem head spec (can be left empty, meaning "normal")
+
+
+\theoremstyle{exercise}
+\newtheorem{exercise}{Exercise}[section]
+
+% Answers
+\newbox\answerscollect
+
+\newcommand{\theanswer}{\textbf{\theexercise:}}
+
+\def\exsol#1{\setbox\answerscollect=\vbox{\unvbox\answerscollect\medskip\par\noindent\theanswer\quad #1\par}}
+\def\printanswers{
+ \cleardoublepage  
+ \phantomsection
+ \chapter*{Solutions to Selected Exercises}
+ \markboth{SOLUTIONS TO SELECTED EXERCISES}{SOLUTIONS TO SELECTED EXERCISES}
+ \addfakecontentsline{Solutions to Selected Exercises}
+ \unvbox\answerscollect\setbox\answerscollect=\vbox{}
+}
+
+%\newtheoremstyle{example}% name
+%  {}% Space above
+%  {}% Space below
+%  {}% Body font
+%  {}% Indent amount 1
+%  {\bfseries}% Theorem head font
+%  {:}% Punctuation after theorem head
+%  {.5em}% Space after theorem head 2
+%  {}% Theorem head spec (can be left empty, meaning "normal")
+%
+%\theoremstyle{example}
+%\newtheorem{example}{Example}[section]
+%\newtheorem{remark}{Remark}[section]
+%
+
+%%
+%% Hand made example and remark so that it works with floating figure
+%%
+\newcounter{example}[section]
+\renewcommand{\theexample}{\thesection.\arabic{example}}
+\def\exampleclaim{\par\addvspace{\medskipamount}\noindent\refstepcounter{example}\hbox{\bf
+Example
+\thesection.\arabic{example}:}\hspace{0.5em}\ignorespaces}
+\def\exampleclaimname#1{\par\addvspace{\medskipamount}\noindent\refstepcounter{example}\hbox{\bf
+Example
+\thesection.\arabic{example} {\rm (#1)}:}\hspace{0.5em}\ignorespaces}
+\def\endexampleclaim{
+\par\addvspace{\medskipamount}}
+\newenvironment{example}[1][]{\ifx\namearg#1\namearg\exampleclaim\else\exampleclaimname{#1}\fi}{\endexampleclaim}
+
+\newcounter{remark}[section]
+\renewcommand{\theremark}{\thesection.\arabic{remark}}
+\def\remarkclaim{\par\addvspace{\medskipamount}\noindent\refstepcounter{remark}\hbox{\bf
+Remark
+\thesection.\arabic{remark}:}\hspace{0.5em}\ignorespaces}
+\def\remarkclaimname#1{\par\addvspace{\medskipamount}\noindent\refstepcounter{remark}\hbox{\bf
+Remark
+\thesection.\arabic{remark} {\rm (#1)}:}\hspace{0.5em}\ignorespaces}
+\def\endremarkclaim{
+\par\addvspace{\medskipamount}}
+\newenvironment{remark}[1][]{\ifx\namearg#1\namearg\remarkclaim\else\remarkclaimname{#1}\fi}{\endremarkclaim}
+
+
+% referencing
+\makeatletter
+    \DeclareRobustCommand{\myvref}[2]{%
+      \leavevmode%
+      \begingroup
+        \let\T@pageref\@pagerefstar
+        \hyperref[{#2}]{%
+	  #1~\ref*{#2}%
+        }%
+        \vpageref[\unskip]{#2}%
+      \endgroup
+    }%
+
+    \DeclareRobustCommand{\myref}[2]{%
+      \leavevmode%
+      \begingroup
+        \let\T@pageref\@pagerefstar
+        \hyperref[{#2}]{%
+	  #1~\ref*{#2}%
+        }%
+      \endgroup
+    }%
+\makeatother
+
+\newcommand{\figurevref}[1]{\myvref{Figure}{#1}}
+\newcommand{\figureref}[1]{\myref{Figure}{#1}}
+\newcommand{\tablevref}[1]{\myvref{Table}{#1}}
+\newcommand{\tableref}[1]{\myref{Table}{#1}}
+\newcommand{\chapterref}[1]{\myref{chapter}{#1}}
+\newcommand{\Chapterref}[1]{\myref{Chapter}{#1}}
+\newcommand{\appendixref}[1]{\myref{appendix}{#1}}
+\newcommand{\Appendixref}[1]{\myref{Appendix}{#1}}
+\newcommand{\sectionref}[1]{\myref{\S}{#1}}
+\newcommand{\subsectionref}[1]{\myref{subsection}{#1}}
+\newcommand{\subsectionvref}[1]{\myvref{subsection}{#1}}
+\newcommand{\exercisevref}[1]{\myvref{Exercise}{#1}}
+\newcommand{\exerciseref}[1]{\myref{Exercise}{#1}}
+\newcommand{\examplevref}[1]{\myvref{Example}{#1}}
+\newcommand{\exampleref}[1]{\myref{Example}{#1}}
+\newcommand{\thmvref}[1]{\myvref{Theorem}{#1}}
+\newcommand{\thmref}[1]{\myref{Theorem}{#1}}
+\newcommand{\remarkref}[1]{\myref{Remark}{#1}}
+
+
+
+% Here we input .pdf_t files
+\newcommand{\inputpdft}[1]{\subimport*{figures/}{#1.pdf_t}}
+
+%Fake contents lines
+\newcommand{\addfakecontentsline}[1]{\addcontentsline{toc}{chapter}{#1}}
+
+%Extra space in table of contents to make things fit
+\newcommand{\addextraspacetotoc}{\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}}
+
+% graphics include
+\newcommand{\diffyincludegraphics}[3]{\includegraphics[#1]{figures/#3}}
+
+% only for pdf output
+\newcommand{\diffypdfversion}[1]{#1}
+
+% this draws a frame (implemented not as an environment as that for some
+% reason does not play well with wrapfigure
+\newcommand{\mybeginframe}{%
+\begin{tcolorbox}[colback=white,colframe=lightgray,left=5pt,right=5pt]%
+}
+\newcommand{\myendframe}{%
+\end{tcolorbox}%
+}
+
+\newcommand{\mybxbg}[1]{\tcboxmath[colback=white,colframe=black,boxrule=0.5pt,top=1.5pt,bottom=1.5pt]{#1}}
+\newcommand{\mybxsm}[1]{\tcboxmath[colback=white,colframe=black,boxrule=0.5pt,left=0pt,right=0pt,top=0pt,bottom=0pt]{#1}}
+
+% floaty inset figures
+
+% this one should have a caption, first argument is the size
+\newenvironment{mywrapfig}[2][]{
+ \wrapfigure[#1]{r}{#2}
+ \mybeginframe
+ \centering
+}{%
+ \myendframe
+ \endwrapfigure
+}
+
+% this one has no caption, first argument is size,
+% the second argument is a larger size used for HTML (ignored by latex)
+\newenvironment{mywrapfigsimp}[3][]{%
+ \wrapfigure[#1]{r}{#2}%
+ \centering%
+}{%
+ \endwrapfigure%
+}
+
+% this is just my figure style
+\newenvironment{myfig}{%
+\begin{figure}[h!t]
+\mybeginframe%
+\centering%
+}{%
+\myendframe
+\end{figure}%
+}
+
+% Note that floating (inset) figures work badly in theorem like environments
+% as those are implemented as lists.  That's why example and remark are
+% reimplemented instead of using amsthm
+
+% Do vbox.  It really forces things to be on the same page but it's
+% really a last ditch thing as it will also add some extra spacing, it
+% should definitely not be applied if not needed.
+\newenvironment{mysamepage}{\vbox\bgroup}{\egroup}
+
+%Do the Index
+\newcommand{\diffyindex}{
+ \cleardoublepage  
+ \phantomsection
+ \addfakecontentsline{\indexname}
+ \printindex
+}
+
+%Do the TOC
+\newcommand{\diffytableofcontents}{
+\microtypesetup{protrusion=false}
+\tableofcontents
+\microtypesetup{protrusion=true}
+}
+
+% A title page
+\newcommand{\makediffytitlepage}{
+ \ifpdf
+   \pdfbookmark{Title Page}{title}
+ \fi
+ \newlength{\centeroffset}
+ \setlength{\centeroffset}{-0.5\oddsidemargin}
+ \addtolength{\centeroffset}{0.5\evensidemargin}
+ %\addtolength{\textwidth}{-\centeroffset}
+ \thispagestyle{empty}
+ \vspace*{\stretch{1}}
+ \noindent\hspace*{\centeroffset}\makebox[0pt][l]{\begin{minipage}{\textwidth}
+ \flushright
+ {\Huge\bfseries \sffamily Notes on Diffy Qs }
+ \noindent\rule[-1ex]{\textwidth}{5pt}\\[2.5ex]
+ \hfill\emph{\Large \sffamily Differential Equations for MAT244}
+ \end{minipage}}
+ 
+ \vspace{\stretch{1}}
+ \noindent\hspace*{\centeroffset}\makebox[0pt][l]{\begin{minipage}{\textwidth}
+ \flushright
+ {\bfseries 
+ by Ji{\v r}\'i Lebl\\[3ex]} 
+ \today
+ \\
+ (version \theversion)
+ \end{minipage}}
+ 
+ %\addtolength{\textwidth}{\centeroffset}
+ \vspace{\stretch{2}}
+}
