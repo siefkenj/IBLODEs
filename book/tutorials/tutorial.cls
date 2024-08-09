@@ -4,6 +4,8 @@
 \newcommand{\headlinecolor}{\normalcolor}
 \LoadClass[12pt]{article}
 \RequirePackage{xcolor}
+
+
 \RequirePackage{tikz}
 	\tikzset{>=latex}
 	\usetikzlibrary{positioning}
