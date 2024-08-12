@@ -249,7 +249,7 @@
 %%
 
 
-
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
 
 % Needed to get different PDF bookmarks from the TOC entries
 \hypersetup{bookmarksdepth=3}
@@ -1088,7 +1088,239 @@
 % Hours 15-18
 %
 
+\begin{slide}
+	\question
+	\label{qeignsoln}
+	Consider the system
+	\begin{align*}
+		x'(t) &= 2x(t)\\
+		y'(t) &= 3y(t)
+	\end{align*}
 
+	\begin{parts}
+		\item Rewrite the system in matrix form.
+		\item 
+		\label{eigsoln}
+		Classify the following as solutions or non-solutions to the system.
+		\begin{align*}
+			\vec r_1(t) &= e^{2t} &\qquad			\vec r_2(t) &= \mat{e^{2t}\\0}\\
+			\vec r_3(t) &= \mat{e^{2t}\\4e^{3t}} &\qquad			\vec r_4(t) &= \mat{4e^{3t}\\e^{2t}}\\
+			\vec r_5(t) &= \mat{0\\0}
+		\end{align*}
+		\item State the definition of an eigenvector for the matrix $M$.
+		\item What should the definition of an \emph{eigen solution} be for this system?
+		\item Which functions from \ref{qeignsoln}.\ref{eigsoln} are eigen solutions?
+		\item Find an eigen solution $\vec r_6$ that is linearly independent from $\vec r_2$.
+		\item Let $S=\Span{\vec r_2, \vec r_6}$. Does $S$ contain \emph{all} solutions to the system? Justify your answer.
+	
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall the system
+	\begin{align*}
+		x'(t) &= 2x(t)\\
+		y'(t) &= 3y(t)
+	\end{align*}
+	has eigen solutions $\vec r_2(t)=\mat{e^{2t}\\0}$ and $\vec r_6(t)=\mat{0\\e^{3t}}$.
+
+	\begin{parts}
+		\item Sketch $\vec r_2$ and $\vec r_6$ in the phase plane.
+		\item Use
+
+		\url{https://www.desmos.com/calculator/h3wtwjghv0}
+
+		to make a phase portrait for the system.
+
+		\item 	
+		\begin{minipage}[t]{.45\textwidth}
+		\begin{center}
+			\begin{tikzpicture}[scale=1.2, baseline=(current bounding box.north)]
+					\begin{axis}[
+						width=4cm,
+						height=4cm,
+						xmin=-.5,xmax=3.5,ymin=-.5,
+						ymax=3.5, xmajorgrids, ymajorgrids,
+						xtick={-4,...,4}, ytick={-4,...,4}, axis lines=middle, yticklabels={,,}, xticklabels={,,},
+						samples=50, domain=0:5]
+						
+						\addplot[blue, mark=none] coordinates {(0,0) (0,10)};
+						\addplot[red] {0};
+						\addplot[forestgreen, thick, dashed, dash pattern=on 3pt off 1pt] {x^(2/3)};
+					\end{axis}
+			\end{tikzpicture}%
+			~~~~~\begin{tikzpicture}[scale=1.2, baseline=(current bounding box.north)]
+					\begin{axis}[
+						width=4cm,
+						height=4cm,
+						xmin=-.5,xmax=3.5,ymin=-.5,
+						ymax=3.5, xmajorgrids, ymajorgrids,
+						xtick={-4,...,4}, ytick={-4,...,4}, axis lines=middle, yticklabels={,,}, xticklabels={,,},
+						samples=50, domain=0:5]
+						
+						\addplot[blue, mark=none] coordinates {(0,0) (0,10)};
+						\addplot[red] {0};
+						\addplot[forestgreen, thick, dashed, dash pattern=on 3pt off 1pt] {x^(3/2)};
+					\end{axis}
+			\end{tikzpicture}\\
+			\begin{tikzpicture}[scale=1.2, baseline=(current bounding box.north)]
+					\begin{axis}[
+						width=4cm,
+						height=4cm,
+						xmin=-.5,xmax=3.5,ymin=-.5,
+						ymax=3.5, xmajorgrids, ymajorgrids,
+						xtick={-4,...,4}, ytick={-4,...,4}, axis lines=middle, yticklabels={,,}, xticklabels={,,},
+						samples=50, domain=0:5]
+						
+						\addplot[blue, mark=none] coordinates {(0,0) (0,10)};
+						\addplot[red] {0};
+						\addplot[forestgreen, thick, dashed, dash pattern=on 3pt off 1pt] {1.5*x};
+					\end{axis}
+			\end{tikzpicture}\\
+			\end{center}
+		\end{minipage}
+			In which phase plane above is the dashed (green) curve the graph of a solution to the system? Explain.
+
+		%\item Should graphs of solutions in the phase plane extend to other quadrants, or should every graph occupy only one quadrant?
+
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+		Suppose $\vec s_1$ and $\vec s_2$ are eigen solutions to $\vec r'=A\,\vec r$ with eigenvalues $1$ and $-1$, respectively.
+	\begin{parts}
+		\item Write possible formulas for $\vec s_1(t)$ and $\vec s_2(t)$.
+		\item Sketch a phase plane with graphs of $\vec s_1$ and $\vec s_2$ on it.
+		\item Add a non-eigen solution to your sketch.
+		\item Sketch a possible phase portrait for $\vec r'=A\,\vec r$. Can you extend your phase portrait to all quadrants?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+		Consider the following phase portrait for a system of the form $\vec r'=A\,\vec r$
+		for an unknown matrix $A$.
+
+		\begin{center}
+		\includegraphics[width=2in]{slope-field-eig-pm-one.png}
+		\end{center}
+	\begin{parts}
+		\item Can you identify any eigen solutions?
+		\item What are the eigenvalues of $A$? What are their sign(s)?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Consider the differential equation $\vec r'(t) = M\,\vec r(t)$ where $M=\mat{0&1\\1&0}$.
+
+	\begin{parts}
+		\item Find the eigenvectors and eigenvalues for $M$.
+		\item Verify that $\mat{1\\1}$ and $\mat{1\\-1}$ are eigenvectors for $M$. What are the
+		corresponding eigenvalues?
+		\item 
+		\begin{enumerate}
+			\item Is $\vec r_1(t) =e^t \mat{1\\0}$ a solution to the differential equation?
+			\item Is $\vec r_2(t) =e^t \mat{1\\1}$ a solution to the differential equation?
+			\item Is $\vec r_3(t) =e^{2t} \mat{1\\-1}$ a solution to the differential equation?
+		\end{enumerate}
+
+		\item Find an eigen solution for the system corresponding to the eigenvalue $-1$. Write your answer
+		in vector form.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall the differential equation $\vec r'(t) = M\,\vec r(t)$ where $M=\mat{0&1\\1&0}$.
+
+	\begin{parts}
+		\item Write down a general solution to the differential equation.
+		\item Write down a solution to the initial value problem $\vec r(0)=\mat{x_0\\y_0}$.
+		\item Are your answers to the first two parts the same? Do they contain the same information?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	The phase portrait for a differential equation arising from the matrix $\mat{0&1\\1&0}$ (left)
+	and $\mat{1&0\\0&-1}$ (right) are shown.
+	\begin{center}
+		\includegraphics[width=1.7in]{slope-field-eig-pm-one.png}~~~~
+		\includegraphics[width=1.7in]{slope-field-eig-pm-one-rot.png}
+	\end{center}
+
+	Both have eigenvalues $\pm 1$, but they have different eigenvectors.
+
+	\begin{parts}
+		\item How are the phase portraits related to each other?
+		\item Suppose $P$ is a $2\times 2$ matrix with eigenvalues $\pm 1$. In what ways could
+		the phase portrait for $\vec r'(t) = P\,\vec r(t)$ look \emph{different} from the above portraits?
+		In what way(s) must it look the same?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	\label{qclassifyorigin}
+	Consider the following phase plane with lines in the direction of $\vec a$ (red) and $\vec b$ (dashed green).
+			
+			\begin{center}
+			\begin{tikzpicture}[scale=1]
+					\begin{axis}[
+						width=5cm,
+						height=5cm,
+						xmin=-3.5,xmax=3.5,ymin=-3.5,
+						ymax=3.5, xmajorgrids, ymajorgrids,
+						xtick={-4,...,4}, ytick={-4,...,4}, axis lines=middle, yticklabels={,,}, xticklabels={,,},
+						samples=5, domain=-5:5]
+						
+						\addplot[red, thick] {3*x} node[pos=0.6, left] {$\vec b$};
+						\addplot[forestgreen, thick, dashed, dash pattern=on 3pt off 1pt] {1/3*x} node[pos=0.75, above] {$\vec a$};
+					\end{axis}
+			\end{tikzpicture}%
+			\end{center}
+
+	\begin{parts}
+		\item Sketch a phase portrait where the directions $\vec a$ and $\vec b$ correspond to eigen solutions with eigenvalues that are
+
+		\begin{tabular}{ccc}
+		&sign for $\vec a$ & sign for $\vec b$\\
+		\hline
+		(1) & pos & pos\\
+		(2) & neg & neg\\
+		(3) & neg & pos\\
+		(4) & pos & neg\\
+		(5) & pos & zero\\
+		\end{tabular}
+
+		\item\label{partclassifyorigin} Classify the solution at the origin for situations (1)-(5) as stable or unstable.
+		\item Would any of your classifications in \ref{qclassifyorigin}.\ref{partclassifyorigin} change if the directions of $\vec a$ and $\vec b$ changed?
+
+	\end{parts}
+\end{slide}
+
+
+\begin{slide}
+	\question
+	You are examining a differential equation $\vec r'(t) = M\, \vec r(t)$ for an unknown matrix $M$.
+
+	 You would like to determine whether $\vec r(t)=\mat{0\\0}$ is stable/unstable/etc.
+	\begin{parts}
+		\item Come up with a rule to determine the nature of the equilibrium solution $\vec r(t) =\mat{0\\0}$ based on the eigenvalues of $M$.
+		\item Consider the system of differential equations
+		\begin{align*}
+			x'(t) &= x(t)+2\,y(t)\\
+			y'(t) &= 3\, x(t)-4\,y(t)
+		\end{align*}
+		\begin{enumerate}
+			\item Classify the stability of the equilibrium solution $(x(t), y(t))=(0,0)$ using any method you want.
+			\item Justify your answer analytically using eigenvalues.
+		\end{enumerate}
+	\end{parts}
+\end{slide}
 
 
 
