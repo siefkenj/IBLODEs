@@ -1322,7 +1322,121 @@
 	\end{parts}
 \end{slide}
 
+%
+% Hours 19-20
+%
 
+\begin{slide}
+	\question
+	Consider the following model of Social Media Usage where
+	\begin{align*}
+		x(t) &= \text{number of social media posts at year $t$}\\
+		y(t) &= \text{number of social media users at year $t$}
+	\end{align*}
+	\begin{itemize}
+		\item[(P1$_x$)] Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
+		\item[(P1$_x$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
+		\item[(P2$_y$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
+		\item[(P2$_y$)] Ignoring all else, social media users increase/decrease in proportion to the number of users.
+		\item[(P3$_y$)] Ignoring all else, 1 million people stop using the platform every year.
+	\end{itemize}
+
+	\bigskip
+	A school intervention is described by the parameter $a\in [-1/2, 1]$:
+	\begin{itemize}
+		\item After the intervention, the proportionality constant for (P1$_y$) is $1-a$.
+		\item After the intervention, the proportionality constant for (P2$_y$) is $a$.
+	\end{itemize}
+
+	\begin{parts}
+		\item Model this situation using a system of differential equations. Explain
+			which parts of your model correspond to which premise(s).
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	The \textbf{SM} model of Social Media Usage is
+	\begin{align*}
+		x'&=-x+2\\
+		y'&=(1-a)x + ay - 1
+	\end{align*}
+	where
+	\begin{align*}
+		x(t) &= \text{number of social media posts at year $t$}\\
+		y(t) &= \text{number of social media users at year $t$}\\
+		a &\in [-1/2, 1]
+	\end{align*}
+
+	\begin{parts}
+		\item What are the equilibrium solution(s)?
+		\item Make a phase portrait for the system.
+		\item Use phase portraits to conjecture: what do you think happens to the equilibrium
+			solution(s) as $a$ transitions from negative to positive? Justify with a computation.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	The \textbf{SM} model of Social Media Usage is
+	\begin{align*}
+		x'&=-x+2\\
+		y'&=(1-a)x + ay - 1
+	\end{align*}
+	where
+	\begin{align*}
+		x(t) &= \text{number of social media posts at year $t$}\\
+		y(t) &= \text{number of social media users at year $t$}\\
+		a &\in [-1/2, 1]
+	\end{align*}
+
+	\begin{parts}
+		\item Can you rewrite the system in matrix form? (I.e., in the form $\vec r'(t) = M\, \vec r(t)$ for some matrix $M$.)
+		\item Define $\vec s(t)$  to be the displacement from equilibrium in the \textbf{SM} model at time $t$.
+		\begin{enumerate}
+			\item Write $\vec s$ in terms of $x$ and $y$.
+			\item Write a differential equation governing $\vec s$.
+			\item Can your differential equation governing $\vec s$ be written in matrix form?
+			\item Analytically classify the equilibrium solution for your differential equation for $\vec s$
+				when $a=-1/2$, $1/2$, and $1$. (You may use a calculator for computing eigenvectors/values.)
+		\end{enumerate}
+	\end{parts}
+\end{slide}
+
+
+\begin{slide}
+	\question
+	The \textbf{SM} model of Social Media Usage is
+	\begin{align*}
+		x'&=-x+2\\
+		y'&=(1-a)x + ay - 1
+	\end{align*}
+	where
+	\begin{align*}
+		x(t) &= \text{number of social media posts at year $t$}\\
+		y(t) &= \text{number of social media users at year $t$}\\
+		a &\in [-1/2, 1]
+	\end{align*}
+
+	Some politicians have been looking at the model. They made the following posts on social media:
+	\begin{enumerate}
+			\item \emph{The model shows the number of posts will always be increasing. SAD!}
+			\item \emph{I see the number of social media users always increases. That's not what we want!}
+			\item \emph{It looks like social media is just a fad. Although users initially increase, they eventually settle down.}
+			\item \emph{I have a dream! That one day there will be social media posts, but eventually there will be no social media users!}
+	\end{enumerate}
+		
+	\begin{parts}
+		\item For each social media post, make an educated guess about what initial conditions and what
+		value(s) of $a$ the politician was considering.
+		\item The school board wants to limit the number of social media users to fewer than 10 million.
+		Make a recommendation about what value of $a$ they should target.
+	\end{parts}
+\end{slide}
+
+%
+% Hours 21-23
+%
 
 
 \begin{bookonly}
@@ -1342,6 +1456,8 @@
 	\input{modules/appendix1.tex}
 	\input{modules/appendix1-exercises.tex}
 \end{appendix}
+
+
 
 
 \begin{appendix}
