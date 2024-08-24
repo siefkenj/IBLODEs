@@ -1335,8 +1335,8 @@
 	\end{align*}
 	\begin{itemize}
 		\item[(P1$_x$)] Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
-		\item[(P1$_x$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
-		\item[(P2$_y$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
+		\item[(P2$_x$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
+		\item[(P1$_y$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
 		\item[(P2$_y$)] Ignoring all else, social media users increase/decrease in proportion to the number of users.
 		\item[(P3$_y$)] Ignoring all else, 1 million people stop using the platform every year.
 	\end{itemize}
@@ -1437,6 +1437,122 @@
 %
 % Hours 21-23
 %
+
+
+\begin{slide}
+	\question
+	Consider the following \textbf{DF} model of Dogs and Fleas where 
+	\begin{align*}
+		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}
+	\end{align*}
+	\begin{itemize}
+		\item[(P1$_x$)] Ignoring all else, the number of parasites decays in proportion to its population (with constant 1).
+		\item[(P2$_x$)] Ignoring all else, parasite numbers grow in proportion to the number of hosts (with constant 1).
+		\item[(P1$_y$)] Ignoring all else, hosts numbers grow in proportion to their current number (with constant 1).
+		\item[(P2$_y$)] Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2).
+		\item[(P1$_c$)] Anti-flea collars remove 2 million fleas per year.
+		\item[(P1$_c$)] Constant dog breeding adds 1 thousand dogs per year.
+	\end{itemize}
+
+	\bigskip
+	\begin{parts}
+		\item Write a system of differential equations for the \textbf{DF} model.
+		\item Can you rewrite the system in matrix form $\vec r' = M\,\vec r$? What about in \emph{affine}
+		form $\vec r' = M\,\vec r + \vec b$?
+		\item Make a phase portrait for your mode.
+		\item What should solutions to the system look like in the phase plane? What are the equilibrium solutions?
+	\end{parts}
+\end{slide}
+
+
+\begin{slide}
+	\question
+ 		Recall the \textbf{DF} model of Dogs and Fleas where 
+	\begin{align*}
+		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{x(t)\\y(t)}
+	\end{align*}
+	and
+	\[
+		\vec r'(t) = \mat{-1&1\\-2&1}\,\vec r(t) + \mat{-2\\1}
+	\]
+	
+	Define $\vec s(t)$ to be the displacement of $\vec r(t)$ from equilibrium at time $t$.
+	\begin{parts}
+		\item Find a formula for $\vec s$ in terms of $\vec r$.
+		\item Can you find a matrix $M$ so that $\vec s'(t) = M\,\vec s(t)$?
+		\item What are the eigen solutions for $\vec s'=M\,\vec s$?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+ 		Recall the \textbf{DF} model of Dogs and Fleas where 
+	\begin{align*}
+		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		\vec s(t) = \vec r(t) - \mat{3\\5}
+	\end{align*}
+	and
+	\begin{align*}
+		\vec s\,'(t) &= M\,\vec s(t)\qquad\text{where}\qquad M=\mat{-1&1\\-2&1}.
+	\end{align*}
+	
+	This equation has eigen solutions
+	\begin{align*}
+		\vec s_1(t) &= \matc{1-i\\2}e^{it}\\
+		\vec s_2(t) &= \matc{1+i\\2}e^{-it}
+	\end{align*}
+	
+	\begin{parts}
+		\item Recall Euler's formula $e^{it}=\cos(t)+i\sin(t)$. 
+		\begin{enumerate}
+			\item Use Euler's formula to expand $\vec s_1 + \vec s_2$. Are there any imaginary numbers remaining?
+			\item Use Euler's formula to expand $\vec s_1 - \vec s_2$. Are there any imaginary numbers remaining?
+		\end{enumerate}
+		\item Verify that your formulas for $\vec s_1+\vec s_2$ and $\vec s_1-\vec s_2$ are solutions to
+			$\vec s\,'(t) = M\,\vec s(t)$.
+		\item Can you give a third \emph{real} solution to $\vec s\,'(t) = M\,\vec s(t)$?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+ 		Recall the \textbf{DF} model of Dogs and Fleas where 
+	\begin{align*}
+		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		\vec s(t) = \vec r(t) - \mat{3\\5}
+	\end{align*}
+	and
+	\begin{align*}
+		\vec s\,'(t) &= M\,\vec s(t)\qquad\text{where}\qquad M=\mat{-1&1\\-2&1}.
+	\end{align*}
+	
+	\begin{parts}
+		\item What is the dimension of the space of solutions to $\vec s\,'(t) = M\,\vec s(t)$?
+		\item Give a basis for all solutions to $\vec s\,'(t) = M\,\vec s(t)$.
+		\item Find a solution satisfying $\vec s(0)=\mat{1\\3}$.
+		\bigskip 
+		\item Using what you know, find a general formula for $\vec r(t)$.
+		\item Find a formula for $\vec r(t)$ satisfying $\vec r(0)=\mat{4\\8}$.
+	\end{parts}
+\end{slide}
+
+%
+% Hours 24-26
+%
+
+
+
+
+
+
+
 
 
 \begin{bookonly}

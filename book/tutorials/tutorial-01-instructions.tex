@@ -1,18 +1,18 @@
 		\subsection*{Learning Objectives} Students need to be able to\ldots
 		\begin{itemize}
-			\item Explore how different parameters affect the qualitative
-				behaviour of solutions to a system of differential equations.
-			\item Translate back and forth between a model's equations and
-				the real-world situation that the model describes.
+			\item Create a spreadsheet that runs Euler's method to approximate the solution to a differential equation.
+			\item Recognize the difference between the approximation suggested by Euler's method and the \emph{true} solution
+			to a differential equation. This includes adjusting the step size of Euler's method to discern what is error vs. what
+			is the underlying solution.
 		\end{itemize}
 
 
-		\subsection*{Context} In class we have studied the Fox and Rabbit
-		Lotka-Volterra system with fixed parameters. We have made a phase portrait
-		and simulated solutions using multi-dimensional Euler's method with
-		a spreadsheet. We also analyzed equilibrium solutions and their
-		relationship to phase portraits. However, we have only done this once.
-		Students need more practice!
+		\subsection*{Context} In class we have created a spreadsheet to make an Euler approximation
+		for an ODE. However, we haven't done this very many times. Students need more practice!
+
+		This week we will start making Euler approximations for systems of ODEs using spreadsheets,
+		so we need students to have a firm understanding of how to use spreadsheets and the errors
+		that can arise.
 
 
 		\subsection*{What to Do} This is the first tutorial of the term, and
@@ -56,12 +56,11 @@
 		to move quickly through the list without thoroughly checking their
 		new answers---encourage them to think deeply.
 
-		Problem 1 is a straightforward question, but students will struggle starting
-		with part (d) and especially with (e) and (f). They may have forgotten about unions! Ask
-		them to review the set operations that they know and be creative. When most people are on
-		parts (e) and (f), go over parts (a)--(d). Then, let them continue working through number 2.
-		If most of the class gets stuck at any point, draw the class's attention to the front
-		of the room and work on the difficult part together.
+		Problem 1 is a straightforward repetition of what we have done in class, but that doesn't mean
+		students will know how to do it. Encourage them to outline how they would compute the first few steps
+		of Euler's method before they make a spreadsheet. Then, encourage them to start a new spreadsheet from scratch rather
+		than modify the spreadsheet we have from class. However, if a group is really struggling, you can give the opposite
+		advice: look at a spreadsheet we used in class.
 
 		There are too many problems to finish in 50 minutes and \emph{you should not be going
 		over the solution to every problem}. Solutions will be posted for the students. The goal
@@ -73,20 +72,27 @@
 		that most groups have at least started, and do this problem as a wrapup. Seeing an expert do the
 		problem is the student's reward for working so hard.
 
+		Since this tutorial involves making spreadsheets, a computer and projector setup is required.
+		Check out your tutorial room before the first tutorial to see if it has the required technology.
+		Also, rehearse making a spreadsheet for Question 1. Programming on the fly often doesn't end well.
+
 		Notes:
 		\begin{itemize}
-			\item Students won't have a good conceptualization of convex combinations which make 1(f) and 3(c).
-				These problems can also be done by describing a line in vector form (i.e., $\vec x=t\vec d+\vec p$)
-				and restricting the scalar to get points on the line segment.
-			\item For 1(e), some students might write $\{\vec x:\vec x\text{ is a convex linear combination
-				of }\vec p\text{ and }\vec q\}$. Other students might think that this description
-				is ``mathy'' enough. This description is mathy enough, but we can also expand it
-				by inserting the definition of \emph{convex linear combination} into the set.
-			\item Problem 2 is more open-ended than they're used to. Some will get excited about this, and others will
-				be turned off because it's not a ``plug and chug'' question. Emphasize to them that
-				they will be hired for their creativity and problem-solving, and not their ability to
-				answer precisely laid out questions, and this is what we're practicing!
-			\item Students will be confused what part 2(d) means. If so, take some time at the front of the room
-				to make a chalk drawing of a face and a reverse face.
-				Remember, if you're writing on a chalkboard, black and white are already reversed!
+			\item For part (b), students may ignore the scale of the axes. They'll see a squiggle but fail to notice that the range of that
+			squiggle is -0.001 to 0.001, which could be completely attributed to error.
+
+			For part (c) they can manually scan through their data or try to guess from their graph. They can also use a spreadsheet formula
+			like \verb|=IF(D5>MAX(D3:D4,D6:D7), 1, 0)| to indicate whether the current cell value is larger than the four surrounding cells.
+			Then, they can scroll to find the position of the 1s.
+
+			For part (d) they may not recognize that they can check concavity directly from the differential equation.
+
+			\item For (b), have them actually give you the explanation. We're looking for something substantially more than ``the
+			graphs get more and more periodic''. When we start doing systems of equations, this analysis will be important.
+
+			\item Most groups will not have time to get to this problem. That's okay! The moral is that you won't always
+			end up with increasing errors when using Euler's method (though often times you will), and only advanced students need
+			to understand this subtlety.
+
+			Make sure the class knows that its okay that they didn't get to this problem, but that it is good practice for them to do it at home.
 		\end{itemize}
