@@ -249,28 +249,85 @@
       \end{scope}
 
 
+
+\newcommand{\titletext}[5]{
+	\draw (#1, #2) node[right,opacity=0.55] {	
+		\textpdfrender{
+		    TextRenderingMode=Fill,
+		    LineWidth=1pt,
+		    FillColor=#4,
+		  }{\fontsize{#5}{100}\fontfamily{phv}\selectfont  \bfseries #3}
+	};
+	\draw (#1, #2) node[right] {	
+		\textpdfrender{
+		    TextRenderingMode=Stroke,
+		    LineWidth=1pt,
+		    StrokeColor=#4,
+		  }{\fontsize{#5}{100}\fontfamily{phv}\selectfont  \bfseries #3}
+	};
+}
+
+\newcommand{\subtitletext}[5]{
+	\draw (#1, #2) node[right,opacity=0.55] {	
+		\textpdfrender{
+		    TextRenderingMode=Fill,
+		    LineWidth=1pt,
+		    FillColor=#4,
+		  }{\fontsize{#5}{100}\fontfamily{phv}\selectfont #3}
+	};
+	\draw (#1, #2) node[right] {	
+		\textpdfrender{
+		    TextRenderingMode=Stroke,
+		    LineWidth=1pt,
+		    StrokeColor=#4,
+		  }{\fontsize{#5}{100}\fontfamily{phv}\selectfont #3}
+	};
+}
+
+
+
+
   \begin{scope}[yscale=-1, xscale=1, x=2.7pt, y=2.7pt,line join=miter,line cap=butt,line width=1.3pt, yshift=2.3cm, xshift=.7cm,
 	  ]
 
-	  \coordinate (SUB) at (141, 30);
-		
-    \begin{scope}[yscale=-9.7, xscale=9.7, yshift=-.96in]
-	  \fill[coverblue, opacity=.7] \LINEARALGEBRAoutline;
-	  \draw[coverblue, line width=1.3pt] \LINEARALGEBRAoutline;
-    \end{scope}
-  \end{scope}
+	\coordinate (SUB) at (141, 30);
 
+\begin{bookonly}
+	\titletext{6}{23}{Differential Equations}{coverblue}{58}	
+\end{bookonly}
+
+\begin{displayonly}
+	\titletext{6}{23}{Differential Equations}{coverblue}{50}	
+\end{displayonly}
+
+
+%    \begin{scope}[yscale=-9.7, xscale=9.7, yshift=-.96in]
+%	  \fill[coverblue, opacity=.7] \LINEARALGEBRAoutline;
+%	  \draw[coverblue, line width=1.3pt] \LINEARALGEBRAoutline;
+%    \end{scope}
+  \end{scope}
+%
 
 
   
 
 	\path[white] (SUB) node[anchor=north west] {\Large \bfseries \sffamily \coversubtitle};
 
+
+
 \newcommand{\authornames}{\huge \sffamily \bfseries \begin{tabular}{r}Jason Siefken\\Bernardo Galv\~ao-Sousa\end{tabular}}
 	\newcommand{\ypadd}{.5em}
 	\newcommand{\xpadd}{1em}
 
-	\draw (0, -24) node[right, xshift=10em] (AUTHOR) {\phantom{\authornames}};
+
+\begin{bookonly}
+	\draw (0, -24) node[right, xshift=10em] (AUTHOR) {\phantom{\authornames}};	
+\end{bookonly}
+\begin{displayonly}
+	\draw (0, -8.5) node[right, xshift=10em] (AUTHOR) {\phantom{\authornames}};	
+\end{displayonly}
+
+
 	\path let \p1 = (AUTHOR.north) in coordinate (Ab1) at (0,\y1+\ypadd);
 	\path let \p1 = (AUTHOR.north east) in coordinate (Ab2) at (\x1+\xpadd,\y1+\ypadd);
 	\path let \p1 = (AUTHOR.south east) in coordinate (Ab3) at (\x1+\xpadd,\y1-\ypadd);
@@ -278,6 +335,11 @@
 
 	\path[fill=covershade, path fading=west, opacity=.8] (Ab1) -- (Ab2) -- (Ab3) -- (Ab4);
 	\draw[covershade!80!black, line width=1.3pt] (Ab1) -- (Ab2) -- (Ab3) -- (Ab4);
+\begin{bookonly}
 	\draw (0, -24) node[right, xshift=10em, white] (AUTHOR) {\authornames};
+\end{bookonly}
+\begin{displayonly}
+	\draw (0, -8.5) node[right, xshift=10em, white] (AUTHOR) {\authornames};
+\end{displayonly}
 
 \end{tikzpicture}
