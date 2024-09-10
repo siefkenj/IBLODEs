@@ -416,6 +416,26 @@
 
 \begin{slide}
 	\question
+	Fill out the table indicating which models have which
+	properties.
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Model & Accuracy & Explanatory & (your favourite property)\\
+		\hline
+		\textbf{M$_1$} & \phantom{$\displaystyle\int$} & & \\
+		\hline
+		\textbf{M$_1^*$} &\phantom{$\displaystyle\int$} & & \\
+		\hline
+		\textbf{M$_\infty$} &\phantom{$\displaystyle\int$} & & \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{slide}
+
+\begin{slide}
+	\question
 	Recall the model \textbf{M$_1$} defined by
 	\begin{itemize}
 		\item $P_1(0)=10$
@@ -430,7 +450,7 @@
 	\begin{parts}
 		\item Suppose that \textbf{M$_1$} accurately predicts the population. Can you find a value of $k$ so that \textbf{M$_\infty$}
 		accurately predicts the population?
-		\item What are some advantages and disadvantages of the models \textbf{M$_1$} and \textbf{M$_\infty$}?
+		%\item What are some advantages and disadvantages of the models \textbf{M$_1$} and \textbf{M$_\infty$}?
 	\end{parts}
 
 	\vspace*{1in}
@@ -453,7 +473,8 @@
 
 \begin{slide}
 	\question
-	Consider the following argument:
+	Consider the following argument for the population model \textbf{S} where
+	$P'(t)=P(t)\cdot\abs{\sin(2\pi t)}$ with $P(0)=10$:
 	\begin{quote}
 		\color{blue}
 		At $t=0$, the change in population $\approx P'(0)=0$, so
@@ -462,16 +483,19 @@
 		\]
 		At $t=1$, the change in population $\approx P'(1)=0$, so
 		\[
-			P(2) \approx P(2)+P'(2)\cdot 1 = P(0)=10.
+			P(2) \approx P(1)+P'(1)\cdot 1 = P(0)=10.
 		\]
 		And so on.
 
 		So, the population of starfish remains constant.
 	\end{quote}
 	
+	%\vspace*{.1in}
 	\begin{parts}
 		\item Do you believe this argument? Can it be improved?
+		\item Simulate an improved version using a spreadsheet.
 	\end{parts}
+	\vspace*{1.5in}
 \end{slide}
 
 \begin{slide}
