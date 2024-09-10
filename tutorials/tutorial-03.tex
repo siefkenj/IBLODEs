@@ -24,9 +24,15 @@
 \usepackage{thmtools} % be able to repeat a theorem
 \usepackage{thm-restate}
 \usepackage{graphicx}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{multicol}
 \usepackage{fnpct} % fancy footnote spacing
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+%\pgfkeys{/pgf/fpu}
 
  
 \newcommand{\xh}{{{\mathbf e}_1}}
@@ -61,7 +67,7 @@
 
 \pgfkeys{/tutorial,
 	name={Tutorial 3},
-	author={Jason Siefken \& Bernardo Galvo-Souza},
+	author={Jason Siefken \& Bernardo Galv\~ao-Sousa},
 	course={MAT 244},
 	date={},
 	term={},

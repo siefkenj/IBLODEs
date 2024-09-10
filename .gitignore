@@ -1,0 +1,12 @@
+*.aux
+*.log
+*.fls
+*.pagebounds
+*.ind
+*.ilg
+*.toc
+*.fdb_latexmk
+*.out
+.vscode
+*.swp
+*.idx
