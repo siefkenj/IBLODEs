@@ -1158,6 +1158,12 @@
 		\fill[cyan!50!black] ($(current~page.south~west) + (0,\l_tmpa_dim)$) rectangle (current~page.south~east);
 	\end{tikzpicture}
 }
+%\DeclareDocumentCommand{\TypesetSlideFooterWhite}{m}{
+%	\dim_set:Nn \l_tmpa_dim {#1}
+%	\begin{tikzpicture}[remember~picture, overlay]
+%		\fill[white] ($(current~page.south~west) + (0,\l_tmpa_dim)$) rectangle (current~page.south~east);
+%	\end{tikzpicture}
+%}
 \DeclareDocumentCommand{\TypsetSlideHeader}{o m}{
 	\dim_set:Nn \l_tmpa_dim {#2}
 	\begin{tikzpicture}[remember~picture, overlay]
@@ -1363,6 +1369,97 @@
 
 
 
+
+% The \initSlides command makes the slides environment actually typeset things with the White footer instead of dark.
+\DeclareDocumentCommand{\initSlidesWhite}{}{
+	\_workbook_define_new_theorem_box:nn {definition} {
+		% For definitions, we just print the term being defined without the word "Definition" in front.
+		display~name = {},
+		color = LimeGreen!70!black,
+		bgcolor = LimeGreen!10!white,
+	}
+	\_workbook_define_new_theorem_box:nn {theorem} {
+		% For definitions, we just print the term being defined without the word "Definition" in front.
+		display~name = {Theorem},
+		color = Fuchsia,
+		bgcolor = Fuchsia!10!white,
+	}
+
+	% Slide environment. It's contents are typeset as one or two columns, depending on what fits on the
+	% page better. The optional argument is a number 
+	\DeclareDocumentEnvironment{slide}{o +b}{
+		% We typeset everything in a minipage, so we need to remember the parskip.
+		\dim_set_eq:NN \_workbook_current_parskip \parskip
+
+		% The \question macro shouldn't do anything other than increment the question counter.
+		% We typeset the question number manually
+		\DeclareDocumentCommand{\question}{}{
+			\addtocounter{question}{1}
+			\def\@currentlabel{\thequestion}
+		}
+
+		\clearpage
+		% Determine if we need a manual page break based on whether the previous slide was printed
+		% on the same page.
+		\prop_put:Nnx \g_workbook_slide_info_prop {curr_page} {\thepage}
+		\int_compare:nNnTF {\prop_item:Nn \g_workbook_slide_info_prop {curr_page}} = {\prop_item:Nn \g_workbook_slide_info_prop {last_page}} {
+			\clearpage
+		} {}
+		\prop_put:Nnx \g_workbook_slide_info_prop {curr_page} {\thepage}
+
+		% Save the question number from the start and end of the slide so we can
+		% compute how many questions are contained in this slide.
+		\prop_put:Nnx \g_workbook_slide_info_prop {question_at_start} {\thequestion}
+		\TypesetSlideBody{
+			\prop_item:Nn \g_workbook_slide_info_prop {margin_top}
+		}{
+			\prop_item:Nn \g_workbook_slide_info_prop {margin_bottom}
+		}{
+			\parskip=\_workbook_current_parskip
+			##2
+		}
+		\prop_put:Nnx \g_workbook_slide_info_prop {question_at_end} {\thequestion}
+		\prop_put:Nnx \g_workbook_slide_info_prop {num_questions} {
+			\int_eval:n {\prop_item:Nn \g_workbook_slide_info_prop {question_at_end} - \prop_item:Nn \g_workbook_slide_info_prop {question_at_start}}
+		}
+
+%		% Footer
+%		\TypesetSlideFooterWhite{\prop_item:Nn \g_workbook_slide_info_prop {margin_bottom}}
+		% Header
+		\TypsetSlideHeader[##1]{\prop_item:Nn \g_workbook_slide_info_prop {margin_top}}
+		% Body (typeset last so it appears on top of the header and footer for any overflows.
+		% It is centered in case it has been scaled to fit.
+		\hfil\box_use:N \g_workbook_slide_body_box\hfil
+
+	}{}
+
+
+	\DeclareDocumentEnvironment{parts}{o +b}{
+		\nopagebreak
+		\begin{list}{\formatpartsitem}{
+				\usecounter{partsitem}
+				\setlength{\leftmargin}{.6cm}
+				\setlength{\itemsep}{0cm}
+				\setlength{\topsep}{0cm}
+			}
+			% if we gave the [resume] argument, start counting from where we
+			% left off.
+			\ifthenelse{ \equal{##1}{resume} }{
+				\setcounter{partsitem}{\value{partsitemlast}}
+			}{}
+		
+			% we'd like an sub-enumerate environments
+			% to act like they're nested, so advance
+			% the level by one.
+			\advance\@enumdepth\@ne
+			##2
+			\setcounter{partsitemlast}{\value{partsitem}}
+		\end{list}
+	}{
+	}
+	\RenewDocumentCommand{\section}{sm}{}
+	\RenewDocumentCommand{\subsection}{sm}{}
+}
 
 
 
