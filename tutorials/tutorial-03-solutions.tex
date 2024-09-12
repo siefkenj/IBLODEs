@@ -32,15 +32,15 @@
 
 				\begin{tikzpicture}
 					\begin{axis}[
-						width=10cm,
+						width=8cm,
 						height=5cm,
-						xmin=-5.8,xmax=5.8,			
+						xmin=-1.8,xmax=6.8,			
 						ymin=-3.5,
 						ymax=3.5, xmajorgrids, ymajorgrids,
-						xtick={-5,...,5}, ytick={-10,...,10},
+						xtick={-5,...,10}, ytick={-10,...,10},
 						axis lines=middle,
 						samples=5, domain=-5:5,
-						xlabel={$K$},
+						xlabel={$t$},
 						ylabel={$L$}
 						]
 						
@@ -51,34 +51,251 @@
 							thick,
 							blue
 						] 
-						({5*sin(deg(x))}, {2*sin(deg(2*x))});
+						({x}, {2*sign(cos(deg(x)))*abs(cos(deg(x)))^(1/2)});
+						%({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
 					\end{axis}
-				\end{tikzpicture}%
+				\end{tikzpicture}
+				~~~~
+				\begin{tikzpicture}
+					\begin{axis}[
+						width=8cm,
+						height=7cm,
+						xmin=-1.8,xmax=6.8,			
+						ymin=-5.5,
+						ymax=5.5, xmajorgrids, ymajorgrids,
+						xtick={-5,...,10}, ytick={-10,...,10},
+						axis lines=middle,
+						samples=5, domain=-5:5,
+						xlabel={$t$},
+						ylabel={$K$}
+						]
+						
+						\addplot [
+							domain=0:2*pi,
+							samples=100,
+							smooth,
+							thick,
+							blue
+						] 
+						({x}, {5*sin(deg(x))});
+						%({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
+					\end{axis}
+				\end{tikzpicture}
+				
+				\item \phantom{x}
+
+				\begin{tikzpicture}
+					\begin{axis}[
+						width=8cm,
+						height=5cm,
+						xmin=-1.8,xmax=6.8,			
+						ymin=-3.5,
+						ymax=3.5, xmajorgrids, ymajorgrids,
+						xtick={-5,...,10}, ytick={-10,...,10},
+						axis lines=middle,
+						samples=5, domain=-5:5,
+						xlabel={$t$},
+						ylabel={$L$}
+						]
+						
+						\addplot [
+							domain=0:pi/2,
+							samples=100,
+							smooth,
+							thick,
+							blue
+						] 
+						({x}, {2*sign(cos(deg(2*x)))*abs(cos(deg(2*x)))^(1/2)});
+						\addplot [
+							domain=pi:2*pi,
+							samples=100,
+							smooth,
+							thick,
+							blue
+						] 
+						({x-pi/2}, {2*sign(cos(deg(x)))*abs(cos(deg(x)))^(1/2)});
+						%({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
+					\end{axis}
+				\end{tikzpicture}
+				~~~~
+				\begin{tikzpicture}
+					\begin{axis}[
+						width=8cm,
+						height=7cm,
+						xmin=-1.8,xmax=6.8,			
+						ymin=-5.5,
+						ymax=5.5, xmajorgrids, ymajorgrids,
+						xtick={-5,...,10}, ytick={-10,...,10},
+						axis lines=middle,
+						samples=5, domain=-5:5,
+						xlabel={$t$},
+						ylabel={$K$}
+						]
+						
+						\addplot [
+							domain=0:pi/2,
+							samples=100,
+							smooth,
+							thick,
+							blue
+						] 
+						({x}, {5*sin(deg(2*x))});
+						\addplot [
+							domain=pi:2*pi,
+							samples=100,
+							smooth,
+							thick,
+							blue
+						] 
+						({x-pi/2}, {5*sin(deg(x))});
+						%({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
+					\end{axis}
+				\end{tikzpicture}
 			\end{enumerate}
 
-			\item By definition, if $\vec u\in\Span(Y)$, then $\vec u=\alpha_1\vec y_1+\cdots+\alpha_4\vec y_4$.
-				By distributivity of the dot product, we have
-				\[
-					\vec x\cdot \vec u = \vec x\cdot (\alpha_1\vec y_1+\cdots+\alpha_4\vec y_4)
-					=\alpha_1(\vec x\cdot \vec y_1)+\cdots +\alpha_4(\vec x\cdot \vec y_4)=0,
-				\]
-				so $\vec x$ is orthogonal to every vector in $\Span(Y)$.
+			\item \begin{enumerate}
+				\item You can always create a graph in phase space from component graphs, but not the other way around.
+				Graphs in phase space loose all ``speed'' information, but component graphs have information about the
+				speed/velocity of a solution.
+
+				\item Component graphs allow you to visualize the relationship among different quantities in ways
+				that may not be obvious from analyzing component graphs. Component graphs, on the other hand, contain
+				complete information about a solution, including its speed/velocity.
+			\end{enumerate}
 
 			\item \begin{enumerate}
-				\item $\ell_1$ and $\ell_2$ are close and $\ell_3$ and $\ell_4$ are close.
-				\item $\vec n_1\approx\mat{-0.70711\\0.70711}$,
-					$\vec n_2\approx\mat{-0.70675\\0.70746}$,
-					$\vec n_3\approx\mat{-0.0005\\1}$, and $\vec n_4\approx\mat{-0.0003\\1}$.
-				\item
-					$\|\vec n_1-\vec n_2\|\approx 0.0005$,
-					$\|\vec n_1-\vec n_3\|\approx \|\vec n_1-\vec n_4\|
-					\approx \|\vec n_2-\vec n_3\|\approx \|\vec n_2-\vec n_4\|\approx 0.765$,
-					and
-					$\|\vec n_3-\vec n_4\|\approx 0.0017$.
+				\item The equilibrium points are labelled below.
 
-					These distances coincide with my intuitive idea of closeness. Using normal
-					vectors might be preferable to using direction vectors, because it generalizes to
-					planes. A plane has a unique
-					normal direction but infinitely many direction vectors that might be hard to compare.
+				
+				\hspace{-1.5em}\begin{tikzpicture}[scale=.6, blue]
+					% Define the vector field function
+					% based on
+					% https://www.desmos.com/calculator/o3xjzddojw
+					% x' = (x+2.87)*y*(x+8.63)
+					% y' = x*(y+7.23)*(y-4.27)
+					\def\vectorfieldx(#1,#2){(#1 + 2.87) * (#2) * (#1 + 8.63) / 200}
+					\def\vectorfieldy(#1,#2){(#1) * (#2 + 7.23) * (#2 - 4.27) / 200}
+
+					% Draw the vector field
+					\foreach \x in {-11,-10.4,...,10}
+						\foreach \y in {-10,-9.4,...,10}
+						{
+							% Calculate the vector at (\x, \y)
+							\pgfmathsetmacro\vx{\vectorfieldx(\x,\y)}
+							\pgfmathsetmacro\vy{\vectorfieldy(\x,\y)}
+							
+							% Normalize the vector for consistent arrow lengths
+							\pgfmathsetmacro\norm{sqrt(\vx*\vx + \vy*\vy + 0.01)}
+							\pgfmathsetmacro\scaleChange{atan(\norm)/100/\norm}
+							\pgfmathsetmacro\vx{\vx*\scaleChange}
+							\pgfmathsetmacro\vy{\vy*\scaleChange}
+										
+							% Draw the vector as an arrow
+							\draw[->] (\x,\y) -- ++(\vx,\vy);
+						}
+
+						% add red dots at (0,0), (-2.87, -7.23), (-2.87, 4.27), (-8.63, -7.23), (-8.63, 4.27)
+						\fill[red] (0,0) circle (0.2) node[above right,black, fill=white, xshift=0.2cm] {$A$};
+						\fill[red] (-2.87, -7.23) circle (0.2) node[above right,black, fill=white, xshift=0.2cm] {$E$};
+						\fill[red] (-2.87, 4.27) circle (0.2) node[above right,black, fill=white, xshift=0.2cm] {$B$};
+						\fill[red] (-8.63, -7.23) circle (0.2) node[above right, black, fill=white, xshift=0.2cm] {$D$};
+						\fill[red] (-8.63, 4.27) circle (0.2) node[above right, black, fill=white, xshift=0.2cm] {$C$};
+
+				\end{tikzpicture}
+
+				\item $A$ is \emph{stable}. $C$ is \emph{attracting} and \emph{stable}. $D$ is \emph{repelling} and \emph{unstable}.
+				$E$ and $B$ are \emph{unstable}.
+				
+				\item There is only one attracting equilibrium solution, $C$. It's basin of attraction is labeled below.
+				
+				\hspace{-1.5em}\begin{tikzpicture}[scale=.5, blue]
+					% Define the vector field function
+					% based on
+					% https://www.desmos.com/calculator/o3xjzddojw
+					% x' = (x+2.87)*y*(x+8.63)
+					% y' = x*(y+7.23)*(y-4.27)
+					\def\vectorfieldx(#1,#2){(#1 + 2.87) * (#2) * (#1 + 8.63) / 200}
+					\def\vectorfieldy(#1,#2){(#1) * (#2 + 7.23) * (#2 - 4.27) / 200}
+
+					% Draw the vector field
+					\foreach \x in {-11,-10.4,...,10}
+						\foreach \y in {-10,-9.4,...,10}
+						{
+							% Calculate the vector at (\x, \y)
+							\pgfmathsetmacro\vx{\vectorfieldx(\x,\y)}
+							\pgfmathsetmacro\vy{\vectorfieldy(\x,\y)}
+							
+							% Normalize the vector for consistent arrow lengths
+							\pgfmathsetmacro\norm{sqrt(\vx*\vx + \vy*\vy + 0.01)}
+							\pgfmathsetmacro\scaleChange{atan(\norm)/100/\norm}
+							\pgfmathsetmacro\vx{\vx*\scaleChange}
+							\pgfmathsetmacro\vy{\vy*\scaleChange}
+										
+							% Draw the vector as an arrow
+							\draw[->] (\x,\y) -- ++(\vx,\vy);
+						}
+
+						% add red dots at (0,0), (-2.87, -7.23), (-2.87, 4.27), (-8.63, -7.23), (-8.63, 4.27)
+						\fill[red] (0,0) circle (0.2);
+						\fill[red] (-2.87, -7.23) circle (0.2);
+						\fill[red] (-2.87, 4.27) circle (0.2);
+						\fill[red] (-8.63, -7.23) circle (0.2);
+						\fill[red] (-8.63, 4.27) circle (0.2);
+
+						\fill[green!50!black, opacity=0.5] (-11, 10) rectangle (-2.87, -7.23);
+				\end{tikzpicture}
+				
+				\item Solutions in the bounded region have horizontal asymptotes as $x\to\infty$. Solutions in the left-half
+				of the unbounded region below the bounded region have horizontal asymptotes as $x\to-\infty$. Solutions
+				in the bounded region below the equilibrium points $B$ and $C$ have asymptotes as $x\to\pm\infty$.
+				
+				\hspace{-1.5em}\begin{tikzpicture}[scale=.5, blue]
+					% Define the vector field function
+					% based on
+					% https://www.desmos.com/calculator/o3xjzddojw
+					% x' = (x+2.87)*y*(x+8.63)
+					% y' = x*(y+7.23)*(y-4.27)
+					\def\vectorfieldx(#1,#2){(#1 + 2.87) * (#2) * (#1 + 8.63) / 200}
+					\def\vectorfieldy(#1,#2){(#1) * (#2 + 7.23) * (#2 - 4.27) / 200}
+
+					% Draw the vector field
+					\foreach \x in {-11,-10.4,...,10}
+						\foreach \y in {-10,-9.4,...,10}
+						{
+							% Calculate the vector at (\x, \y)
+							\pgfmathsetmacro\vx{\vectorfieldx(\x,\y)}
+							\pgfmathsetmacro\vy{\vectorfieldy(\x,\y)}
+							
+							% Normalize the vector for consistent arrow lengths
+							\pgfmathsetmacro\norm{sqrt(\vx*\vx + \vy*\vy + 0.01)}
+							\pgfmathsetmacro\scaleChange{atan(\norm)/100/\norm}
+							\pgfmathsetmacro\vx{\vx*\scaleChange}
+							\pgfmathsetmacro\vy{\vy*\scaleChange}
+										
+							% Draw the vector as an arrow
+							\draw[->] (\x,\y) -- ++(\vx,\vy);
+						}
+
+						% add red dots at (0,0), (-2.87, -7.23), (-2.87, 4.27), (-8.63, -7.23), (-8.63, 4.27)
+						\fill[red] (0,0) circle (0.2);
+						\fill[red] (-2.87, -7.23) circle (0.2);
+						\fill[red] (-2.87, 4.27) circle (0.2);
+						\fill[red] (-8.63, -7.23) circle (0.2);
+						\fill[red] (-8.63, 4.27) circle (0.2);
+
+						% add label "bounded" at the center of the rectangle
+
+						\fill[green!50!black, opacity=0.5] (-11, 10) rectangle (-2.87, -7.23);
+						\node[above, black, fill=white, xshift=0.2cm] at (-6.935, 1.385) {bounded};
+						
+						\fill[orange!50!black, opacity=0.5] (-2.87, -7.23) rectangle (10, 4.27);
+						\node[above, black, fill=white, xshift=0.2cm] at (3.065, 0) {bounded and periodic};
+
+						\fill[red!50!black, opacity=0.5] (-11, -7.23) rectangle (10, -10);
+						\node[above, black, fill=white, xshift=0.2cm] at (0, -10) {unbounded};
+						
+						\fill[red!50!black, opacity=0.5] (-2.87, 4.27) rectangle (10, 10);
+						\node[above right, black, fill=white, xshift=0.2cm] at (0, 4.5) {unbounded};
+				\end{tikzpicture}
 			\end{enumerate}
 		\end{enumerate}
