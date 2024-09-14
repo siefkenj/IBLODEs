@@ -414,8 +414,8 @@
 
 	\begin{parts}
 		\item Write an expression for $P_n(t+1/n)$ in terms of $P_n(t)$.
-		\item Write an expression for $\Delta P$, the change in population from time $t$ to $t+\Delta t$.
-		\item Write an expression for $\frac{\Delta P}{\Delta t}$.
+		\item Write an expression for $\Delta P_n$, the change in population from time $t$ to $t+\Delta t$.
+		\item Write an expression for $\frac{\Delta P_n}{\Delta t}$.
 		\item Write down a \emph{differential equation} relating $P'(t)$ to $P(t)$ where $\displaystyle P(t)=\lim_{n\to\infty} P_n(t)$.
 	\end{parts}
 \end{slide}
@@ -1649,8 +1649,8 @@
 
 	Some research is being done on a shampoo for the dogs. It affects flea and dog reproduction:
 	\begin{itemize}
-		\item[(P1$_x$ new)] Ignoring all else, the number of parasites decays in proportion to its population with constant $1+a$.
-		\item[(P1$_y$ new)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
+		\item[(PS$_x$)] Ignoring all else, the number of parasites decays in proportion to its population with constant $1+a$.
+		\item[(PS$_y$)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
 	\end{itemize}
 	
 	
@@ -1668,8 +1668,100 @@
 %
 
 
+\begin{slide}
+	%
+	% Completed phase portrait in desmos:
+	% https://www.desmos.com/calculator/tvjag852ja
+	\question
+	Recall the tree model from Question \ref{q-phase}:
+	\begin{itemize}
+		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
+		\item $A(t)\ =$ surface area (in square meters) of all leaves at time $t$
+	\end{itemize}
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	and $0 \leq b \leq 2$
+
+	A phase portrait for this model is available at 
+	
+		{\small
+		\url{https://www.desmos.com/calculator/tvjag852ja}
+		}
+	\bigskip
+	\phantom{x}
+	\begin{parts}
+		\item Find explicit formulas for equilibrium solutions of the tree model.
+		\item Visually classify the nature of each equilibrium solution as attracting/repelling/etc..
+		\item Can you rewrite the system in matrix/affine form? Why or why not?
+	\end{parts}
+	\bigskip
+	\phantom{x}
+\end{slide}
+
+\begin{slide}
+	\question
+	A simple logistic model for a population is
+	\[
+		\frac{\d P}{\d t} = P(t)\cdot\left(1-\frac{P(t)}{2}\right)
+	\]
+	where $P(t)$ represents the population at time $t$.
+	
+	We'd like to approximate $\d P/\d t$ when $P\approx 1/2$.
+	\begin{parts}
+		\item What is the value of $\d P/\d t$ when $P=1/2$?
+		\item What is the approximate value of $\d P/\d t$ when $P=1/2+\Delta$ when $\Delta$ is small?
+		\item Write down a linear approximation $S(\Delta)$ that approximates $\d P/\d t$ when $P$ is $\Delta$ away from $1/2$.
+		\item Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is is a good approximation when $P\approx 1/2$.
+		Find a formula for $A_{1/2}(t)$ expressed in terms of $P(t)$.
+		\item Find additional affine approximations to $\d P/\d t$ centered at each equilibrium solution.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Based on our calculations from last time, we have several different equations.
+
+	\begin{tabular}{rll}
+		(Original) & $P'=P(1-P/2)$
+		& ({\small \url{https://www.desmos.com/calculator/v1coz4shtw}})\\
+		($A_{1/2}$) & $P'\approx \frac{3}{8}+\frac{1}{2}(P-\frac{1}{2})$
+		& ({\small \url{https://www.desmos.com/calculator/zsb2apxhqs}})\\
+		($A_0$) & $P'\approx P$
+		& ({\small \url{https://www.desmos.com/calculator/vw48bvqgrc}})\\
+		($A_2$) & $P'\approx -(P-2)$
+		& ({\small \url{https://www.desmos.com/calculator/i2utk6vnqh}})\\
+
+	\end{tabular}
+	
+	\begin{parts}
+		\item What do you notice about the solutions sketched on the different slope fields (in Desmos)?
+		\item Does the nature of equilibrium solutions change when using an affine approximation?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Consider the differential equation whose slope field is sketched below.
+	\[
+		P'(t) = -P(t)\cdot(0.1+P(t))\cdot(0.2+P(t)).
+	\]
+
+	{\small \url{https://www.desmos.com/calculator/ikp9rgo0kv}}
+	\begin{center}
+	\includegraphics[width=2.5in]{slope-field-ambiguous.png}
+	\end{center}
 
 
+	\bigskip	
+	\bigskip	
+	\bigskip	
+	\begin{parts}
+		\item Find all equilibrium solutions.
+		\item Use linear approximations to classify the equilibrium solutions as stable/unstable/etc..
+	\end{parts}
+\end{slide}
 
 
 
