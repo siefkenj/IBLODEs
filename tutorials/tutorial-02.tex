@@ -1,7 +1,4 @@
 \documentclass[red]{tutorial}
-
-
-
 \usepackage[no-math]{fontspec}
 \usepackage{xpatch}
 	\renewcommand{\ttdefault}{ul9}
@@ -14,7 +11,6 @@
 \usepackage{microtype} % Less badboxes
 
 
-
 \usepackage[charter,cal=cmcal]{mathdesign} %different font
 %\usepackage{euler}
  
@@ -23,9 +19,6 @@
 \usepackage{makeidx}
 \usepackage[hidelinks, urlcolor=blue]{hyperref}   % Internal hyperlinks
 \usepackage{mathtools} % replaces amsmath
-
-
-
 \usepackage{bbm} %lower case blackboard font
 \usepackage{amsthm, bm}
 \usepackage{thmtools} % be able to repeat a theorem
@@ -34,6 +27,12 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{fnpct} % fancy footnote spacing
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+%\pgfkeys{/pgf/fpu}
 
  
 \newcommand{\xh}{{{\mathbf e}_1}}
@@ -45,6 +44,7 @@
 \newcommand{\proj}{\mathrm{proj}}
 \newcommand{\Proj}{\mathrm{proj}}
 \newcommand{\Perp}{\mathrm{perp}}
+\renewcommand{\span}{\mathrm{span}\,}
 \newcommand{\Span}{\mathrm{span}\,}
 \newcommand{\Img}{\mathrm{img}\,}
 \newcommand{\Null}{\mathrm{null}\,}
@@ -71,7 +71,7 @@
 	course={MAT 244},
 	date={},
 	term={},
-	title={Modelling with Parametres}
+	title={Phase Portraits}
 	}
 
 \begin{document}

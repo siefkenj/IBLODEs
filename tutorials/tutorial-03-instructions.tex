@@ -1,54 +1,53 @@
-\subsection*{Learning Objectives}
-	Students need to be able to\ldots
+\subsection*{Learning Objectives} Students need to be able to\ldots
 	\begin{itemize}
-		\item Switch between phase portraits and component graphs.
-		\item Recognize the difference between solutions and curves in phase space.
-		\item Deduce properties of equilibrium solutions from phase portraits.
+		\item Explore how different parameters affect the qualitative
+			behaviour of solutions to a system of differential equations.
+		\item Translate back and forth between a model's equations and
+			the real-world situation that the model describes.
 	\end{itemize}
 
-\subsection*{Context}
-	We have analyzed systems of ODEs in class and in tutorial using phase portraits. We are getting ready to
-	study systems of ODEs and equilibrium solutions to system written in matrix form. This requires a very good
-	understanding of phase portraits and how they relate to solutions to systems.
 
-\subsection*{What to Do}
-	Introduce the learning objectives for the day's tutorial. Explain that phase portraits/graphs in phase space are an important
-	tool in the study of differential equations and we want to better understand how graphs in phase space
-	relate to solutions to systems of ODEs.
-
-	Start by asking students to recall what we mean when we say ``phase portrait'' and ``component space'' for a system of ODEs
-	$A'(t)=\ldots$ and $B'(t)=\ldots$. \emph{Do not give a lecture on this}, but you may have a short discussion ($< 5$ min)
-	on this distinction.
-	
-	After most groups have finished \#1, go over it as a class. Doing so will ensure everyone has a baseline understanding
-	of the distinction between phase space and component space.
-
-	Continue as usual, walking around the room and asking
-		questions while letting students work on the next problem and gathering them together
-		for discussion when most groups have finished.
-
-		7 minutes before class ends, pick a suitable problem to do as a wrap-up. Most likely, \#3 will be a good choice.
+	\subsection*{Context} In class we have studied the Fox and Rabbit
+	Lotka-Volterra system with fixed parameters. We have made a phase portrait
+	and simulated solutions using multi-dimensional Euler's method with
+	a spreadsheet. We also analyzed equilibrium solutions and their
+	relationship to phase portraits. However, we have only done this once.
+	Students need more practice!
 
 
+\subsection*{What to Do} This is a groupwork tutorial,
+	but students may not be used to working in groups.
 
-	
 \subsection*{Notes}
-	\begin{enumerate}
-		\item Hopefully this problem won't be hard for them. All the vertices line up, after all. If they are struggling,
-		it is worth spending a lot of time on this question, since they cannot use phase portraits unless they understand this.
+		\begin{enumerate}
+			\item This question should be straight forward and serve
+				as a warm-up for the tutorial. Don't spend a lot
+				of time on this question.
+			\item This question is \emph{hard} and will take most of the
+				tutorial. The only way to get qualitatively different
+				behaviour is by setting $b$ or $c$ to zero.
 
-		\item Students will struggle getting a curve for this question. If they are struggling, have them approximate
-		the curve with a polygon and try to find component graphs for the polygon first. Then they can ``smooth it out''
-		to get the curve.
-		
-		Part (b) will be especially hard. Some will struggle to even understand what the question is asking.
+				One way to see this is that there is always an
+				equilibrium in the first quadrant as long as all
+				parameters are strictly positive,
+				and populations will cycle around the equilibrium.
 
-		\item This question is a good wrap-up question. It should be quicker than all the other questions.
+				This will not be obvious to students because as they
+				change their parameters, the their phase
+				portrait won't rescale to show them what's really going
+				on. When they get to this point (and guess they have found
+				different qualitative behaviour even though they haven't)
+				have them explicitly calculate the equilibrium points
+				and have them think about when the \emph{equilibrium
+				points} exhibit a different qualitative behavriour
+				(e.g., they align on the axes instead of one being
+				in the first quadrant).
+			\item The purpose of this question is to show students that
+				even without solving a differential equation, we can
+				still make mathematically rigorous claims about the
+				behaviour of solutions.
 
-		\item This is a question for groups who have moved more quickly. Students may have forgotten what an equilibrium
-		solution is. Ask them to check their notes for the definition.
-
-		Part (c) introduces a brand new definition. Assure students that they have not learned this definition in class
-		and that's okay!
-
-	\end{enumerate}
+				This question is a ``bonus'' of sorts and you should not
+				spend time discussing this question as a group unless
+				most of the tutorial students have already spent time on this question.
+		\end{enumerate}

@@ -1,80 +1,204 @@
-		\begin{objectives}
-			In this tutorial you will explore the Lotka-Volterra model in more detail.
+%
+% Analyze new Phase Portraits
+% 1. Give two component graphs of a "solution" and ask them to graph in phase space
+% 2. Give a figure 8 in phase space and ask them to draw component graphs so that one loop is traced twice as fast as the other loop
+% 3. (a) Can you always go from component graphs to a graph in phase space? What about from a graph in phase space to component graphs? Explain.
+% (b) List at least one benefit of (i) component graphs and (ii) graphs in phase space
+% 4. Give them the graph from: https://www.desmos.com/calculator/o3xjzddojw
+% 
+% ask them to identify: (a) where are the equilibria? (b) Classify their
+% nature as stable/unstable/etc. How do you know? (c) introduce basins of
+% attraction ... (d) Divide the phase space into regions where solutions
+% exhibit different natures: where solutions are bounded forwards in time,
+% bounded backwards in time, periodic, and unbounded. (e) in which regions
+% do the _component_ graphs have asymptotes as t->infty? as t->-infty. (too
+% hard? Could the component graphs have vertical asymptotes?)
+%
+		
+		
+\begin{objectives}
+	In this tutorial you analyze phase portraits in depth.
 
-	These problems relate to the following Course Learning Objectives:
-			\textit{
-Interpret and analyze models based on differential equations using tools like simulation, phase
-portraits, analysis of stability, and linear approximation.
-			}
-		\end{objectives}
+	These problems relate to the following course learning objectives:
+	\textit{Interpret and analyze models based on differential equations using tools like simulation, phase
+	portraits, analysis of stability, and linear approximation.}
+\end{objectives}
 
+	\vspace{-1em}
 \subsection*{Problems}
-
-Consider the Predator-Prey Lotka-Volterra model (the LV model) with unknown parameters:
-\begin{align*}
-	F' &= a \cdot R\cdot F - b \cdot F \\
-	R' &= c \cdot R - d \cdot R \cdot F
-\end{align*}
-and $a,b,c,d\geq 0$. 
-
 \begin{enumerate}
-	\item In class, we used the parameters $a=0.01, b=1.1, c=1.1, d=0.1$.
+	\item Consider the following two \emph{component} graphs of a solution to the unknown system of differential equations $A'(t)=\ldots$
+	and $B'(t)=\ldots$.
 
+	\vspace{-1em}
+	\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			title={$t$ vs. $A(t)$},
+			width=7cm,
+			height=5cm,
+			xmin=-1.5,xmax=8.5,
+			ymin=-1.5,
+			ymax=5.5, xmajorgrids, ymajorgrids,
+			xtick={0,...,10}, ytick={0,1,...,10},
+			axis lines=middle,
+			samples=5, domain=-5:5]
+			
+			\addplot[red, thick] coordinates {(0,0) (2,4) (5,-1) (8,0)};
+		\end{axis}
+	\end{tikzpicture}%
+	~~~~~~~\begin{tikzpicture}
+		\begin{axis}[
+			title={$t$ vs. $B(t)$},
+			width=7cm,
+			height=5cm,
+			xmin=-1.5,xmax=8.5,
+			ymin=-1.5,
+			ymax=5.5, xmajorgrids, ymajorgrids,
+			xtick={0,...,10}, ytick={0,1,...,10},
+			axis lines=middle,
+			samples=5, domain=-5:5]
+			
+			\addplot[green!50!black, thick] coordinates {(0,1) (2,4) (5,1) (8,1)};
+		\end{axis}
+	\end{tikzpicture}
+	\end{center}
+	
 	\begin{enumerate}
-		\item	Make a phase portrait for the LV model on Desmos 
-			using the parameters from class.
-
-		\url{https://www.desmos.com/calculator/vrk0q4espx}
-
-		\item The arrows point in the clockwise direction. What would
-			it mean if the arrows pointed in the
-			\emph{counter-clockwise} direction? Explain in terms 
-			of Rabbits and Foxes. Would this be realistic?
+		\item What are the initial conditions of the graphed solution?
+		\item Is the solution periodic or not? Explain.
+		\item Sketch the solution in \textbf{phase space}.
 	\end{enumerate}
 
-	\item\label{qual}
-		Using the parameters from class, the rabbit and fox populations 
-		evolve \emph{periodically}. In this case, all
-		solutions share the same \emph{qualitative}
-		behaviour (namely they are periodic).
+	\item The following is a graph in \emph{phase space} of a solution to an unknown system of differential equations
+	$K'(t)=\ldots$ and $L'(t)=\ldots$ with initial conditions $K(0)=0$ and $L(0)=-2$.
+
+	\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=10cm,
+			height=5cm,
+			xmin=-5.8,xmax=5.8,			
+			ymin=-3.5,
+			ymax=3.5, xmajorgrids, ymajorgrids,
+			xtick={-5,...,5}, ytick={-10,...,10},
+			axis lines=middle,
+			samples=5, domain=-5:5,
+			xlabel={$K$},
+			ylabel={$L$}
+			]
+			
+            \addplot [
+                domain=0:2*pi,
+                samples=100,
+                smooth,
+                thick,
+                blue
+            ] 
+            ({5*sin(deg(x))}, {2*sign(cos(deg(x)))*abs(cos(deg(x)))^(1/2)});
+            %({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
+		\end{axis}
+	\end{tikzpicture}%
+	\end{center}
+
+	\begin{enumerate}
+		\item Draw possible component graphs for this solution.
+		\item You are given additional information: the solution curve traces out the right half 
+		twice as fast as it traces out the left half.
+		Draw possible component graphs based on this additional information.
+	\end{enumerate}
+	\item \begin{enumerate}
+		\item Can you always go from component graphs to a graph in phase space? What about 
+		from a graph in phase space to component graphs? Explain.
+		\item List at least one benefit of (i) component graphs and (ii) graphs in phase space.
+	\end{enumerate}
+	
+	\newpage
+
+	% Add challenge question where the curve has a finite arc length and ask them to draw it in component space.
+	\item (Challenge Question)
+	The following is a graph in \emph{phase space} of a solution to an unknown system of differential equations
+		$V'(t)=\ldots$ and $W'(t)=\ldots$. The solution $\Big(V(t),W(t)\Big)$ graphed below satisfies:
+		(i) $V(0)=0$ and $W(0)=-2$ and (ii) $V(t)$ and $W(t)$ are defined for all $t\in \R$.
+
+		\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=10cm,
+				height=5cm,
+				xmin=-5.8,xmax=5.8,			
+				ymin=-3.5,
+				ymax=3.5, xmajorgrids, ymajorgrids,
+				xtick={-5,...,5}, ytick={-10,...,10},
+				axis lines=middle,
+				samples=5, domain=-5:5,
+				xlabel={$V$},
+				ylabel={$W$}
+				]
+				
+				\addplot [
+					domain=(-1.5*pi+.64):(-pi/2),
+					samples=100,
+					smooth,
+					very thick,
+					blue
+				] 
+				({5*sin(deg(x))}, {2*sign(cos(deg(x)))*abs(cos(deg(x)))^(1/2)});
+				%({cos(deg(x)) / (1 + sin(deg(x))^2)}, {cos(deg(x)) * sin(deg(x)) / (1 + sin(deg(x))^2)});
+			\end{axis}
+		\end{tikzpicture}%
+		\end{center}
 
 		\begin{enumerate}
-			\item Analyze your phase portrait for different values of $a,b,c,d$ until you
-				find parameters that look like they give rise to a different
-				qualitative behaviour.
-			\item Simulate (using Euler's method in a spreadsheet) some
-				solutions that exhibit different qualitative
-				behaviour.
-			\item Tell a story about the fox and rabbit population for
-				the different parameters you came up with.
-		\end{enumerate}
-		
-		\item If $a,b,c,d>0$, the maximum rabbit population always
-			occurs when there are $c/d$ foxes.
-		\begin{enumerate}
-			\item Justify this claim. (Make sure your justification references the equations.)
-			\item Find a similar condition for when the foxes are at their maximum population.
-			\item Find conditions for when neither the rabbit nor the fox populations change.
-			\item If we relax the conditions to $a,b,c,d\geq 0$, are your conditions still valid?
-				Can your work in this question be used to explain when you should
-				expect different qualitative behaviour of solutions (i.e., what
-				you worked on in part \ref{qual})?
+			\item 
 		\end{enumerate}
 
-%		\item From the phase plane, how can you identify the maximum number of foxes/rabbits? What about the minimum?
-%		\item Find a formula for the maximum and minimum number of foxes and rabbits. \\
-%		
-%
-%		\item Using an implicit derivative, calculate $\frac{dF}{dR}$ as a function of $F$ and $R$. Solve the separable differential equation.
-%				$$
-%				-b \ln(y)+ay +dx-c\ln(x) = {\rm Constant}
-%				$$
-%		\item This means that the graphs of solutions in the phase plane, are level sets of a function $\Psi(x,y)$. What is this function $\Psi(x,y)$?
-%		\item Use this fact to find a formula for the max/min of the number of rabbits/foxes that depend only on the initial conditions $r_0$ and $f_0$ (and on the constants $a,b,c,d$).
-		
-		
 
+	%\vspace{-2em}
+	%\item Consider the following phase portrait of an unknown system $X'(t)=\ldots$ and $Y'(t)=\ldots$.
+
+	%	\hspace{-1.5em}\begin{tikzpicture}[scale=.75, blue]
+	%		% Define the vector field function
+	%		% based on
+	%		% https://www.desmos.com/calculator/o3xjzddojw
+	%		% x' = (x+2.87)*y*(x+8.63)
+	%		% y' = x*(y+7.23)*(y-4.27)
+	%		\def\vectorfieldx(#1,#2){(#1 + 2.87) * (#2) * (#1 + 8.63) / 200}
+	%		\def\vectorfieldy(#1,#2){(#1) * (#2 + 7.23) * (#2 - 4.27) / 200}
+
+	%		% Draw the vector field
+	%		\foreach \x in {-11,-10.4,...,10}
+	%			\foreach \y in {-10,-9.4,...,10}
+	%			{
+	%				% Calculate the vector at (\x, \y)
+	%				\pgfmathsetmacro\vx{\vectorfieldx(\x,\y)}
+	%				\pgfmathsetmacro\vy{\vectorfieldy(\x,\y)}
+	%				
+	%				% Normalize the vector for consistent arrow lengths
+	%				\pgfmathsetmacro\norm{sqrt(\vx*\vx + \vy*\vy + 0.01)}
+	%				\pgfmathsetmacro\scaleChange{atan(\norm)/100/\norm}
+	%				\pgfmathsetmacro\vx{\vx*\scaleChange}
+	%				\pgfmathsetmacro\vy{\vy*\scaleChange}
+	%							
+	%				% Draw the vector as an arrow
+	%				\draw[->] (\x,\y) -- ++(\vx,\vy);
+	%			}
+
+	%	\end{tikzpicture}
+	%
+	%\begin{enumerate}
+	%		\item Where are the equilibrium solutions in the phase portrait? (Can you find all five?)
+	%		\item Classify the nature of the equilibrium solutions as stable, unstable, attracting, repelling, etc.
+	%		Give a justification for each classification.
+	%		\item In phase space, the \emph{basin of attraction of an equilibrium solution $f$} is the set of initial conditions 
+	%		 lead where solutions asymptotically approach $f$. For each attracting equilibrium solution, identify its basin of attraction.
+	%		\item Divide the phase space into regions where solutions are:
+	%		\begin{enumerate}
+	%			\item Bounded vs. unbounded. 
+	%			\item Periodic vs. non-periodic.
+	%			\item Have horizontal asymptotes as $t\to\infty$ vs. $t\to-\infty$.
+	%		\end{enumerate}	
+	%		Note: when we talk about a \emph{solution}	(e.g., being bounded), we are always referring to its behaviour in component space.
+	%	\end{enumerate}
 	
-	
-		
 \end{enumerate}
