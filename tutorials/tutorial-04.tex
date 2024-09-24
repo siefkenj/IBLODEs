@@ -1,0 +1,86 @@
+\documentclass[red]{tutorial}
+\usepackage[no-math]{fontspec}
+\usepackage{xpatch}
+	\renewcommand{\ttdefault}{ul9}
+	\xpatchcmd{\ttfamily}{\selectfont}{\fontencoding{T1}\selectfont}{}{}
+	\DeclareTextCommand{\nobreakspace}{T1}{\leavevmode\nobreak\ }
+\usepackage{polyglossia} % English please
+	\setdefaultlanguage[variant=us]{english}
+%\usepackage[charter,cal=cmcal]{mathdesign} %different font
+%\usepackage{avant}
+\usepackage{microtype} % Less badboxes
+
+
+\usepackage[charter,cal=cmcal]{mathdesign} %different font
+%\usepackage{euler}
+ 
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{blindtext}
+\usepackage{calc, ifthen, xparse, xspace}
+\usepackage{makeidx}
+\usepackage[hidelinks, urlcolor=blue]{hyperref}   % Internal hyperlinks
+\usepackage{mathtools} % replaces amsmath
+\usepackage{bbm} %lower case blackboard font
+\usepackage{amsthm, bm}
+\usepackage{thmtools} % be able to repeat a theorem
+\usepackage{thm-restate}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{fnpct} % fancy footnote spacing
+
+ 
+\newcommand{\xh}{{{\mathbf e}_1}}
+\newcommand{\yh}{{{\mathbf e}_2}}
+\newcommand{\zh}{{{\mathbf e}_3}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\Span}{\mathrm{span}\,}
+\newcommand{\Img}{\mathrm{img}\,}
+\newcommand{\Null}{\mathrm{null}\,}
+\newcommand{\Range}{\mathrm{range}\,}
+\newcommand{\rref}{\mathrm{rref}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\nnul}{\mathrm{nullity}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\Id}{\operatorname{id}}
+
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{defn}{Definition}[section]
+
+%\theoremstyle{theorem}
+\newtheorem{thm}{Theorem}[section]
+
+\pgfkeys{/tutorial,
+	name={Tutorial 4},
+	author={Jason Siefken \& Bernardo Galv\~ao-Sousa},
+	course={MAT 244},
+	date={},
+	term={},
+	title={Linear Algebra \& Differential Equations}
+	}
+
+\begin{document}
+	\begin{tutorial}
+		\input{./tutorial-04-questions.tex}
+	\end{tutorial}
+
+	\begin{solutions}
+		\input{./tutorial-04-solutions.tex}
+	
+	\end{solutions}
+	\begin{instructions}
+		\input{./tutorial-04-instructions.tex}
+	\end{instructions}
+
+\end{document}

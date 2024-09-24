@@ -1,39 +1,71 @@
 		\begin{objectives}
-			Projections are used in mathematics, physics, computer science, and
-			statistics.
-	In this tutorial you will obtain a deeper understanding of projections.
+			In this tutorial you will explore some of the ways that Linear Algebra techniques can be applied to the
+			study of differential equations.
 
-	These problems relate to the following course learning objectives:
-			\textit{Translate between algebraic and geometric viewpoints to solve problems},
-			and
-			\textit{work independently to understand concepts and procedures that have not been previously
-			explained to you}.
+				These problems relate to the following course learning objectives:
+						\textit{Apply linear algebra techniques to classify solutions of linear systems of ordinary differential
+			equations including rigorously classifying the stability of equilibrium solutions and creating
+			linear approximations to non-linear systems of ordinary differential equations.}
 		\end{objectives}
 
 		\vspace{-.5em}
 		\subsection*{Problems}
 		\vspace{-.5em}
 
-		Let $R$ be the square with side-length 1 and lower-left corner at $(0,0)$;
-		let $C$ be the corners of $R$; and, let $S$ be the circle of radius $\sqrt{2}$ centered
-		at $(0,0)$.
+	%	In MAT223, you studied linear algebra in the context of $\R^n$ where vectors were geometric objects. We can expand our notion of 
+	%	vectors to include \emph{functions} from $\R$ to $\R$ (you can think of functions as vectors in $\R^{\infty}$).
 
 \begin{enumerate}
-	\item Write down a mathematically precise definition of the projection of the vector $\vec v$ onto the set $X$.
-	\item Let $\vec v_1=\mat{1/3\\0}$, $\vec v_2=\mat{2\\2}$, $\vec v_3=\mat{2\\1}$ and $\vec v_4=\mat{1/3\\2}$.
+	\item\label{q1}
+	Recall from Linear Algebra that for a matrix $M$, the complete solution to the equation $M\vec x=\vec b$ can be expressed as
+	\[
+		\Null(M)+\{\vec p\}
+	\]
+		where $\vec p$ is a particular solution to $M\vec x=\vec b$.
+		
 	\begin{enumerate}
-		\item Draw $R$, $C$, and $S$ on separate grids.
-		\item Using your drawings, estimate the projections of $\vec v_1$, \ldots, $\vec v_4$ onto $R$, $C$, and $S$.
-		\item Compute exactly the projections of $\vec v_1$, \ldots, $\vec v_4$ onto $R$, $C$, and $S$.
+		\item Suppose $\vec u=\mat{1\\2}$ and $\vec v=\mat{-2\\3}$ are two solutions to $M\vec x=\vec b$. Use this information
+		to find at least three vectors in $\Null(M)$.
+		\item Based on the information above, find three more solutions to $M\vec x=\vec b$.
+		\item Do you expect $\vec u+\vec v$ to be a solution to $M\vec x=\vec b$? Why or why not?
+	\end{enumerate}
+
+	\item Consider the differential equation
+	\[
+		y''+y=2
+	\]
+	\begin{enumerate}
+		\item Show that $u(t)=x^2+\sin t$ and $v(t)=x^2+3\sin t$ are solutions to the differential equation.
+		\item Use what you learned in Question \ref{q1} to find three additional solutions to the differential equation.
+		\item The function $u(t)-v(t)=-2\sin t$ can be considered to be in the ``null space'' of some transformation. What is this transformation?
+		\item Let $K\neq 1$. Why is $x^2+K\sin t$ a solution to the differential equation but $K(x^2+\sin t)$ not? Explain using linear algebra concepts.
+	\end{enumerate}
+
+	\item In this question, we will continue exploring the differential equation $y''+y=2$.
+	
+	Let $\mathcal C=\{\text{infinitely differentiable functions from $\R$ to $\R$}\}$, let $\Id:\mathcal C\to\mathcal C$
+	be the identity transformation and let $D^2:\mathcal C\to\mathcal C$ be the transformation that sends a function $f(t)$ to its second derivative $f''(t)$.
+
+	Define $T=D^2+\Id$.
+
+	\begin{enumerate}
+		\item Show that $\Id$ and $D^2$ are linear transformations.
+		\item Show that $T$ is a linear transformation.
+		\item Find $\Null(\Id)$ and $\Null(D^2)$.
+		\item Show that $\sin$ and $\cos$ are in $\Null(T)$.
+	\end{enumerate}
+
+
+	\item \begin{enumerate}
+		\item Write down the definition of a \emph{subspace} of a vector space $X$.
+		\item Let $\mathcal F=\{\text{functions from $\R$ to $\R$}\}$. Show that $\mathcal F$ satisfies the properties of a subspace.
 	\end{enumerate}
 
 
 	\item Let $\ell$ be the line given in vector form by $\vec x=t\vec d$ where $\vec d=\mat{1\\2}$, and let $\vec r=\mat{2\\2}$.
 		\begin{enumerate}
 			\item Find a formula for the distance between $t\vec d$ and $\vec r$ in terms of $t$.
-			\item Compute $\Proj_\ell \vec r$.
 			\item What is the angle between $\vec d$ and $\vec r-\Proj_\ell \vec r$?
-			\item Explain the link between $\Proj_\ell \vec r$ and $\Comp_{\vec d}\vec r$.
 		\end{enumerate}
 
 	\item In $\R^3$, the projection of a vector onto the $xy$-plane can be thought of as the shadow
