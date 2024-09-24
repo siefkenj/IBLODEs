@@ -1,56 +1,47 @@
 \subsection*{Learning Objectives}
 	Students need to be able to\ldots
 	\begin{itemize}
-		\item Compute projections from the definition without memorizing a formula
-		\item Exploit right angles to compute projections that would otherwise be
-			difficult
+		\item Recall and use Linear Algebra concepts from MAT223
+		\item Use existing solutions to find other solutions to linear ODEs
 	\end{itemize}
 
 \subsection*{Context}
-	Students have covered projections and components in class two weeks ago. Last week they started
-		working with matrices/matrix multiplication.
-
-	In this class, $\Proj_X\vec v$ is defined as the closest vector in $X$ to $\vec v$. It is \emph{not}
-		defined in terms of a formula. Also, to avoid confusion, we \emph{don't write}
-		$\Proj_{\vec u}\vec v$, since this is easily confused with projection onto a singleton.
-		is orthogonal to $\vec u$. There is a formula for this operation (unlike projections), and they
-		should all know it since they've used it on their homework.
+	We have just started applying linear algebra concepts to MAT244. We have written systems of first-order ODEs
+	in matrix form and are exploring how eigenvectors of that matrix relate to eigen solutions and general solutions.
+	However, students are very fuzzy on their Linear Algebra. About 1/3rd of the students are currently taking MAT224,
+	but many of the others haven't seen Linear Algebra in at least 6 months. And, their foundation may have been shaky to begin with.
 
 \subsection*{What to Do}
-	Introduce the learning objectives for the day's tutorial. Explain that, like most things in life,
-		there is no algorithm to compute projections---the only way to do it is to understand
-		the idea. Since we're practicing learning and understanding non-algorithmic tasks in this
-		class, projections provide the perfect place to practice.
+	Introduce the learning objectives for the day's tutorial. Explain that linear algebra concepts are
+	very useful in analyzing and solving differential equations. Also explain that while you can look up
+	any concepts you've forgotten, it is much better for memory to struggle to remember on your own \emph{before}
+	you look up concepts you may have forgotten.
 
-	Have students pair up and write the definition of projection. Again, make them
-		write it. These definitions will show up on the midterms and many will
-		write them wrong. Again, you might have some groups come up to the board and
-		write their definitions and then have a short class discussion on whether they are right.
-		This definition will be easier for them since there aren't any quantifiers.
+	Have students pair up and start with a \textbf{Warmup:}
+	\begin{itemize}
+		\item Write down the definition of the \emph{null space} of a linear transformation.
+	\end{itemize}
 
-		After everyone is on the same page with the definition, have them continue on \#2.
-		The point of \#2 is to have them cement in their minds the link between projections
-		and orthogonality. Don't give this point away too readily--it's best if they discover it themselves, so
-		they \emph{own} it.
+		Many will struggle. After 3 minutes, discuss the definition as a whole class (it is necessary to make progress on \#1).
 
-		After most of finished \#2, have a class discussion and repeat with \#3. Remember, your goal
-		is not to get through problems. This tutorial has \emph{way} more problems than the students
-		will be able to get through.
+		After the warmup, have the students work in groups on the remaining problems. Circulate and ask/answer questions as usual.
 
 		7 minutes before the end of class, pick a problem that most students have started working on
 		to do as a wrap-up.
 
 \subsection*{Notes}
-	\begin{itemize}
-		\item The definition of $\Proj_X\vec v$ is written mostly with words instead of with
-			set notation. This might throw some students off---they won't be able to tell that it's precise.
-		\item Projections relate to orthogonality, but not always. \#2 is designed to tease this out---that
-			for non-smooth shapes projections might not relate to orthogonality.
-		\item With our definition, $\Proj_X\vec v$ might not be unique and so might not be well defined. We will
-			never try to trick a student by giving them a non-unique projection. If a student asks about
-			this, you can tell them that on tests the projection will always be unique.
-		\item For \#3, student \emph{should} know how to minimize a parabola, but many won't. However, almost all
-			have taken calculus in high school, so feel free to use basic calculus to answer that question.
-		\item You won't get to \#4, but if students are working on it, make sure they draw a picture. It's very
-			hard to do in one's head.
-	\end{itemize}
+	\begin{enumerate}
+			\item In part (a) students may need a hint. Ask them: ``What does $\vec u$ correspond to in the expression $\Null(M)+\{\vec p\}$?''
+			Part (c) we don't have enough information to answer definitively (the vector $\vec b$ could be the zero vector, after all), but we can
+			answer in the ``general'' case.
+
+			\item Part (a) should be straight forward. Part (b) will make many students confused and uncomfortable. We're asking them to take
+			a leap of faith. The wording of the problem is to ``guess'' a solution, not to ``find'' a solution. Remind them that it is very quick
+			to check if a guess is correct, so they can try lots of things.
+
+			Part (d) can be answered by actually differentiating the expressions or with a hand-wavy answer like 1(c).
+
+			\item This question steps the abstraction up and is much harder. It is there fore the students who have a solid linear
+			algebra background. If you see students working on this question, make sure they can explain questions \#1 and \#2. If they
+			cannot, send them back to those questions.
+	\end{enumerate}

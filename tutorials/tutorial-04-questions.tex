@@ -36,51 +36,24 @@
 	\]
 	\begin{enumerate}
 		\item Show that $u(t)=x^2+\sin t$ and $v(t)=x^2+3\sin t$ are solutions to the differential equation.
-		\item Use what you learned in Question \ref{q1} to find three additional solutions to the differential equation.
+		\item Use a process similar to what you did in Question \ref{q1} to guess three additional solutions to the differential equation. Verify
+		whether or not your guesses are actually solutions.
 		\item The function $u(t)-v(t)=-2\sin t$ can be considered to be in the ``null space'' of some transformation. What is this transformation?
-		\item Let $K\neq 1$. Why is $x^2+K\sin t$ a solution to the differential equation but $K(x^2+\sin t)$ not? Explain using linear algebra concepts.
+		\item Let $K\neq 1$. Why is $t^2+K\sin t$ a solution to the differential equation but $K(t^2+\sin t)$ not? Explain using linear algebra concepts.
 	\end{enumerate}
 
 	\item In this question, we will continue exploring the differential equation $y''+y=2$.
 	
 	Let $\mathcal C=\{\text{infinitely differentiable functions from $\R$ to $\R$}\}$, let $\Id:\mathcal C\to\mathcal C$
-	be the identity transformation and let $D^2:\mathcal C\to\mathcal C$ be the transformation that sends a function $f(t)$ to its second derivative $f''(t)$.
-
-	Define $T=D^2+\Id$.
+	be the identity transformation, and let $D^2:\mathcal C\to\mathcal C$ be the transformation that sends a function to its second derivative.
+	Additionally,define $T=D^2+\Id$.
 
 	\begin{enumerate}
-		\item Show that $\Id$ and $D^2$ are linear transformations.
+		\item Show that $\Id$ and $D^2$ are linear transformations. (Use the same definition of Linear Transformation as in your Linear Algebra courses.)
 		\item Show that $T$ is a linear transformation.
 		\item Find $\Null(\Id)$ and $\Null(D^2)$.
 		\item Show that $\sin$ and $\cos$ are in $\Null(T)$.
+		\item You may take as a fact that $\Null(T)$ is two dimensional. Using this fact, find the complete solution to $y''+y=2$. Justify your steps.
 	\end{enumerate}
-
-
-	\item \begin{enumerate}
-		\item Write down the definition of a \emph{subspace} of a vector space $X$.
-		\item Let $\mathcal F=\{\text{functions from $\R$ to $\R$}\}$. Show that $\mathcal F$ satisfies the properties of a subspace.
-	\end{enumerate}
-
-
-	\item Let $\ell$ be the line given in vector form by $\vec x=t\vec d$ where $\vec d=\mat{1\\2}$, and let $\vec r=\mat{2\\2}$.
-		\begin{enumerate}
-			\item Find a formula for the distance between $t\vec d$ and $\vec r$ in terms of $t$.
-			\item What is the angle between $\vec d$ and $\vec r-\Proj_\ell \vec r$?
-		\end{enumerate}
-
-	\item In $\R^3$, the projection of a vector onto the $xy$-plane can be thought of as the shadow
-		of the vector at high noon. But where would this shadow be when it's not high noon?\
-
-		To simplify things, let's work in $\R^2$. Assume the $x$-axis is the ``ground'' and the $y$-axis is
-		pointing straight up. If the sun is located far off in the distance in the direction of $\vec e_2$,
-		the shadow of a vector will be its projection onto the $x$-axis.
-		\begin{enumerate}
-			\item Find a formula for where the shadow of the vector $\vec x=\mat{x\\y}$ will be at high noon.
-			\item Suppose the ground is modeled with the equation $y=\tfrac{1}{2}x$ and that at 4:00pm, the sun shines
-				perpendicularly to the ground. That is, the sun is far away in the direction $\mat{-1\\2}$.
-				Find a formula for the shadow of the vector $\vec x=\mat{x\\y}$ on the slanted ground at 4:00pm.
-			\item The vector $\vec y=\mat{a\\b}$ is above flat ground (i.e., the ground is modeled by the $x$-axis).
-				Find a formula for the position of the shadow of $\vec y$ at 4:00pm.
-		\end{enumerate}
 
 \end{enumerate}
