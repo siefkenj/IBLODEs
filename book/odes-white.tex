@@ -414,8 +414,8 @@
 
 	\begin{parts}
 		\item Write an expression for $P_n(t+1/n)$ in terms of $P_n(t)$.
-		\item Write an expression for $\Delta P$, the change in population from time $t$ to $t+\Delta t$.
-		\item Write an expression for $\frac{\Delta P}{\Delta t}$.
+		\item Write an expression for $\Delta P_n$, the change in population from time $t$ to $t+\Delta t$.
+		\item Write an expression for $\frac{\Delta P_n}{\Delta t}$.
 		\item Write down a \emph{differential equation} relating $P'(t)$ to $P(t)$ where $\displaystyle P(t)=\lim_{n\to\infty} P_n(t)$.
 	\end{parts}
 \end{slide}
@@ -443,6 +443,8 @@
 
 \begin{slide}
 	\question
+	Suppose that the estimates produced by \textbf{M$_1$} agree with the actual (measured) population of starfish.
+
 	Fill out the table indicating which models have which
 	properties.
 
@@ -573,7 +575,7 @@
 	Consider the following models for starfish growth
 	\begin{itemize}
 		\item[\textbf{M}] \# new children per year $\sim$ current population
-		\item[\textbf{N}] \# new children per year $\sim$ resources available per individual
+		\item[\textbf{N}] \# new children per year $\sim$ current population times resources available per individual
 		\item[\textbf{O}] \# new children per year $\sim$ current population times the fraction of total resources remaining
 	\end{itemize}
 
@@ -589,7 +591,7 @@
 	Recall the models
 	\begin{itemize}
 		\item[\textbf{M}] \# new children per year $\sim$ current population
-		\item[\textbf{N}] \# new children per year $\sim$ resources available per individual
+		\item[\textbf{N}] \# new children per year $\sim$ current population times resources available per individual
 		\item[\textbf{O}] \# new children per year $\sim$ current population times the fraction of total resources remaining
 	\end{itemize}
 
@@ -611,9 +613,9 @@
 	\question
 	A simple model for population growth has the form
 	\[
-		P'(t) = kP(t)
+		P'(t) = bP(t)
 	\]
-	where $k$ is the \emph{birth rate}.
+	where $b$ is the \emph{birth rate}.
 
 	\begin{parts}
 		\item Create a better model for population that includes both births and deaths.
@@ -622,19 +624,37 @@
 
 \begin{slide}
 	\question
-	The \emph{Lotka-Volterra Predator-Prey} models two populations, $F$ (foxes) and $R$ (rabbits), simultaneously. It takes the form
+	\emph{Lotka-Volterra Predator-Prey} models predict two populations, $F$ (foxes) and $R$ (rabbits), simultaneously. They take the form
 	\begin{align*}
 		F'(t) &= (B_F - D_F)\cdot F(t)\\
 		R'(t) &= (B_R - D_R)\cdot R(t)
 	\end{align*}
 	where $B_{?}$ stands for births and $D_{?}$ stands for deaths.
 
+	We will assume:
+	\vspace{-.3cm}
+	\begin{itemize}
+		\item Foxes die at a constant rate.
+		\vspace{-.1cm}
+		\item Foxes mate when food is plentiful.
+		\vspace{-.1cm}
+		\item Rabbits mate at a constant rate.
+		\vspace{-.1cm}
+		\item Foxes eat rabbits.
+	\end{itemize}
+
+	\bigskip
 	\begin{parts}
-		\item Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$, given your knowledge about
-		how foxes and rabbits might interact.
-		\item When would $B_F$ and $D_F$ be at their max/min?
-		\item When would $B_R$ and $D_R$ be at their max/min?
+		\item Speculate on when $B_F$, $D_F$, $B_R$, and $D_R$ would be at their maximum(s)/minimum(s), given our assumptions.
+		\item Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$.
 	\end{parts}
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	\phantom{x}
 \end{slide}
 
 \begin{slide}
@@ -666,7 +686,7 @@
 	\end{align*}
 
 	\begin{parts}
-		\item Is the max population of the rabbits being over/under estimated? Sometimes over, sometimes under?
+		\item Is the max population of the rabbits over/under estimated? Sometimes over, sometimes under?
 		\item What about the foxes?
 		\item What about the min populations?
 	\end{parts}
@@ -808,13 +828,13 @@
 		\item If you were sketching the slope field for model \textbf{O} by hand, what line would you sketch
 		(a segment of) at $(5,3)$? Write an equation for that line.
 		\item How can you recognize equilibrium solutions in a slope field?
-		\item Describe different solutions to the \emph{differential equation} using words. Do all
+		\item Give qualitative descriptions of different solutions to the \emph{differential equation} used in model \textbf{O} (i.e., use words to describe them). Do all
 		of those solutions make sense in terms of \emph{model \textbf{O}}?
 	\end{parts}
 \end{slide}
 
 \begin{slide}
-	% https://www.desmos.com/3d/fsfbhvy2h9
+	% https://www.desmos.com/3d/kvyztvmp0g
 
 	\question
 	
@@ -826,7 +846,7 @@
 
 	On the left is a slope field for the Foxes--Rabbits model.
 
-	\url{https://www.desmos.com/3d/fsfbhvy2h9}
+	\url{https://www.desmos.com/3d/kvyztvmp0g}
 
 	\begin{parts}
 		\item What are the three dimensions in the plot?
@@ -860,7 +880,9 @@
 		\item What do the $x$ and $y$ axes correspond to?
 		\item Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
 		\item Classify each equilibrium as stable/unstable.
-		\item Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
+		\item Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the resulting
+		curve fit with the picture?
+		%\item Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
 	\end{parts}
 \end{slide}
 
@@ -1617,15 +1639,211 @@
 	\end{parts}
 \end{slide}
 
+\begin{slide}
+	\question
+		Consider the differential equation
+		\[
+		\vec s\,'(t) = M\vec s(t)\qquad\text{where}\qquad M=\mat{-1&-4\\2&3}
+		\]
+	
+	\begin{parts}
+		\item Find eigen solutions for this differential equation (you may use a calculator/computer to assist).
+		\item Find a general \emph{real} solution.
+		\item Make a phase portrait. What do sketches of your solutions look like in phase space?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+ 		Recall the \textbf{DF} model of Dogs and Fleas where 
+	\begin{align*}
+		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		\vec s(t) = \vec r(t) - \mat{3\\5}
+	\end{align*}
+	and
+	\begin{align*}
+		\vec s\,'(t) &= M\,\vec s(t)\qquad\text{where}\qquad M=\mat{-1&1\\-2&1}.
+	\end{align*}
+
+	Some research is being done on a shampoo for the dogs. It affects flea and dog reproduction:
+	\begin{itemize}
+		\item[(PS$_x$)] Ignoring all else, the number of parasites decays in proportion to its population with constant $1+a$.
+		\item[(PS$_y$)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
+	\end{itemize}
+	
+	
+	\begin{parts}
+		\item Modify the previous \textbf{DF} model to incorporate the effects of the shampoo.
+		\item Make a phase portrait for the \textbf{DF Shampoo} model.
+		\item Find the equilibrium solutions for the \textbf{DF Shampoo} model.
+		\item For each equilibrium solution determine its stability/instability/etc..
+		\item Analytically justify your conclusions about stability/instability/etc..
+	\end{parts}
+\end{slide}
+
 %
 % Hours 24-26
 %
 
 
+\begin{slide}
+	%
+	% Completed phase portrait in desmos:
+	% https://www.desmos.com/calculator/tvjag852ja
+	\question
+	Recall the tree model from Question \ref{q-phase}:
+	\begin{itemize}
+		\item $H(t)\ =$ height (in meters) of tree trunk at time $t$
+		\item $A(t)\ =$ surface area (in square meters) of all leaves at time $t$
+	\end{itemize}
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	and $0 \leq b \leq 2$
+
+	A phase portrait for this model is available at 
+	
+		{\small
+		\url{https://www.desmos.com/calculator/tvjag852ja}
+		}
+	\bigskip
+	\phantom{x}
+	\begin{parts}
+		\item Find explicit formulas for equilibrium solutions of the tree model.
+		\item Visually classify the nature of each equilibrium solution as attracting/repelling/etc..
+		\item Can you rewrite the system in matrix/affine form? Why or why not?
+	\end{parts}
+	\bigskip
+	\phantom{x}
+\end{slide}
+
+\begin{slide}
+	\question
+	A simple logistic model for a population is
+	\[
+		\frac{\d P}{\d t} = P(t)\cdot\left(1-\frac{P(t)}{2}\right)
+	\]
+	where $P(t)$ represents the population at time $t$.
+	
+	We'd like to approximate $\d P/\d t$ when $P\approx 1/2$.
+	\begin{parts}
+		\item What is the value of $\d P/\d t$ when $P=1/2$?
+		\item What is the approximate value of $\d P/\d t$ when $P=1/2+\Delta$ when $\Delta$ is small?
+		\item Write down a linear approximation $S(\Delta)$ that approximates $\d P/\d t$ when $P$ is $\Delta$ away from $1/2$.
+		\item Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is is a good approximation when $P\approx 1/2$.
+		Find a formula for $A_{1/2}(t)$ expressed in terms of $P(t)$.
+		\item Find additional affine approximations to $\d P/\d t$ centered at each equilibrium solution.
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Based on our calculations from last time, we have several different equations.
+
+	\begin{tabular}{rll}
+		(Original) & $P'=P(1-P/2)$
+		& ({\small \url{https://www.desmos.com/calculator/v1coz4shtw}})\\
+		($A_{1/2}$) & $P'\approx \frac{3}{8}+\frac{1}{2}(P-\frac{1}{2})$
+		& ({\small \url{https://www.desmos.com/calculator/zsb2apxhqs}})\\
+		($A_0$) & $P'\approx P$
+		& ({\small \url{https://www.desmos.com/calculator/vw48bvqgrc}})\\
+		($A_2$) & $P'\approx -(P-2)$
+		& ({\small \url{https://www.desmos.com/calculator/i2utk6vnqh}})\\
+
+	\end{tabular}
+	
+	\begin{parts}
+		\item What do you notice about the solutions sketched on the different slope fields (in Desmos)?
+		\item Does the nature of equilibrium solutions change when using an affine approximation?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Consider the differential equation whose slope field is sketched below.
+	\[
+		P'(t) = -P(t)\cdot(0.1+P(t))\cdot(0.2+P(t)).
+	\]
+
+	{\small \url{https://www.desmos.com/calculator/ikp9rgo0kv}}
+	\begin{center}
+	\includegraphics[width=2.5in]{slope-field-ambiguous.png}
+	\end{center}
 
 
+	\bigskip	
+	\bigskip	
+	\bigskip	
+	\begin{parts}
+		\item Find all equilibrium solutions.
+		\item Use linear approximations to classify the equilibrium solutions as stable/unstable/etc..
+	\end{parts}
+\end{slide}
 
+\begin{slide}
+	\question
+	To make a 1d affine approximation of a function $f$ at the point $E$ we have the formula
+	\[
+		f(x)\qquad \approx\qquad f(E) + f'(E)(x-E).
+	\]		
 
+	To make a 2d approximation of a function $\vec F(x,y)=\Big(F_1(x,y), F_2(x,y)\Big)$ at the point $\vec E$,
+	we have a similar formula
+	\[
+		\vec F(x,y)\qquad \approx \qquad \vec F(\vec E) + D_{\vec F}(\vec E)\Big((x,y)-\vec E\Big)
+	\]
+	where $D_{\vec F}(\vec E)$ is the \emph{total derivative} of $\vec F$ at $\vec E$, which can be expressed
+	as the matrix
+	\[
+		D_{\vec F}(\vec E) = \mat{
+			\rule[-0.5cm]{0pt}{.8cm}\displaystyle \frac{\partial F_1}{\partial x} &\displaystyle  \frac{\partial F_1}{\partial y}\\
+			\rule[-0.2cm]{0pt}{.3cm}\displaystyle  \frac{\partial F_2}{\partial x} &\displaystyle  \frac{\partial F_2}{\partial y}
+		}
+	\]
+	evaluated at $\vec E$.
+\end{slide}
+
+\begin{slide}
+	
+	Recall our model from Question \ref{q-phase} for the life cycle of a tree where $H(t)$ was
+	height, $A(t)$ was the leaves' surface area, and $t$ was time:
+	\begin{align*}
+		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
+		A'(t) &= -0.3\cdot (H(t))^2 + A(t)
+	\end{align*}
+	with $0 \leq b \leq 2$
+
+	\bigskip
+	
+	We know the following:
+	\begin{itemize}
+		\item The equations cannot be written in matrix form.
+		\item The equilibrium points are $(0,0)$ and $\Big(\frac{100}{9}b,\frac{1000}{27}b^2\Big)$.			
+	\end{itemize}	
+
+	We want to find an affine approximation to the system.
+
+	Define $\vec F(H,A)=(H', A')$
+	\begin{parts}
+		\item Find the matrix for $D_{\vec F}$, the total derivative of $\vec F$.
+		\item Create an affine approximation to $\vec F$ around $(0,0)$ and use this to write an approximation to the original system.
+		\item\label{affine-approx}
+		 Create an affine approximation to $\vec F$ around $(\frac{100}{9}b,\frac{1000}{27}b^2)$ and use this to write an approximation to the original system.
+		
+		\bigskip 
+		\item Make a phase portrait for the original system and your approximation from part \ref{affine-approx}. How do they compare?
+		\item Analyze the nature of the equilibrium solution in part \ref{affine-approx} using eigen techniques. Relate your analysis to
+		the original system.
+
+	\end{parts}
+\end{slide}
+
+%
+% Hours 27-29
+%
 
 
 
