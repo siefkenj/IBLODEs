@@ -9,12 +9,12 @@
 		\end{enumerate}
 		
 		\item \begin{enumerate}
-			\item Differentiating, we see $u''+y=2$ and $v''+v=2$.
+			\item Differentiating, we see $u''+u=t^2-2$ and $v''+v=t^2-2$.
 			\item By computing $u(t)-v(t)=-2\sin t$, we can guess that $u-2\sin$, $u-4\sin$, and $u-6\sin$ are all solutions. Computing,
 			we verify that they indeed are.
 			\item The transformation can be described in words by ``Take the second derivative of the function and then add one copy of the original function''.
 			\item Similarly to the previous problem, we do not expect the solution set to be a subspace. However, with the transformation described in
-			part (c), we can realize $t^2+K\sin t$ as a particular solution, $t^2$, plus a multiple of something in the null space, $\sin t$.
+			part (c), we can realize $t^2-2+K\sin t$ as a particular solution, $t^2-2$, plus a multiple of something in the null space, $\sin t$.
 		\end{enumerate}
 		
 		\item \begin{enumerate}
@@ -40,12 +40,12 @@
 			\item Computing $T(\sin) = -\sin+\sin=0$ and $T(\cos) = -\cos+\cos=0$ and so $\sin,\cos\in \Null(T)$.
 			\item First note that $\{\sin,\cos\}$ is a linearly independent set. Therefore $\Null(T)=\Span\{\sin,\cos\}$.
 
-			Now, notice that $x^2$ is a particular solution to $T(f)=2$. Because the equation $T(f)=2$ is a linear equation,
-			we can write the complete solution as $\text{particular}+\Null(T)$ and so the complete solution to $T(f)=2$ is
+			Now, notice that $t^2-2$ is a particular solution to $T(f)=t^2-2$. Because the equation $T(f)=t^2-2$ is a linear equation,
+			we can write the complete solution as $\text{particular}+\Null(T)$ and so the complete solution to $T(f)=t^2-2$ is
 			\[
-				\{x^2\}+\Span\{\sin x,\cos x\}.
+				\{t^2-2\}+\Span\{\sin t,\cos t\}.
 			\]
-			Finally, notice that solutions to $T(f)=2$ are the same thing as solutions to $y''+y=2$.
+			Finally, notice that solutions to $T(f)=t^2-2$ are the same thing as solutions to $y''+y=t^2-2$.
 		\end{enumerate}
 \end{enumerate}
 	
