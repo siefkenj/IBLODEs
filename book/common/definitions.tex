@@ -752,13 +752,28 @@
 \begin{SaveDefinition}[key=ClassificationOfEquilibria, title={Classification of Equilibria}]
 		An equilibrium solution \emph{$f$} is called
 		\begin{itemize}
-			\item \emph{attracting}\index[definitions]{equilibrium!attracting} if solutions locally converge to $f$
-			\item \emph{repelling}\index[definitions]{equilibrium!repelling} if solutions locally diverge from $f$
-			\item \emph{stable}\index[definitions]{equilibrium!stable} if solutions do not locally diverge from $f$
-			\item \emph{unstable}\index[definitions]{equilibrium!unstable} if some solutions locally diverge from $f$
-			\item \emph{semi-stable}\index[definitions]{equilibrium!semi-stable} if solutions locally converge to $f$ from one side and
-			locally diverge from $f$ on another.
+			\item \emph{attracting}\index[definitions]{equilibrium!attracting} if locally solutions converge to $f$
+			\item \emph{repelling}\index[definitions]{equilibrium!repelling} if there is a fixed distance so that locally, solutions tend away from $f$ by that fixed distance
+			\item \emph{stable}\index[definitions]{equilibrium!stable} if there is a fixed distance so that locally, solutions within that fixed distance of $f$
+			\item \emph{unstable}\index[definitions]{equilibrium!unstable} if $f$ is not stable
 		\end{itemize}
+\end{SaveDefinition}
+\begin{SaveDefinition}[key=ClassificationOfEquilibriaFormal, title={Classification of Equilibria (Formal)}]
+		An equilibrium solution \emph{$f$} is called
+		\begin{itemize}
+			\item \emph{attracting at time $t_0$}\index[definitions]{equilibrium!attracting} if 
+			there exists $\varepsilon >0$ such that for all solutions $g$ satisfying $\abs{g(t_0)-f(t_0)} < \varepsilon$, we have $\lim_{t\to\infty} f(t)=\lim_{t\to\infty} g(t)$.
+
+			\item \emph{repelling at time $t_0$}\index[definitions]{equilibrium!repelling} if there exists $\varepsilon>0$ and $\delta>0$ such that for all
+			solutions $g$ that satisfy $0<\abs{g(t_0)-f(t_0)}<\varepsilon$ there exists $T\in \R$ so that for all $t>T$ we have
+			$\abs{g(t)-f(t)}>\delta$
+
+			\item \emph{stable at time $t_0$}\index[definitions]{equilibrium!stable} if for all $\varepsilon>0$ there exists a $\delta>0$ such that for all $g$ satisfying $\abs{g(t_0)-f(t_0)}<\delta$
+			we have $\abs{g(t)-f(t)}<\varepsilon$ for all $t>t_0$.
+
+			\item \emph{unstable at time $t_0$}\index[definitions]{equilibrium!unstable} if $f$ is not stable
+		\end{itemize}
+		$f$ is called attracting/repelling/stable/unstable if it has the corresponding property for all $t$.
 \end{SaveDefinition}
 
 \begin{SaveDefinition}[key=EquilibriumSolution, title={Equilibrium Solution}]
