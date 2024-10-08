@@ -1150,44 +1150,30 @@
 
 \begin{slide}
 	\question
-	\begin{theorem}
-		For an \emph{autonomous} ordinary differential equation (whose solutions are defined on all of $\R$),
-		a solution that passes through $(t_0, y_0)$ also passes through $(0,y_0^*)$ for some $y_0^*$.
-	\end{theorem}
-	\begin{theorem}[(Uniqueness 1)]
-		The differential equation $y'(t) = a\cdot y(t) + b$ has a unique solution passing through every point.
-	\end{theorem}
-
-	\begin{parts}
-		\item Explain why the \emph{autonomous} condition is important for the first theorem.
-		\item Suppose that $f$ and $g$ are solutions to $y'=a\cdot y+b$. If the graph of $f$ passes through $(0,1)$ and the
-		graph of $g$ passes through $(1,0)$, does the second theorem (Uniqueness 1) say that $f\neq g$? Explain.
-		\item Consider the following argument:
-		\begin{quote}
-			For every point $(t_0, y_0)$, there is a corresponding solution to $y'(t) = 2\cdot y(t)$.
-
-			Since $\Set{(t_0,y_0):t_0,y_0\in \R}$ is two dimensional, this means the set of solutions
-			to $y'(t) = 2\cdot y(t)$ is two dimensional.
-		\end{quote}
-
-		Apply the above theorems to decide if the argument is true or false.
-	\end{parts}
-\end{slide}
-
-\begin{slide}
-	\question
-	\begin{theorem}
-		For an \emph{autonomous} ordinary differential equation (whose solutions are defined on all of $\R$),
-		a solution that passes through $(t_0, y_0)$ also passes through $(0,y_0^*)$ for some $y_0^*$.
-	\end{theorem}
-	\begin{theorem}[(Uniqueness 1)]
-		The differential equation $y'(t) = a\cdot y(t) + b$ has a unique solution passing through every point.
+	%\begin{theorem}
+	%	For an \emph{autonomous} ordinary differential equation (whose solutions are defined on all of $\R$),
+	%	a solution that passes through $(t_0, y_0)$ also passes through $(0,y_0^*)$ for some $y_0^*$.
+	%\end{theorem}
+	\begin{theorem}[(Existence \& Uniqueness 1)]
+		The system of differential equations represented by
+		 $\vec r\,'(t) = M \vec r(t) + \vec p$ (or the single differential equation 
+		 $y'=ay+b$) has a unique solution passing through every initial condition. Further, the domain of every
+		solution is $\R$.
 	\end{theorem}
 
 	Let $S$ be the set of all solutions to $\vec r'(t) = \mat{1&0\\0&2}\vec r(t)$.
 
 	\begin{parts}
-		\item What is the dimension of $S$? Justify your answer.
+		\item Show that $\Dim(S) \geq 2$ by finding at least two linearly independent solutions.
+		\item Let $I$ be the set of all initial conditions. What is $I$?
+		\item Show that $\Dim(S) \leq 3$ by applying the theorem to the set of initial conditions.
+		\item Can two points in $I$ correspond to the same solution? Explain?
+		\item Find a subset $U\subseteq I$ so that every solution corresponds to a unique point in $U$.
+		\item Show that $\Dim(S) \leq 2$.
+		\item Suppose $M$ is an $n\times n$ matrix. Consider the differential equation
+		$\vec r\,'(t)=M\vec r(t)$. If you have found $n$ linearly
+		independent solutions, can you determine the dimension of the set of all solutions?
+		Explain. 
 	\end{parts}
 \end{slide}
 
