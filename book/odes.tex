@@ -1282,7 +1282,7 @@
 
 \begin{slide}
 	\question
-		Suppose $\vec s_1$ and $\vec s_2$ are eigen solutions to $\vec r'=A\,\vec r$ with eigenvalues $1$ and $-1$, respectively.
+		Suppose $A$ is a $2\times 2$ matrix and $\vec s_1$ and $\vec s_2$ are eigen solutions to $\vec r'=A\,\vec r$ with eigenvalues $1$ and $-1$, respectively.
 	\begin{parts}
 		\item Write possible formulas for $\vec s_1(t)$ and $\vec s_2(t)$.
 		\item Sketch a phase plane with graphs of $\vec s_1$ and $\vec s_2$ on it.
@@ -1310,18 +1310,24 @@
 	Consider the differential equation $\vec r'(t) = M\,\vec r(t)$ where $M=\mat{0&1\\1&0}$.
 
 	\begin{parts}
-		\item Find the eigenvectors and eigenvalues for $M$.
+		%\item Find the eigenvectors and eigenvalues for $M$.
 		\item Verify that $\mat{1\\1}$ and $\mat{1\\-1}$ are eigenvectors for $M$. What are the
 		corresponding eigenvalues?
 		\item 
 		\begin{enumerate}
-			\item Is $\vec r_1(t) =e^t \mat{1\\0}$ a solution to the differential equation?
-			\item Is $\vec r_2(t) =e^t \mat{1\\1}$ a solution to the differential equation?
-			\item Is $\vec r_3(t) =e^{2t} \mat{1\\-1}$ a solution to the differential equation?
+			\item Is $\vec r_1(t) =e^t \mat{1\\0}$ a solution to the differential equation? An eigen solution?
+			\item Is $\vec r_2(t) =e^t \mat{1\\1}$ a solution to the differential equation? An eigen solution?
+			\item Is $\vec r_3(t) =e^{2t} \mat{1\\-1}$ a solution to the differential equation? An eigen solution?
 		\end{enumerate}
 
 		\item Find an eigen solution for the system corresponding to the eigenvalue $-1$. Write your answer
 		in vector form.
+
+		\item Let $\vec v$ is an eigenvector for $M$ with eigenvalue $\lambda$. Explain how to write down an eigen solution
+		to $\vec r'(t) = M\,\vec r(t)$ with eigenvalue $\lambda$.
+
+		\item Let $\vec v\neq \vec 0$ be a non-eigenvector for $M$. Could $\vec r(t)=e^{\lambda t}\vec v$ be a solution
+		to $\vec r'(t) = M\,\vec r(t)$ for some $\lambda$? Explain.
 	\end{parts}
 \end{slide}
 
