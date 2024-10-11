@@ -1,45 +1,117 @@
 		\begin{objectives}
-	In this tutorial you will examine the pros and cons of different bases.
-
-	These problems relate to the following course learning objectives:
-	\textit{Write vectors in
-different bases and pick an appropriate basis when working on problems}.
+			In this tutorial you will read a classmate's model, assess it and give constructive feedback to your classmate on how to improve it.
+				
+			These tutorial relates to the following course learning objective:
+			\textit{recognize and provide good feedback using the SPARK guidelines.} and \textit{communicate a model through an expert report to people unfamiliar with the model}.
 		\end{objectives}
 
+		\vspace{-.5em}
+		\subsection*{Problems}
+		\vspace{-.5em}
 
-\subsection*{Problems}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{enumerate}
-	\item Write down the definition of what it means for a set $\mathcal B$ to be a \emph{basis}
-		for the subspace $V$.
-	\item Let $\mathcal E=\{\vec e_1,\vec e_2,\vec e_3\}$, $\mathcal B=\left\{\mat{1\\-1\\0},\mat{0\\1\\0},\mat{2\\-2\\1}\right\}$,
-		and $\mathcal C=\left\{\mat{1\\-1\\1},\mat{0\\1\\1},\mat{2\\-2\\3}\right\}$
-		be ordered bases, and let $\vec v=4\vec e_1-4\vec e_2+2\vec e_3$.
-	\begin{enumerate}
-		\item Are the vectors in $\mathcal B$ and $\mathcal C$ written in a basis? If so, which one(s)?
-			What about the vectors in $\mathcal E$?\
-		\item Compute $[\vec v]_{\mathcal E}$, $[\vec v]_{\mathcal B}$, and $[\vec v]_{\mathcal C}$.
-		\item Compute $[7\vec v]_{\mathcal E}$, $[7\vec v]_{\mathcal B}$, and $[7\vec v]_{\mathcal C}$. \emph{Hint: look
-			at what you've already done; you might not have to do much more work.}
-		\item Suppose, during a scientific experiment, you repeatedly measure multiples of the vector $\vec v$. Which
-			basis would you prefer to write down your measurements in? Why?
-	\end{enumerate}
-\item Let $\mathcal E=\left\{\vec e_1, \vec e_2\right\}$ and $\mathcal B=\left\{\mat{1\\0},\mat{1\\1}\right\}$
-		be bases for $\R^2$ and let $R:\R^2\to\R^2$ be rotation counter-clockwise by 90$^\circ$.
-		\begin{enumerate}
-			\item Find a matrix, $P$, for $R$ in the basis $\mathcal E$. That is $P[\vec x]_{\mathcal E} = [R\vec x]_{\mathcal E}$.
-			\item Find a matrix, $Q$, for $R$ in the basis $\mathcal B$. That is $Q[\vec x]_{\mathcal B} = [R\vec x]_{\mathcal B}$.
-		\end{enumerate}
-	\item In math, a real number can have infinitely many digits. In a computer, however, there is limited space, so a computer
-		will \emph{truncate} numbers it stores\footnote{ \emph{Truncate} means erasing digits after a certain point. So $3.14159\ldots$ might become
-		$3.141$.}. Consider the bases
-		\[
-			\mathcal E_1=\left\{\mat{1\\0},\mat{1\\1}\right\}\qquad
-			\mathcal E_2=\left\{\mat{1\\0},\mat{1\\.1}\right\}\qquad
-			\mathcal E_3=\left\{\mat{1\\0},\mat{1\\.01}\right\}\qquad
-			\mathcal E_4=\left\{\mat{1\\0},\mat{1\\.001}\right\}\qquad\cdots
-		\]
-		and the vector $\vec v=\mat{1\\0.1234567\ldots}$, written in the standard basis. Suppose your computer can only store two decimal places
-		(after the decimal point) when it stores a number. Which basis should you use to represent $\vec v$? Why?
-	
+	\item What are the SPARK guidelines for giving good feedback?
+	\item What are the main key points of the Executive Summary guidelines from the University of Southern California (given in Homework 3)?
+	\item Below is an executive summary for the study of the bee behaviour from Homework 2 that we asked an AI$^0$ to create. Give the AI good feedback on this executive summary.
+
+\hspace{-1cm}\framebox{
+\begin{minipage}{1\textwidth}
+\small 
+The summary of the bee's behavior in the question can be described as follows:
+
+\paragraph{In English:}
+
+The bee's movement is modeled based on the intensity of flower smell and its distance from the hive. The bee travels in a field of flowers, where the smell intensity varies on a logarithmic scale. The bee's movement is influenced by both the current smell intensity and its distance from the hive. The model suggests that bees will only stay still in the hive or on a flower, and flowers are located at specific distances from the hive. The bee's behavior includes moving towards or away from the hive based on smell intensity, potentially overshooting its target before settling on a flower. Odd-numbered flowers tend to attract bees, while even-numbered flowers are unstable points.
+
+\paragraph{In mathematical terms:}
+$$
+\begin{cases}
+S'(t) & = sin(D(t)) \\
+D'(t) & = S(t) - D(t)	
+\end{cases}
+$$
+Where:
+\begin{itemize}
+	\item $S(t) =$ intensity of flower smell at time $t$ (logarithmic scale from $-\infty$ to $+\infty$)
+	\item $D(t) =$ (positive) distance between the bee and its hive at time $t$
+\end{itemize}
+
+\paragraph{Key points:}
+
+Smell intensity is constant when $S' = 0$, which occurs when $\sin(D) = 0$ or $D = n\pi$, where $n$ is a non-negative integer.
+
+Flowers are located at distances $k\pi$ from the hive, where $k > 0$ is a whole number.
+
+The system can be simulated using Euler's method for the differential equations.
+
+Phase portraits show that odd-numbered flowers are attracting points, while even-numbered ones are unstable.
+
+There's a critical smell intensity (around 7.1 $\pm$ 0.01) that determines whether a bee will fly to the 1st or 3rd flower when starting from the hive. \\
+
+This model captures the essence of how bees navigate using smell intensity and distance from their hive to locate flowers in a field.
+\end{minipage}
+}
+
+
+
+
+
+\item We gave the AI$^0$ the Executive Summary guidelines from the University of Southern California. Below is the revised Executive Summary. 
+
+
+\hspace{-1cm}
+\framebox{
+\begin{minipage}{\textwidth}
+\small 
+\paragraph{Executive Summary:} Bee Behavior Model Analysis\\
+
+This study examines a mathematical model of bee behavior in a field of flowers, focusing on the relationship between smell intensity and the bee's distance from its hive. The model uses differential equations to describe the bee's movement and decision-making process. \\
+
+\paragraph{Key Findings:}
+Smell intensity is constant at specific distances from the hive, particularly when the distance is a non-negative multiple of $\pi$.
+
+Flowers are located at distances that are multiples of $\pi$ from the hive.
+
+When a bee starts at a distance of 5 units from its hive with neutral smell intensity, it initially moves towards the hive, then towards the first flower, eventually settling on the flower at a distance of $\pi$ from the hive.
+
+Odd-numbered flowers (at distances $\pi, 3\pi, 5\pi$, etc.) attract bees, while even-numbered flowers are unstable attractors.
+
+The minimum smell intensity required for a bee to venture to the third flower ($3\pi$ distance) from its hive is approximately $7.1 \pm 0.01$ on the logarithmic scale used in the model. \\
+
+\paragraph{Methodology:}
+The study employed a mix of analytic arguments, computer-based simulations using Euler's method, and qualitative analysis techniques such as phase portraits.
+
+\paragraph{Implications:}
+This model provides insights into bee foraging behavior, suggesting that bees are more likely to visit certain flowers based on their distance from the hive and the intensity of their smell. This information could be valuable for understanding pollination patterns and optimizing flower placement in agricultural settings. \\
+
+\paragraph{Recommendations:}
+Further research to validate the model's predictions in real-world scenarios.
+Exploration of how environmental factors might influence the model's parameters.
+Investigation of potential applications in agriculture and ecology. \\
+
+This executive summary provides a concise overview of the bee behavior model, its key findings, and potential implications, serving as a foundation for further discussion and research in this area. 
+\end{minipage}
+}
+
+\begin{enumerate}
+	\item Compare the two executive summaries, and what each does better.
+	\item Give the AI good feedback on this executive summary.
 \end{enumerate}
+
+
+\footnotetext{The AI we used was Claude Sonnet 1.5}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
