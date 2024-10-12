@@ -1,2 +1,86 @@
 
 	
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item Though we cannot know exactly what the author of each answer was thinking, the steps do not appear to have logical contradictions.
+        \item 
+        \item Question (A1) has no explanation of what $A$ is (or $t$ for that matter). Neither (A2) nor (A3) have any words at all.
+        They should be written in complete (mathematical) sentences.
+        \item 
+
+        \begin{enumerate}
+            \item[(A1)] \emph{Write the complete solution to $y'=2y$. No work necessary.}
+
+            \fbox{
+            \begin{minipage}{0.78\textwidth}
+                \begin{itemize}
+                    \item[] $y=Ae^{2t}$ where $A\in\R$ is a parameter.
+                \end{itemize}
+            \end{minipage}
+            }
+
+            \item[(A2)] \emph{Let $f$ be a solution to $y'=2y$ satisfying $f(0)=1$. Use Euler's method to approximate $f(2)$. Explain how you arrived at your answer.}
+            
+            \fbox{
+            \begin{minipage}{0.78\textwidth}
+                \begin{itemize}
+                    \item[] We will use a step size of $\Delta=0.5$.
+                    \item[] Let $f_n$ be the approximation we get from the $n$th application of Euler's method. 
+                    Since $f'=2f$, using a tangent line approximation, we get the recursive formula
+                    \[
+                        f_{n+1}=f_{n}+2f_{n}\Delta
+                    \]
+                    \item[] We start with initial condition $f(0)=1$. I.e., $f_0=1$.
+                    \item[] After iterating four times, we get \[f(2)\approx 16.\]
+                \end{itemize}
+            \end{minipage}
+            }
+
+            \item[(A3)] \emph{Let $\vec r\,'(t)=M\vec r(t)$ be a differential equation and let $\vec p(t)$ and $\vec q(t)$
+            be solutions. Show that $\vec s = \vec p+\vec q$ is also a solution.}
+
+            
+            \fbox{
+            \begin{minipage}{0.78\textwidth}
+            \begin{itemize}
+                \item[] Because the derivative is linear, we have $\vec s\,'=\vec p\,'+\vec q\,'$.
+                \item[] Note that $\vec p\,'=A\vec p$,
+                \item[] and $\vec q\,'=A\vec q$.
+                \item[] Thus, $\vec p\,'+\vec q\,' = A\vec p+A\vec q$.
+                \item[] Because matrix multiplication is also linear, we have the identity $A(\vec p+\vec q) = A\vec p+A\vec q$.
+                \item[] Combining this with our previous formula, we see $A\vec s=A(\vec p+\vec q)$,
+                \item[] and so $\vec s\,'=A\vec s$, which means $\vec s$ is a solution to the differential equation.
+            \end{itemize}
+            \end{minipage}
+            }
+        \end{enumerate}
+    \end{enumerate}
+
+        \item \begin{enumerate}
+            \item I would expect an opening statement explaining how bees can only pollinate flowers they can land on,
+            an overview of the model stating that it was based on differential equations and simulated using Euler's method,
+            and a summary of the model's results about how bees can only land on ``odd numbered'' flowers.
+
+            \item \begin{enumerate}
+                \item The AI wrote in complete sentences. It split the summary into sections with headings, and it 
+                provided a summary of the results of the model.
+                \item The AI did not explain how the model is relevant to the farmer's question about where to plant flowers.
+                It used overly-technical equations, and is overall written in a boring style that does not encourage the reader to continue.
+                \item No, the formulas included, while the basis for the model, are not self-explanatory. It takes simulations and phase 
+                portraits to understand what is going on and so including the formulas in the executive summary is not helpful. Instead,
+                the formulas belong in the body of the report. The executive summary itself should be more high-level, including things like
+                ``a system of differential equations was used to model the bees; it was simulated using Euler's method\ldots''.
+
+                \item \phantom{x}\begin{quote}
+                    Bees are the primary pollinator of <your crop> and as common sense suggests, bees will only pollinate flowers
+                    that they can land on. This report shows gives the details of a differential-equations based model predicting
+                    that if you place a hive, flowers that grow at distances approximately $3.1$, $9.2$, $12.4$ metres away from the hive
+                    will attract bees while other flowers will not. The findings suggest that you should follow specific planting patterns
+                    to maximize pollination.
+                \end{quote}
+            \end{enumerate}
+        \item
+        \end{enumerate}
+		
+
+\end{enumerate}

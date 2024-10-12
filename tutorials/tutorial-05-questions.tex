@@ -1,117 +1,217 @@
-		\begin{objectives}
-			In this tutorial you will read a classmate's model, assess it and give constructive feedback to your classmate on how to improve it.
-				
-			These tutorial relates to the following course learning objective:
-			\textit{recognize and provide good feedback using the SPARK guidelines.} and \textit{communicate a model through an expert report to people unfamiliar with the model}.
-		\end{objectives}
+\begin{objectives}
+	In this tutorial you will MAT 244's expectations around mathematical communication as well
+	as what makes a good executive summary.
+\end{objectives}
 
-		\vspace{-.5em}
-		\subsection*{Problems}
-		\vspace{-.5em}
-
-
-
+\vspace{-.5em}
+\subsection*{Problems}
+\vspace{-.5em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{enumerate}
-	\item What are the SPARK guidelines for giving good feedback?
-	\item What are the main key points of the Executive Summary guidelines from the University of Southern California (given in Homework 3)?
-	\item Below is an executive summary for the study of the bee behaviour from Homework 2 that we asked an AI$^0$ to create. Give the AI good feedback on this executive summary.
+	\item The first step in solving a mathematics question is applying and understanding logic until \emph{you}
+	under the question and its answer. The second step is documenting and communicating your steps/argument. 
+	
 
-\hspace{-1cm}\framebox{
-\begin{minipage}{1\textwidth}
-\small 
-The summary of the bee's behavior in the question can be described as follows:
+	Below are questions that might appear on a MAT244 exam paired with possible answers.
 
-\paragraph{In English:}
+	\begin{enumerate}
+		\item[(A1)] \emph{Write the complete solution to $y'=2y$. No work necessary.}
 
-The bee's movement is modeled based on the intensity of flower smell and its distance from the hive. The bee travels in a field of flowers, where the smell intensity varies on a logarithmic scale. The bee's movement is influenced by both the current smell intensity and its distance from the hive. The model suggests that bees will only stay still in the hive or on a flower, and flowers are located at specific distances from the hive. The bee's behavior includes moving towards or away from the hive based on smell intensity, potentially overshooting its target before settling on a flower. Odd-numbered flowers tend to attract bees, while even-numbered flowers are unstable points.
+		\fbox{
+		\begin{minipage}{0.4\textwidth}
+			\begin{itemize}
+				\item[] $y=Ae^{2t}$
+			\end{itemize}
+		\end{minipage}
+		}
 
-\paragraph{In mathematical terms:}
-$$
-\begin{cases}
-S'(t) & = sin(D(t)) \\
-D'(t) & = S(t) - D(t)	
-\end{cases}
-$$
-Where:
-\begin{itemize}
-	\item $S(t) =$ intensity of flower smell at time $t$ (logarithmic scale from $-\infty$ to $+\infty$)
-	\item $D(t) =$ (positive) distance between the bee and its hive at time $t$
-\end{itemize}
+		\item[(A2)] \emph{Let $f$ be a solution to $y'=2y$ satisfying $f(0)=1$. Use Euler's method to approximate $f(2)$. Explain how you arrived at your answer.}
+		
+		\fbox{
+		\begin{minipage}{0.4\textwidth}
+			\begin{itemize}
+				\item[] $\Delta=0.5$
+				\item[] $f_{n+1}=f_{n}+2f_{n}\Delta$
+				\item[] $f_0=1$
+				\item[] $f(2)\approx 16$
+			\end{itemize}
+		\end{minipage}
+		}
 
-\paragraph{Key points:}
+		\item[(A3)] \emph{Let $\vec r\,'(t)=M\vec r(t)$ be a differential equation and let $\vec p(t)$ and $\vec q(t)$
+		be solutions. Show that $\vec s = \vec p+\vec q$ is also a solution.}
 
-Smell intensity is constant when $S' = 0$, which occurs when $\sin(D) = 0$ or $D = n\pi$, where $n$ is a non-negative integer.
+		
+		\fbox{
+		\begin{minipage}{0.4\textwidth}
+		\begin{itemize}
+			\item[] $\vec s\,'=\vec p\,'+\vec q\,'$
+			\item[] $\vec p\,'=A\vec p$
+			\item[] $\vec q\,'=A\vec q$
+			\item[] $\vec p\,'+\vec q\,' = A\vec p+A\vec q$
+			\item[] $A(\vec p+\vec q) = A\vec p+A\vec q$
+			\item[] $A\vec s=A(\vec p+\vec q)$
+			\item[] $\vec s\,'=A\vec s$
+		\end{itemize}
+		\end{minipage}
+		}
+		
 
-Flowers are located at distances $k\pi$ from the hive, where $k > 0$ is a whole number.
+	\end{enumerate}
 
-The system can be simulated using Euler's method for the differential equations.
+	\bigskip
+	\begin{enumerate}
+		\item Read through each question/answer pair. Are there \emph{logical} errors in the answers? If so, what are they?
+		\item On a test, (A1) would be worth 2 points, and (A2) and (A3) would be worth 4 points. How many points do you think
+			each answer would be awarded? Why?
+		\item The actual scoring for each question was as follows: (A1) 1/2 points, (A2) 0/4 points, and (A3) 1/4 points. What is missing from each
+		answer that is prevent it from getting full marks?
+		\item Fix each argument so that it would receive full marks.
+	\end{enumerate}
 
-Phase portraits show that odd-numbered flowers are attracting points, while even-numbered ones are unstable.
+	\item As part of your final report and your Homework 3, you will be writing an executive summary. The University of Southern California (USC)
+	provides guidelines for what makes a good executive summary at \url{https://libguides.usc.edu/writingguide/executivesummary}
+	
+	Recall the \emph{bee} question from Homework 2. Imagine that you were commissioned by a farmer to study bees in his field and
+	to give him guidance on where to plant his flowers so that they will be pollinated.
 
-There's a critical smell intensity (around 7.1 $\pm$ 0.01) that determines whether a bee will fly to the 1st or 3rd flower when starting from the hive. \\
+			\vspace{-.3cm}
+	\begin{enumerate}
+		\item Read through the USC guidelines. What are three things you would expect to appear in an executive summary for the bee question?
+		\item The following is an executive summary for the bee question created by an AI. 
 
-This model captures the essence of how bees navigate using smell intensity and distance from their hive to locate flowers in a field.
-\end{minipage}
-}
+		\framebox{
+		\begin{minipage}{0.8\textwidth}
+			\small The summary of the bee's behavior can be described as
+			follows:
+
+			\vspace{-.3cm}
+			\paragraph{In English:}
+
+			The bee's movement is modeled based on the intensity of flower smell and its
+			distance from the hive. The bee travels in a field of flowers, where the smell
+			intensity varies on a logarithmic scale. The bee's movement is influenced
+			by both the current smell intensity and its distance from the hive. The model
+			suggests that bees will only stay still in the hive or on a flower, and
+			flowers are located at specific distances from the hive. The bee's behavior
+			includes moving towards or away from the hive based on smell intensity,
+			potentially overshooting its target before settling on a flower. Odd-numbered
+			flowers tend to attract bees, while even-numbered flowers are unstable
+			points.
+
+			\vspace{-.3cm}
+			\paragraph{In mathematical terms:}
+			\[
+				\begin{cases}
+					S'(t) & = \sin(D(t))   \\
+					D'(t) & = S(t) - D(t)
+				\end{cases}
+			\]
+			Where:
+			\begin{itemize}
+				\item $S(t) =$ intensity of flower smell at time $t$ (logarithmic scale
+					from $-\infty$ to $+\infty$)
+
+				\item $D(t) =$ (positive) distance between the bee and its hive at time $t$
+			\end{itemize}
+
+			\vspace{-.3cm}
+			\paragraph{Key points:}
+
+			Smell intensity is constant when $S' = 0$, which occurs when $\sin(D) = 0$
+			or $D = n\pi$, where $n$ is a non-negative integer.
+
+			Flowers are located at distances $k\pi$ from the hive, where $k > 0$ is a
+			whole number.
+
+			The system can be simulated using Euler's method for the differential
+			equations.
+
+			Phase portraits show that odd-numbered flowers are attracting points, while
+			even-numbered ones are unstable.
+
+			There's a critical smell intensity (around 7.1 $\pm$ 0.01) that determines
+			whether a bee will fly to the 1st or 3rd flower when starting from the hive.
+
+			\medskip
+			This model captures the essence of how bees navigate using smell intensity
+			and distance from their hive to locate flowers in a field.
+		\end{minipage}
+		}
+
+		\begin{enumerate}
+			\item What did the AI do well in the executive summary?
+			\item What did the AI do poorly?
+			\item Executive summaries rarely include mathematical formulas. Do you agree with its choice to include one? What is the alternative?
+			\item The AI's executive summary does not directly address the farmer's question about where to plant flowers.
+
+			Write an introductory paragraph to a new executive summary that addresses the farmer's question.
+		\end{enumerate}
+
+		\item For Homework 3, you are asked to write an executive summary. What key items should your executive summary for Homework 3 include?
+		What would be a good introductory paragraph?
+
+	\end{enumerate}
 
 
+	%\item We gave the AI$^{0}$ the Executive Summary guidelines from the
+	%	University of Southern California. Below is the revised Executive Summary.
 
+	%	\hspace{-1cm}
+	%	\framebox{
+	%	\begin{minipage}{\textwidth}
+	%		\small
+	%		\paragraph{Executive Summary:}
+	%		Bee Behavior Model Analysis\\
 
+	%		This study examines a mathematical model of bee behavior in a field of
+	%		flowers, focusing on the relationship between smell intensity and the bee's
+	%		distance from its hive. The model uses differential equations to describe
+	%		the bee's movement and decision-making process. \\
 
-\item We gave the AI$^0$ the Executive Summary guidelines from the University of Southern California. Below is the revised Executive Summary. 
+	%		\paragraph{Key Findings:}
+	%		Smell intensity is constant at specific distances from the hive,
+	%		particularly when the distance is a non-negative multiple of $\pi$.
 
+	%		Flowers are located at distances that are multiples of $\pi$ from the hive.
 
-\hspace{-1cm}
-\framebox{
-\begin{minipage}{\textwidth}
-\small 
-\paragraph{Executive Summary:} Bee Behavior Model Analysis\\
+	%		When a bee starts at a distance of 5 units from its hive with neutral
+	%		smell intensity, it initially moves towards the hive, then towards the
+	%		first flower, eventually settling on the flower at a distance of $\pi$ from
+	%		the hive.
 
-This study examines a mathematical model of bee behavior in a field of flowers, focusing on the relationship between smell intensity and the bee's distance from its hive. The model uses differential equations to describe the bee's movement and decision-making process. \\
+	%		Odd-numbered flowers (at distances $\pi, 3\pi, 5\pi$, etc.) attract bees,
+	%		while even-numbered flowers are unstable attractors.
 
-\paragraph{Key Findings:}
-Smell intensity is constant at specific distances from the hive, particularly when the distance is a non-negative multiple of $\pi$.
+	%		The minimum smell intensity required for a bee to venture to the third
+	%		flower ($3\pi$ distance) from its hive is approximately $7.1 \pm 0.01$ on
+	%		the logarithmic scale used in the model. \\
 
-Flowers are located at distances that are multiples of $\pi$ from the hive.
+	%		\paragraph{Methodology:}
+	%		The study employed a mix of analytic arguments, computer-based simulations
+	%		using Euler's method, and qualitative analysis techniques such as phase portraits.
 
-When a bee starts at a distance of 5 units from its hive with neutral smell intensity, it initially moves towards the hive, then towards the first flower, eventually settling on the flower at a distance of $\pi$ from the hive.
+	%		\paragraph{Implications:}
+	%		This model provides insights into bee foraging behavior, suggesting that bees
+	%		are more likely to visit certain flowers based on their distance from the hive
+	%		and the intensity of their smell. This information could be valuable for
+	%		understanding pollination patterns and optimizing flower placement in
+	%		agricultural settings. \\
 
-Odd-numbered flowers (at distances $\pi, 3\pi, 5\pi$, etc.) attract bees, while even-numbered flowers are unstable attractors.
+	%		\paragraph{Recommendations:}
+	%		Further research to validate the model's predictions in real-world scenarios.
+	%		Exploration of how environmental factors might influence the model's
+	%		parameters. Investigation of potential applications in agriculture and ecology.
+	%		\\
 
-The minimum smell intensity required for a bee to venture to the third flower ($3\pi$ distance) from its hive is approximately $7.1 \pm 0.01$ on the logarithmic scale used in the model. \\
-
-\paragraph{Methodology:}
-The study employed a mix of analytic arguments, computer-based simulations using Euler's method, and qualitative analysis techniques such as phase portraits.
-
-\paragraph{Implications:}
-This model provides insights into bee foraging behavior, suggesting that bees are more likely to visit certain flowers based on their distance from the hive and the intensity of their smell. This information could be valuable for understanding pollination patterns and optimizing flower placement in agricultural settings. \\
-
-\paragraph{Recommendations:}
-Further research to validate the model's predictions in real-world scenarios.
-Exploration of how environmental factors might influence the model's parameters.
-Investigation of potential applications in agriculture and ecology. \\
-
-This executive summary provides a concise overview of the bee behavior model, its key findings, and potential implications, serving as a foundation for further discussion and research in this area. 
-\end{minipage}
-}
-
-\begin{enumerate}
-	\item Compare the two executive summaries, and what each does better.
-	\item Give the AI good feedback on this executive summary.
-\end{enumerate}
-
-
-\footnotetext{The AI we used was Claude Sonnet 1.5}
+	%		This executive summary provides a concise overview of the bee behavior model,
+	%		its key findings, and potential implications, serving as a foundation for
+	%		further discussion and research in this area.
+	%	\end{minipage}
+	%	}
 
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
