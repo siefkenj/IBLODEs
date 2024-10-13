@@ -1,38 +1,69 @@
-		\begin{enumerate}
-		\item $T:\R^n\to\R^m$ is linear if for all vectors $\vec u,\vec v\in \R^n$ and all
-			scalars $\alpha,\beta$, we have
-			\[
-				T(\alpha\vec u+\beta\vec v)=\alpha T(\vec u)+\beta T(\vec v).
-			\]
-		\item $\mathcal A$ is linear. Let $\vec a=\mat{x\\y}$ and $\vec b=\mat{p\\q}$. Then
-			\[
-				\mathcal A(t\vec a+s\vec b) =
-				\mathcal A\left(t\mat{x\\y}+s\mat{p\\q}\right)\]\[=
-				\mathcal A\left(\mat{tx+sp\\ty+sq}\right)=\mat{tx+sp\\0\\ty+sq}
-				=t\mat{x\\0\\y}+s\mat{p\\0\\q}=t\mathcal A(\vec a)+s\mathcal A(\vec b)
-			\]
-			for all scalars $t,s$.
-			
-			$\mathcal B$ is not linear because $\mathcal B(\vec e_1+(-\vec e_1)) = \mathcal B(\vec 0)=0\neq
-			1=\mathcal B(\vec e_1)+\mathcal B(-\vec e_1)$.
-
-			$\mathcal C$ is linear. Let $\vec a,\vec b$ be arbitrary. Then $\mathcal C(t\vec a+s\vec b)=
-			\vec 0=t\vec 0+s\vec 0=t\mathcal C(\vec a)+s\mathcal C(\vec b)$ for all scalars $t,s$.
-
-			$\mathcal D$ is not linear because $\mathcal D(4\vec e_1) = \mat{1\\1}\neq 4\mat{1\\1} = 4\mathcal D(\vec e_1)$.
-
-		\item The rank of $\mathcal A$ is 2  and the rank of $\mathcal C$ is 0.
-		\item The null space of $\mathcal A$ is $\{\vec 0\}$ and its range is the $xz$-plane. The null space of $\mathcal C$ is
-			$\R^2$ and its range is $\{\vec 0\}$.
-
+\begin{enumerate}
 		\item \begin{enumerate}
-			\item $\mathcal X(\vec x)=\vec x$, the identity transformation.
-			\item Impossible. To have rank $3$, the dimension of the range must be three, but since the codomain
-				is $\R^2$, the dimension of the range is limited to $2$.
-			\item $\mathcal Z(\mat{x\\y}) = \mat{x\\0\\0}$.
-			\item $\mathcal W(x)=17x$.
-			\item Impossible, since $\mathcal Q$ couldn't be linear. Observe $\mathcal Q(\vec 0+\vec 0)=
-				\mathcal Q(\vec 0)=4\neq 4+4=\mathcal Q(\vec 0)+\mathcal Q(\vec 0)$.
-		\end{enumerate}
+			\item Differentiating $f'=ie^{it}$ and so $f''=i^2e^{it}=-e^{it}=-f$.
+			\item Yes. The equation is a real equation and so it should have a real solution.
+			\item By Euler's formula, $e^{it}=\cos t + i\sin t$, so the real part of $f$ is $\cos t$. 
+
+			Differentiating, we see $\cos '' = -\cos$, so it is still a solution.
+			\item By Euler's formula, $e^{it}=\cos t+i\sin t$, so the imaginary part of $f$ is $\sin t$.
+
+			Differentiating, we see $\sin '' = -\sin$, so it is still a solution.
+			\item Again, we can apply Euler's formula. We see
+			\[
+				e^{it}=\cos t+i\sin t \qquad\text{and}\qquad e^{-it}=\cos(-t) + i\sin(-t)=\cos t-i\sin t,
+			\]
+			so
+			\[
+				\tfrac{1}{2}e^{it}+\tfrac{1}{2}e^{-it}=\cos t.
+			\]
+			Similarly,
+			\[
+				\tfrac{-i}{2}e^{it}+\tfrac{i}{2}e^{-it}=\sin t.
+			\]
+			
+			\item Again, we can apply Euler's formula.
+			\[
+				e^{(a+bi)t}=e^{at}e^{ibt}=e^{at}(\cos (bt)+i\sin (bt))
+				\qquad\text{and}\qquad
+				e^{(a-bi)t}=e^{at}e^{-ibt}=e^{at}(\cos (bt)-i\sin (bt))
+			\]
+			and so
+			\[
+				\tfrac{1}{2}e^{(a+bi)t}+\tfrac{1}{2}e^{(a-bi)t}=e^{at}\cos(bt)
+			\]
+				and 
+			\[
+				\tfrac{-i}{2}e^{(a+bi)t}+\tfrac{i}{2}e^{(a-bi)t}=e^{at}\sin(bt).
+			\]
+			Notice that $e^{at}\cos(bt)$ and $e^{at}\sin(bt)$ are linearly independent functions that are real.
+
+			\item A solution is $g(t)=e^{it}$. The real part of $g(t)$ is $\cos t$ and the imaginary part is $\sin t$.
+			Neither of these are solutions to $y'=iy$. Since $y'=iy$ is not a real equation, we don't expect real solutions,
+			so we wouldn't expect the real and imaginary parts of $g$ to be a solution.
 
 		\end{enumerate}
+
+		\item
+		\begin{enumerate}
+			\item The phase portrait shows arrows going in a circle. There should be real solutions to this equation,
+			because Euler's method will simulate a solution and there is no reason to expect that Euler's method will
+			not converge.
+			\item The eigenvalues of $M$ are $\pm i$ and the eigenvectors are $\mat{1\\-i}$ with eigenvalue $i$ and $\mat{1\\i}$
+			with eigenvalue $-i$.
+			\item The eigen solutions are $e^{it}\mat{1\\-i}$ and $e^{-it}\mat{1\\i}$. They are linearly independent and so form a basis.
+			\item We can find a real basis either by finding a linear combination of the complex eigen solutions that is real or by 
+			guessing and checking. We can guess that the real and imaginary parts of the complex eigen solutions are real solutions.
+			
+			Expanding with Euler's formula, we see
+			\[
+				e^{it}\mat{1\\-i}=\mat{e^{it}\\-ie^{it}}=\mat{\cos t+i\sin t\\\sin t-i\cos t},
+			\]
+			and so we guess that $\vec s_1(t) = \mat{\cos t\\\sin t}$ and $\vec s_2(t)=\mat{\sin t\\-\cos t}$ are solutions. Differentiating,
+			we indeed see that these are solutions. Since they are real, linearly independent, and we have two of them, we have found a basis
+			of real solutions.
+			\item There is no real eigen solution to $\vec r\,'=M\vec r$. We have already found a basis of eigen solutions to the equation.
+			All other eigen solutions must be multiples of the eigen solutions we found. However, there is no complex eigen solution that will
+			make $e^{it}\mat{1\\-i}$ or $e^{it}\mat{1\\i}$ real.
+		\end{enumerate}
+
+\end{enumerate}
