@@ -1395,7 +1395,7 @@
 		(5) & pos & zero\\
 		\end{tabular}
 
-		\item\label{partclassifyorigin} Classify the solution at the origin for situations (1)-(5) as stable or unstable.
+		\item\label{partclassifyorigin} Classify the solution at the origin for situations (1)--(5) as stable or unstable.
 		\item Would any of your classifications in \ref{qclassifyorigin}.\ref{partclassifyorigin} change if the directions of $\vec a$ and $\vec b$ changed?
 
 	\end{parts}
@@ -1404,11 +1404,11 @@
 
 \begin{slide}
 	\question
-	You are examining a differential equation $\vec r'(t) = M\, \vec r(t)$ for an unknown matrix $M$.
+	You are examining a differential equation $\vec r'(t) = M\, \vec r(t)$ for an unknown $2\times 2$ matrix $M$.
 
-	 You would like to determine whether $\vec r(t)=\mat{0\\0}$ is stable/unstable/etc.
+	 You would like to determine whether $\vec r(t)=\mat{0\\0}$ is stable/unstable/attracting/repelling.
 	\begin{parts}
-		\item Come up with a rule to determine the nature of the equilibrium solution $\vec r(t) =\mat{0\\0}$ based on the eigenvalues of $M$.
+		\item Come up with a rule to determine the nature of the equilibrium solution $\vec r(t) =\mat{0\\0}$ based on the eigenvalues of $M$ (provided there exists two linearly independent eigen solutions).
 		\item Consider the system of differential equations
 		\begin{align*}
 			x'(t) &= x(t)+2\,y(t)\\
@@ -1429,22 +1429,22 @@
 	\question
 	Consider the following model of Social Media Usage where
 	\begin{align*}
-		x(t) &= \text{number of social media posts at year $t$}\\
-		y(t) &= \text{number of social media users at year $t$}
+		P(t) &= \text{number of social media posts at year $t$}\\
+		U(t) &= \text{number of social media users at year $t$}
 	\end{align*}
 	\begin{itemize}
-		\item[(P1$_x$)] Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
-		\item[(P2$_x$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
-		\item[(P1$_y$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
-		\item[(P2$_y$)] Ignoring all else, social media users increase/decrease in proportion to the number of users.
-		\item[(P3$_y$)] Ignoring all else, 1 million people stop using the platform every year.
+		\item[(P1$_P$)] Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
+		\item[(P2$_P$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
+		\item[(P1$_U$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
+		\item[(P2$_U$)] Ignoring all else, social media users increase/decrease in proportion to the number of users.
+		\item[(P3$_U$)] Ignoring all else, 1 million people stop using the platform every year.
 	\end{itemize}
 
 	\bigskip
 	A school intervention is described by the parameter $a\in [-1/2, 1]$:
 	\begin{itemize}
-		\item After the intervention, the proportionality constant for (P1$_y$) is $1-a$.
-		\item After the intervention, the proportionality constant for (P2$_y$) is $a$.
+		\item After the intervention, the proportionality constant for (P1$_U$) is $1-a$.
+		\item After the intervention, the proportionality constant for (P2$_U$) is $a$.
 	\end{itemize}
 
 	\begin{parts}
@@ -1457,13 +1457,13 @@
 	\question
 	The \textbf{SM} model of Social Media Usage is
 	\begin{align*}
-		x'&=-x+2\\
-		y'&=(1-a)x + ay - 1
+		P'&=-P+2\\
+		U'&=(1-a)P + aU - 1
 	\end{align*}
 	where
 	\begin{align*}
-		x(t) &= \text{number of social media posts at year $t$}\\
-		y(t) &= \text{number of social media users at year $t$}\\
+		P(t) &= \text{number of social media posts at year $t$}\\
+		U(t) &= \text{number of social media users at year $t$}\\
 		a &\in [-1/2, 1]
 	\end{align*}
 
@@ -1479,13 +1479,13 @@
 	\question
 	The \textbf{SM} model of Social Media Usage is
 	\begin{align*}
-		x'&=-x+2\\
-		y'&=(1-a)x + ay - 1
+		P'&=-P+2\\
+		U'&=(1-a)P + aU - 1
 	\end{align*}
 	where
 	\begin{align*}
-		x(t) &= \text{number of social media posts at year $t$}\\
-		y(t) &= \text{number of social media users at year $t$}\\
+		P(t) &= \text{number of social media posts at year $t$}\\
+		U(t) &= \text{number of social media users at year $t$}\\
 		a &\in [-1/2, 1]
 	\end{align*}
 
@@ -1493,7 +1493,7 @@
 		\item Can you rewrite the system in matrix form? (I.e., in the form $\vec r'(t) = M\, \vec r(t)$ for some matrix $M$.)
 		\item Define $\vec s(t)$  to be the displacement from equilibrium in the \textbf{SM} model at time $t$.
 		\begin{enumerate}
-			\item Write $\vec s$ in terms of $x$ and $y$.
+			\item Write $\vec s$ in terms of $P$ and $U$.
 			\item Write a differential equation governing $\vec s$.
 			\item Can your differential equation governing $\vec s$ be written in matrix form?
 			\item Analytically classify the equilibrium solution for your differential equation for $\vec s$
@@ -1507,13 +1507,13 @@
 	\question
 	The \textbf{SM} model of Social Media Usage is
 	\begin{align*}
-		x'&=-x+2\\
-		y'&=(1-a)x + ay - 1
+		P'&=-P+2\\
+		U'&=(1-a)P + aU - 1
 	\end{align*}
 	where
 	\begin{align*}
-		x(t) &= \text{number of social media posts at year $t$}\\
-		y(t) &= \text{number of social media users at year $t$}\\
+		P(t) &= \text{number of social media posts at year $t$}\\
+		U(t) &= \text{number of social media users at year $t$}\\
 		a &\in [-1/2, 1]
 	\end{align*}
 
