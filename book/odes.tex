@@ -1434,8 +1434,8 @@
 	\end{align*}
 	\begin{itemize}
 		\item[(P1$_P$)] Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
-		\item[(P2$_P$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
-		\item[(P1$_U$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
+		\item[(P2$_P$)] Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
+		\item[(P1$_U$)] Ignoring all else, social media users increase/decrease in proportion to the number of posts.
 		\item[(P2$_U$)] Ignoring all else, social media users increase/decrease in proportion to the number of users.
 		\item[(P3$_U$)] Ignoring all else, 1 million people stop using the platform every year.
 	\end{itemize}
@@ -1470,6 +1470,8 @@
 	\begin{parts}
 		\item What are the equilibrium solution(s)?
 		\item Make a phase portrait for the system.
+		
+		{\small \url{https://www.desmos.com/calculator/h3wtwjghv0}}
 		\item Use phase portraits to conjecture: what do you think happens to the equilibrium
 			solution(s) as $a$ transitions from negative to positive? Justify with a computation.
 	\end{parts}
@@ -1491,11 +1493,12 @@
 
 	\begin{parts}
 		\item Can you rewrite the system in matrix form? (I.e., in the form $\vec r'(t) = M\, \vec r(t)$ for some matrix $M$.)
-		\item Define $\vec s(t)$  to be the displacement from equilibrium in the \textbf{SM} model at time $t$.
+		\item Define $\vec s(t)=\Big(S_P(t),S_U(t)\Big)$  to be the displacement from equilibrium in the \textbf{SM} model at time $t$.
 		\begin{enumerate}
 			\item Write $\vec s$ in terms of $P$ and $U$.
-			\item Write a differential equation governing $\vec s$.
-			\item Can your differential equation governing $\vec s$ be written in matrix form?
+			\item Find $\vec s\,'$ in terms of $P$ and $U$.
+			\item Find $\vec s\,'$ in terms of $S_P$ and $S_U$.
+			\item Can one of your differential equation for $\vec s$ be written in matrix form? Which one?
 			\item Analytically classify the equilibrium solution for your differential equation for $\vec s$
 				when $a=-1/2$, $1/2$, and $1$. (You may use a calculator for computing eigenvectors/values.)
 		\end{enumerate}
