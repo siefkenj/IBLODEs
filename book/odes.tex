@@ -1554,7 +1554,7 @@
 		\item[(P1$_D$)] Ignoring all else, hosts numbers grow in proportion to their current number (with constant 1).
 		\item[(P2$_D$)] Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2).
 		\item[(P1$_c$)] Anti-flea collars remove 2 million fleas per year.
-		\item[(P1$_c$)] Constant dog breeding adds 1 thousand dogs per year.
+		\item[(P2$_c$)] Constant dog breeding adds 1 thousand dogs per year.
 	\end{itemize}
 
 	\bigskip
@@ -1562,7 +1562,7 @@
 		\item Write a system of differential equations for the \textbf{FD} model.
 		\item Can you rewrite the system in matrix form $\vec r' = M\,\vec r$? What about in \emph{affine}
 		form $\vec r' = M\,\vec r + \vec b$?
-		\item Make a phase portrait for your mode.
+		\item Make a phase portrait for your model.
 		\item What should solutions to the system look like in the phase plane? What are the equilibrium solution(s)?
 	\end{parts}
 \end{slide}
@@ -1585,6 +1585,8 @@
 	\begin{parts}
 		\item Find a formula for $\vec s$ in terms of $\vec r$.
 		\item Can you find a matrix $M$ so that $\vec s'(t) = M\,\vec s(t)$?
+		\item What are the eigenvalues of $M$?
+		\item Find an eigenvector for each eigenvalue $M$?
 		\item What are the eigen solutions for $\vec s'=M\,\vec s$?
 	\end{parts}
 \end{slide}
@@ -1645,19 +1647,6 @@
 	\end{parts}
 \end{slide}
 
-\begin{slide}
-	\question
-		Consider the differential equation
-		\[
-		\vec s\,'(t) = M\vec s(t)\qquad\text{where}\qquad M=\mat{-1&-4\\2&3}
-		\]
-	
-	\begin{parts}
-		\item Find eigen solutions for this differential equation (you may use a calculator/computer to assist).
-		\item Find a general \emph{real} solution.
-		\item Make a phase portrait. What do sketches of your solutions look like in phase space?
-	\end{parts}
-\end{slide}
 
 \begin{slide}
 	\question
@@ -1679,6 +1668,8 @@
 		\item[(PS$_D$)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
 	\end{itemize}
 	
+	\vspace{-1.5em}
+	where $-1\leq a\leq 1$. \emph{These premises replace (P1$_F$) and (P1$_D$).}
 	
 	\begin{parts}
 		\item Modify the previous \textbf{FD} model to incorporate the effects of the shampoo.
@@ -1688,6 +1679,21 @@
 		\item Analytically justify your conclusions about stability/instability/etc..
 	\end{parts}
 \end{slide}
+
+\begin{slide}
+	\question
+		Consider the differential equation
+		\[
+		\vec s\,'(t) = M\vec s(t)\qquad\text{where}\qquad M=\mat{-1&-4\\2&3}
+		\]
+	
+	\begin{parts}
+		\item Find eigen solutions for this differential equation (you may use a calculator/computer to assist).
+		\item Find a general \emph{real} solution.
+		\item Make a phase portrait. What do sketches of your solutions look like in phase space?
+	\end{parts}
+\end{slide}
+
 
 %
 % Hours 24-26
