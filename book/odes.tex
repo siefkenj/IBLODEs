@@ -1543,38 +1543,38 @@
 
 \begin{slide}
 	\question
-	Consider the following \textbf{DF} model of Dogs and Fleas where 
+	Consider the following \textbf{FD} model of Fleas and Dogs where 
 	\begin{align*}
-		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
-		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}
+		F(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		D(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}
 	\end{align*}
 	\begin{itemize}
-		\item[(P1$_x$)] Ignoring all else, the number of parasites decays in proportion to its population (with constant 1).
-		\item[(P2$_x$)] Ignoring all else, parasite numbers grow in proportion to the number of hosts (with constant 1).
-		\item[(P1$_y$)] Ignoring all else, hosts numbers grow in proportion to their current number (with constant 1).
-		\item[(P2$_y$)] Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2).
+		\item[(P1$_F$)] Ignoring all else, the number of parasites decays in proportion to its population (with constant 1).
+		\item[(P2$_F$)] Ignoring all else, parasite numbers grow in proportion to the number of hosts (with constant 1).
+		\item[(P1$_D$)] Ignoring all else, hosts numbers grow in proportion to their current number (with constant 1).
+		\item[(P2$_D$)] Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2).
 		\item[(P1$_c$)] Anti-flea collars remove 2 million fleas per year.
 		\item[(P1$_c$)] Constant dog breeding adds 1 thousand dogs per year.
 	\end{itemize}
 
 	\bigskip
 	\begin{parts}
-		\item Write a system of differential equations for the \textbf{DF} model.
+		\item Write a system of differential equations for the \textbf{FD} model.
 		\item Can you rewrite the system in matrix form $\vec r' = M\,\vec r$? What about in \emph{affine}
 		form $\vec r' = M\,\vec r + \vec b$?
 		\item Make a phase portrait for your mode.
-		\item What should solutions to the system look like in the phase plane? What are the equilibrium solutions?
+		\item What should solutions to the system look like in the phase plane? What are the equilibrium solution(s)?
 	\end{parts}
 \end{slide}
 
 
 \begin{slide}
 	\question
- 		Recall the \textbf{DF} model of Dogs and Fleas where 
+ 		Recall the \textbf{FD} model of Fleas and Dogs where 
 	\begin{align*}
-		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
-		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
-		\vec r(t) &= \mat{x(t)\\y(t)}
+		F(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		D(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{F(t)\\D(t)}
 	\end{align*}
 	and
 	\[
@@ -1591,11 +1591,11 @@
 
 \begin{slide}
 	\question
- 		Recall the \textbf{DF} model of Dogs and Fleas where 
+ 		Recall the \textbf{FD} model of Fleas and Dogs where 
 	\begin{align*}
-		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
-		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
-		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		F(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		D(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{F(t)\\D(t)} \qquad\qquad
 		\vec s(t) = \vec r(t) - \mat{3\\5}
 	\end{align*}
 	and
@@ -1613,9 +1613,9 @@
 		\item Recall Euler's formula $e^{it}=\cos(t)+i\sin(t)$. 
 		\begin{enumerate}
 			\item Use Euler's formula to expand $\vec s_1 + \vec s_2$. Are there any imaginary numbers remaining?
-			\item Use Euler's formula to expand $\vec s_1 - \vec s_2$. Are there any imaginary numbers remaining?
+			\item Use Euler's formula to expand $i(\vec s_1 - \vec s_2)$. Are there any imaginary numbers remaining?
 		\end{enumerate}
-		\item Verify that your formulas for $\vec s_1+\vec s_2$ and $\vec s_1-\vec s_2$ are solutions to
+		\item Verify that your formulas for $\vec s_1+\vec s_2$ and $i(\vec s_1-\vec s_2)$ are solutions to
 			$\vec s\,'(t) = M\,\vec s(t)$.
 		\item Can you give a third \emph{real} solution to $\vec s\,'(t) = M\,\vec s(t)$?
 	\end{parts}
@@ -1623,11 +1623,11 @@
 
 \begin{slide}
 	\question
- 		Recall the \textbf{DF} model of Dogs and Fleas where 
+ 		Recall the \textbf{FD} model of Fleas and Dogs where 
 	\begin{align*}
-		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
-		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
-		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		F(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		D(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{F(t)\\D(t)} \qquad\qquad
 		\vec s(t) = \vec r(t) - \mat{3\\5}
 	\end{align*}
 	and
@@ -1661,11 +1661,11 @@
 
 \begin{slide}
 	\question
- 		Recall the \textbf{DF} model of Dogs and Fleas where 
+ 		Recall the \textbf{FD} model of Fleas and Dogs where 
 	\begin{align*}
-		x(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
-		y(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
-		\vec r(t) &= \mat{x(t)\\y(t)} \qquad\qquad
+		F(t) &= \text{number of parasites (fleas) at year $t$ (in millions)}\\
+		D(t) &= \text{number of hosts (dogs) at year $t$ (in thousands)}\\
+		\vec r(t) &= \mat{F(t)\\D(t)} \qquad\qquad
 		\vec s(t) = \vec r(t) - \mat{3\\5}
 	\end{align*}
 	and
@@ -1675,15 +1675,15 @@
 
 	Some research is being done on a shampoo for the dogs. It affects flea and dog reproduction:
 	\begin{itemize}
-		\item[(PS$_x$)] Ignoring all else, the number of parasites decays in proportion to its population with constant $1+a$.
-		\item[(PS$_y$)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
+		\item[(PS$_F$)] Ignoring all else, the number of parasites decays in proportion to its population with constant $1+a$.
+		\item[(PS$_D$)] Ignoring all else, hosts numbers grow in proportion to their current number with constant $1-a$.
 	\end{itemize}
 	
 	
 	\begin{parts}
-		\item Modify the previous \textbf{DF} model to incorporate the effects of the shampoo.
-		\item Make a phase portrait for the \textbf{DF Shampoo} model.
-		\item Find the equilibrium solutions for the \textbf{DF Shampoo} model.
+		\item Modify the previous \textbf{FD} model to incorporate the effects of the shampoo.
+		\item Make a phase portrait for the \textbf{FD Shampoo} model.
+		\item Find the equilibrium solutions for the \textbf{FD Shampoo} model.
 		\item For each equilibrium solution determine its stability/instability/etc..
 		\item Analytically justify your conclusions about stability/instability/etc..
 	\end{parts}
