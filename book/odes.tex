@@ -1733,7 +1733,7 @@
 \end{slide}
 
 \begin{slide}
-	\question
+	\question\label{qapprox1d}
 	A simple logistic model for a population is
 	\[
 		\frac{\d P}{\d t} = P(t)\cdot\left(1-\frac{P(t)}{2}\right)
@@ -1753,7 +1753,7 @@
 
 \begin{slide}
 	\question
-	Based on our calculations from last time, we have several different equations.
+	Based on our calculations from Exercise \ref{qapprox1d}, we have several different equations.
 
 	\begin{tabular}{rll}
 		(Original) & $P'=P(1-P/2)$
@@ -1819,7 +1819,7 @@
 \end{slide}
 
 \begin{slide}
-	
+	\question
 	Recall our model from Question \ref{q-phase} for the life cycle of a tree where $H(t)$ was
 	height, $A(t)$ was the leaves' surface area, and $t$ was time:
 	\begin{align*}
@@ -1858,28 +1858,194 @@
 %
 
 \begin{slide}
+	\question
 	Consider a spring with a mass attached to the end.
 	
-	[XXX Diagram] |-www-[M]
+	\begin{tikzpicture}[scale=.4]
+		\draw[ultra thick] (0,-1) -- (0,1);
+		\draw[ultra thick,variable=\t,domain=1.5:30,samples=150] plot ({0.6+1.2*(0.3*\t-sin(180*\t/pi))},{1.2*(1-cos(180*\t/pi))-1});
+		\draw[fill=brown!65!black,draw=none] (-1,-1) rectangle (0,1);
+		\draw[fill=gray!50!white,ultra thick] ({0.6+1.2*(0.3*30-sin(180*30/pi))},{1.2*(1-cos(180*30/pi))-1}) circle (1) node {M};
+	\end{tikzpicture}
+	%[XXX Diagram] |-www-[M]
 	
-	Let
-	\[
-		x(t) = \text{displacement of the right end of the spring from equilibrium at time $t$}
-	\]
+	Let $x(t) =$ displacement to the right of the spring from equilibrium at time $t$
 	
 	Recall from Physics the following laws:
+	\vspace{-1em}
 	\begin{itemize}
 		\item[(HL)] Hooke's Law: For an elastic spring, force is proportional to displacement from equilibrium. 
 		\item[(NL)] Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called \emph{mass}).
 		\item[(ML)] Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
 	\end{itemize}
 
+	\bigskip
 	\begin{parts}
 		\item Model $x(t)$ with a differential equation.
+		\item Suppose the elasticity of the spring is $k=1$ and the spring is stretched $0.5m$ from
+		equilibrium and then let go (at time $t=0$).
+		\begin{enumerate}
+			\item At $t=0$, what are $x$, $x'$, and $x''$?
+			\item Modify Euler's method to approximate a solution to the initial value problem.
+		\end{enumerate}
+
+		\item Introduce the auxiliary equation $y=x'$. Can the second-order spring equation
+		be rewritten as a first-order system involving $x'$ and $y'$? If so, do it.
+		
+		\item Simulate the system you found in the previous part using Euler's method.
+		
+	\end{parts}
+	\bigskip
+	\phantom{x}
+\end{slide}
+
+\begin{slide}
+	\question
+	Recall the a spring with a mass attached to the end.
+	
+	\begin{tikzpicture}[scale=.4]
+		\draw[ultra thick] (0,-1) -- (0,1);
+		\draw[ultra thick,variable=\t,domain=1.5:30,samples=150] plot ({0.6+1.2*(0.3*\t-sin(180*\t/pi))},{1.2*(1-cos(180*\t/pi))-1});
+		\draw[fill=brown!65!black,draw=none] (-1,-1) rectangle (0,1);
+		\draw[fill=gray!50!white,ultra thick] ({0.6+1.2*(0.3*30-sin(180*30/pi))},{1.2*(1-cos(180*30/pi))-1}) circle (1) node {M};
+	\end{tikzpicture}
+	
+	$x(t) =$ displacement to the right of the spring from equilibrium at time $t$
+	
+	
+	We have two competing models
+	\begin{equation}
+		x''=-kx \tag{A}
+	\end{equation}
+	\vbox{% prevent the equation and its description from splitting across columns
+	\begin{equation}
+			\mat{x\\y}' = \mat{0&1\\-k&0}\mat{x\\y}
+		\tag{B}
+	\end{equation}
+	where $y=x'$.
+	}
+
+	\bigskip
+	\begin{parts}
+		\item Make a phase portrait for system (B). What are the axes on the phase portrait? What do you expect general solutions to look like?
+		\item Use eigenvalues/eigenvectors to find a general solution to (B). (You may use a computer to compute eigenvalues/vectors.)
+		\item Use your solution to (B) to find a general solution to (A).
+		
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\question
+	Consider the second-order differential equation
+	\[
+		x''=-x\cdot x'+x^2
+	\]
+
+	\begin{parts}
+		\item Rewrite the second-order differential equation as a system of first-order differential equations. (Hint:
+		you may need to introduce an auxiliary equation.)
+
+		\item The following Desmos link plots a phase portrait and draws an Euler approximation on the phase portrait:
+
+		{\small \url{https://www.desmos.com/calculator/fvqxqp6eds}}
+
+		Use the link to make a phase portrait for your system and answer the following questions:
+		\begin{enumerate}
+			\item Are there initial conditions so that a solution $x(t)$ is always increasing?
+			\item Are there initial conditions so that a solution $x(t)$ first decreases and then increases?
+		\end{enumerate}
 
 	\end{parts}
 \end{slide}
 
+\begin{slide}
+	\textbf{Boundary Value Problems}
+
+	\question
+	Recall the spring-mass system modeled by
+	\[
+		x''=-x
+	\]
+	We would like to use the spring-mass system to ring a bell at regular intervals, 
+	so we put a hammer at the end of the spring. Whenever the displacement is maximal,
+	the hammer strikes a bell producing a ring.
+
+	\begin{parts}
+		\item You start by displacing the hammer by $1m$ and letting go. Is it possible that the bell to ring every 1 second?
+		\item You start by displacing the hammer by $1m$ and giving the hammer a push. Is it possible that the bell to ring every 1 second?
+		\item What is the smallest amount of time between consecutive rings (given a positive displacement)?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\textbf{Boundary Value Problems}
+
+	\question
+		A \emph{boundary value problem} is a differential equation paired with an initial condition (usually at $t=0$) and 
+		a condition at at least one other $t$.
+
+	\begin{parts}
+		\item How many solutions does each of the following boundary value problems have?
+
+		\begin{center}
+			\begin{tabular}{ccc}
+				$x''=-x$ &
+				$x''=-x$ &
+				$x''=-x$ \\
+				$x(0)=1$ &
+				$x(0)=1$ &
+				$x(0)=1$ \\ 
+				$x(\pi)=1$ & 
+				$x(\pi)=-1$ & 
+				$x(\frac{\pi}{/2})=0$
+			\end{tabular}
+		\end{center}
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\textbf{Existence and Uniqueness}
+
+	Whether a solution to a differential equations exists or is unique is a \emph{hard} question
+	with many partial answers.
+
+	\begin{theorem}[Existence and Uniqueness II]
+		Let $F(t,x,x')=0$ with $x(t_0)=x_0$ describe an initial value problem.
+
+		~~\hbox{\vbox{
+		\begin{itemize}
+		\item[IF] $F(t,x,x')=x'(t)+p(t)x(t)+g(t)$ for some functions $p$ and $g$\quad 
+		\item[AND]
+		$p$ and $g$ are continuous on an open interval $I$ containing $t_0$\quad 
+		\item[THEN]
+		the initial value problem has a unique solution on $I$.
+		\end{itemize}
+		}}
+	\end{theorem}
+
+	\question
+
+	\begin{parts}
+		\item The theorem expresses differential equations in the form $F(t,x,x',x'',\ldots)=0$ 
+		(i.e. as a level set of some function $F$).
+
+		Rewrite the following differential equations in the form $F(t,x,x',x'',\ldots)=0$:\\
+			(i) $x''=-kx$\qquad
+			(ii) $x''=-x\cdot x'+x^2$\quad\\
+			(iii) $x'''=(x')^2-\cos x$
+
+		\item Which of the following does the theorem say \emph{must} have a unique solution on 
+		an interval containing $0$?
+		\begin{enumerate}
+			\item $y'=\frac{3}{2}y^{1/3}$ with $y(0)=0$
+			\item $x'(t)=\lfloor t\rfloor x(t)$ with $x(0)=0$
+			\item $x'(t)=\lfloor t-\frac{1}{2}\rfloor x(t)+t^2$
+		\end{enumerate}
+
+		Note: $\lfloor x\rfloor$ is the \emph{floor} of $x$, i.e., the largest integer less than or equal to $x$.
+
+	\end{parts}
+\end{slide}
 
 
 
