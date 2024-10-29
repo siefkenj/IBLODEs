@@ -1688,9 +1688,10 @@
 		\]
 	
 	\begin{parts}
+		\item Make a phase portrait. Based on your phase portrait, classify the equilibrium solution.
 		\item Find eigen solutions for this differential equation (you may use a calculator/computer to assist).
 		\item Find a general \emph{real} solution.
-		\item Make a phase portrait. What do sketches of your solutions look like in phase space?
+		\item Analytically classify the equilibrium solution.
 	\end{parts}
 \end{slide}
 
@@ -1743,9 +1744,13 @@
 	We'd like to approximate $\d P/\d t$ when $P\approx 1/2$.
 	\begin{parts}
 		\item What is the value of $\d P/\d t$ when $P=1/2$?
-		\item What is the approximate value of $\d P/\d t$ when $P=1/2+\Delta$ when $\Delta$ is small?
+		
+		\item 
+		What is the approximate value of $\d P/\d t$ when\\ $P=1/2+\Delta$ and $\Delta$ is small?
+
+		\bigskip
 		\item Write down a linear approximation $S(\Delta)$ that approximates $\d P/\d t$ when $P$ is $\Delta$ away from $1/2$.
-		\item Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is is a good approximation when $P\approx 1/2$.
+		\item Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is a good approximation when $P\approx 1/2$.
 		Find a formula for $A_{1/2}(t)$ expressed in terms of $P(t)$.
 		\item Find additional affine approximations to $\d P/\d t$ centered at each equilibrium solution.
 	\end{parts}
@@ -1770,6 +1775,7 @@
 	\begin{parts}
 		\item What do you notice about the solutions sketched on the different slope fields (in Desmos)?
 		\item Does the nature of equilibrium solutions change when using an affine approximation?
+		\item Classify each equilibrium solution.
 	\end{parts}
 \end{slide}
 
@@ -1805,7 +1811,7 @@
 	To make a 2d approximation of a function $\vec F(x,y)=\Big(F_1(x,y), F_2(x,y)\Big)$ at the point $\vec E$,
 	we have a similar formula
 	\[
-		\vec F(x,y)\qquad \approx \qquad \vec F(\vec E) + D_{\vec F}(\vec E)\Big((x,y)-\vec E\Big)
+		\vec F(x,y)\qquad \approx \qquad \vec F(\vec E) + D_{\vec F}(\vec E)\left(\mat{x\\y}-\vec E\right)
 	\]
 	where $D_{\vec F}(\vec E)$ is the \emph{total derivative} of $\vec F$ at $\vec E$, which can be expressed
 	as the matrix
@@ -1819,8 +1825,8 @@
 \end{slide}
 
 \begin{slide}
-	\question
-	Recall our model from Question \ref{q-phase} for the life cycle of a tree where $H(t)$ was
+
+	Recall our model from Exercise \ref{q-phase} for the life cycle of a tree where $H(t)$ was
 	height, $A(t)$ was the leaves' surface area, and $t$ was time:
 	\begin{align*}
 		H'(t) &= 0.3\cdot A(t)-b\cdot H(t)\\
