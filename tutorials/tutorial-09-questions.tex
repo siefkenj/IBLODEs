@@ -1,47 +1,156 @@
-	\begin{objectives}
-	In this tutorial you will practice using the determinant to answer geometric and algebraic questions.
+		\begin{objectives}
+			In this tutorial you will learn how to leverage Euler's method to approximate the solution of boundary-value problems.
+				
+			These tutorial relates to the following course learning objective:
+			\textit{Build a spreadsheet that can use Euler's method to approximate the solution to a system of differential equations}, \textit{Rewrite a higher-order ODE as a system of ODEs}, \textit{Use Euler's method to simulate the solution to a higher-order ODE}, \textit{Numerically approximate the solution to a boundary value problem involving higher-order ODEs}.
+		\end{objectives}
 
-	These problems relate to the following course learning objectives:
-	\textit{Translate between algebraic and geometric viewpoints to solve problems}, and
-		\textit{use determinants to solve problems}.
-	\end{objectives}
 
-	\subsection*{Problems}
+		\vspace{-.5em}
+		\subsection*{Problems}
+		\vspace{-.5em}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{enumerate}
+	\item Consider the initial-value problem:
+		\begin{equation}\tag{IVP}\label{IVP}
+		\begin{cases}
+			w''(t) = -w(t) \\
+			w(0) = 0 \\
+			w'(0) = 5
+		\end{cases}
+	\end{equation}
+
+		
+		\begin{enumerate}
+			\item Let $\vec{r}(t) = \mat{w \\ w'}$. Write the system of differential equations above as $\vec{r}'=M \vec{r}$. What is the initial condition for $\vec{r}$?
+			\item In Excel, approximate the solution $\vec{r}(1)$ using Euler's Method with $\Delta t=0.01$.
+			\item Give an approximation for $w(1)$.
+		\end{enumerate}
+	
+
+
+	\item Consider the boundary-value problem:
+		\begin{equation}\tag{BVP}\label{BVP}
+		\begin{cases}
+			w''(t) = -w(t) \\
+			w(0) = 0 \\
+			w(1) = 1
+		\end{cases}
+		\end{equation}
+
+		
+%	We want to approximate the solution of this differential equation with these two boundary conditions \eqref{BVP}.
+	
+	In the previous exercise, we learned how to approximate a second-order differential equation with initial conditions \eqref{IVP} using Euler's method.
+
+	We will take advantage of this algorithm to approximate the solution to \eqref{BVP}.
+	
+	The method is called the \textbf{Shooting Method}.
+	
+	\textit{Notation: In this question, we will denote by $w_a(t)$ the Euler's approximation for the solution of \eqref{IVP} with $w'(0)=a$.}
+	
+	
 	\begin{enumerate}
-		\item Let $\vec a=\mat{1\\1\\0}$, $\vec b=\mat{2\\1\\1}$, $\vec c=\mat{-1\\3\\1}$,
-			$\vec d=\mat{1\\1\\1}$, and $\vec e=\mat{0\\1\\0}$.
+		\item Find a number $a$ such that If $w'(0)=a_1$, then the Euler approximation satisfies $w_{a_1}(1)<1$.
 
-			A gem expert has found several crystals in the shape of parallelepipeds (the three-dimensional
-			analogue of a parallelogram). Carefully measuring, she discovers:
-			crystal $X$ has edges described by $\vec a$, $\vec b$, $\vec c$; crystal $Y$ has edges described by
-			$\vec c$, $\vec d$, $\vec e$;
-			and crystal $Z$ has edges described by $\vec a$, $\vec d$, $\vec e$.
-			\begin{enumerate}
-				\item Which crystal has the largest volume?
-				\item Which crystal is the ``pointiest''? Justify your conclusion.
-			\end{enumerate}
-		\item Use row reduction to solve the system
-			\[
-            \left\{
-            \begin{array}{ccccc}
-              ax & + & by & = & 1 \\
-              cx & + & dy & = & 0
-            \end{array}
-            \right.				
-			\]
-			recording all your steps. If $\det\left(\mat{a&b\\c&d}\right)=0$, which row-reduction
-			step fails? Why?
-		\item Let $\vec a$ and $\vec d$ be as in problem 1, and let $\vec f$ be a unit vector.
-			What is the largest possible volume of the parallelepiped with edges $\vec a$, $\vec d$, $\vec f$?
-		\item For $\vec u,\vec v\in \R^3$, the \emph{cross product} of $\vec u$ and $\vec v$, written $\vec u\times \vec v$,
-			is a vector orthogonal to $\vec u$ and $\vec v$ whose length is the area of the parallelogram
-			with sides $\vec u$ and $\vec v$ and such that $\det([\vec u|\vec v|\vec u\times \vec v]) \geq  0$.
+		\item Find a number $b$ such that If $w'(0)=b_1$, then the Euler approximation satisfies $w_{b_1}(1)<1$.
 
-			Use the definition\footnote{If you know a formula for the cross product, feel free to
-			use it to check your work, but the definition given above is not stated in terms
-			of a formula.} of the cross product to
-			find the cross product of the vectors $\vec u=\mat{1\\2\\3}$ and $\vec v=\mat{1\\1\\-1}$. \emph{Hint:
-			you already know how to use dot products to find the angle between vectors.}
+		\item Let $c_1 = \frac{a_1+b_1}{2}$. Use Euler's Method again to approximate $w_c(1)$.
+		
+		\item We know that the solution of \eqref{BVP} satisfies $w(1)=1$. Which of the following intervals is best?
+		\begin{itemize}
+			\item $[a_1,c_1]$
+			\item $[c_1,b_1]$
+		\end{itemize}
+		
+		\item Denote the interval you chose by $[a_2,b_2]$. Let $c_2 = \frac{a_2+b_2}{2}$ and use Euler's Method again to approximate $w_{c_2}(1)$.
+
+		\item Repeat this process until you find $c_n$ such that the Euler approximation $w_{c_n}(1)$ is very close to $1$. Fill in the following table:
+		
+		\begin{tabular}{|c||c|c||c|c||c|c|}
+			\hline
+			$n$ & \hspace{20pt} $a_n$ \hspace{20pt} &  \hspace{10pt} $w_{a_n}(1)$  \hspace{10pt} & $b_n$  \hspace{20pt} &  \hspace{10pt} $w_{b_n}(1)$ \hspace{10pt} &  \hspace{20pt} $c_n$  \hspace{20pt} & \hspace{10pt} $w_{c_n}(1)$ \hspace{10pt} \\ \hline
+			 1 & & & & & & \\[10pt]\hline
+  			 2 & & & & & & \\[10pt]\hline
+			 3 & & & & & & \\[10pt]\hline
+  			 4 & & & & & & \\[10pt]\hline
+			 5 & & & & & & \\[10pt]\hline
+  			 6 & & & & & & \\[10pt]\hline
+  			 7 & & & & & & \\[10pt]\hline
+		\end{tabular}
+		
+		
+		
+		
+
+		\item Use this Desmos \url{https://www.desmos.com/calculator/mvjr18tt2x} to compare your results with the solution.
 	\end{enumerate}
+
+
+	\item The BVP below has infinitely many solutions.
+	\begin{equation}\tag{$\star$}\label{BVP2}
+		\begin{cases}
+			w''(t) = -\pi^2 \cdot w(t) \\
+			w(0) = 0 \\
+			w(1) = 0
+		\end{cases}
+	\end{equation}
+	
+	Use the Shooting method with different initial guesses $a_1$ and $b_1$ to approximate different solutions.
+
+\end{enumerate}
+
+
+
+
+
+\vfill
+
+
+
+	\paragraph{Shooting Method:}	 To approximate the solution of the boundary-value problem:
+	$$
+	\begin{cases}
+		w'' = F\big(t,w,\tfrac{dw}{dt}\big) \\
+		w(t_0)=w_0 \\
+		w(t_1)=w_1
+	\end{cases}
+	$$
+	\begin{enumerate}[label={(Step \arabic*)}]
+		\item Find two values $a$ and $b$ such that:
+		\begin{itemize}
+			\item If $w'(t_0)=a$, then the Euler approximation satisfies $w_a(t_1)<w_1$
+			\item If $w'(t_0)=b$, then the Euler approximation satisfies $w_b(t_1)>w_1$
+		\end{itemize}
+	
+		\item \label{step}Let $c = \frac{a+b}{2}$. With $w'(t_0)=c$, use Euler's method to obtain an approximation of $w_c(t_1)$.
+
+		\item Repeat \ref{step} with new values for $(a,c)$ or $(b,c)$ instead of $(a,b)$, making sure that $w_1 \in [w_a(t_1), w_b(t_1)]$.
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 

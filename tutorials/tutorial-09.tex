@@ -1,0 +1,92 @@
+\documentclass[red]{tutorial}
+\usepackage[no-math]{fontspec}
+\usepackage{xpatch}
+	\renewcommand{\ttdefault}{ul9}
+	\xpatchcmd{\ttfamily}{\selectfont}{\fontencoding{T1}\selectfont}{}{}
+	\DeclareTextCommand{\nobreakspace}{T1}{\leavevmode\nobreak\ }
+\usepackage{polyglossia} % English please
+	\setdefaultlanguage[variant=us]{english}
+%\usepackage[charter,cal=cmcal]{mathdesign} %different font
+%\usepackage{avant}
+\usepackage{microtype} % Less badboxes
+
+%\usepackage{enumitem}
+
+\usepackage[charter,cal=cmcal]{mathdesign} %different font
+%\usepackage{euler}
+ 
+\usepackage{blindtext}
+\usepackage{calc, ifthen, xparse, xspace}
+\usepackage{makeidx}
+\usepackage[hidelinks, urlcolor=blue]{hyperref}   % Internal hyperlinks
+\usepackage{mathtools} % replaces amsmath
+\usepackage{bbm} %lower case blackboard font
+\usepackage{amsthm, bm}
+\usepackage{thmtools} % be able to repeat a theorem
+\usepackage{thm-restate}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{multicol}
+\usepackage{fnpct} % fancy footnote spacing
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+%\pgfkeys{/pgf/fpu}
+
+ \usepackage{enumitem}
+ 
+\newcommand{\xh}{{{\mathbf e}_1}}
+\newcommand{\yh}{{{\mathbf e}_2}}
+\newcommand{\zh}{{{\mathbf e}_3}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\renewcommand{\span}{\mathrm{span}\,}
+\newcommand{\Span}{\mathrm{span}\,}
+\newcommand{\Img}{\mathrm{img}\,}
+\newcommand{\Null}{\mathrm{null}\,}
+\newcommand{\Range}{\mathrm{range}\,}
+\newcommand{\rref}{\mathrm{rref}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\nnul}{\mathrm{nullity}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\chr}{\mathrm{char}}
+\renewcommand{\d}{\mathrm{d}}
+
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{defn}{Definition}[section]
+
+%\theoremstyle{theorem}
+\newtheorem{thm}{Theorem}[section]
+
+\pgfkeys{/tutorial,
+	name={Tutorial 9},
+	author={Jason Siefken \& Bernardo Galv\~ao-Sousa},
+	course={MAT 244},
+	date={},
+	term={},
+	title={Shooting Method}
+	}
+
+\begin{document}
+	\begin{tutorial}
+		\input{./tutorial-09-questions.tex}
+	\end{tutorial}
+
+	\begin{solutions}
+		\input{./tutorial-09-solutions.tex}
+	
+	\end{solutions}
+	\begin{instructions}
+		\input{./tutorial-09-instructions.tex}
+	\end{instructions}
+
+\end{document}
