@@ -1,46 +1,91 @@
-		\begin{objectives}
-	In this tutorial you will be working with inverses and examining how they connect algebra
-			and geometry.
+\begin{objectives}
+	In this tutorial you will using linearization to classify equilibrium solutions.
 
 	These problems relate to the following course learning objectives:
-			\textit{Translate between algebraic and geometric viewpoints to solve problems}, and
-	\textit{clearly and correctly express the mathematical ideas of linear algebra to others,
-	and understand and apply logical arguments and definitions that have been written by others}.
-		\end{objectives}
+	\textit{Apply linear algebra techniques to classify solutions of linear systems of ordinary differential
+	equations including rigorously classifying the stability of equilibrium solutions and creating
+	linear approximations to non-linear systems of ordinary differential equations}.
+\end{objectives}
 
 
 \subsection*{Problems}
 
-	\begin{enumerate}
-	\item Let $f:\R^n\to\R^n$ be a function and let $A$ be a matrix. Write down the definition of (i) what it means
-		for $f$ to be \emph{invertible} and (ii) what it means for $A$ to be invertible.
-	
-	\item Below are several samples from student answers to a MAT223 exam question relating to solving the matrix equation
-		$A\vec x=\vec b$. For each sample, decide whether it is totally correct, mostly correct, mostly incorrect, or
-		totally incorrect.
-		If it is not totally correct, explain what is wrong, and if possible, how to fix it.
+\begin{enumerate}
+	\item 	Consider the differential equation
+	      \begin{equation}
+		      y'=(y-2)(y+1)\tag{A}
+	      \end{equation}
 
-		You may assume the student can correctly compute $A^{-1}$.
-		\begin{enumerate}
-			\item $A\vec x=\vec b$ $\quad\implies\quad$ $\vec x=\vec bA^{-1}$.
-			\item $A\vec x=\vec b$ $\quad\implies\quad$ $\vec x=A^{-1}\vec b$.
-			\item $A\vec x=\vec b$ $\quad\implies\quad$ $\vec x=\vec b/A$.
-			\item $A\vec x=\vec b$ $\quad\implies\quad$ $\vec x=\tfrac{1}{A}\vec b$.
-			\item $A\vec x=\vec b$ $\quad\implies\quad$ $A/\vec b=1/\vec x$. $\quad\implies\quad$ $1/(A/\vec b)=\vec x$.
-		\end{enumerate}
+	      Define $f(y)=(y-2)(y+1)$ and notice that Equation (A) can be written as $y'=f(y)$.
 
-	\item Let $R:\R^2\to\R^2$ be rotation counter-clockwise by $30^\circ$; let $D:\R^2\to\R^2$ be reflection across the
-		line $y=4x$; let $P:\R^2\to\R^2$ be projection onto the line $y=4x$; and let $S:\R^2\to\R^2$ be the transformation
-			that doubles the length of every vector.
+	      \begin{enumerate}
+		      \item Look at the slope field for Equation (A).
 
-			For each transformation, (i) decide if it is invertible, and (ii) describe the inverse-transformation in words.
-		\item Let $R$, $D$, $P$, and $S$ be defined as before.
-			\begin{enumerate}
-				\item Determine the rank of $R$, $D$, $P$, and $S$.
-				\item Does rank relate to invertibility? Write down an argument to support your conjecture.
-				\item Find matrices for $R$, $D$, $P$, and $S$. How does the invertibility of these
-					matrices relate to the invertibility of the original transformations?
-					Is this relationship affected by which basis you choose to represent the
-					transformation in?
-			\end{enumerate}
-	\end{enumerate}
+		            \url{https://www.desmos.com/calculator/z1c415u4fb}
+
+		            Based on the slope field, describe what the shape of solutions to Equation (A) should look like.
+
+		      \item Is $y=0$ an equilibrium solution to Equation (A)? Explain both analytically (e.g., in terms of equations)
+		            and qualitatively (e.g., by referring to the slope field).
+		      \item Find an \emph{affine approximation} (i.e. an approximation of the form $A(x) = \alpha x+\beta$)
+		            to the function $f$ near $0$.\footnote{ In your calculus class, you might have used the term
+			            \emph{linear approximation} instead of affine approximation.} Call this affine approximation $A_0$.
+
+		      \item\label{sketch} Sketch the graphs of $f$ and $A_0$ on the same coordinate plane. For what values of $y$ would you
+		            call $A_0(y)$ a ``good'' approximation to $f(y)$?
+
+		            \textbf{Warning}: pay close attention to what your
+		            axes represent in your sketch. The $y$-axis may not be the one you think!
+
+		      \item Solve the differential equation $y'=A_0(y)$ with initial condition $y(0)=0$. Call your solution $y_{\text{approx}}$.
+
+		      \item\label{errorest} Based on your answer to \ref{sketch}, for how long do you expect $y_{\text{approx}}$ to
+		            be a ``good'' approximation to the solution of Equation (A) with initial condition $y(0)=0$?
+
+		      \item Use a spreadsheet and Euler's method with step size $\Delta=0.01$ to simulate a solution to Equation (A) with initial condition $y(0)=0$.
+		            Use Desmos to compare your simulated solution to $y_{\text{approx}}$.
+		            When does $y_{\text{approx}}$ stop being a good approximation? Does this match your intuition from \ref{errorest}?
+
+		      \item Find the equilibrium solutions to Equation (A). For each equilibrium solution $e$, find an affine
+		            approximation, $A_e$, to $f$ near the equilibrium solution. For each equilibrium solution $e$, (i) solve
+		            the differential equation $y'=A_e(y)$ and, (ii) use your solutions to classify the nature of each equilibrium solution
+		            as attracting/repelling/etc..
+	      \end{enumerate}
+
+	\item
+
+	      Recall that for a function $\vec F(x,y)=\Big(F_1(x,y), F_2(x,y)\Big)$,
+	      the \emph{total derivative} of $\vec F$ at $\vec E$ can be expressed
+	      as the matrix
+	      $
+		      D_{\vec F}(\vec E) = \mat{
+			      \rule[-0.5cm]{0pt}{.8cm}\displaystyle \frac{\partial F_1}{\partial x} &\displaystyle  \frac{\partial F_1}{\partial y}\\
+			      \rule[-0.2cm]{0pt}{.3cm}\displaystyle  \frac{\partial F_2}{\partial x} &\displaystyle  \frac{\partial F_2}{\partial y}
+		      }
+	      $
+	      evaluated at $\vec E$.
+
+	      \bigskip
+
+	      Define $\vec F:\R^2\to\R^2$ by
+	      \[
+		      \vec F(x,y) = \mat{(y-2)(x+1)\\x^2-y}
+	      \]
+	      and consider the differential equation
+	      \begin{equation}
+		      \mat{x\\y}' = \vec F(x,y).\tag{B}
+	      \end{equation}
+	      Define $\vec r(t) = \mat{x(t)\\y(t)}$. Note that we may express Equation (B) as $\vec r\,'(t) = \vec F\Big(\vec r(t)\Big)$.
+	      \begin{enumerate}
+		      \item Can Equation (B) be written in matrix or affine form?
+		      \item Verify that $\vec r(t) = \mat{-1\\1}$ is an equilibrium solution to Equation (B).
+		      \item Make a phase portrait for Equation (B) and use your phase portrait to guess the nature
+		            of the equilibrium solution $\vec r(t) = \mat{-1\\1}$.
+		      \item Find the \emph{total derivative} of $\vec F$ at $\mat{-1\\1}$.
+			  \item Make an affine approximation to $\vec F$ near $\mat{-1\\1}$. Call your affine approximation $\vec A$.
+			  \item Use eigenvalue/eigenvector analysis to classify the equilibrium solutions for $\vec r\,' = \vec A(\vec r)$.
+			  \item Rigorously classify the equilibrium solution $\vec r(t)=\mat{-1\\1}$ for Equation (B).
+			  \item Classify the remaining equilibrium solutions for Equation (B).
+		      
+	      \end{enumerate}
+\end{enumerate}
