@@ -1,61 +1,54 @@
-		\begin{enumerate}
-			\item
-					The rank of a matrix $A$ is the number of pivots in rref($A$);
-					the rank of a linear transformation $\mathcal T$ is the dimension of the range of $\mathcal T$.
-			\item
-			\begin{enumerate}
-				\item $A=\begin{bmatrix}
-					1 & 0 & 0 \\
-					0 & 0 & 0
-					\end{bmatrix}$ is one example. There are many others with linearly dependent rows, not both zero.
-				\item $A=\begin{bmatrix}
-					1 & 0 & 0 \\
-					0 & 1 & 0
-					\end{bmatrix}$ is one example. There are many others with linearly independent rows.
-				\item Such a matrix does not exist. $A$ only has two rows, so rref($A$) can have at most two pivot positions. Equivalently, the columnspace of $A$ is a subspace of $\R^2$, so it can't be $3$ dimensional.
-				\item $A=\begin{bmatrix}
-					0 & 0 & 0 \\
-					0 & 0 & 0
-					\end{bmatrix}$ is the only example. There are no others.
-			\end{enumerate}
-			\item A linear transformation $\mathcal L:\R^n\to\R^m$
-				is one-to-one if its nullity is $0$, and it is onto if its range is
-				all of $\R^m$.
-			\begin{enumerate}
-				\item Using the rank-nullity theorem, we have rank$(\mathcal L) = n$.
-				\item Similarly, if $\mathcal L$ is not one-to-one, we have rank$(\mathcal L) < n$. Note that we can never have rank$(\mathcal L)>n$ (why?).
-				\item $\mathcal L$ is onto if rank$(\mathcal L)=m$.
-				\item $\mathcal L$ is not onto if rank$(\mathcal L)<m$.
-			\end{enumerate}
-			\item
-			\begin{enumerate}
-				\item Since the ranks of $\mathcal T$ and $\mathcal S$ are both $2$,
-					their ranges are both planes in $\R^{3}$. Let $\mathcal T=\mathcal
-					S$ be projection onto the $xy$-plane. Then,
-					$\mathcal S=\mathcal S\circ \mathcal T$ is rank $2$.
+\begin{enumerate}
+	\item
+	      \begin{enumerate}
+		      \item
+		            \textbf{Equation (A)}: Stable and attracting.
 
-				\item Again, the ranges of $\mathcal T$ and $\mathcal S$ must be planes,
-					but this time we want the range of $\mathcal S \circ \mathcal T$
-					to be a line. Let $\mathcal T$ be projection onto the $xy$-plane
-					and let $\mathcal S$ be projection onto the $xz$-plane. Then
-					$\mathcal S\circ \mathcal T$ is projection onto the $x$-axis, which
-					has rank $1$.
+		            \textbf{Equation (B)}: Stable and attracting.
 
-				\item This is impossible. Since $\Range(\mathcal S\circ \mathcal T)
-					\subseteq$ $\Range(\mathcal S)$, we cannot have \[3=\Rank(\mathcal S\circ \mathcal T)
-					\ >\ \Rank(\mathcal S)=2.\]
+		            \textbf{Equation (C)}: Unstable and repelling.
 
-				\item The range of $\mathcal T$ is a plane, while the range of $\mathcal
-					S$ is a line, and we would like $\mathcal S \circ \mathcal T$ to
-					send every vector to $0$. Let $\mathcal S$ be projection onto the $xy$-plane
-					and let $\mathcal T$ be projection onto the $z$-axis. Then
-					$\Null(\mathcal S)=\Range(\mathcal T)$ and so $\mathcal S\circ\mathcal T=\mathbf 0$,
-					the transformation which sends every vector to zero.
-			\end{enumerate}
-			\item Sorry Tommy, there must be a mistake somewhere in your lost notes.
-				Comparing ranks, $\Rank(A)=3$ and $\Rank(B)=2$.
-				Since $X$ is invertible, it does not change the
-				dimension of the image of any subspace,
-				so for similar matrices $A\sim B$, we must have $\Rank(A)=\Rank(B)$.
+				\item Equation (A) has an affine approximation $y'=-y$. Equations (B) and (C) 
+					have same affine approximation: $y'=0$.
+		      \item Every affine approximation has a stable equilibrium solutions at $0$. The affine approximation for Equation (A) is
+			  	also attracting.
+		      \item Affine approximations are based off of the first derivative. For Equations (B) and (C), the first
+		            derivative at the origin is zero, so it fails to differentiate between cases.
+		      \item Given an autonomous equation $y'=f(y)$ with an equilibrium at $y=k$, the equilibrium
+		            is attracting if $f'(k) < 0$, repelling if $f'(k) > 0$ and more investigation is needed if $f'(k) = 0$.
+	      \end{enumerate}
 
-		\end{enumerate}
+	\item
+	      \begin{enumerate}
+		      \item $\vec r\,' = \mat{0&-1\\1&0}\vec r$.
+		      \item The equilibrium for the affine approximation is stable (not repelling nor attracting).
+		      \item No. Similar to Question 1, there are cubics that the first derivative fails to pick up on. These
+		            cubics surely cause problems!
+		      \item It looks like solutions circle about the origin, but it is hard to tell much beyond that.
+		      \item Based on numerical simulations using Euler's method with $\Delta <0.01$, it appears that solutions
+		            very slowly circle inwards.
+		      %\item If we consider the differential equations $\vec r\,' =\mat{-y\\x}$ and $\vec r\,'=\mat{-x^3\\-y^3}$
+		      %      in isolation, the first one has periodic solutions that circle about the origin and the second one
+		      %      has solutions that head straight towards the origin. Equation (D) is a sum of these two equations, so
+		      %      it makes sense that solutions circle but also tend towards the origin.
+
+		      %      We can quantify how much solutions move towards the origin. We know $\vec r\,'(x,y)$ is a tangent
+		      %      vector to a solution curve at the point $(x,y)$ and that the vector $(x,y)$ points radially out
+		      %      from the equilibrium solution to the point $(x,y)$. Thus, computing
+		      %      \[
+			  %          \vec r\,'\cdot \mat{x\\y}=\mat{-y-x^3\\x-y^3}\cdot \mat{x\\y}=-(x^4+y^4)
+		      %      \]
+		      %      we see that the angle between $\vec r\,'$ and $(x,y)$ is always greater than $90^\circ$. Thus, solution
+		      %      curves tend slightly towards the origin, making the equilibrium attracting.
+
+		      \item If the real part of all eigenvalues is non-zero we can use the eigenvalues to classify the equilibrium
+		            as follows. If all real parts are positive, the equilibrium is repelling and unstable. If all real parts are negative, the equilibrium
+		            is attracting and stable. If there is a mix of positive and negative real parts, the equilibrium is unstable.
+
+		            Otherwise, if at least one real part is positive, we know the equilibrium is unstable (but cannot determine whether it is repelling).
+		            If at least one real part is positive and one real part is negative, we know the equilibrium is unstable
+		            and not repelling.
+
+		            In all other cases, we cannot conclude from the eigenvalues the nature of the equilibrium.
+	      \end{enumerate}
+\end{enumerate}
