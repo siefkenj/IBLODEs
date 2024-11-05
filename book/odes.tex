@@ -1747,20 +1747,27 @@
 	\begin{parts}
 		\item What is the value of $\d P/\d t$ when $P=1/2$?
 		
-		\item 
-		What is the approximate value of $\d P/\d t$ when\\ $P=1/2+\Delta$ and $\Delta$ is small?
+		\item %\hbox{\vbox{
+			Define $f(P)=P(t)\cdot\left(1-\frac{P(t)}{2}\right)$ and notice\\ $\d P/\d t = f(P)$.
+
+		Approximate $\d P/\d t$ (i.e, approximate $f$) when\\ $P=1/2+\Delta$ and $\Delta$ is small.
+		%}}
 
 		\bigskip
-		\item Write down a linear approximation $S(\Delta)$ that approximates $\d P/\d t$ when $P$ is $\Delta$ away from $1/2$.
-		\item Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is a good approximation when $P\approx 1/2$.
-		Find a formula for $A_{1/2}(t)$ expressed in terms of $P(t)$.
+		\item Write down an approximation $S(\Delta)$ that approximates $\d P/\d t$ when $P$ is $\Delta$ away from $1/2$.
+		\item 
+		
+		Let $A_{1/2}(t)$ be an \emph{affine} approximation to $\d P/\d t$ that is a good approximation when $P\approx 1/2$.
+		Find a formula for $A_{1/2}(t)$.
 		\item Find additional affine approximations to $\d P/\d t$ centered at each equilibrium solution.
+		\vspace{1cm}
+		\phantom{x}
 	\end{parts}
 \end{slide}
 
 \begin{slide}
 	\question
-	Based on our calculations from Exercise \ref{qapprox1d}, we have several different equations.
+	Based on our calculations from Exercise \ref{qapprox1d}, we have several different affine approximations.
 
 	\begin{tabular}{rll}
 		(Original) & $P'=P(1-P/2)$
@@ -1775,18 +1782,20 @@
 	\end{tabular}
 	
 	\begin{parts}
-		\item What do you notice about the solutions sketched on the different slope fields (in Desmos)?
+		\item What are the similarities/differences in the Desmos pots of solutions
+		to the original equation vs. the other equations?
 		\item Does the nature of equilibrium solutions change when using an affine approximation?
-		\item Classify each equilibrium solution.
+		\item Classify each equilibrium solution of the original equation by using affine approximations.
 	\end{parts}
 \end{slide}
 
 \begin{slide}
 	\question
 	Consider the differential equation whose slope field is sketched below.
-	\[
-		P'(t) = -P(t)\cdot(0.1+P(t))\cdot(0.2+P(t)).
-	\]
+	\begin{align*}
+		P'(t) &= -P(t)\cdot(0.1+P(t))\cdot(0.2+P(t))\\ 
+		&=-(P(t))^3-0.3\cdot (P(t))^2 -0.02\cdot P(t)
+	\end{align*}
 
 	{\small \url{https://www.desmos.com/calculator/ikp9rgo0kv}}
 	\begin{center}
@@ -1799,7 +1808,7 @@
 	\bigskip	
 	\begin{parts}
 		\item Find all equilibrium solutions.
-		\item Use linear approximations to classify the equilibrium solutions as stable/unstable/etc..
+		\item Use affine approximations to classify the equilibrium solutions as stable/unstable/etc..
 	\end{parts}
 \end{slide}
 
