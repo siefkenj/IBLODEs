@@ -1,14 +1,17 @@
-		\begin{objectives}
-			In this tutorial you will learn how to leverage Euler's method to approximate the solution of boundary-value problems.
-				
-			These tutorial relates to the following course learning objective:
-			\textit{Build a spreadsheet that can use Euler's method to approximate the solution to a system of differential equations}, \textit{Rewrite a higher-order ODE as a system of ODEs}, \textit{Use Euler's method to simulate the solution to a higher-order ODE}, \textit{Numerically approximate the solution to a boundary value problem involving higher-order ODEs}.
-		\end{objectives}
+\begin{objectives}
+	In this tutorial you will learn how to leverage Euler's method to approximate the solution of boundary-value problems.
+
+	This tutorial relates to the following course learning objectives:
+	\textit{
+		Use a computer to approximate the solutions to differential equations and systems of differential
+		equations and explain the advantages and draw-backs of computer-based approximations
+	}.
+\end{objectives}
 
 
-		\vspace{-.5em}
-		\subsection*{Problems}
-		\vspace{-.5em}
+\vspace{-.5em}
+\subsection*{Problems}
+\vspace{-.5em}
 
 
 
@@ -17,131 +20,137 @@
 
 
 \begin{enumerate}
-	\item Consider the initial-value problem:
-		\begin{equation}\tag{IVP}\label{IVP}
-		\begin{cases}
-			w''(t) = -w(t) \\
-			w(0) = 0 \\
-			w'(0) = 5
-		\end{cases}
-	\end{equation}
+	\item\label{QIVP} Consider the initial-value problem:
+	      \begin{equation}\tag{IVP}\label{IVP}
+		      \begin{cases}
+			      w''(t) = -w(t) \\
+			      w(0) = 0       \\
+			      w'(0) = 5
+		      \end{cases}
+	      \end{equation}
 
-		
-		\begin{enumerate}
-			\item Let $\vec{r}(t) = \mat{w \\ w'}$. Write the system of differential equations above as $\vec{r}'=M \vec{r}$. What is the initial condition for $\vec{r}$?
-			\item In Excel, approximate the solution $\vec{r}(1)$ using Euler's Method with $\Delta t=0.01$.
-			\item Give an approximation for $w(1)$.
-		\end{enumerate}
-	
+
+	      \begin{enumerate}
+		      \item Let $\vec{r}(t) = \mat{w \\ w'}$. 
+			  Write the system of differential equations above in matrix form (i.e., as $\vec{r}'=M \vec{r}$). 
+			  What is the initial condition for $\vec{r}$?
+		      \item Use a spreadsheet to approximate the value of $\vec{r}(1)$ (use a step size $\leq 0.01$).
+		      \item Find an approximate value for $w(1)$.
+	      \end{enumerate}
+
 
 
 	\item Consider the boundary-value problem:
-		\begin{equation}\tag{BVP}\label{BVP}
-		\begin{cases}
-			w''(t) = -w(t) \\
-			w(0) = 0 \\
-			w(1) = 1
-		\end{cases}
-		\end{equation}
+	      \begin{equation}\tag{BVP}\label{BVP}
+		      \begin{cases}
+			      w''(t) = -w(t) \\
+			      w(0) = 0       \\
+			      w(1) = 1
+		      \end{cases}
+	      \end{equation}
 
-		
-%	We want to approximate the solution of this differential equation with these two boundary conditions \eqref{BVP}.
-	
-	In the previous exercise, we learned how to approximate a second-order differential equation with initial conditions \eqref{IVP} using Euler's method.
 
-	We will take advantage of this algorithm to approximate the solution to \eqref{BVP}.
-	
-	The method is called the \textbf{Shooting Method}.
-	
-	\textit{Notation: In this question, we will denote by $w_a(t)$ the Euler's approximation for the solution of \eqref{IVP} with $w'(0)=a$.}
-	
-	
-	\begin{enumerate}
-		\item Find a number $a$ such that If $w'(0)=a_1$, then the Euler approximation satisfies $w_{a_1}(1)<1$.
+	      %	We want to approximate the solution of this differential equation with these two boundary conditions \eqref{BVP}.
 
-		\item Find a number $b$ such that If $w'(0)=b_1$, then the Euler approximation satisfies $w_{b_1}(1)<1$.
+	      In Question \ref{QIVP}, we approximated
+		   a second-order differential equation with initial conditions by applying Euler's method to a corresponding system.
+		   We will modify this approach to approximate the solution to \eqref{BVP}.
 
-		\item Let $c_1 = \frac{a_1+b_1}{2}$. Use Euler's Method again to approximate $w_c(1)$.
-		
-		\item We know that the solution of \eqref{BVP} satisfies $w(1)=1$. Which of the following intervals is best?
-		\begin{itemize}
-			\item $[a_1,c_1]$
-			\item $[c_1,b_1]$
-		\end{itemize}
-		
-		\item Denote the interval you chose by $[a_2,b_2]$. Let $c_2 = \frac{a_2+b_2}{2}$ and use Euler's Method again to approximate $w_{c_2}(1)$.
+	      This method is called the \textbf{Shooting Method}.
 
-		\item Repeat this process until you find $c_n$ such that the Euler approximation $w_{c_n}(1)$ is very close to $1$. Fill in the following table:
-		
-		\begin{tabular}{|c||c|c||c|c||c|c|}
-			\hline
-			$n$ & \hspace{20pt} $a_n$ \hspace{20pt} &  \hspace{10pt} $w_{a_n}(1)$  \hspace{10pt} & $b_n$  \hspace{20pt} &  \hspace{10pt} $w_{b_n}(1)$ \hspace{10pt} &  \hspace{20pt} $c_n$  \hspace{20pt} & \hspace{10pt} $w_{c_n}(1)$ \hspace{10pt} \\ \hline
-			 1 & & & & & & \\[10pt]\hline
-  			 2 & & & & & & \\[10pt]\hline
-			 3 & & & & & & \\[10pt]\hline
-  			 4 & & & & & & \\[10pt]\hline
-			 5 & & & & & & \\[10pt]\hline
-  			 6 & & & & & & \\[10pt]\hline
-  			 7 & & & & & & \\[10pt]\hline
-		\end{tabular}
-		
-		
-		
-		
+	      Notation: \textit{In this question, $w_a(t)$ will denote the Euler approximation to Equations 
+		  \eqref{IVP} with $w'(0)=a$.}
 
-		\item Use this Desmos \url{https://www.desmos.com/calculator/mvjr18tt2x} to compare your results with the solution.
-	\end{enumerate}
+
+	      \begin{enumerate}
+		      \item Find a number $a$ such that if $w'(0)=a$, then the Euler approximation satisfies $w_{a}(1)<1$.
+
+		      \item Find a number $b$ such that If $w'(0)=b$, then the Euler approximation satisfies $w_{b}(1)>1$.
+
+		      \item Let $c = \frac{a+b}{2}$. Use Euler's Method again to approximate $w_c(1)$.
+
+			  \item If the boundary problem has a solution, there is a value $k$ so that $w_k(1)=1$.
+			  Based on your previous results, is $k\in [a,c]$ or is $k\in [c,b]$? Explain.
+
+		      \item We will try to find $k$ by using \emph{bisection}. That is, when we identify an interval
+			  $[a_i, b_i]$ that must contain $k$, we will test $w_{c_i}(1)$ where $c_i=\frac{a_i+b_i}{2}$ and then
+			  narrow our search to either $[a_i, c_i]$ or $[c_i,b_i]$.
+
+		      Using $a_1=a$, $b_1=b$, and $c_1=c$ (which you calculated already), fill out the following table:
+
+		            \begin{tabular}{|c||c|c||c|c||c|c|}
+			            \hline
+			            $i$ & \hspace{20pt} $a_i$ \hspace{20pt} & \hspace{10pt} $w_{a_i}(1)$  \hspace{10pt} & $b_i$  \hspace{20pt} & \hspace{10pt} $w_{b_n}(1)$ \hspace{10pt} & \hspace{20pt} $c_i$  \hspace{20pt} & \hspace{10pt} $w_{c_i}(1)$ \hspace{10pt} \\ \hline
+			            1   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            2   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            3   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            4   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            5   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            6   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+			            7   &                                   &                                           &                      &                                          &                                    &                                          \\[10pt]\hline
+		            \end{tabular}
+		      \item The iterative process you just performed is called the \emph{Shooting Method}\footnote{ In this case,
+			  you used bisection to narrow down the ``target''; the shooting method does not require bisection. For example,
+			  you could use Newton's method to narrow the target.}.
+			  
+			  Use the following Desmos plot to compare the solution you arrived at via the Shooting Method 
+			  with the exact solution.
+			  
+			 \url{https://www.desmos.com/calculator/mvjr18tt2x}
+	      \end{enumerate}
 
 
 	\item The BVP below has infinitely many solutions.
-	\begin{equation}\tag{$\star$}\label{BVP2}
-		\begin{cases}
-			w''(t) = -\pi^2 \cdot w(t) \\
-			w(0) = 0 \\
-			w(1) = 0
-		\end{cases}
-	\end{equation}
-	
-	Use the Shooting method with different initial guesses $a_1$ and $b_1$ to approximate different solutions.
+	      \begin{equation}\tag{$\star$}\label{BVP2}
+		      \begin{cases}
+			      w''(t) = -\pi^2 \cdot w(t) + \cos\Big(w(t)\Big) \\
+			      w(0) = 0                   \\
+			      w(1) = 0
+		      \end{cases}
+	      \end{equation}
+
+	      Use the Shooting Method to identify at least \emph{two} solutions to this boundary value problem.
+
+		  Hint: You may need to pick very different initial values for $w'(0)$ to find intervals that contain different solutions.
 
 \end{enumerate}
 
 
 
+%
+%
+%\vfill
+%
+%
+%
+%\paragraph{Shooting Method:}	 To approximate the solution of the boundary-value problem:
+%$$
+%	\begin{cases}
+%		w'' = F\big(t,w,\tfrac{dw}{dt}\big) \\
+%		w(t_0)=w_0                          \\
+%		w(t_1)=w_1
+%	\end{cases}
+%$$
+%\begin{enumerate}[label={(Step \arabic*)}]
+%	\item Find two values $a$ and $b$ such that:
+%	      \begin{itemize}
+%		      \item If $w'(t_0)=a$, then the Euler approximation satisfies $w_a(t_1)<w_1$
+%		      \item If $w'(t_0)=b$, then the Euler approximation satisfies $w_b(t_1)>w_1$
+%	      \end{itemize}
+%
+%	\item \label{step}Let $c = \frac{a+b}{2}$. With $w'(t_0)=c$, use Euler's method to obtain an approximation of $w_c(t_1)$.
+%
+%	\item Repeat \ref{step} with new values for $(a,c)$ or $(b,c)$ instead of $(a,b)$, making sure that $w_1 \in [w_a(t_1), w_b(t_1)]$.
+%\end{enumerate}
 
 
-\vfill
 
 
 
-	\paragraph{Shooting Method:}	 To approximate the solution of the boundary-value problem:
-	$$
-	\begin{cases}
-		w'' = F\big(t,w,\tfrac{dw}{dt}\big) \\
-		w(t_0)=w_0 \\
-		w(t_1)=w_1
-	\end{cases}
-	$$
-	\begin{enumerate}[label={(Step \arabic*)}]
-		\item Find two values $a$ and $b$ such that:
-		\begin{itemize}
-			\item If $w'(t_0)=a$, then the Euler approximation satisfies $w_a(t_1)<w_1$
-			\item If $w'(t_0)=b$, then the Euler approximation satisfies $w_b(t_1)>w_1$
-		\end{itemize}
-	
-		\item \label{step}Let $c = \frac{a+b}{2}$. With $w'(t_0)=c$, use Euler's method to obtain an approximation of $w_c(t_1)$.
 
-		\item Repeat \ref{step} with new values for $(a,c)$ or $(b,c)$ instead of $(a,b)$, making sure that $w_1 \in [w_a(t_1), w_b(t_1)]$.
-	\end{enumerate}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 
 
 

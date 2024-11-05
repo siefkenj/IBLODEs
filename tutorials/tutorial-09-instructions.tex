@@ -1,74 +1,56 @@
 \subsection*{Learning Objectives}
-	Students need to be able to\ldots
-	\begin{itemize}
-		\item Build a spreadsheet that can use Euler's method to approximate the solution to a system of differential equations
-		\item Rewrite a higher-order ODE as a system of ODEs.
-		\item Use Euler's method to simulate the solution to a higher-order ODE.
-		\item Numerically approximate the solution to a boundary value problem involving higher-order ODEs.
-	\end{itemize}
+Students need to be able to\ldots
+\begin{itemize}
+	\item Build a spreadsheet that can use Euler's method to approximate the solution to a system of differential equations
+	\item Rewrite a higher-order ODE as a system of ODEs.
+	\item Use Euler's method to simulate the solution to a higher-order ODE.
+	\item Numerically approximate the solution to a boundary value problem involving higher-order ODEs.
+\end{itemize}
 
 \subsection*{Context}
-	
+
 In class we used Euler's method extensively.
 
-We also introduced boundary-value problems (BVPs) in class to show that studying existence and uniqueness of solution is not a trivial matter.
+We also introduced boundary-value problems (BVPs) in class to show that studying existence 
+and uniqueness of solution is not a trivial matter.
 
-For this type of differential equations, however, we can't use Euler's method directly, since it requires initial conditions.
-This type of ODEs also requires a higher-order ODE.
-
-In this tutorial, we will do the following:
-\begin{itemize}
-	\item Write a second-order ODE as a system of first-order ODEs
-	\item Simulate a second-order ODE (as a system of ODEs) using Euler's method with initial conditions in Excel
-	\item Develop a method to approximate solutions to a BVP
-\end{itemize}
+For this type of differential equation, however, we can't use Euler's method directly, since it requires initial conditions.
+Instead, we repeatedly apply Euler's method to find better and better guesses at the initial conditions.
 
 
 \subsection*{Resources for TAs}
 
-Excel spreadsheet with the Shooting Method. 
+Excel spreadsheet with the Shooting Method.
 
 \begin{itemize}
 	\item \url{https://utoronto-my.sharepoint.com/:x:/g/personal/bernardo_galvao_sousa_utoronto_ca/EQO08o4-PdFMr8PMd80LmP0BPilrLuGIcNMpP-oVpfM4ow?e=IR39N4}
 \end{itemize}
 
 
-\subsection*{Before Tutorial}
-
-Send an announcement to students letting them know that they will need to bring a laptop and will be using Excel and Euler's method in tutorial.
 
 
 \subsection*{What to Do}
-	Introduce the learning objectives for the day's tutorial. \\
-	
-	Explain that we will start by simulating Euler's method for a second-order ODE by writing it as a first-order system.
-	
-	Have students get into small groups and start on \#1 -- each group needs to have at least 1 laptop. 
-	
-	This question should be done quickly - it's setting the stage for \#2. \\
-	
-	
-	Explain the idea of the shooting method:
+Introduce the learning objectives for the day's tutorial.
+
+Explain the big picture: if we can rewrite a higher-order ODE in terms of a system of first-order ODEs, 
+we can use Euler's method to approximate the solution to the higher-order ODE.
+
+Have students get into small groups and start on \#1. Each group needs to have at least 1 laptop.
+This question should be done quickly---it's setting the stage for \#2.
+
+
+
+
+\subsection*{Notes}
+
 	\begin{enumerate}
-		\item Start with two guesses, each on a different side of the target
-		\item Next guess is the average of the previous two $\to$ check how close/far it gets from the target
-		\item From the previous three guesses, choose the two that have the target in between
-		\item Go back to Step 2
+		\item This should be a quick review.
+		\item This question carefully walks students through the Shooting Method. If students get stuck on
+		this one, go ahead and give them a big-picture overview of the Shooting Method.
+		\item This is here for the quicker students, though they may need a smaller step size than $\Delta=0.01$ to get good results.
 	\end{enumerate}
-	
-	This question has many parts and should take most students the whole tutorial. \\
-
-	The last question is a challenge for quicker students or for students to try at home.
-	
 
 
-%\subsection*{Notes}
-%
-%	\begin{enumerate}
-%		\item Note
-%	\end{enumerate}
-	
-	
 
-	
-	
+
+

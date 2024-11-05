@@ -1,2 +1,34 @@
 
-	
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		      \item $\vec r\,' = \mat{0&1\\-1&0}\vec r$. The initial condition is $\vec r(0) = \mat{0\\5}$.
+		      \item With $\Delta=0.01$ we have $\vec r(1)\approx\mat{4.228\\2.715}$.
+		      \item With $\Delta=0.01$ we have $w(1)\approx4.228$.
+	      \end{enumerate}
+	\item \begin{enumerate}
+		      \item We can pick $a=0$
+		      \item We can pick $b=2$
+		      \item With $c=1$, we have $w_c(1)\approx 0.846$.
+		      \item $k\in [c,b]$ based on our values of $a$, $b$, and $c$. This makes sense because
+		            the value of $w_x(1)$ should depend continuously on $x$, so by the intermediate value theorem,
+		            there must be a $k\in [c,b]$ so that $w_k(1)=1$. (Though, this does not rule out there also
+		            being such a $k$ in $[a,b]$.)
+		      \item \phantom{x}
+
+		            \begin{tabular}{|c||c|c||c|c||c|c|}
+			            \hline
+			            $i$ & \hspace{20pt} $a_i$ \hspace{20pt} & \hspace{10pt} $w_{a_i}(1)$  \hspace{10pt} & $b_i$  \hspace{20pt} & \hspace{10pt} $w_{b_n}(1)$ \hspace{10pt} & \hspace{20pt} $c_i$  \hspace{20pt} & \hspace{10pt} $w_{c_i}(1)$ \hspace{10pt} \\ \hline
+			            1   & 0                                 & 0                                         & 2                    & 1.691                                    & 1                                  & 0.846                                    \\[10pt]\hline
+			            2   & 1                                 & 0.846                                     & 2                    & 1.691                                    & 1.5                                & 1.269                                    \\[10pt]\hline
+			            3   & 1                                 & 0.846                                     & 1.5                  & 1.269                                    & 1.25                               & 1.057                                    \\[10pt]\hline
+			            4   & 1                                 & 0.846                                     & 1.25                 & 1.057                                    & 1.125                              & 0.951                                    \\[10pt]\hline
+			            5   & 1.125                             & 0.951                                     & 1.25                 & 1.057                                    & 1.1875                             & 1.004                                    \\[10pt]\hline
+			            6   & 1.125                             & 0.951                                     & 1.1875               & 1.004                                    & 1.15625                            & 0.978                                    \\[10pt]\hline
+			            7   & 1.15625                           & 0.978                                     & 1.1875               & 1.004                                    & 1.171875                           & 0.991                                    \\[10pt]\hline
+		            \end{tabular}
+                \item 
+	      \end{enumerate}
+	\item Using the shooting method we find solutions to the boundary value problem with $w'(0)\approx 6.07$ and $w'(0)\approx 17.25$
+    (using a step size of $\Delta=0.001$).
+\end{enumerate}
