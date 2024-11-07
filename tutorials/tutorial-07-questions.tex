@@ -31,8 +31,9 @@
 		            to the function $f$ near $0$.\footnote{ In your calculus class, you might have used the term
 			            \emph{linear approximation} instead of affine approximation.} Call this affine approximation $A_0$.
 
-		      \item\label{sketch} Sketch the graphs of $f$ and $A_0$ on the same coordinate plane. For what values of $y$ would you
-		            call $A_0(y)$ a ``good'' approximation to $f(y)$?
+		      \item\label{sketch} Sketch the graphs of $f$ and $A_0$ on the same coordinate plane. Find an interval of $y$
+			  	values where you  would
+		            call $A_0(y)$ a ``good'' approximation to $f(y)$.
 
 		            \textbf{Warning}: pay close attention to what your
 		            axes represent in your sketch. The $y$-axis may not be the one you think!
@@ -40,7 +41,7 @@
 		      \item Solve the differential equation $y'=A_0(y)$ with initial condition $y(0)=0$. Call your solution $y_{\text{approx}}$.
 
 		      \item\label{errorest} Based on your answer to \ref{sketch}, for how long do you expect $y_{\text{approx}}$ to
-		            be a ``good'' approximation to the solution of Equation (A) with initial condition $y(0)=0$?
+		            be a ``good'' approximation to the solution of Equation (A) with initial condition $y(0)=0$? Express your answer as an interval.
 
 		      \item Use a spreadsheet and Euler's method with step size $\Delta=0.01$ to simulate a solution to Equation (A) with initial condition $y(0)=0$.
 		            Use Desmos to compare your simulated solution to $y_{\text{approx}}$.
@@ -55,7 +56,7 @@
 	\item
 
 	      Recall that for a function $\vec F(x,y)=\Big(F_1(x,y), F_2(x,y)\Big)$,
-	      the \emph{total derivative} of $\vec F$ at $\vec E$ can be expressed
+	      the \emph{total derivative}\footnote{ This is also called the \emph{Jacobian} matrix.} of $\vec F$ at $\vec E$ can be expressed
 	      as the matrix
 	      $
 		      D_{\vec F}(\vec E) = \mat{
