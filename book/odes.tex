@@ -1999,8 +1999,8 @@
 
 		Use the link to make a phase portrait for your system and answer the following questions:
 		\begin{enumerate}
-			\item Are there initial conditions so that a solution $x(t)$ is always increasing?
-			\item Are there initial conditions so that a solution $x(t)$ first decreases and then increases?
+			\item Are there initial conditions with $x(0)<0$ so that a solution $x(t)$ is always increasing?
+			\item Are there initial conditions with $x(0)<0$ so that a solution $x(t)$ first decreases and then increases?
 		\end{enumerate}
 
 		\item Show that $x(t)=0$ is an equilibrium solution for this equation.
@@ -2008,7 +2008,7 @@
 		\item Use linearization and eigenvalues to classify the equilibrium $(x,x')=(0,0)$
 		in phase space.
 
-		\item Let $f$ be a solution to the equation and suppose $f(0)=\delta_1\approx 0$.
+		\item Let $f$ be a solution to the original equation and suppose $f(0)=\delta_1\approx 0$.
 		\begin{enumerate}
 			\item If $f'(0)=\delta_2\approx 0$, speculate on the long term behaviour of $f(t)$.
 			\item If we put no conditions on $f'(0)$ will your answer be the same? Explain.
@@ -2030,6 +2030,44 @@
 	the hammer strikes a bell producing a ring.
 
 	\begin{parts}
+		\item Convert the spring-mass system into a system of differential equations.
+		Make a phase portrait for the system using the following Desmos link:
+
+		{\small \url{https://www.desmos.com/calculator/fvqxqp6eds}}
+		\item In the \emph{Options Euler} on Desmos, adjust $\Delta$ and the number of steps so that simulated solutions are only 
+		shown for $t\in[0,1]$.
+
+		Use simulations to answer the remaining questions.
+		\item You start by displacing the hammer by $1m$ and letting go. Is it possible that the bell rings every 1 second?
+		\item You start by displacing the hammer by $1m$ and giving the hammer a push. Is it possible that the bell rings every 1 second?
+		\item What is the smallest amount of time between consecutive rings (given a positive displacement)?
+	\end{parts}
+\end{slide}
+
+\begin{slide}
+	\textbf{Boundary Value Problems}
+
+	\question
+	Recall the spring-mass system modeled by
+	\[
+		x''=-x
+	\]
+	We would like to use the spring-mass system to ring a bell at regular intervals, 
+	so we put a hammer at the end of the spring. Whenever the displacement is maximal,
+	the hammer strikes a bell producing a ring.
+
+	Consider the subspaces
+	\[
+		S_1=\Span\{\sin,\cos\}\qquad S_2=\{A\cos(t+d):A,d\in\R\}
+	\]
+
+	\begin{parts}
+		\item What dimension is each subspace?
+		\item Which subspaces are sets of solutions to the spring-mass system?
+		\item Use what you know about complete solutions and linear algebra to prove $S_1=S_2$.
+
+		\medskip
+		Use your knowledge about $S_1$ and $S_2$ to analytically answer the remaining questions.
 		\item You start by displacing the hammer by $1m$ and letting go. Is it possible that the bell rings every 1 second?
 		\item You start by displacing the hammer by $1m$ and giving the hammer a push. Is it possible that the bell rings every 1 second?
 		\item What is the smallest amount of time between consecutive rings (given a positive displacement)?
@@ -2043,9 +2081,7 @@
 		A \emph{boundary value problem} is a differential equation paired with two conditions
 		at different values of $t$.
 
-	\begin{parts}
-		\item How many solutions does each of the following boundary value problems have?
-
+		Consider the following boundary value problems:
 		\begin{center}
 			\begin{tabular}{ccc}
 				$x''=-x$ &
@@ -2059,6 +2095,11 @@
 				$x(\frac{\pi}{2})=0$
 			\end{tabular}
 		\end{center}
+
+	\begin{parts}
+		\item Using phase portraits and simulations, determine how many solutions each boundary value problem has.
+		\item Can you find analytic arguments to justify your conclusions?
+
 	\end{parts}
 \end{slide}
 
