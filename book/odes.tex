@@ -2280,8 +2280,8 @@ Recall a rope hanging from two poles at positions $x=0$ and $x=1$.
 \vspace{-1em}
 \begin{center}
 \begin{tikzpicture}
-  \draw (-1,0) node[below] {0} -- (-1,{cosh(-1)});
-  \draw (1.5,0) node[below] {1} -- (1.5,{cosh(1.5)});
+  \draw (-1,0)  -- (-1,{cosh(-1)});
+  \draw (1.5,0) -- (1.5,{cosh(1.5)});
   \draw[fill=brown!65!black,draw=none] (-1.5,-0.1) rectangle (2,0);
   \draw (-1.5,0) -- (2,0);
   \draw[blue, ultra thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
