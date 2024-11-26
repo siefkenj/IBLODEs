@@ -2155,7 +2155,7 @@
 
 \question
 
-Consider a rope hanging from two poles at positions $x=0$ and $x=1$.
+Consider a rope hanging from two poles.
 
 \vspace{-1em}
 \begin{center}
@@ -2167,8 +2167,8 @@ Consider a rope hanging from two poles at positions $x=0$ and $x=1$.
 %  \draw[blue, ultra thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
 %\end{tikzpicture}	
 \begin{tikzpicture}
-  \draw (-1,0) node[below] {0} -- (-1,{cosh(-1)});
-  \draw (1.5,0) node[below] {1} -- (1.5,{cosh(1.5)});
+  \draw (-1,0) -- (-1,{cosh(-1)});
+  \draw (1.5,0) -- (1.5,{cosh(1.5)});
   \draw[fill=brown!65!black,draw=none] (-1.5,-0.1) rectangle (2,0);
   \draw (-1.5,0) -- (2,0);
   \draw[blue, thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
@@ -2218,7 +2218,7 @@ We will focus on one such rod, $S$, (drawn in the figure) from $x$ to $x+\Delta$
 
 \question
 
-Consider a rope hanging from two poles at positions $x=0$ and $x=1$.
+Consider a rope hanging from two poles.
 
 The only forces acting on the rope are gravity and tension.
 \vspace{-1em}
@@ -2231,8 +2231,8 @@ The only forces acting on the rope are gravity and tension.
 %  \draw[blue, ultra thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
 %\end{tikzpicture}	
 \begin{tikzpicture}
-  \draw (-1,0) node[below] {0} -- (-1,{cosh(-1)});
-  \draw (1.5,0) node[below] {1} -- (1.5,{cosh(1.5)});
+  \draw (-1,0)  -- (-1,{cosh(-1)});
+  \draw (1.5,0)  -- (1.5,{cosh(1.5)});
   \draw[fill=brown!65!black,draw=none] (-1.5,-0.1) rectangle (2,0);
   \draw (-1.5,0) -- (2,0);
   \draw[blue, thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
@@ -2247,12 +2247,12 @@ The only forces acting on the rope are gravity and tension.
 \vspace{-1em}
 
 
-Similarly to the previous exercise, we can find a vector $\vec{V}_R = \big(1,y'(x+\Delta)\big)$ in the direction of $\vec{T}_R$, but with possibly different magnitude.
+Similarly to the previous exercise, we can find a vector $\vec{V}_R = \matc{1\\y'(x+\Delta)}$ in the direction of $\vec{T}_R$, but with possibly different magnitude.
 
 So far we have:
 \begin{itemize}
 	\item $\vec{T}_L = \alpha \vec{V}_L$  for some $\alpha > 0$ and
-	\item $\vec{T}_R = \beta \vec{T}_R$ for some $\beta >0$.
+	\item $\vec{T}_R = \beta \vec{V}_R$ for some $\beta >0$.
 \end{itemize}
 
 
@@ -2267,6 +2267,8 @@ Hint:
 	\end{itemize}
 
 \item Put everything together to find a (second order) differential equation for $y$.
+
+\item Do $\alpha$ or $\beta$ depend on $x$? Explain.
 	
 \end{parts}
 		
@@ -2277,7 +2279,7 @@ Hint:
 
 \question
 
-Recall a rope hanging from two poles at positions $x=0$ and $x=1$.
+Recall a rope hanging from two poles.
 
 \vspace{-1em}
 \begin{center}
