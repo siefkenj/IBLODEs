@@ -2249,23 +2249,24 @@ The only forces acting on the rope are gravity and tension.
 
 Similarly to the previous exercise, we can find a vector $\vec{V}_R = \big(1,y'(x+\Delta)\big)$ in the direction of $\vec{T}_R$, but with possibly different magnitude.
 
-We can approximate:
-	\begin{itemize}
-		\item $y(x+\Delta) \approx y(x) + \Delta \cdot y'(x)$,
-		\item $y'(x+\Delta) \approx y'(x) + \Delta \cdot y''(x)$.
-	\end{itemize}
-
-Observe the following:
+So far we have:
 \begin{itemize}
-	\item $\vec{V}_L = a_L \vec{T}_L$ and $\vec{V}_R = a_R \vec{T}_R$, for some $a_L, a_R >0$.
+	\item $\vec{T}_L = \alpha \vec{V}_L$  for some $\alpha > 0$ and
+	\item $\vec{T}_R = \beta \vec{T}_R$ for some $\beta >0$.
 \end{itemize}
 
 
 \begin{parts}
 
-\item Can you find approximations of the vectors $\vec{F}_g, \vec{T}_L, \vec{T}_R$ that only use the values of the function $y$ at $x$ ($y(x), y'(x), y''(x), \ldots$) and not at $x+\Delta$?
+\item Can you find approximations of the vectors $\vec{F}_g, \vec{T}_L, \vec{T}_R$ that only use $y(x)$, $y'(x)$, $y''(x)$?
 
-\item Put everything together to find a (differential) equation for $y$.
+Hint:
+	\begin{itemize}
+		\item $y(x+\Delta) \approx y(x) + \Delta \cdot y'(x)$,
+		\item $y'(x+\Delta) \approx y'(x) + \Delta \cdot y''(x)$.
+	\end{itemize}
+
+\item Put everything together to find a (second order) differential equation for $y$.
 	
 \end{parts}
 		
@@ -2299,9 +2300,9 @@ y''(x) = \frac{\rho g}{T} \sqrt{1+\big(y'(x)\big)^2}
 
 \begin{parts}
 
-	\item Toronto Hydro is stringing some wire. The posts are 100m apart and at a height of 20m. At their lowest point, the wire is 13m above the ground.
+	\item Toronto Hydro is stringing some wire. The posts are 100m apart and at a height of 20m. At the lowest point, the wire is 13m above the ground.
 	
-	The wires have a (linear) density of 1 kg/m and gravity is 9.8 m/s$^2$.
+	The wire has a (linear) density of 1 kg/m and gravity is 9.8 m/s$^2$.
 	
 	For safety reasons, the wire's tensile strength needs to be 5 times the maximum tension when the wire is resting.
 	
