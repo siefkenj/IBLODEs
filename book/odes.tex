@@ -2176,12 +2176,12 @@ Consider a rope hanging from two poles.
   \draw[->] (0,1) -- node[above] {\small $\vec{T}_L$} (-0.5,{2-cosh(0.5)+0.15});
   \draw[->] (0.5,{cosh(0.5)}) -- node[above] {\small $\vec{T}_R$} (1,{2*cosh(0.5)-1+0.15});
   \draw[->] (0.25,0.9) -- (0.25, 0.5) node[below] {\small $\vec{F}_g$};
-  \draw[dashed,gray] (0,-0.12) node[below] {\scriptsize $x$} -- (0,1);
-  \draw[dashed,gray] (0.5,-0.12) node[below] {\scriptsize $\quad x+\Delta$} -- (0.5,{cosh(0.5)});
+  \draw[dashed,gray] (0,-0.12) node[below] {\scriptsize $d$} -- (0,1);
+  \draw[dashed,gray] (0.5,-0.12) node[below] {\scriptsize $\quad d+\Delta$} -- (0.5,{cosh(0.5)});
 \end{tikzpicture}
 \end{center}
 \vspace{-1em}
-$y(x)=$ height of the rope above ground at position $x$.
+$H(d)=$ height of the rope above ground at position $d$.
 
 We will consider the following premises and physics laws:
 \vspace{-1em}
@@ -2202,12 +2202,12 @@ We will consider the following premises and physics laws:
 \end{itemize}
 
 To model the rope, imagine it is made of \textbf{small rigid rods}.
-We will focus on one such rod, $S$, (drawn in the figure) from $x$ to $x+\Delta$.
+We will focus on one such rod, $S$, (drawn in the figure) from $d$ to $d+\Delta$.
 
 \begin{parts}
 
 \item Given ($P_{NL}$), find a relation between the force vectors $\vec{T}_L, \vec{T}_R, \vec{F}_g$.
-\item Approximate the length of the segment $S$, and its mass. Approximate the vector $\vec{F}_g$.
+\item Approximate the length of the segment $S$ and its mass. Approximate the vector $\vec{F}_g$.
 \item Find a vector $\vec{V}_L$ in the direction of $\vec{T}_L$ (the magnitude doesn't matter at this point).
 \end{parts}
 	
@@ -2240,35 +2240,35 @@ The only forces acting on the rope are gravity and tension.
   \draw[->] (0,1) -- node[above] {\small $\vec{T}_L$} (-0.5,{2-cosh(0.5)+0.15});
   \draw[->] (0.5,{cosh(0.5)}) -- node[above] {\small $\vec{T}_R$} (1,{2*cosh(0.5)-1+0.15});
   \draw[->] (0.25,0.9) -- (0.25, 0.5) node[below] {\small $\vec{F}_g$};
-  \draw[dashed,gray] (0,-0.12) node[below] {\scriptsize $x$} -- (0,1);
-  \draw[dashed,gray] (0.5,-0.12) node[below] {\scriptsize $\quad x+\Delta$} -- (0.5,{cosh(0.5)});
+  \draw[dashed,gray] (0,-0.12) node[below] {\scriptsize $d$} -- (0,1);
+  \draw[dashed,gray] (0.5,-0.12) node[below] {\scriptsize $\quad d+\Delta$} -- (0.5,{cosh(0.5)});
 \end{tikzpicture}
 \end{center}
 \vspace{-1em}
 
 
-Similarly to the previous exercise, we can find a vector $\vec{V}_R = \matc{1\\y'(x+\Delta)}$ in the direction of $\vec{T}_R$, but with possibly different magnitude.
+Similarly to the previous exercise, we can find a vector $\vec{V}_R = \matc{1\\H'(d+\Delta)}$ in the direction of $\vec{T}_R$, but with possibly different magnitude.
 
 So far we have:
 \begin{itemize}
-	\item $\vec{T}_L = \alpha \vec{V}_L$  for some $\alpha > 0$ and
+	\item $\vec{T}_L = \alpha \vec{V}_L$  for some $\alpha > 0$, and
 	\item $\vec{T}_R = \beta \vec{V}_R$ for some $\beta >0$.
 \end{itemize}
 
 
 \begin{parts}
 
-\item Can you find approximations of the vectors $\vec{F}_g, \vec{T}_L, \vec{T}_R$ that only use $y(x)$, $y'(x)$, $y''(x)$?
+\item Can you find approximations of the vectors $\vec{F}_g, \vec{T}_L, \vec{T}_R$ that only use $H(d)$, $H'(d)$, and $H''(d)$?
 
 Hint:
 	\begin{itemize}
-		\item $y(x+\Delta) \approx y(x) + \Delta \cdot y'(x)$,
-		\item $y'(x+\Delta) \approx y'(x) + \Delta \cdot y''(x)$.
+		\item $H(d+\Delta) \approx H(d) + \Delta \cdot H'(d)$,
+		\item $H'(d+\Delta) \approx H'(d) + \Delta \cdot H''(d)$.
 	\end{itemize}
 
-\item Put everything together to find a (second order) differential equation for $y$.
+\item Put everything together to find a (second order) differential equation for $H$.
 
-\item Do $\alpha$ or $\beta$ depend on $x$? Explain.
+\item Do $\alpha$ or $\beta$ depend on $d$? Explain.
 	
 \end{parts}
 		
@@ -2284,35 +2284,49 @@ Recall a rope hanging from two poles.
 \vspace{-1em}
 \begin{center}
 \begin{tikzpicture}
-  \draw (-1,0)  -- (-1,{cosh(-1)});
+  \draw (-1.5,0)  -- (-1.5,{cosh(-1.5)});
   \draw (1.5,0) -- (1.5,{cosh(1.5)});
-  \draw[fill=brown!65!black,draw=none] (-1.5,-0.1) rectangle (2,0);
+  \draw[fill=brown!65!black,draw=none] (-2,-0.1) rectangle (2,0);
   \draw (-1.5,0) -- (2,0);
-  \draw[blue, ultra thick, variable=\x,domain=-1:1.5,samples=100] plot ({\x},{cosh(\x)});
+  \draw[blue, ultra thick, variable=\x,domain=-1.5:1.5,samples=100] plot ({\x},{cosh(\x)});
 \end{tikzpicture}
 \end{center}
 \vspace{-1em}
-$y(x)=$ the height of the rope from the ground at position $x$.
+$H(d)=$ the height of the rope at position $d$.
 
 We have the following model for it:
 \[
-y''(x) = \frac{\rho g}{T} \sqrt{1+\big(y'(x)\big)^2}
+H''(d) = k \sqrt{1+\big(H'(d)\big)^2}
 \]
 \vspace{1pt}
 
+Toronto Hydro is stringing some wire. The posts are 20m apart and at a height of 10m. At the lowest point, the wire is 5m above the ground.
 \begin{parts}
 
-	\item Toronto Hydro is stringing some wire. The posts are 20m apart and at a height of 10m. At the lowest point, the wire is 5m above the ground.
-	
-	The wire has a (linear) density of 1 kg/m and gravity is 9.8 m/s$^2$.
-	
-	For safety reasons, the wire's tensile strength needs to be 5 times the maximum tension when the wire is resting.
-	
-	What strength of wire do they need?
-	
-	\item Assuming the posts are both the same height, relate the length of the rope with the tension at the posts. 
+	\item Set up a boundary value problem that can be used to find the total length of the wire.
 
-	\item Assuming the posts have different heights, relate the length of the rope with the tension at the posts. 
+	\item Using the following Desmos link, can you find a solution to the boundary value problem?
+
+		{\small \url{https://www.desmos.com/calculator/l4fair6454}}
+
+	
+	\item It happens that $k=\frac{\rho g}{T}$ where $T$ is the minimum tension in the rope.
+
+	Suppose Toronto Hydro hung the wires so that they were at minimum 9m above the ground.
+	Would the tension be higher or lower? By how much?
+
+	\item Should the difference between maximum and minimum tension
+	be higher or lower for low-hanging wires? What does your intuition say? What does the phase portrait say?
+
+	%The wire has a (linear) density of 1 kg/m and gravity is 9.8 m/s$^2$.
+	
+	%For safety reasons, the wire's tensile strength needs to be 5 times the maximum tension when the wire is resting.
+	
+	%What strength of wire do they need?
+	
+	%\item Assuming the posts are both the same height, relate the length of the rope with the tension at the posts. 
+
+	%\item Assuming the posts have different heights, relate the length of the rope with the tension at the posts. 
 	
 \end{parts}
 
