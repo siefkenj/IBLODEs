@@ -2363,10 +2363,10 @@ Consider a pendulum as in the figure below.
 $\theta(t) = $ the angle the pendulum makes with the vertical axis (positive in the counterclockwise direction and negative in the clockwise direction).
 \end{multicols}
 
-We will consider the following premises and physics laws:
+Assume the pendulum is composed of a weightless rigid rod of length $1$ meter and a mass of $1$ kg at its end. In 
+addition assume:
 
 \begin{itemize}
-	\item[($P_P$)] The pendulum is composed of a weightless rigid rod of length $L$ m and a mass of $m$ kg at its end.
 	\item[($P_G$)] Gravity pulls downwards in proportion to mass (the proportionality constant is called $g$).
 	\item[($P_T$)] Tension pulls the mass in the direction of the rod.
 	\item[($P_{NL}$)] Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
@@ -2374,11 +2374,15 @@ We will consider the following premises and physics laws:
 \end{itemize}
 
 \begin{parts}
-	\item Find the coordinates of the position of the mass. Find its velocity and acceleration vectors.
+	\item Let $\theta(t)$ be the angle at time $t$ and let $\vec r(t)$ be the mass's position at time $t$.
+	
+	Find $\vec r(t)$ and $\vec r\,''(t)$ in terms of $\theta(t)$.
 	\item Find the vector $\vec{F}_g$.
-	\item Find a vector $\vec{T}_d$ in the direction of $\vec{T}$ (the magnitude doesn't matter at this point).
+	\item Find a vector $\vec{T}_d$ so that $\vec T = \alpha\vec T_d$ for some $\alpha>0$.
 %	\item Find the velocity and acceleration vectors for the mass.
-	\item Using ($P_{NL}$), put everything together.	 \textit{(Hint: Solve the first equation for $mL(\theta')^2$ and use this to remove that term from the second equation.)}
+	\item Find a second-order differential equation for the pendulum.
+	\textit{(Hint: ($P_{NL}$) gives you an equation for each coordinate. Solve one for $(\theta')^2$ and substitute it into 
+	the other equation.)}
 %	\item Write the differential equation as a system of 1$^{\rm st}$-order differential equations.
 
 \end{parts}
@@ -2409,26 +2413,46 @@ Consider a pendulum as in the figure below.
 \columnbreak
 $\theta(t) = $ the angle the pendulum makes with the vertical axis (positive in the counterclockwise direction and negative in the clockwise direction).
 \end{multicols}
-We have the following model for it:
+If we had preserved length and mass in our derivation, we would have the following model:
 \[
-\theta''(t) = \frac{g}{L} \sin\big( \theta(t) \big)
+\theta''(t) = -\frac{g}{L} \sin\Big( \theta(t) \Big)
 \]
 
+Let (P) be the corresponding system of first-order differential equations.
+The following Desmos link is already set up with (P).
+
+{\small \url{https://www.desmos.com/calculator/acmiingcqf}}
 
 \begin{parts}
-	\item Show that $\theta(t)=k\pi$ are equilibrium solutions for all $k\in \mathbb{Z}$. Analyze its nature using eigen techniques.
+	\item If $L=3$m, and you set the pendulum in motion at $\theta =0$ by giving it a small push,
+	what does the motion look like?
 
-\bigskip
+	\item If $L=3$m, and you set the pendulum in motion at $\theta =0$ by giving it a BIG push,
+	what does the motion look like?
 
-	\item Using the following Desmos link, use different initial conditions to explore the different behaviours of the pendulum with $L=3$.
-
-		{\small \url{https://www.desmos.com/calculator/5qifixelmb}}
-		
-	\item If the pendulum starts vertically with a 5 m/s push to the right, is the solution periodic?
+	\item Why are there infinitely many equilibrium solutions?
 	
-	\item Assume $\theta(0)=0$. Find an initial velocity $v^\star$ such that the behaviour of the phase portrait for $\theta'(0)<v^\star$ is different than that for $\theta'(0)>v^\star$. What is the practical meaning of $v^\star$?
-	
-	\item We have a pendulum with $L=3$ m on Earth. We want to take a pendulum to the Moon that will behave exactly in the same way. What should be the specifications of that pendulum?
+	\item Find an affine approximation to (P) around $(\theta,\theta')=(0,0)$.
+
+	\item Physicists often claim that $\theta(t)$ oscillates like a sine wave with
+	period $2\pi\sqrt{\frac{L}{g}}$. Under what conditions are the (mostly) correct?
+
+
+
+
+%	\item Show that $\theta(t)=k\pi$ are equilibrium solutions for all $k\in \mathbb{Z}$. Analyze its nature using eigen techniques.
+%
+%	\bigskip
+%
+%	\item Using the following Desmos link, use different initial conditions to explore the different behaviours of the pendulum with $L=3$.
+%
+%		{\small \url{https://www.desmos.com/calculator/5qifixelmb}}
+%		
+%	\item If the pendulum starts vertically with a 5 m/s push to the right, is the solution periodic?
+%	
+%	\item Assume $\theta(0)=0$. Find an initial velocity $v^\star$ such that the behaviour of the phase portrait for $\theta'(0)<v^\star$ is different than that for $\theta'(0)>v^\star$. What is the practical meaning of $v^\star$?
+%	
+%	\item We have a pendulum with $L=3$ m on Earth. We want to take a pendulum to the Moon that will behave exactly in the same way. What should be the specifications of that pendulum?
 
 \end{parts}
 
