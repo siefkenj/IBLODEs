@@ -10,3 +10,6 @@
 .vscode
 *.swp
 *.idx
+tutorials/*pdf
+book/**/*pdf
+book/draft

@@ -1,0 +1,1 @@
+This folder contains all the library functions used to render slides/books/instructor guides
