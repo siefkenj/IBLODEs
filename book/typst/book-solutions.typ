@@ -28,23 +28,25 @@
 
 #show terms: it => aligned_terms(..it.children, separator: it.separator, tight: it.tight, spacing: it.spacing)
 
-// Module 1
-#(env.module)(
-  title: [Modelling],
-  [
-    #include "modules/module1.typ"
-    #import "modules/module1-practice-problems.typ": questions
-    #exercises(questions, module_number: 1)
-    #solutions(questions, module_number: 1)
-  ],
-)
-// Core exercises for Module 1
-#{
-  import "modules/module1-exercises.typ": setup
-  setup(env)
-}
+#serif[
 
+  // Module 1
+  #(env.module)(
+    title: [Modelling],
+    [
+      #include "modules/module1.typ"
+      #import "modules/module1-practice-problems.typ": questions
+      #exercises(questions, module_number: 1)
+      #solutions(questions, module_number: 1)
+    ],
+  )
+  // Core exercises for Module 1
+  #{
+    import "modules/module1-exercises.typ": setup
+    setup(env)
+  }
 
+  
 
-
-#make-index()
+  #make-index()
+]
