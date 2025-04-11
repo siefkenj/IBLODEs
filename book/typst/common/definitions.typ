@@ -35,6 +35,56 @@
         most accurately predicts the data $D$.
       ],
     ),
+    component_and_phase: definition_env(
+      title: "Component Graph & Phase Plane",
+      label: <def_component_and_phase>,
+      [
+        For a differential equation involving the functions $F_1$, $F_2$, #sym.dots, $F_n$, and
+        the variable $t$, the _component graphs_ are the $n$ graphs
+        of $(t, F_1 (t))$, $(t, F_2 (t))$, #sym.dots.
+
+        The _phase plane_ or _phase space_ associated with the
+        differential equation is the $n$-dimensional space with
+        axes corresponding to the values of $F_1$, $F_2$, #sym.dots, $F_n$.
+      ],
+    ),
+    equilibrium_solution: definition_env(
+      title: "Equilibrium Solution",
+      label: <def_equilibrium_solution>,
+      [
+        An _equilibrium solution_ to a
+        differential equation or system of differential equations
+        is a solution that is constant in the independent variable(s).
+      ],
+    ),
+    equilibrium_classification_informal: definition_env(
+      title: "Classification of Equilibria",
+      label: <def_equilibrium_classification_informal>,
+      [
+        An equilibrium solution $f$ is called
+        - _attracting_ if locally, solutions converge to $f$
+        - _repelling_ if there is a fixed distance so that locally, solutions tend away from $f$ by that fixed distance
+        - _stable_ if there is a fixed distance so that locally, solutions stay within that fixed distance of $f$
+        - _unstable_ if $f$ is not stable
+      ],
+    ),
+    equilibrium_classification_formal: definition_env(
+      title: "Classification of Equilibria (Formal)",
+      label: <def_equilibrium_classification_formal>,
+      [
+        An equilibrium solution $f$ is called
+        - _attracting at time $t_0$_ if
+          there exists $epsilon > 0$ such that for all solutions $g$ satisfying $abs(g(t_0) - f(t_0)) < epsilon$, we have $lim_(t -> infinity) f(t) = lim_(t -> infinity) g(t)$.
+        - _repelling at time $t_0$_ if there exists $epsilon > 0$ and $delta > 0$ such that for all
+          solutions $g$ that satisfy $0 < abs(g(t_0) - f(t_0)) < epsilon$ there exists $T in RR$ so that for all $t > T$ we have
+          $abs(g(t) - f(t)) > delta$.
+        - _stable at time $t_0$_ if for all $epsilon > 0$ there exists a $delta > 0$ such that for all solutions $g$ satisfying $abs(g(t_0) - f(t_0)) < delta$
+          we have $abs(g(t) - f(t)) < epsilon$ for all $t > t_0$.
+        - _unstable at time $t_0$_ if $f$ is not stable at time $t_0$.
+        
+        $f$ is called attracting/repelling/stable/unstable if it has the corresponding property for all $t$.
+      ],
+    ),
   )
 
   /// Show the definition with the given name. `name` is a string.

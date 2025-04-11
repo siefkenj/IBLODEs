@@ -61,7 +61,7 @@
 
 // Module 3
 #(env.module)(
-  title: [Equilibrium and Long-Term Behaviour],
+  title: [Systems and Models with Interacting Terms],
   [
     #include "modules/module3.typ"
     #import "modules/module3-practice-problems.typ": questions
@@ -77,7 +77,7 @@
 
 // Module 4
 #(env.module)(
-  title: [Phase Portraits],
+  title: [Equilibrium and Long-Term Behaviour],
   [
     #include "modules/module4.typ"
     #import "modules/module4-practice-problems.typ": questions

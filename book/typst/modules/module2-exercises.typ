@@ -4,6 +4,7 @@
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
+#let RR = $upright(bold("R"))$
 #let infty = math.infinity
 
 #let setup(env) = {
@@ -78,6 +79,7 @@
       + Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?
       + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What does the graph show?
 
+        #v(.7cm)
       + What $Delta$s give the largest estimate for the population at time $t$?
       + Is there a limit as $Delta arrow 0$?
     ]
@@ -191,8 +193,8 @@
         #enum.item(1)[Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?]
         + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What does the graph show?
 
-        #v(.7cm)
-        #enum.item(3)[What $Delta$s give the largest estimate for the population at time $t$?]
+          #v(.7cm)
+        + What $Delta$s give the largest estimate for the population at time $t$?
         + Is there a limit as $Delta arrow 0$?
       ],
     )
@@ -202,16 +204,53 @@
   question(
     slide[
 
+      Consider the following models for starfish growth:
+
+      #aligned_terms(
+        terms.item(SS, [\# new children per year $~$ current population.]),
+        terms.item(
+          RR,
+          [\# new children per year $~$ current population times resources available per individual.],
+        ),
+        terms.item(
+          MM,
+          [\# new children per year $~$ current population times the fraction of total resources remaining.],
+        ),
+      )
+
+      + Guess what the population vs. time curves look like for each model.
+      + Create a differential equation for each model.
+      + Simulate population vs. time curves for each model (but pick a common initial population).
 
     ],
   )
 
   book_only(pagebreak())
-  question(slide[ ])
+  question(slide[
+    Recall the models
 
-  book_only(pagebreak())
-  question(slide[ ])
+      #aligned_terms(
+        terms.item(SS, [\# new children per year $~$ current population.]),
+        terms.item(
+          RR,
+          [\# new children per year $~$ current population times resources available per individual.],
+        ),
+        terms.item(
+          MM,
+          [\# new children per year $~$ current population times the fraction of total resources remaining.],
+        ),
+      )
 
-  book_only(pagebreak())
-  question(slide[ ])
+    + Determine which population grows fastest in the short term and which grows fastest in the long term.
+    + Are some models more sensitive to your choice of $Delta$ when simulating?
+    + Are your simulations for each model consistently underestimates? Overestimates?
+    + Compare your simulated results with your guesses from question //#ref(many-models).#ref(model-guess-part).
+      What did you guess correctly? Where were you off the mark?
+   ])
+
+  //book_only(pagebreak())
+  //question(slide[ ])
+
+  //book_only(pagebreak())
+  //question(slide[ ])
 }

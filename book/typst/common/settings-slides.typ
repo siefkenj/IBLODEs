@@ -17,7 +17,8 @@
 /// Render a slide panel with the given content.
 /// - `content` (content): The content to render on the slide.
 /// - `autosize` (bool): Whether to attempt to automatically size the content to fit on a single slide.
-#let slide(content, autosize: true, force_two_column: false) = {
+#let slide(content, autosize: true, force_two_column: false, force_scale: none) = {
+  let text_size = if force_scale != none { force_scale } else { 1em }
   let x_margin = 1cm
   set page(
     header: {
@@ -49,7 +50,14 @@
   } else {
     layout(size => {
       // Attempt a series of layout options to try and get the content to fit on a single slide
-      let adjusted_content = block(breakable: false, width: size.width, content)
+      let adjusted_content = block(
+        breakable: false,
+        width: size.width,
+        {
+          set text(size: text_size)
+          content
+        },
+      )
       let content_dim = measure(adjusted_content)
       if content_dim.height < 1.0 * size.height and not force_two_column {
         block(
@@ -57,6 +65,10 @@
           adjusted_content,
         )
       } else {
+        let content = {
+          set text(size: text_size)
+          content
+        }
         // We're now in two columns, but `measure` will assume infinite height. Use
         // the heuristic that columns will cut the height in half.
         content_dim = measure(block(breakable: false, width: size.width / 2, content))
@@ -72,10 +84,11 @@
             ),
           )
         } else {
+          let text_size = if force_scale != none { force_scale } else { calc.max(1 / percent_over, 0.85) * 1em }
           block(
             breakable: false,
             {
-              set text(size: calc.max(1 / percent_over, 0.85) * 1em)
+              set text(size: text_size)
               columns(
                 2,
                 gutter: 8pt,
