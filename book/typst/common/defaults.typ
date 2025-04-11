@@ -1,8 +1,10 @@
 /// This file contains default settings for the book. These are used unless overridden.
 
 #let config = (
-  sans_font: ("Droid Sans", "DejaVu Sans"),
-  serif_font: ("DejaVu Serif",),
+  //sans_font: ("Droid Sans", "DejaVu Sans"),
+  sans_font: ("NimbusSanL"),
+  serif_font: ("Bitstream Charter", "Libertinus Serif"),
+  mono_font: ("Latin Modern Mono"),
   def_color: color.rgb("#8dc73e"),
   thm_color: color.rgb("#ed9537"),
 )
@@ -16,6 +18,12 @@
 /// Set the font to the serif font.
 #let serif(content) = {
   set text(font: config.serif_font)
+  content
+}
+
+/// Set the font to the mono font.
+#let mono(content) = {
+  set text(font: config.mono_font)
   content
 }
 
@@ -88,6 +96,7 @@
 #let env = (
   sans: sans,
   serif: serif,
+  mono: mono,
   definition: definition,
   theorem: theorem,
   slide: noop,

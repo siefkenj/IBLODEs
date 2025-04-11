@@ -1,9 +1,9 @@
+#import "./defaults.typ": env_lookup_all, restrict, config
 #import "../libs/_workbook.typ": setup
 // Slides are similar to a workbook, so we use the workbook functions as a basis for the slides.
-#let workbook = setup(banner_color: color.rgb("#00a2cb"), def_color: color.rgb("#8dc73e"))
+#let workbook = setup(..config, banner_color: color.rgb("#00a2cb"), def_color: color.rgb("#8dc73e"))
 
 #let active_env = "slides"
-#import "./defaults.typ": env_lookup_all, restrict
 
 // Bind `lookup_def` with the current definition environment so they appear boxed correctly.
 #import "./definitions.typ": show_def

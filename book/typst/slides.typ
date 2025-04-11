@@ -31,31 +31,31 @@
 #counter(page).update(1)
 
 
+#serif[
 
-// Core exercises for Module 1
-#{
-  import "modules/module1-exercises.typ": setup
-  setup(env)
-}
+  // Core exercises for Module 1
+  #{
+    import "modules/module1-exercises.typ": setup
+    setup(env)
+  }
 
-// Core exercises for Module 2
-#{
-  import "modules/module2-exercises.typ": setup
-  setup(env)
-}
+  // Core exercises for Module 2
+  #{
+    import "modules/module2-exercises.typ": setup
+    setup(env)
+  }
 
-// Core exercises for Module 3
-#{
-  import "modules/module3-exercises.typ": setup
-  setup(env)
-}
+  // Core exercises for Module 3
+  #{
+    import "modules/module3-exercises.typ": setup
+    setup(env)
+  }
 
-// Core exercises for Module 4
-#{
-  import "modules/module4-exercises.typ": setup
-  setup(env)
-}
-
-
+  // Core exercises for Module 4
+  #{
+    import "modules/module4-exercises.typ": setup
+    setup(env)
+  }
+]
 
 

@@ -82,7 +82,7 @@
 
       Let
       $
-        F'(t) = ?
+        F'(t) = class("normal", ?)
       $
       be an unknown differential equation with equilibrium solution $f(t) = 1$.
 

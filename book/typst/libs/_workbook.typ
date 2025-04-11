@@ -19,15 +19,16 @@
 }
 
 #let setup(
-  serif_font: ("DejaVu Serif",),
+  serif_font: ("New Computer Modern", "DejaVu Sans Mono", "Bitstream Charter"),
   sans_font: ("Droid Sans", "DejaVu Sans"),
+  mono_font: ("Droid Sans Mono", "DejaVu Sans Mono"),
   def_color: color.rgb("#8dc73e"),
   thm_color: color.rgb("#ed9537"),
   title_color: color.rgb("#00a2cb"),
   banner_color: color.rgb("#8900b3"),
   banner_width: 1.15in,
 ) = {
-  let config = (serif_font: serif_font, sans_font: sans_font)
+  let config = (serif_font: serif_font, sans_font: sans_font, mono_font: mono_font)
 
   /// Set the font to the serif font.
   let sans(content) = {
@@ -39,6 +40,12 @@
     set text(font: config.serif_font)
     content
   }
+  /// Set the font to the mono font.
+  let mono(content) = {
+    set text(font: config.mono_font)
+    content
+  }
+
   /// Create a boxed definition.
   /// - title (content): The title of the definition.
   /// - label (label | none): The label of the definition for referencing it.
@@ -180,6 +187,7 @@
     )
     heading(level: 1, [#title <module_start>])
 
+    show link: mono
     content
   }
 
@@ -220,6 +228,7 @@
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
     pagebreak(to: "odd", weak: true)
 
+    show link: mono
     content
   }
 
@@ -276,6 +285,7 @@
       spacing: 1em,
     )
 
+    show link: mono
     content
   }
   /// Display the solution to a question.

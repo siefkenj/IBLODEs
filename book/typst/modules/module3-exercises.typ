@@ -87,7 +87,7 @@
 
   book_only(pagebreak())
   question(
-    slide(force_scale: 0.8em)[
+    slide(force_scale: 0.76em)[
       Open the spreadsheet
 
       #link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits]
