@@ -71,10 +71,12 @@
 
   book_only(pagebreak())
   question({
-    slide(force_scale: 0.75em)[
-      #show_def("equilibrium_classification_informal")
-      #show_def("equilibrium_classification_formal")
-    ]
+    slides_only(
+      slide(force_scale: 0.75em)[
+        #show_def("equilibrium_classification_informal")
+        #show_def("equilibrium_classification_formal")
+      ],
+    )
     slide(force_scale: 0.9em)[
       #show_def("equilibrium_classification_informal")
 
@@ -95,7 +97,7 @@
   question(
     slide[
 
-      #show_def("equilibrium_classification_informal")
+      #slides_only(show_def("equilibrium_classification_informal"))
 
       Recall the starfish population model #OO given by
       $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $

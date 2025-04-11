@@ -199,11 +199,11 @@ Because of this, _guess and check_ will be our primary method for solving differ
 
     Since $A'approx A$, we might start with a function that is equal to its own derivative. There is a famous one: $e^n$. Testing, we see
     $dif / (dif n) e^n=e^n=k e^n$
-    if $k=1$, but it doesn't work for other $k$'s. Trying $e^{k n}$ instead yields
+    if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
     which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there are other solutions, because
     $dif/(dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$,
-    and so for every $C$, the function $A(n)=C e^(k n)$ is a solution to $A'(n)=k A(n)$.
+    and so for every number $C$, the function $A(n)=C e^(k n)$ is a solution to $A'(n)=k A(n)$.
 
     By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=k A(n)$. It's now time to fit our
     model to the data.
