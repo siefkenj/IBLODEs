@@ -1,4 +1,6 @@
 #import "../libs/_workbook.typ": aligned_terms
+#import "@preview/lilaq:0.2.0" as lq
+#import "../libs/_graphics.typ": slope_field
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -111,8 +113,36 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.83em)[
 
+      #slides_only(v(1em))
+
+      #let F(x, y) = 1.1 * y * (1 - 0.1 / 1 * y)
+      #align(
+        center,
+        slope_field(
+          F,
+          xlim: (-3, 20),
+          ylim: (-6.2, 15),
+          spacing: 1.1,
+          width: 7cm,
+          height: 5cm,
+          scale_segments: 1.5,
+        ),
+      )
+
+      A _slope field_ is a plot of small segments of tangent lines
+      to solutions of a differential equation at different initial conditions.
+
+      On the left is a slope field for model #OO, available at
+
+      #link("https://www.desmos.com/calculator/ghavqzqqjn")
+
+      + If you were sketching the slope field for model #OO by hand, what line would you sketch
+        (a segment of) at $(5, 3)$? Write an equation for that line.
+      + How can you recognize equilibrium solutions in a slope field?
+      + Give qualitative descriptions of different solutions to the _differential equation_ used in model #OO (i.e., use words to describe them). Do all
+        of those solutions make sense in terms of _model #(OO)_?
 
     ],
   )
