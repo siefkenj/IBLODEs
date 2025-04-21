@@ -27,10 +27,17 @@
 
 #show terms: it => aligned_terms(..it.children, separator: it.separator, tight: it.tight, spacing: it.spacing)
 
+
+#serif[
+  // Table of Contents
+  #outline(depth: 1, title: "Table of Contents")
+]
+
+
 #serif[
   // Module 1
   #(env.module)(
-    title: [Modelling],
+    title: [1. Modelling],
     [
       #include "modules/module1.typ"
       #import "modules/module1-practice-problems.typ": questions
@@ -46,7 +53,7 @@
 
   // Module 2
   #(env.module)(
-    title: [Simulation],
+    title: [2. Simulation],
     [
       #include "modules/module2.typ"
       #import "modules/module2-practice-problems.typ": questions
@@ -62,7 +69,7 @@
 
   // Module 3
   #(env.module)(
-    title: [Systems and Models with Interacting Terms],
+    title: [3. Systems and Models with Interacting Terms],
     [
       #include "modules/module3.typ"
       #import "modules/module3-practice-problems.typ": questions
@@ -78,7 +85,7 @@
 
   // Module 4
   #(env.module)(
-    title: [Equilibrium and Long-Term Behaviour],
+    title: [4. Equilibrium and Long-Term Behaviour],
     [
       #include "modules/module4.typ"
       #import "modules/module4-practice-problems.typ": questions
@@ -94,7 +101,7 @@
 
   // Module 5
   #(env.module)(
-    title: [Qualitative Analysis: Slope Fields and Phase Portraits],
+    title: [5. Qualitative Analysis: Slope Fields and Phase Portraits],
     [
       #include "modules/module5.typ"
       #import "modules/module5-practice-problems.typ": questions
@@ -110,7 +117,7 @@
 
   // Module 6
   #(env.module)(
-    title: [Linear Systems with Constant Coefficients (Real Solutions)],
+    title: [6. Linear Systems with Constant Coefficients (Real Solutions)],
     [
       #include "modules/module6.typ"
       #import "modules/module6-practice-problems.typ": questions
@@ -126,7 +133,7 @@
 
   // Module 7
   #(env.module)(
-    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
+    title: [7. Linear Systems with Constant Coefficients (Affine Solutions)],
     [
       #include "modules/module7.typ"
       #import "modules/module7-practice-problems.typ": questions
@@ -142,7 +149,7 @@
 
   // Module 8
   #(env.module)(
-    title: [Linear Systems with Constant Coefficients (Complex Solutions)],
+    title: [8. Linear Systems with Constant Coefficients (Complex Solutions)],
     [
       #include "modules/module8.typ"
       #import "modules/module8-practice-problems.typ": questions
@@ -158,7 +165,7 @@
 
   // Module 9
   #(env.module)(
-    title: [Quantitative Analysis: Linearization],
+    title: [9. Quantitative Analysis: Linearization],
     [
       #include "modules/module9.typ"
       #import "modules/module9-practice-problems.typ": questions
@@ -174,7 +181,7 @@
   
   // Module 10
   #(env.module)(
-    title: [Higher Order Differential Equations],
+    title: [10. Higher Order Differential Equations],
     [
       #include "modules/module10.typ"
       #import "modules/module10-practice-problems.typ": questions
@@ -190,7 +197,7 @@
   
   // Module 11
   #(env.module)(
-    title: [Introduction to Boundary Value Problems],
+    title: [11. Introduction to Boundary Value Problems],
     [
       #include "modules/module11.typ"
       #import "modules/module11-practice-problems.typ": questions
@@ -206,7 +213,7 @@
 
   // Module 12
   #(env.module)(
-    title: [Introduction to the Theory of Ordinary Differential Equations],
+    title: [12. Introduction to the Theory of Ordinary Differential Equations],
     [
       #include "modules/module12.typ"
       #import "modules/module12-practice-problems.typ": questions

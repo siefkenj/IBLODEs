@@ -1,5 +1,6 @@
 #import "@preview/lilaq:0.2.0" as lq
 
+
 /// Merge to `stroke` objects with any properties defined on the second one taking precedence.
 /// For example, `merge_strokes(1pt + green, red)` will produce `1pt + red`.
 #let merge_strokes(stroke1, stroke2) = {
@@ -128,3 +129,48 @@
     ..lq_args,
   )
 }
+
+
+
+
+/// Plot a vector field for `(F(x, y), G(x,y)` 
+/// Additional arguments can be passed to the underlying `lq.diagram`
+/// to add to the plot.
+///  - `xlim`: The x-axis limits.
+///  - `ylim`: The y-axis limits.
+///  - `spacing`: The spacing between the slopes drawn for the slope field.
+#let vector_field(F, G, xlim:(0,1), ylim:(0,1), spacing: auto, scale_segments: auto, ..lq_args) = {
+  let xmin = xlim.at(0)
+  let xmax = xlim.at(1)
+  let ymin = ylim.at(0)
+  let ymax = ylim.at(1)
+  let width = lq_args.named().at("width", default: 6cm)
+  let height = lq_args.named().at("height", default: 4cm)
+
+  let (x_spacing, y_spacing) = if type(spacing) == array {
+    (spacing.at(0), spacing.at(1))
+  } else if type(spacing) != float {
+    let spacing = calc.min((xmax - xmin) / 10, (ymax - ymin) / 10)
+    (spacing, spacing)
+  } else {
+    (spacing, spacing)
+  }
+
+  let x = lq.arange(xmin, xmax+x_spacing, step : x_spacing)
+  let y = lq.arange(ymin, ymax+y_spacing, step : y_spacing)
+  let (directions) = lq.mesh(x, y, (x, y) => (F(x,y), G(x,y)))
+  
+  let magnitudes = directions.map(d => d.map(v => calc.sqrt(calc.pow(v.at(0),2) + calc.pow(v.at(1),2))))
+  
+  lq.diagram(
+    lq.quiver(
+      x, y,
+      directions,
+      scale: scale_segments, 
+      pivot: center,
+      color: magnitudes
+    ),
+    ..lq_args
+  )
+}
+
