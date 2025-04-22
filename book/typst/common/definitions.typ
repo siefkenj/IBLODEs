@@ -85,6 +85,13 @@
         $f$ is called attracting/repelling/stable/unstable if it has the corresponding property for all $t$.
       ],
     ),
+    phase_portrait: definition_env(
+      title: "Phase Portrait",
+      label: <def_phase_portrait>,
+      [
+        A _phase portrait_ or _phase diagram_ is the plot of a vector field in phase space where each vector rooted at $(x, y)$ is tangent to a solution curve passing through $(x, y)$ and its length is given by the speed of a solution passing through $(x, y)$.
+      ],
+    ),
   )
 
   /// Show the definition with the given name. `name` is a string.
