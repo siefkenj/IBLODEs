@@ -133,13 +133,14 @@
 
 
 
-/// Plot a vector field for `(F(x, y), G(x,y)` 
+/// Plot a vector field for `F(x,y)=(F1(x, y), F2(x,y))` 
 /// Additional arguments can be passed to the underlying `lq.diagram`
 /// to add to the plot.
 ///  - `xlim`: The x-axis limits.
 ///  - `ylim`: The y-axis limits.
 ///  - `spacing`: The spacing between the slopes drawn for the slope field.
-#let vector_field(F, G, xlim:(0,1), ylim:(0,1), spacing: auto, scale_segments: auto, ..lq_args) = {
+/// - `sale_segments`: Additional scaling factor to change the length of the slope segments.
+#let vector_field(F, xlim:(0,1), ylim:(0,1), spacing: auto, scale_segments: auto, ..lq_args) = {
   let xmin = xlim.at(0)
   let xmax = xlim.at(1)
   let ymin = ylim.at(0)
@@ -158,7 +159,7 @@
 
   let x = lq.arange(xmin, xmax+x_spacing, step : x_spacing)
   let y = lq.arange(ymin, ymax+y_spacing, step : y_spacing)
-  let (directions) = lq.mesh(x, y, (x, y) => (F(x,y), G(x,y)))
+  let (directions) = lq.mesh(x, y, (x, y) => F(x,y))
   
   let magnitudes = directions.map(d => d.map(v => calc.sqrt(calc.pow(v.at(0),2) + calc.pow(v.at(1),2))))
   

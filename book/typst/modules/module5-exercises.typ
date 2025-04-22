@@ -26,7 +26,7 @@
       #align(center, block[
         #image("../images/slope-field-3d.png",width: 2in)
 
-        #link("https://www.desmos.com/3d/kvyztvmp0g")[https://www.desmos.com/3d/kvyztvmp0g]
+        #link("https://www.desmos.com/3d/kvyztvmp0g")
       ]
       )
 
@@ -46,34 +46,33 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.83em)[
 
     //https://www.desmos.com/calculator/wdgtznxndp
     //
     // Without Euler's built in:
     // https://www.desmos.com/calculator/vrk0q4espx
 
-    #let F(x,y) = ( 0.01 * y - 1.1 ) * x
-    #let G(x,y) = ( 1.1 - 0.1 * x ) * y
+    #let F(x,y) = ( ( 0.01 * y - 1.1 ) * x, ( 1.1 - 0.1 * x ) * y )
 
     #align(center, 
       vector_field(
         F, 
-        G, 
         xlim:(0,40), 
         ylim:(0,300),
         spacing: (2, 10),
         scale_segments: 0.075,
-        width: 8cm,
-        height: 8cm
+        width: 6.5cm,
+        height: 6.5cm
       )
     )
+
 
     #show_def("phase_portrait")
 
     This is a phase portrait for the Foxes--Rabbits model.
 
-    #link("https://www.desmos.com/calculator/vrk0q4espx")[https://www.desmos.com/calculator/vrk0q4espx]
+    #link("https://www.desmos.com/calculator/vrk0q4espx")
 
     
       + What do the $x$ and $y$ axes correspond to?
@@ -154,7 +153,7 @@
     
     and $0 lt.eq b lt.eq 2$.
 
-      + Modify #link("https://www.desmos.com/calculator/vrk0q4espx")[https://www.desmos.com/calculator/vrk0q4espx]. <partphase> 
+      + Modify #link("https://www.desmos.com/calculator/vrk0q4espx"). <partphase> 
       to make a phase portrait for the tree model.
       + What do equilibrium solutions mean in terms of tree growth?
       + For $b=1$ what are the equilibrium solution(s)?
@@ -195,6 +194,55 @@
 
     ]
   )
+
+
+
+book_only(pagebreak())
+question(
+  slide[
+    	The tree model
+      $ H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
+        A'(t) &= -0.3 dot.c (H(t))^2 + A(t) $
+    
+    was based on the premises
+
+      #aligned_terms(
+        terms.item($P_("height 1")$, [$"CO"_2$ is absorbed by the leaves and turned directly into trunk height.]),
+        terms.item($P_("height 2")$, [The tree is in a swamp and constantly sinks at a speed proportional to its height.]),
+        terms.item($P_("leaves 1")$, [Leaves grow proportionality to the energy available.]),
+        terms.item($P_("energy 1")$, [The tree gains energy from the sun proportionally to the leaf area.]),
+        terms.item($P_("energy 2")$, [The tree loses energy proportionally to the square of its height.]),
+      )
+
+
+    + How are the premises expressed in the differential equations?
+		+ What does the parameter $b$ represent (in the real world)?
+		+ Applying Euler's method to this system shows solutions that pass from the 1st to 4th quadrants of the phase plane.
+    Is this realistic? Describe the life cycle of such a tree?
+
+  ]
+)
+
+
+
+book_only(pagebreak())
+question(
+  slide[
+    	Recall the tree model
+      $ H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
+        A'(t) &= -0.3 dot.c (H(t))^2 + A(t) $
+    
+		+ Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
+		+ For which $b$ does a tree have the possibility of living forever? If the wind occasionally blew off a few random leaves,
+		would that change your answer?
+		+
+		Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
+
+		Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
+		
+		+ Predict what happens to a tree near equilibrium in condition $b_5$ and a tree near equilibrium in condition $b_(12)$.
+  ]
+)
 
 
 
