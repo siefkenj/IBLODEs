@@ -92,6 +92,14 @@
         A _phase portrait_ or _phase diagram_ is the plot of a vector field in phase space where each vector rooted at $(x, y)$ is tangent to a solution curve passing through $(x, y)$ and its length is given by the speed of a solution passing through $(x, y)$.
       ],
     ),
+    linear_dependence_algebraic: definition_env(
+      title: "Linear Dependence & Independence (Algebraic)",
+      label: <def_linear_depdendence_algebraic>,
+      [
+        The vectors $arrow(v)_1, arrow(v)_2, dots, arrow(v)_n$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1, dots, arrow(v)_n$ that equals the zero vector
+        Otherwise they are _linearly independent_.
+      ],
+    ),
   )
 
   /// Show the definition with the given name. `name` is a string.

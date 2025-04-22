@@ -98,7 +98,34 @@
     )
   }
 
-  // We need to keep track of the page where a module starts so we can format the first page differently.
+
+  /// Create a theorem based on a title.
+  let theorem(title: none, content) = {
+    let thm_color = color.purple
+    let darker_color = thm_color.darken(50%)
+    show emph: it => text(it, fill: darker_color, weight: "bold")
+    set list(marker: make_marker(color: darker_color))
+    box(
+      fill: thm_color.lighten(90%),
+      stroke: (left: thm_color + 1.5pt),
+      inset: 7pt,
+      {
+        text(
+          [Theorem (#box(title))],
+          fill: color.purple,
+          weight: "bold",
+          font: sans_font,
+        )
+        v(.2em)
+        box(content)
+      },
+      width: 100%,
+    )
+  }
+
+
+
+  // We need to keep track of the¡ page where a module starts so we can format the first page differently.
   let module_start_page = state("module_start_page", 0)
 
   /// Define a module containing the given content.
@@ -302,6 +329,7 @@
     module: module,
     definition: definition,
     example: example,
+    theorem: theorem,
     slide: noop,
     core_exercises: core_exercises,
     question: question,
