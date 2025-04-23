@@ -30,6 +30,8 @@
 
 #counter(page).update(1)
 
+#set math.mat(delim: "[")
+
 
 #serif[
 
@@ -57,53 +59,53 @@
     setup(env)
   }
 
-    // Core exercises for Module 5
-    #{
-      import "modules/module5-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 5
+  #{
+    import "modules/module5-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 6
-    #{
-      import "modules/module6-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 6
+  #{
+    import "modules/module6-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 7
-    #{
-      import "modules/module7-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 7
+  #{
+    import "modules/module7-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 8
-    #{
-      import "modules/module8-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 8
+  #{
+    import "modules/module8-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 9
-    #{
-      import "modules/module9-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 9
+  #{
+    import "modules/module9-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 10
-    #{
-      import "modules/module10-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 10
+  #{
+    import "modules/module10-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 11
-    #{
-      import "modules/module11-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 11
+  #{
+    import "modules/module11-exercises.typ": setup
+    setup(env)
+  }
 
-    // Core exercises for Module 12
-    #{
-      import "modules/module12-exercises.typ": setup
-      setup(env)
-    }
+  // Core exercises for Module 12
+  #{
+    import "modules/module12-exercises.typ": setup
+    setup(env)
+  }
 ]
 
 

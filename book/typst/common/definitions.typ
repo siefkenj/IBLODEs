@@ -81,7 +81,7 @@
         - _stable at time $t_0$_ if for all $epsilon > 0$ there exists a $delta > 0$ such that for all solutions $g$ satisfying $abs(g(t_0) - f(t_0)) < delta$
           we have $abs(g(t) - f(t)) < epsilon$ for all $t > t_0$.
         - _unstable at time $t_0$_ if $f$ is not stable at time $t_0$.
-        
+
         $f$ is called attracting/repelling/stable/unstable if it has the corresponding property for all $t$.
       ],
     ),
@@ -94,10 +94,25 @@
     ),
     linear_dependence_algebraic: definition_env(
       title: "Linear Dependence & Independence (Algebraic)",
-      label: <def_linear_depdendence_algebraic>,
+      label: <def_linear_dependence_algebraic>,
       [
         The vectors $arrow(v)_1, arrow(v)_2, dots, arrow(v)_n$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1, dots, arrow(v)_n$ that equals the zero vector
         Otherwise they are _linearly independent_.
+      ],
+    ),
+    eulers_method: definition_env(
+      title: "Euler's Method",
+      label: <eulers_method>,
+      [
+        Let $y'(t)=f(t, y)$ be a differential and let $y$ be a solution satisfying $y(t_0)=y_1$. 
+        The _Euler approximation with step size $Delta$ to $y$_ is the sequence of points 
+        $(t_0,y_0)$, $(t_1, y_2)$, #dots, where
+        $
+          y_1 &= y_0 + Delta dot f(t_0, y_0) &quad t_1 &= t_0+Delta\
+          y_2 &= y_1 + Delta dot f(t_1, y_1) &quad t_2 &= t_1+Delta\
+          &#h(.3em) dots.v & &#h(.3em)dots.v \
+          y_n &= y_(n-1) + Delta dot f(t_(n-1), y_(n-1)) &quad t_n &= t_(n-1)+Delta\
+        $
       ],
     ),
   )

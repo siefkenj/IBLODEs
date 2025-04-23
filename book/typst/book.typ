@@ -33,6 +33,8 @@
   #outline(depth: 1, title: "Table of Contents")
 ]
 
+#set math.mat(delim: "[")
+
 
 #serif[
   // Module 1
