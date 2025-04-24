@@ -4,9 +4,10 @@
 #import "../common/settings-book.typ": workbook, show_def
 #let (sans, serif, module, definition, example) = workbook
 
-In this module you will lear
+In this module you will learn
 - What a differential equation is.
-- The difference between a discrete model and a differential-equation model.
+- What a solution to a differential equation is.
+- The difference between a discrete model and a differential-equation based model.
 
 == Modeling
 Suppose you are observing some green ants walking on the sidewalk. In the first minute you record 10 ants. In
@@ -101,7 +102,7 @@ with few button presses on a calculator, whereas the recursive model is more dif
 makes it clear that the number of ants is doubling every minute.
 
 Often times recursive models are easier to write down than analytic models#footnote([In fact, in many real-world situations, an analytic model
-doesn't exist]), but they maybe harder to analyze. A third type of model has similarities to both analytic and recursive models, and
+doesn't exist]), but they may be harder to analyze. A third type of model has similarities to both analytic and recursive models, and
 brings the power of calculus to modeling.
 - A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its
   values, and initial conditions.

@@ -105,7 +105,7 @@
       label: <eulers_method>,
       [
         Let $y'(t)=f(t, y)$ be a differential and let $y$ be a solution satisfying $y(t_0)=y_1$. 
-        The _Euler approximation with step size $Delta$ to $y$_ is the sequence of points 
+        The _Euler approximation to $y$ with step size $Delta$_ is the sequence of points 
         $(t_0,y_0)$, $(t_1, y_2)$, #dots, where
         $
           y_1 &= y_0 + Delta dot f(t_0, y_0) &quad t_1 &= t_0+Delta\
