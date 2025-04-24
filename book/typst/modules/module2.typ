@@ -7,6 +7,9 @@
 #import "../common/settings-book.typ": workbook, show_def
 #let (sans, serif, module, definition, example) = workbook
 
+In this module you will learn
+- How to use slope fields and Euler's method to approximate solutions to differential equations.
+
 Most differential equations do not have _elementary_ solutions. That is, solutions which can be written in
 terms of polynomials, exponentials, logarithms, etc..
 Put another way: most differential equations do not have "nice" solutions. However, most ordinary differential equations
@@ -25,6 +28,9 @@ In this course, we will focus on approach 2.
 
 Suppose that $P(t)$ models the number of bacteria (in billions) in a petri dish at time $t$. Further, suppose that the bacteria are so numerous that
 it makes sense to think of $P(t)$ as continuous and that $P$ satisfies
+// The F below makes a reasonable picture, but it is complicated. An alternative is
+//#let F(x, y) =  -y + 1/2
+// but maybe that is too simple?
 #let F(x, y) = calc.sin(calc.pi/2 * y - x) - 1.5
 #let y_0 = 3
 #let approx_val = (
