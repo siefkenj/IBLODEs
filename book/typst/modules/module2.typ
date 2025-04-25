@@ -26,7 +26,7 @@ In this course, we will focus on approach 2.
 Suppose that $P(t)$ models the number of bacteria (in billions) in a petri dish at time $t$. Further, suppose that the bacteria are so numerous that
 it makes sense to think of $P(t)$ as continuous and that $P$ satisfies
 $
-  P'(t) = sin(space.hair 2 dot P(t) - t space.hair) - 1.5 quad quad "and" quad quad P(0) = 2.
+  P'(t) = sin(space.hair 2 dot P(t) - t space.hair) - 1.5 wide "and" wide P(0) = 2.
 $
 Our task is to approximate $P(1)$.
 
@@ -71,7 +71,10 @@ draw little segments of tangent lines all over the $(t,P)$--plane, we can visual
 
 The above diagram, where small segments of tangent lines to solutions populate the plane, is called a _slope field_.
 
-Starting at $(t,P(t)) = (0,2)$, we can trace out what an approximate solution curve looks like.
+#show_def("slope_field")
+
+
+Starting at $(t,P) = (0,2)$, we can trace out what an approximate solution curve looks like.
 
 #{
   let soln = solve_1d_ivp(
@@ -97,8 +100,8 @@ Starting at $(t,P(t)) = (0,2)$, we can trace out what an approximate solution cu
       height: 3cm,
       spacing: (.06, .25),
       scale_segments: .05,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
+      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
+            // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
       xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
       xlabel: $t$,
       ylabel: lq.label($P$, dx: -1cm),
@@ -112,8 +115,8 @@ Starting at $(t,P(t)) = (0,2)$, we can trace out what an approximate solution cu
   )
 }
 
-The solution curve we draw should be tangent to every slope segment it passes through. In the drawing above, the solution curve is increasing
-and slightly concave down. Based on the drawing, we can estimate $P(1) approx #(approx_rounded)$.
+The solution curve we draw should be tangent to every slope segment it passes through. In the drawing above, the solution curve is decreasing
+and slightly concave up. Based on the drawing, we can estimate $P(1) approx #(approx_rounded)$.
 
 Tracing out solutions on slope fields is a good way to see overall qualities of a solution, like whether it is increasing/decreasing or its concavity.
 But, its numerical accuracy is limited. A small change in how we sketched the curve could lead to estimates
@@ -126,13 +129,13 @@ a wide range. If we're after precise numerical estimates, we can formalize this 
 
 Recall that $P(t)$ models the number of bacteria (in billions) in a petri dish at time $t$ with
 $
-  P'(t) = sin(space.hair 2 dot P(t) - t space.hair) - 1.5 quad quad "and" quad quad P(0) = 2.
+  P'(t) = sin(space.hair 2 dot P(t) - t space.hair) - 1.5 wide "and" wide P(0) = 2.
 $
 
 Our task is to numerically approximate $P(1)$.
 
-A simple approach would be to approximate $P(1)$ using a tangent line through the point $(0, P(0))$. We know the slope $P'(0)= P(0)=0$, and
-so we get an approximation of $P(0) + P'(0)(t-0)lr(|, size: #(0pt + 150%))_(t=1)=2$.
+A simple approach would be to approximate $P(1)$ using a tangent line through the point $(0, P(0))$. We know the slope $P'(0)= P(0)=sin(4)-1.5 approx -2.257$, and
+so we get an approximation of $P(0) + P'(0)(t-0)lr(|, size: #(0pt + 150%))_(t=1)=-0.257$.
 
 #let (soln_xs, soln_ys) = {
   let soln = solve_1d_ivp(
@@ -191,7 +194,7 @@ so we get an approximation of $P(0) + P'(0)(t-0)lr(|, size: #(0pt + 150%))_(t=1)
   )
 }
 
-XXX add error bars to figure.
+#text(fill: red, [*XXX add error bars to figure*]).
 
 Our approximation is an underestimate. How can we be more accurate? By using two tangent lines!
 
@@ -288,7 +291,7 @@ _Euler's method_, and the resulting approximation is called an _Euler approximat
 
 #show_def("eulers_method")
 
-When apply Euler's method, the big decision to make is how many tangent lines to use. This is often expressed in terms of a _step size_, typically
+When applying Euler's method, the big decision to make is how many tangent lines to use. This is often expressed in terms of a _step size_, typically
 denoted by the letter $Delta$, where $Delta = "domain of approximation"/"# of tangent lines used"$.
 
 == Implementing Euler's Method

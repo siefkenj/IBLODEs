@@ -4,7 +4,7 @@
 #import "../common/settings-book.typ": workbook, show_def
 #let (sans, serif, module, definition, example) = workbook
 
-In this module you will lear
+In this module you will learn:
 - What a differential equation is.
 - The difference between a discrete model and a differential-equation model.
 
@@ -35,7 +35,7 @@ many ants for you to count.
 Since you lost count of the ants, you decide to use mathematics to try and figure out how many ants walked by
 on minutes $5$, $6$, $dots$. You notice the pattern that
 $
-  "Green ants per minute" n = 2^(n-1) · 10.
+  "Green ants during minute" n = 2^(n-1) · 10.
 $
 Stupendous! Mathematics now predicts there were $160$ ants during minute $5$. But something else catches your
 eye. Across the sidewalk are brown ants. You count these ants every minute.
@@ -61,16 +61,17 @@ eye. Across the sidewalk are brown ants. You count these ants every minute.
 
 The pattern is slightly different. This time,
 $
-  "Green ants per minute" n = 2^(n-1) · 3.
+  "Brown ants during minute" n = 2^(n-1) · 3.
 $
 Your friend, who was watching you the whole time, looks confused. “Why come up with two complicated
 equations when you can describe both types of ant at once?” they declare.
 $
-  "#Ants at minute" n = 2 · ("#Ants at "&"minute" n − 1) \
-  "#Green ants at minute" 1 &= 10 \
-  "#Brown ants at minute" 1 &= 3
+  "#Ants during minute" n = 2 · ("#Ants during "&"minute" n − 1) \
+  "#Green ants during minute" 1 &= 10 \
+  "#Brown ants during minute" 1 &= 3
 $
-Your friend has a point. Their model is elegant, but your model can predict how many ants pass by at minute
+
+Your friend has a point. Their model is elegant, but your model can predict how many ants pass by during minute
 $3.222$! Though, your friend would probably complain that $46.654$ is not a number of ants#sym.dots.
 You and your friend have just come up with two different mathematical models for the number of ants that walk
 across the sidewalk. They happen to make similar predictions for each minute and each have their strengths
@@ -81,36 +82,35 @@ differential equations at its core.
 
 #show_def("model")
 
-In the previous situation, the _question_ you were trying to answer was "how many ants are there at a given minute?".
+In the previous situation, the _question_ you were trying to answer was "how many ants passed that specific location during a given minute?".
 We sidestepped difficult issues like, "Is an ant that is missing three legs still an ant?" by using the common-sense
 convention that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
 we could use single numbers to represent our quantity of interest (the ants).
 
 You and your friend already came up with two types of models.
-- An *analytic* model based on known functions.
+- An *algebraic* model based on known functions.
 - A *recursive* model where subsequent terms are based on previous terms and initial conditions.
 
-If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _analytic_ model presented for green ants is
+If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _algebraic_ model presented for green ants is
 $A(n)=2^{n-1} dot 10$
 and the _recursive_ model presented is
 $A(1) = 10$
 $A(n) = 2 dot A(n-1)$
 
-Each type of model has pros and cons. For example, the analytic model allows you to calculate the number of ants at any minute
+Each type of model has pros and cons. For example, the algebraic model allows you to calculate the number of ants at any minute
 with few button presses on a calculator, whereas the recursive model is more difficult to calculate but
 makes it clear that the number of ants is doubling every minute.
 
-Often times recursive models are easier to write down than analytic models#footnote([In fact, in many real-world situations, an analytic model
-doesn't exist]), but they maybe harder to analyze. A third type of model has similarities to both analytic and recursive models, and
-brings the power of calculus to modeling.
-- A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its
-  values, and initial conditions.
+Often times recursive models are easier to write down than algebraic models#footnote([In fact, in many real-world situations, an algebraic model
+doesn't exist.]), but they maybe harder to analyze. 
+A third type of model has similarities to both algebraic and recursive models, and brings the power of calculus to modeling.
+- A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its values, and initial conditions.
 
 
-_Differential-equations_ models are useful because derivatives correspond to rates of change---and things in the world are always changing.
+_Differential-equations_ models are useful because derivatives correspond to rates of change --- and things in the world are always changing.
 Let's try to come up with a differential equations model for the ants.
 
-We'd like an equation relating $A(n)$, the number of ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
+We'd like an equation relating $A(n)$, the number of ants during minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
 Making a table, we see
 
 #align(
@@ -120,23 +120,15 @@ Making a table, we see
     simple_table(
       headers: ([Minute], [\#Brown Ants], [Change (from prev. minute)]),
       content: (
-        $1$,
-        $3$,
-        $?$,
-        $2$,
-        $6$,
-        $3$,
-        $3$,
-        $12$,
-        $6$,
-        $4$,
-        $24$,
-        $12$,
+        $1$,  $3$,  $?$,
+        $2$,  $6$,  $3$,
+        $3$,  $12$, $6$,
+        $4$,  $24$, $12$,
       ),
     ),
   ),
 )
-
+#show_def("rate_of_change")
 or
 
 #align(
@@ -146,18 +138,10 @@ or
     simple_table(
       headers: ([Minute], [\#Brown Ants], [Change (from next minute)]),
       content: (
-        $1$,
-        $3$,
-        $3$,
-        $2$,
-        $6$,
-        $6$,
-        $3$,
-        $12$,
-        $12$,
-        $4$,
-        $24$,
-        $?$,
+        $1$,  $3$,  $3$,
+        $2$,  $6$,  $6$,
+        $3$,  $12$, $12$,
+        $4$,  $24$, $?$,
       ),
     ),
   ),
@@ -233,5 +217,7 @@ Because of this, _guess and check_ will be our primary method for solving differ
   ],
 )
 
-Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the analytic model
-that was first guessed for brown ants.
+Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the algebraic model that was first guessed for brown ants.
+
+
+However, there are a few algorithms to solve certain differential equations. Some of these algorithms are described in more detail in appendices *INSERT LABEL OF APPENDICES FOR APPENDICES B, C, D, E*.
