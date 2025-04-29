@@ -1,6 +1,7 @@
 #import "../libs/_workbook.typ": aligned_terms
 #import "@preview/lilaq:0.2.0" as lq
 #import "../libs/_graphics.typ": vector_field, slope_field
+#import "@preview/tiptoe:0.3.0"
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -58,12 +59,14 @@
         center,
         vector_field(
           F,
-          xlim: (0, 40),
-          ylim: (0, 300),
-          spacing: (2, 10),
-          scale_segments: 0.075,
+          xlim: (-5, 40),
+          ylim: (-30, 310),
+          spacing: (3, 19),
+          scale_segments: 20.0,
           width: 6.5cm,
           height: 6.5cm,
+          yaxis: (position: 0, tip: tiptoe.stealth, tick-distance: 50),
+          xaxis: (position: 0, tip: tiptoe.stealth),
         ),
       )
 

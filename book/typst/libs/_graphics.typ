@@ -174,7 +174,13 @@
   )
 }
 
-
+/// Turn `v` into a value between -1 and 1 with a smooth cutoff.
+#let _sigmoid(v) = {
+  if v == 0 {
+    return 0
+  }
+  calc.tanh(v/100)
+}
 
 
 /// Plot a vector field for `F(x,y)=(F1(x, y), F2(x,y))`
@@ -203,18 +209,39 @@
 
   let x = lq.arange(xmin, xmax + x_spacing, step: x_spacing)
   let y = lq.arange(ymin, ymax + y_spacing, step: y_spacing)
-  let (directions) = lq.mesh(x, y, (x, y) => F(x, y))
+  let (directions) = lq.mesh(
+    x,
+    y,
+    (x, y) => {
+      let (val_x, val_y) = F(x, y)
+      // Avoid things like floating point -0.0
+      let val_x = if val_x == 0 { 0.0 } else { val_x }
+      let val_y = if val_y == 0 { 0.0 } else { val_y }
 
-  let magnitudes = directions.map(d => d.map(v => calc.sqrt(calc.pow(v.at(0), 2) + calc.pow(v.at(1), 2))))
+      let mag =  calc.sqrt(val_x*val_x + val_y*val_y)
+      let scale = if mag == 0 {
+        0
+      } else {
+        1 / mag * _sigmoid(mag)
+      }
+
+      (val_x*scale ,val_y*scale)
+    },
+  )
+
+  let magnitudes = directions.map(d => d.map(v => calc.sqrt(v.at(0)*v.at(0) + v.at(1)*v.at(1))))
 
   lq.diagram(
+    xlim: xlim,
+    ylim: ylim,
     lq.quiver(
       x,
       y,
       directions,
       scale: scale_segments,
-      pivot: center,
+      pivot: start,
       color: magnitudes,
+      stroke: .9pt,
     ),
     ..lq_args,
   )
