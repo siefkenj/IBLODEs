@@ -62,7 +62,7 @@ eye. Across the sidewalk are brown ants. You count these ants every minute.
 
 The pattern is slightly different. This time,
 $
-  "Green ants per minute" n = 2^(n-1) · 3.
+  "Brown ants per minute" n = 2^(n-1) · 3.
 $
 Your friend, who was watching you the whole time, looks confused. “Why come up with two complicated
 equations when you can describe both types of ant at once?” they declare.
@@ -236,3 +236,5 @@ Because of this, _guess and check_ will be our primary method for solving differ
 
 Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the analytic model
 that was first guessed for brown ants.
+
+However, there are a few algorithms to solve certain differential equations. Some of these algorithms are described in more detail in appendices *INSERT LABEL OF APPENDICES FOR APPENDICES B, C, D, E*.
