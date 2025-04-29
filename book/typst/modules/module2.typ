@@ -50,7 +50,7 @@ it makes sense to think of $P(t)$ as continuous and that $P$ satisfies
 #let approx_rounded = calc.round(approx_val, digits: 1)
 #let formula = $sin(space.hair pi/2 dot P(t) - t space.hair) - 1.5$
 $
-  P'(t) = formula quad quad "and" quad quad P(0) = #(y_0).
+  P'(t) = formula wide "and" wide P(0) = #(y_0).
 $
 Our task is to approximate $P(1)$.
 
@@ -79,6 +79,8 @@ draw little segments of tangent lines all over the $(t,P)$--plane, we can visual
 
 The above diagram, where small segments of tangent lines to solutions populate the plane, is called a _slope field_.
 
+#show_def("slope_field")
+
 Starting at $(t,P(t)) = (0,#(y_0))$, we can trace out what an approximate solution curve looks like.
 
 #{
@@ -105,8 +107,8 @@ Starting at $(t,P(t)) = (0,#(y_0))$, we can trace out what an approximate soluti
       height: 3cm,
       spacing: (.06, .25),
       scale_segments: .05,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
+      // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
       xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
       xlabel: $t$,
       ylabel: lq.label($P$, dx: -1cm),
