@@ -35,6 +35,16 @@
         most accurately predicts the data $D$.
       ],
     ),
+    slope_field: definition_env(
+      title: "Slope Field",
+      label: <def_slope_field>,
+      [
+        A _slope field_ of a differential equation $y' = f(x,y)$ is a collection of line segments that are tangent to the different solutions of the differential equation. 
+        The line segments are sketched as follows:
+        Evaluate $f(x,y)$ over a rectangular grid of points, and draw an arrow at each point $(x,y)$ of the grid with slope $f(x,y)$.
+        The length of the arrows is not important, but it is often drawn to be the same for all arrows.
+      ],
+    ),
     component_and_phase: definition_env(
       title: "Component Graph & Phase Plane",
       label: <def_component_and_phase>,
