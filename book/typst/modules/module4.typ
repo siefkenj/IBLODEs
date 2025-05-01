@@ -131,7 +131,7 @@ No matter the initial conditions, the eventual amount of pesticide in Pond $A$ i
 and the eventual amount of pesticide in Pond $B$ is slightly more than $0.6 "kg"$.
 
 We can compute the equilibrium solution to this differential equation exactly. Since we know that an equilibrium solution is constant, we know that the
-derivative of an equilibrium solution is always zero. That, solving
+derivative of an equilibrium solution is always zero. Solving
 $
   0 quad=quad A' &=& -0.15 dot &A& quad + quad 0.1 dot &B& quad + quad &0.05\
   0 quad =quad B' &=& 0.1 dot &A& quad - quad 0.12 dot &B& &
@@ -147,10 +147,126 @@ XXX Example of a simple system with more than one equilibrium solution
 
 === Equilibrium Points
 
-We can also examine equilibrium solutions in phase space.
+We can also examine equilibrium solutions in phase space. Using our pond example, we can make a plot in phase space.
 
-XXX Finish
+#align(
+  center,
+  {
+    let width = 4.8cm
+    lq.diagram(
+      title: [Component Space],
+      //legend: (position: bottom + right),
+      width: width,
+      ylim: (0, 1.5),
+      lq.plot(ts, As, mark: none, stroke: 1.5pt, label: "Pond A"),
+      lq.plot(ts, Bs, mark: none, stroke: 1.5pt, label: "Pond B"),
+      xaxis: (label: [$t$ (days)]),
+      yaxis: (label: [Pesticide (kg)]),
+    )
+    h(3em)
+    lq.diagram(
+      //legend: (position: bottom + right),
+      title: [Phase Space],
+      width: width,
+      ylim: (0, 1.5),
+      xlim: (0, 1.5),
+      lq.plot(As, Bs, mark: none, stroke: 1.5pt, color: red.darken(20%)),
+      //lq.plot(As2, Bs2, mark: none, stroke: 1.5pt),
+      //lq.plot(As3, Bs3, mark: none, stroke: 1.5pt),
+      xaxis: (label: [A], tick-distance: 0.2),
+      yaxis: (label: [B], tick-distance: 0.2),
+    )
+  },
+)
 
+As we noticed, all solutions tend towards the equilibrium solutions $A(t)=0.75$ and $B(t)=0.625$. In phase space, this manifests as
+all solutions tending towards the point $(A,B)=(0.75, 0.625)$. Further, if we graph the equilibrium solution $A(t)=0.75$ and $B(t)=0.625$
+in phase space, instead of a curve, we get a single point $(A,B)=(0.75, 0.625)$. We call this point an _equilibrium point_.
+
+#align(
+  center,
+  {
+    /// Plot `xs` and `ys` and annotate the plot with arrows to indicate the direction of flow.
+    /// - `xs` list of x-coordinates
+    /// - `ys` list of y-coordinates
+    /// - `arrow_pos` where to place the arrows as a percentage of the distance along the path. This is determined by counting points, not by actual distance.
+    let flow_plot(xs, ys, arrow_pos: (0, .3, .6), ..lq_args) = {
+      let indices = arrow_pos.map(alpha => {
+        let index = int(alpha * (xs.len() - 1))
+        index = calc.max(0, index)
+        index = calc.min(xs.len() - 1, index)
+        // Look forward 1 step
+        let index2 = index + 1
+        // If we stepped past the end of the array, step back
+        if index2 >= xs.len() {
+          index2 = index
+          index -= 1
+        }
+
+        (index, index2)
+      })
+
+      (
+        (
+          lq.plot(
+            xs,
+            ys,
+            mark: none,
+            ..lq_args,
+          ),
+        )
+          + indices.map(((index, index2)) => {
+            let x1 = xs.at(index)
+            let y1 = ys.at(index)
+            let x2 = xs.at(index2)
+            let y2 = ys.at(index2)
+
+            lq.line(
+              (x1, y1),
+              (x2, y2),
+              tip: tiptoe.stealth,
+              ..lq_args,
+              stroke: (thickness: 2pt, paint: white),
+            )
+          })
+          + indices.map(((index, index2)) => {
+            let x1 = xs.at(index)
+            let y1 = ys.at(index)
+            let x2 = xs.at(index2)
+            let y2 = ys.at(index2)
+
+            lq.line(
+              (x1, y1),
+              (x2, y2),
+              tip: tiptoe.stealth,
+              ..lq_args,
+            )
+          })
+      )
+    }
+
+    let width = 4.8cm
+    lq.diagram(
+      //legend: (position: bottom + right),
+      title: [Phase Space],
+      width: width,
+      ylim: (0, 1.5),
+      xlim: (0, 1.5),
+      xaxis: (label: [A], tick-distance: 0.2),
+      //yaxis: (label: [B], tick-distance: 0.2),
+      ..flow_plot(As, Bs, arrow_pos: (0.02, .3), stroke: (thickness: 1.5pt, paint: red.darken(30%))),
+      ..flow_plot(As2, Bs2, arrow_pos: (0.01, .06), stroke: (thickness: 1.5pt, paint: green.darken(30%))),
+      ..flow_plot(As3, Bs3, arrow_pos: (0.02, .001, .05), stroke: (thickness: 1.5pt, paint: blue.darken(30%))),
+      lq.scatter((0.75,), (0.625,), size: 6pt, color: purple.darken(30%)),
+      lq.place(
+        0.75 - .04,
+        0.625,
+        align: right,
+        [#box(fill: white, outset: 3pt, [Equilibrium Point]) #sym.arrow],
+      ),
+    )
+  },
+)
 == Types of Equilibrium Solutions
 
 Not all equilibrium solutions are created equal. Consider the following population model:
