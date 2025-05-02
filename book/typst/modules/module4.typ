@@ -23,7 +23,7 @@ $
   h' = cases(
     -1 &" if " h > 0,
     0 &" if " h <= 0,
-   )
+  )
 $
 Looking at a slope field for this equation, we can see that most solutions look "L"-shaped, first decreasing to zero and then remaining constant.
 
@@ -71,7 +71,7 @@ We can model $A$ and $B$ with the following system of differential equations.#fo
   $0.05 "kg" slash "day"$ from farm runoff and an inflow of $0.1 dot B(t) "kg" slash "day"$ from Pond $B$.
   It has an outflow of $0.1 dot A(t) "kg" slash "day"$ to Pond $B$ and an outflow of $0.05 dot A(t) "kg" slash "day"$ to the environment.
   Thus $A'=0.05+0.1 dot B -0.1 dot A - 0.05 dot A= -0.15 dot A +0.1 dot B +0.05$. A similar argument will produce an equation for $B'$.
- ]
+]
 $
   A' &=& -0.15 dot &A& quad + quad 0.1 dot &B& quad + quad &0.05\
   B' &=& 0.1 dot &A& quad - quad 0.12 dot &B& &
@@ -80,16 +80,16 @@ $
 With our model defined, we can now make plots showing the amount of pesticide vs. time given different initial conditions.
 
 #let F(A, B) = (-0.15 * A + 0.1 * B + 0.05, 0.1 * A - 0.12 * B)
-#let delta = 1
+#let _delta = 1
 #let steps = 130
 #let sim(A_0, B_0) = {
-  let res = solve_2d_ivp(F, (A_0, B_0), steps, Delta: delta, method: "rk4")
+  let res = solve_2d_ivp(F, (A_0, B_0), steps, Delta: _delta, method: "rk4")
   (res.map(((x, y)) => x), res.map(((x, y)) => y))
 }
 #let (As, Bs) = sim(0.6, 0.1)
 #let (As2, Bs2) = sim(1.4, 0.5)
 #let (As3, Bs3) = sim(.1, 1.4)
-#let ts = lq.arange(0, (steps + 1) * delta, step: delta)
+#let ts = lq.arange(0, (steps + 1) * _delta, step: _delta)
 
 
 #{
@@ -269,10 +269,102 @@ in phase space, instead of a curve, we get a single point $(A,B)=(0.75, 0.625)$.
 )
 == Types of Equilibrium Solutions
 
-Not all equilibrium solutions are created equal. Consider the following population model:
+In the mixing ponds example, all solutions tended towards the equilibrium solution (the equilibrium solution is _attracting_).
+This isn't always the
+
+Consider the following population model#footnote[
+  $100$ represents the carrying capacity of the environment (if the population exceeds the carrying capacity, individuals start dying).
+]:
 $
   P'(t) = P(t) dot (100 - P(t))
 $
-It has two equilibrium solutions: $P(t)=0$ and $P(t)=100$. The equilibrium solution $P(t)=0$ corresponds to a population of zero.
-And, of course, if there are no individuals, they cannot reproduce. However, in this model, if there is at least one individual,
-the population will grow. By contrast XXX Finish
+It has two equilibrium solutions: $P(t)=0$ and $P(t)=100$ (shown in solid colors). All other solutions are non-constant (dotted lines).
+
+#{
+  let xs = lq.linspace(0, .1, num: 40)
+  let P0(p_0) = 100 / p_0 - 1
+  align(
+    center,
+    lq.diagram(
+      title: [Population vs. Time],
+      xaxis: (label: [$t$], ticks: none),
+      yaxis: (label: [P], tick-distance: 50),
+      ..(0.3, 0.9, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 110, 120, 130, 140).map(p_0 => {
+        lq.plot(
+          xs,
+          xs.map(x => 100 * calc.exp(100 * x) / (P0(p_0) + calc.exp(100 * x))),
+          mark: none,
+          stroke: (thickness: .5pt, paint: black, dash: (2pt, 1pt)),
+        )
+      }),
+      lq.plot(xs, xs.map(x => 100), mark: none, stroke: (thickness: 1.5pt, paint: green.darken(30%))),
+      lq.plot(xs, xs.map(x => 0), mark: none, stroke: (thickness: 1.5pt, paint: blue.darken(30%))),
+    ),
+  )
+}
+
+We call the equilibrium solution $P(t)=0$ _unstable_ and _repelling_. That is, while it is true that if the population is exactly zero, it will stay that way,
+if there is even one individual (in this model at least), the population will grow substantially. Alternatively, we call
+the equilibrium solution $P(t)=100$ _stable_ and _attracting_. If the population is exactly $100$, it will stay that way, but if the population is
+slightly less than or slightly more than $100$, it will tend towards $100$.
+
+In general, equilibrium solutions can be classified as attracting, repelling, stable, and/or unstable depending on the
+behaviour of solutions near that equilibrium.
+
+#show_def("equilibrium_classification_informal")
+
+The above definition uses the term, _local_, to refer to solutions that passes through points "close to" that of the equilibrium solution. This can be made precise
+using $epsilon$-$delta$ definitions.
+
+#show_def("equilibrium_classification_formal")
+
+Whether using the formal or informal definition, the important thing is to have an intuition about what different types of equilibrium solutions look like, both in Component
+space and phase space.
+
+=== Stable and Attracting
+
+We've already seen that for $P'=P dot (100 - P)$, the equilibrium solution $P(t)=100$ is stable and attracting. It is stable because if a solution $P^*$ starts close to $P(t)=100$,
+then it will stay close to $P(t)=100$.
+
+XXX Figure
+
+The equilibrium solution $P(t)=100$ is attracting because if a solution $P^*$ starts close to $P(t)=100$, its limit will actually be $100$.
+
+=== Stable and not Attracting
+
+Consider the differential equation $y'=0$. This equation has solutions of the form $y(t)=k$ where $k$ is a constant. These are all equilibrium solutions!
+
+Let's focus on the equilibrium solution $y(t)=0$. This solution is stable because if a solution $y^*(t)=k$ starts close to $y(t)=0$, it will stay close to $y(t)=0$; in fact
+its distance from $y(t)$ will never change. However, $y(t)=0$ is _not_ attracting, because $y^*(t) =k quad arrow.not quad 0$.
+
+XXX Figure
+
+=== Unstable and Repelling
+
+XXX Finish
+
+=== Unstable and not Repelling
+
+XXX Finish
+
+=== Other Classifications
+
+There cannot be unstable and attracting equilibria, nor can there be stable and repelling equilibria. But there can be other behavior.
+
+Consider the Van der Pol system:
+$
+  "XXX Finish"
+$
+
+Solutions to this system all end up with oscillatory behaviour and they all have the same period. Here solutions are not attracted to an equilibrium, but they are attracted towards
+a solution which is perfectly periodic (in this situation we say that the system has a _limit cycle_). The study of what behaviour solutions can be "attracted to"
+leads to concepts like fractals and chaos, and may be studied in an advanced differential equations course or a course on dynamical systems.
+
+#example(
+  prompt: [Find an classify all equilibrium solutions to XXX Finish],
+  [
+    XXX Finish
+  ],
+)
+
+
