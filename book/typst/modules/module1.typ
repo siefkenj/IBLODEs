@@ -4,6 +4,7 @@
 #import "../common/settings-book.typ": workbook, show_def
 #let (sans, serif, module, definition, example) = workbook
 
+
 In this module you will learn
 - What a differential equation is.
 - What a solution to a differential equation is.
@@ -191,6 +192,13 @@ function is a solution to a differential equation, since there _is_ an algorithm
 ]).
 Because of this, _guess and check_ will be our primary method for solving differential equations.
 
+However, there are a few techniques to solve specific differential equations. These techniques hinge on begin able to integrate some functions related to the differential equation.
+Some of those algorithms are:
+- _Separation of variables_: This technique is useful when the differential equation can be written in the form $x'(t) = F(x(t)) dot G(t)$. See APPENDIX B for more details.
+- _Integrating factor_: This technique is useful when the differential equation can be written in the form $x'(t) + f(t) dot x(t) = g(t)$. See APPENDIX C for more details.
+- _Series solution_: This technique is useful to describe the solution of a differential equation as a Taylor series. See APPENDIX D for more details.
+
+
 #example(
   prompt: [
 
@@ -237,4 +245,3 @@ Because of this, _guess and check_ will be our primary method for solving differ
 Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the analytic model
 that was first guessed for brown ants.
 
-However, there are a few algorithms to solve certain differential equations. Some of these algorithms are described in more detail in appendices *INSERT LABEL OF APPENDICES FOR APPENDICES B, C, D, E*.
