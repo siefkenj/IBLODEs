@@ -70,7 +70,7 @@
 
       $
         arrow(p)(t) = vec(e^t, 0) wide
-        arrow(q)(t) = vec(4 e^t , 0) wide
+        arrow(q)(t) = vec(4 e^t, 0) wide
         arrow(h)(t) = vec(0, e^(2t)) wide
         arrow(z)(t) = vec(0, e^(3t)).
       $
@@ -93,7 +93,7 @@
 
       $
         arrow(p)(t) = mat(e^t; 0) wide
-        arrow(q)(t) = mat(4 e^t ; 0) wide
+        arrow(q)(t) = mat(4 e^t; 0) wide
         arrow(h)(t) = mat(0; e^(2t)) wide
         arrow(z)(t) = mat(0; e^(3t)).
       $
@@ -149,12 +149,12 @@
         ],
       )
 
-      Let $S$ be the set of all solutions to $arrow(r)(t)= mat(1,0; 0, 2) arrow(r)(t)$.
+      Let $S$ be the set of all solutions to $arrow(r)(t)= mat(1, 0; 0, 2) arrow(r)(t)$.
 
       + Show that $"dim"(S) gt.eq 2$ by finding at least two linearly independent solutions.
 
       + Let $I$ be the set of all initial conditions. What is $I$?
-      + Show that $"dim"(S) lt.eq  3$ by applying the theorem to the set of initial conditions.
+      + Show that $"dim"(S) lt.eq 3$ by applying the theorem to the set of initial conditions.
       + Can two points in $I$ correspond to the same solution? Explain?
       + Find a subset $U subset.eq I$ so that every solution corresponds to a unique point in $U$.
       + Show that $"dim"(S) lt.eq 2$.
@@ -181,10 +181,10 @@
 
       $
         arrow(r)_1(t) &= e^(2t) & wide wide
-        arrow(r)_2(t) &= mat( e^(2t); 0 ) \
-        arrow(r)_3(t) &= mat( e^(2t); 4e^(3t) ) &
-        arrow(r)_4(t) &= mat( e^(3t); e^(2t) ) \
-        arrow(r)_5(t) &= mat( 0; 0)
+        arrow(r)_2(t) &= mat(e^(2t); 0) \
+        arrow(r)_3(t) &= mat(e^(2t); 4e^(3t)) &
+        arrow(r)_4(t) &= mat(e^(3t); e^(2t)) \
+        arrow(r)_5(t) &= mat(0; 0)
       $
 
       + State the definition of an eigenvector for the matrix $M$.
@@ -205,7 +205,7 @@
         x'(t) &= 2x(t) \
         y'(t) &= 3y(t)
       $
-      has eigen solutions $arrow(r)_2(t)=mat(e^(2t);0)$ and $arrow(r)_6(t)=mat(0;e^(3t))$
+      has eigen solutions $arrow(r)_2(t)=mat(e^(2t); 0)$ and $arrow(r)_6(t)=mat(0; e^(3t))$
 
 
       + Sketch $arrow(r)_2$ and $arrow(r)_6$ in the phase plane.
@@ -395,6 +395,34 @@
       + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 1$. In what ways could
       the phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
       In what way(s) must it look the same?
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
     ],
   )
 }
