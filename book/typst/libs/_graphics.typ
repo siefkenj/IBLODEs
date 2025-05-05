@@ -63,7 +63,7 @@
 
   let (x_spacing, y_spacing) = if type(spacing) == array {
     (spacing.at(0), spacing.at(1))
-  } else if type(spacing) != float {
+  } else if type(spacing) != float and type(spacing) != int {
     let spacing = calc.min((xmax - xmin) / 20, (ymax - ymin) / 20)
     (spacing, spacing)
   } else {

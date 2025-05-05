@@ -1,4 +1,7 @@
 #import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_graphics.typ": vector_field
+#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/tiptoe:0.3.0"
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -164,7 +167,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.85em)[
 
       Consider the system
       $
@@ -190,6 +193,208 @@
       + Find an eigen solution $arrow(r)_6$ that is linearly independent from $arrow(r)_2$.
       + Let $S="span"{arrow(r)_2, arrow(r)_6}$. Does $S$ contain _all_ solutions to the system? Justify your answer.
 
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      Recall the system
+      $
+        x'(t) &= 2x(t) \
+        y'(t) &= 3y(t)
+      $
+      has eigen solutions $arrow(r)_2(t)=mat(e^(2t);0)$ and $arrow(r)_6(t)=mat(0;e^(3t))$
+
+
+      + Sketch $arrow(r)_2$ and $arrow(r)_6$ in the phase plane.
+      + Use
+
+      https://www.desmos.com/calculator/h3wtwjghv0
+
+      to make a phase portrait for the system.
+
+      + #{
+          let xs = lq.linspace(0, 5, num: 20)
+          let stroke = (paint: green.darken(20%), thickness: 1pt, dash: (4pt, 1pt))
+          let width = slides_only(2cm, otherwise: 3cm)
+
+          box(
+            width: 100%,
+            align(
+              center,
+              {
+                lq.diagram(
+                  xlim: (-.5, 5.5),
+                  ylim: (-.5, 5.5),
+                  width: width,
+                  height: width,
+                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  lq.plot(
+                    xs,
+                    xs.map(x => calc.pow(x, 3 / 2)),
+                    mark: none,
+                    stroke: stroke,
+                  ),
+                )
+                h(1em)
+                lq.diagram(
+                  xlim: (-.5, 5.5),
+                  ylim: (-.5, 5.5),
+                  width: width,
+                  height: width,
+                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  lq.plot(
+                    xs,
+                    xs.map(x => calc.pow(x, 2 / 3)),
+                    mark: none,
+                    stroke: stroke,
+                  ),
+                )
+                h(1em)
+                lq.diagram(
+                  xlim: (-.5, 5.5),
+                  ylim: (-.5, 5.5),
+                  width: width,
+                  height: width,
+                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                  lq.plot(
+                    xs,
+                    xs.map(x => 2 * x),
+                    mark: none,
+                    stroke: stroke,
+                  ),
+                )
+              },
+            ),
+          )
+        }
+      In which phase plane above is the dashed (green) curve
+      the graph of a solution to the system? Explain.
+
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      Suppose $A$ is a $2 times 2$ matrix and $arrow(s)_1$ and $arrow(s)_2$ are eigen solutions to $arrow(r)' = A arrow(r)$ with eigenvalues $1$ and $-1$, respectively.
+
+      + Write possible formulas for $arrow(s)_1(t)$ and $arrow(s)_2(t)$.
+      + Sketch a phase plane with graphs of $arrow(s)_1$ and $arrow(s)_2$ on it.
+      + Add a non-eigen solution to your sketch.
+      + Sketch a possible phase portrait for $arrow(r)' = A arrow(r)$. Can you extend your phase portrait to all quadrants?
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      Consider the following phase portrait for a system of the form $arrow(r)' = A arrow(r)$
+      for an unknown matrix $A$.
+
+      #let F(x, y) = (y, x)
+      #align(
+        center,
+        vector_field(
+          F,
+          xlim: (-10, 10),
+          ylim: (-10, 10),
+          spacing: (1.5, 1.5),
+          scale_segments: 20.0,
+          width: 5cm,
+          height: 5cm,
+          yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+          xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+        ),
+      )
+
+      + Can you identify any eigen solutions?
+      + What are the eigenvalues of $A$? What are their signs?
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      Consider the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 1; 1, 0)$.
+
+      + Verify that $mat(1; 1)$ and $mat(1; -1)$ are eigenvectors for $M$. What are the corresponding eigenvalues?
+
+      +
+        + Is $arrow(r)_1(t) = e^t mat(1; 0)$ a solution to the differential equation? An eigen solution?
+        + Is $arrow(r)_2(t) = e^t mat(1; 1)$ a solution to the differential equation? An eigen solution?
+        + Is $arrow(r)_3(t) = e^(2t) mat(1; -1)$ a solution to the differential equation? An eigen solution?
+
+      + Find an eigen solution for the system corresponding to the eigenvalue $-1$. Write your answer in vector form.
+
+      + Let $arrow(v)$ be an eigenvector for $M$ with eigenvalue $lambda$. Explain how to write down an eigen solution to $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$.
+
+      + Let $arrow(v) != arrow(0)$ be a non-eigenvector for $M$. Could $arrow(r)(t) = e^(lambda t) arrow(v)$ be a solution to $arrow(r)'(t) = M arrow(r)(t)$ for some $lambda$? Explain.
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+      #slides_only(v(0.5em))
+      Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 1; 1, 0)$.
+
+      + Write down a general solution to the differential equation.
+      + Write down a solution to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
+      + Are your answers to the first two parts the same? Do they contain the same information?
+    ],
+  )
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      The phase portrait for a differential equation arising from the matrix $mat(0, 1; 1, 0)$ (left)
+      and $mat(1, 0; 0, -1)$ (right) are shown.
+
+      #align(
+        center,
+        {
+          vector_field(
+            (x, y) => (y, x),
+            xlim: (-10, 10),
+            ylim: (-10, 10),
+            spacing: (1.5, 1.5),
+            scale_segments: 20.0,
+            width: 4cm,
+            height: 4cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+            xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+          )
+          h(1em)
+          vector_field(
+            (x, y) => (x, -y),
+            xlim: (-10, 10),
+            ylim: (-10, 10),
+            spacing: (1.5, 1.5),
+            scale_segments: 20.0,
+            width: 4cm,
+            height: 4cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+            xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+          )
+        },
+      )
+
+      Both have eigenvalues $plus.minus 1$, but they have different eigenvectors.
+
+      + How are the phase portraits related to each other?
+      + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 1$. In what ways could
+      the phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
+      In what way(s) must it look the same?
     ],
   )
 }
