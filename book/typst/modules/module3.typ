@@ -34,14 +34,14 @@ The first equation models the growth of the ant population. The first term with 
 
 The second equation models the growth of the aphid population. The first term with parameter $c$ models the growth of the aphid population due to the presence of ants -- this term has a positive effect to the growth of the aphid population since they will be protected from predators. The second term with parameter $d$ models the natural death of aphids in the absence of ants due to the fact that predation will overwhelm their natural growth.
 
-The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids. As we discussed in MODULE 1, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations. 
-In MODULES 6, 7, 8 we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
+The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids. As we discussed in XXX MODULE 1, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations. 
+In XXX MODULES 6, 7, 8 we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
 
 
 == Simulation
 
-Just like we did in MODULE 2 to simulate one differential equation, we use Euler's method to simulate a system of differential equations.
+Just like we did in XXX MODULE 2 to simulate one differential equation, we use Euler's method to simulate a system of differential equations.
 
 The method is the same as before, but now we have to keep track of two quantities at each step. We can do this by using a table to keep track of the values of the two populations at each time step.
 
@@ -69,28 +69,11 @@ As an example, consider $a=1, b=c=d=1/2$ and starting populations of $10$ (thous
 #let F(x,y) = (a*x + b*y, c*x - d*y)
 #let v_0 = (10, 100)
 #let steps = 6
-#let Delta = 0.25
+#let _Delta = 0.25
 
+#let soln = solve_2d_ivp(F, v_0, steps, Delta: _Delta, method: "euler")
 
-// EULER'S METHOD while the solve_2d_ivp doesn't work!!
-  #let v = v_0
-  #let soln = (v,)
-  #for i in range(steps) {
-    let (x_0, y_0) = soln.at(-1)
-    let (dx, dy) = F(x_0, y_0)
-    let v = (x_0 + Delta * dx, y_0 + Delta * dy)
-    soln.push(v)
-  }
-
-// #let soln = solve_2d_ivp(
-//     F,
-//     v_0,
-//     5,
-//     0.25,
-//     method: "euler",
-// )
-
-#let times = range(0, steps + 1).map((i) => i * Delta)
+#let times = range(0, steps + 1).map((i) => i * _Delta)
 #let ants = soln.map((v) => calc.round(v.at(0), digits: 3))
 #let aphids = soln.map((v) => calc.round(v.at(1), digits: 3))
 
@@ -136,6 +119,130 @@ Below is a graph of the simulation created from the table above. The blue line r
       ),
     ),
   )
+
+
+
+== Component and Phase Spaces
+
+The graph above is called a _component space graph_. It shows the populations of ants and aphids at each time step.
+It is actually two component graphs, one for the ants and one for the aphids. 
+
+However, it is often more useful to plot the populations against each other. This is called a _phase space graph_. In this graph, the population of ants is on the $x$-axis and the population of aphids is on the $y$-axis. The graph shows how the populations of ants and aphids change with respect to each other.
+#align(
+    center,
+    lq.diagram(
+      // ylim: (70, 104),
+      width: 7cm,
+      height: 4cm,
+      yaxis: (position: left, tip: tiptoe.stealth),
+      xaxis: (position: bottom, tip: tiptoe.stealth),
+      xlabel: [\# Ants],
+      ylabel: [\# Aphids],
+      lq.plot(
+        ants,
+        aphids,
+      ),
+    ),
+  )
+
+  #show_def("component_and_phase")
+
+#example(
+  prompt: [Phase space graphs can have more than two dimensions.],
+  [ 
+    Observe that is we have a system of $n$ differential equations, then the phase space graph must also be plotted in $n$ dimensions.
+
+    As an example, consider the Lorentz attractor, which is a system of three differential equations that models the motion of a particle in a fluid. It is given by the following system of differential equations:
+    $ (dif x) / (dif t) &= sigma (y - x) \
+    (dif y) / (dif t) &= x (rho - z) - y \
+    (dif z) / (dif t) &= x y - beta z $
+    where $sigma = 10$, $rho = 28$, and $beta = 8/3$.
+    
+    To plot the solution in phase space, we need to plot in three dimensions. Below is the graph of one solution in phase space.
+
+    #let sigma = 10
+    #let rho = 28
+    #let beta = 8/3
+    #let F(x,y,z) = (sigma*(y - x), x * (rho - z) - y, x * y - beta * z)
+    #let v_0 = (1, 1, 1)
+    #let steps = 500
+    #let _Delta = 0.01
+    
+    #let soln = (v_0,)
+    #for i in range(steps) {
+      let (x_0, y_0, z_0) = soln.at(-1)
+      let (dx, dy, dz) = F(x_0, y_0, z_0)
+      let v = (x_0 + _Delta * dx, y_0 + _Delta * dy, z_0 + _Delta * dz)
+      soln.push(v)
+    }
+
+    #let times = range(0, steps + 1).map((i) => i * _Delta)
+    #let x = soln.map((v) => v.at(0))
+    #let y = soln.map((v) => v.at(1))
+    #let z = soln.map((v) => v.at(2))
+
+    #import "@preview/plotsy-3d:0.1.0": plot-3d-parametric-curve
+
+    #let xfunc(t) = x.at(int(t))
+    #let yfunc(t) = y.at(int(t))
+    #let zfunc(t) = z.at(int(t))
+
+    #align(
+      center,
+      plot-3d-parametric-curve(
+        xfunc,
+        yfunc,
+        zfunc,
+        subdivisions:1, //number of line segments per unit
+        scale_dim: (0.01,0.01,0.01), // relative and global scaling
+        tdomain:(0,steps), 
+        // axis_step: (5,5,5), // adjust distance between x, y, z number labels
+        dot_thickness: 0.02em, 
+        front_axis_thickness: 0.0em,
+        rear_axis_dot_scale: (0.08,0.08),
+        rear_axis_text_size: 0.5em,
+        // axis_label_size: 1.5em,
+        rotation_matrix: ((-2, 1, 4), (0, -1, 1)) 
+            // matrix transform-rotate-dir() from cetz
+      )
+    )
+
+    And the graph of the same solution in component space.
+    #align(
+    center,
+    lq.diagram(
+      // xlim: (0, 1.6),
+      // ylim: (-5, 125),
+      width: 7cm,
+      height: 4cm,
+      yaxis: (position: left, tip: tiptoe.stealth),
+      xaxis: (position: bottom, tip: tiptoe.stealth),
+      xlabel: $t$,
+      legend: (position: bottom + right),
+      lq.plot(
+        times,
+        x,
+        label: [$x$],
+        mark: none,
+      ),
+      lq.plot(
+        times,
+        y,
+        label: [$y$],
+        mark: none,
+      ),
+      lq.plot(
+        times,
+        z,
+        label: [$z$],
+        mark: none,
+      ),
+    ),
+  )
+  ]
+)
+
+
 
 
 
