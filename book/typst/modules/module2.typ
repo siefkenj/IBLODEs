@@ -303,7 +303,10 @@ denoted by the letter $Delta$, where $Delta = "domain of approximation"/"# of ta
 
 == Implementing Euler's Method
 
-XXX Finish
+XXX Table and fill in the table
+Then move to Excel - automate process 
+
+
 
 == Accuracy of Euler's Method
 
