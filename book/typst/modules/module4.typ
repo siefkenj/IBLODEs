@@ -16,7 +16,7 @@ are the conditions under which a quantity _does not_ change, the so-called _equi
 
 #show_def("equilibrium_solution")
 
-Suppose you are modelling a leaf falling off a balcony onto the ground. Let $h(t)$ represent the height of the ball above the ground at time $t$.
+Suppose you are modelling a leaf falling off a balcony onto the ground. Let $h(t)$ represent the height of the leaf above the ground at time $t$.
 If we assume that air resistance causes the leaf to fall at a constant speed of $1$ $m slash s$,
 we can set up a differential equation to model the leaf's motion.
 $
@@ -270,9 +270,9 @@ in phase space, instead of a curve, we get a single point $(A,B)=(0.75, 0.625)$.
 == Types of Equilibrium Solutions
 
 In the mixing ponds example, all solutions tended towards the equilibrium solution (the equilibrium solution is _attracting_).
-This isn't always the
+This isn't always the case.
 
-Consider the following population model#footnote[
+In fact, consider the following population model#footnote[
   $100$ represents the carrying capacity of the environment (if the population exceeds the carrying capacity, individuals start dying).
 ]:
 $
@@ -318,8 +318,8 @@ using $epsilon$-$delta$ definitions.
 
 #show_def("equilibrium_classification_formal")
 
-Whether using the formal or informal definition, the important thing is to have an intuition about what different types of equilibrium solutions look like, both in Component
-space and phase space.
+Whether using the formal or informal definition, the important thing is to have an intuition about what different types of equilibrium solutions look like, both in _component
+space_ and _phase space_.
 
 === Stable and Attracting
 
@@ -328,7 +328,7 @@ then it will stay close to $P(t)=100$.
 
 XXX Figure
 
-The equilibrium solution $P(t)=100$ is attracting because if a solution $P^*$ starts close to $P(t)=100$, its limit will actually be $100$.
+The equilibrium solution $P(t)=100$ is attracting because if a solution $P^*$ starts close to $P(t)=100$, its limit as $t arrow + infinity$ will actually be $100$.
 
 === Stable and not Attracting
 
