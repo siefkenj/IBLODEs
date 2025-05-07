@@ -211,6 +211,7 @@ However, it is often more useful to plot the populations against each other. Thi
         rear_axis_text_size: 0.5em,
         // axis_label_size: 1.5em,
         rotation_matrix: ((-2, 1, 4), (0, -1, 1)),
+        axis_label_offset: (1, .6, .5),
         // matrix transform-rotate-dir() from cetz
       ),
     )
