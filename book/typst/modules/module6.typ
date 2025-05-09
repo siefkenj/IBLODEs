@@ -74,7 +74,7 @@ This is a very important property of systems of differential equations with cons
 
 It means that the *solution space of the system is a vector space*. 
 
-As a a consequence, to find all solutions of the system, we only need to find a _basis of the solution space_. To do this, we need to have a definition of linear dependence of solutions.
+As a consequence, to find all solutions of the system, we only need to find a _basis of the solution space_. We thus need to have a definition of linear dependence of solutions.
 
 #show_def("linear_dependence_solutions")
 
