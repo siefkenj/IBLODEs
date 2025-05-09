@@ -57,7 +57,7 @@ where $arrow(r)$ is a vector of the two dependent variables and $M$ is the coeff
 
 === Linear combinations and linear independence of solutions
 
-Assume htat we have two solutions $arrow(r_1)(t)$ and $arrow(r_2)(t)$ of a system of differential equations with constant coefficients
+Assume that we have two solutions $arrow(r_1)(t)$ and $arrow(r_2)(t)$ of a system of differential equations with constant coefficients
 $ (dif arrow(r)) / (dif t) = M arrow(r) . $
 
 If we form a linear combination of these two solutions
