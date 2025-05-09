@@ -173,7 +173,7 @@ However, it is often more useful to plot the populations against each other. Thi
     #let beta = 8 / 3
     #let F(x, y, z) = (sigma * (y - x), x * (rho - z) - y, x * y - beta * z)
     #let v_0 = (1, 1, 1)
-    #let steps = 500
+    #let steps = 1500
     #let _Delta = 0.01
 
     #let soln = (v_0,)

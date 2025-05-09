@@ -106,8 +106,29 @@
       title: "Linear Dependence & Independence (Algebraic)",
       label: <def_linear_dependence_algebraic>,
       [
-        The vectors $arrow(v)_1, arrow(v)_2, dots, arrow(v)_n$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1, dots, arrow(v)_n$ that equals the zero vector
+        The vectors $arrow(v)_1, arrow(v)_2, dots, arrow(v)_n$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1, dots, arrow(v)_n$ that equals the zero vector.
         Otherwise they are _linearly independent_.
+      ],
+    ),
+    linear_dependence_solutions: definition_env(
+      title: "Linear Dependence & Independence of Solutions",
+      label: <def_linear_dependence_solutions>,
+      [
+        The functions $arrow(v)_1(t), arrow(v)_2(t), dots, arrow(v)_(n)(t)$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1(t), dots, arrow(v)_(n)(t)$ that equals the zero vector for all $t in RR$, i.e. if there are constants $c_1, dots, c_n$ not all zero such that
+        $c_1 arrow(v)_1(t) + c_2 arrow(v)_2(t) + dots + c_n arrow(v)_(n)(t) = 0$ for all $t in RR$.
+        
+        Otherwise they are _linearly independent_.
+      ],
+    ),
+eigensolution: definition_env(
+      title: "Eigen Solution",
+      label: <def_eigensolution>,
+      [
+        Given a system of differential equations
+        $(dif arrow(r)) / (dif t) = M arrow(r),$
+        where $M$ is a matrix with real entries, and an eigenvalue-eigenvector pair $(lambda, arrow(v))$ of the matrix $M$, we define the function
+        $arrow(r)(t) = e^(lambda t) arrow(v)$
+        to be an _eigen solution_ of the system.
       ],
     ),
     eulers_method: definition_env(
