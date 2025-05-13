@@ -51,7 +51,7 @@ $ mat((dif x) / (dif t); (dif y) / (dif t))
   = mat(2,1;1,2) mat(x;y) $
 and if we let $arrow(r) = mat(x;y)$ and $M = mat(2,1;1,2)$, we can write the system as:
 $ (dif arrow(r)) / (dif t) = M arrow(r) $
-where $arrow(r)$ is a vector of the two dependent variables and $M$ is the coefficient matrix.
+where $arrow(r)$ is a vector and $M$ is the coefficient matrix.
 
 
 

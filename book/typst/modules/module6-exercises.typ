@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, simple_table
 #import "../libs/_graphics.typ": vector_field
 #import "@preview/lilaq:0.2.0" as lq
 #import "@preview/tiptoe:0.3.0"
@@ -402,27 +402,79 @@
   question(
     slide[
 
+    Consider the following phase plane with lines in the direction of $arrow(a)$ (dashed green) and $arrow(b)$ (red).
+
+
+    #align(
+      center,
+      {
+        let xs = lq.linspace(-3.5, 3.5, num: 2)
+        let xticks = lq.linspace(-3, 3, num: 7)
+        lq.diagram(
+          xlim: (-3.5, 3.5),
+          ylim: (-3.5, 3.5),
+          width: 5cm,
+          height: 5cm,
+          yaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
+          xaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
+          lq.plot(
+            xs,
+            xs.map(x => 3*x),
+            mark: none,
+            stroke: (paint: red, thickness: 1pt),
+          ),
+          lq.place(0.7,3)[#text(red)[$arrow(b)$]],
+          lq.plot(
+            xs,
+            xs.map(x => x/3),
+            mark: none,
+            stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
+          ),
+          lq.place(3,1.3)[#text(green.darken(20%))[$arrow(a)$]],
+        )
+      },
+    )
+
+    + Sketch a phase portrait where the directions $arrow(a)$ and $arrow(b)$ correspond to eigen solutions with eigenvalues that are:
+
+      #align(
+        center,
+        simple_table(
+          headers: ([], [sign for $arrow(a)$], [sign for $arrow(b)$]),
+          content: (
+            [1], [pos], [pos],
+            [2], [neg], [neg],
+            [3], [neg], [pos],
+            [4], [pos], [neg],
+            [5], [pos], [zero],
+          ), 
+        ),
+      )
+
+    + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
+    + Would any of your classifications in the previous part change if the directions of $arrow(a)$ and $arrow(b)$ changed?
     ],
   )
+
 
   book_only(pagebreak())
-  question(
+    question(
     slide[
 
-    ],
+
+You are examining a differential equation $arrow(r)'(t) = M arrow(r)(t)$ for an unknown $2 times 2$ matrix $M$.
+
+You would like to determine whether $arrow(r)(t) = mat(0; 0)$ is stable, unstable, attracting, or repelling.
+
++ Come up with a rule to determine the nature of the equilibrium solution $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly independent eigen solutions).
++ Consider the system of differential equations
+  $ x'(t) &= x(t) + 2 dot y(t) \
+    y'(t) &= 3 dot x(t) - 4 dot y(t) $
+
+  + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any method you want.
+  + Justify your answer analytically using eigenvalues.
+
+  ],
   )
 
-  book_only(pagebreak())
-  question(
-    slide[
-
-    ],
-  )
-
-  book_only(pagebreak())
-  question(
-    slide[
-
-    ],
-  )
 }
