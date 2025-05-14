@@ -77,9 +77,10 @@
     let darker_color = ex_color.darken(50%)
     show emph: it => text(it, fill: darker_color, weight: "bold")
     set list(marker: make_marker(color: darker_color))
-    box(
+    block(
       fill: ex_color.lighten(90%),
       stroke: (left: ex_color + 1.5pt),
+      breakable: true,
       inset: 7pt,
       {
         text(
@@ -90,9 +91,10 @@
         )
         sym.space.quad
         // Use of `box` prevents excessive line breaks from being displayed.
-        box(prompt)
-        v(.2em)
-        box(content)
+        prompt
+        parbreak()
+        v(.5em)
+        block(content)
       },
       width: 100%,
     )
