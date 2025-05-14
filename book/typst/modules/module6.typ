@@ -35,148 +35,46 @@ Starting with this module, we will be using several results from linear algebra.
 You will find a review of these topics in APPENDIX XXX. If you are not familiar with them, we recommend that you review them before continuing with this module.
 
 
-== Finding Analytic Solutions
+== Finding analytic solutions
 
-For equations like $y'=7 y$, we were lucky enough to find solutions $y(t)=A e^(7 t)$ (where $A in RR$ is a parameter) by guessing and checking.
-It turns out, by using some insights from linear algebra, we will be able to guess-and-check solutions to some systems of
-differential equations as well.
-
-=== Matrix Form
-
-Consider the system
-$
-  x' &= 2 x + y \
-  y' &= x + 2 y
-$
-We can rewrite this system as a matrix equation:
-$
-  mat(x'; y') = mat(2, 1; 1, 2) mat(x; y)
-$
-When rewritten this way, we say that the system of differential equations is written in _matrix form_.
-
-We can further refine our matrix form by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
-of a multivariable function is the derivative of each of its components, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
-the system can be rewritten as
-$
-  arrow(r)' = mat(2, 1; 1, 2) arrow(r).
-$
+We can analytically find all solutions to a system of differential equations with constant coefficients by using the eigenvalues and eigenvectors of the coefficient matrix. 
 
 
-=== Eigenvectors and Guessing Solutions
+=== Writing the system in matrix form
 
-The equation $arrow(r)'=mat(2, 1; 1, 2) arrow(r)$ looks a lot like our previous equation $y' = k y$, so we might
-get lucky and be able to guess a solution!
+We can write the system of differential equations in _matrix form_. For example, consider the system of differential equations: 
+$ (dif x) / (dif t) &= 2 x + y \
+  (dif y) / (dif t) &= x + 2 y $  
 
-Let's start by guessing a solution of the form
-$
-  arrow(r)(t) = mat(A e^(k t); B e^(k t)) = e^(k t)mat(A; B) wide arrow.r.double.long wide arrow(r)'(t) = mat(k A e^(k t); k B e^(k t)) = k mat(A e^(k t); B e^(k t)) = k space.thin arrow(r)(t),
-$
-where $A,B, k in RR$ are parameters.
-With this guess, combining with the original system of differential equations, we see that
-$
-  arrow(r)' = mat(2, 1; 1, 2) arrow(r) = k space.thin arrow(r).
-$
-In other words, $arrow(r)$ must be an eigenvector of $mat(2, 1; 1, 2)$ with eigenvalue $k$!
-
-Computing, we see the eigenvectors of $mat(2, 1; 1, 2)$ are
-$
-  arrow(v_1) = mat(1; 1) " with eigenvalue " 3 wide "and" wide arrow(v_2) = mat(1; -1) " with eigenvalue " -1.
-$
-Thus we guess solutions
-$
-  arrow(r_1)(t) = e^(3 t) mat(1; 1) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = e^(-t) mat(1; -1) = mat(e^(-t); -e^(-t)).
-$
-
-Verifying, we see that both $arrow(r_1)$ and $arrow(r_2)$ are solutions!
+We can write this system in matrix form as:
+$ mat((dif x) / (dif t); (dif y) / (dif t)) 
+  = mat(2,1;1,2) mat(x;y) $
+and if we let $arrow(r) = mat(x;y)$ and $M = mat(2,1;1,2)$, we can write the system as:
+$ (dif arrow(r)) / (dif t) = M arrow(r) $
+where $arrow(r)$ is a vector of the two dependent variables and $M$ is the coefficient matrix.
 
 
-=== The Subspace of Solutions
 
-Recall the system of differential equations
-$
-  x' = 2 x + y \
-  y' = x + 2 y
-$
-expressed in matrix form as
-$
-  arrow(r)' = mat(2, 1; 1, 2) arrow(r)
-$
-where $arrow(r)(t) = mat(x(t); y(t))$. By guessing and checking, we found two solutions
-$
-  arrow(r_1)(t) = e^(3 t) mat(1; 1) wide "and" wide
-  arrow(r_2)(t) = e^(-t) mat(1; -1),
-$
-but are there others?
+=== Linear combinations and linear independence of solutions
 
-In the case of the single-variable equation $y'=7y$, we noticed that multiplying a solution by a constant gave another solution. Will the same work in this case? Let's try.
+Assume that we have two solutions $arrow(r_1)(t)$ and $arrow(r_2)(t)$ of a system of differential equations with constant coefficients
+$ (dif arrow(r)) / (dif t) = M arrow(r) . $
 
-#example(
-  prompt: [Decide whether $alpha space.thin arrow(r)_1$ and $beta space.thin arrow(r)_2$ are solutions, where $alpha, beta in RR$ are constants],
-  [
-    We can test if something is a solution to a differential equation by plugging it in.
-    On the one hand, we have
-    $
-      (alpha space.thin arrow(r)_1(t))' = alpha space.thin arrow(r)'_1(t) = alpha space.thin 3 space.thin arrow(r)_1(t) .
-    $
-    On the other hand, we have
-    $
-      mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t)) = alpha mat(2, 1; 1, 2) arrow(r)_1(t) = 3 space.thin alpha space.thin arrow(r)_1(t),
-    $
-    and so $(alpha space.thin arrow(r)_1(t)) = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$ showing that $alpha space.thin arrow(r)_1(t)$ is a solution
-    no matter the value of $alpha$.
+If we form a linear combination of these two solutions
+$ arrow(s)(t) = alpha arrow(r_1)(t) + beta arrow(r_2)(t) $
+then we can show that this is also a solution of the system. To see this, we can differentiate $arrow(s)(t)$ with respect to $t$:
+$ (dif arrow(s)(t)) / (dif t) &= alpha (dif arrow(r_1)(t)) / (dif t) + beta (dif arrow(r_2)(t)) / (dif t) \
+ &= alpha M arrow(r_1)(t) + beta M arrow(r_2)(t)\
+ &= M (alpha arrow(r_1)(t) + beta arrow(r_2)(t)) \
+ &= M arrow(s)(t) $
+where on the second equality we used the fact that $arrow(r_1)(t)$ and $arrow(r_2)(t)$ are solutions of the system. 
+This shows that $arrow(s)(t)$ is also a solution of the system.
 
-    A similar computation shows that $beta space.thin arrow(r)_2(t)$ is a solution for any value of $beta$.
-  ],
-)
+This is a very important property of systems of differential equations with constant coefficients.
 
-The preceding example can be generalized to show that if you have a solution to a matrix differential equation, then all
-scalar multiples of that solution are also solutions, which is in turn a special case of a more general theorem.
+It means that the *solution space of the system is a vector space*. 
 
-#theorem(
-  title: [Solutions Form a Subspace],
-  [
-    Let $arrow(r)'=M arrow(r)$ be a matrix differential equation and let $cal(S)$ be the set of all solutions. Then, $cal(S)$
-    is a subspace. In particular, $cal(S)$ is closed under linear combinations.
-  ],
-)
-
-The proof relies on some basic linear algebra results.
-
-_Proof:_ Suppose that $cal(S)$ is the set of all solutions the an equation $arrow(r)'=M arrow(r)$ (where $M$ is a square matrix). First, notice that
-$
-  arrow(0)' = arrow(0) = M arrow(0),
-$
-so $arrow(0) in cal(S)$. Next, suppose that $arrow(s_1)$ and $arrow(s_2)$ are solutions in $cal(S)$.
-By definition that means $arrow(s_1)' = M arrow(s_1)$ and $arrow(s_2)' = M arrow(s_2)$.
-By the linearity of the derivative, we may now compute
-$
-  (alpha space.thin arrow(s_1) + beta space.thin arrow(s_2))' &= alpha space.thin arrow(s_1)' + beta space.thin arrow(s_2)' \
-  &= alpha space.thin M arrow(s_1) + beta space.thin M arrow(s_2) \
-  &= M (alpha space.thin arrow(s_1) + beta space.thin arrow(s_2)),
-$
-and so $alpha space.thin arrow(s_1) + beta space.thin arrow(s_2)$ is also a solution in $cal(S)$. #align(right, sym.square.filled)
-
-#v(1em)
-
-Given the above theorem, we can find all sorts of solutions to $arrow(r)'(t) = mat(2, 1; 1, 2) arrow(r)(t)$ like
-$
-  arrow(r)_1(t) + 4 space.thin arrow(r)_2(t) = mat(e^(3 t) + 4space.thin e^(-t); e^(3 t) - 4space.thin e^(-t)) wide "or" wide
-  -2 space.thin arrow(r)_1(t) + 3 space.thin arrow(r)_2(t) = mat(-2space.thin e^(3 t) + 3space.thin e^(-t); -2space.thin e^(3 t) - 3space.thin e^(-t)).
-$
-
-But, have we found all the solutions? To answer that question we need to dive deeper into the linear algebra of solution space.
-
-== Linear Algebra of Solution Space
-
-You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, $cal(F)^n$, also forms a vector space.
-To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector" in a normal vector space, and
-if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + beta dot g$.#footnote(
-  [
-    To fully check, you must check all the _vector space_ axioms hold.
-  ],
-)
-
-The space $cal(F)$ is _large_. In fact, it is _infinite dimensional_, but the rules of linear algebra still apply (provided the proper definitions).
+As a consequence, to find all solutions of the system, we only need to find a _basis of the solution space_. We thus need to have a definition of linear dependence of solutions.
 
 #show_def("linear_dependence_solutions")
 
