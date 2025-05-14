@@ -85,17 +85,45 @@ $ P(t) &= "millions of social media posts at year " t \
     + Analytically classify the equilibrium solution for your differential equation for $arrow(s)$ when $a = -1/2$, $a = 1/2$, and $a = 1$. (You may use a calculator for computing eigenvectors/values.)
 
 
-
-
-
-    // Co-pilot, don't touch anything below this line.
-
    ],
   )
 
   book_only(pagebreak())
   question(
     slide[
-    ],
+
+
+  The *SM* model of Social Media Usage is
+  $ P' &= -P + 2 \
+  U' &= (1 - a) P + a U - 1 $
+  where
+  $ P(t) &= "millions of social media posts at year " t \
+  U(t) &= "millions of social media users at year " t \
+  a &in [-1/2, 1] $
+
+
+  Some politicians have been looking at the model. They made the following posts on social media:
+  
+    
+    #block[
+      #set enum(numbering: "1.")
+      
+      + _The model shows the number of posts will always be increasing. SAD!_
+      + _I see the number of social media users always increases. That's not what we want!_
+      + _It looks like social media is just a fad. Although users initially increase, they eventually settle down._
+      + _I have a dream! That one day there will be social media posts, but eventually there will be no social media users!_
+    ]
+
+  + For each social media post, make an educated guess about what initial conditions and what
+    value(s) of $a$ the politician was considering.
+  + The school board wants to limit the number of social media users to fewer than 10 million.
+    Make a recommendation about what value of $a$ they should target.
+
+   ],
   )
+
+
+
+
+
 }
