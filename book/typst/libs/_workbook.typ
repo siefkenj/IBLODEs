@@ -107,7 +107,7 @@
     let darker_color = thm_color.darken(50%)
     show emph: it => text(it, fill: darker_color, weight: "bold")
     set list(marker: make_marker(color: darker_color))
-    box(
+    block(
       fill: thm_color.lighten(90%),
       stroke: (left: thm_color + 1.5pt),
       inset: 7pt,
@@ -118,8 +118,7 @@
           weight: "bold",
           font: sans_font,
         )
-        v(.2em)
-        box(content)
+        block(content)
       },
       width: 100%,
     )
