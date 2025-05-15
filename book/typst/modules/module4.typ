@@ -145,7 +145,7 @@ is the only equilibrium solution to this system.
 
 XXX Example of a simple system with more than one equilibrium solution
 
-=== Equilibrium Points
+== Equilibrium Points
 
 We can also examine equilibrium solutions in phase space. Using our pond example, we can make a plot in phase space.
 

@@ -112,7 +112,7 @@
   book_only(pagebreak())
   question(
     slide[
-      === Exploring $MM_n$
+      #heading(depth:3, outlined: false, [Exploring $MM_n$])
 
       We can rewrite the assumptions of $MM_n$ as follows:
       - At time $t$ there are $P_n(t)$ starfish.

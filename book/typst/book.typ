@@ -27,10 +27,55 @@
 
 #show terms: it => aligned_terms(..it.children, separator: it.separator, tight: it.tight, spacing: it.spacing)
 
-
 #serif[
-  // Table of Contents
-  #outline(depth: 1, title: "Table of Contents")
+  #heading(outlined: false, level: 1, [Table of Contents (Modules)])
+  #v(1em)
+
+  // Custom table fo contents so that we can control the module labels
+  #context {
+    let headings = query(
+      heading.where(
+        //level: 1,
+        outlined: true,
+      ),
+    )
+    let module_number = 0
+    for (i, item_heading) in headings.enumerate() {
+      if item_heading.level == 1 {
+        module_number += 1
+      }
+      //let module_number = i + 1
+      let loc = item_heading.location()
+      let nr = if type(loc) == location {
+        numbering(
+          loc.page-numbering(),
+          ..counter(page).at(loc),
+        )
+      } else {
+        // Keep the system from crashing if we accidentally put a heading in the core exercises
+        ""
+      }
+      let module_label = box(
+        inset: (left: 1.5em),
+        width: 1.5cm,
+        align(
+          center,
+          text([#module_number], size: 1em),
+        ),
+      )
+      let entry = if item_heading.level == 1 {
+        // We are at a module-level heading
+        v(.5em)
+        text(size: 1.2em, [#module_label #box(item_heading.body) #h(1fr) #nr])
+      } else {
+        // We are at a subheading
+        v(-.3em)
+        h(4em + 1em * item_heading.level)
+        text(size: .8em, [#box(item_heading.body) #h(1fr) #nr])
+      }
+      link(loc, entry)
+    }
+  }
 ]
 
 #set math.mat(delim: "[")
@@ -39,7 +84,7 @@
 #serif[
   // Module 1
   #(env.module)(
-    title: [1. Modelling],
+    title: [Modelling],
     [
       #include "modules/module1.typ"
       #import "modules/module1-practice-problems.typ": questions
@@ -55,7 +100,7 @@
 
   // Module 2
   #(env.module)(
-    title: [2. Simulation],
+    title: [Simulation],
     [
       #include "modules/module2.typ"
       #import "modules/module2-practice-problems.typ": questions
@@ -71,7 +116,7 @@
 
   // Module 3
   #(env.module)(
-    title: [3. Systems and Models with Interacting Terms],
+    title: [Systems and Models with Interacting Terms],
     [
       #include "modules/module3.typ"
       #import "modules/module3-practice-problems.typ": questions
@@ -87,7 +132,7 @@
 
   // Module 4
   #(env.module)(
-    title: [4. Equilibrium and Long-Term Behaviour],
+    title: [Equilibrium and Long-Term Behaviour],
     [
       #include "modules/module4.typ"
       #import "modules/module4-practice-problems.typ": questions
@@ -103,7 +148,7 @@
 
   // Module 5
   #(env.module)(
-    title: [5. Qualitative Analysis: Slope Fields and Phase Portraits],
+    title: [Qualitative Analysis: Slope Fields and Phase Portraits],
     [
       #include "modules/module5.typ"
       #import "modules/module5-practice-problems.typ": questions
@@ -119,7 +164,7 @@
 
   // Module 6
   #(env.module)(
-    title: [6. Linear Systems with Constant Coefficients (Real Solutions)],
+    title: [Linear Systems with Constant Coefficients (Real Solutions)],
     [
       #include "modules/module6.typ"
       #import "modules/module6-practice-problems.typ": questions
@@ -135,7 +180,7 @@
 
   // Module 7
   #(env.module)(
-    title: [7. Linear Systems with Constant Coefficients (Affine Solutions)],
+    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
     [
       #include "modules/module7.typ"
       #import "modules/module7-practice-problems.typ": questions
@@ -151,7 +196,7 @@
 
   // Module 8
   #(env.module)(
-    title: [8. Linear Systems with Constant Coefficients (Complex Solutions)],
+    title: [Linear Systems with Constant Coefficients (Complex Solutions)],
     [
       #include "modules/module8.typ"
       #import "modules/module8-practice-problems.typ": questions
@@ -167,7 +212,7 @@
 
   // Module 9
   #(env.module)(
-    title: [9. Quantitative Analysis: Linearization],
+    title: [Quantitative Analysis: Linearization],
     [
       #include "modules/module9.typ"
       #import "modules/module9-practice-problems.typ": questions
@@ -180,10 +225,10 @@
     import "modules/module9-exercises.typ": setup
     setup(env)
   }
-  
+
   // Module 10
   #(env.module)(
-    title: [10. Higher Order Differential Equations],
+    title: [Higher Order Differential Equations],
     [
       #include "modules/module10.typ"
       #import "modules/module10-practice-problems.typ": questions
@@ -196,10 +241,10 @@
     import "modules/module10-exercises.typ": setup
     setup(env)
   }
-  
+
   // Module 11
   #(env.module)(
-    title: [11. Introduction to Boundary Value Problems],
+    title: [Introduction to Boundary Value Problems],
     [
       #include "modules/module11.typ"
       #import "modules/module11-practice-problems.typ": questions
@@ -215,7 +260,7 @@
 
   // Module 12
   #(env.module)(
-    title: [12. Introduction to the Theory of Ordinary Differential Equations],
+    title: [Introduction to the Theory of Ordinary Differential Equations],
     [
       #include "modules/module12.typ"
       #import "modules/module12-practice-problems.typ": questions

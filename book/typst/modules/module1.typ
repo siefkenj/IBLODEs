@@ -10,7 +10,7 @@ In this module you will learn
 - What a solution to a differential equation is.
 - The difference between a discrete model and a differential-equation based model.
 
-== Modeling
+== Modelling
 Suppose you are observing some green ants walking on the sidewalk. In the first minute you record 10 ants. In
 the second minute you record 20. In the third minute, you record 40 ants. This continues until there are too
 many ants for you to count.
