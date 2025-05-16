@@ -178,7 +178,7 @@ if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + 
   ],
 )
 
-The space $cal(F)^1$ is _large_ XXX DO WE WANT $cal(F)^1$ OR $cal(F)^n$?. In fact, it is _infinite dimensional_, but the "rules" XXX of linear algebra still apply (provided the proper definitions).
+The space $cal(F)^1$ is _large_. In fact, it is _infinite dimensional_, but the theorems of linear algebra still apply (provided the proper definitions).
 
 #show_def("linear_dependence_solutions")
 
