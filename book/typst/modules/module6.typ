@@ -54,6 +54,8 @@ $
 $
 When rewritten this way, we say that the system of differential equations is written in _matrix form_.
 
+XXX ADD DEFINITION OF MATRIX FORM
+
 We can further refine our matrix form by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
 of a multivariable function is the derivative of each of its components, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
 the system can be rewritten as
@@ -69,7 +71,7 @@ get lucky and be able to guess a solution!
 
 Let's start by guessing a solution of the form
 $
-  arrow(r)(t) = mat(A e^(k t); B e^(k t)) = e^(k t)mat(A; B) wide arrow.r.double.long wide arrow(r)'(t) = mat(k A e^(k t); k B e^(k t)) = k mat(A e^(k t); B e^(k t)) = k space.thin arrow(r)(t),
+  arrow(r)(t) = mat(A; B)e^(k t) = mat(A e^(k t); B e^(k t))  wide arrow.r.double.long wide arrow(r)'(t) = mat(k A e^(k t); k B e^(k t)) = k mat(A e^(k t); B e^(k t)) = k space.thin arrow(r)(t),
 $
 where $A,B, k in RR$ are parameters.
 With this guess, combining with the original system of differential equations, we see that
@@ -84,7 +86,7 @@ $
 $
 Thus we guess solutions
 $
-  arrow(r_1)(t) = e^(3 t) mat(1; 1) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = e^(-t) mat(1; -1) = mat(e^(-t); -e^(-t)).
+  arrow(r_1)(t) =  mat(1; 1) e^(3 t) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = mat(1; -1) e^(-t)  = mat(e^(-t); -e^(-t)).
 $
 
 Verifying, we see that both $arrow(r_1)$ and $arrow(r_2)$ are solutions!
@@ -120,7 +122,7 @@ In the case of the single-variable equation $y'=7y$, we noticed that multiplying
     $
     On the other hand, we have
     $
-      mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t)) = alpha mat(2, 1; 1, 2) arrow(r)_1(t) = 3 space.thin alpha space.thin arrow(r)_1(t),
+      mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t)) = alpha mat(2, 1; 1, 2) arrow(r)_1(t) = alpha space.thin 3 space.thin arrow(r)_1(t),
     $
     and so $(alpha space.thin arrow(r)_1(t)) = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$ showing that $alpha space.thin arrow(r)_1(t)$ is a solution
     no matter the value of $alpha$.
@@ -164,19 +166,19 @@ $
   -2 space.thin arrow(r)_1(t) + 3 space.thin arrow(r)_2(t) = mat(-2space.thin e^(3 t) + 3space.thin e^(-t); -2space.thin e^(3 t) - 3space.thin e^(-t)).
 $
 
-But, have we found all the solutions? To answer that question we need to dive deeper into the linear algebra of solution space.
+But, have we found all the solutions? To answer that question we need to dive deeper into the linear algebra of the solution space.
 
-== Linear Algebra of Solution Space
+== Linear Algebra of the Solution Space
 
 You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, $cal(F)^n$, also forms a vector space.
 To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector" in a normal vector space, and
 if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + beta dot g$.#footnote(
   [
-    To fully check, you must check all the _vector space_ axioms hold.
+    To fully check, you must check that all the _vector space_ axioms hold.
   ],
 )
 
-The space $cal(F)$ is _large_. In fact, it is _infinite dimensional_, but the rules of linear algebra still apply (provided the proper definitions).
+The space $cal(F)^1$ is _large_ XXX DO WE WANT $cal(F)^1$ OR $cal(F)^n$?. In fact, it is _infinite dimensional_, but the "rules" XXX of linear algebra still apply (provided the proper definitions).
 
 #show_def("linear_dependence_solutions")
 
@@ -215,7 +217,7 @@ The space $cal(F)$ is _large_. In fact, it is _infinite dimensional_, but the ru
 
 XXX Mention Wronskian?
 
-With the definition of linear independence/dependence pinned down, we can apply the usual Linear Algebra definitions of subspace, basis, and dimension to $cal(F)^n$
+With the definition of linear independence/dependence pinned down, we can apply the usual Linear Algebra definitions of subspace, basis, and dimension to $cal(F)^n$.
 
 
 To recap what we have learned so far:
@@ -239,14 +241,14 @@ An eigenvalue $lambda$ and corresponding eigenvector $arrow(v)$ of the matrix $M
 $ M arrow(v) = lambda arrow(v). $
 
 Now define the function
-$ arrow(r)(t) = e^(lambda t) arrow(v), $
+$ arrow(r)(t) = arrow(v) e^(lambda t), $
 where we recall that $(lambda, arrow(v))$ is an eigenvalue-eigenvector pair of $M$.
 
 We will show that this is a solution of the system of differential equations.
 To see this, we differentiate $arrow(r)(t)$ with respect to $t$:
-$ (dif arrow(r)(t)) / (dif t) = e^(lambda t) lambda arrow(v) $
+$ (dif arrow(r)(t)) / (dif t) = lambda arrow(v) e^(lambda t) $
 and we can also compute $M arrow(r)(t)$:
-$ M arrow(r)(t) = M (e^(lambda t) arrow(v)) = e^(lambda t) M arrow(v) = e^(lambda t) lambda arrow(v) $
+$ M arrow(r)(t) = M ( arrow(v) e^(lambda t)) =  M arrow(v) e^(lambda t) = lambda arrow(v) e^(lambda t) $
 where we used the fact that $arrow(v)$ is an eigenvector of $M$ with eigenvalue $lambda$.
 Thus we have
 $ (dif arrow(r)(t)) / (dif t) = M arrow(r)(t). $
