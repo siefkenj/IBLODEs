@@ -182,3 +182,4 @@ $
 $
 and so $arrow(s)$ is a solution for every choice of $A$ and $B$.
 
+XXX Add small section talking about how for r'=Mr+p, that you are not shifting by p, but my M^-1*p (do this as part of a "Recap" section?)

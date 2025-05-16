@@ -138,27 +138,35 @@ The process of finding a matrix/affine system that closely approximates a non-li
 In the previous example, we guessed our way into a linearization. But we have a more systematic tool at our disposal: _Calculus_.
 
 Recall from Calculus that for a function $f: RR arrow RR$, the tangent line to the graph $y=f(x)$ at the point $(E, f(E))$ is given by
-$
+  $
   y = f(E) + f'(E)(x - E).
 $
 That means that when $x approx E$, we have
-$
-  f(x) quad approx quad f(E) + f'(E)(x - E).
-$
+#math.equation(
+  numbering: "(1)",
+  block: true,
+  $
+    f(x) quad approx quad f(E) + f'(E)(x - E).
+  $
+)<eqScalar>
 There is a similar formula for multi-variable functions. Let $arrow(F)(x,y)=mat(F_1(x,y); F_2(x,y))$
 and let $arrow(E) in RR^2$. Then, when $mat(x; y) approx arrow(E)$,
-$
-  arrow(F)(x,y) quad approx quad arrow(F)(arrow(E)) D_(arrow(F))(arrow(E))(mat(x; y)-arrow(E)).
-$
+#math.equation(
+  numbering: "(1)",
+  block: true,
+  $
+    arrow(F)(x,y) quad approx quad arrow(F)(arrow(E)) D_(arrow(F))(arrow(E))(mat(x; y)-arrow(E)).
+  $
+)<eqVector>
 Here, $D_(arrow(F))(arrow(E))$ is the _total derivative_ (also called the _Jacobian matrix_ or _Jacobian_) of $arrow(F)$ at $arrow(E)$. That is,
 $
   D_(arrow(F))(arrow(E)) = mat(
-    (partial F_1) / (partial x) F_1, (partial F_1) / (partial y) F_1;
-    (partial F_2) / (partial x) F_2, (partial F_2) / (partial y) F_2
+    (partial F_1) / (partial x), (partial F_1) / (partial y);
+    (partial F_2) / (partial x), (partial F_2) / (partial y)
   ) wide "evaluated at" arrow(E).
 $
 
-These approximations are called _affine approximations_ or _first-order approximations_.
+Approximations like in Equations (#ref(<eqScalar>, supplement: none)) and (#ref(<eqVector>, supplement: none)) called _affine approximations_ or _first-order approximations_.
 
 #example(
   prompt: [Let $F(x,y) = (x^2 y, y^3 - 2)$ and let $arrow(E) = (1, 1)$. Find an affine approximation to $F$ at $E$.],
@@ -381,4 +389,4 @@ Using initial conditions of $F=11$ and $R approx 110$, we can compare solutions 
 }
 
 
-== When Linearization Fails
+== When Linearization Fails to Classify Equilibria

@@ -230,7 +230,7 @@ To recap what we have learned so far:
 === Finding a basis of solutions using eigenvalues and eigenvectors
 
 
-Before reading this part of the module, you should work through the core exercises XXX 32 - 36 and 38 to understand where the idea comes from.
+Before reading this part of the module, you should work through the core exercises XXX 32 -- 36 and 38 to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
 
 Consider a system of differential equations with constant coefficients:
 $ (dif arrow(r)) / (dif t) = M arrow(r), $
