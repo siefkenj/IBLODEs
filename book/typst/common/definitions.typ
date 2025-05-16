@@ -127,7 +127,7 @@ eigensolution: definition_env(
         Given a system of differential equations
         $(dif arrow(r)) / (dif t) = M arrow(r),$
         where $M$ is a matrix with real entries, and an eigenvalue-eigenvector pair $(lambda, arrow(v))$ of the matrix $M$, we define the function
-        $arrow(r)(t) = e^(lambda t) arrow(v)$
+        $arrow(r)(t) = arrow(v) e^(lambda t)$
         to be an _eigen solution_ of the system.
       ],
     ),

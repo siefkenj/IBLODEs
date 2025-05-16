@@ -6,7 +6,7 @@
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 In this module you will learn
-- What makes a differential equation _affinte_.
+- What makes a differential equation _affine_.
 - How to relate affine equations and matrix equations.
 - How to solve differential equations of the form $arrow(r)'=M arrow(r) + arrow(b)$.
 
@@ -128,24 +128,29 @@ _centering about the equilibrium_.
   title: [Centering about the Equilibrium],
   [
     Let $M$ be a matrix and $arrow(b)$ a vector and consider the differential equations
-    - $arrow(r)'=M arrow(r)$
-    - $arrow(r)'=M arrow(r) + arrow(b)$
-    If $arrow(p)$ is the equilibrium point of the affine (second) equation and
-    $arrow(v)$ is a solution to the affine (second) equation, then
+    #block[
+      #set enum(numbering: "(1)")
+      + $arrow(r)'=M arrow(r)$
+      + $arrow(r)'=M arrow(r) + arrow(b)$
+    ]
+
+
+    If $arrow(p)$ is the equilibrium point of the affine equation (2) and
+    $arrow(v)$ is a solution to the affine equation (2), then
     $
       arrow(s)(t) = arrow(v)(t) - arrow(p)
     $
-    is a solution to the matrix (first) equation.
+    is a solution to the matrix equation (1).
 
-    Similarly, if $arrow(u)$ is a solution to the matrix (first) equation, then
+    Similarly, if $arrow(u)$ is a solution to the matrix equation (1), then
     $
       arrow(s)(t) = arrow(u)(t) + arrow(p)
     $
-    is a solution to the affine (second) equation.
+    is a solution to the affine equation (2).
   ],
 )
 
-_Proof:_ XXX Finish
+_Proof:_ We leave the proof of this Theorem as an exercise for the reader. XXX
 
 == Solving Affine Equations
 
