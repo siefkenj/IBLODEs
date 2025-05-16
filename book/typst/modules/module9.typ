@@ -8,11 +8,14 @@
 #let (sans, serif, module, definition, example) = workbook
 
 In this module you will learn
-- How to use _linearization_ to analyze the equilibrium solutions of non-linear systems of differential equations.
+- How to use _linearization_, the process of finding an affine approximation to a system of differential equations,
+  to analyze the equilibrium solutions of non-linear systems of differential equations.
+- Some of the limits of using linearization to study equilibrium solutions.
 
-We have a complete theory for systems of differential equations that can be written in matrix form. More specifically, based on the eigenvalues of the matrix,
-we can classify the equilibrium solutions as stable/unstable/etc.. This analysis also applies to affine systems, since they can be viewed as shifted
-matrix systems. Unfortunately, most equations that come from real-world models cannot be written in matrix or affine form!
+We have a complete theory, based on eigenvalues, for
+classifying the equilibria of systems of differential equations that can be written in matrix form.
+Eigen techniques also apply to affine systems.
+Unfortunately, most equations that come from real-world models cannot be written in matrix or affine form!
 
 == Linearization
 
@@ -46,7 +49,7 @@ Based on the phase portrait, there appears to be an unstable equilibrium at $(F,
 )
 
 We cannot use eigenvalue analysis to classify the equilibrium solutions because non-linear systems do not have eigen solutions. However,
-we may be able to find a matrix/affine system that is "close to" the Fox-and-Rabbit model.
+we may be able to find a matrix/affine system that is "close to" the Fox-and-Rabbit model and apply eigen analysis to our approximation.
 
 #v(1em)
 Let's focus on the equilibrium $(F, R) = (0,0)$. Zooming in, the phase portrait looks familiar---very similar to the phase portrait for a matrix equation.
@@ -66,12 +69,14 @@ Let's focus on the equilibrium $(F, R) = (0,0)$. Zooming in, the phase portrait 
 )
 
 We will try to figure out an approximating matrix equation via hand-wavy methods first.
-Analyzing the system,
+A useful heuristic when approximating is that if a quantity is small, then that quantity squared is very small and can be ignored.#footnote[Look back at proofs for the derivative of
+  $x^2$; using limits formalizes the rule, but all higher-order terms go to zero in the limit.]
+Recall our system:
 $
   F' &= 0.01 dot R dot F - 1.1 dot F \
   R' &= 1.1 dot R - 0.1 dot F dot R
 $
-since we are concerned about when $F approx 0$ and $R approx 0$, it stands to reason that $F dot R$ is very very small. Ignoring this term gives us a system,
+We are studying the behaviour when $F approx 0$ and $R approx 0$, so $F dot R$ is very, very small. Replacing all $F dot R$ terms with $0$ gives us
 #align(
   center,
   grid(
@@ -88,7 +93,7 @@ since we are concerned about when $F approx 0$ and $R approx 0$, it stands to re
     $,
   ),
 )
-Graphing the phase portraits side-by-side, they look very similar.
+Graphing phase portraits side-by-side, the original system and our approximating system look very similar (near $(F,R)=(0,0)$).
 #align(
   center,
   {
@@ -121,10 +126,10 @@ Graphing the phase portraits side-by-side, they look very similar.
   },
 )
 
-If we simulated solutions, we would find that $F(t) approx F_"approx"(t)$ and $R(t) approx R_"approx"(t)$, when both $F(t)$ and $R(t)$ are near $0$.
-And, $F_"approx"(t)$ and $R_"approx"(t)$ can be analyzed using eigen techniques: the eigenvalues of the corresponding system are $-1.1$ and $1.1$ and so
-$(F_"approx", R_"approx")=(0,0)$ is an _unstable_ equilibrium. Since solutions for $F$ and $R$ act the same as $F_"approx"$ and $R_"approx"$ near $(0,0)$,
-we conclude that $(F, R)=(0,0)$ is also an unstable equilibrium solution.
+If we simulated solutions, we would find that $F(t) approx F_"approx" (t)$ and $R(t) approx R_"approx" (t)$, when both $F(t)$ and $R(t)$ are near $0$.
+Since $F_"approx"$ and $R_"approx"$ can be analyzed using eigen techniques (eigenvalue of $-1.1$ and $1.1$ mean $(0,0)$ is _unstable_), and since
+$F$ and $R$ behave similarly to $F_"approx"$ and $R_"approx"$ near $(0,0)$,
+we conclude that $(F, R)=(0,0)$ is an unstable equilibrium.
 
 The process of finding a matrix/affine system that closely approximates a non-linear system near a point is called _linearization_.
 
@@ -132,20 +137,20 @@ The process of finding a matrix/affine system that closely approximates a non-li
 
 In the previous example, we guessed our way into a linearization. But we have a more systematic tool at our disposal: _Calculus_.
 
-Recall from Calculus that for a function $f$, the tangent line to the gram $y=f(x)$ at the point $(E, f(E))$ is given by
+Recall from Calculus that for a function $f: RR arrow RR$, the tangent line to the graph $y=f(x)$ at the point $(E, f(E))$ is given by
 $
-  y = f(E) + f'(E)(x - E)
+  y = f(E) + f'(E)(x - E).
 $
-and when $x approx E$ we have
+That means that when $x approx E$, we have
 $
   f(x) quad approx quad f(E) + f'(E)(x - E).
 $
 There is a similar formula for multi-variable functions. Let $arrow(F)(x,y)=mat(F_1(x,y); F_2(x,y))$
 and let $arrow(E) in RR^2$. Then, when $mat(x; y) approx arrow(E)$,
 $
-  arrow(F)(x,y) quad approx quad arrow(F)(arrow(E)) D_(arrow(F))(arrow(E))(mat(x; y)-arrow(E)),
+  arrow(F)(x,y) quad approx quad arrow(F)(arrow(E)) D_(arrow(F))(arrow(E))(mat(x; y)-arrow(E)).
 $
-where $D_(arrow(F))(arrow(E))$ is the _total derivative_, or _Jacobian matrix_, of $arrow(F)$ at $arrow(E)$:
+Here, $D_(arrow(F))(arrow(E))$ is the _total derivative_ (also called the _Jacobian matrix_ or _Jacobian_) of $arrow(F)$ at $arrow(E)$. That is,
 $
   D_(arrow(F))(arrow(E)) = mat(
     (partial F_1) / (partial x) F_1, (partial F_1) / (partial y) F_1;
@@ -257,7 +262,7 @@ Using initial conditions of $F=11$ and $R approx 110$, we can compare solutions 
 #let G(x, y) = (.11 * y - 12.1, -11 * x + 121)
 
 #{
-  let steps = 100
+  let steps = 200
   let _Delta = 0.05
   let ts = lq.arange(0, _Delta * (steps + 1), step: _Delta)
   let F1 = solve_2d_ivp(F, (11, 112), steps, Delta: _Delta, method: "rk4")
@@ -275,17 +280,41 @@ Using initial conditions of $F=11$ and $R approx 110$, we can compare solutions 
         //legend: (position: bottom + right),
         width: width,
         //ylim: (0, 1.5),
-        lq.plot(ts, F1.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F1.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G1.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G1.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
-        lq.plot(ts, F2.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F2.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G2.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G2.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
-        lq.plot(ts, F3.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F3.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G3.map(((x, y)) => x), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G3.map(((x, y)) => x),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
         //xaxis: (label: [$t$ (days)]),
         //yaxis: (label: [Pesticide (kg)]),
@@ -295,17 +324,41 @@ Using initial conditions of $F=11$ and $R approx 110$, we can compare solutions 
         //legend: (position: bottom + right),
         width: width,
         //ylim: (0, 1.5),
-        lq.plot(ts, F1.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F1.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G1.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G1.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
-        lq.plot(ts, F2.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F2.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G2.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G2.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
-        lq.plot(ts, F3.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F$
+        lq.plot(
+          ts,
+          F3.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F$
         ),
-        lq.plot(ts, G3.map(((x, y)) => y), mark: none, stroke: 1.5pt, //label: $F_"approx"$
+        lq.plot(
+          ts,
+          G3.map(((x, y)) => y),
+          mark: none,
+          stroke: 1.5pt, //label: $F_"approx"$
         ),
         //xaxis: (label: [$t$ (days)]),
         //yaxis: (label: [Pesticide (kg)]),
