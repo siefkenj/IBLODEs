@@ -1,6 +1,7 @@
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def
+#import "../libs/_workbook.typ": simple_table
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 In this module you will learn
@@ -325,12 +326,12 @@ The set formed by the eigen solutions of the system of differential equations is
 
     We can now write the eigen solutions of the system of differential equations:
     $
-      arrow(r_1)(t) &= e^(3 t) arrow(v_1) = e^(3 t) mat(1; 1), \
-      arrow(r_2)(t) &= e^(1 t) arrow(v_2) = e^(1 t) mat(1; -1).
+      arrow(r_1)(t) &= arrow(v_1) e^(3 t) = mat(1; 1) e^(3 t), \
+      arrow(r_2)(t) &= arrow(v_2) e^(1 t) = mat(1; -1) e^(1 t).
     $
 
     We can now form a linear combination of these two solutions to find the general solution of the system of differential equations:
-    $ arrow(r)(t) = alpha e^(3 t) mat(1; 1) + beta e^(1 t) mat(1; -1), $
+    $ arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t), $
     where $alpha$ and $beta$ are constants that depend on the initial conditions of the system.
   ],
 )
@@ -342,7 +343,7 @@ The set formed by the eigen solutions of the system of differential equations is
     We are now given an initial condition $arrow(r)(0) = mat(1; 0)$.
     We can find the values of $alpha$ and $beta$ by substituting $t=0$ into the general solution:
     $
-      arrow(r)(0) &= alpha e^(3 * 0) mat(1; 1) + beta e^(1 * 0) mat(1; -1) \
+      arrow(r)(0) &= alpha mat(1; 1) e^(3 * 0) + beta mat(1; -1) e^(1 * 0) \
       mat(1; 0) &= alpha mat(1; 1) + beta mat(1; -1)
     $
     This gives us the following system of equations that we can solve for $alpha$ and $beta$:
@@ -352,12 +353,11 @@ The set formed by the eigen solutions of the system of differential equations is
     $
     Thus the solution that satisfies the initial condition is:
     $
-      arrow(r)(t) &= (1 / 2) e^(3 t) mat(1; 1) + (1 / 2) e^(1 t) mat(1; -1) \
+      arrow(r)(t) &= (1 / 2) mat(1; 1) e^(3 t) + (1 / 2) mat(1; -1) e^(1 t) \
       &= (1 / 2) mat(e^(3t) + e^t; e^(3t) - e^t).
     $
   ],
 )
-
 
 
 Observe that this process works for any system of differential equations with constant coefficients as long as the eigenvalues are real and distinct.
@@ -369,5 +369,109 @@ We will see in the next module that this is not the case for all systems of diff
 
 
 
+=== Stability of the Equilibrium Solutions
+
+Before reading the remainder of this module, we recommend that you gain some intuition about the solutions of systems of differential equations with real distinct eigenvalues by solving the core exercises in this module.
+
+Now that we have a method to find the solutions of a system of differential equations with constant coefficients, we can study what happens to solutions when they start near an equilibrium solution.
+
+*As time goes to infinity, do these solutions approach the equilibrium solution or do they move away from it?*
+
+Recall the informal classification of equilibrium solutions#footnote([Check XXX MODULE 4 for the precise definition.]) from XXX MODULE 4.
+
+#show_def("equilibrium_classification_informal")
+
+Consider a system of differential equations
+$ (dif arrow(r))/(dif t) = M arrow(r), $
+where the eigenvalues of the coefficient matrix $M$ are two different real numbers: $lambda_1 eq.not lambda_2$.
+
+Observe that the unique equilibrium solution is $arrow(r)(t) = mat(0; 0)$, so we want to establish the stability of this equilibrium solution.
+
+Following the process described earlier in this module, we know that the solutions of the system of differential equations will have the form
+$ arrow(r)_i (t) 
+  = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t), $
+where $c_1$ and $c_2$ are constants that depend on the initial conditions of the system, and $arrow(v)_1$ and $arrow(v)_2$ are the eigenvectors associated with the eigenvalues $lambda_1$ and $lambda_2$, respectively.
+
+When computing the limit of such a solution as $t$ approaches infinity, we can focus on the exponential terms, since the other terms are constant.
+
+Moreover, we know the limits of exponential functions:
+$
+  lim_(t arrow infinity) e^(lambda_1 t) = cases(
+    0 &" if " lambda_1 < 0,
+    1 &" if " lambda_1 = 0,
+    infinity &" if " lambda_1 > 0,
+  ).
+$
+
+So we can conclude that
+- If one of the eigenvalues is positive, then there will be solutions that converge to infinity (unstable).
+- If both eigenvalues are negative, then all solutions will converge to the equilibrium solution (stable and attracting).
+- If one of the eigenvalues is zero, then there are constant solutions near the equilibrium, so it will be neither attracting nor repelling.
+  - If the other eigenvalue is negative, then the equilibrium solution will be stable, because all solutions either converge to the equilibrium ($arrow(0)$) or are constant solutions.
+  - If the other eigenvalue is positive, then the equilibrium solution will be unstable, because all solutions either diverge to infinity or are constant solutions.
+
+
+We can summarize these results with the following table:
+
+#align(
+        center,
+        simple_table(
+          headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
+          content: (
+            // real, both negative
+            $lambda_1<0$,
+            $lambda_2<0$,
+            [Stable and Attracting],
+            // real, both positive
+            $lambda_1>0$,
+            $lambda_2>0$,
+            [Unstable and Repelling],
+            // real, one positive, one negative
+            $lambda_1<0$,
+            $lambda_2>0$,
+            [Unstable and Repelling],
+            table.hline(stroke: .5pt),
+            // real, 0 + negative
+            $lambda_1=0$,
+            $lambda_2<0$,
+            [Stable],
+            // real, 0 + positive
+            $lambda_1=0$,
+            $lambda_2>0$,
+            [Unstable],
+            table.hline(stroke: .5pt),
+          ),
+        ),
+      )
+
+OR 
+
+#align(
+        center,
+        simple_table(
+          headers: ([Sign of Eigenvalues], [Stability of Equilibrium]),
+          content: (
+            // real, both negative
+            [Both negative],
+            [Stable and Attracting],
+            // real, both positive
+            [Both positive],
+            [Unstable and Repelling],
+            // real, one positive, one negative
+            [One negative, one positive],
+            [Unstable and Repelling],
+            table.hline(stroke: .5pt),
+            // real, 0 + negative
+            [One is zero, one is negative],
+            [Stable],
+            // real, 0 + positive
+            [One is zero, one is positive],
+            [Unstable],
+            table.hline(stroke: .5pt),
+          ),
+        ),
+      )
+
+XXX CHOOSE ONE TABLE!!
 
 
