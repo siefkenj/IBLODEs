@@ -1,11 +1,14 @@
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def
+#import "../libs/_workbook.typ": label_module
 #import "../libs/_graphics.typ": vector_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/tiptoe:0.3.0"
 #import "@preview/lilaq:0.3.0" as lq
 #let (sans, serif, module, definition, example) = workbook
+
+//== kkk
 
 In this module you will learn
 - How to use _linearization_, the process of finding an affine approximation to a system of differential equations,
@@ -19,7 +22,7 @@ Unfortunately, most equations that come from real-world models cannot be written
 
 == Linearization
 
-Recall the Fox and Rabbit model from Core Exercise XXX:
+Recall the Fox and Rabbit model from @ex:fox_and_rabbit
 
 $
   F'(t) &= 0.01 dot R(t) dot F(t) - 1.1 dot F(t) \
@@ -138,7 +141,7 @@ The process of finding a matrix/affine system that closely approximates a non-li
 In the previous example, we guessed our way into a linearization. But we have a more systematic tool at our disposal: _Calculus_.
 
 Recall from Calculus that for a function $f: RR arrow RR$, the tangent line to the graph $y=f(x)$ at the point $(E, f(E))$ is given by
-  $
+$
   y = f(E) + f'(E)(x - E).
 $
 That means that when $x approx E$, we have
@@ -147,7 +150,7 @@ That means that when $x approx E$, we have
   block: true,
   $
     f(x) quad approx quad f(E) + f'(E)(x - E).
-  $
+  $,
 )<eqScalar>
 There is a similar formula for multi-variable functions. Let $arrow(F)(x,y)=mat(F_1(x,y); F_2(x,y))$
 and let $arrow(E) in RR^2$. Then, when $mat(x; y) approx arrow(E)$,
@@ -156,7 +159,7 @@ and let $arrow(E) in RR^2$. Then, when $mat(x; y) approx arrow(E)$,
   block: true,
   $
     arrow(F)(x,y) quad approx quad arrow(F)(arrow(E)) D_(arrow(F))(arrow(E))(mat(x; y)-arrow(E)).
-  $
+  $,
 )<eqVector>
 Here, $D_(arrow(F))(arrow(E))$ is the _total derivative_ (also called the _Jacobian matrix_ or _Jacobian_) of $arrow(F)$ at $arrow(E)$. That is,
 $
@@ -166,7 +169,7 @@ $
   ) wide "evaluated at" arrow(E).
 $
 
-Approximations like in Equations (#ref(<eqScalar>, supplement: none)) and (#ref(<eqVector>, supplement: none)) called _affine approximations_ or _first-order approximations_.
+Approximations like in @eqScalar[Equations] and @eqVector[] called _affine approximations_ or _first-order approximations_.
 
 #example(
   prompt: [Let $F(x,y) = (x^2 y, y^3 - 2)$ and let $arrow(E) = (1, 1)$. Find an affine approximation to $F$ at $E$.],

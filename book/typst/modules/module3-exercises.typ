@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -68,6 +68,7 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:fox_and_rabbit>)
       // https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
       Open the spreadsheet
 

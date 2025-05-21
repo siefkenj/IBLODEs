@@ -1,7 +1,10 @@
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def
+#import "../libs/_workbook.typ": label_module
 #let (sans, serif, module, definition, example, theorem) = workbook
+
+#label_module(<mod:real>)
 
 In this module you will learn
 - How to find analytic solutions to systems of differential equations with constant coefficients by using the eigenvalues and eigenvectors of the coefficient matrix.

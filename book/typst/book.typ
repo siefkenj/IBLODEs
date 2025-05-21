@@ -1,6 +1,6 @@
 #import "@preview/in-dexter:0.7.0": *
 #import "common/cover.typ": make_cover
-#import "libs/_workbook.typ": exercises, solutions, aligned_terms
+#import "libs/_workbook.typ": exercises, solutions, aligned_terms, _show_ref
 //#import "_workbook.typ": setup
 #set page(paper: "us-letter")
 #set par(justify: true)
@@ -25,6 +25,9 @@
 #pagebreak(to: "odd", weak: true)
 #counter(page).update(1)
 
+// Allow us to use `@ref` syntax to reference core exercises, etc.
+#show ref: _show_ref
+
 #show terms: it => aligned_terms(..it.children, separator: it.separator, tight: it.tight, spacing: it.spacing)
 
 #serif[
@@ -46,7 +49,7 @@
       }
       //let module_number = i + 1
       let loc = item_heading.location()
-      let nr = if type(loc) == location {
+      let nr = if type(loc) == location and loc.page-numbering() != none {
         numbering(
           loc.page-numbering(),
           ..counter(page).at(loc),

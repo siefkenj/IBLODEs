@@ -2,8 +2,11 @@
 // This file is meant to be imported and not compiled on its own.
 #import "@preview/tiptoe:0.3.0"
 #import "../common/settings-book.typ": workbook, show_def
+#import "../libs/_workbook.typ": label_module
 #import "../libs/_graphics.typ": vector_field
 #let (sans, serif, module, definition, example, theorem) = workbook
+
+#label_module(<mod:affine>)
 
 In this module you will learn
 - What makes a differential equation _affine_.

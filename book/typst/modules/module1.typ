@@ -1,9 +1,10 @@
 
 // This file is meant to be imported and not compiled on its own.
-#import "../libs/_workbook.typ": simple_table
+#import "../libs/_workbook.typ": simple_table, label_module
 #import "../common/settings-book.typ": workbook, show_def
 #let (sans, serif, module, definition, example) = workbook
 
+#label_module(<mod:modelling>)
 
 In this module you will learn
 - What a differential equation is.
