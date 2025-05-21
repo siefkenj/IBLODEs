@@ -211,8 +211,8 @@ which is the same formula we found before.
 We can also linearize near the equilibrium $(F, R) = (11, 110)$.
 $
   mat(F'_"approx"; R'_"approx") &= arrow(G)(11, 110) + D_(arrow(G))(11, 110) (mat(F_"approx"; R_"approx") - mat(11; 110))\
-  &= mat(0; 0) + mat(0, .11; -11, 0) (mat(F_"approx"; R_"approx") - mat(11; 110))\
-  &= mat(0, .11; -11, 0) mat(F_"approx"; R_"approx") + mat(-12.1; 121).
+  &= mat(0; 0) + mat(0, 0.11; -11, 0) (mat(F_"approx"; R_"approx") - mat(11; 110))\
+  &= mat(0, 0.11; -11, 0) mat(F_"approx"; R_"approx") + mat(-12.1; 121).
 $
 Comparing phase portraits near $(F, R) = (11, 110)$, we see they are quite similar *near the point $(11, 110)$*.
 
