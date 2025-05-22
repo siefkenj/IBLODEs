@@ -441,3 +441,5 @@ However, Euler approximations to this differential equation attain negative valu
     },
   )
 }
+
+XXX Discussion about converging to a periodic solution?
