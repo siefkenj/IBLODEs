@@ -37,15 +37,15 @@
       + What are the equilibrium solution(s) of the system?
       + Find a formula for $x(t)$ and $y(t)$ that satisfy the initial conditions $(x(0), y(0))=(x_0, y_0)$.
       + Let $arrow(r)(t)=(x(t),y(t))$. Find a matrix $A$ so that the differential equation can be equivalently expressed
-      as
+        as
 
-      $ arrow(r)'(t) = A arrow(r)(t). $
+        $ arrow(r)'(t) = A arrow(r)(t). $
 
       + Write a solution to $arrow(r)' = A arrow(r)$ (where $A$ is the matrix you came up with).
 
     ],
   )
-  
+
 
   book_only(pagebreak())
   question(
@@ -102,7 +102,7 @@
       + Describe $"span"{arrow(p), arrow(h)}$. What is its dimension? What is a basis for it?
       + Let $S$ be the set of all solutions to $arrow(r)'(t) = mat(1, 0; 0, 2) arrow(r)(t)$. #text(0.75em)[(You've seen this equation before.)]
 
-      Is $S$ a subspace? If so, what is its dimension?
+        Is $S$ a subspace? If so, what is its dimension?
 
       + Provided $S$ is a subspace, give a basis for $S$.
     ],
@@ -133,7 +133,7 @@
           ),
         )
 
-      Do you agree? Explain.
+        Do you agree? Explain.
 
     ],
   )
@@ -215,9 +215,9 @@
       + Sketch $arrow(r)_2$ and $arrow(r)_6$ in the phase plane.
       + Use
 
-      https://www.desmos.com/calculator/h3wtwjghv0
+        https://www.desmos.com/calculator/h3wtwjghv0
 
-      to make a phase portrait for the system.
+        to make a phase portrait for the system.
 
       + #{
           let xs = lq.linspace(0, 5, num: 20)
@@ -277,8 +277,8 @@
             ),
           )
         }
-      In which phase plane above is the dashed (green) curve
-      the graph of a solution to the system? Explain.
+        In which phase plane above is the dashed (green) curve
+        the graph of a solution to the system? Explain.
 
     ],
   )
@@ -397,8 +397,8 @@
 
       + How are the phase portraits related to each other?
       + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 1$. In what ways could
-      the phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
-      In what way(s) must it look the same?
+        the phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
+        In what way(s) must it look the same?
     ],
   )
 
@@ -406,79 +406,90 @@
   question(
     slide[
 
-    Consider the following phase plane with lines in the direction of $arrow(a)$ (dashed green) and $arrow(b)$ (red).
+      Consider the following phase plane with lines in the direction of $arrow(a)$ (dashed green) and $arrow(b)$ (red).
 
-
-    #align(
-      center,
-      {
-        let xs = lq.linspace(-3.5, 3.5, num: 2)
-        let xticks = lq.linspace(-3, 3, num: 7)
-        lq.diagram(
-          xlim: (-3.5, 3.5),
-          ylim: (-3.5, 3.5),
-          width: 5cm,
-          height: 5cm,
-          yaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
-          xaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
-          lq.plot(
-            xs,
-            xs.map(x => 3*x),
-            mark: none,
-            stroke: (paint: red, thickness: 1pt),
-          ),
-          lq.place(0.7,3)[#text(red)[$arrow(b)$]],
-          lq.plot(
-            xs,
-            xs.map(x => x/3),
-            mark: none,
-            stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
-          ),
-          lq.place(3,1.3)[#text(green.darken(20%))[$arrow(a)$]],
-        )
-      },
-    )
-
-    + Sketch a phase portrait where the directions $arrow(a)$ and $arrow(b)$ correspond to eigen solutions with eigenvalues that are:
 
       #align(
         center,
-        simple_table(
-          headers: ([], [sign for $arrow(a)$], [sign for $arrow(b)$]),
-          content: (
-            [1], [pos], [pos],
-            [2], [neg], [neg],
-            [3], [neg], [pos],
-            [4], [pos], [neg],
-            [5], [pos], [zero],
-          ), 
-        ),
+        {
+          let xs = lq.linspace(-3.5, 3.5, num: 2)
+          let xticks = lq.linspace(-3, 3, num: 7)
+          lq.diagram(
+            xlim: (-3.5, 3.5),
+            ylim: (-3.5, 3.5),
+            width: 5cm,
+            height: 5cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
+            xaxis: (position: 0, tip: tiptoe.stealth, ticks: xticks, filter: ((v, d) => false)),
+            lq.plot(
+              xs,
+              xs.map(x => 3 * x),
+              mark: none,
+              stroke: (paint: red, thickness: 1pt),
+            ),
+            lq.place(0.7, 3)[#text(red)[$arrow(b)$]],
+            lq.plot(
+              xs,
+              xs.map(x => x / 3),
+              mark: none,
+              stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
+            ),
+            lq.place(3, 1.3)[#text(green.darken(20%))[$arrow(a)$]],
+          )
+        },
       )
 
-    + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
-    + Would any of your classifications in the previous part change if the directions of $arrow(a)$ and $arrow(b)$ changed?
+      + Sketch a phase portrait where the directions $arrow(a)$ and $arrow(b)$ correspond to eigen solutions with eigenvalues that are:
+
+        #align(
+          center,
+          simple_table(
+            headers: ([], [sign for $arrow(a)$], [sign for $arrow(b)$]),
+            content: (
+              [1],
+              [pos],
+              [pos],
+              [2],
+              [neg],
+              [neg],
+              [3],
+              [neg],
+              [pos],
+              [4],
+              [pos],
+              [neg],
+              [5],
+              [pos],
+              [zero],
+            ),
+          ),
+        )
+
+      + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
+      + Would any of your classifications in the previous part change if the directions of $arrow(a)$ and $arrow(b)$ changed?
     ],
   )
 
 
   book_only(pagebreak())
-    question(
+  question(
     slide[
 
 
-You are examining a differential equation $arrow(r)'(t) = M arrow(r)(t)$ for an unknown $2 times 2$ matrix $M$.
+      You are examining a differential equation $arrow(r)'(t) = M arrow(r)(t)$ for an unknown $2 times 2$ matrix $M$.
 
-You would like to determine whether $arrow(r)(t) = mat(0; 0)$ is stable, unstable, attracting, or repelling.
+      You would like to determine whether $arrow(r)(t) = mat(0; 0)$ is stable, unstable, attracting, or repelling.
 
-+ Come up with a rule to determine the nature of the equilibrium solution $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly independent eigen solutions).
-+ Consider the system of differential equations
-  $ x'(t) &= x(t) + 2 dot y(t) \
-    y'(t) &= 3 dot x(t) - 4 dot y(t) $
+      + Come up with a rule to determine the nature of the equilibrium solution $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly independent eigen solutions).
+      + Consider the system of differential equations
+        $
+          x'(t) &= x(t) + 2 dot y(t) \
+          y'(t) &= 3 dot x(t) - 4 dot y(t)
+        $
 
-  + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any method you want.
-  + Justify your answer analytically using eigenvalues.
+        + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any method you want.
+        + Justify your answer analytically using eigenvalues.
 
-  ],
+    ],
   )
-
 }
