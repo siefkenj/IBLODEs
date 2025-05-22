@@ -10,6 +10,7 @@
 /// Show the definition with the given name. `name` is a string.
 #let show_def = show_def.with(definition_env: workbook.definition)
 
+#let slidetitlebox = color.rgb("#00647d")
 #let slideshade = color.rgb("#ffffff")
 #let (sans, serif, question_counter) = workbook
 
@@ -25,7 +26,7 @@
       place(
         top + left,
         dx: -x_margin,
-        box(width: 100% + 2 * x_margin, height: 100% + 3pt, fill: slideshade),
+        box(width: 100% + 2 * x_margin, height: 100% + 3pt, fill: slidetitlebox),
       )
       set text(fill: white, weight: "bold")
       move(
