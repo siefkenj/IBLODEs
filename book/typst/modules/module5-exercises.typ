@@ -140,7 +140,7 @@
   book_only(pagebreak())
   question(
     slide[
-    #label_core_exercise(<ex:tree_model>)
+      #label_core_exercise(<ex:tree_model>)
 
       // Completed phase portrait in desmos:
       // https://www.desmos.com/calculator/tvjag852ja
@@ -161,6 +161,7 @@
 
       + Modify #link("https://www.desmos.com/calculator/vrk0q4espx").
       to make a phase portrait for the tree model.
+      #label_core_exercise(<ex:tree_model_part1>)
       + What do equilibrium solutions mean in terms of tree growth?
       + For $b=1$ what are the equilibrium solution(s)?
 
@@ -192,7 +193,7 @@
 
 
       + Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial conditions.
-      Plot the results on your phase portrait from @ex:tree_model[].1.
+        Plot the results on your phase portrait from @ex:tree_model_part1[].
       + What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
       + What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
 
