@@ -1,9 +1,9 @@
-#import "../libs/_workbook.typ": aligned_terms, simple_table
+#import "../libs/_workbook.typ": aligned_terms, simple_table, label_module
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/lilaq:0.2.0" as lq
 #import "@preview/tiptoe:0.3.0"
 
-
+#label_module(<mod:systems>)
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def
@@ -44,7 +44,7 @@ In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to so
 
 == Simulation
 
-Just like we did in XXX MODULE 2 to simulate one differential equation, we use Euler's method to simulate a system of differential equations.
+Just like we did in @mod:simulation to simulate one differential equation, we use Euler's method to simulate a system of differential equations.
 
 The method is the same as before, but now we have to keep track of two quantities at each step. We can do this by using a table to keep track of the values of the two populations at each time step.
 
