@@ -233,7 +233,7 @@ To recap what we have learned so far:
 === Finding a basis of solutions using eigenvalues and eigenvectors
 
 
-Before reading this part of the module, you should work through the core exercises @ex:basic_system[]] -- @ex:system_eigen_solutions[] to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
+Before reading this part of the module, you should work through the core exercises @ex:basic_system[] -- @ex:system_eigen_solutions[] to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
 
 Consider a system of differential equations with constant coefficients:
 $ (dif arrow(r)) / (dif t) = M arrow(r), $
