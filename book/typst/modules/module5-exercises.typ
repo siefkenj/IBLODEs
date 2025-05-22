@@ -82,7 +82,7 @@
       + Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
       + Classify each equilibrium as stable/unstable.
       + Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the resulting
-      curve fit with the picture?
+        curve fit with the picture?
       // + Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
 
 
@@ -159,9 +159,12 @@
 
       and $0 lt.eq b lt.eq 2$.
 
-      + Modify #link("https://www.desmos.com/calculator/vrk0q4espx").
-      to make a phase portrait for the tree model.
-      #label_core_exercise(<ex:tree_model_part1>)
+      + Modify
+
+        #link("https://www.desmos.com/calculator/vrk0q4espx")
+
+        to make a phase portrait for the tree model.
+        #label_core_exercise(<ex:tree_model_part1>)
       + What do equilibrium solutions mean in terms of tree growth?
       + For $b=1$ what are the equilibrium solution(s)?
 
@@ -247,11 +250,11 @@
 
       + Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
       + For which $b$ does a tree have the possibility of living forever? If the wind occasionally blew off a few random leaves,
-      would that change your answer?
+        would that change your answer?
       +
-      Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
+        Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
 
-      Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
+        Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
 
       + Predict what happens to a tree near equilibrium in condition $b_5$ and a tree near equilibrium in condition $b_(12)$.
     ],
