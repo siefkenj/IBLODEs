@@ -1,10 +1,13 @@
 #import "@preview/lilaq:0.2.0" as lq
-#import "../libs/_workbook.typ": aligned_terms, simple_table
+#import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 
 #let MM = $upright(bold("M"))$
+#let NN = $upright(bold("N"))$
+#let OO = $upright(bold("O"))$
 #let SS = $upright(bold("S"))$
-#let RR = $upright(bold("R"))$
+// #let RR = $upright(bold("R"))$
+// #let QQ = $upright(bold("Q"))$
 #let infty = math.infinity
 
 #let setup(env) = {
@@ -44,7 +47,7 @@
   book_only(pagebreak())
   question({
     slide[
-      (Simulating $MM_(infty)$ with different $Delta$s)
+      (Simulating $MM_(infty)$ from @ex:m_infinity with different $Delta$s)
 
       #align(
         center,
@@ -203,17 +206,18 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:models_MNO>)
 
       Consider the following models for starfish growth:
 
       #aligned_terms(
-        terms.item(SS, [\# new children per year $~$ current population.]),
+        terms.item(MM, [\# new children per year $~$ current population.]),
         terms.item(
-          RR,
+          NN,
           [\# new children per year $~$ current population times resources available per individual.],
         ),
         terms.item(
-          MM,
+          OO,
           [\# new children per year $~$ current population times the fraction of total resources remaining.],
         ),
       )
@@ -230,13 +234,13 @@
     Recall the models
 
       #aligned_terms(
-        terms.item(SS, [\# new children per year $~$ current population.]),
+        terms.item(MM, [\# new children per year $~$ current population.]),
         terms.item(
-          RR,
+          NN,
           [\# new children per year $~$ current population times resources available per individual.],
         ),
         terms.item(
-          MM,
+          OO,
           [\# new children per year $~$ current population times the fraction of total resources remaining.],
         ),
       )

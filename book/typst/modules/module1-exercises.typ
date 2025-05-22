@@ -50,6 +50,9 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:m1>)
+
+
       Let
 
       #aligned_terms(
@@ -66,7 +69,9 @@
   book_only(pagebreak())
   question(
     slide[
-      Recall the model $MM_1$ (from the previous question).
+      #label_core_exercise(<ex:m1_star>)
+
+      Recall the model $MM_1$ (from the #link(<ex:m1>)[previous question]).
 
       Define the model $MM^*_1$ to be
       $
@@ -96,7 +101,8 @@
   question(
     slide[
       #label_core_exercise(<ex:m_star>)
-      In the model $MM_1$, we assumed the starfish had $K$ children at one point during the year.
+
+      In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point during the year.
       + Create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$ times per year (at regular intervals).
       + Simulate the models $MM_1$, $MM_2$, $MM_3$ in Excel. Which grows fastest?
         #solution[
@@ -130,13 +136,36 @@
   book_only(pagebreak())
   question(
     slide[
-      Recall the model $MM_1$ defined by:
-      - $P_1(0) = 10$
-      - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+      #label_core_exercise(<ex:m_infinity>)
 
-      Define the model $MM_infty$ by:
-      - $P(0) = 10$
-      - $P'(t) = k P(t)$.
+      // Recall the model $MM_1$ defined by:
+      // - $P_1(0) = 10$
+      // - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+
+      // Define the model $MM_infty$ by:
+      // - $P(0) = 10$
+      // - $P'(t) = k P(t)$.
+      #let M1 = [
+        Recall the model $MM_1$ defined by:
+        - $P_1(0) = 10$
+        - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+      ]
+
+      #let MInf = [
+        Define the model $MM_infty$ by:
+        - $P(0) = 10$
+        - $P'(t) = k P(t)$.
+      ]
+
+      #book_only(
+        // In book mode, put the models side by side
+        table(
+          columns: (2fr, 1fr),
+          stroke: none,
+          M1, MInf,
+        ),
+        otherwise: [#M1#MInf],
+      )
 
       + If $k = K = 1.1$, does the model $MM_infty$ produce the same population estimates as $MM_1$?
     ],

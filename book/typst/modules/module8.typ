@@ -35,7 +35,7 @@ which can be written in matrix form as
 $ (dif arrow(r))/ (dif t) = mat(0, 0.11; -11, 0 ) arrow(r), $
 where $arrow(r)(t) = mat(x(t); y(t))$.
 
-Following the same steps as in XXX MODULE 6, we first find the eigenvalues and eigenvectors of the coefficient matrix $mat(0, 0.11; -11, 0)$, which are:
+Following the same steps as in @mod:real, we first find the eigenvalues and eigenvectors of the coefficient matrix $mat(0, 0.11; -11, 0)$, which are:
 
 - Eigenvalue $lambda_1 = 0.11 i$ with eigenvector $v_1 = mat(1; 0.11 i)$.
 
@@ -109,12 +109,12 @@ $ arrow(r)(t)
 
 === Stability of the Equilibrium Solutions
 
-As we have seen in MODULE 6 XXX, the stability of equilibrium solutions of a system of differential equations with constant coefficients is determined by the eigenvalues of the coefficient matrix when the eigenvalues were real and distinct.
+As we have seen in @mod:real, the stability of equilibrium solutions of a system of differential equations with constant coefficients is determined by the eigenvalues of the coefficient matrix when the eigenvalues were real and distinct.
 
 Similarly, when the eigenvalues are complex, the stability of the equilibrium solutions is also determined by the eigenvalues of the coefficient matrix. More specifically, the stability of the equilibrium solutions is determined by the _real part of the eigenvalues_.
 
 
-Before reading the remainder of this module, we recommend that you gain some intuition about the solutions of systems of differential equations with complex eigenvalues by solving the core exercises in this module.
+Before reading the remainder of this module, we recommend that you gain some intuition about the solutions of systems of differential equations with complex eigenvalues by solving the core exercises in this module. XXX This paragraph should be moved to the margin.
 
 
 Consider a system of differential equations
