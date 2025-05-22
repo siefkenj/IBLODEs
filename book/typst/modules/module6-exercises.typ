@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms, simple_table
+#import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
 #import "../libs/_graphics.typ": vector_field
 #import "@preview/lilaq:0.2.0" as lq
 #import "@preview/tiptoe:0.3.0"
@@ -21,6 +21,7 @@
 
   question(
     slide[
+      #label_core_exercise(<ex:basic_system>)
 
       Consider the system of differential equations
       $
@@ -44,13 +45,13 @@
 
     ],
   )
+  
 
   book_only(pagebreak())
   question(
     slide[
 
       Let $A$ be an unknown matrix and suppose $arrow(p)$ and $arrow(q)$ are solutions to $arrow(r)'=A arrow(r)$.
-
 
       + Is $arrow(s)(t)=arrow(p)(t)+arrow(q)(t)$ a solution to $arrow(r)'=A arrow(r)$? Justify your answer.
       + Can you construct other solutions from $arrow(p)$ and $arrow(q)$? If yes, how so?
@@ -141,6 +142,8 @@
   question(
     slide[
 
+      XXX TO BE REMOVED - ADDED TO MODULE 6 PRACTICE PROBLEMS
+
       #theorem(
         title: [Existence & Uniqueness 1],
         [
@@ -168,6 +171,7 @@
   book_only(pagebreak())
   question(
     slide(force_scale: 0.85em)[
+      #label_core_exercise(<ex:system_eigen_solutions>)
 
       Consider the system
       $
@@ -189,7 +193,7 @@
 
       + State the definition of an eigenvector for the matrix $M$.
       + What should the definition of an _eigen solution_ be for this system?
-      + Which functions from 38.2 are eigen solutions?
+      + Which functions from @ex:system_eigen_solutions[].2 are eigen solutions?
       + Find an eigen solution $arrow(r)_6$ that is linearly independent from $arrow(r)_2$.
       + Let $S="span"{arrow(r)_2, arrow(r)_6}$. Does $S$ contain _all_ solutions to the system? Justify your answer.
 

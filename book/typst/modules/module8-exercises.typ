@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -17,6 +17,7 @@
 
   question(
     slide[
+      #label_core_exercise(<ex:FDmodel>)
 
 	Consider the following *FD* model of Fleas and Dogs where 
     $ F(t) & = "number of parasites (fleas) at year " t " (in millions)" \
@@ -143,9 +144,9 @@
   - (P$S_D$) Ignoring all else, hosts numbers grow in proportion to their current number with constant $1 - a$.
   - $-1 <= a <= 1$. 
   
-  _These premises replace (P$1_F$) and (P$1_D$)._
+  _These premises replace (P$1_F$) and (P$1_D$) from @ex:FDmodel ._
 
-  + Modify the previous  *FD* model to incorporate the effects of the shampoo.
+  + Modify the original  *FD* model to incorporate the effects of the shampoo.
   + Make a phase portrait for the *FD Shampoo* model.
   + Find the equilibrium solutions for the *FD Shampoo* model.
   + For each equilibrium solution determine its stability/instability/etc.

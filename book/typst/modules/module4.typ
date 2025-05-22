@@ -1,11 +1,14 @@
 
 // This file is meant to be imported and not compiled on its own.
+#import "../libs/_workbook.typ": label_module
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_graphics.typ": slope_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/tiptoe:0.3.0"
 #import "@preview/lilaq:0.2.0" as lq
 #let (sans, serif, module, definition, example) = workbook
+
+#label_module(<mod:equilibrium>)
 
 In this module you will learn
 - What equilibrium solutions and equilibrium points are.

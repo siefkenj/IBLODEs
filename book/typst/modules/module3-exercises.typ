@@ -31,6 +31,7 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:LV_model>)
 
       _Lotka-Volterra Predator-Prey_ models predict two populations, $F$ (foxes) and $R$ (rabbits), simultaneously. They take the form
       $
@@ -40,11 +41,14 @@
       where $B_{?}$ stands for births and $D_{?}$ stands for deaths.
 
       We will assume:
-      - Foxes die at a constant rate.
-      - Foxes mate when food is plentiful.
-      - Rabbits mate at a constant rate.
-      - Foxes eat rabbits.
+      #aligned_terms(
+        terms.item($("P"_("foxes 1"))$, [Foxes die at a constant rate.]),
+        terms.item($("P"_("foxes 2"))$, [Foxes mate when food is plentiful.]),
+        terms.item($("P"_("rabbits"))$, [Rabbits mate at a constant rate.]),
+        terms.item($("P"_("predation"))$, [Foxes eat rabbits.]),
+        )
 
+      
       + Speculate on when $B_F$, $D_F$, $B_R$, and $D_R$ would be at their maximum(s)/minimum(s), given our assumptions.
       + Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$.
     ],

@@ -233,7 +233,7 @@ To recap what we have learned so far:
 === Finding a basis of solutions using eigenvalues and eigenvectors
 
 
-Before reading this part of the module, you should work through the core exercises XXX 32 -- 36 and 38 to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
+Before reading this part of the module, you should work through the core exercises @ex:basic_system[] -- @ex:system_eigen_solutions[] to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
 
 Consider a system of differential equations with constant coefficients:
 $ (dif arrow(r)) / (dif t) = M arrow(r), $
@@ -379,7 +379,7 @@ Now that we have a method to find the solutions of a system of differential equa
 
 *As time goes to infinity, do these solutions approach the equilibrium solution or do they move away from it?*
 
-Recall the informal classification of equilibrium solutions#footnote([Check XXX MODULE 4 for the precise definition.]) from XXX MODULE 4.
+Recall the informal classification of equilibrium solutions#footnote([Check @mod:equilibrium for the precise definition.]) from @mod:equilibrium.
 
 #show_def("equilibrium_classification_informal")
 
