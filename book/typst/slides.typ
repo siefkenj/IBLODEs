@@ -1,6 +1,6 @@
 #import "@preview/in-dexter:0.7.0": *
 #import "common/cover.typ": make_cover
-#import "libs/_workbook.typ": exercises, solutions, aligned_terms
+#import "libs/_workbook.typ": exercises, solutions, aligned_terms, _show_ref
 //#import "_workbook.typ": setup
 #set par(justify: true)
 #set page(
@@ -31,6 +31,8 @@
 #counter(page).update(1)
 
 #set math.mat(delim: "[")
+// Allow us to use `@ref` syntax to reference core exercises, etc.
+#show ref: _show_ref
 
 
 #serif[

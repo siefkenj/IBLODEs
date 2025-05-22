@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 #import "@preview/lilaq:0.2.0" as lq
 #import "../libs/_graphics.typ": slope_field
 
@@ -44,7 +44,7 @@
   question(
     slide[
 
-      Recall the logistic model for starfish growth:
+      Recall the logistic model for starfish growth (introduced in @ex:models_MNO):
       #aligned_terms(
         terms.item(
           OO,
@@ -114,6 +114,8 @@
   book_only(pagebreak())
   question(
     slide(force_scale: 0.83em)[
+
+      #label_core_exercise(<ex:O_slope_field>)
 
       #slides_only(v(1em))
 

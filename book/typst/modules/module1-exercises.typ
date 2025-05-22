@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
@@ -31,17 +31,17 @@
 
       #solution([
         Definitions:
-          - $P(t)$ is the number of starfish at the start of year $t$.
-          - $K$ is the number of children born at the end of the year per starfish per year.
-          - $P(0) = P_0$ is the initial population of starfish.
+        - $P(t)$ is the number of starfish at the start of year $t$.
+        - $K$ is the number of children born at the end of the year per starfish per year.
+        - $P(0) = P_0$ is the initial population of starfish.
 
         Assumptions:
-          - Starfish have children once per year.
-          - Baby starfish are ready to procreate immediately.
-          - Starfish do not die or otherwise leave the tide-pool.
+        - Starfish have children once per year.
+        - Baby starfish are ready to procreate immediately.
+        - Starfish do not die or otherwise leave the tide-pool.
 
         Relationships:
-          - $P(t+1) = K dot P(t)$
+        - $P(t+1) = K dot P(t)$
       ])
 
     ],
@@ -50,6 +50,9 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:m1>)
+
+
       Let
 
       #aligned_terms(
@@ -66,7 +69,9 @@
   book_only(pagebreak())
   question(
     slide[
-      Recall the model $MM_1$ (from the previous question).
+      #label_core_exercise(<ex:m1_star>)
+
+      Recall the model $MM_1$ (from the #link(<ex:m1>)[previous question]).
 
       Define the model $MM^*_1$ to be
       $
@@ -95,13 +100,15 @@
   book_only(pagebreak())
   question(
     slide[
-      In the model $MM_1$, we assumed the starfish had $K$ children at one point during the year.
+      #label_core_exercise(<ex:m_star>)
+
+      In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point during the year.
       + Create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$ times per year (at regular intervals).
       + Simulate the models $MM_1$, $MM_2$, $MM_3$ in Excel. Which grows fastest?
         #solution[
           $MM_3$ grows fastest.
         ]
-      + What happens to $MM_n$ as $n arrow infinity$?
+      + What happens to $MM_n$ as $n arrow infinity$? #label_core_exercise(<ex:m_star2>)
         #solution[
           $MM_n$ continues to increase as $n arrow infty$, however this increase is bounded and $display(lim_(n arrow infty) M_n)$ converges
           to another model.
@@ -112,14 +119,14 @@
   book_only(pagebreak())
   question(
     slide[
-      === Exploring $MM_n$
+      #heading(depth: 3, outlined: false, [Exploring $MM_n$])
 
       We can rewrite the assumptions of $MM_n$ as follows:
       - At time $t$ there are $P_n(t)$ starfish.
       - $P_n(0) = 10$
-      - During the time interval $(t, t + 1/n)$ there will be (on average) $K/n$ new children per starfish.
+      - During the time interval $(t, t + 1 / n)$ there will be (on average) $K / n$ new children per starfish.
 
-      + Write an expression for $P_n (t + 1/n)$ in terms of $P_n(t)$.
+      + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n(t)$.
       + Write an expression for $Delta P_n$, the change in population from time $t$ to $t + Delta t$.
       + Write an expression for $(Delta P_n) / (Delta t)$.
       + Write down a differential equation relating $P'(t)$ to $P(t)$ where $P(t) = display(lim_(n arrow infty) P_n(t))$.
@@ -129,13 +136,36 @@
   book_only(pagebreak())
   question(
     slide[
-      Recall the model $MM_1$ defined by:
-      - $P_1(0) = 10$
-      - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+      #label_core_exercise(<ex:m_infinity>)
 
-      Define the model $MM_infty$ by:
-      - $P(0) = 10$
-      - $P'(t) = k P(t)$.
+      // Recall the model $MM_1$ defined by:
+      // - $P_1(0) = 10$
+      // - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+
+      // Define the model $MM_infty$ by:
+      // - $P(0) = 10$
+      // - $P'(t) = k P(t)$.
+      #let M1 = [
+        Recall the model $MM_1$ defined by:
+        - $P_1(0) = 10$
+        - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
+      ]
+
+      #let MInf = [
+        Define the model $MM_infty$ by:
+        - $P(0) = 10$
+        - $P'(t) = k P(t)$.
+      ]
+
+      #book_only(
+        // In book mode, put the models side by side
+        table(
+          columns: (2fr, 1fr),
+          stroke: none,
+          M1, MInf,
+        ),
+        otherwise: [#M1#MInf],
+      )
 
       + If $k = K = 1.1$, does the model $MM_infty$ produce the same population estimates as $MM_1$?
     ],
@@ -182,7 +212,7 @@
         table(
           columns: (2fr, 1fr),
           stroke: none,
-          M1, MInf
+          M1, MInf,
         ),
         otherwise: [#M1#MInf],
       )

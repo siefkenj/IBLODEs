@@ -37,8 +37,8 @@ The first equation models the growth of the ant population. The first term with 
 
 The second equation models the growth of the aphid population. The first term with parameter $c$ models the growth of the aphid population due to the presence of ants -- this term has a positive effect to the growth of the aphid population since they will be protected from predators. The second term with parameter $d$ models the natural death of aphids in the absence of ants due to the fact that predation will overwhelm their natural growth.
 
-The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids. As we discussed in XXX MODULE 1, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
-In XXX MODULES 6, 7, 8 we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
+The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids. As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
+In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
 
 

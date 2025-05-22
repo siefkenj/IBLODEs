@@ -18,6 +18,160 @@
   args.pos().filter(c => type(c) == content).join()
 }
 
+/// Copy from tools4typst
+/// return true if value is an empty array, dictionary, string or content
+#let is_empty(value) = {
+  let empty-values = (
+    array: (),
+    dictionary: (:),
+    str: "",
+    content: [],
+  )
+  let t = repr(type(value))
+  if t in empty-values {
+    return value == empty-values.at(t)
+  } else {
+    return value == none
+  }
+}
+
+#let _module_label_metadata = metadata("module_label")
+#let _core_exercise_label_metadata = metadata("core_exercise_label")
+#let _core_exercise_label_state = state("core_exercise_label", "??")
+
+// Ideas borrowed from https://github.com/typst/typst/issues/779
+/// Use to label a core exercise for future reference. Regular `<...>` labels
+/// cannot be used as core exercises cannot be "attached" to regular labels.
+#let label_core_exercise(name) = {
+  let ex_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "label_core_exercise: name must be a label or a string")
+  }
+
+  [#_core_exercise_label_metadata#ex_label]
+}
+
+/// Use to label a module for future reference. Regular `<...>` labels
+/// cannot be used, so you must explicitly use this function instead.
+#let label_module(name) = {
+  let mod_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "label_module: name must be a label or a string")
+  }
+
+  [#_module_label_metadata#mod_label]
+}
+
+/// Function to explicitly reference a core exercise directly. You probably want to use
+/// the `@ref` syntax with the appropriate `show ref: ...` rule instead of this function.
+#let ref_core_exercise(name, supplement: auto, form: "normal") = {
+  // Normalize supplement
+  if is_empty(supplement) {
+    supplement = none
+  }
+  if supplement == auto {
+    supplement = "Core Exercise"
+  }
+
+  let ex_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "ref_core_exercise: name must be a label or a string")
+  }
+  context {
+    let referent = query(ex_label).at(0)
+    let display_label = _core_exercise_label_state.at(referent.location())
+    if supplement != none {
+      link(referent.location(), [#supplement~#display_label])
+    } else {
+      link(referent.location(), display_label)
+    }
+  }
+}
+
+/// Function to explicitly reference a core exercise directly. You probably want to use
+/// the `@ref` syntax with the appropriate `show ref: ...` rule instead of this function.
+#let ref_module(name, supplement: auto, form: "normal") = {
+  // Normalize supplement
+  if is_empty(supplement) {
+    supplement = none
+  }
+  if supplement == auto {
+    supplement = "Module"
+  }
+
+  let ex_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "ref_module: name must be a label or a string")
+  }
+  context {
+    let referent = query(ex_label).at(0)
+    let display_label = counter("module").at(referent.location()).at(0)
+    if supplement != none {
+      link(referent.location(), [#supplement~#display_label])
+    } else {
+      link(referent.location(), [#display_label])
+    }
+  }
+}
+
+/// A show rule suitable for using with `show ref: _show_ref` so that `@ref` syntax works for core exercises.
+#let _show_ref(it) = {
+  let el = it.element
+  if el == none {
+    return it
+  }
+  if el.func() == metadata {
+    // Check if the element attached to the ref is a core exercise label.
+    if el == _core_exercise_label_metadata {
+      ref_core_exercise(it.target, supplement: it.supplement, form: it.form)
+    } else if el == _module_label_metadata {
+      ref_module(it.target, supplement: it.supplement, form: it.form)
+    } else {
+      text(fill: red, [Invalid Ref #repr(it.target) to #repr(el)])
+    }
+  } // Check if we are referencing an equation and use parenthesized numbering.
+  else if el.func() == math.equation {
+    let eq_number = numbering(
+      el.numbering,
+      ..counter(math.equation).at(el.location()),
+    )
+    let supp = it.supplement
+    if is_empty(supp) {
+      supp = none
+    }
+    if supp == auto {
+      supp = "Equation"
+    }
+    if supp != none {
+      return link(
+        el.location(),
+        [#supp~#eq_number],
+      )
+    } else {
+      return link(
+        el.location(),
+        eq_number,
+      )
+    }
+  } else {
+    it
+  }
+}
+
+
+
 #let setup(
   serif_font: ("New Computer Modern", "DejaVu Sans Mono", "Bitstream Charter"),
   sans_font: ("Droid Sans", "DejaVu Sans"),
@@ -44,6 +198,15 @@
   let mono(content) = {
     set text(font: config.mono_font)
     content
+  }
+
+  /// Function to be used in the `show link: ...` rule. It shows http links in monospace, but internal document
+  /// links are left unchanged.
+  let _show_link(it) = {
+    if type(it.dest) == str {
+      return mono(it)
+    }
+    it
   }
 
   /// Create a boxed definition.
@@ -107,7 +270,7 @@
     let darker_color = thm_color.darken(50%)
     show emph: it => text(it, fill: darker_color, weight: "bold")
     set list(marker: make_marker(color: darker_color))
-    box(
+    block(
       fill: thm_color.lighten(90%),
       stroke: (left: thm_color + 1.5pt),
       inset: 7pt,
@@ -118,13 +281,11 @@
           weight: "bold",
           font: sans_font,
         )
-        v(.2em)
-        box(content)
+        block(content)
       },
       width: 100%,
     )
   }
-
 
 
   // We need to keep track of the¡ page where a module starts so we can format the first page differently.
@@ -216,7 +377,7 @@
     )
     heading(level: 1, [#title <module_start>])
 
-    show link: mono
+    show link: _show_link
     content
   }
 
@@ -257,7 +418,7 @@
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
     pagebreak(to: "odd", weak: true)
 
-    show link: mono
+    show link: _show_link
     content
   }
 
@@ -292,7 +453,11 @@
         if n.len() == 1 {
           sans(
             text(
-              [#context question_counter.display().#n.at(0)],
+              context {
+                let part_label = [#question_counter.display().#n.at(0)]
+                _core_exercise_label_state.update(part_label)
+                part_label
+              },
               fill: color.rgb("#666666"),
               size: .85em,
             ),
@@ -301,7 +466,8 @@
           // We display sub-enumerations as usual.
           let n = n.slice(1)
           let number_format = ("(a)", "i.", "(A)", "(I)").at(n.len() - 1, default: "(a)")
-          numbering(number_format, n.at(-1))
+          let nums = numbering(number_format, n.at(-1))
+          nums
         }
       },
       spacing: 1em,
@@ -314,8 +480,18 @@
       spacing: 1em,
     )
 
-    show link: mono
-    content
+    show link: _show_link
+    // Set the references to use the current question counter.
+    context {
+      let part_label = [#question_counter.display()]
+      _core_exercise_label_state.update(part_label)
+    }
+    [
+      // Inserting `metadata` here allows us to attach a label to the core exercise so that it can be referenced later.
+      #metadata("core_exercise")
+      <core_exercise>
+      #content
+    ]
   }
   /// Display the solution to a question.
   let solution(content) = {
@@ -412,3 +588,4 @@
     ..content,
   )
 }
+

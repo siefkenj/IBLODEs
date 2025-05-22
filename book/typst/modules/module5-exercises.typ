@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 #import "@preview/lilaq:0.2.0" as lq
 #import "../libs/_graphics.typ": vector_field, slope_field
 #import "@preview/tiptoe:0.3.0"
@@ -31,7 +31,7 @@
         ],
       )
 
-      3d slope fields are possible, but hard to interpret.
+      Three dimensional slope fields are possible, but hard to interpret.
       This is a slope field for the Foxes--Rabbits model.
 
 
@@ -73,7 +73,7 @@
 
       #show_def("phase_portrait")
 
-      This is a phase portrait for the Foxes--Rabbits model.
+      This is a phase portrait for the Foxes--Rabbits model (introduced in @ex:LV_model).
 
       #link("https://www.desmos.com/calculator/vrk0q4espx")
 
@@ -82,7 +82,7 @@
       + Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
       + Classify each equilibrium as stable/unstable.
       + Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the resulting
-      curve fit with the picture?
+        curve fit with the picture?
       // + Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
 
 
@@ -129,7 +129,7 @@
       )
 
 
-      Recall the slope field for model $OO$.
+      Recall the #link(<ex:O_slope_field>)[slope field for model $OO$].
 
       + What would a phase portrait for model $OO$ look like? Draw it.
       + Where are the arrows the longest? Shortest?
@@ -140,6 +140,8 @@
   book_only(pagebreak())
   question(
     slide[
+      #label_core_exercise(<ex:tree_model>)
+
       // Completed phase portrait in desmos:
       // https://www.desmos.com/calculator/tvjag852ja
 
@@ -157,8 +159,12 @@
 
       and $0 lt.eq b lt.eq 2$.
 
-      + Modify #link("https://www.desmos.com/calculator/vrk0q4espx"). <partphase>
-      to make a phase portrait for the tree model.
+      + Modify
+
+        #link("https://www.desmos.com/calculator/vrk0q4espx")
+
+        to make a phase portrait for the tree model.
+        #label_core_exercise(<ex:tree_model_part1>)
       + What do equilibrium solutions mean in terms of tree growth?
       + For $b=1$ what are the equilibrium solution(s)?
 
@@ -190,7 +196,7 @@
 
 
       + Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial conditions.
-      Plot the results on your phase portrait from #link(<partphase>)[28.1].
+        Plot the results on your phase portrait from @ex:tree_model_part1[].
       + What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
       + What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
 
@@ -213,14 +219,14 @@
       was based on the premises
 
       #aligned_terms(
-        terms.item($P_("height 1")$, [$"CO"_2$ is absorbed by the leaves and turned directly into trunk height.]),
+        terms.item($("P"_("height 1"))$, [$"CO"_2$ is absorbed by the leaves and turned directly into trunk height.]),
         terms.item(
-          $P_("height 2")$,
+          $("P"_("height 2"))$,
           [The tree is in a swamp and constantly sinks at a speed proportional to its height.],
         ),
-        terms.item($P_("leaves 1")$, [Leaves grow proportionality to the energy available.]),
-        terms.item($P_("energy 1")$, [The tree gains energy from the sun proportionally to the leaf area.]),
-        terms.item($P_("energy 2")$, [The tree loses energy proportionally to the square of its height.]),
+        terms.item($("P"_("leaves"))$, [Leaves grow proportionality to the energy available.]),
+        terms.item($("P"_("energy 1"))$, [The tree gains energy from the sun proportionally to the leaf area.]),
+        terms.item($("P"_("energy 2"))$, [The tree loses energy proportionally to the square of its height.]),
       )
 
 
@@ -244,11 +250,11 @@
 
       + Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
       + For which $b$ does a tree have the possibility of living forever? If the wind occasionally blew off a few random leaves,
-      would that change your answer?
+        would that change your answer?
       +
-      Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
+        Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
 
-      Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
+        Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
 
       + Predict what happens to a tree near equilibrium in condition $b_5$ and a tree near equilibrium in condition $b_(12)$.
     ],
