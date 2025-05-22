@@ -1,7 +1,11 @@
 #import "../libs/_graphics.typ": slope_field
+#import "../libs/_workbook.typ": label_module
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 #import "@preview/lilaq:0.2.0" as lq
 #import "@preview/tiptoe:0.3.0"
+
+#label_module(<mod:simulation>)
+
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def

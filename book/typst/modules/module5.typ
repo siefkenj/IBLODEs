@@ -19,7 +19,7 @@ can be deduced without actually solving or simulating solutions to the different
 
 == Analyzing Slope Fields
 
-In module XXX we already saw _slope fields_.
+In @mod:simulation we already saw _slope fields_.
 
 #show_def("slope_field")
 
@@ -109,7 +109,7 @@ We can also see that increasing solutions tend towards a particular increasing s
 
 == Systems of Differential Equations and Phase Portraits
 
-Consider a modified version of the Ants-and-Aphids model from Module XXX, where ants are removed by a farmer at a constant rate (10 per day).
+Consider a modified version of the Ants-and-Aphids model from @mod:systems, where ants are removed by a farmer at a constant rate (10 per day).
 #let Pant = $P_"ant"$
 #let Paph = $P_"aphid"$
 #let F(Pant, Paph) = (Pant + 0.5 * Paph - 10, 0.8 * Pant - 0.5 * Paph)
