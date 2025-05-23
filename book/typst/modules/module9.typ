@@ -1,7 +1,7 @@
 
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": workbook, show_def
-#import "../libs/_workbook.typ": label_module
+#import "../libs/_workbook.typ": label_module, simple_table
 #import "../libs/_graphics.typ": vector_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/tiptoe:0.3.0"
@@ -403,7 +403,7 @@ corresponding equilibrium solution in the linearized system is *attracting or re
   title: [Classification via Linearization],
   [
     Suppose $arrow(G): RR^n arrow RR^n$ is differentiable and consider the system of differential equations
-    define dby
+    defined by
     #math.equation(
       block: true,
       numbering: "(1)",
@@ -415,18 +415,18 @@ corresponding equilibrium solution in the linearized system is *attracting or re
     and let $arrow(F)'_"approx" = dots$ be the linearization of @eqMultivar centered at $arrow(E)$.
 
     Then, the following hold.
-    - If $arrow(F)_"approx" = arrow(E)$ is an *attracting* equilibrium solution
-      then $arrow(F) = arrow(E)$ is an *attracting* equilibrium solution.
-    - If $arrow(F)_"approx" = arrow(E)$ is an *repelling* equilibrium solution
-      then $arrow(F) = arrow(E)$ is an *repelling* equilibrium solution.
-    - If $arrow(F)_"approx" = arrow(E)$ is neither attracting nor repelling,
-      the nature of $arrow(F) = arrow(E)$ cannot be determined from the linearization.
+    - If $arrow(F)_"approx" (t) = arrow(E)$ is an *attracting* equilibrium solution
+      then $arrow(F)(t) = arrow(E)$ is an *attracting* equilibrium solution.
+    - If $arrow(F)_"approx" (t)= arrow(E)$ is an *repelling* equilibrium solution
+      then $arrow(F)(t) = arrow(E)$ is an *repelling* equilibrium solution.
+    - If $arrow(F)_"approx" (t) = arrow(E)$ is neither attracting nor repelling,
+      the nature of $arrow(F) (t)= arrow(E)$ cannot be determined from the linearization.
   ],
 )
 
-Why is the above theorem limited? What can go wrong in the case of stable/unstable but not attracting/repelling equilibria?
+Why is the above theorem limited? What can go wrong in the case of stable/unstable equilibria that are not attracting/repelling?
 
-=== Identical Linearization for Different Systems.
+=== Identical Linearization for Different Systems
 
 Consider the following two systems of differential equations:
 #math.equation(
@@ -466,8 +466,11 @@ solve it explicitly:
 From this, we see that the equilibrium solution at the origin for @eqLinCircular is _stable_ and _not attracting_.
 
 #let F(x, y) = (-y - x * x * x, x)
-Unfortunately, @eqNonLinAttracting is not so easily solved, so we use our other tools.
+Unfortunately, @eqNonLinAttracting is not so easily solved, so we use other tools.
 
+
+Looking at a phase portrait for @eqNonLinAttracting, it looks like the arrows might be spiralling in, but it is hard to tell. Overlaying with a simulated solution,
+the solution appears to spiral towards the origin.
 
 #{
   let steps = 500
@@ -500,10 +503,65 @@ Unfortunately, @eqNonLinAttracting is not so easily solved, so we use our other 
   )
 }
 
-Looking at a phase portrait for @eqNonLinAttracting, it looks like the arrows might be spiralling in, but it is hard to tell. Overlaying with a simulated solution,
-the solution appears to spiral towards the origin.
+We can make our analysis rigorous by analyzing @eqNonLinAttracting directly.
+If solutions spiral towards the origin, then there should consistently be a component of $mat(x'_"nonlin"; y'_"nonlin")$ that points towards the origin.
+Since, at the point $mat(x; y)$, the vector $mat(-x; -y)$ points towards the origin, we can use linear algebra to find the component of
+$mat(x'_"nonlin"; y'_"nonlin")=mat(-y - x^3; x)$ that points
+in the direction of $mat(-x; -y)$. After computing, we see
+$
+  mat(x'_"nonlin"; y'_"nonlin") = (x^4) / sqrt(x^2+y^2)mat(-x; -y) + (y x^3 + x^2+y^2) / sqrt(x^2+y^2) mat(-y; x),
+$
+and so, as long as $x != 0$, the vector $mat(x'_"nonlin"; y'_"nonlin")$ points towards the origin (and never points away from the origin). Since $x=0$ and $y != 0$ is not an equilibrium solution,
+we conclude that all non-equilibrium solutions spiral towards the origin.
 
-XXX Finish
+The conclusion is that for @eqNonLinAttracting, the equilibrium solution is _stable_ and _attracting_.
 
+#v(1em)
 
-== When Linearization Fails to Classify Equilibria
+Now, let's see what linearization tells us. It turns out that linearizing @eqLinCircular and @eqNonLinAttracting at the origin
+both result in the same formula.
+
+#math.equation(
+  block: true,
+  numbering: "(1)",
+  $
+    x'_"approx" &= -y_"approx" \
+    y'_"approx" &= x_"approx"
+  $,
+)<eqLinApprox>
+
+The equilibrium solution for @eqLinApprox is _stable_ and _not attracting/repelling_. We can summarize what we've just learned in a table.
+
+#align(
+  center,
+  simple_table(
+    headers: ([Equation], [Equilibrium Classification], [Equilibrium of _Linearization_]),
+    content: (
+      [
+        //@eqLinCircular
+        $
+          x'_"lin" &= -y_"lin" \
+          y'_"lin" &= x_"lin"
+        $
+      ],
+      [stable, *not* attracting/repelling],
+      [stable, *not* attracting/repelling],
+      [
+        //  @eqNonLinAttracting
+        $
+          x'_"nonlin" &= -y_"nonlin" -x_"nonlin"^3 \
+          y'_"nonlin" &= x_"nonlin"
+        $
+      ],
+      [stable, attracting],
+      [stable, *not* attracting/repelling],
+    ),
+  ),
+)
+
+From this example, we can see that if the linearization of a system of differential equations has a stable equilibrium
+that is not attracting nor repelling, we don't know much about the original system. Its corresponding equilibrium could be
+stable and attracting, stable and not attracting, or unstable!
+
+XXX Add part about where solutions to the linearized system drift out of phase with the original?
+
