@@ -352,12 +352,14 @@ XXX Finish
 
 === Other Classifications
 
-There cannot be unstable and attracting equilibria, nor can there be stable and repelling equilibria. But there can be other behavior.
+There cannot be unstable and attracting equilibria, nor can there be stable and repelling equilibria. But there can be other behaviours.
 
 Consider the Van der Pol system:
 $
-  "XXX Finish"
+  x' &= y\
+  y' &= mu dot (1 - x^2) dot y - x
 $
+for $mu>0$.
 
 Solutions to this system all end up with oscillatory behaviour and they all have the same period. Here solutions are not attracted to an equilibrium, but they are attracted towards
 a solution which is perfectly periodic (in this situation we say that the system has a _limit cycle_). The study of what behaviour solutions can be "attracted to"
