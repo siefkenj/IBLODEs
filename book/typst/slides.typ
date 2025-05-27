@@ -11,7 +11,11 @@
 )
 
 //#let workbook = setup(banner_color: color.rgb("#00a2cb"))
-#import "common/settings-slides.typ": env
+#import "common/settings-slides-common.typ": create_slides_env
+
+// Dark Slides
+#let env = create_slides_env(bottom_margin_color: color.rgb("#00647d"))
+
 #let (sans, serif, module, definition, example) = env
 
 #make_cover(
