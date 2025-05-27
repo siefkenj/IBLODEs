@@ -13,12 +13,6 @@
 //#let workbook = setup(banner_color: color.rgb("#00a2cb"))
 #import "common/settings-slides-common.typ": create_slides_env
 
-#let white = color.rgb("#ffffff")
-#let dark = color.rgb("#00647d")
-
-// Dark Slides
-// #let env = create_slides_env(bottom_margin_color: dark)
-
 // White Slides
 #let env = create_slides_env(bottom_margin_color: color.rgb("#ffffff"))
 
