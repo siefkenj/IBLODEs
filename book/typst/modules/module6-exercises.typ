@@ -192,8 +192,8 @@
       $
 
       + State the definition of an eigenvector for the matrix $M$.
-      + What should the definition of an _eigen solution_ be for this system?
-      + Which functions from @ex:system_eigen_solutions[].2 are eigen solutions?
+      + What should the definition of an _eigen solution_ be for this system? #label_core_exercise(<ex:system_eigen_solutions_part2>)
+      + Which functions from @ex:system_eigen_solutions_part2[] are eigen solutions?
       + Find an eigen solution $arrow(r)_6$ that is linearly independent from $arrow(r)_2$.
       + Let $S="span"{arrow(r)_2, arrow(r)_6}$. Does $S$ contain _all_ solutions to the system? Justify your answer.
 
