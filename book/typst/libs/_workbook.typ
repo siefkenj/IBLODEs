@@ -35,7 +35,11 @@
   }
 }
 
+#let module_counter = counter("module")
+#let appendix_counter = counter("appendix")
+
 #let _module_label_metadata = metadata("module_label")
+#let _appendix_label_metadata = metadata("appendix_label")
 #let _core_exercise_label_metadata = metadata("core_exercise_label")
 #let _core_exercise_label_state = state("core_exercise_label", "??")
 
@@ -67,6 +71,21 @@
 
   [#_module_label_metadata#mod_label]
 }
+
+/// Use to label an appendix for future reference. Regular `<...>` labels
+/// cannot be used, so you must explicitly use this function instead.
+#let label_appendix(name) = {
+  let mod_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "appendix_module: name must be a label or a string")
+  }
+
+  [#_appendix_label_metadata#mod_label]
+}
+
 
 /// Function to explicitly reference a core exercise directly. You probably want to use
 /// the `@ref` syntax with the appropriate `show ref: ...` rule instead of this function.
@@ -117,7 +136,36 @@
   }
   context {
     let referent = query(ex_label).at(0)
-    let display_label = counter("module").at(referent.location()).at(0)
+    let display_label = module_counter.at(referent.location()).at(0)
+    if supplement != none {
+      link(referent.location(), [#supplement~#display_label])
+    } else {
+      link(referent.location(), [#display_label])
+    }
+  }
+}
+
+/// Function to explicitly reference a core exercise directly. You probably want to use
+/// the `@ref` syntax with the appropriate `show ref: ...` rule instead of this function.
+#let ref_appendix(name, supplement: auto, form: "normal") = {
+  // Normalize supplement
+  if is_empty(supplement) {
+    supplement = none
+  }
+  if supplement == auto {
+    supplement = "Appendix"
+  }
+
+  let ex_label = if type(name) == label {
+    name
+  } else if type(name) == str {
+    label(name)
+  } else {
+    assert(false, "ref_module: name must be a label or a string")
+  }
+  context {
+    let referent = query(ex_label).at(0)
+    let display_label = numbering("A", appendix_counter.at(referent.location()).at(0))
     if supplement != none {
       link(referent.location(), [#supplement~#display_label])
     } else {
@@ -138,6 +186,8 @@
       ref_core_exercise(it.target, supplement: it.supplement, form: it.form)
     } else if el == _module_label_metadata {
       ref_module(it.target, supplement: it.supplement, form: it.form)
+    } else if el == _appendix_label_metadata {
+      ref_appendix(it.target, supplement: it.supplement, form: it.form)
     } else {
       text(fill: red, [Invalid Ref #repr(it.target) to #repr(el)])
     }
@@ -180,6 +230,7 @@
   thm_color: color.rgb("#ed9537"),
   title_color: color.rgb("#00a2cb"),
   banner_color: color.rgb("#8900b3"),
+  appendix_banner_color: color.rgb("#8dc73e"),
   banner_width: 1.15in,
 ) = {
   let config = (serif_font: serif_font, sans_font: sans_font, mono_font: mono_font)
@@ -287,28 +338,101 @@
     )
   }
 
-
-  // We need to keep track of the¡ page where a module starts so we can format the first page differently.
+  // We need to keep track of the page where a module starts so we can format the first page differently.
   let module_start_page = state("module_start_page", 0)
+  /// Draw a banner on the left/right side of each page.
+  let place_banner(
+    banner_color: banner_color,
+    banner_for: "module",
+    title: text(fill: red, "MISSING TITLE"),
+  ) = {
+    context {
+      let banner_side = if calc.even(counter(page).get().at(0)) { "left" } else { "right" }
+      let pos = if banner_side == "left" { top + left } else { top + right }
+      let is_first = here().page() == module_start_page.get()
+      let label_intro = if banner_for == "module" {
+        [Module #module_counter.display()]
+      } else if banner_for == "appendix" {
+        [Appendix #appendix_counter.display("A")]
+      } else {
+        assert(false, "place_banner: banner_for must be 'module' or 'appendix'")
+      }
+      let module_label = if is_first {
+        text(size: 1.5em, label_intro)
+      } else {
+        [#label_intro --- #title]
+      }
+
+      place(
+        pos,
+        dy: 3pt,
+        dx: if banner_side == "left" { 3pt } else { -3pt },
+        box(
+          fill: banner_color,
+          width: banner_width - 3pt,
+          height: 100% - 6pt,
+          {
+            set text(
+              fill: white,
+              size: 1.25em,
+            )
+            place(
+              top + center,
+              dy: 20%,
+              sans(
+                rotate(
+                  -90deg,
+                  reflow: true,
+                  {
+                    module_label
+                  },
+                ),
+              ),
+            )
+          },
+        ),
+      )
+    }
+  }
+
+  // The `set_args` are things to use in `set foo(...)` expressions that are common to modules and appendices.
+
+  let module_enum_set_args = (
+    numbering: (..n) => {
+      let depth = n.pos().len()
+      let marker = ("1.", "(a)", "i.", "A.", "I.").at(depth - 1, default: "(1)")
+      numbering(marker, n.at(-1))
+    },
+    indent: 5pt,
+    full: true,
+  )
+  let module_page_set_args = (
+    numbering: "1",
+    margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in),
+  )
+  let module_list_set_args(bullet_color) = (
+    marker: make_marker(color: bullet_color.darken(20%)),
+    indent: 5pt,
+    body-indent: 3pt,
+  )
 
   /// Define a module containing the given content.
   /// Modules have a big banner along the side.
   let module(title: [], content) = {
     let darker_color = title_color.darken(20%)
-    set list(
-      marker: make_marker(color: darker_color),
-      indent: 5pt,
-      body-indent: 3pt,
-    )
-    set enum(
-      numbering: (..n) => {
-        let depth = n.pos().len()
-        let marker = ("1.", "(a)", "i.", "A.", "I.").at(depth - 1, default: "(1)")
-        numbering(marker, n.at(-1))
-      },
-      indent: 5pt,
-      full: true,
-    )
+
+    // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
+    pagebreak(to: "odd", weak: true)
+    // Increment the module counter.
+    context module_counter.step()
+    // Save the page of where the module starts. This allows us to format the first page differently than the others.
+    context module_start_page.update(here().page())
+
+
+    set list(..module_list_set_args(darker_color))
+    set enum(..module_enum_set_args)
+    set page(..module_page_set_args)
+    set page(background: place_banner(banner_for: "module", banner_color: banner_color, title: title))
     show heading.where(depth: 1): it => {
       block(
         width: 100%,
@@ -322,60 +446,44 @@
         sans(it),
       )
     }
-    set page(
-      numbering: "1",
-      margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in),
-    )
+    show link: _show_link
+
+    heading(level: 1, [#title <module_start>])
+    content
+  }
+
+  /// Define an appendix containing the given content.
+  /// Appendices have a big banner along the side.
+  let appendix(title: [], content) = {
+    let title_color = appendix_banner_color.darken(10%)
+    let darker_color = title_color.darken(20%)
 
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
     pagebreak(to: "odd", weak: true)
     // Increment the module counter.
-    context counter("module").step()
+    context appendix_counter.step()
     // Save the page of where the module starts. This allows us to format the first page differently than the others.
     context module_start_page.update(here().page())
-    set page(
-      background: context {
-        let banner_side = if calc.even(counter(page).get().at(0)) { "left" } else { "right" }
-        let pos = if banner_side == "left" { top + left } else { top + right }
-        let is_first = here().page() == module_start_page.get()
-        let module_label = if is_first {
-          text(size: 1.5em, [Module #counter("module").display()])
-        } else {
-          [Module #counter("module").display() --- #title]
-        }
 
-        place(
-          pos,
-          dy: 3pt,
-          dx: if banner_side == "left" { 3pt } else { -3pt },
-          box(
-            fill: banner_color,
-            width: banner_width - 3pt,
-            height: 100% - 6pt,
-            {
-              set text(
-                fill: white,
-                size: 1.25em,
-              )
-              place(
-                top + center,
-                dy: 20%,
-                sans(
-                  rotate(
-                    -90deg,
-                    reflow: true,
-                    {
-                      module_label
-                    },
-                  ),
-                ),
-              )
-            },
-          ),
-        )
-      },
-    )
-    heading(level: 1, [#title <module_start>])
+    set list(..module_list_set_args(darker_color))
+    set enum(..module_enum_set_args)
+    set page(..module_page_set_args)
+    set page(background: place_banner(banner_for: "appendix", banner_color: appendix_banner_color, title: title))
+    show heading.where(depth: 1): it => {
+      block(
+        width: 100%,
+        align(center, move(dx: 5pt, it)),
+      )
+    }
+    show heading: it => {
+      set text(fill: title_color, weight: "light")
+      move(
+        dx: -5pt,
+        sans(it),
+      )
+    }
+
+    heading(level: 1, [#title <appendix_start>])
 
     show link: _show_link
     content
@@ -505,6 +613,7 @@
     sans: sans,
     serif: serif,
     module: module,
+    appendix: appendix,
     definition: definition,
     example: example,
     theorem: theorem,
