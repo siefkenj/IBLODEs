@@ -127,7 +127,7 @@
 
     #align(center, image("../images/slope-field-ambiguous.png", width: 2.5in))
 
-    #h(2em)
+    XXX RECREATE THE FIGURE USING THE SLOPE FIELD SKETCHER
 
     + Find all equilibrium solutions.
     + Use affine approximations to classify the equilibrium solutions as stable/unstable/etc.
@@ -137,7 +137,7 @@
   )
 
   book_only(pagebreak())
-  question(
+  question({
     slide[
 
     To make a 1d affine approximation of a function $f$ at the point $E$ we have the formula
@@ -153,13 +153,11 @@
       (diff F_2) / (diff x), (diff F_2) / (diff y)
     ) $
     evaluated at $arrow(E)$.
-  ],
-  )
-  book_only(pagebreak())
-  question(
-    slide[  
+  ]
 
-      XXX THIS SHOULD BE THE SAME QUESTION NUMBER AS THE PREVIOUS QUESTION
+  book_only(v(5em))
+    
+    slide[  
 
       Recall our model from Exercise @ex:tree_model for the life cycle of a tree where $H(t)$ was
       height, $A(t)$ was the leaves' surface area, and $t$ was time:
@@ -185,7 +183,8 @@
       + Make a phase portrait for the original system and your approximation from part @ex:affine-approx-part3[]. How do they compare?
       + Analyze the nature of the equilibrium solution in part @ex:affine-approx-part3[] using eigen techniques. Relate your analysis to the original system.
 
-  ],
+  ]
+  }
   )
   
 

@@ -112,6 +112,14 @@
     import "modules/module12-exercises.typ": setup
     setup(env)
   }
+
+
+    // Interesting ODEs
+  #{
+    import "modules/interesting_odes.typ": setup
+    setup(env)
+  }
 ]
+
 
 
