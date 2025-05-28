@@ -36,14 +36,29 @@
 
   // Custom table fo contents so that we can control the module labels
   #context {
+    // Figure out where the Appendices start
+    let appendix_start_page = {
+      let appendices = query(<appendices_begin>)
+      if appendices.len() == 0 {
+        100000
+      } else {
+        appendices.first().location().page()
+      }
+    }
+
     let headings = query(
       heading.where(
         //level: 1,
         outlined: true,
       ),
     )
+
+    // Split the headings into module headings and appendix headings
+    let num_module_headings = headings.filter(it => it.location().page() < appendix_start_page).len()
+    let (module_headings, appendix_headings) = headings.chunks(num_module_headings)
+
     let module_number = 0
-    for (i, item_heading) in headings.enumerate() {
+    for (i, item_heading) in module_headings.enumerate() {
       if item_heading.level == 1 {
         module_number += 1
       }
@@ -64,6 +79,42 @@
         align(
           center,
           text([#module_number], size: 1em),
+        ),
+      )
+      let entry = if item_heading.level == 1 {
+        // We are at a module-level heading
+        v(.5em)
+        text(size: 1.2em, [#module_label #box(item_heading.body) #h(1fr) #nr])
+      } else {
+        // We are at a subheading
+        v(-.3em)
+        h(4em + 1em * item_heading.level)
+        text(size: .8em, [#box(item_heading.body) #h(1fr) #nr])
+      }
+      link(loc, entry)
+    }
+    let appendix_number = 0
+    for (i, item_heading) in appendix_headings.enumerate() {
+      if item_heading.level == 1 {
+      appendix_number += 1
+      }
+      //let module_number = i + 1
+      let loc = item_heading.location()
+      let nr = if type(loc) == location and loc.page-numbering() != none {
+        numbering(
+          loc.page-numbering(),
+          ..counter(page).at(loc),
+        )
+      } else {
+        // Keep the system from crashing if we accidentally put a heading in the core exercises
+        ""
+      }
+      let module_label = box(
+        inset: (left: -.5em),
+        width: 2.5cm,
+        align(
+          center,
+          text([Appendix #numbering("A", appendix_number)], size: 1em),
         ),
       )
       let entry = if item_heading.level == 1 {
@@ -276,5 +327,65 @@
     import "modules/module12-exercises.typ": setup
     setup(env)
   }
+
+  // We need this for the table of contents to work properly
+  #metadata("appendices_begin")<appendices_begin>
+
+  // Appendix A
+  #(env.appendix)(
+    title: [Spreadsheets and Programming],
+    [
+      #include "modules/appendix1.typ"
+    ],
+  )
+
+  // Appendix B
+  #(env.appendix)(
+    title: [Separable Equations],
+    [
+      #include "modules/appendix2.typ"
+    ],
+  )
+
+  // Appendix C
+  #(env.appendix)(
+    title: [Integrating Factors],
+    [
+      #include "modules/appendix3.typ"
+    ],
+  )
+
+  // Appendix D
+  #(env.appendix)(
+    title: [Series Solutions],
+    [
+      #include "modules/appendix4.typ"
+    ],
+  )
+
+  // Appendix E
+  #(env.appendix)(
+    title: [Reduction of Order],
+    [
+      #include "modules/appendix5.typ"
+    ],
+  )
+
+  // Appendix F
+  #(env.appendix)(
+    title: [Linear Algebra],
+    [
+      #include "modules/appendix6.typ"
+    ],
+  )
+
+  // Appendix G
+  #(env.appendix)(
+    title: [Complex Numbers],
+    [
+      #include "modules/appendix7.typ"
+    ],
+  )
+
   #make-index()
 ]

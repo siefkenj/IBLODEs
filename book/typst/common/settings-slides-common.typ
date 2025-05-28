@@ -3,21 +3,25 @@
 // Slides are similar to a workbook, so we use the workbook functions as a basis for the slides.
 #let workbook = setup(..config, banner_color: color.rgb("#00a2cb"), def_color: color.rgb("#8dc73e"))
 
-#let active_env = "slides"
+
+#let create_slides_env(bottom_margin_color: color.rgb("#00647d")) = {
+
+let active_env = "slides"
 
 // Bind `lookup_def` with the current definition environment so they appear boxed correctly.
-#import "./definitions.typ": show_def
+import "./definitions.typ": show_def
 /// Show the definition with the given name. `name` is a string.
-#let show_def = show_def.with(definition_env: workbook.definition)
+let show_def = show_def.with(definition_env: workbook.definition)
 
-#let slideshade = color.rgb("#00647d")
-#let (sans, serif, question_counter) = workbook
+let slidetitlebox = color.rgb("#00647d")
+
+let (sans, serif, question_counter) = workbook
 
 
 /// Render a slide panel with the given content.
 /// - `content` (content): The content to render on the slide.
 /// - `autosize` (bool): Whether to attempt to automatically size the content to fit on a single slide.
-#let slide(content, autosize: true, force_two_column: false, force_scale: none) = {
+let slide(content, autosize: true, force_two_column: false, force_scale: none, bottom_margin_color: bottom_margin_color) = {
   let text_size = if force_scale != none { force_scale } else { 1em }
   let x_margin = 1cm
   set page(
@@ -25,7 +29,7 @@
       place(
         top + left,
         dx: -x_margin,
-        box(width: 100% + 2 * x_margin, height: 100% + 3pt, fill: slideshade),
+        box(width: 100% + 2 * x_margin, height: 100% + 3pt, fill: slidetitlebox),
       )
       set text(fill: white, weight: "bold")
       move(
@@ -38,7 +42,7 @@
       place(
         bottom + left,
         dx: -x_margin,
-        box(width: 100% + 2 * x_margin, height: 100% + 4pt, fill: slideshade),
+        box(width: 100% + 2 * x_margin, height: 100% + 4pt, fill: bottom_margin_color),
       )
       set text(size: .9em)
       place(top + center, [#context counter(page).display()])
@@ -104,7 +108,7 @@
 
 
 
-#let env = env_lookup_all(
+let env = env_lookup_all(
   base_env: (
     ..workbook,
     active_env: active_env,
@@ -115,3 +119,5 @@
   ),
 )
 
+env 
+}
