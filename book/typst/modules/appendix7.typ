@@ -97,7 +97,7 @@ $ (a + b i)(c + d i) = (a c - b d) + (b c + a d) i $
 
 For example, $(2 + 3 i)(4 - 2 i) = 14 + 8 i$. Try graphing the points $1 + 2 i$, $3 + 2 i$, $-1 - i$, and then their result after multiplying by $1 + i$.
 
-For a complex number $z = a + b i$, we define the *complex conjugate* as $\\overline{z} = a - b i$. The complex conjugate can be thought of as a reflection over the real axis. For example, take $z = 2 + 2 i$ drawn below with its complex conjugate:
+For a complex number $z = a + b i$, we define the *complex conjugate* as $overline(z) = a - b i$. The complex conjugate can be thought of as a reflection over the real axis. For example, take $z = 2 + 2 i$ drawn below with its complex conjugate:
 
 //#align(center)[
 //  #diagram[
