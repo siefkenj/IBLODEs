@@ -320,7 +320,7 @@ We can prevent interpolation of a row/column/both by adding a "`$`" before the r
 
 === Pitfalls of Formulas
 
-XXX Finish (some stuff about order of operations, etc.)
+XXX Finish (some stuff about order of operations, `###` showing up in a cell, etc.)
 
 == Graphing
 
