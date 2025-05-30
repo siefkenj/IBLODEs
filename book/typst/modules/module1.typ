@@ -77,7 +77,7 @@ Your friend has a point. Their model is elegant, but your model can predict how 
 $3.222$! Though, your friend would probably complain that $46.654$ is not a number of ants#sym.dots.
 You and your friend have just come up with two different mathematical models for the number of ants that walk
 across the sidewalk. They happen to make similar predictions for each minute and each have their strengths
-and weaknesses. In this course, we will be focused on a particular type of mathematical model---one that uses
+and weaknesses. In this text, we will be focused on another type of mathematical model---one that uses
 differential equations at its core.
 
 == Types of Models
@@ -86,34 +86,37 @@ differential equations at its core.
 
 In the previous situation, the _question_ you were trying to answer was "how many ants are there at a given minute?".
 We sidestepped difficult issues like, "Is an ant that is missing three legs still an ant?" by using the common-sense
-convention that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
+conventions and so
+// that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
 we could use single numbers to represent our quantity of interest (the ants).
 
 You and your friend already came up with two types of models.
-- An *analytic* model based on known functions.
+- An *explicit* model based on known functions.
 - A *recursive* model where subsequent terms are based on previous terms and initial conditions.
 
-If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _analytic_ model presented for green ants is
-$A(n)=2^{n-1} dot 10$
+If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _explicit_ model presented for green ants is
+$A(n)=2^(n-1) dot 10$
 and the _recursive_ model presented is
-$A(1) = 10$
+$A(1) = 10$ and
 $A(n) = 2 dot A(n-1)$
 
-Each type of model has pros and cons. For example, the analytic model allows you to calculate the number of ants at any minute
+Each type of model has pros and cons. For example, the explicit model allows you to calculate the number of ants at any minute
 with few button presses on a calculator, whereas the recursive model is more difficult to calculate but
 makes it clear that the number of ants is doubling every minute.
 
-Often times recursive models are easier to write down than analytic models#footnote([In fact, in many real-world situations, an analytic model
-doesn't exist]), but they may be harder to analyze. A third type of model has similarities to both analytic and recursive models, and
+Often times recursive models are easier to write down than explicit models#footnote(
+  [In fact, in many real-world situations, an explicit model
+    doesn't exist],
+), but they may be harder to analyze. A third type of model has similarities to both explicit and recursive models, and
 brings the power of calculus to modeling.
 - A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its
-  values, and initial conditions.
+  values, and an initial condition.
 
 
-_Differential-equations_ models are useful because derivatives correspond to rates of change---and things in the world are always changing.
-Let's try to come up with a differential equations model for the ants.
+_Differential-equations_ models are useful because derivatives correspond to rates of change, and things in the world are always changing.
+Let's try to come up with a differential equations model for _brown_ ants.
 
-We'd like an equation relating $A(n)$, the number of ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
+We'd like an equation relating $A(n)$, the number of brown ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
 Making a table, we see
 
 #align(
@@ -140,7 +143,7 @@ Making a table, we see
   ),
 )
 
-or
+*or*
 
 #align(
   center,
@@ -168,17 +171,19 @@ or
 
 depending on whether we record the change from the previous minute or up to the subsequent minute. Neither table gives the _instantaneous_ rate of
 change, but in both tables, the change is proportional to the number of ants. So, we can set up a model
-$A'(n) = k A(n)$
-where $k$ is a constant of proportionality that we will try to determine later. We've just written down a _differential equation_ with an undetermined parameter, $k$.
+$
+  A'(n) = k A(n)
+$
+where $k$ is a constant of proportionality that we will try to determine later. We've just written down a _differential equation_ with an undetermined parameter $k$.
 
 #show_def("diffeq")
 
-We'd like to figure out what $k$ is. One way to do so is to solve the differential equation and find the values of $k$ so that our model
-correctly predicts the data. This is called _fitting_ the model to data.
+We'd like to figure out what $k$ is. One way is to solve the differential equation and find which values of $k$ make our model
+correctly predict the data. This is called _fitting_ the model to data.
 
 #show_def("model_fit")
 
-Note that, in general, fitting a model to data doesn't necessarily produce _unique_ values for the unknown parameters, and a fitted model
+Note that in general, fitting a model to data doesn't necessarily produce _unique_ values for the unknown parameters, and a fitted model
 (especially when the data comes from real-world observations) usually doesn't reproduce the data exactly. However, in the case of these ants, we
 just might get lucky.
 
@@ -186,11 +191,13 @@ just might get lucky.
 
 In general, _there is no algorithm for solving differential equations_. Fortunately, it is easy to check whether any particular
 function is a solution to a differential equation, since there _is_ an algorithm to differentiate functions
-#footnote([
-  More specifically, there is an algorithm
-  to differentiate the _elementary_ functions, those functions formed by compositions,
-  sums, products, and quotients of polynomials, trig, exponentials, and logs.
-]).
+#footnote(
+  [
+    More specifically, there is an algorithm
+    to differentiate the _elementary_ functions, those functions formed by compositions,
+    sums, products, and quotients of polynomials, trig, exponentials, and logs.
+  ],
+).
 Because of this, _guess and check_ will be our primary method for solving differential equations.
 
 However, there are a few techniques to solve specific differential equations. These techniques hinge on being able to integrate some functions related to the differential equation.
@@ -212,7 +219,7 @@ Some of those algorithms are:
     if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
     which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there are other solutions, because
-    $dif/(dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$,
+    $dif / (dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$,
     and so for every number $C$, the function $A(n)=C e^(k n)$ is a solution to $A'(n)=k A(n)$.
 
     By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=k A(n)$. It's now time to fit our
@@ -237,12 +244,12 @@ Some of those algorithms are:
     $
     and so $e^k = 2$. In other words $k = ln 2$. Plugging this back in, we find $C = 3 / 2$. Thus our fitted model is
     $
-      A(n) = inline(3/2) e^(n ln 2).
+      A(n) = inline(3 / 2) e^(n ln 2).
     $
 
   ],
 )
 
-Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the analytic model
+Upon inspection, we can see that $3 / 2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the explicit model
 that was first guessed for brown ants.
 
