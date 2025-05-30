@@ -39,7 +39,7 @@
       title: "Slope Field",
       label: <def_slope_field>,
       [
-        A _slope field_ of a differential equation $y' = f(x,y)$ is a collection of line segments that are tangent to the different solutions of the differential equation. 
+        A _slope field_ of a differential equation $y' = f(x,y)$ is a collection of line segments that are tangent to the different solutions of the differential equation.
         The line segments are sketched as follows:
         Evaluate $f(x,y)$ over a rectangular grid of points, and draw an arrow at each point $(x,y)$ of the grid with slope $f(x,y)$.
         The length of the arrows is not important, but it is often drawn to be the same for all arrows.
@@ -116,11 +116,11 @@
       [
         The functions $arrow(v)_1(t), arrow(v)_2(t), dots, arrow(v)_(n)(t)$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1(t), dots, arrow(v)_(n)(t)$ that equals the zero vector for all $t in RR$, i.e. if there are constants $c_1, dots, c_n$ not all zero such that
         $c_1 arrow(v)_1(t) + c_2 arrow(v)_2(t) + dots + c_n arrow(v)_(n)(t) = 0$ for all $t in RR$.
-        
+
         Otherwise they are _linearly independent_.
       ],
     ),
-eigensolution: definition_env(
+    eigensolution: definition_env(
       title: "Eigen Solution",
       label: <def_eigensolution>,
       [
@@ -135,8 +135,8 @@ eigensolution: definition_env(
       title: "Euler's Method",
       label: <eulers_method>,
       [
-        Let $y'(t)=f(t, y)$ be a differential and let $y$ be a solution satisfying $y(t_0)=y_1$. 
-        The _Euler approximation to $y$ with step size $Delta$_ is the sequence of points 
+        Let $y'(t)=f(t, y)$ be a differential and let $y$ be a solution satisfying $y(t_0)=y_1$.
+        The _Euler approximation to $y$ with step size $Delta$_ is the sequence of points
         $(t_0,y_0)$, $(t_1, y_2)$, #dots, where
         $
           y_1 &= y_0 + Delta dot f(t_0, y_0) &quad t_1 &= t_0+Delta\
@@ -144,6 +144,15 @@ eigensolution: definition_env(
           &#h(.3em) dots.v & &#h(.3em)dots.v \
           y_n &= y_(n-1) + Delta dot f(t_(n-1), y_(n-1)) &quad t_n &= t_(n-1)+Delta\
         $
+      ],
+    ),
+    solution: definition_env(
+      title: "Solution",
+      label: <def_solution>,
+      [
+        A _solution_ to a differential on a domain $D$ is a function with domain $D$
+        which satisfies the differential equation on $D$. (The domain $D$ is usually take to
+        be a connected set like an interval.)
       ],
     ),
   )

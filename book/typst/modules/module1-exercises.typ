@@ -122,11 +122,11 @@
       #heading(depth: 3, outlined: false, [Exploring $MM_n$])
 
       We can rewrite the assumptions of $MM_n$ as follows:
-      - At time $t$ there are $P_n(t)$ starfish.
-      - $P_n(0) = 10$
+      - At time $t$ there are $P_n (t)$ starfish.
+      - $P_n (0) = 10$
       - During the time interval $(t, t + 1 / n)$ there will be (on average) $K / n$ new children per starfish.
 
-      + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n(t)$.
+      + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n (t)$.
       + Write an expression for $Delta P_n$, the change in population from time $t$ to $t + Delta t$.
       + Write an expression for $(Delta P_n) / (Delta t)$.
       + Write down a differential equation relating $P'(t)$ to $P(t)$ where $P(t) = display(lim_(n arrow infty) P_n(t))$.
