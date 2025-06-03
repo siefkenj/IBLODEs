@@ -39,10 +39,11 @@
       title: "Slope Field",
       label: <def_slope_field>,
       [
-        A _slope field_ of a differential equation $y' = f(x,y)$ is a collection of line segments that are tangent to the different solutions of the differential equation.
+        A _slope field_ for the differential equation $y' = f(x,y)$ is a collection of line segments that are tangent to the different solutions of the differential equation.
+
         The line segments are sketched as follows:
-        Evaluate $f(x,y)$ over a rectangular grid of points, and draw an arrow at each point $(x,y)$ of the grid with slope $f(x,y)$.
-        The length of the arrows is not important, but it is often drawn to be the same for all arrows.
+        Evaluate $f(x,y)$ over a rectangular grid of points, and draw an line segment at each point $(x,y)$ of the grid with slope $f(x,y)$.
+        The length of the line segments is not important, but should be consistent.
       ],
     ),
     component_and_phase: definition_env(
@@ -150,7 +151,7 @@
       title: "Solution",
       label: <def_solution>,
       [
-        A _solution_ to a differential on a domain $D$ is a function with domain $D$
+        A _solution_ to a differential equation on a domain $D$ is a function with domain $D$
         which satisfies the differential equation on $D$. (The domain $D$ is usually take to
         be a connected set like an interval.)
       ],

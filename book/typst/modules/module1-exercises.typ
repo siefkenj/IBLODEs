@@ -178,15 +178,16 @@
 
       Fill out the table indicating which models have which properties.
 
+      #let fill_box = book_only(box(width: 5cm, height: 4cm))
       #align(
         center,
         table(
           columns: 4,
           align: center,
           "Model", "Accuracy", "Explanatory", "(your favourite property)",
-          $MM_1$, none, none, none,
-          $MM^*_1$, none, none, none,
-          $MM_infty$, none, none, none,
+          $MM_1$, fill_box, fill_box, fill_box,
+          $MM^*_1$, fill_box, fill_box, fill_box,
+          $MM_infty$, fill_box, fill_box, fill_box,
         ),
       )
     ],

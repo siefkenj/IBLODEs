@@ -20,11 +20,18 @@ In this module you will learn
 
 == Modelling
 
-In the previous two modules we have seen how to build models using differential equations by estimating how a quantity changes.
+In the previous two modules, we have seen how to model a single quantity using a differential equation. But,
+when modelling the world, we often have many interrelated quantities.
 
-In reality, we usually find a system of interrelated quantities changing. For example, in the previous module we saw how to model the growth of a population of ants. Several species of ants farm aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of aphids are symbiotically interrelated, as the growth of one population depends on the other.
+In @mod:modelling, we considered the number of green and brown ants crossing the sidewalk.
+In this module, we will consider a population of _Yellow Meadow Ants_.
 
-We can then create a system of differential equations to model the growth of both populations.
+The Yellow Meadow Ant is a species of _farming_ ant. 
+They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in 
+return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of 
+aphids are symbiotically interrelated, as the growth of one population depends on the other.
+
+We can create a _system_ of differential equations to model the interrelated populations:
 
 $
   dif / (dif t) ("# ants at minute " t)
@@ -33,18 +40,27 @@ $
   &= c ("# ants at minute " t ) - d ("# aphids at time " t)
 $
 
-The first equation models the growth of the ant population. The first term with parameter $a$ models the natural growth of ants in the absence of aphids. The second term with parameter $b$ models the growth of the ant population due to the presence of aphids -- this term provides a "boost" to the growth of the ant population since the presence of aphids will mean more food is available for the ants.
+The first equation models the growth of the ant population,
+with  $a$ representing the natural growth of ants in the absence of aphids
+and  $b$ representing the growth of the ant population due to the presence of aphids
+(this term provides a "boost" to the growth of the ant population since the presence of aphids will mean more food is available for the ants).
 
-The second equation models the growth of the aphid population. The first term with parameter $c$ models the growth of the aphid population due to the presence of ants -- this term has a positive effect to the growth of the aphid population since they will be protected from predators. The second term with parameter $d$ models the natural death of aphids in the absence of ants due to the fact that predation will overwhelm their natural growth.
+The second equation models the growth of the aphid population,
+with $c$ representing the growth of the aphid population due to the presence of ants 
+(this term has a positive effect to the growth of the aphid population since they will be protected from predators),
+and $d$ representing the natural death of aphids in the absence of ants (due to the fact that they will be eaten if ants aren't around to protect them).
 
-The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids. As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
-In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
+The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids
+and could be estimated from data. For now, we will use nice values of $a,b,c,d$, so the numbers don't
+get in the way.
+//As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
+//In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
 
 
 == Simulation
 
-Just like we did in @mod:simulation to simulate one differential equation, we use Euler's method to simulate a system of differential equations.
+We will use a modified version of Euler's method (See @mod:simulation) to simulate solutions to a system of differential equations.
 
 The method is the same as before, but now we have to keep track of two quantities at each step. We can do this by using a table to keep track of the values of the two populations at each time step.
 

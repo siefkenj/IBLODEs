@@ -14,7 +14,7 @@
 In this module you will learn
 - How to use slope fields and Euler's method to approximate solutions to differential equations.
 
-Most differential equations do not have _elementary_ solutions. That is, solutions which can be written in
+Most differential equations do not have explicit _elementary_ solutions. That is, solutions which can be written in
 terms of polynomials, exponentials, logarithms, etc..
 Put another way: most differential equations do not have "nice" solutions. However, most ordinary differential equations
 that you will encounter _will have solutions_ (even though you cannot write them down in terms of other functions you know).
@@ -30,8 +30,8 @@ In this course, we will focus on approach 2.
 
 == Visual Estimation
 
-Suppose that $P(t)$ models the number of bacteria (in billions) in a petri dish at time $t$. Further, suppose that the bacteria are so numerous that
-it makes sense to think of $P(t)$ as continuous and that $P$ satisfies
+Suppose that $P(t)$ models the number of bacteria (in billions) in a petri dish at time $t$. (Since the bacteria are so numerous,
+it makes sense to think of $P(t)$ as continuous.)  Further, suppose that $P$ satisfies
 // The F below makes a reasonable picture, but it is complicated. An alternative is
 //#let F(x, y) =  -y + 1/2
 // but maybe that is too simple?
@@ -126,8 +126,8 @@ Starting at $(t,P(t)) = (0,#(y_0))$, we can trace out what an approximate soluti
   )
 }
 
-The solution curve we draw should be tangent to every slope segment it passes through. In the drawing above, the solution curve is increasing
-and slightly concave down. Based on the drawing, we can estimate $P(1) approx #(approx_rounded)$.
+The solution curve we draw should be tangent to every line segment it passes through. In the drawing above, the solution curve is decreasing
+and slightly concave up. Based on the drawing, we can estimate $P(1) approx #(approx_rounded)$.
 
 Tracing out solutions on slope fields is a good way to see overall qualities of a solution, like whether it is increasing/decreasing or its concavity.
 But, its numerical accuracy is limited. A small change in how we sketched the curve could lead to estimates
@@ -205,13 +205,13 @@ so we get an approximation of $P(0) + P'(0)(t-0)lr(|, size: #(0pt + 150%))_(t=1)
   )
 }
 
-XXX add error bars to figure.
-
 Our approximation is an underestimate. How can we be more accurate? By using two tangent lines!
 
 A tangent line is a good approximation to a function near the point of tangency. So, instead of approximating $P(1)$ using a tangent line at $t=0$, let's approximate $P(0.5)$ using a tangent line at $t=0$
-and then approximate $P(1)$ using a tangent line at $t=0.5$.#footnote[Unfortunately, we don't know the exact value of $P(0.5)$, so we cannot use the _true_ tangent line to the solution curve at $t=0.5$.
-But, we know an approximate value of $P(0.5)$. For now, we will assume this approximate value is close enough.]
+and then approximate $P(1)$ using a tangent line at $t=0.5$.
+
+Unfortunately, we won't know the exact value of $P(0.5)$, so we cannot use the _true_ tangent line to the solution curve at $t=0.5$.
+But, we know an approximate value of $P(0.5)$. For now, we will assume this approximate value is close enough.
 
 #{
   let soln = solve_1d_ivp(
@@ -254,7 +254,7 @@ But, we know an approximate value of $P(0.5)$. For now, we will assume this appr
   )
 }
 
-Continuing, we can become more and more accurate. Here is a picture showing what happens if we use four tangent lines.
+This process becomes more accurate the more (approximate) tangent lines we use. Here is a picture showing what happens if we use four tangent lines.
 
 #{
   let soln = solve_1d_ivp(
@@ -302,8 +302,8 @@ _Euler's method_, and the resulting approximation is called an _Euler approximat
 
 #show_def("eulers_method")
 
-When applying Euler's method, the big decision to make is how many tangent lines to use. This is often expressed in terms of a _step size_, typically
-denoted by the letter $Delta$, where $Delta = "domain of approximation"/"# of tangent lines used"$.
+When applying Euler's method, the big decision is how many tangent lines to use. This is often expressed in terms of a _step size_, typically
+denoted by $Delta$, where $Delta = "domain of approximation"/"# of tangent lines used"$.
 
 == Implementing Euler's Method
 
