@@ -26,9 +26,9 @@ when modelling the world, we often have many interrelated quantities.
 In @mod:modelling, we considered the number of green and brown ants crossing the sidewalk.
 In this module, we will consider a population of _Yellow Meadow Ants_.
 
-The Yellow Meadow Ant is a species of _farming_ ant. 
-They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in 
-return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of 
+The Yellow Meadow Ant is a species of _farming_ ant.
+They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in
+return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of
 aphids are symbiotically interrelated, as the growth of one population depends on the other.
 
 We can create a _system_ of differential equations to model the interrelated populations:
@@ -41,12 +41,12 @@ $
 $
 
 The first equation models the growth of the ant population,
-with  $a$ representing the natural growth of ants in the absence of aphids
-and  $b$ representing the growth of the ant population due to the presence of aphids
+with $a$ representing the natural growth of ants in the absence of aphids
+and $b$ representing the growth of the ant population due to the presence of aphids
 (this term provides a "boost" to the growth of the ant population since the presence of aphids will mean more food is available for the ants).
 
 The second equation models the growth of the aphid population,
-with $c$ representing the growth of the aphid population due to the presence of ants 
+with $c$ representing the growth of the aphid population due to the presence of ants
 (this term has a positive effect to the growth of the aphid population since they will be protected from predators),
 and $d$ representing the natural death of aphids in the absence of ants (due to the fact that they will be eaten if ants aren't around to protect them).
 
@@ -60,11 +60,24 @@ get in the way.
 
 == Simulation
 
-We will use a modified version of Euler's method (See @mod:simulation) to simulate solutions to a system of differential equations.
+We will use a modified version of Euler's method (see @mod:simulation) to simulate solutions to a system of differential equations.
+The change will be that we will use two tangent lines to estimate the next data point---one tangent line for ants and one for aphids.
 
-The method is the same as before, but now we have to keep track of two quantities at each step. We can do this by using a table to keep track of the values of the two populations at each time step.
+For now, we will assume $a=1, b=c=d=1 / 2$ and that we start out with $10$ (thousand) ants and $100$ (thousand) aphids.
+Using a time step of $Delta = 0.25$, we compute
+$
+  ("# Ants")'(0) &= 1 dot 10 + 1 / 2 dot 100 = 60 \
+  ("# Aphids")'(0) &= 1 / 2 dot 10 - 1 / 2 dot 100 = -45
+$
 
-As an example, consider $a=1, b=c=d=1 / 2$ and starting populations of $10$ (thousand) ants and $100$ (thousand) aphids. We can simulate the system of differential equations using Euler's method with a time step of $0.25$:
+and so
+$
+  ("# Ants") (0.25) &approx 10 + 0.25 dot 60 = 25 \
+  ("# Aphids") (0.25) &approx 100 + 0.25 dot (-45) = 88.75
+$
+#let t_max = 1.75
+We can now repeat this processes at $t=0.25$ to find approximate values for the number of ants and aphids at $t=0.5$.
+Repeating until $t=#(t_max)$, we arrive at the following table of values:
 
 // #align(
 //         center,
@@ -87,8 +100,8 @@ As an example, consider $a=1, b=c=d=1 / 2$ and starting populations of $10$ (tho
 #let d = 0.5
 #let F(x, y) = (a * x + b * y, c * x - d * y)
 #let v_0 = (10, 100)
-#let steps = 6
 #let _Delta = 0.25
+#let steps = calc.ceil(t_max / _Delta)
 
 #let soln = solve_2d_ivp(F, v_0, steps, Delta: _Delta, method: "euler")
 
@@ -101,7 +114,7 @@ As an example, consider $a=1, b=c=d=1 / 2$ and starting populations of $10$ (tho
 #align(
   center,
   simple_table(
-    headers: ([Time], [\# Ants], [\# Aphids]),
+    headers: ([Time], [(approximate) \# Ants], [(approximate) \# Aphids]),
     content: for row in data {
       (
         ..for y in row {
@@ -114,8 +127,7 @@ As an example, consider $a=1, b=c=d=1 / 2$ and starting populations of $10$ (tho
   ),
 )
 
-Below is a graph of the simulation created from the table above. The blue line represents the population (in thousands) of ants and the orange line represents the population (in thousands) of aphids.
-
+Below is a graph of the simulation created from the table above. The solid curve represents the population (in thousands) of ants and the dashed curve represents the population (in thousands) of aphids.
 
 #align(
   center,
@@ -138,18 +150,67 @@ Below is a graph of the simulation created from the table above. The blue line r
       times,
       aphids,
       label: [Aphids],
+      stroke: (dash: (4pt, 2pt)),
     ),
   ),
 )
 
+#let _Delta2 = 0.05
+Of course, if we wanted a more accurate simulation of the populations, we could use a smaller step size. Below is a graph
+using a step size of $Delta = #(_Delta2)$ showing the new estimates (solid and dashed) along with the old estimates (dotted).
 
+#let steps2 = calc.ceil(t_max / _Delta2)
+#let soln2 = solve_2d_ivp(F, v_0, steps2, Delta: _Delta2, method: "euler")
+#let times2 = range(0, steps2 + 1).map(i => i * _Delta2)
+
+#align(
+  center,
+  lq.diagram(
+    // xlim: (0, 1.6),
+    // ylim: (-5, 125),
+    width: 7cm,
+    height: 4cm,
+    yaxis: (position: 0, tip: tiptoe.stealth),
+    xaxis: (position: 0, tip: tiptoe.stealth, ticks: times),
+    xlabel: $t$,
+    ylabel: lq.label([Populations\ (thousands)], angle: -90deg),
+    legend: (position: bottom + right),
+    lq.plot(
+      times2,
+      soln2.map(v => v.at(0)),
+      label: [Ants],
+      mark: none,
+    ),
+    lq.plot(
+      times2,
+      soln2.map(v => v.at(1)),
+      label: [Aphids],
+      mark: none,
+      stroke: (dash: (4pt, 2pt)),
+    ),
+    lq.plot(
+      times,
+      ants,
+      mark: none,
+      stroke: (paint: gray, dash: (1pt, 2pt)),
+    ),
+    lq.plot(
+      times,
+      aphids,
+      mark: none,
+      stroke: (paint: gray, dash: (1pt, 2pt)),
+    ),
+  ),
+)
 
 == Component and Phase Spaces
 
-The graph above is called a _component space graph_. It shows the populations of ants and aphids at each time step.
-It is actually two component graphs, one for the ants and one for the aphids.
+The graph above is called a _component graph_. It shows the dependent variables (the populations of ants and aphids) vs. the independent
+variable (time).#footnote[It is actually two component graphs, one for the ants and one for the aphids.]
 
-However, it is often more useful to plot the populations against each other. This is called a _phase space graph_. In this graph, the population of ants is on the $x$-axis and the population of aphids is on the $y$-axis. The graph shows how the populations of ants and aphids change with respect to each other.
+However, we often want to consider the relationship _between the dependent variables_.
+In this example, we might plot the population of ants vs. the population of aphids.
+
 #align(
   center,
   lq.diagram(
@@ -158,8 +219,8 @@ However, it is often more useful to plot the populations against each other. Thi
     height: 4cm,
     yaxis: (position: left, tip: tiptoe.stealth),
     xaxis: (position: bottom, tip: tiptoe.stealth),
-    xlabel: [\# Ants],
-    ylabel: [\# Aphids],
+    xlabel: [\# Ants\ (thousands)],
+    ylabel: [\# Aphids\ (thousands)],
     lq.plot(
       ants,
       aphids,
@@ -167,14 +228,21 @@ However, it is often more useful to plot the populations against each other. Thi
   ),
 )
 
+This plot suggests a relationship: there is a threshold where if the \# ants is above that threshold, they enable growth in \# aphids.
+More analysis is needed to see if this observation is valid, but the graph points us in the right direction.#footnote[See if you can find what the threshold \# ants is
+  by analyzing the differential equation directly.]
+
+Plots like the one above are called plots in _phase space_. And the space where each axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
+
 #show_def("component_and_phase")
 
 #example(
-  prompt: [Phase space graphs can have more than two dimensions.],
+  prompt: [The Three-dimensional Lorenz Equations],
   [
-    Observe that is we have a system of $n$ differential equations, then the phase space graph must also be plotted in $n$ dimensions.
-
-    As an example, consider the Lorentz attractor, which is a system of three differential equations that models the motion of a particle in a fluid. It is given by the following system of differential equations:
+    Phase space is not limited to two dimensions.
+    Consider the Lorentz equations, introduced by Edward Lorenz to demonstrate the inherent challenge in weather prediction.#footnote[The Lorenz equations
+      would go on to become a foundational example in the study of chaos theory---a deterministic but hard to predict dependence on initial conditions.]
+    The Lorenz equations are
     $
       (dif x) / (dif t) &= sigma (y - x) \
       (dif y) / (dif t) &= x (rho - z) - y \
@@ -182,7 +250,10 @@ However, it is often more useful to plot the populations against each other. Thi
     $
     where $sigma = 10$, $rho = 28$, and $beta = 8 / 3$.
 
-    To plot the solution in phase space, we need to plot in three dimensions. Below is the graph of one solution in phase space.
+    Since there are three dependent variables ($x$, $y$, and $z$), the phase space associated with
+    the Lorenz equations is three dimensional.
+
+    Simulating using Euler's method, we get the following phase-space plot.
 
     #let sigma = 10
     #let rho = 28
@@ -226,18 +297,20 @@ However, it is often more useful to plot the populations against each other. Thi
         rear_axis_dot_scale: (0.08, 0.08),
         rear_axis_text_size: 0.5em,
         // axis_label_size: 1.5em,
-        rotation_matrix: ((-2, 1, 4), (0, -1, 1)),
+        rotation_matrix: ((-.5, 1, 4), (0, -1, 1)),
         axis_label_offset: (1, .6, .5),
         // matrix transform-rotate-dir() from cetz
       ),
     )
 
-    And the graph of the same solution in component space.
+    From the plot in phase space, we can see the spiralling nature of solutions. Something that is much harder to see from the component graphs.
+
     #align(
       center,
       lq.diagram(
         // xlim: (0, 1.6),
         // ylim: (-5, 125),
+        title: [Lorenz Equations (Component Space)],
         width: 7cm,
         height: 4cm,
         yaxis: (position: left, tip: tiptoe.stealth),
