@@ -3,6 +3,7 @@
 #import "../libs/_workbook.typ": simple_table, label_appendix
 #import "../libs/_spreadsheet.typ": draw_spreadsheet
 #let (sans, serif, module, definition, example, theorem) = workbook
+#label_appendix(<app:spreadsheet>)
 
 In this appendix you will learn:
 - The basics of spreadsheet usage
