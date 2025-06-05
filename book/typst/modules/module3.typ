@@ -21,11 +21,9 @@ In this module you will learn
 == Modelling
 
 In the previous two modules, we have seen how to model a single quantity using a differential equation. But,
-when modelling the world, we often have many interrelated quantities.
+what happens when we have multiple interrelated quantities?
 
-In @mod:modelling, we considered the number of green and brown ants crossing the sidewalk.
-In this module, we will consider a population of _Yellow Meadow Ants_.
-
+Enter the _Yellow Meadow Ant_.
 The Yellow Meadow Ant is a species of _farming_ ant.
 They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in
 return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of
@@ -43,16 +41,16 @@ $
 The first equation models the growth of the ant population,
 with $a$ representing the natural growth of ants in the absence of aphids
 and $b$ representing the growth of the ant population due to the presence of aphids
-(this term provides a "boost" to the growth of the ant population since the presence of aphids will mean more food is available for the ants).
+(this term provides a "boost" to the ant population since the presence of aphids will mean more food for the ants).
 
 The second equation models the growth of the aphid population,
 with $c$ representing the growth of the aphid population due to the presence of ants
-(this term has a positive effect to the growth of the aphid population since they will be protected from predators),
-and $d$ representing the natural death of aphids in the absence of ants (due to the fact that they will be eaten if ants aren't around to protect them).
+(this term has a positive effect on the growth of aphids since they will be protected from predators),
+and $d$ representing the natural death of aphids in the absence of ants (they will be eaten by other creatures if ants aren't around to protect them).
 
 The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids
 and could be estimated from data. For now, we will use nice values of $a,b,c,d$, so the numbers don't
-get in the way.
+get in our way.
 //As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
 //In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
@@ -232,7 +230,8 @@ This plot suggests a relationship: there is a threshold where if the \# ants is 
 More analysis is needed to see if this observation is valid, but the graph points us in the right direction.#footnote[See if you can find what the threshold \# ants is
   by analyzing the differential equation directly.]
 
-Plots like the one above are called plots in _phase space_. And the space where each axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
+#v(1em)
+Plots like the one above are called _phase plots_ or _plots in phase space_. The space where each axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
 
 #show_def("component_and_phase")
 

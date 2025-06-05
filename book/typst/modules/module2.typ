@@ -319,10 +319,10 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
       P'(t) = formula
     $
 
-    with initial condition $P(0) = #(y_0)$ using a step size of $Delta = .25$.
+    with initial condition $P(0) = #(y_0)$, using a step size of $Delta = .25$.
   ],
   [
-    We will implement Euler's method is by making a table to help us track the quantities needed for our computation.
+    We will implement Euler's method by making a table to help us track the relevant quantities.
 
     #align(
       center,
@@ -425,8 +425,8 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
     $
       P_"approx" (0.25) = P(0) + P'_"approx" (0)dot (t - 0)lr(|, size: #(0pt + 150%))_(t=0.25) = 3 + (#(P_prime_approx.at(0)))dot (0.25 - 0) = #(P_approx.at(1)).
     $
-    We can now fill in the second row of the table (noting that we get $P'_"approx" (0.25)$ from the formula
-    $P'(t) = formula$)
+    We can now fill in the second row of the table, noting that we get $P'_"approx" (0.25)$ from the formula
+    $P'(t) = formula$.
 
     #align(
       center,
@@ -537,7 +537,7 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
         ),
       ),
     )
-    And so our Euler estimate is
+    This gives an Euler estimate of
     $
       P(1) approx P_"approx" (1) = #(calc.round(P_approx.at(4), digits: 3)).
     $ (Note, there is no need to compute $P'_"approx" (1)$ since we are not using it, but there is no harm in computing it either.)
@@ -547,14 +547,14 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
 
 == Implementing Euler's Method
 
-As seen in the previous example, Euler's method can be efficiently implemented using a table to
-keep track of values and intermediate steps. This processes is worth doing a few times by hand, but, in truth,
+As seen in the previous example, Euler's method can be efficiently implemented using a table.
+This processes is worth doing a few times by hand, but, in truth,
 it's what computers are made for.
 
-Though you can easily implement Euler's method using a general purpose programming languages like Python, Mathlab, etc., there is
+Though you can easily implement Euler's method using general purpose programming languages like Python, Mathlab, etc., there is
 one type of software that excels#footnote[Pun intended.] at implementing table-based algorithms: spreadsheets.
 
-@app:spreadsheet gives an overview of how to use spreadsheets. In this section we will assume a basic familiarity.
+@app:spreadsheet gives an overview of how to use spreadsheets. In this section we assume a basic familiarity.
 
 To use a spreadsheet to implement Euler's method, we will recreate the table from the previous example. We start by
 - labelling our columns
@@ -662,8 +662,8 @@ For this example, we will use $Delta=0.25$ and our familiar initial value proble
   ),
 )
 
-Next, we enter the formula for $P'_"approx" (t)$, making reference to the appropriate cells to get the values of $t$ and $P(t)$.
-Here, the formula we enter into `C2` is `=SIN(PI() / 2 * B2 - A2) - 1.5`.
+Next, we enter the formula for $P' (t)$, making reference to the appropriate cells to get the values of $t$ and $P(t)$.
+Here, the formula we enter into `C2` is `=SIN(PI() / 2 * B2 - A2) - 1.5`.#footnote[To get the value $pi$ we must enter `PI()` with the parenthesis `()` at the end.]
 
 #let ts = lq.arange(0, 1 + 0.25, step: .25)
 #let Ps = (3, 0, 0, 0, 0)
@@ -819,147 +819,338 @@ Finally, we can enter the formula for $P (t)$. Based on the tangent line approxi
     draw_spreadsheet(
       cols: 3,
       rows: 6,
-      cells: ("A1": (value: ""), ..spreadsheet_so_far, ..full_spreadsheet),
+      cells: (:..spreadsheet_so_far, ..full_spreadsheet),
     ),
   ),
 )
 
-Our spreadsheet has now taken care of all the tedious calculations! It is also _reactive_. For example, if we change the initial conditions (i.e., change the value of $P(0)$ that we entered in `B2`),
-the spreadsheet will automatically recompute the value in all of the cells.
+Our spreadsheet has now taken care of all the tedious calculations! It is also _reactive_. For example, if we change the initial conditions (i.e., change the value of $P(0)$ in cell `B2`),
+the spreadsheet will automatically recompute the value in all other cells.
 
 
 == Accuracy of Euler's Method
 
-When using Euler's method, in general, the smaller the step size, the more accurate the approximation. And, when taking a limit towards an infinitely small step size,
-the approximation converges to the exact solution.
+When using Euler's method, in general, smaller step sizes produce more accurate the approximation. And, when taking a limit towards an infinitely small step size,
+the approximation converges to an exact solution.
 
-XXX Figure showing Euler's method becoming more accurate with more steps (Maybe use $sin(5x+y)/(.2+y^2)$ https://www.desmos.com/calculator/xudvzk5ed4 )
+For example, consider the initial value problem $y'(t) = sin(5 t)$ with $y(0)=0.8$. We can solve this exactly to get $y(t)=1 - 0.2 cos(5 t)$. Comparing the exact solution to Euler approximations with
+different step sizes, we see that the smaller the step size, the more accurate the approximation.
 
-However, it's important to remember that Euler approximations are still approximations and can be misleading if not interpreted carefully.
-For example, consider the initial value problem
-$
-  y' = -y^(1 / 5) quad quad "and" quad quad y(0) = 1.
-$
-
-By examining a slope field for this differential equation, we can see solutions that start positive, decrease to zero, and then stay at zero
-(since $y'=0$ whenever $y=0$).
-
-#let F = (x, y) => -y / calc.abs(y) * calc.pow(calc.abs(y), 1. / 5)
 #{
+  let deltas = (0.3, 0.2, 0.1)
+  let F(x, y) = calc.sin(5 * x)
+  let x_max = 3
+  let solns = deltas.map(delta => {
+    let soln = solve_1d_ivp(
+      F,
+      (0, 0.8),
+      calc.ceil(x_max / delta),
+      Delta: delta,
+      method: "euler",
+    )
+    let xs = soln.map(((x, y)) => x)
+    let ys = soln.map(((x, y)) => y)
+    (xs, ys)
+  })
+
+  let true_soln = solve_1d_ivp(
+    F,
+    (0, 0.8),
+    calc.ceil(x_max / 0.01),
+    Delta: 0.01,
+    method: "rk4",
+  )
+
+  let x_min = -.3
+  let y_min = .7
+  let diagrams = deltas
+    .zip(solns)
+    .map(((delta, solns)) => lq.diagram(
+      title: [Exact Solution vs.\ Euler Approx ($Delta=#(delta)$)],
+      xlim: (x_min, x_max),
+      ylim: (y_min, 1.3),
+      width: 4cm,
+      height: 3cm,
+      lq.plot(
+        true_soln.map(((x, y)) => x),
+        true_soln.map(((x, y)) => y),
+        mark: none,
+        stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+        //title: $Delta = 0.01$,
+      ),
+      yaxis: (position: x_min, tip: tiptoe.stealth, filter: ((v, d) => false)),
+      xaxis: (position: y_min, tip: tiptoe.stealth, filter: ((v, d) => false)),
+      lq.plot(
+        solns.at(0),
+        solns.at(1),
+        mark: none,
+        //title: $Delta = #(delta)$,
+      ),
+    ))
+
   align(
     center,
-    slope_field(
+    stack(..diagrams, spacing: 1em, dir: ltr),
+  )
+}
+
+In the above example, we knew the exact solution, but what if we didn't? It is possible to get explicit bounds on the
+error of an Euler approximation through Taylor's Remainder Theorem and a careful analysis of Euler's method#footnote[
+  See https://math.libretexts.org/Courses/Monroe_Community_College/MTH_225_Differential_Equations/03%3A_Numerical_Methods/3.01%3A_Euler%27s_Method for a detailed exposition.
+], but we will take a more experimental approach.
+
+Consider the initial value problem
+$
+  y' = sin(5x + y) / (.2 + y^2) wide "and" wide y(0) = 0.8.
+$
+
+We don't have an explicit solution to this initial value problem, but we can plot Euler approximations with different step sizes and compare them.
+Plotting with $Delta = 0.3$, $0.2$, $0.1$, $0.05$, $0.03$, and $0.01$ we see different $Delta$'s result in very different curves. What does the exact solution look like?
+
+#{
+  // https://www.desmos.com/calculator/xudvzk5ed4
+  let deltas = (0.3, 0.2, 0.1, 0.05, 0.03, 0.01)
+  let F(x, y) = calc.sin(5 * x + y) / (.2 + y * y)
+  let x_max = 5
+  let solns = deltas.map(delta => {
+    let soln = solve_1d_ivp(
       F,
+      (0, 0.8),
+      calc.ceil(x_max / delta),
+      Delta: delta,
+      method: "euler",
+    )
+    let xs = soln.map(((x, y)) => x)
+    let ys = soln.map(((x, y)) => y)
+    (xs, ys)
+  })
+
+
+  align(
+    center,
+    lq.diagram(
+      title: [Euler Approximations with $Delta=0.3$ to $0.01$],
       xlim: (-.3, 3.1),
-      ylim: (-3.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      spacing: (.1, .5),
-      scale_segments: .07,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+      ylim: (-1.1, 2.3),
+      width: 8cm,
+      height: 5cm,
+      yaxis: (
+        position: 0,
+        tip: tiptoe.stealth,
+        filter: ((v, d) => v != 0),
+        tick-distance: 1.0,
+      ),
+      xaxis: (
+        position: 0,
+        tip: tiptoe.stealth,
+        filter: ((v, d) => v != 0),
+        tick-distance: 1.0,
+      ),
+      ..deltas
+        .zip(solns)
+        .map(((delta, solns)) => lq.plot(
+          solns.at(0),
+          solns.at(1),
+          mark: none,
+          //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+          //title: $Delta = #(delta)$,
+        )),
     ),
   )
 }
 
-However, Euler approximations to this differential equation attain negative values. This is true no matter the step size.
+Initially, it may not seem like the approximations are converging to an exact solution.
+However, if we keep plotting with smaller and smaller $Delta$'s, we see that the approximations start to settle down to a consistent shape.
 
 #{
+  let deltas = (0.01, 0.005, 0.001, 0.0005)
+  let F(x, y) = calc.sin(5 * x + y) / (.2 + y * y)
+  let x_max = 5
+  let solns = deltas.map(delta => {
+    let soln = solve_1d_ivp(
+      F,
+      (0, 0.8),
+      calc.ceil(x_max / delta),
+      Delta: delta,
+      method: "euler",
+    )
+    let xs = soln.map(((x, y)) => x)
+    let ys = soln.map(((x, y)) => y)
+    (xs, ys)
+  })
+
+
   align(
     center,
-    {
-      {
-        let delta = .5
-        let soln = solve_1d_ivp(
-          F,
-          (
-            0,
-            2,
-          ),
-          20,
-          Delta: delta,
-          method: "euler",
-        )
-        let xs = soln.map(((x, y)) => x)
-        let ys = soln.map(((x, y)) => y)
-        lq.diagram(
-          xlim: (-.3, 4.1),
-          ylim: (-2.3, 2.3),
-          width: 4cm,
-          height: 3cm,
-          yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          lq.plot(
-            xs,
-            ys,
-            mark: none,
-            //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-          ),
-          title: $Delta = #(delta)$,
-        )
-      }
-      {
-        let delta = .25
-        let soln = solve_1d_ivp(
-          F,
-          (
-            0,
-            2,
-          ),
-          20,
-          Delta: delta,
-          method: "euler",
-        )
-        let xs = soln.map(((x, y)) => x)
-        let ys = soln.map(((x, y)) => y)
-        lq.diagram(
-          xlim: (-.3, 4.1),
-          ylim: (-2.3, 2.3),
-          width: 4cm,
-          height: 3cm,
-          yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          lq.plot(
-            xs,
-            ys,
-            mark: none,
-            //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-          ),
-          title: $Delta = #(delta)$,
-        )
-      }
-      {
-        let delta = .1
-        let soln = solve_1d_ivp(
-          F,
-          (
-            0,
-            2,
-          ),
-          200,
-          Delta: delta,
-          method: "euler",
-        )
-        let xs = soln.map(((x, y)) => x)
-        let ys = soln.map(((x, y)) => y)
-        lq.diagram(
-          xlim: (-.3, 4.1),
-          ylim: (-2.3, 2.3),
-          width: 4cm,
-          height: 3cm,
-          yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
-          lq.plot(
-            xs,
-            ys,
-            mark: none,
-            //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-          ),
-          title: $Delta = #(delta)$,
-        )
-      }
-    },
+    lq.diagram(
+      title: [Euler Approximations with $Delta=0.01$ to $0.0005$],
+      xlim: (-.3, 3.1),
+      ylim: (-1.1, 2.3),
+      width: 8cm,
+      height: 5cm,
+      yaxis: (
+        position: 0,
+        tip: tiptoe.stealth,
+        filter: ((v, d) => v != 0),
+        tick-distance: 1.0,
+      ),
+      xaxis: (
+        position: 0,
+        tip: tiptoe.stealth,
+        filter: ((v, d) => v != 0),
+        tick-distance: 1.0,
+      ),
+      ..deltas
+        .zip(solns)
+        .map(((delta, solns)) => lq.plot(
+          solns.at(0),
+          solns.at(1),
+          mark: none,
+          //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+          //title: $Delta = #(delta)$,
+        )),
+    ),
   )
 }
 
-XXX Discussion about converging to a periodic solution?
+When approximations start looking consistent, this provides strong evidence that the approximations are close to the exact solution.
+Of course, this evidence is not as strong as a mathematical _proof_, but it is usually sufficient for doing science (where there are likely other
+sources of error far greater than the error arising from Euler's method).
+
+
+// However, it's important to remember that Euler approximations are still approximations and can be misleading if not interpreted carefully.
+// For example, consider the initial value problem
+// $
+//   y' = -y^(1 / 5) quad quad "and" quad quad y(0) = 1.
+// $
+//
+// By examining a slope field for this differential equation, we can see solutions that start positive, decrease to zero, and then stay at zero
+// (since $y'=0$ whenever $y=0$).
+//
+// #let F = (x, y) => -y / calc.abs(y) * calc.pow(calc.abs(y), 1. / 5)
+// #{
+//   align(
+//     center,
+//     slope_field(
+//       F,
+//       xlim: (-.3, 3.1),
+//       ylim: (-3.3, 3.3),
+//       width: 7cm,
+//       height: 3cm,
+//       spacing: (.1, .5),
+//       scale_segments: .07,
+//       yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+//       xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+//     ),
+//   )
+// }
+//
+// However, Euler approximations to this differential equation attain negative values. This is true no matter the step size.
+//
+// #{
+//   align(
+//     center,
+//     {
+//       {
+//         let delta = .5
+//         let soln = solve_1d_ivp(
+//           F,
+//           (
+//             0,
+//             2,
+//           ),
+//           20,
+//           Delta: delta,
+//           method: "euler",
+//         )
+//         let xs = soln.map(((x, y)) => x)
+//         let ys = soln.map(((x, y)) => y)
+//         lq.diagram(
+//           xlim: (-.3, 4.1),
+//           ylim: (-2.3, 2.3),
+//           width: 4cm,
+//           height: 3cm,
+//           yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           lq.plot(
+//             xs,
+//             ys,
+//             mark: none,
+//             //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+//           ),
+//           title: $Delta = #(delta)$,
+//         )
+//       }
+//       {
+//         let delta = .25
+//         let soln = solve_1d_ivp(
+//           F,
+//           (
+//             0,
+//             2,
+//           ),
+//           20,
+//           Delta: delta,
+//           method: "euler",
+//         )
+//         let xs = soln.map(((x, y)) => x)
+//         let ys = soln.map(((x, y)) => y)
+//         lq.diagram(
+//           xlim: (-.3, 4.1),
+//           ylim: (-2.3, 2.3),
+//           width: 4cm,
+//           height: 3cm,
+//           yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           lq.plot(
+//             xs,
+//             ys,
+//             mark: none,
+//             //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+//           ),
+//           title: $Delta = #(delta)$,
+//         )
+//       }
+//       {
+//         let delta = .1
+//         let soln = solve_1d_ivp(
+//           F,
+//           (
+//             0,
+//             2,
+//           ),
+//           200,
+//           Delta: delta,
+//           method: "euler",
+//         )
+//         let xs = soln.map(((x, y)) => x)
+//         let ys = soln.map(((x, y)) => y)
+//         lq.diagram(
+//           xlim: (-.3, 4.1),
+//           ylim: (-2.3, 2.3),
+//           width: 4cm,
+//           height: 3cm,
+//           yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false), stroke: .3pt),
+//           lq.plot(
+//             xs,
+//             ys,
+//             mark: none,
+//             //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+//           ),
+//           title: $Delta = #(delta)$,
+//         )
+//       }
+//     },
+//   )
+// }
+
+
+#example(
+  prompt: [Use Euler's method to estimate whether the solution to the initial value problem ... is periodic or not],
+  [
+    XXX Finish. Come up with a nice example where it's not super obvious.
+
+  ],
+)
+
