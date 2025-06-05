@@ -13,3 +13,7 @@
 tutorials/*pdf
 book/**/*pdf
 book/draft
+tmp*
+*.bak*
+test*
+*.zip

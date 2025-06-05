@@ -13,7 +13,7 @@ In this module you will learn
 
 == Modelling
 Suppose you are observing some green ants walking on the sidewalk. In the first minute you record 10 ants. In
-the second minute you record 20. In the third minute, you record 40 ants. This continues until there are too
+the second, you record 20. In the third, 40. This continues until there are too
 many ants for you to count.
 
 #align(
@@ -35,7 +35,7 @@ many ants for you to count.
   ),
 )
 
-Since you lost count of the ants, you decide to use mathematics to try and figure out how many ants walked by
+Since you lost count of the ants, you decide to use mathematics to predict how many ants walked by
 on minutes $5$, $6$, $dots$. You notice the pattern that
 $
   "Green ants per minute" n = 2^(n-1) · 10.
@@ -66,18 +66,18 @@ The pattern is slightly different. This time,
 $
   "Brown ants per minute" n = 2^(n-1) · 3.
 $
-Your friend, who was watching you the whole time, looks confused. “Why come up with two complicated
-equations when you can describe both types of ant at once?” they declare.
+Your friend, who was watching you the whole time, looks confused. They question: “Why come up with two complicated
+equations when you can describe both types of ant at once?”
 $
   "#Ants at minute" n = 2 · ("#Ants at "&"minute" n − 1) \
   "#Green ants at minute" 1 &= 10 \
   "#Brown ants at minute" 1 &= 3
 $
 Your friend has a point. Their model is elegant, but your model can predict how many ants pass by at minute
-$3.222$! Though, your friend would probably complain that $46.654$ is not a number of ants#sym.dots.
+$3.222$! (Though, your friend would probably complain that $46.654$ is not a number of ants#sym.dots.)
 You and your friend have just come up with two different mathematical models for the number of ants that walk
 across the sidewalk. They happen to make similar predictions for each minute and each have their strengths
-and weaknesses. In this course, we will be focused on a particular type of mathematical model---one that uses
+and weaknesses. In this text, we will be focused on third type of mathematical model---one that uses
 differential equations at its core.
 
 == Types of Models
@@ -86,34 +86,38 @@ differential equations at its core.
 
 In the previous situation, the _question_ you were trying to answer was "how many ants are there at a given minute?".
 We sidestepped difficult issues like, "Is an ant that is missing three legs still an ant?" by using the common-sense
-convention that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
+conventions and so
+// that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
 we could use single numbers to represent our quantity of interest (the ants).
 
 You and your friend already came up with two types of models.
-- An *analytic* model based on known functions.
+- An *explicit* model based on known functions.
 - A *recursive* model where subsequent terms are based on previous terms and initial conditions.
 
-If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _analytic_ model presented for green ants is
-$A(n)=2^{n-1} dot 10$
+If we define $A(n)$ to be the number of ants crossing the sidewalk at minute $n$, the _explicit_ model presented for green ants is
+$A(n)=2^(n-1) dot 10$
 and the _recursive_ model presented is
-$A(1) = 10$
 $A(n) = 2 dot A(n-1)$
+with $A(1) = 10$.
 
-Each type of model has pros and cons. For example, the analytic model allows you to calculate the number of ants at any minute
+Each model has pros and cons. For example, the explicit model allows you to calculate the number of ants at any minute
 with few button presses on a calculator, whereas the recursive model is more difficult to calculate but
 makes it clear that the number of ants is doubling every minute.
 
-Often times recursive models are easier to write down than analytic models#footnote([In fact, in many real-world situations, an analytic model
-doesn't exist]), but they may be harder to analyze. A third type of model has similarities to both analytic and recursive models, and
-brings the power of calculus to modeling.
+Often times recursive models are easier to write down than explicit models#footnote(
+  [In fact, in many real-world situations, an explicit model in terms of already known functions
+    doesn't exist.],
+), but they may be harder to analyze. A third type of model has similarities to both explicit and recursive models but
+adds more by
+bringing the power of calculus to modeling.
 - A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its
-  values, and initial conditions.
+  values, and an initial condition.
 
 
-_Differential-equations_ models are useful because derivatives correspond to rates of change---and things in the world are always changing.
-Let's try to come up with a differential equations model for the ants.
+_Differential-equations_ models are useful because derivatives correspond to rates of change, and things in the world are always changing.
+Let's try to come up with a differential equations model for _brown_ ants.
 
-We'd like an equation relating $A(n)$, the number of ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
+We'd like an equation relating $A(n)$, the number of brown ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
 Making a table, we see
 
 #align(
@@ -140,7 +144,7 @@ Making a table, we see
   ),
 )
 
-or
+*or*
 
 #align(
   center,
@@ -168,42 +172,32 @@ or
 
 depending on whether we record the change from the previous minute or up to the subsequent minute. Neither table gives the _instantaneous_ rate of
 change, but in both tables, the change is proportional to the number of ants. So, we can set up a model
-$A'(n) = k A(n)$
-where $k$ is a constant of proportionality that we will try to determine later. We've just written down a _differential equation_ with an undetermined parameter, $k$.
+$
+  A'(n) = k A(n)
+$
+where $k$ is a constant of proportionality that we will try to determine later. We've just written down a _differential equation_ with an undetermined parameter $k$.
 
 #show_def("diffeq")
 
-We'd like to figure out what $k$ is. One way to do so is to solve the differential equation and find the values of $k$ so that our model
-correctly predicts the data. This is called _fitting_ the model to data.
+We'd like to figure out what $k$ is. One way is to solve the differential equation (that is, find an explicit function which satisfies the differential equation) and find which values of $k$ make our model
+correctly predict the data. This is called _fitting_ the model to data.
 
-#show_def("model_fit")
+// Maybe including a formal definition of fitting is just too much here?
+//#show_def("model_fit")
 
-Note that, in general, fitting a model to data doesn't necessarily produce _unique_ values for the unknown parameters, and a fitted model
+Note that in general, fitting a model to data doesn't necessarily produce _unique_ values for the unknown parameters, and a fitted model
 (especially when the data comes from real-world observations) usually doesn't reproduce the data exactly. However, in the case of these ants, we
 just might get lucky.
 
 == Solving Differential Equations
 
-In general, _there is no algorithm for solving differential equations_. Fortunately, it is easy to check whether any particular
-function is a solution to a differential equation, since there _is_ an algorithm to differentiate functions
-#footnote([
-  More specifically, there is an algorithm
-  to differentiate the _elementary_ functions, those functions formed by compositions,
-  sums, products, and quotients of polynomials, trig, exponentials, and logs.
-]).
-Because of this, _guess and check_ will be our primary method for solving differential equations.
-
-However, there are a few techniques to solve specific differential equations. These techniques hinge on being able to integrate some functions related to the differential equation.
-Some of those algorithms are:
-- _Separation of variables_: This technique is useful when the differential equation can be written in the form $x'(t) = F(x(t)) dot G(t)$. See XXX APPENDIX B for more details.
-- _Integrating factor_: This technique is useful when the differential equation can be written in the form $x'(t) + f(t) dot x(t) = g(t)$. See XXX APPENDIX C for more details.
-- _Series solution_: This technique is useful to describe the solution of a differential equation as a Taylor series. See XXX APPENDIX D for more details.
-
+Our approach to fitting will be to first _solve_ the differential equation, i.e. find what functions $A$ satisfy the equation $A'(t)=k A(t)$,
+and then see which values of $k$ produce solutions that fit the data.
+Our primary method for finding explicit solutions to differential equations will be guess-and-check.
 
 #example(
   prompt: [
-
-    Use educated guessing to solve $A'(n)=k A(n)$.
+    Use guess-and-check to solve $A'(n)=k A(n)$.
   ],
   [
 
@@ -211,14 +205,18 @@ Some of those algorithms are:
     $dif / (dif n) e^n=e^n=k e^n$
     if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
-    which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there are other solutions, because
-    $dif/(dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$,
-    and so for every number $C$, the function $A(n)=C e^(k n)$ is a solution to $A'(n)=k A(n)$.
+    which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there are other solutions.
+    Because
+    $dif / (dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$
+    for every number $C$, the function $A(n)=C e^(k n)$ is a solution to $A'(n)=k A(n)$.
 
-    By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=k A(n)$. It's now time to fit our
-    model to the data.
+    By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=k A(n)$.
   ],
 )
+
+
+It's now time to fit our
+model to the data.
 
 #example(
   prompt: [
@@ -237,12 +235,74 @@ Some of those algorithms are:
     $
     and so $e^k = 2$. In other words $k = ln 2$. Plugging this back in, we find $C = 3 / 2$. Thus our fitted model is
     $
-      A(n) = inline(3/2) e^(n ln 2).
+      A(n) = inline(3 / 2) e^(n ln 2).
     $
 
   ],
 )
 
-Upon inspection, we can see that $3/2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the analytic model
+Upon inspection, we can see that $3 / 2 e^(n ln 2) = 3 dot 2^(n - 1)$, which is the explicit model
 that was first guessed for brown ants.
 
+=== General Solutions
+
+#show_def("solution")
+
+A given differential equation can have many solutions.
+
+The _solution set_, _complete solution_, or _general solution_ is the family of all functions that satisfy the differential equation
+on a given domain.
+
+For example, we can easily verify that the functions $y(t)=e^(2t)$ and $y(t)=17e^(2t)$ both satisfy the differential equation $y'=2y$.
+Any multiple of one of these solutions is also a solution, so the set
+$
+  {f: f(t)=C e^(2t) "for some" C in RR}
+$
+is a set of solutions to the differential equation $y'=2y$. Because there are no other solutions, ${f: f(t)=C e^(2t) "for some" C in RR}$
+is, in fact, the _solution set_/_complete solution_ to the differential equation.
+
+==== Writing General Solutions
+
+Because set notation can be cumbersome, we often write solutions in an abbreviated form. For example, we might write the general solution
+to $y'=2y$ as
+$
+  y(t) = C e^(2t) wide "where" C in RR "is a parameter".
+$
+
+*Important note*: We always specify which terms/variables in a general solution are parameters (e.g., by writing "where $...$ is a parameter").
+This is because differential equations coming from models often involve many variables. It's important to distinguish which variables come from
+modelling assumptions and which are free parameters of your solution.
+
+For example, when finding the general solution to $y'=k y$, if we wrote "$y(t) = C e^(k t)$", it wouldn't be clear if
+every choice of $C$ gives a valid solution, if every choice of $k$ gives a valid solution, or both. Here, $k$ comes from the equation/model
+and we are not allowed to choose it when solving. However, $C$ can be chosen by us and every choice results in a valid solution.
+
+=== Initial Value Problems
+
+Out of the infinitely many solutions to a differential equation, we usually only want a few of them.
+One way to winnow down the solution set is to specify an _initial condition_: a value that the
+solution to the differential equation attains at some point/time.
+
+For example, suppose $P'=2P$ models a population and we know the population starts at $100$ at time $t=0$ (i.e., $P(0)=100$).
+The general solution to $P'=2P$ is $P(t)=C e^(2t)$ where $C$ is a parameter, but only one solution in this family satisfies $P(0)=100$.
+(Stop now and figure out what value of $C$ leads to a solution satisfying $P(0)=100$.)
+
+=== Solving Methods
+
+
+There are a number of algorithms and techniques to find explicit solutions to particular classes
+of differential equations. These include:
+- _Separation of variables_, a technique applicable to differential equations of the form $x'(t) = F(x(t)) dot G(t)$. (See @app:separable)
+- _Integrating factors_, a technique applicable to differential equations of the form $x'(t) + f(t) dot x(t) = g(t)$. (See @app:integrating_factor)
+- _Series solutions_, a technique to express the solution to a differential equation as a power series (e.g., $f(t) = sum_(n=0)^infinity a_n t^n$). (See @app:series_solution)
+
+Unfortunately, despite these techniques, *there is no algorithm for explicitly solving a general differential equation*.
+But, it is easy to check whether a particular
+function is a solution to a differential equation, since there _is_ an algorithm to differentiate functions.
+#footnote([
+  More specifically, there is an algorithm
+  to differentiate the _elementary_ functions, those functions formed by compositions,
+  sums, products, and quotients of polynomials, trig, exponentials, and logs.
+])
+This means *guess and check* is an effective method for finding explicit solutions to differential equations, and,
+though we will learn some other solving techniques, guess and check will be our go-to method.
