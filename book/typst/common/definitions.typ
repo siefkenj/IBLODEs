@@ -156,6 +156,19 @@
         be a connected set like an interval.)
       ],
     ),
+    matrix_form: definition_env(
+      title: "Matrix Form",
+      label: <def_matrix_form>,
+      [
+        A system of differential equations $ x'_1(t)=dots.c\
+        x'_2(t)=dots.c\
+        dots.v\ $ is written in _matrix form_ if it is expressed as
+        $
+          arrow(x)'(t) = M arrow(x)(t)
+        $
+        where $arrow(x)=mat(x_1; x_2; dots.v)$ and $M$ is a matrix with real entries.
+      ],
+    ),
   )
 
   /// Show the definition with the given name. `name` is a string.

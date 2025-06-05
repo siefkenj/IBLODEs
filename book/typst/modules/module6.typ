@@ -7,7 +7,7 @@
 #label_module(<mod:real>)
 
 In this module you will learn
-- How to find analytic solutions to systems of differential equations with constant coefficients by using the eigenvalues and eigenvectors of the coefficient matrix.
+- How to find explicit solutions to systems of differential equations with constant coefficients by using the eigenvalues and eigenvectors of the coefficient matrix.
 - How the real, distinct eigenvalues of a system of differential equations with constant coefficients are related to the stability of the equilibrium solutions.
 
 
@@ -26,22 +26,22 @@ In this module you will learn
 
 
 
-=== Linear Algebra Pre-requisites
+== Linear Algebra Pre-requisites
 
-Starting with this module, we will be using several results from linear algebra. We will assume that you are familiar with the following concepts:
+Starting with this module, we will be using several results from linear algebra. We will assume that you are familiar with the following:
 - Vector spaces and subspaces.
-- Linear transformation and their null space/kernel and range/image.
+- Linear transformations and their null space/kernel and range/image.
 - Linear independence of vectors.
 - Span, basis, and dimension of a vector space/subspace.
 - Eigenvalues and eigenvectors of a matrix and how to compute them.
 
-You will find a review of these topics in APPENDIX XXX. If you are not familiar with them, we recommend that you review them before continuing with this module.
+You will find a review of these topics in @app:linear_algebra.
 
 
-== Finding Analytic Solutions
+== Finding Explicit Solutions
 
-For equations like $y'=7 y$, we were lucky enough to find solutions $y(t)=A e^(7 t)$ (where $A in RR$ is a parameter) by guessing and checking.
-It turns out, by using some insights from linear algebra, we will be able to guess-and-check solutions to some systems of
+For equations like $y'=7 y$, we were lucky enough to guess-and-check our way to solutions $y(t)=A e^(7 t)$ where $A in RR$ is a parameter.
+It turns out, by using some insights from linear algebra, we will be able to guess-and-check our way to solutions to some systems of
 differential equations as well.
 
 === Matrix Form
@@ -55,9 +55,6 @@ We can rewrite this system as a matrix equation:
 $
   mat(x'; y') = mat(2, 1; 1, 2) mat(x; y)
 $
-When rewritten this way, we say that the system of differential equations is written in _matrix form_.
-
-XXX ADD DEFINITION OF MATRIX FORM
 
 We can further refine our matrix form by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
 of a multivariable function is the derivative of each of its components, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
@@ -66,6 +63,9 @@ $
   arrow(r)' = mat(2, 1; 1, 2) arrow(r).
 $
 
+Differential equations written in this way are said to be expressed in _matrix form_.
+
+#show_def("matrix_form")
 
 === Eigenvectors and Guessing Solutions
 
@@ -74,10 +74,15 @@ get lucky and be able to guess a solution!
 
 Let's start by guessing a solution of the form
 $
-  arrow(r)(t) = mat(A; B)e^(k t) = mat(A e^(k t); B e^(k t))  wide arrow.r.double.long wide arrow(r)'(t) = mat(k A e^(k t); k B e^(k t)) = k mat(A e^(k t); B e^(k t)) = k space.thin arrow(r)(t),
+  arrow(r)(t) = mat(A; B)e^(k t) = mat(A e^(k t); B e^(k t)),
 $
 where $A,B, k in RR$ are parameters.
-With this guess, combining with the original system of differential equations, we see that
+This implies
+$
+  arrow(r)'(t) = mat(k A e^(k t); k B e^(k t)) = k mat(A e^(k t); B e^(k t)) = k space.thin arrow(r)(t).
+$
+From the original differential equation, we know $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$. Combining this with our previous computation
+gives us
 $
   arrow(r)' = mat(2, 1; 1, 2) arrow(r) = k space.thin arrow(r).
 $
@@ -89,7 +94,7 @@ $
 $
 Thus we guess solutions
 $
-  arrow(r_1)(t) =  mat(1; 1) e^(3 t) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = mat(1; -1) e^(-t)  = mat(e^(-t); -e^(-t)).
+  arrow(r_1)(t) = mat(1; 1) e^(3 t) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = mat(1; -1) e^(-t) = mat(e^(-t); -e^(-t)).
 $
 
 Verifying, we see that both $arrow(r_1)$ and $arrow(r_2)$ are solutions!
@@ -116,7 +121,7 @@ but are there others?
 In the case of the single-variable equation $y'=7y$, we noticed that multiplying a solution by a constant gave another solution. Will the same work in this case? Let's try.
 
 #example(
-  prompt: [Decide whether $alpha space.thin arrow(r)_1$ and $beta space.thin arrow(r)_2$ are solutions, where $alpha, beta in RR$ are constants],
+  prompt: [Decide whether $alpha space.thin arrow(r)_1$ and $beta space.thin arrow(r)_2$ are solutions, where $alpha, beta in RR$ are constants.],
   [
     We can test if something is a solution to a differential equation by plugging it in.
     On the one hand, we have
@@ -127,15 +132,14 @@ In the case of the single-variable equation $y'=7y$, we noticed that multiplying
     $
       mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t)) = alpha mat(2, 1; 1, 2) arrow(r)_1(t) = alpha space.thin 3 space.thin arrow(r)_1(t),
     $
-    and so $(alpha space.thin arrow(r)_1(t)) = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$ showing that $alpha space.thin arrow(r)_1(t)$ is a solution
+    and so $(alpha space.thin arrow(r)_1(t)) = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$, showing that $alpha space.thin arrow(r)_1(t)$ is a solution
     no matter the value of $alpha$.
-
     A similar computation shows that $beta space.thin arrow(r)_2(t)$ is a solution for any value of $beta$.
   ],
 )
 
 The preceding example can be generalized to show that if you have a solution to a matrix differential equation, then all
-scalar multiples of that solution are also solutions, which is in turn a special case of a more general theorem.
+scalar multiples of that solution are also solutions. This is in turn a special case of a more general theorem.
 
 #theorem(
   title: [Solutions Form a Subspace],
@@ -145,25 +149,23 @@ scalar multiples of that solution are also solutions, which is in turn a special
   ],
 )
 
-The proof relies on some basic linear algebra results.
-
-_Proof:_ Suppose that $cal(S)$ is the set of all solutions the an equation $arrow(r)'=M arrow(r)$ (where $M$ is a square matrix). First, notice that
+_Proof:_ Suppose that $cal(S)$ is the set of all solutions to $arrow(r)'=M arrow(r)$ (where $M$ is a square matrix). First, notice that
 $
   arrow(0)' = arrow(0) = M arrow(0),
 $
-so $arrow(0) in cal(S)$. Next, suppose that $arrow(s_1)$ and $arrow(s_2)$ are solutions in $cal(S)$.
-By definition that means $arrow(s_1)' = M arrow(s_1)$ and $arrow(s_2)' = M arrow(s_2)$.
+so $arrow(0) in cal(S)$. Next, suppose that $arrow(s)_1$ and $arrow(s)_2$ are solutions in $cal(S)$.
+By definition, that means $arrow(s)'_1 = M arrow(s)_1$ and $arrow(s)'_2 = M arrow(s)_2$.
 By the linearity of the derivative, we may now compute
 $
-  (alpha space.thin arrow(s_1) + beta space.thin arrow(s_2))' &= alpha space.thin arrow(s_1)' + beta space.thin arrow(s_2)' \
-  &= alpha space.thin M arrow(s_1) + beta space.thin M arrow(s_2) \
-  &= M (alpha space.thin arrow(s_1) + beta space.thin arrow(s_2)),
+  (alpha space.thin arrow(s)_1 + beta space.thin arrow(s)_2)' &= alpha space.thin arrow(s)'_1 + beta space.thin arrow(s)'_2 \
+  &= alpha space.thin M arrow(s)_1 + beta space.thin M arrow(s)_2 \
+  &= M (alpha space.thin arrow(s)_1 + beta space.thin arrow(s)_2),
 $
-and so $alpha space.thin arrow(s_1) + beta space.thin arrow(s_2)$ is also a solution in $cal(S)$. #align(right, sym.square.filled)
+and so $alpha space.thin arrow(s)_1 + beta space.thin arrow(s)_2$ is also a solution in $cal(S)$. #align(right, sym.square.filled)
 
 #v(1em)
 
-Given the above theorem, we can find all sorts of solutions to $arrow(r)'(t) = mat(2, 1; 1, 2) arrow(r)(t)$ like
+Given the above theorem, we can find all sorts of solutions to $arrow(r)'(t) = mat(2, 1; 1, 2) arrow(r)(t)$, like
 $
   arrow(r)_1(t) + 4 space.thin arrow(r)_2(t) = mat(e^(3 t) + 4space.thin e^(-t); e^(3 t) - 4space.thin e^(-t)) wide "or" wide
   -2 space.thin arrow(r)_1(t) + 3 space.thin arrow(r)_2(t) = mat(-2space.thin e^(3 t) + 3space.thin e^(-t); -2space.thin e^(3 t) - 3space.thin e^(-t)).
@@ -251,7 +253,7 @@ We will show that this is a solution of the system of differential equations.
 To see this, we differentiate $arrow(r)(t)$ with respect to $t$:
 $ (dif arrow(r)(t)) / (dif t) = lambda arrow(v) e^(lambda t) $
 and we can also compute $M arrow(r)(t)$:
-$ M arrow(r)(t) = M ( arrow(v) e^(lambda t)) =  M arrow(v) e^(lambda t) = lambda arrow(v) e^(lambda t) $
+$ M arrow(r)(t) = M ( arrow(v) e^(lambda t)) = M arrow(v) e^(lambda t) = lambda arrow(v) e^(lambda t) $
 where we used the fact that $arrow(v)$ is an eigenvector of $M$ with eigenvalue $lambda$.
 Thus we have
 $ (dif arrow(r)(t)) / (dif t) = M arrow(r)(t). $
@@ -384,14 +386,16 @@ Recall the informal classification of equilibrium solutions#footnote([Check @mod
 #show_def("equilibrium_classification_informal")
 
 Consider a system of differential equations
-$ (dif arrow(r))/(dif t) = M arrow(r), $
+$ (dif arrow(r)) / (dif t) = M arrow(r), $
 where the eigenvalues of the coefficient matrix $M$ are two different real numbers: $lambda_1 eq.not lambda_2$.
 
 Observe that the unique equilibrium solution is $arrow(r)(t) = mat(0; 0)$, so we want to establish the stability of this equilibrium solution.
 
 Following the process described earlier in this module, we know that the solutions of the system of differential equations will have the form
-$ arrow(r)_i (t) 
-  = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t), $
+$
+  arrow(r)_i (t)
+  = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t),
+$
 where $c_1$ and $c_2$ are constants that depend on the initial conditions of the system, and $arrow(v)_1$ and $arrow(v)_2$ are the eigenvectors associated with the eigenvalues $lambda_1$ and $lambda_2$, respectively.
 
 When computing the limit of such a solution as $t$ approaches infinity, we can focus on the exponential terms, since the other terms are constant.
@@ -416,63 +420,63 @@ So we can conclude that
 We can summarize these results with the following table:
 
 #align(
-        center,
-        simple_table(
-          headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
-          content: (
-            // real, both negative
-            $lambda_1<0$,
-            $lambda_2<0$,
-            [Stable and Attracting],
-            // real, both positive
-            $lambda_1>0$,
-            $lambda_2>0$,
-            [Unstable and Repelling],
-            // real, one positive, one negative
-            $lambda_1<0$,
-            $lambda_2>0$,
-            [Unstable and Repelling],
-            table.hline(stroke: .5pt),
-            // real, 0 + negative
-            $lambda_1=0$,
-            $lambda_2<0$,
-            [Stable],
-            // real, 0 + positive
-            $lambda_1=0$,
-            $lambda_2>0$,
-            [Unstable],
-            table.hline(stroke: .5pt),
-          ),
-        ),
-      )
+  center,
+  simple_table(
+    headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
+    content: (
+      // real, both negative
+      $lambda_1<0$,
+      $lambda_2<0$,
+      [Stable and Attracting],
+      // real, both positive
+      $lambda_1>0$,
+      $lambda_2>0$,
+      [Unstable and Repelling],
+      // real, one positive, one negative
+      $lambda_1<0$,
+      $lambda_2>0$,
+      [Unstable and Repelling],
+      table.hline(stroke: .5pt),
+      // real, 0 + negative
+      $lambda_1=0$,
+      $lambda_2<0$,
+      [Stable],
+      // real, 0 + positive
+      $lambda_1=0$,
+      $lambda_2>0$,
+      [Unstable],
+      table.hline(stroke: .5pt),
+    ),
+  ),
+)
 
-OR 
+OR
 
 #align(
-        center,
-        simple_table(
-          headers: ([Sign of Eigenvalues], [Stability of Equilibrium]),
-          content: (
-            // real, both negative
-            [Both negative],
-            [Stable and Attracting],
-            // real, both positive
-            [Both positive],
-            [Unstable and Repelling],
-            // real, one positive, one negative
-            [One negative, one positive],
-            [Unstable and Repelling],
-            table.hline(stroke: .5pt),
-            // real, 0 + negative
-            [One is zero, one is negative],
-            [Stable],
-            // real, 0 + positive
-            [One is zero, one is positive],
-            [Unstable],
-            table.hline(stroke: .5pt),
-          ),
-        ),
-      )
+  center,
+  simple_table(
+    headers: ([Sign of Eigenvalues], [Stability of Equilibrium]),
+    content: (
+      // real, both negative
+      [Both negative],
+      [Stable and Attracting],
+      // real, both positive
+      [Both positive],
+      [Unstable and Repelling],
+      // real, one positive, one negative
+      [One negative, one positive],
+      [Unstable and Repelling],
+      table.hline(stroke: .5pt),
+      // real, 0 + negative
+      [One is zero, one is negative],
+      [Stable],
+      // real, 0 + positive
+      [One is zero, one is positive],
+      [Unstable],
+      table.hline(stroke: .5pt),
+    ),
+  ),
+)
 
 XXX CHOOSE ONE TABLE!!
 

@@ -2,3 +2,5 @@
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_workbook.typ": simple_table, label_appendix
 #let (sans, serif, module, definition, example, theorem) = workbook
+
+#label_appendix(<app:linear_algebra>)
