@@ -26,6 +26,13 @@
         derivatives.
       ],
     ),
+    orderdiffeq: definition_env(
+      title: "Order of a Differential Equation",
+      label: <def_orderdiffeq>,
+      [
+        The _order_ of a differential equation is the order of the highest derivative of the unknown function that appears in the differential equation.
+      ],
+    ),
     model_fit: definition_env(
       title: "Fitting a Model",
       label: <def_model_fit>,
