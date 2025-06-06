@@ -26,6 +26,13 @@
         derivatives.
       ],
     ),
+    orderdiffeq: definition_env(
+      title: "Order of a Differential Equation",
+      label: <def_orderdiffeq>,
+      [
+        The _order_ of a differential equation is the order of the highest derivative of the unknown function that appears in the differential equation.
+      ],
+    ),
     model_fit: definition_env(
       title: "Fitting a Model",
       label: <def_model_fit>,
@@ -154,6 +161,19 @@
         A _solution_ to a differential equation on a domain $D$ is a function with domain $D$
         which satisfies the differential equation on $D$. (The domain $D$ is usually take to
         be a connected set like an interval.)
+      ],
+    ),
+    matrix_form: definition_env(
+      title: "Matrix Form",
+      label: <def_matrix_form>,
+      [
+        A system of differential equations $ x'_1(t)=dots.c\
+        x'_2(t)=dots.c\
+        dots.v\ $ is written in _matrix form_ if it is expressed as
+        $
+          arrow(x)'(t) = M arrow(x)(t)
+        $
+        where $arrow(x)=mat(x_1; x_2; dots.v)$ and $M$ is a matrix with real entries.
       ],
     ),
   )
