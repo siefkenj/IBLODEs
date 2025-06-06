@@ -11,6 +11,7 @@
 In this module you will learn
 - How to use transform a higher order differential equation into a first order system of differential equations
 - How to analyze the stability of a higher order differential equation using eigenvalues and eigenvectors
+- How to linearize higher order differential equations
 - How to approximate solutions to higher order differential equations using numerical methods
 
 
@@ -96,6 +97,13 @@ To study the stability, we transform the equation into a system and study its ei
     Because the system is equivalent to the original differential equation, we can conclude that the equilibrium solution $u=0$ is also stable but neither attracting nor repelling.
   ]
 )
+
+=== Linearization of higher order differential equations
+
+The linearization of a higher order differential equation is done in the same way as for first order differential equations, by transforming it into a system and then linearizing the system.
+
+It is important to re-write the differential equation as a system of first order differential equations before linearizing it. It is easy to make mistakes if we try to linearize a higher order differential equation directly.
+
 
 === Numerical methods for higher order differential equations
 

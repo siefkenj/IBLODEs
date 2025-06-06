@@ -551,7 +551,7 @@ As seen in the previous example, Euler's method can be efficiently implemented u
 This processes is worth doing a few times by hand, but, in truth,
 it's what computers are made for.
 
-Though you can easily implement Euler's method using general purpose programming languages like Python, Mathlab, etc., there is
+Though you can easily implement Euler's method using general purpose programming languages like Python, Matlab, etc., there is
 one type of software that excels#footnote[Pun intended.] at implementing table-based algorithms: spreadsheets.
 
 @app:spreadsheet gives an overview of how to use spreadsheets. In this section we assume a basic familiarity.
