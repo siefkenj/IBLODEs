@@ -207,12 +207,12 @@ the formula `=A1+1` is being interpolated to "add one to the previous cell".
 
 === Preventing Interpolation
 
-What if you don't want interpolation? Or you only want it in particular places? For example, let's, instead of adding `1` to the previous cell,
-we want to add the value of `A2` to the previous cell.
+What if you don't want interpolation? Or you only want it in particular places? For example, instead of adding `1` to the previous cell,
+let us add the value of `A2` to the previous cell.
 
 We can prevent interpolation of a row/column/both by adding a "`$`" before the row/column in a cell index. For example,
-- `=$A1`would interpolate the column but not the row,
-- `=A$1` would interpolate the row but not the column, and
+- `=A$1` would interpolate the column but not the row,
+- `=$A1` would interpolate the row but not the column, and
 - `=$A$1` would not interpolate either.
 
 #align(

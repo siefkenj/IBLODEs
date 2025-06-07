@@ -103,6 +103,11 @@ The idea of the _shooting method_ is the following:
       ),
     )
 
+    To adjust the value of $xi$, we started with an initial guess of $xi=0$ and increased it until we obtained two values of $u(1)$ that are on either side of the boundary condition $u(1)=1$. In this case, we found that $u(1) < 1$ for $xi=1$ and $u(1) > 1$ for $xi=2$. That means that the value of $xi$ we are looking for is between $1$ and $2$, so we successively bisected the interval $[1, 2]$ to find a better approximation of $xi$.
+
+    There are lots of different methods to adjust the value of $xi$ to get closer to the boundary condition at $x=1$. Here we just used a simple bisection method, but you can use any method you like.
+
+
     We can see that the value of $u(1)$ is getting closer to the boundary condition $u(1)=1$ as we adjust the value of $xi$.
 
     Once we are happy with the approximation, we can sketch the solution we found. Below is the grpah for the simulation with $xi = 1.5625$.
