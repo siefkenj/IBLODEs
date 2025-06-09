@@ -12,14 +12,15 @@
 
 In this module you will learn
 - What equilibrium solutions and equilibrium points are.
-- How to estimate the long term behavior of a differential equation/system of differential equations.
+- How to equilibrium points related to the long term behavior of a differential equation/system of differential equations.
 
-By their nature, a model built from differential equations will tell you how a quantity _changes_. Equally important
-are the conditions under which a quantity _does not_ change, the so-called _equilibrium solutions_.
+Models built from differential equations will tell you how quantities _change_. Equally important, though,
+are the conditions under which a quantity _does not_ change. In science and engineering, when a when a system is in a state that
+doesn't change, we say it is at _equilibrium_. In the context of differential equations, solutions that don't change are called _equilibrium solutions_.
 
 #show_def("equilibrium_solution")
 
-Suppose you are modelling a leaf falling off a balcony onto the ground. Let $h(t)$ represent the height of the leaf above the ground at time $t$.
+Suppose you are modelling a leaf falling from a balcony onto the ground. Let $h(t)$ represent the height of the leaf above the ground at time $t$.
 If we assume that air resistance causes the leaf to fall at a constant speed of $1$ $m slash s$,
 we can set up a differential equation to model the leaf's motion.
 $
@@ -52,7 +53,7 @@ Looking at a slope field for this equation, we can see that most solutions look 
 }
 
 But, there is one solution that is qualitatively different: $h(t)=0$. Indeed, the function $h(t)=0$ satisfies $h'(t)=0$, and so is a solution to the differential equation.
-It is the _equilibrium solution_ to the differential equation corresponding to the leaf resting on the ground (and not actually falling at all).
+It is the _equilibrium solution_ to the differential equation corresponding to the leaf resting on the ground (not actually falling at all).
 
 #v(1em)
 
@@ -62,7 +63,147 @@ Two ponds, Pond $A$ and Pond $B$, each with a volume of 1 million litres, are co
 that is contaminated with pesticides. Pond $B$ is fed by a mountain stream of clean water. The ponds exchange water through their canals at a rate of 0.1 million litres per day.
 Additionally, the ponds have spill-gates that allow any excess water to flow out of each pond so they maintain a constant volume.
 
-XXX Figure
+#align(
+  center,
+  {
+    import "@preview/cetz:0.3.4"
+    cetz.canvas({
+      import cetz.draw: *
+
+      rect(
+        (0, 0),
+        (rel: (2.5, 3)),
+        name: "pondA",
+        radius: 1,
+        stroke: blue.darken(30%),
+        fill: blue.lighten(80%).mix(purple.lighten(80%)),
+      )
+      rect(
+        (4, 0),
+        (rel: (2.5, 3)),
+        name: "pondB",
+        radius: 1,
+        stroke: blue.darken(30%),
+        fill: blue.lighten(80%),
+      )
+      content(
+        "pondA",
+        text("Pond A"),
+      )
+      content(
+        "pondB",
+        text("Pond B"),
+      )
+
+      line(
+        (name: "pondA", anchor: 30deg),
+        (name: "pondB", anchor: 150deg),
+        (name: "pondB", anchor: 165deg),
+        (name: "pondA", anchor: 15deg),
+        stroke: none,
+        fill: blue,
+        name: "canal1",
+        closed: true,
+      )
+      line(
+        (name: "pondA", anchor: -30deg),
+        (name: "pondB", anchor: -150deg),
+        (name: "pondB", anchor: -165deg),
+        (name: "pondA", anchor: -15deg),
+        stroke: none,
+        fill: blue,
+        name: "canal2",
+      )
+
+      content(
+        "canal1",
+        text(fill: white, $<-->$),
+      )
+      content(
+        (name: "canal1", anchor: 20%),
+        box(inset: 2pt, text(fill: blue, [Canals\ $0.1 m l / d$])),
+        anchor: "south",
+      )
+      content(
+        "canal2",
+        text(fill: white, $<-->$),
+      )
+
+
+      // Draw inflows
+      line(
+        (name: "pondA", anchor: 80deg),
+        (rel: (0, 1.5)),
+        (rel: (-1, 0)),
+        (name: "pondA", anchor: 100deg),
+        stroke: blue,
+        fill: purple.lighten(80%),
+        name: "pondA_inflow",
+      )
+      line(
+        (name: "pondB", anchor: 80deg),
+        (rel: (.5, 1.5)),
+        (rel: (-1, 0)),
+        (name: "pondB", anchor: 100deg),
+        stroke: blue,
+        name: "pondB_inflow",
+      )
+      line(
+        (name: "pondA", anchor: -80deg),
+        (rel: (0, -1.5)),
+        (rel: (-1, 0)),
+        (name: "pondA", anchor: -100deg),
+        stroke: blue,
+        name: "pondA_outflow",
+      )
+      line(
+        (name: "pondB", anchor: -80deg),
+        (rel: (.5, -1.5)),
+        (rel: (-1, 0)),
+        (name: "pondB", anchor: -100deg),
+        stroke: blue,
+        name: "pondB_outflow",
+      )
+
+      content(
+        "pondA_inflow",
+        text(fill: blue, $arrow.b$),
+      )
+      content(
+        (name: "pondA_inflow", anchor: 50%),
+        box(inset: 2pt, align(center, text(fill: blue, [Contaminated Inflow\ $0.05 m l / d$]))),
+        anchor: "south",
+      )
+      content(
+        "pondB_inflow",
+        text(fill: blue, $arrow.b$),
+      )
+      content(
+        (name: "pondB_inflow", anchor: 50%),
+        box(inset: 2pt, align(center, text(fill: blue, [Clean Inflow\ $0.02 m l / d$]))),
+        anchor: "south",
+      )
+      content(
+        "pondA_outflow",
+        text(fill: blue, $arrow.b$),
+      )
+      content(
+        (name: "pondA_outflow", anchor: 50%),
+        box(inset: 4pt, align(center, text(fill: blue, [Outflow\ $0.05 m l / d$]))),
+        anchor: "north",
+      )
+      content(
+        "pondB_outflow",
+        text(fill: blue, $arrow.b$),
+      )
+      content(
+        (name: "pondB_outflow", anchor: 50%),
+        box(inset: 4pt, align(center, text(fill: blue, [Outflow\ $0.02 m l / d$]))),
+        anchor: "north",
+      )
+    })
+  },
+)
 
 Let $A(t)$ be the amount of pesticide in Pond $A$ at time $t$, and let $B(t)$ be the amount of pesticide in Pond $B$ at time $t$. W will assume:
 - The ponds are well-mixed.
@@ -97,34 +238,39 @@ With our model defined, we can now make plots showing the amount of pesticide vs
 
 #{
   let width = 4.8cm
-  lq.diagram(
-    //legend: (position: bottom + right),
-    width: width,
-    ylim: (0, 1.5),
-    lq.plot(ts, As, mark: none, stroke: 1.5pt, label: "Pond A"),
-    lq.plot(ts, Bs, mark: none, stroke: 1.5pt, label: "Pond B"),
-    xaxis: (label: [$t$ (days)]),
-    yaxis: (label: [Pesticide (kg)]),
-  )
-  h(-1.8em)
-  lq.diagram(
-    //legend: (position: bottom + right),
-    width: width,
-    ylim: (0, 1.5),
-    lq.plot(ts, As2, mark: none, stroke: 1.5pt),
-    lq.plot(ts, Bs2, mark: none, stroke: 1.5pt),
-    xaxis: (label: [$t$ (days)]),
-    yaxis: (filter: (v, d) => false),
-  )
-  h(-1.8em)
-  lq.diagram(
-    //legend: (position: bottom + right),
-    width: width,
-    ylim: (0, 1.5),
-    lq.plot(ts, As3, mark: none, stroke: 1.5pt),
-    lq.plot(ts, Bs3, mark: none, stroke: 1.5pt),
-    xaxis: (label: [$t$ (days)]),
-    yaxis: (filter: (v, d) => false),
+  stack(
+    dir: ltr,
+    spacing: -1.8em,
+    lq.diagram(
+      //legend: (position: bottom + right),
+      width: width,
+      ylim: (0, 1.5),
+      lq.plot(ts, As, mark: none, stroke: 1.5pt, label: "Pond A"),
+      lq.plot(ts, Bs, mark: none, stroke: 1.5pt, label: "Pond B"),
+      xaxis: (label: [$t$ (days)]),
+      yaxis: (label: [Pesticide (kg)]),
+      title: [$A(0) = 0.6\ B(0)=0.1$],
+    ),
+    lq.diagram(
+      //legend: (position: bottom + right),
+      width: width,
+      ylim: (0, 1.5),
+      lq.plot(ts, As2, mark: none, stroke: 1.5pt),
+      lq.plot(ts, Bs2, mark: none, stroke: 1.5pt),
+      xaxis: (label: [$t$ (days)]),
+      yaxis: (filter: (v, d) => false),
+      title: [$A(0) = 1.4\ B(0)=0.5$],
+    ),
+    lq.diagram(
+      //legend: (position: bottom + right),
+      width: width,
+      ylim: (0, 1.5),
+      lq.plot(ts, As3, mark: none, stroke: 1.5pt),
+      lq.plot(ts, Bs3, mark: none, stroke: 1.5pt),
+      xaxis: (label: [$t$ (days)]),
+      yaxis: (filter: (v, d) => false),
+      title: [$A(0) = 0.1\ B(0)=1.4$],
+    ),
   )
 }
 
