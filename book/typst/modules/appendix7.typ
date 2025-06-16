@@ -214,7 +214,7 @@ If $z = a + b i$, then $z overline(z) = a^2 + b^2$. The length or *modulus* of $
 
 The reciprocal, $1 / z$, of a complex number can be written nicely as well, by multiplying the numerator and denominator by $overline(z)$:
 
-$ 1 / z = overline(z) / (z overline(z)) = overline(z) / |z|^2 $
+$ 1 / z = overline(z) / (z overline(z)) = overline(z) / abs(z)^2 $
 
 == Euler's Formula and Polar Form for Complex Numbers
 

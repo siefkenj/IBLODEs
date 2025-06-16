@@ -30,7 +30,7 @@
       title: "Order of a Differential Equation",
       label: <def_orderdiffeq>,
       [
-        The _order_ of a differential equation is the order of the highest derivative of the unknown function that appears in the differential equation.
+        A differential equation is said to be _order $n$_ if the highest derivative that appears in the differential equation is the $n$th derivative.
       ],
     ),
     model_fit: definition_env(
