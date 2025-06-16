@@ -3,7 +3,7 @@
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_graphics.typ": slope_field, vector_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/lilaq:0.3.0" as lq
 #import "@preview/tiptoe:0.3.0"
 #let (sans, serif, module, definition, example) = workbook
 
@@ -12,19 +12,20 @@ In this module you will learn
 - How phase portraits can be used to analyze a system of differential equations.
 
 Sometimes we are interested in the precise behaviour of a solution to a differential equation,
-but more often than not, we're more interested in the _qualities_ of
+but more often than not, we're interested in the _qualities_ of
 solutions. For example, we may want to know if an equilibrium solution is stable,
 or if a solution is periodic/initially increasing/unbounded/etc.. Much of this information
 can be deduced without actually solving or simulating solutions to the differential equation.
 
 == Analyzing Slope Fields
 
-In @mod:simulation we already saw _slope fields_.
+In @mod:simulation we saw _slope fields_.
 
 #show_def("slope_field")
 
 By looking at a slope field, we can visualize what whole ranges of solutions look like.
 
+#v(1em)
 Consider the differential equation
 $
   y' = y (1 - y) + x
@@ -109,7 +110,7 @@ We can also see that increasing solutions tend towards a particular increasing s
 
 == Systems of Differential Equations and Phase Portraits
 
-Consider a modified version of the Ants-and-Aphids model from @mod:systems, where ants are removed by a farmer at a constant rate (10 per day).
+Consider a modified version of the Ants-and-Aphids model from @mod:systems, where ants are removed by a farmer at a constant rate (10 thousand per day).
 #let Pant = $P_"ant"$
 #let Paph = $P_"aphid"$
 #let F(Pant, Paph) = (Pant + 0.5 * Paph - 10, 0.8 * Pant - 0.5 * Paph)
@@ -187,7 +188,38 @@ $
 $
 In other words, we start at $(3, 21)$ and move slightly in the direction of $dir$ (i.e., in the direction of $(Pant', Paph')$).
 
-XXX Figure showing simulated solution with some tangent vectors
+#{
+  let _Delta = 0.1
+  let steps = 24
+  let soln = solve_2d_ivp(F, (3, 21), steps, Delta: _Delta, method: "rk4")
+  let xs = lq.arange(0, _Delta * (steps + 1), step: _Delta)
+  let arrow_samples = soln.chunks(5).map(v => v.at(0))
+  align(
+    center,
+    lq.diagram(
+      title: lq.title([$Pant$ vs $Paph$\ $Pant(0)=3$\ $Paph(0)=21$]),
+      xaxis: (label: $Pant$),
+      yaxis: (label: $Paph$),
+
+      ..arrow_samples.map(((x, y)) => {
+        lq.line(
+          (x, y),
+          (x + 6 * _Delta * F(x, y).at(0), y + 6 * _Delta * F(x, y).at(1)),
+          tip: tiptoe.stealth,
+          stroke: (thickness: 2pt, paint: orange.darken(10%)),
+          label: if x == 3 { [$(Pant', Paph')$ #v(.5em)] } else { none },
+        )
+      }),
+      lq.plot(
+        soln.map(((x, y)) => x),
+        soln.map(((x, y)) => y),
+        mark: none,
+        stroke: (thickness: 2pt, paint: blue, dash: (10pt, 2pt)),
+        label: [Solution],
+      ),
+    ),
+  )
+}
 
 What if, we drew the vector $(Pant', Paph')$ at many points in phase space? Doing so, we would produce a _phase portrait_.
 
