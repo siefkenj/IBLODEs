@@ -3,6 +3,8 @@
 #import "../libs/_workbook.typ": simple_table, label_appendix
 #let (sans, serif, module, definition, example, theorem) = workbook
 
+#label_appendix(<app:complex>)
+
 In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring the bulk of this appendix.] you will learn:
 - What a complex numbers is,
 - The geometry of complex numbers, and
