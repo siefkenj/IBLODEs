@@ -11,7 +11,6 @@
 In this module you will learn
 - How to use transform a higher order differential equation into a first order system of differential equations
 - How to analyze the stability of a higher order differential equation using eigenvalues and eigenvectors
-- How to linearize higher order differential equations
 - How to approximate solutions to higher order differential equations using numerical methods
 
 

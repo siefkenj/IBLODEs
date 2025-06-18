@@ -3,6 +3,8 @@
 #import "../libs/_workbook.typ": simple_table, label_appendix
 #let (sans, serif, module, definition, example, theorem) = workbook
 
+#label_appendix(<app:complex>)
+
 In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring the bulk of this appendix.] you will learn:
 - What a complex numbers is,
 - The geometry of complex numbers, and
@@ -13,52 +15,149 @@ In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring
 XXX This was copy-and-pasted from the PCE that Rhupert wrote for complex numbers. It needs to be edited and the figures need to be recreated.
 
 The imaginary numbers are built from a special symbol $i$, whose square is
-$i^2 = -1$. An *imaginary* number looks like $b i$, where $b$ is real. A
-*complex* number is a sum of a real and imaginary number, and generally
-looks like $a + b i$. The set of all numbers $z = a + b i$ is called the complex numbers,
-and is denoted by $CC$. Complex numbers can be multiplied and added in
-all the same ways real numbers can. If $z = a + b i$, we call $a$ the *real
-part of $z$* and $b$ the *imaginary part of $z$*.
+$i^2 = -1$. An _imaginary_ number is a pure multiple of $i$, like $b i$, where $b$ is real. A
+_complex_ number is a sum of a real and imaginary number, and generally
+looks like $a + b i$. The set of all complex numbers, denoted $CC$, is
+$
+  CC = { a + b i : a, b in RR }.
+$
+Complex numbers can be multiplied and added in
+all the same ways real numbers can.
+
+If $z = a + b i$, we call $a$ the _real part_ of $z$ and $b$ the _imaginary part_ of $z$.
 
 == Geometry of the Complex Numbers
 
-The real numbers, denoted by $RR$, can be identified with a number
-line. Multiplying by a real number can be interpreted geometrically as a stretch,
-compression, or reflection. Consider the bolded region $[1, 2]$ below. The figure
-on the left shows the effect of multiplication by $-1$, and on the right
+The real numbers ($RR$) can be identified with a number
+line. Multiplying by a real number stretches, compresses, or reflects this number line (depending on whether
+the number is greater than 1, less than 1, or negative). For example,
+consider the bolded region $[1, 2]$ below. The figure
+on the left shows the effect of multiplication by $-1$ and on the right
 multiplication by $2$:
 
-//#align(center)[
-//  #vspace(0.3cm)
-//  // Left figure
-//  #diagram[
-//    // Axis
-//    line((-2.5, 0), (2.5, 0), arrow: both)
-//    // Ticks
-//    for x in -2..2: line((x, 0), (x, 0.1))
-//    // Bold region
-//    line((1, 0), (2, 0), stroke: 2pt)
-//    // Arc
-//    arc(center: (1, -1.7), radius: 1, start: 0, end: 180, arrow: true)
-//  ]
-//  #hspace(1cm)
-//  // Right figure
-//  #diagram[
-//    // Axis
-//    line((-0.5, 0), (4.5, 0), arrow: both)
-//    // Ticks
-//    for x in 0..4: line((x, 0), (x, 0.1))
-//    // Bold region
-//    line((2, 0), (4, 0), stroke: 2pt)
-//    // Arrows
-//    arrow((1.5, -0.1), (3, -1.9))
-//    arrow((2, -0.1), (4, -1.9))
-//    arrow((1, -0.1), (2, -1.9))
-//  ]
-//]
+#{
+  import "@preview/cetz:0.4.0"
+  let left_diagram = cetz.canvas({
+    import cetz.draw: *
 
-Just like the real numbers, the complex numbers have a clear geometric meaning.
-A complex number $1 + 2 i$ can be thought of as a point in the complex plane. If we
+    let draw_axis() = {
+      line(
+        (-2.7, 0),
+        (2.7, 0),
+        mark: (start: "stealth", end: "stealth", fill: black),
+        stroke: .5pt,
+      )
+
+      for x in range(-2, 3) {
+        line((x, -.1), (x, 0.1), stroke: .5pt)
+        content(
+          (x, -.2),
+          anchor: "north",
+          text($#x$),
+        )
+      }
+    }
+
+    group({
+      draw_axis()
+
+      // The interval [1, 2]
+      line((1, 0), (2, 0), stroke: 2pt + blue)
+    })
+
+    group({
+      translate((0, -3))
+
+      draw_axis()
+
+      arc(
+        (1, .2),
+        start: 0deg,
+        stop: 180deg,
+        mark: (end: "stealth", fill: black),
+        stroke: (dash: (2pt, 2pt)),
+      )
+
+      // The interval [1, 2]
+      line((-2, 0), (-1, 0), stroke: 2pt + blue)
+    })
+  })
+
+  let right_diagram = cetz.canvas({
+    import cetz.draw: *
+
+    let draw_axis() = {
+      line(
+        (-.7, 0),
+        (4.7, 0),
+        mark: (start: "stealth", end: "stealth", fill: black),
+        stroke: .5pt,
+      )
+
+      for x in range(-0, 5) {
+        line((x, -.1), (x, 0.1), stroke: .5pt)
+        content(
+          (x, -.2),
+          anchor: "north",
+          text($#x$),
+        )
+      }
+    }
+
+    group({
+      draw_axis()
+
+      // The interval [1, 2]
+      line((1, 0), (2, 0), stroke: 2pt + blue)
+    })
+
+    line(
+      (1.1, -.2),
+      (2, -2.8),
+      mark: (end: "stealth", fill: black),
+      stroke: (dash: (2pt, 2pt)),
+    )
+    line(
+      (2.1, -.2),
+      (4, -2.8),
+      mark: (end: "stealth", fill: black),
+      stroke: (dash: (2pt, 2pt)),
+    )
+    line(
+      (1.6, -.2),
+      (3, -2.8),
+      mark: (end: "stealth", fill: black),
+      stroke: (dash: (2pt, 2pt)),
+    )
+
+    group({
+      translate((0, -3))
+
+      draw_axis()
+
+      // The interval [1, 2]
+      line((2, 0), (4, 0), stroke: 2pt + blue)
+    })
+  })
+
+  align(
+    center,
+    stack(
+      dir: ltr,
+      spacing: 1cm,
+      left_diagram,
+      right_diagram,
+    ),
+  )
+}
+
+Just like the real numbers, the complex numbers have a geometric meaning.
+A complex number $1 + 2 i$ can be thought of as a point in the complex plane (with one axis the _real axis_
+and the other axis the _imaginary axis_).
+
+XXX diagram
+
+If we
 multiply $1 + 2 i$ by $i$, we get:
 
 $ i (1 + 2 i) = i + 2 i^2 = -2 + i $
@@ -117,7 +216,7 @@ If $z = a + b i$, then $z overline(z) = a^2 + b^2$. The length or *modulus* of $
 
 The reciprocal, $1 / z$, of a complex number can be written nicely as well, by multiplying the numerator and denominator by $overline(z)$:
 
-$ 1 / z = overline(z) / (z overline(z)) = overline(z) / |z|^2 $
+$ 1 / z = overline(z) / (z overline(z)) = overline(z) / abs(z)^2 $
 
 == Euler's Formula and Polar Form for Complex Numbers
 

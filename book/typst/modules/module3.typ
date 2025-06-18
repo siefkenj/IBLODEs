@@ -20,10 +20,10 @@ In this module you will learn
 
 == Modelling
 
-In the previous two modules, we have seen how to model a single quantity using a differential equation. But,
+In the previous two modules, we modeled a single quantity. But,
 what happens when we have multiple interrelated quantities?
 
-Enter the _Yellow Meadow Ant_.
+To explore this, we will model populations of _Yellow Meadow Ants_.
 The Yellow Meadow Ant is a species of _farming_ ant.
 They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in
 return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of
@@ -48,9 +48,7 @@ with $c$ representing the growth of the aphid population due to the presence of 
 (this term has a positive effect on the growth of aphids since they will be protected from predators),
 and $d$ representing the natural death of aphids in the absence of ants (they will be eaten by other creatures if ants aren't around to protect them).
 
-The parameters $a, b, c, d >= 0$ depend on the species of ants and aphids
-and could be estimated from data. For now, we will use nice values of $a,b,c,d$, so the numbers don't
-get in our way.
+The parameters $a, b, c, d >= 0$ depend on the habitat. They could be from data, but we will instead use artificially nice values of $a,b,c,d$.
 //As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
 //In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
@@ -58,10 +56,10 @@ get in our way.
 
 == Simulation
 
-We will use a modified version of Euler's method (see @mod:simulation) to simulate solutions to a system of differential equations.
+We will use a modified version of Euler's method (see @mod:simulation) to simulate a solution to a system of differential equations.
 The change will be that we will use two tangent lines to estimate the next data point---one tangent line for ants and one for aphids.
 
-For now, we will assume $a=1, b=c=d=1 / 2$ and that we start out with $10$ (thousand) ants and $100$ (thousand) aphids.
+For now, we will assume $a=1, b=c=d=1 / 2$ and that units are in thousands (or ands and aphids). The initial population will be $10$ thousand ants and $100$ thousand aphids.
 Using a time step of $Delta = 0.25$, we compute
 $
   ("# Ants")'(0) &= 1 dot 10 + 1 / 2 dot 100 = 60 \
@@ -74,7 +72,7 @@ $
   ("# Aphids") (0.25) &approx 100 + 0.25 dot (-45) = 88.75
 $
 #let t_max = 1.75
-We can now repeat this processes at $t=0.25$ to find approximate values for the number of ants and aphids at $t=0.5$.
+We can now repeat this processes at $t=0.25$ to find approximate values for the number of ants and aphids at $t=0.5$, etc..
 Repeating until $t=#(t_max)$, we arrive at the following table of values:
 
 // #align(
@@ -125,7 +123,8 @@ Repeating until $t=#(t_max)$, we arrive at the following table of values:
   ),
 )
 
-Below is a graph of the simulation created from the table above. The solid curve represents the population (in thousands) of ants and the dashed curve represents the population (in thousands) of aphids.
+In the graph below, our simulated solution is shown with the solid curve representing
+the population of ants and the dashed curve representing the population of aphids.
 
 #align(
   center,
@@ -154,8 +153,8 @@ Below is a graph of the simulation created from the table above. The solid curve
 )
 
 #let _Delta2 = 0.05
-Of course, if we wanted a more accurate simulation of the populations, we could use a smaller step size. Below is a graph
-using a step size of $Delta = #(_Delta2)$ showing the new estimates (solid and dashed) along with the old estimates (dotted).
+Of course, if we wanted a more accurate simulation, we could use a smaller step size. Below is a graph
+using a step size of $Delta = #(_Delta2)$, The new, more accurate estimates are shown (solid and dashed) along with the old estimates (dotted).
 
 #let steps2 = calc.ceil(t_max / _Delta2)
 #let soln2 = solve_2d_ivp(F, v_0, steps2, Delta: _Delta2, method: "euler")
@@ -203,7 +202,7 @@ using a step size of $Delta = #(_Delta2)$ showing the new estimates (solid and d
 
 == Component and Phase Spaces
 
-The graph above is called a _component graph_. It shows the dependent variables (the populations of ants and aphids) vs. the independent
+The graphs above is called _component graphs_. They show the dependent variables (the populations of ants and aphids) vs. the independent
 variable (time).#footnote[It is actually two component graphs, one for the ants and one for the aphids.]
 
 However, we often want to consider the relationship _between the dependent variables_.
@@ -234,6 +233,8 @@ More analysis is needed to see if this observation is valid, but the graph point
 Plots like the one above are called _phase plots_ or _plots in phase space_. The space where each axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
 
 #show_def("component_and_phase")
+
+XXX We need a nice conclusion
 
 #example(
   prompt: [The Three-dimensional Lorenz Equations],
