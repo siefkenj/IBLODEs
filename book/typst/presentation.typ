@@ -18,23 +18,50 @@ Bernardo Galvão-Sousa (UTSG)\ Jason Siefken (UTSG)
   _Current Calendar Description_:
   - First order ordinary differential equations:
     - Direction fields,
-    - integrating factors,
-    - separable equations,
-    - homogeneous equations,
-    - exact equations,
-    - autonomous equations,
-    - modeling.
+    - Integrating factors,
+    - Separable equations,
+    - Homogeneous equations,
+    - Exact equations,
+    - Autonomous equations,
+    - Modelling.
     - Existence and uniqueness theorem.
   - Higher order equations:
     - Constant coefficient equations,
-    - reduction of order,
+    - Reduction of order,
     - Wronskian,
-    - method of undetermined coefficients,
-    - variation of parameters.
+    - Method of undetermined coefficients,
+    - Variation of parameters.
     - Solutions by series and integrals.
   - First order linear systems, fundamental matrices.
   - Non-linear equations, phase plane, stability. Applications in life and physical sciences and economics.
 ]
+
+// == Current Status
+
+// - \~ 700 students/semester
+// - 2nd Year Course for _non_-specialists
+
+// #columns(2)[
+//   _Current Calendar Description_:
+//   - First order ordinary differential equations:
+//     - Direction fields,
+//     - #text(fill: orange)[Integrating factors],
+//     - #text(fill: orange)[Separable equations],
+//     - Homogeneous equations,
+//     - #text(fill: red)[Exact equations],
+//     - Autonomous equations,
+//     - Modelling.
+//     - #text(fill: orange)[Existence and uniqueness theorem].
+//   - Higher order equations:
+//     - Constant coefficient equations,
+//     - #text(fill: red)[Reduction of order],
+//     - #text(fill: red)[Wronskian],
+//     - #text(fill: red)[Method of undetermined coefficients],
+//     - #text(fill: red)[Variation of parameters].
+//     - #text(fill: red)[Solutions by series and integrals].
+//   - First order linear systems, fundamental matrices.
+//   - Non-linear equations, phase plane, stability. Applications in life and physical sciences and economics.
+// ]
 
 == Current Status
 
@@ -45,19 +72,19 @@ Bernardo Galvão-Sousa (UTSG)\ Jason Siefken (UTSG)
   _Current Calendar Description_:
   - First order ordinary differential equations:
     - Direction fields,
-    - #text(fill: red)[integrating factors],
-    - separable equations,
-    - homogeneous equations,
-    - #text(fill: red)[exact equations],
-    - autonomous equations,
-    - #text(fill: green.darken(20%))[modeling].
-    - #text(fill: red)[Existence and uniqueness theorem].
+    - #text(fill: orange)[Integrating factors],
+    - #text(fill: orange)[Separable equations],
+    - Homogeneous equations,
+    - #text(fill: red)[Exact equations],
+    - Autonomous equations,
+    - #text(fill: green.darken(20%))[Modelling].
+    - #text(fill: orange)[Existence and uniqueness theorem].
   - Higher order equations:
     - Constant coefficient equations,
-    - #text(fill: red)[reduction of order],
+    - #text(fill: red)[Reduction of order],
     - #text(fill: red)[Wronskian],
-    - #text(fill: red)[method of undetermined coefficients],
-    - #text(fill: red)[variation of parameters].
+    - #text(fill: red)[Method of undetermined coefficients],
+    - #text(fill: red)[Variation of parameters].
     - #text(fill: red)[Solutions by series and integrals].
   - First order linear systems, fundamental matrices.
   - #text(fill: green.darken(20%))[Non-linear equations], #text(fill: green.darken(20%))[phase plane], #text(fill: green.darken(20%))[stability]. #text(fill: green.darken(20%))[Applications in life and physical sciences and economics].
@@ -99,8 +126,8 @@ Textbook (coming Fall 2025): https://github.com/siefkenj/IBLODEs
 
 We haven't talked about other aspects of the course:
 - Group tests
-- Capstone modelling project
 - Homeworks/tutorials
+- Capstone modelling project
 
 == Questions?
 
