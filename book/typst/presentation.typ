@@ -14,80 +14,32 @@ Bernardo Galvão-Sousa (UTSG)\ Jason Siefken (UTSG)
 - \~ 700 students/semester
 - 2nd Year Course for _non_-specialists
 
-#columns(2)[
-  _Current Calendar Description_:
-  - First order ordinary differential equations:
-    - Direction fields,
-    - Integrating factors,
-    - Separable equations,
-    - Homogeneous equations,
-    - Exact equations,
-    - Autonomous equations,
-    - Modelling.
-    - Existence and uniqueness theorem.
-  - Higher order equations:
-    - Constant coefficient equations,
-    - Reduction of order,
-    - Wronskian,
-    - Method of undetermined coefficients,
-    - Variation of parameters.
-    - Solutions by series and integrals.
-  - First order linear systems, fundamental matrices.
-  - Non-linear equations, phase plane, stability. Applications in life and physical sciences and economics.
-]
-
-// == Current Status
-
-// - \~ 700 students/semester
-// - 2nd Year Course for _non_-specialists
-
-// #columns(2)[
-//   _Current Calendar Description_:
-//   - First order ordinary differential equations:
-//     - Direction fields,
-//     - #text(fill: orange)[Integrating factors],
-//     - #text(fill: orange)[Separable equations],
-//     - Homogeneous equations,
-//     - #text(fill: red)[Exact equations],
-//     - Autonomous equations,
-//     - Modelling.
-//     - #text(fill: orange)[Existence and uniqueness theorem].
-//   - Higher order equations:
-//     - Constant coefficient equations,
-//     - #text(fill: red)[Reduction of order],
-//     - #text(fill: red)[Wronskian],
-//     - #text(fill: red)[Method of undetermined coefficients],
-//     - #text(fill: red)[Variation of parameters].
-//     - #text(fill: red)[Solutions by series and integrals].
-//   - First order linear systems, fundamental matrices.
-//   - Non-linear equations, phase plane, stability. Applications in life and physical sciences and economics.
-// ]
-
-== Current Status
-
-- \~ 700 students/semester
-- 2nd Year Course for _non_-specialists
+/// Color corresponding to the importance of a topic from -1 to 1.
+#let importance(v) = gradient.linear(red, green.darken(20%)).sample((v + 1) / 2 * 100%)
+#let highlight(v, it) = alternatives(it, text(fill: importance(v), it))
 
 #columns(2)[
   _Current Calendar Description_:
-  - First order ordinary differential equations:
-    - Direction fields,
-    - #text(fill: orange)[Integrating factors],
-    - #text(fill: orange)[Separable equations],
-    - Homogeneous equations,
-    - #text(fill: red)[Exact equations],
-    - Autonomous equations,
-    - #text(fill: green.darken(20%))[Modelling].
-    - #text(fill: orange)[Existence and uniqueness theorem].
-  - Higher order equations:
-    - Constant coefficient equations,
-    - #text(fill: red)[Reduction of order],
-    - #text(fill: red)[Wronskian],
-    - #text(fill: red)[Method of undetermined coefficients],
-    - #text(fill: red)[Variation of parameters].
-    - #text(fill: red)[Solutions by series and integrals].
-  - First order linear systems, fundamental matrices.
-  - #text(fill: green.darken(20%))[Non-linear equations], #text(fill: green.darken(20%))[phase plane], #text(fill: green.darken(20%))[stability]. #text(fill: green.darken(20%))[Applications in life and physical sciences and economics].
+  - #highlight(.5)[Direction fields],
+  - #highlight(-0.5)[Integrating factors],
+  - #highlight(-0.5)[Separable equations],
+  - #highlight(0)[Homogeneous equations],
+  - #highlight(-1)[Exact equations],
+  - #highlight(.5)[Autonomous equations],
+  - #highlight(1)[Modelling].
+  - #highlight(-0.5)[Existence and uniqueness theorem].
+  - #highlight(.5)[Higher order equations]:
+    - #highlight(.5)[Constant coefficient equations],
+    - #highlight(-1)[Reduction of order],
+    - #highlight(-1)[Wronskian],
+    - #highlight(-1)[Method of undetermined coefficients],
+    - #highlight(-1)[Variation of parameters].
+    - #highlight(-1)[Solutions by series and integrals].
+  - #highlight(.8)[First order linear systems, fundamental matrices].
+  - #highlight(1)[Non-linear equations]
+  - #highlight(1)[Phase plane],
+  - #highlight(1)[Stability]
+  - #highlight(.8)[Applications in life and physical sciences and economics].
 ]
 
 == Course Focus
@@ -97,6 +49,7 @@ Bernardo Galvão-Sousa (UTSG)\ Jason Siefken (UTSG)
 - Long-Term Behaviour and Stability
   - Emphasis on linearization of systems
 
+#v(1cm)
 Implementation Details:
 - Active learning in class (74 in-class exercises)
 - Simulations in Excel (Euler's Method)
