@@ -228,12 +228,15 @@ and the other axis the _imaginary axis_).
   })
 
 
-  align(
-    center,
-    stack(
-      dir: ltr,
-      spacing: 1cm,
-      left_diagram,
+  box(
+    width: 100%,
+    align(
+      center,
+      stack(
+        dir: ltr,
+        spacing: 1cm,
+        left_diagram,
+      ),
     ),
   )
 }
