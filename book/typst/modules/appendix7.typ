@@ -12,8 +12,6 @@ In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring
 
 == Preliminaries
 
-XXX This was copy-and-pasted from the PCE that Rhupert wrote for complex numbers. It needs to be edited and the figures need to be recreated.
-
 The imaginary numbers are built from a special symbol $i$, whose square is
 $i^2 = -1$. An _imaginary_ number is a pure multiple of $i$, like $b i$, where $b$ is real. A
 _complex_ number is a sum of a real and imaginary number, and generally
@@ -421,7 +419,7 @@ Geometrically, taking the complex conjugate of a complex number reflects it over
   )
 }
 
-If $z = a + b i$, then $z dot macron(z) = a^2 + b^2$.
+If $z = a + b i$, then $z dot macron(z) = a^2 + b^2$, which is a real number.
 The *absolute value* or *modulus* of a complex number $z = a + b i$ is
 $
   |z| = sqrt(a^2 + b^2) = sqrt(z dot macron(z)).
@@ -432,7 +430,7 @@ Here is a list of other nice properties of the complex conjugate (verify these b
 - $overline(z_1 / z_2) = macron(z)_1 / macron(z)_2$ #v(.4em)
 - $overline(z_1 + z_2) = macron(z)_1 + macron(z)_2$
 
-The reciprocal, $1 / z$, of a complex number can be simplified by multiplying the numerator and denominator by $overline(z)$:
+The reciprocal, $1 / z$, of a complex number can be simplified by multiplying the numerator and denominator by $macron(z)$:
 
 $
   1 / z = macron(z) / (z macron(z)) = macron(z) / abs(z)^2
@@ -566,38 +564,72 @@ is equal to $abs(z)$.
 //  ]
 //]
 
-Polar coordinates have a simple representation in terms of _Euler's formula_.
+_Euler's formula_ gives a valuable connection between a complex numbers and complex exponentials,
+and it's closely related to polar form.
 
 #show_def("eulers_formula")
 
+Suppose $z_1 = e^(i theta_1)$ and $z_2 = e^(i theta_2)$ are two complex numbers. By the rules of exponents,
+we know
+$
+  z_1 dot z_2 =
+  e^(i theta_1) e^(i theta_2) = e^(i (theta_1 + theta_2)).
+$
+More generally, if $z_1 = r_1 e^(i theta_1)$ and
+$z_2 = r_2 e^(i theta_2)$, then
+$
+  z_1 z_2 = r_1 r_2 e^(i (theta_1 + theta_2)) .
+$
 
-$ e^(i theta_1) e^(i theta_2) = e^(i (theta_1 + theta_2)) $
+This shows that when two complex numbers are multiplied, their angles are added adn their moduli are multiplied. (If $theta = 0$ or $pi$, then the complex number is real;
+test your intuition to make sure this formula does what you think for real numbers.)
 
-With the polar form $z = r e^(i theta)$ it is straightforward to see what multiplying
-complex numbers does. Suppose $z_1 = r_1 e^(i theta_1)$ and
-$z_2 = r_2 e^(i theta_2)$. Then
+== Applying Complex Numbers
 
-$ z_1 z_2 = r_1 r_2 e^(i (theta_1 + theta_2)) $
+When solving quadratics $a x^2 + b x +c=0$, we have a general solution in terms of the quadratic formula:
+$
+  x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2 a).
+$
+If $b^2-4 a c < 0$, there is no real solution to the equation, however, there is _always_ a complex solution.
 
-So multiplying $z_2$ by $z_1$ i) rotates $z_2$ counterclockwise about
-$0$ by $theta_1$ and ii) stretches $z_2$ by a factor of $r_1$.
+#example(
+  prompt: [
+    Solve the quadratic equation $x^2 + x + 2 = 0$.
+  ],
+  [
+    Using the quadratic formula, we have #h(1fr)
+    $
+      x = (-6 plus.minus sqrt(1^2 - 4 dot 1 dot 2)) / (2 dot 1) = (-6 plus.minus sqrt(-7)) / 2 = -3 plus.minus sqrt(7) / 2 i.
+    $
+  ],
+)
 
-== Solving Polynomial Equations
+In fact, all non-constant polynomials have roots in the complex numbers.
+#theorem(
+  title: "Fundamental Theorem of Algebra",
+  [
+    Every non-constant polynomial with complex coefficients has roots in the complex plane and the sum of the multiplicity of those
+    roots is equal to the degree of the polynomial.
+  ],
+)
 
-Since the square of any real number $x$ is positive, there are some polynomial
-equations which have no real solutions. For example, the equation $x^2 + 1 = 0$
-has no real solutions. If we allow solutions which are complex, then we can solve
-any polynomial. We can factor $x^2 + 1$ by a "difference" of squares:
+Because of the Fundamental Theorem of Algebra, complex numbers are useful in situations involving polynomials, like eigenvalue/eigenvector problems
+in linear algebra.
 
-$ x^2 + 1 = (x + i)(x - i) = 0 $
+#example(
+  prompt: [Find all eigenvalues and eigenvectors of $M=mat(0, -1; 1, 0)$],
+  [
+    Computing $det(M- lambda I) = lambda^2+1=0$, we see the eigenvalues of $M$ are $lambda=plus.minus i$.
 
-For the quadratic equation $x^2 + 2 x + 2 = 0$, the quadratic formula gives us the
-solutions:
+    To find the eigenvectors corresponding to $lambda =i$, we compute
+    $
+      "null"(M- i I) = "null"(mat(-i, -1; -1, -i)) = "span"{mat(1; -i)}.
+    $
+    Thus, the eigenvectors corresponding to $lambda = i$ are non-zero multiples of $mat(1; -i)$.
 
-$ z_1 = (-2 + sqrt(4 - 8)) / 2 = -1 + sqrt(-1) = -1 + i $
-$ z_2 = (-2 - sqrt(4 - 8)) / 2 = -1 - i $
+    Similarly, the eigenvectors corresponding to $lambda = -i$ are non-zero multiples of $mat(1; i)$.
+  ],
+)
 
-Notice that the real part of $z_1$ and $z_2$ are the same, and the imaginary
-parts are off by a factor of $-1$; in other words, $z_1 = overline(z_2)$.
-All roots of polynomials with real coefficients come in complex conjugate
-pairs.
+Note, when dealing with complex matrices, it can be more difficult to spot by eye when two vectors are linearly dependent. For example,
+${mat(-2; -1), mat(-1, -2)}$ is a linearly _independent_, but the set ${mat(-i; -1), mat(-1; -i)}$ is linearly _dependent_. (Verify this yourself by row reducing!)
