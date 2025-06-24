@@ -19,7 +19,7 @@ jobs:
               with:
                   source_paths: "book/typst/book.typ book/typst/slides.typ"
                   output_paths: "book/typst/book.pdf book/typst/slides.pdf"
-                  font_paths: "book/typst/fonts"
+                  fonts_path: "book/typst/fonts"
 
             # upload all the .wireit directories so that the test job can use them.
             - name: Upload build artifacts
