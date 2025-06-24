@@ -14,6 +14,13 @@ jobs:
         steps:
             - name: Checkout sources
               uses: actions/checkout@v4
+
+            - name: Debug paths 
+              run: |
+                  echo "Current directory: $(pwd)"
+                  echo "Files in current directory:"
+                  ls -la
+                  ls book/typst/book.typ book/typst/slides.typ
             - name: Compile Typst Files
               uses: siefkenj/compile-typst-action@main
               with:
