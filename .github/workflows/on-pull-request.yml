@@ -21,7 +21,6 @@ jobs:
                   echo "Files in current directory:"
                   ls -la
                   ls book/typst/book.typ book/typst/slides.typ
-                  ls /usr/github/workspace
             - name: Compile Typst Files
               uses: siefkenj/compile-typst-action@main
               with:
