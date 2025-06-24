@@ -15,7 +15,7 @@ jobs:
             - name: Checkout sources
               uses: actions/checkout@v4
             - name: Compile Typst Files
-              uses: siefkenj/compile-typst-action@latest
+              uses: siefkenj/compile-typst-action@main
               with:
                   source_paths: "book/typst/book.typ book/typst/slides.typ"
                   output_paths: "book/typst/book.pdf book/typst/slides.pdf"
