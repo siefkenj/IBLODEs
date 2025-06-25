@@ -36,7 +36,7 @@
     .replace("GRAD_STRING", grad_string)
   image(bytes(gradient_svg), width: width, height: height, fit: "stretch")
 }
-
+#{
 
 #let make_cover(title, subtitle: [], authors: ([],)) = {
   let font = ("NimbusSanL",) //"Helonia", "Droid Sans", "DejaVu Sans")
