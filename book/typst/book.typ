@@ -336,6 +336,9 @@
     title: [Spreadsheets and Programming],
     [
       #include "modules/appendix1.typ"
+      #import "modules/appendix1-practice-problems.typ": questions
+      #exercises(questions, module_number: 13)
+      #solutions(questions, module_number: 13)
     ],
   )
 
@@ -344,6 +347,9 @@
     title: [Separable Equations],
     [
       #include "modules/appendix2.typ"
+      #import "modules/appendix2-practice-problems.typ": questions
+      #exercises(questions, module_number: 14)
+      #solutions(questions, module_number: 14)
     ],
   )
 
@@ -352,6 +358,9 @@
     title: [Integrating Factors],
     [
       #include "modules/appendix3.typ"
+      #import "modules/appendix3-practice-problems.typ": questions
+      #exercises(questions, module_number: 15)
+      #solutions(questions, module_number: 15)
     ],
   )
 
@@ -360,6 +369,9 @@
     title: [Series Solutions],
     [
       #include "modules/appendix4.typ"
+      #import "modules/appendix4-practice-problems.typ": questions
+      #exercises(questions, module_number: 16)
+      #solutions(questions, module_number: 16)
     ],
   )
 
@@ -368,6 +380,9 @@
     title: [Reduction of Order],
     [
       #include "modules/appendix5.typ"
+      #import "modules/appendix5-practice-problems.typ": questions
+      #exercises(questions, module_number: 17)
+      #solutions(questions, module_number: 17)
     ],
   )
 
@@ -376,6 +391,9 @@
     title: [Linear Algebra],
     [
       #include "modules/appendix6.typ"
+      #import "modules/appendix6-practice-problems.typ": questions
+      #exercises(questions, module_number: 18)
+      #solutions(questions, module_number: 18)
     ],
   )
 
@@ -384,6 +402,9 @@
     title: [Complex Numbers],
     [
       #include "modules/appendix7.typ"
+      #import "modules/appendix7-practice-problems.typ": questions
+      #exercises(questions, module_number: 19)
+      #solutions(questions, module_number: 19)
     ],
   )
 
