@@ -145,6 +145,8 @@ XXX
   The concentration when the tank is full is approximately
   $11.86 / 100 = 0.1186$ kg/litre, and we started
   with $1 / 6$ or approximately 0.1667 kg/litre.
+
+  XXX Figure
   //mbxlatex \begin{myfig}
   //mbxlatex \capstart
   //mbxlatex \diffyincludegraphics{width=3in}{width=4.5in}{linear-salt-graph}
@@ -153,43 +155,6 @@ XXX
   ]
 )
 
-== Exercises
-
-In the exercises, feel free to leave answer as a definite integral if a
+In the practice problems, feel free to leave answer as a definite integral if a
 closed form solution cannot be found. If you can find a closed form
 solution, you should give that.
-
-+ Solve $y' + x y = x$.
-
-+ Solve $y' + 6 y = e^x$.
-
-+ Solve $y' + 3 x^2 y = sin(x) e^{ - x^3 }$, with $y(0) = 1$.
-
-+ Solve $y' + cos(x) y = cos(x)$.
-
-+ Solve $1 / (x^2 + 1) y' + x y = 3$, with $y(0) = 0$.
-
-+ Suppose there are two lakes located on a stream. Clean water flows into the first lake, then the water from the first lake flows into the second lake, and then water from the second lake flows further downstream. The in and out flow from each lake is 500 litres per hour. The first lake contains 100 thousand litres of water and the second lake contains 200 thousand litres of water. A truck with 500 kg of toxic substance crashes into the first lake. Assume that the water is being continually mixed perfectly by the stream.
-  + Find the concentration of toxic substance as a function of time in both lakes.
-  + When will the concentration in the first lake be below 0.001 kg per litre?
-  + When will the concentration in the second lake be maximal?
-
-+ Newton's law of cooling states that $(d x)/(d t) = -k (x - A)$ where $x$ is the temperature, $t$ is time, $A$ is the ambient temperature, and $k > 0$ is a constant. Suppose that $A = A_0 cos(omega t)$ for some constants $A_0$ and $omega$. That is, the ambient temperature oscillates (for example night and day temperatures).
-  + Find the general solution.
-  + In the long term, will the initial conditions make much of a difference? Why or why not?
-
-+ Initially 5 grams of salt are dissolved in 20 litres of water. Brine with concentration of salt 2 grams of salt per litre is added at a rate of 3 litres a minute. The tank is mixed well and is drained at 3 litres a minute. How long does the process have to continue until there are 20 grams of salt in the tank?
-
-+ Initially a tank contains 10 litres of pure water. Brine of unknown (but constant) concentration of salt is flowing in at 1 litre per minute. The water is mixed well and drained at 1 litre per minute. In 20 minutes there are 15 grams of salt in the tank. What is the concentration of salt in the incoming brine?
-
-+ Solve $y' + 3 x^2 y = x^2$.
-// #exsol(
-//   $y = C e^{ - x^3 } + 1 / 3$
-// )
-
-+ Solve $y' + 2 sin(2 x) y = 2 sin(2 x)$, $y(pi / 2) = 3$.
-// #exsol(
-//   $y = 2 e^{ cos(2 x) + 1 } + 1$
-// )
-
-+ Suppose a water tank is being pumped out at 3 L/min. The water tank starts at 10 L of clean water. Water with toxic substance is flowing into the tank at 2 L/min, with concentration $20 t$ g/L at time $t$. When the tank is half empty, how many grams of toxic substance are in the tank (assuming perfect mixing
