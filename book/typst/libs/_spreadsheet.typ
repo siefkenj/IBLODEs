@@ -126,7 +126,7 @@
   cells: (),
   select_cells: (),
   additional_draw_function: cell_extent => { },
-  sans: it => text(font: "Nimbus Sans", it),
+  sans: it => text(font: "NimbusSanL", it),
 ) = {
   let cell_width = 5.3em
   let cell_height = 1.5em
