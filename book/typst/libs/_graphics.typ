@@ -47,7 +47,16 @@
 ///  - `spacing`: The spacing between the slopes drawn for the slope field.
 ///  - stroke_style: The stroke style for the slopes.
 ///  - `scale_segments`: Additional scaling factor to change the length of the slope segments.
-#let slope_field(F, xlim: (0, 1), ylim: (0, 1), spacing: auto, stroke_style: .5pt, scale_segments: auto, ..lq_args) = {
+#let slope_field(
+  F,
+  xlim: (0, 1),
+  ylim: (0, 1),
+  spacing: auto,
+  stroke_style: .5pt,
+  scale_segments: auto,
+  slope_color: auto,
+  ..lq_args,
+) = {
   let stroke_style = stroke(stroke_style)
   let xmin = xlim.at(0)
   let xmax = xlim.at(1)
@@ -160,11 +169,15 @@
       tip: none,
       pivot: start,
       stroke: .5pt,
-      color: (x, y) => {
-        let angle = calc.atan2(1, F(x, y))
-        let raw_angle = angle.rad()
-        let color_angle = (calc.tanh(raw_angle / 1.8) + 1) / 1.5
-        color_angle
+      color: if slope_color != auto {
+        slope_color
+      } else {
+        (x, y) => {
+          let angle = calc.atan2(1, F(x, y))
+          let raw_angle = angle.rad()
+          let color_angle = (calc.tanh(raw_angle / 1.8) + 1) / 1.5
+          color_angle
+        }
       },
       min: 0,
       max: 1,
@@ -179,7 +192,7 @@
   if v == 0 {
     return 0
   }
-  calc.tanh(v/100)
+  calc.tanh(v / 100)
 }
 
 
@@ -218,18 +231,18 @@
       let val_x = if val_x == 0 { 0.0 } else { val_x }
       let val_y = if val_y == 0 { 0.0 } else { val_y }
 
-      let mag =  calc.sqrt(val_x*val_x + val_y*val_y)
+      let mag = calc.sqrt(val_x * val_x + val_y * val_y)
       let scale = if mag == 0 {
         0
       } else {
         1 / mag * _sigmoid(mag)
       }
 
-      (val_x*scale ,val_y*scale)
+      (val_x * scale, val_y * scale)
     },
   )
 
-  let magnitudes = directions.map(d => d.map(v => calc.sqrt(v.at(0)*v.at(0) + v.at(1)*v.at(1))))
+  let magnitudes = directions.map(d => d.map(v => calc.sqrt(v.at(0) * v.at(0) + v.at(1) * v.at(1))))
 
   lq.diagram(
     xlim: xlim,
@@ -247,3 +260,18 @@
   )
 }
 
+
+// TESTING FUNCTIONS
+
+#slope_field(
+  (x, y) => 1 / (x + if calc.abs(x) < 0.001 { 0.001 } else { 0 }),
+  slope_color: red,
+  xlim: (-.3, 1.1),
+  ylim: (-.3, 3.3),
+  width: 7cm,
+  height: 3cm,
+  spacing: (.06, .25),
+  scale_segments: .05,
+  xlabel: $t$,
+  ylabel: lq.label($P$, dx: -1cm),
+),
