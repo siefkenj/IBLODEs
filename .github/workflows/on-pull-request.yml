@@ -1,5 +1,3 @@
-name: Build and Deploy Book and Slides
-
 on:
     push:
         branches: ["main"]
