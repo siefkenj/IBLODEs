@@ -58,7 +58,7 @@ jobs:
             - name: Merge PDFs into website
               run: |
                   mkdir -p website/landing-page/assets/textbook
-                  cp book/typst/*.pdf website/landing-page/assets/textbook/*.pdf
+                  cp book/typst/*.pdf website/landing-page/assets/textbook/
 
             - name: Upload artifact
               uses: actions/upload-artifact@v4
