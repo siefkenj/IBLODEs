@@ -5,7 +5,7 @@
 
 #label_appendix(<app:reduction_of_order>)
 
-This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on Diffy Qs: Differential Equations for Engineers"].
+This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on Diffy Qs"].
 
 In general finding solutions to differential equations is difficult, if not impossible.
 
