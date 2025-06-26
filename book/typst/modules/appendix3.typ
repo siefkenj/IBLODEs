@@ -5,7 +5,7 @@
 
 #label_appendix(<app:integrating_factor>)
 
-This appendix is adapted from XXX Jiri Lebl Diffy Qs.
+This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on Diffy Qs"].
 
 
 One of the most important types of equations we will learn to solve are the so-called *linear equations*. In fact, the majority of the course is about linear equations. In this section we focus on the *first order linear equation*. 

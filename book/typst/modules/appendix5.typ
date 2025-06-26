@@ -5,6 +5,8 @@
 
 #label_appendix(<app:reduction_of_order>)
 
+This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on Diffy Qs: Differential Equations for Engineers"].
+
 In general finding solutions to differential equations is difficult, if not impossible.
 
 However, if we already know one solution to a differential equation, we can use that solution to simplify the differential equation and make it easier to find the other solutions. The method for doing this is called *reduction of order*.
