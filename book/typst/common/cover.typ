@@ -37,9 +37,8 @@
   image(bytes(gradient_svg), width: width, height: height, fit: "stretch")
 }
 
-
 #let make_cover(title, subtitle: [], authors: ([],)) = {
-  let font = ("Helonia", "Droid Sans", "DejaVu Sans")
+  let font = ("NimbusSanL",) //"Helonia", "Droid Sans", "DejaVu Sans")
   set text(font: font)
   let title_displacement = 1in
   let title_height = 0.8in

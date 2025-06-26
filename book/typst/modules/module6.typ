@@ -6,7 +6,7 @@
 
 #label_module(<mod:real>)
 
-In this module you will learn
+In this module you will learn:
 - How to find explicit solutions to systems of differential equations with constant coefficients by using the eigenvalues and eigenvectors of the coefficient matrix.
 - How the real, distinct eigenvalues of a system of differential equations with constant coefficients are related to the stability of the equilibrium solutions.
 
@@ -56,7 +56,7 @@ $
   mat(x'; y') = mat(2, 1; 1, 2) mat(x; y)
 $
 
-We can further refine our matrix form by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
+We can further refine our matrix equation by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
 of a multivariable function is the derivative of each of its components, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
 the system can be rewritten as
 $
@@ -90,11 +90,11 @@ In other words, $arrow(r)$ must be an eigenvector of $mat(2, 1; 1, 2)$ with eige
 
 Computing, we see the eigenvectors of $mat(2, 1; 1, 2)$ are
 $
-  arrow(v_1) = mat(1; 1) " with eigenvalue " 3 wide "and" wide arrow(v_2) = mat(1; -1) " with eigenvalue " -1.
+  arrow(v_1) = mat(1; 1) " with eigenvalue " 3 wide "and" wide arrow(v_2) = mat(1; -1) " with eigenvalue " 1.
 $
 Thus we guess solutions
 $
-  arrow(r_1)(t) = mat(1; 1) e^(3 t) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = mat(1; -1) e^(-t) = mat(e^(-t); -e^(-t)).
+  arrow(r_1)(t) = mat(1; 1) e^(3 t) = mat(e^(3 t); e^(3 t)) wide "and" wide arrow(r_2)(t) = mat(1; -1) e^(t) = mat(e^(t); -e^(t)).
 $
 
 Verifying, we see that both $arrow(r_1)$ and $arrow(r_2)$ are solutions!
@@ -167,8 +167,8 @@ and so $alpha space.thin arrow(s)_1 + beta space.thin arrow(s)_2$ is also a solu
 
 Given the above theorem, we can find all sorts of solutions to $arrow(r)'(t) = mat(2, 1; 1, 2) arrow(r)(t)$, like
 $
-  arrow(r)_1(t) + 4 space.thin arrow(r)_2(t) = mat(e^(3 t) + 4space.thin e^(-t); e^(3 t) - 4space.thin e^(-t)) wide "or" wide
-  -2 space.thin arrow(r)_1(t) + 3 space.thin arrow(r)_2(t) = mat(-2space.thin e^(3 t) + 3space.thin e^(-t); -2space.thin e^(3 t) - 3space.thin e^(-t)).
+  arrow(r)_1(t) + 4 space.thin arrow(r)_2(t) = mat(e^(3 t) + 4space.thin e^(t); e^(3 t) - 4space.thin e^(t)) wide "or" wide
+  -2 space.thin arrow(r)_1(t) + 3 space.thin arrow(r)_2(t) = mat(-2space.thin e^(3 t) + 3space.thin e^(t); -2space.thin e^(3 t) - 3space.thin e^(t)).
 $
 
 But, have we found all the solutions? To answer that question we need to dive deeper into the linear algebra of the solution space.
@@ -176,14 +176,14 @@ But, have we found all the solutions? To answer that question we need to dive de
 == Linear Algebra of the Solution Space
 
 You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, $cal(F)^n$, also forms a vector space.
-To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector" in a normal vector space, and
+To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector", and
 if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + beta dot g$.#footnote(
   [
     To fully check, you must check that all the _vector space_ axioms hold.
   ],
 )
 
-The space $cal(F)^1$ is _large_. In fact, it is _infinite dimensional_, but the theorems of linear algebra still apply (provided the proper definitions).
+The space $cal(F)^n$ is _large_. In fact, it is _infinite dimensional_, but the theorems of linear algebra still apply (provided the proper definitions).
 
 #show_def("linear_dependence_solutions")
 
@@ -220,22 +220,77 @@ The space $cal(F)^1$ is _large_. In fact, it is _infinite dimensional_, but the 
   ],
 )
 
-XXX Mention Wronskian?
+A historical technique for determining whether a set of functions is linearly independent is to compute the determinant of the _Wronskian matrix_;#footnote[See https://en.wikipedia.org/wiki/Wronskian]
+while occasionally useful, we will stick with direct approaches in this text.
 
 With the definition of linear independence/dependence pinned down, we can apply the usual Linear Algebra definitions of subspace, basis, and dimension to $cal(F)^n$.
 
+=== Dimension of the solution space
 
-To recap what we have learned so far:
-- We can form linear combinations of solutions to find other solutions of the system.
-- The solution space of a system of differential equations with constant coefficients is a vector space.
-- We have a definition of linear dependence of solutions.
+So far, we have established that solutions to matrix differential equations form a subspace, and as a subspace space, they must have a dimension#footnote[This is a powerful theorem coming from abstract Linear Algebra
+  and relying on the axiom of choice. We will just accept this theorem as fact.]. Our next goal will be to establish the dimension of the solution space to a matrix differential equation
+and then to find a general solution.
 
+The following theorem will give us a place to start.
 
+#theorem(
+  title: [Existence & Uniqueness 1],
+  [
+    The system of differential equations represented by $arrow(r)'(t) = M arrow(r)(t) + arrow(p)$ (or the single differential equation $y' = a y + b$) has a unique solution passing through every initial condition.
+    Further, the domain of every solution is $RR$.
+  ],
+)
 
-=== Finding a basis of solutions using eigenvalues and eigenvectors
+Now, suppose that $M$ is an $n times n$ matrix. Let $cal(S)$ be the set of all solutions to $arrow(r)' = M arrow(r)$.
 
+The above theorem states that every initial value problem
+$
+  arrow(r)' = M arrow(r) wide "and" wide arrow(r)(t_0) = mat(x_1; dots.v; x_n)
+$
+has a unique solution. Thus, the space of all solutions can be no "bigger" than the set of all initial conditions. Notice now that we have $n+1$ parameters to choose for
+initial conditions. We have $n$ choices coming from $x_1$, ..., $x_n$ with one more choice coming from the value of $t_0$.
+
+This means that the dimension of $cal(S)$ is bounded above by $n+1$.#footnote[To make this argument fully rigorous, you need to establish the existence of a smooth map between the
+  space of initial conditions and the space of solutions and then invoke the theorem that smooth maps cannot increase the dimension of a space.] But, we can do slightly better.
+
+#theorem(
+  title: [Solutions pass through $t=0$],
+  [
+    Let $arrow(w)$ be a solution to the initial value problem $arrow(r)' = M arrow(r)$ with initial condition $arrow(r)(t_0) = arrow(r)_0$.
+    Then, $arrow(w)$ is _also_ the solution to the initial value problem $arrow(r)'=M arrow(r)$ with initial condition $arrow(r)(0) = arrow(w)_0$. In particular,
+    $arrow(w)_0 = arrow(w)(0)$.
+  ],
+)
+_Proof:_ Let $arrow(w)$ be a solution to the initial value problem $arrow(r)' = M arrow(r)$ with initial condition $arrow(r)(t_0) = arrow(r)_0$. Based on the Existence & Uniqueness Theorem 1,
+we know $arrow(w)_0=arrow(w)(0)$ is defined. Further, since there is a solution to every initial value problem, $arrow(r)' = M arrow(r)$ with $arrow(r)(0)=arrow(w)_0$ has a solution.
+Finally, because every solution passing through a set of initial conditions is unique, since $arrow(w)(t)$ already passes through $arrow(w)_0$, we must have that
+$arrow(w)$ is the unique solution to the initial value problem $arrow(r)' = M arrow(r)$ with initial condition $arrow(r)(0) = arrow(w)_0$. $square.filled$
+
+The preceding theorem shrinks the space of solutions. Originally we knew that all choices of $x_1$, ..., $x_n$, *and* $t_0$ gave a solution. But now we know
+that fixing $t_0=0$ gives us all the same solutions. Thus, by making $n$ choices, we can uniquely determine a solution. This means
+$
+  dim(cal(S)) <= n.
+$
+
+This argument can be slightly generalized to the following theorem.
+#theorem(
+  title: [Solution Space Upper Bound],
+  [
+    Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t) + arrow(p)$. Then
+    $
+      dim(cal(S)) <= n.
+    $
+  ],
+)
+
+=== Finding a basis of solutions
+
+Recall that $M$ is an $n times n$ matrix and that $cal(S)$ be the set of all solutions to $arrow(r)' = M arrow(r)$. We have established $dim(cal(S)) <= n$.
+We will now try to find the exact dimension of $cal(S)$ and find a basis for $cal(S)$.
 
 Before reading this part of the module, you should work through the core exercises @ex:basic_system[] -- @ex:system_eigen_solutions[] to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
+
+
 
 Consider a system of differential equations with constant coefficients:
 $ (dif arrow(r)) / (dif t) = M arrow(r), $
@@ -266,37 +321,6 @@ This means that we can find a solution of the system of differential equations b
 
 Since the set of all eigenvectors of a matrix $M in RR^(N times N)$ form a basis#footnote([This applies only if the matrix is diagnoalizable. In this course we will only consider diagnoalizable matrices. For non-diagonalizable matrices, see REFERENCE XXX.]) of $RR^N$, we now have an algorithm to find a set of $N$ linearly independent solutions of a $N times N$ system of differential equations with constant coefficients.
 
-
-=== Dimension of the solution space
-
-
-From the previous parts of this module, we have learned that the solution space is a vector space with _dimension greater or equal to $N$_, where $N$ is the number of dependent variables in the system.
-
-We now want to show that the solution space is a vector space with _dimension less than or equal to $N$_.
-
-The first step is to show that the system of differential equations has a unique solution passing through every initial condition.
-
-#theorem(
-  title: [Existence & Uniqueness 1],
-  [
-    The system of differential equations represented by $arrow(r)'(t) = M arrow(r)(t) + arrow(p)$ (or the single differential equation $y' = a y + b$) has a unique solution passing through every initial condition.
-    Further, the domain of every solution is $RR$.
-  ],
-)
-
-This implies that the solution space is a vector space with dimension less than or equal to $N+1$, since each solution is uniquely determined by its initial condition $(t_0, x_1, dots, x_N) in RR^(N+1)$.
-
-However, the Theorem above also concludes that the domain of every solution is $RR$, which means that every solution is defined for $t=0$ and so can be uniquely determined by its initial condition $(0, x_1, dots, x_N)$, which forms a subspace of dimension $N$.
-
-This means that the solution space is a vector space with dimension less than or equal to $N$.
-Thus we have shown that the solution space is a vector space with dimension equal to $N$.
-
-#theorem(
-  title: [Solution Space Dimension],
-  [
-    The solution space of a system of differential equations with constant coefficients $arrow(r)'(t) = M arrow(r)(t) + arrow(p)$ is a vector space with dimension equal to the number of dependent variables in the system.
-  ],
-)
 
 
 === Solutions of systems with real eigenvalues

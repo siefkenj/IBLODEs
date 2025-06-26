@@ -176,6 +176,16 @@
         where $arrow(x)=mat(x_1; x_2; dots.v)$ and $M$ is a matrix with real entries.
       ],
     ),
+    eulers_formula: definition_env(
+      title: "Euler's Formula",
+      label: <def_eulers_formula>,
+      [
+        Euler's formula states that for any real number $t$,
+        $
+          e^(i t) = cos(t) + i sin(t).
+        $
+      ],
+    ),
   )
 
   /// Show the definition with the given name. `name` is a string.
