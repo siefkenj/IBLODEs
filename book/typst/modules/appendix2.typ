@@ -8,7 +8,7 @@
 
 #label_appendix(<app:separable>)
 
-This appendix is adapted from XXX Jiri Lebl Diffy Qs.
+This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on Diffy Qs"].
 
 
 When a differential equation is of the form $y' = f(x)$, we integrate: $y = integral f(x) d x + C$.
