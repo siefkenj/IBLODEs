@@ -96,7 +96,7 @@
     let appendix_number = 0
     for (i, item_heading) in appendix_headings.enumerate() {
       if item_heading.level == 1 {
-      appendix_number += 1
+        appendix_number += 1
       }
       //let module_number = i + 1
       let loc = item_heading.location()
@@ -337,8 +337,8 @@
     [
       #include "modules/appendix1.typ"
       #import "modules/appendix1-practice-problems.typ": questions
-      #exercises(questions, module_number: 13)
-      #solutions(questions, module_number: 13)
+      #exercises(questions, module_number: "A")
+      #solutions(questions, module_number: "A", type: "Appendix")
     ],
   )
 
@@ -348,8 +348,8 @@
     [
       #include "modules/appendix2.typ"
       #import "modules/appendix2-practice-problems.typ": questions
-      #exercises(questions, module_number: 14)
-      #solutions(questions, module_number: 14)
+      #exercises(questions, module_number: "B")
+      #solutions(questions, module_number: "B", type: "Appendix")
     ],
   )
 
@@ -359,8 +359,8 @@
     [
       #include "modules/appendix3.typ"
       #import "modules/appendix3-practice-problems.typ": questions
-      #exercises(questions, module_number: 15)
-      #solutions(questions, module_number: 15)
+      #exercises(questions, module_number: "C")
+      #solutions(questions, module_number: "C", type: "Appendix")
     ],
   )
 
@@ -370,8 +370,8 @@
     [
       #include "modules/appendix4.typ"
       #import "modules/appendix4-practice-problems.typ": questions
-      #exercises(questions, module_number: 16)
-      #solutions(questions, module_number: 16)
+      #exercises(questions, module_number: "D")
+      #solutions(questions, module_number: "D", type: "Appendix")
     ],
   )
 
@@ -381,8 +381,8 @@
     [
       #include "modules/appendix5.typ"
       #import "modules/appendix5-practice-problems.typ": questions
-      #exercises(questions, module_number: 17)
-      #solutions(questions, module_number: 17)
+      #exercises(questions, module_number: "E")
+      #solutions(questions, module_number: "E", type: "Appendix")
     ],
   )
 
@@ -392,8 +392,8 @@
     [
       #include "modules/appendix6.typ"
       #import "modules/appendix6-practice-problems.typ": questions
-      #exercises(questions, module_number: 18)
-      #solutions(questions, module_number: 18)
+      #exercises(questions, module_number: "F")
+      #solutions(questions, module_number: "F", type: "Appendix")
     ],
   )
 
@@ -403,8 +403,8 @@
     [
       #include "modules/appendix7.typ"
       #import "modules/appendix7-practice-problems.typ": questions
-      #exercises(questions, module_number: 19)
-      #solutions(questions, module_number: 19)
+      #exercises(questions, module_number: "G")
+      #solutions(questions, module_number: "G", type: "Appendix")
     ],
   )
 

@@ -119,11 +119,11 @@
       ],
     ),
     linear_dependence_solutions: definition_env(
-      title: "Linear Dependence & Independence of Solutions",
+      title: "Linear Dependence & Independence of Functions",
       label: <def_linear_dependence_solutions>,
       [
-        The functions $arrow(v)_1(t), arrow(v)_2(t), dots, arrow(v)_(n)(t)$ are _linearly dependent_ if there is a non-trivial linear combination of $arrow(v)_1(t), dots, arrow(v)_(n)(t)$ that equals the zero vector for all $t in RR$, i.e. if there are constants $c_1, dots, c_n$ not all zero such that
-        $c_1 arrow(v)_1(t) + c_2 arrow(v)_2(t) + dots + c_n arrow(v)_(n)(t) = 0$ for all $t in RR$.
+        The functions $arrow(v)_1(t), arrow(v)_2(t), dots, arrow(v)_(n)(t)$ are _linearly dependent_ if there is a non-trivial
+        linear combination of $arrow(v)_1(t), dots, arrow(v)_(n)(t)$ that equals the zero for all $t in RR$.
 
         Otherwise they are _linearly independent_.
       ],
@@ -132,11 +132,12 @@
       title: "Eigen Solution",
       label: <def_eigensolution>,
       [
-        Given a system of differential equations
-        $(dif arrow(r)) / (dif t) = M arrow(r),$
-        where $M$ is a matrix with real entries, and an eigenvalue-eigenvector pair $(lambda, arrow(v))$ of the matrix $M$, we define the function
-        $arrow(r)(t) = arrow(v) e^(lambda t)$
-        to be an _eigen solution_ of the system.
+        Let $M$ be an $n times n$ matrix and let $arrow(v)$ be an eigenvector for $M$ with associated eigenvalue $lambda$.
+        The function
+        $
+          arrow(r)(t) = arrow(v) e^(lambda t)
+        $
+        is called an _eigen solution_ of the differential equation $arrow(r)'=M arrow(r)$.
       ],
     ),
     eulers_method: definition_env(

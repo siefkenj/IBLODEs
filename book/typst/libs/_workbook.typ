@@ -326,11 +326,14 @@
       stroke: (left: thm_color + 1.5pt),
       inset: 7pt,
       {
-        text(
-          [Theorem (#box(title))],
-          fill: color.purple,
-          weight: "bold",
-          font: sans_font,
+        block(
+          sticky: true,
+          text(
+            [Theorem (#box(title))],
+            fill: color.purple,
+            weight: "bold",
+            font: sans_font,
+          ),
         )
         block(content)
       },
@@ -639,8 +642,8 @@
 /// Display solutions for exercises.
 ///
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
-#let solutions(questions, module_number: 0) = {
-  [== Solutions for Module #module_number]
+#let solutions(questions, module_number: 0, type: "Module") = {
+  [== Solutions for #type #module_number]
   columns(
     2,
     enum(

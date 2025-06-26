@@ -175,7 +175,7 @@ But, have we found all the solutions? To answer that question we need to dive de
 
 == Linear Algebra of the Solution Space
 
-You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, $cal(F)^n$, also forms a vector space.
+You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, denoted $cal(F)^n$, also forms a vector space.
 To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector", and
 if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + beta dot g$.#footnote(
   [
@@ -221,7 +221,7 @@ The space $cal(F)^n$ is _large_. In fact, it is _infinite dimensional_, but the 
 )
 
 A historical technique for determining whether a set of functions is linearly independent is to compute the determinant of the _Wronskian matrix_;#footnote[See https://en.wikipedia.org/wiki/Wronskian]
-while occasionally useful, we will stick with direct approaches in this text.
+while appeal to the Wronskian is occasionally useful, we will stick with direct approaches in this text.
 
 With the definition of linear independence/dependence pinned down, we can apply the usual Linear Algebra definitions of subspace, basis, and dimension to $cal(F)^n$.
 
@@ -242,12 +242,11 @@ The following theorem will give us a place to start.
 )
 
 Now, suppose that $M$ is an $n times n$ matrix. Let $cal(S)$ be the set of all solutions to $arrow(r)' = M arrow(r)$.
-
 The above theorem states that every initial value problem
 $
   arrow(r)' = M arrow(r) wide "and" wide arrow(r)(t_0) = mat(x_1; dots.v; x_n)
 $
-has a unique solution. Thus, the space of all solutions can be no "bigger" than the set of all initial conditions. Notice now that we have $n+1$ parameters to choose for
+has a unique solution. Thus, the space of all solutions can be no "bigger" than the set of all initial conditions. Notice that we have $n+1$ parameters to choose for
 initial conditions. We have $n$ choices coming from $x_1$, ..., $x_n$ with one more choice coming from the value of $t_0$.
 
 This means that the dimension of $cal(S)$ is bounded above by $n+1$.#footnote[To make this argument fully rigorous, you need to establish the existence of a smooth map between the
@@ -257,7 +256,7 @@ This means that the dimension of $cal(S)$ is bounded above by $n+1$.#footnote[To
   title: [Solutions pass through $t=0$],
   [
     Let $arrow(w)$ be a solution to the initial value problem $arrow(r)' = M arrow(r)$ with initial condition $arrow(r)(t_0) = arrow(r)_0$.
-    Then, $arrow(w)$ is _also_ the solution to the initial value problem $arrow(r)'=M arrow(r)$ with initial condition $arrow(r)(0) = arrow(w)_0$. In particular,
+    Then, $arrow(w)$ is _also_ the solution to the initial value problem $arrow(r)'=M arrow(r)$ with initial condition $arrow(r)(0) = arrow(w)_0$ where
     $arrow(w)_0 = arrow(w)(0)$.
   ],
 )
@@ -266,17 +265,18 @@ we know $arrow(w)_0=arrow(w)(0)$ is defined. Further, since there is a solution 
 Finally, because every solution passing through a set of initial conditions is unique, since $arrow(w)(t)$ already passes through $arrow(w)_0$, we must have that
 $arrow(w)$ is the unique solution to the initial value problem $arrow(r)' = M arrow(r)$ with initial condition $arrow(r)(0) = arrow(w)_0$. $square.filled$
 
-The preceding theorem shrinks the space of solutions. Originally we knew that all choices of $x_1$, ..., $x_n$, *and* $t_0$ gave a solution. But now we know
-that fixing $t_0=0$ gives us all the same solutions. Thus, by making $n$ choices, we can uniquely determine a solution. This means
+The preceding theorem shrinks the space of solutions. Originally we knew that the set of all solutions can be obtained by solving initial value problems
+for all choices of $x_1$, ..., $x_n$, *and* $t_0$. But now we know
+that fixing $t_0=0$ gives us the same solutions. Thus, by making $n$ choices, we can determine a solution. This means
 $
   dim(cal(S)) <= n.
 $
 
-This argument can be slightly generalized to the following theorem.
+This argument leads to the following theorem.
 #theorem(
   title: [Solution Space Upper Bound],
   [
-    Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t) + arrow(p)$. Then
+    Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t)$. Then
     $
       dim(cal(S)) <= n.
     $
@@ -285,50 +285,55 @@ This argument can be slightly generalized to the following theorem.
 
 === Finding a basis of solutions
 
-Recall that $M$ is an $n times n$ matrix and that $cal(S)$ be the set of all solutions to $arrow(r)' = M arrow(r)$. We have established $dim(cal(S)) <= n$.
-We will now try to find the exact dimension of $cal(S)$ and find a basis for $cal(S)$.
+Recall that $M$ is an $n times n$ matrix and that $cal(S)$ is the set of all solutions to $arrow(r)' = M arrow(r)$. We have established $dim(cal(S)) <= n$.
+We will now try to find the exact dimension and a basis for $cal(S)$.
 
 Before reading this part of the module, you should work through the core exercises @ex:basic_system[] -- @ex:system_eigen_solutions[] to understand where the idea comes from. XXX Think about whether this becomes a consistent margin note, at the beginning of the module, or something different.
 
-
-
-Consider a system of differential equations with constant coefficients:
-$ (dif arrow(r)) / (dif t) = M arrow(r), $
-where $M$ is a matrix with real entries.
-
-We can find the eigenvalues and eigenvectors of the matrix $M$.
-An eigenvalue $lambda$ and corresponding eigenvector $arrow(v)$ of the matrix $M$ satisfy
-$ M arrow(v) = lambda arrow(v). $
-
-Now define the function
-$ arrow(r)(t) = arrow(v) e^(lambda t), $
-where we recall that $(lambda, arrow(v))$ is an eigenvalue-eigenvector pair of $M$.
-
-We will show that this is a solution of the system of differential equations.
-To see this, we differentiate $arrow(r)(t)$ with respect to $t$:
-$ (dif arrow(r)(t)) / (dif t) = lambda arrow(v) e^(lambda t) $
-and we can also compute $M arrow(r)(t)$:
-$ M arrow(r)(t) = M ( arrow(v) e^(lambda t)) = M arrow(v) e^(lambda t) = lambda arrow(v) e^(lambda t) $
-where we used the fact that $arrow(v)$ is an eigenvector of $M$ with eigenvalue $lambda$.
-Thus we have
-$ (dif arrow(r)(t)) / (dif t) = M arrow(r)(t). $
-and we have shown that $arrow(r)(t)$ is a solution of the system of differential equations.
-
-This means that we can find a solution of the system of differential equations by finding an eigenvalue-eigenvector pair of the coefficient matrix $M$. We call these solutions _eigen solutions_.
+Suppose that $arrow(v)$ is an eigenvector for $M$ with eigenvalue $lambda$ and consider $arrow(s)(t)=arrow(v)e^(lambda t)$.
+Multiplying by $M$ we get
+$
+  M arrow(s)(t) = M (arrow(v) e^(lambda t)) = M arrow(v) e^(lambda t) = lambda arrow(v) e^(lambda t) = lambda arrow(s)(t).
+$
+Similarly, taking a derivative with respect to $t$, we get
+$
+  (dif) / (dif t) arrow(s)(t)= lambda arrow(v) e^(lambda t) = lambda arrow(s)(t).
+$
+In other words, $arrow(s)' =lambda arrow(s)= M arrow(s)$, and so $arrow(s)$ is a solution to our differential equation. This means that whenever we have an eigenvector/eigenvalue
+for $M$, we can write down an explicit solution to $arrow(r)'=M arrow(r)$. Solutions constructed this way are called _eigen solutions_.
 
 #show_def("eigensolution")
 
+We just proved that any eigen solution to $arrow(r)'=M arrow(r)$ is, indeed, a solution. Since eigen solutions corresponding to linearly independent eigenvectors
+are linearly independent (justify this fact to yourself), we know
+$
+  dim(cal(S)) >= "# linearly independent eigenvectors of" M.
+$
 
-Since the set of all eigenvectors of a matrix $M in RR^(N times N)$ form a basis#footnote([This applies only if the matrix is diagnoalizable. In this course we will only consider diagnoalizable matrices. For non-diagonalizable matrices, see REFERENCE XXX.]) of $RR^N$, we now have an algorithm to find a set of $N$ linearly independent solutions of a $N times N$ system of differential equations with constant coefficients.
+Thus, if $M$ has $n$ linearly independent eigenvectors (i.e., if $M$ is diagnoalizable), then
+$
+  dim(cal(S)) >= n.
+$
 
+Combined with our previous result, we now have the following theorem.
+#theorem(
+  title: [Solution Space Dimension],
+  [
+    Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t)$. Then, if $M$ is diagonalizable,
+    $
+      dim(cal(S)) = n.
+    $
+  ],
+)
+
+In this text, we will only consider matrix differential equations where the matrix is diagonalizable, but the above theorem
+also holds when $M$ is _not_ diagonalizable. However, the proof relies on finding a basis of solutions, some of which are not eigen solutions.
 
 
 === Solutions of systems with real eigenvalues
 
-We can now use the results we have learned in this module to find the solutions of a system of differential equations with constant coefficients.
-
-The set formed by the eigen solutions of the system of differential equations is a basis of the solution space. This means that we can find all solutions of the system by forming linear combinations of the eigen solutions.
-
+The preceding section shows us that if we have a full set of eigenvectors#footnote["full set" means that for an $n times n$ matrix we have $n$ linearly independent eigenvectors.]
+for a matrix $M$, _every solution_ can be expressed as a linear combination of the eigen solutions.
 
 #example(
   prompt: [Find all solutions of the system of differential equations],
@@ -358,27 +363,29 @@ The set formed by the eigen solutions of the system of differential equations is
       arrow(r_2)(t) &= arrow(v_2) e^(1 t) = mat(1; -1) e^(1 t).
     $
 
-    We can now form a linear combination of these two solutions to find the general solution of the system of differential equations:
-    $ arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t), $
+    Linear combination of these two solutions form general solution:
+    $
+      arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
+    $
     where $alpha$ and $beta$ are constants that depend on the initial conditions of the system.
   ],
 )
 
 #example(
-  prompt: [Finding the solution that satisfies $arrow(r)(0) = mat(1; 0)$.],
+  prompt: [Find the solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$ that satisfies $arrow(r)(0) = mat(1; 0)$.],
   [
-
-    We are now given an initial condition $arrow(r)(0) = mat(1; 0)$.
-    We can find the values of $alpha$ and $beta$ by substituting $t=0$ into the general solution:
+    We already found the general solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$:
     $
-      arrow(r)(0) &= alpha mat(1; 1) e^(3 * 0) + beta mat(1; -1) e^(1 * 0) \
+      arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
+    $
+    where $alpha$ and $beta$ are parameters.
+
+    Since we require $arrow(r)(0)=mat(1; 0)$, we can solve
+    $
+      arrow(r)(0) = alpha mat(1; 1) e^(3 dot 0) + beta mat(1; -1) e^(1 dot 0) \
       mat(1; 0) &= alpha mat(1; 1) + beta mat(1; -1)
     $
-    This gives us the following system of equations that we can solve for $alpha$ and $beta$:
-    $
-      alpha &= 1 / 2 \
-      beta &= 1 / 2
-    $
+    to get $alpha= 1 / 2$ and $beta= 1 / 2$.
     Thus the solution that satisfies the initial condition is:
     $
       arrow(r)(t) &= (1 / 2) mat(1; 1) e^(3 t) + (1 / 2) mat(1; -1) e^(1 t) \
@@ -387,61 +394,55 @@ The set formed by the eigen solutions of the system of differential equations is
   ],
 )
 
-
-Observe that this process works for any system of differential equations with constant coefficients as long as the eigenvalues are real and distinct.
-We will see in the next module that this is not the case for all systems of differential equations with constant coefficients. In particular, we will see that if the eigenvalues are complex, this method does work but will yield eigen solutions that involve complex numbers. Since we are interested in real solutions, there will be some additional steps to obtain a basis of real solutions from the complex eigen solutions.
-
-
-
-
-
-
-
 === Stability of the Equilibrium Solutions
 
-Before reading the remainder of this module, we recommend that you gain some intuition about the solutions of systems of differential equations with real distinct eigenvalues by solving the core exercises in this module.
+Now that we have a method to find the solutions of a system of differential equations with constant coefficients, we can study the question:
+#quote(block: true)[
+  As time goes to infinity, what is the long-term behaviour of solutions? Do they tend towards or away from the equilibrium solution(s)?
+]
 
-Now that we have a method to find the solutions of a system of differential equations with constant coefficients, we can study what happens to solutions when they start near an equilibrium solution.
+First note that if $arrow(s)$ is an equilibrium solution to $arrow(r)'=M arrow(r)$, then $arrow(s)'(t)=arrow(0)$ which implies $M arrow(s)=arrow(0)$.
+This means that if $M$ is invertible, the equation $arrow(r)'=M arrow(r)$ has a unique equilibrium solution: $arrow(s)'(t)=arrow(0)$. Further,
+all equilibrium solutions can be found by analyzing the null space of $M$.
 
-*As time goes to infinity, do these solutions approach the equilibrium solution or do they move away from it?*
+For illustration purposes, let us now consider a $2 times 2$ matrix $M$ with real and distinct eigenvalues $lambda_1 != lambda_2$ and corresponding eigenvectors
+$arrow(v)_1$
+and $arrow(v)_2$.
+The general solution to the equation $arrow(r)'= M arrow(r)$ is
+$
+  arrow(r)(t) = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t),
+$
+where $c_1$ and $c_2$ parameters. We want to study the long-term behaviour of solutions, which depends on the long-term behaviour of the exponential function:
+$
+  lim_(t arrow infinity) e^(lambda t) = cases(
+    0 &" if " lambda < 0,
+    1 &" if " lambda = 0,
+    infinity &" if " lambda > 0,
+  ).
+$
+
+We immediately see:
+- If $lambda_1 < 0$ and $lambda_2 < 0$, then $lim_(t arrow infinity) arrow(r)(t) = arrow(0)$ no matter the values of $c_1$ and $c_2$.
+- If $lambda_1 > 0$ and $lambda_2 > 0$, then $lim_(t arrow infinity) arrow(r)(t)$ diverges as long as at least one of $c_1$ and $c_2$ are non-zero.
+
+What can this tell us about the stability of the equilibrium solution?
 
 Recall the informal classification of equilibrium solutions#footnote([Check @mod:equilibrium for the precise definition.]) from @mod:equilibrium.
 
 #show_def("equilibrium_classification_informal")
 
-Consider a system of differential equations
-$ (dif arrow(r)) / (dif t) = M arrow(r), $
-where the eigenvalues of the coefficient matrix $M$ are two different real numbers: $lambda_1 eq.not lambda_2$.
+Now consider the equilibrium solution $arrow(s)(t)=arrow(0)$.#footnote[There may be other equilibrium solutions, but this equilibrium solution always exists.]
+If $arrow(r)(t) = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t)$ is "close to" $arrow(s)(t)=arrow(0)$ at time $t=0$, then $c_1$ and $c_2$ are close to zero.
+We can now consider cases based on $lambda_1$ and $lambda_2$:
 
-Observe that the unique equilibrium solution is $arrow(r)(t) = mat(0; 0)$, so we want to establish the stability of this equilibrium solution.
-
-Following the process described earlier in this module, we know that the solutions of the system of differential equations will have the form
-$
-  arrow(r)_i (t)
-  = c_1 arrow(v)_1 e^(lambda_1 t) + c_2 arrow(v)_2 e^(lambda_2 t),
-$
-where $c_1$ and $c_2$ are constants that depend on the initial conditions of the system, and $arrow(v)_1$ and $arrow(v)_2$ are the eigenvectors associated with the eigenvalues $lambda_1$ and $lambda_2$, respectively.
-
-When computing the limit of such a solution as $t$ approaches infinity, we can focus on the exponential terms, since the other terms are constant.
-
-Moreover, we know the limits of exponential functions:
-$
-  lim_(t arrow infinity) e^(lambda_1 t) = cases(
-    0 &" if " lambda_1 < 0,
-    1 &" if " lambda_1 = 0,
-    infinity &" if " lambda_1 > 0,
-  ).
-$
-
-So we can conclude that
-- If one of the eigenvalues is positive, then there will be solutions that converge to infinity (unstable).
-- If both eigenvalues are negative, then all solutions will converge to the equilibrium solution (stable and attracting).
-- If one of the eigenvalues is zero, then there are constant solutions near the equilibrium, so it will be neither attracting nor repelling.
-  - If the other eigenvalue is negative, then the equilibrium solution will be stable, because all solutions either converge to the equilibrium ($arrow(0)$) or are constant solutions.
-  - If the other eigenvalue is positive, then the equilibrium solution will be unstable, because all solutions either diverge to infinity or are constant solutions.
+- If $lambda_1$ or $lambda_2$ is positive, then there will be solutions that diverge $==>$ $arrow(s)$ is unstable.
+- If $lambda_1$ and $lambda_2$ are negative, then _all_ solutions will converge zero $==>$ $arrow(s)$ is stable and attracting.
+- If one of $lambda_1$ or $lambda_2$ is zero, then there are constant solutions near $arrow(s)$ $==>$ $arrow(s)$ is not attracting nor repelling.
+  - If $lambda_1=0$ and $lambda_2 < 0$, then $arrow(s)$ will be stable, because solutions either converge to the equilibrium ($arrow(0)$) or are constant solutions.
+  - If $lambda_1=0$ and $lambda_2 > 0$, then $arrow(s)$ will be unstable, because solutions either diverge to infinity or are constant solutions.
 
 
-We can summarize these results with the following table:
+The following tables summarize our findings:
 
 #align(
   center,
@@ -459,8 +460,11 @@ We can summarize these results with the following table:
       // real, one positive, one negative
       $lambda_1<0$,
       $lambda_2>0$,
-      [Unstable and Repelling],
+      [Unstable],
       table.hline(stroke: .5pt),
+      $lambda_1=0$,
+      $lambda_2=0$,
+      [Stable],
       // real, 0 + negative
       $lambda_1=0$,
       $lambda_2<0$,
@@ -474,7 +478,7 @@ We can summarize these results with the following table:
   ),
 )
 
-OR
+or
 
 #align(
   center,
@@ -489,8 +493,10 @@ OR
       [Unstable and Repelling],
       // real, one positive, one negative
       [One negative, one positive],
-      [Unstable and Repelling],
+      [Unstable],
       table.hline(stroke: .5pt),
+      [Both zero],
+      [Stable],
       // real, 0 + negative
       [One is zero, one is negative],
       [Stable],
@@ -502,6 +508,11 @@ OR
   ),
 )
 
-XXX CHOOSE ONE TABLE!!
-
+#example(
+  prompt: [Suppose $arrow(r)'=M arrow(r)$ has a general solution $ arrow(r)(t) = alpha mat(1; 1) e^(t) + beta mat(0; 1) e^(-t). $
+    Prove that the equilibrium solution $arrow(s)(t)=arrow(0)$ unstable and _not_ repelling.],
+  [
+    XXX Finish
+  ],
+)
 
