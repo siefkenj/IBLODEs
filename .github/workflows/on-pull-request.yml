@@ -20,12 +20,12 @@ jobs:
                   echo "Current directory: $(pwd)"
                   echo "Files in current directory:"
                   ls -la
-                  ls book/typst/book.typ book/typst/slides.typ
+                  ls book/typst/
             - name: Compile Typst Files
               uses: siefkenj/compile-typst-action@main
               with:
-                  source_paths: "book/typst/book.typ book/typst/slides.typ"
-                  output_paths: "book/typst/book.pdf book/typst/slides.pdf"
+                  source_paths: "book/typst/book.typ book/typst/slides.typ book/typst/slides-white.typ"
+                  output_paths: "book/typst/book.pdf book/typst/slides.pdf book/typst/slides-white.pdf"
                   fonts_path: "book/typst"
 
             # upload all the built PDFs as an artifact.
