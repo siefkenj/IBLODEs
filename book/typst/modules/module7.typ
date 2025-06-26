@@ -1,6 +1,7 @@
 
 // This file is meant to be imported and not compiled on its own.
 #import "@preview/tiptoe:0.3.0"
+#import "@preview/lilaq:0.3.0" as lq
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_workbook.typ": label_module
 #import "../libs/_graphics.typ": vector_field
@@ -15,7 +16,7 @@ In this module you will learn
 
 We have a firm grasp on how to solve matrix differential equations of the form $arrow(r)'=M arrow(r)$.
 What about equations of the form $arrow(r)'=M arrow(r) + arrow(b)$?
-Unfortunately, that extra "$+arrow(b)$" changes a lot. For example, solutions no longer form a subspace!
+Unfortunately, that extra "$+arrow(b)$" changes a lot. For example, the solution set is no longer a subspace!
 
 #example(
   prompt: [Show that solutions to $y'=2y+1$ do _not_ form a subspace.],
@@ -38,7 +39,19 @@ are matrix equations plus a vector of constants, and we will soon see how to com
 
 == Centering about the Equilibrium
 
-Let $M = mat(0, 1; 1, 0)$ and consider the equations $arrow(u)'=M arrow(u)$ and $arrow(v)'=M arrow(v) + mat(-1; -2)$. We can
+Let $M = mat(0, 1; 1, 0)$ and consider the equations
+#math.equation(
+  block: true,
+  numbering: "(1)",
+  $arrow(u)'=M arrow(u)$,
+)<eq:non-affine>
+and
+#math.equation(
+  block: true,
+  numbering: "(1)",
+  $arrow(v)'=M arrow(v) + mat(-1; -2).$,
+)<eq:affine>
+We can
 make phase portraits for both of these equations.
 
 
@@ -93,7 +106,7 @@ $
 and so the phase portraits are shifted by the vector $mat(2; 1)$.
 
 We can use this information to relate the solutions to $arrow(u)'=M arrow(u)$ and $arrow(v)'=M arrow(v) + mat(-1; -2)$ to each other.
-Let $arrow(v)$ be a solution to $arrow(v)'=M arrow(v) + mat(-1; -2)$ and
+Let $arrow(v)$ be a solution to @eq:affine and
 define the function
 $
   arrow(s)(t) = arrow(v)(t) - mat(2; 1).
@@ -109,11 +122,11 @@ $
   &= M arrow(v)(t) - M mat(2; 1)\
   &= M arrow(v)(t) - mat(1; 2)
   = M arrow(v)(t) + mat(-1; -2) =
-  arrow(v)(t)'.
+  arrow(v)'(t).
 $
-In other words, $arrow(s)'=M arrow(s)$, and so $arrow(s)$ is a solution to the first equation.
+In other words, $arrow(s)'=M arrow(s)$, and so $arrow(s)$ is a solution to @eq:non-affine.
 What we have done is called a _change of variables_ and the result is that we can relate solutions
-to the affine equation $arrow(v)'=M arrow(v) + mat(-1; -2)$ to the matrix equation $arrow(u)'=M arrow(u)$.
+to the affine equation $arrow(v)'=M arrow(v) + mat(-1; -2)$ with solutions to the matrix equation $arrow(u)'=M arrow(u)$.
 
 #example(
   prompt: [Let $M=mat(1, 2; 3, 4)$ and suppose $arrow(v)$ is a solution to $arrow(v)'=M arrow(v) + mat(2; 0)$.
@@ -130,26 +143,30 @@ _centering about the equilibrium_.
 #theorem(
   title: [Centering about the Equilibrium],
   [
-    Let $M$ be a matrix and $arrow(b)$ a vector and consider the differential equations
-    #block[
-      #set enum(numbering: "(1)")
-      + $arrow(r)'=M arrow(r)$
-      + $arrow(r)'=M arrow(r) + arrow(b)$
-    ]
+    Let $M$ be a matrix and $arrow(b)$ a vector and consider the differential equations:
+    #math.equation(
+      block: true,
+      numbering: "(1)",
+      $arrow(r)'=M arrow(r)$,
+    )<eq:abstract-non-affine>
+    #math.equation(
+      block: true,
+      numbering: "(1)",
+      $arrow(r)'=M arrow(r) + arrow(b)$,
+    )<eq:abstract-affine>
 
-
-    If $arrow(p)$ is the equilibrium point of the affine equation (2) and
-    $arrow(v)$ is a solution to the affine equation (2), then
+    If $arrow(p)$ is the equilibrium point of the affine equation @eq:abstract-affine[] and
+    $arrow(v)$ is a solution to the affine equation @eq:abstract-affine[], then
     $
       arrow(s)(t) = arrow(v)(t) - arrow(p)
     $
-    is a solution to the matrix equation (1).
+    is a solution to the matrix equation @eq:abstract-non-affine[].
 
-    Similarly, if $arrow(u)$ is a solution to the matrix equation (1), then
+    Similarly, if $arrow(u)$ is a solution to the matrix equation @eq:abstract-non-affine[], then
     $
-      arrow(s)(t) = arrow(u)(t) + arrow(p)
+      arrow(q)(t) = arrow(u)(t) + arrow(p)
     $
-    is a solution to the affine equation (2).
+    is a solution to the affine equation @eq:abstract-affine[].
   ],
 )
 
@@ -185,4 +202,55 @@ $
 $
 and so $arrow(s)$ is a solution for every choice of $A$ and $B$.
 
-XXX Add small section talking about how for r'=Mr+p, that you are not shifting by p, but my M^-1*p (do this as part of a "Recap" section?)
+=== Figuring out what to shift by
+
+Do not try to _memorize_ how to shift one solution to get another. Instead, spend some time visualizing
+the relationship between solutions to an affine equation and its corresponding matrix equation.
+
+Remember: a matrix equation always has $arrow(r)(t)=arrow(0)$ as an equilibrium solution. So, if you think of the phase space picture from before
+and translate the equilibrium solution, all other solutions will be translated in the same way.
+
+XXX Annotate this diagram with an arrow showing how the equilibrium solution changes.
+#{
+  let F1(x, y) = (y, x)
+  let F2(x, y) = (y - 1, x - 2)
+  let xlim = (-7, 7)
+  let ylim = (-7, 7)
+  align(
+    center,
+    {
+      vector_field(
+        F1,
+        title: $arrow(u)'=M arrow(u)$,
+        xlim: xlim,
+        ylim: ylim,
+        spacing: (.75, .75),
+        scale_segments: 20.0,
+        width: 5cm,
+        height: 5cm,
+        yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+        xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+        lq.plot((0,), (0,), mark-size: 10pt, mark-color: black, stroke: black),
+      )
+      h(2em)
+      vector_field(
+        F2,
+        title: $arrow(v)'=M arrow(v) + mat(-1; -2)$,
+        xlim: xlim,
+        ylim: ylim,
+        spacing: (.75, .75),
+        scale_segments: 20.0,
+        width: 5cm,
+        height: 5cm,
+        yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+        xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+        lq.plot((2,), (1,), mark-size: 10pt, mark-color: black, stroke: black),
+      )
+    },
+  )
+}
+
+Above to go from matrix to affine, we translate solutions by $mat(2; 1)$. To go from affine to matrix, we translate solutions by $mat(-2; -1)$.
+
+But, *make sure to actually compute the equilibrium solution(s)*. When confronted with an equation like $arrow(r)' = M arrow(r) + arrow(p)$, it is tempting to
+claim that $arrow(p)$ is an equilibrium solution. In all likelihood, *it is not*! (It is actually $-M^(-1) arrow(p)$.)

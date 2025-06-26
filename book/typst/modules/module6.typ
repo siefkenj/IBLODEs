@@ -394,6 +394,10 @@ for a matrix $M$, _every solution_ can be expressed as a linear combination of t
   ],
 )
 
+=== Eigen solutions in phase space
+
+XXX Finish
+
 === Stability of the Equilibrium Solutions
 
 Now that we have a method to find the solutions of a system of differential equations with constant coefficients, we can study the question:
