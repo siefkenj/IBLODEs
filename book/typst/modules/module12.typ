@@ -40,7 +40,7 @@ when things go wrong and why.
   ],
   [
   Integrate to find the general solution $y = ln abs(x) + C$. The
-  solution does not exist at $x = 0$. See the figure below with teh slope field for this differential equation and some solutions.
+  solution does not exist at $x = 0$. See the figure below with the slope field for this differential equation and some solutions.
 
 
   #{

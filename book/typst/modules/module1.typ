@@ -287,6 +287,10 @@ For example, suppose $P'=2P$ models a population and we know the population star
 The general solution to $P'=2P$ is $P(t)=C e^(2t)$ where $C$ is a parameter, but only one solution in this family satisfies $P(0)=100$.
 (Stop now and figure out what value of $C$ leads to a solution satisfying $P(0)=100$.)
 
+=== Types of Differential Equations
+
+XXX Finish: mention autonomous vs non-autonomous, first-order vs higher-order, and systems. Mention that other terms used include linear/non-linear and homogeneous/non-homogeneous.
+
 === Solving Methods
 
 
