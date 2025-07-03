@@ -33,6 +33,13 @@
         A differential equation is said to be _order $n$_ if the highest derivative that appears in the differential equation is the $n$th derivative.
       ],
     ),
+    autonomous: definition_env(
+      title: "Autonomous Differential Equation",
+      label: <def_autonomous>,
+      [
+        A differential is called _autonomous_ if it can be written without reference to the independent variable.
+      ],
+    ),
     model_fit: definition_env(
       title: "Fitting a Model",
       label: <def_model_fit>,

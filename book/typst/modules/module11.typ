@@ -8,6 +8,7 @@
 #import "@preview/tiptoe:0.3.0"
 
 #let (sans, serif, module, definition, example) = workbook
+#label_module(<mod:boundary_value_problems>)
 
 In this module you will learn
 - What is a boundary value problem

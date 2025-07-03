@@ -1,7 +1,7 @@
 
 // This file is meant to be imported and not compiled on its own.
-#import "../libs/_workbook.typ": simple_table, label_module
-#import "../common/settings-book.typ": workbook, show_def
+#import "../libs/_workbook.typ": label_module, simple_table
+#import "../common/settings-book.typ": show_def, workbook
 #let (sans, serif, module, definition, example) = workbook
 
 #label_module(<mod:modelling>)
@@ -16,24 +16,21 @@ Suppose you are observing some green ants walking on the sidewalk. In the first 
 the second, you record 20. In the third, 40. This continues until there are too
 many ants for you to count.
 
-#align(
-  center,
-  simple_table(
-    headers: ([Minute], [\#Green Ants]),
-    content: (
-      $1$,
-      $10$,
-      $2$,
-      $20$,
-      $3$,
-      $40$,
-      $4$,
-      $80$,
-      $dots.v$,
-      $dots.v$,
-    ),
+#align(center, simple_table(
+  headers: ([Minute], [\#Green Ants]),
+  content: (
+    $1$,
+    $10$,
+    $2$,
+    $20$,
+    $3$,
+    $40$,
+    $4$,
+    $80$,
+    $dots.v$,
+    $dots.v$,
   ),
-)
+))
 
 Since you lost count of the ants, you decide to use mathematics to predict how many ants walked by
 on minutes $5$, $6$, $dots$. You notice the pattern that
@@ -43,24 +40,21 @@ $
 Stupendous! Mathematics now predicts there were $160$ ants during minute $5$. But something else catches your
 eye. Across the sidewalk are brown ants. You count these ants every minute.
 
-#align(
-  center,
-  simple_table(
-    headers: ([Minute], [\#Brown Ants]),
-    content: (
-      $1$,
-      $3$,
-      $2$,
-      $6$,
-      $3$,
-      $12$,
-      $4$,
-      $24$,
-      $dots.v$,
-      $dots.v$,
-    ),
+#align(center, simple_table(
+  headers: ([Minute], [\#Brown Ants]),
+  content: (
+    $1$,
+    $3$,
+    $2$,
+    $6$,
+    $3$,
+    $12$,
+    $4$,
+    $24$,
+    $dots.v$,
+    $dots.v$,
   ),
-)
+))
 
 The pattern is slightly different. This time,
 $
@@ -69,9 +63,9 @@ $
 Your friend, who was watching you the whole time, looks confused. They question: “Why come up with two complicated
 equations when you can describe both types of ant at once?”
 $
-  "#Ants at minute" n = 2 · ("#Ants at "&"minute" n − 1) \
-  "#Green ants at minute" 1 &= 10 \
-  "#Brown ants at minute" 1 &= 3
+  "#Ants at minute" n = 2 · ("#Ants at " & "minute" n − 1) \
+               "#Green ants at minute" 1 & = 10            \
+               "#Brown ants at minute" 1 & = 3
 $
 Your friend has a point. Their model is elegant, but your model can predict how many ants pass by at minute
 $3.222$! (Though, your friend would probably complain that $46.654$ is not a number of ants#sym.dots.)
@@ -104,10 +98,8 @@ Each model has pros and cons. For example, the explicit model allows you to calc
 with few button presses on a calculator, whereas the recursive model is more difficult to calculate but
 makes it clear that the number of ants is doubling every minute.
 
-Often times recursive models are easier to write down than explicit models#footnote(
-  [In fact, in many real-world situations, an explicit model in terms of already known functions
-    doesn't exist.],
-), but they may be harder to analyze. A third type of model has similarities to both explicit and recursive models but
+Often times recursive models are easier to write down than explicit models#footnote([In fact, in many real-world situations, an explicit model in terms of already known functions
+  doesn't exist.]), but they may be harder to analyze. A third type of model has similarities to both explicit and recursive models but
 adds more by
 bringing the power of calculus to modeling.
 - A *differential-equations* model is a model based on a relationship between a function’s derivative(s), its
@@ -120,55 +112,43 @@ Let's try to come up with a differential equations model for _brown_ ants.
 We'd like an equation relating $A(n)$, the number of brown ants at minute $n$, to $A'(n)$, the _instantaneous rate of change_ of the number of ants at minute $n$.
 Making a table, we see
 
-#align(
-  center,
-  block(
-    breakable: false,
-    simple_table(
-      headers: ([Minute], [\#Brown Ants], [Change (from prev. minute)]),
-      content: (
-        $1$,
-        $3$,
-        $?$,
-        $2$,
-        $6$,
-        $3$,
-        $3$,
-        $12$,
-        $6$,
-        $4$,
-        $24$,
-        $12$,
-      ),
-    ),
+#align(center, block(breakable: false, simple_table(
+  headers: ([Minute], [\#Brown Ants], [Change (from prev. minute)]),
+  content: (
+    $1$,
+    $3$,
+    $?$,
+    $2$,
+    $6$,
+    $3$,
+    $3$,
+    $12$,
+    $6$,
+    $4$,
+    $24$,
+    $12$,
   ),
-)
+)))
 
 *or*
 
-#align(
-  center,
-  block(
-    breakable: false,
-    simple_table(
-      headers: ([Minute], [\#Brown Ants], [Change (from next minute)]),
-      content: (
-        $1$,
-        $3$,
-        $3$,
-        $2$,
-        $6$,
-        $6$,
-        $3$,
-        $12$,
-        $12$,
-        $4$,
-        $24$,
-        $?$,
-      ),
-    ),
+#align(center, block(breakable: false, simple_table(
+  headers: ([Minute], [\#Brown Ants], [Change (from next minute)]),
+  content: (
+    $1$,
+    $3$,
+    $3$,
+    $2$,
+    $6$,
+    $6$,
+    $3$,
+    $12$,
+    $12$,
+    $4$,
+    $24$,
+    $?$,
   ),
-)
+)))
 
 depending on whether we record the change from the previous minute or up to the subsequent minute. Neither table gives the _instantaneous_ rate of
 change, but in both tables, the change is proportional to the number of ants. So, we can set up a model
@@ -201,7 +181,7 @@ Our primary method for finding explicit solutions to differential equations will
   ],
   [
 
-    Since $A'approx A$, we might start with a function that is equal to its own derivative. There is a famous one: $e^n$. Testing, we see
+    Since $A'=k A$ is similar in form to $A'= A$, we might start with a function that is equal to its own derivative. There is a famous one: $e^n$. Testing, we see
     $dif / (dif n) e^n=e^n=k e^n$
     if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
@@ -225,8 +205,8 @@ model to the data.
   [
     Taking two rows from our brown ants table, we see
     $
-      A(1) &= C e^k &= 3 \
-      A(2) &= C e^(2 k) &= 6
+      A(1) & = C e^k     & = 3 \
+      A(2) & = C e^(2 k) & = 6
     $
 
     Since $e^k$ can never be zero, from the first equation we get $C = 3 / e^k$. Combining with the second equation we find
@@ -258,8 +238,8 @@ Any multiple of one of these solutions is also a solution, so the set
 $
   {f: f(t)=C e^(2t) "for some" C in RR}
 $
-is a set of solutions to the differential equation $y'=2y$. Because there are no other solutions, ${f: f(t)=C e^(2t) "for some" C in RR}$
-is, in fact, the _solution set_/_complete solution_ to the differential equation.
+is a set of solutions to the differential equation $y'=2y$. Because there are no other solutions#footnote[This fact is no obvious---it needs to be proved!], ${f: f(t)=C e^(2t) "for some" C in RR}$
+is *the* _solution set_/_complete solution_ to the differential equation.
 
 ==== Writing General Solutions
 
@@ -285,11 +265,47 @@ solution to the differential equation attains at some point/time.
 
 For example, suppose $P'=2P$ models a population and we know the population starts at $100$ at time $t=0$ (i.e., $P(0)=100$).
 The general solution to $P'=2P$ is $P(t)=C e^(2t)$ where $C$ is a parameter, but only one solution in this family satisfies $P(0)=100$.
-(Stop now and figure out what value of $C$ leads to a solution satisfying $P(0)=100$.)
+(Stop now and figure out what value of $C$ leads to a solution satisfying $P(0)=100$.) We call that one solution the solution to the _initial value problem_
+$
+    P' & = 2P   \
+  P(0) & = 100.
+$
+
+The term _initial value problem_ is often abbreviated _IVP_.
 
 === Types of Differential Equations
 
-XXX Finish: mention autonomous vs non-autonomous, first-order vs higher-order, and systems. Mention that other terms used include linear/non-linear and homogeneous/non-homogeneous.
+There are several ways to classify differential equations. The most important for us will be first-order vs higher-order and autonomous vs non-autonomous.
+
+#show_def("orderdiffeq")
+
+#example(
+  prompt: [
+    Classify the differential equation $y'' + 2y' + y = 0$.
+  ],
+  [
+    The highest derivative in the equation is $y''$, so this is a _second-order_ differential equation.
+  ],
+)
+
+We will primarily study first order differential equations and systems of first order differential equations because, as shown in @mod:higher_order,
+higher-order differential equations can be transformed into systems of first order differential equations.
+
+#show_def("autonomous")
+
+Equations like $y'(t) =2y(t)$ or $P'(t) = P(t) dot (1 - P(t))$ are said to be _autonomous_ while equations like $y'(t) = t dot y(t)$ and $P'(t)=(1-P(t))+sin(t)$ are _non-autonomous_.
+
+Autonomous equations, where the independent variable does not appear in the equation, can be thought of as "time independent" equations because solutions to initial value problems
+for autonomous equations do not depend on the starting time. This encompasses most equations of physics: if you're modelling the motion of a pendulum, it doesn't matter whether
+"t=0" is the start of the day, the start of the year, or the instant our sun started having fusion reactions.
+
+There are other classifications commonly encountered in the study of differential equations:
+- _Linear differential equations_: a differential equation that can be written as $a_0(t) dot y(t) + a_1(t)dot y'(t) + dots.c + a_n (t) dot y^((n))(t) = b(t)$
+  where $a_0$, #sym.dots, $a_n$, and $b$ are functions of $t$.
+- _Homogeneous linear differential equations_: a linear differential equation where the "constant term" $b(t)$ is zero.
+
+While we will be studying linear and homogeneous linear differential equations, classifying equations as linear/non-linear and homogeneous/non-homogeneous
+won't be important to us.
 
 === Solving Methods
 
