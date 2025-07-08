@@ -1,9 +1,7 @@
 #let questions = (
   (
     statement: [
-      Explain what you need to do in two different ways.
-      + Way 1
-      + Way 2
+      (A question about Identifying stable/unstable in phase space and in component space.)
     ],
     solution: [
       + Way 1 is good

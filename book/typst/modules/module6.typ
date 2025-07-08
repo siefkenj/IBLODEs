@@ -1,7 +1,7 @@
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": workbook, show_def
-#import "../libs/_workbook.typ": simple_table, label_module
+#import "../common/settings-book.typ": show_def, workbook
+#import "../libs/_workbook.typ": label_module, simple_table
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 #label_module(<mod:real>)
@@ -41,15 +41,15 @@ You will find a review of these topics in @app:linear_algebra.
 == Finding Explicit Solutions
 
 For equations like $y'=7 y$, we were lucky enough to guess-and-check our way to solutions $y(t)=A e^(7 t)$ where $A in RR$ is a parameter.
-It turns out, by using some insights from linear algebra, we will be able to guess-and-check our way to solutions to some systems of
+It turns out, by using insights from linear algebra, we will be able to guess-and-check our way to solutions to certain systems of
 differential equations as well.
 
 === Matrix Form
 
 Consider the system
 $
-  x' &= 2 x + y \
-  y' &= x + 2 y
+  x' & = 2 x + y \
+  y' & = x + 2 y
 $
 We can rewrite this system as a matrix equation:
 $
@@ -57,7 +57,7 @@ $
 $
 
 We can further refine our matrix equation by introducing a function $arrow(r)(t)=mat(x(t); y(t))$. Since the derivative
-of a multivariable function is the derivative of each of its components, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
+of a multivariable function is the derivative of each of its coordinates, $arrow(r)'(t)=mat(x'(t); y'(t))$, and so
 the system can be rewritten as
 $
   arrow(r)' = mat(2, 1; 1, 2) arrow(r).
@@ -114,14 +114,16 @@ $
 where $arrow(r)(t) = mat(x(t); y(t))$. By guessing and checking, we found two solutions
 $
   arrow(r_1)(t) = e^(3 t) mat(1; 1) wide "and" wide
-  arrow(r_2)(t) = e^(-t) mat(1; -1),
+  arrow(r_2)(t) = e^(-t) mat(1; -1).
 $
-but are there others?
+But, are there others?
 
-In the case of the single-variable equation $y'=7y$, we noticed that multiplying a solution by a constant gave another solution. Will the same work in this case? Let's try.
+In the case of the single-variable equation $y'=7y$, multiplying a solution by a constant gave another solution. Will the same work in this case? Let's try.
 
 #example(
-  prompt: [Decide whether $alpha space.thin arrow(r)_1$ and $beta space.thin arrow(r)_2$ are solutions, where $alpha, beta in RR$ are constants.],
+  prompt: [Consider $arrow(r)_1(t)=e^(3t)mat(1; 1)$ and $arrow(r)_2(t)=e^(-t)mat(1; -1)$, which are solutions to $arrow(r)' = mat(2, 1; 1, 2)arrow(r)$.
+    Determine whether $alpha space.thin arrow(r)_1$ and $beta space.thin arrow(r)_2$ are
+    also solutions, where $alpha, beta in RR$ are constants.],
   [
     We can test if something is a solution to a differential equation by plugging it in.
     On the one hand, we have
@@ -132,7 +134,7 @@ In the case of the single-variable equation $y'=7y$, we noticed that multiplying
     $
       mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t)) = alpha mat(2, 1; 1, 2) arrow(r)_1(t) = alpha space.thin 3 space.thin arrow(r)_1(t),
     $
-    and so $(alpha space.thin arrow(r)_1(t)) = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$, showing that $alpha space.thin arrow(r)_1(t)$ is a solution
+    and so $(alpha space.thin arrow(r)_1(t))' = mat(2, 1; 1, 2) (alpha space.thin arrow(r)_1(t))$, showing that $alpha space.thin arrow(r)_1(t)$ is a solution
     no matter the value of $alpha$.
     A similar computation shows that $beta space.thin arrow(r)_2(t)$ is a solution for any value of $beta$.
   ],
@@ -145,7 +147,7 @@ scalar multiples of that solution are also solutions. This is in turn a special 
   title: [Solutions Form a Subspace],
   [
     Let $arrow(r)'=M arrow(r)$ be a matrix differential equation and let $cal(S)$ be the set of all solutions. Then, $cal(S)$
-    is a subspace. In particular, $cal(S)$ is closed under linear combinations.
+    is a subspace. In particular, $cal(S)$ is non-empty and closed under linear combinations.
   ],
 )
 
@@ -155,7 +157,7 @@ $
 $
 so $arrow(0) in cal(S)$. Next, suppose that $arrow(s)_1$ and $arrow(s)_2$ are solutions in $cal(S)$.
 By definition, that means $arrow(s)'_1 = M arrow(s)_1$ and $arrow(s)'_2 = M arrow(s)_2$.
-By the linearity of the derivative, we may now compute
+By the linearity of the derivative and of matrix multiplication, we may now compute
 $
   (alpha space.thin arrow(s)_1 + beta space.thin arrow(s)_2)' &= alpha space.thin arrow(s)'_1 + beta space.thin arrow(s)'_2 \
   &= alpha space.thin M arrow(s)_1 + beta space.thin M arrow(s)_2 \
@@ -175,13 +177,11 @@ But, have we found all the solutions? To answer that question we need to dive de
 
 == Linear Algebra of the Solution Space
 
-You're familiar with the vector spaces $RR^n$, but the set of all function from $RR$ to $RR^n$, denoted $cal(F)^n$, also forms a vector space.
-To quickly check, notice that the constant function $z(t)=0$ acts like the "zero vector", and
-if $f:RR arrow RR$ and $g:RR arrow RR$ are functions, then so is $alpha dot f + beta dot g$.#footnote(
-  [
-    To fully check, you must check that all the _vector space_ axioms hold.
-  ],
-)
+You're familiar with the vector spaces $RR^n$ where $n=1,2,$ etc., but the set of all function from $RR$ to $RR^n$, denoted $cal(F)^n$, also forms a vector space.
+To quickly check, notice that the constant function $z(t)=arrow(0)$ acts like the "zero vector", and
+if $f:RR arrow RR^n$ and $g:RR arrow RR^n$ are functions, then so is $alpha dot f + beta dot g$.#footnote([
+  To fully check, you must check that all the _vector space_ axioms hold.
+])
 
 The space $cal(F)^n$ is _large_. In fact, it is _infinite dimensional_, but the theorems of linear algebra still apply (provided the proper definitions).
 
@@ -241,12 +241,15 @@ The following theorem will give us a place to start.
   ],
 )
 
+For matrix differential equations, we will take $arrow(p)=arrow(0)$ in the above theorem.
+
 Now, suppose that $M$ is an $n times n$ matrix. Let $cal(S)$ be the set of all solutions to $arrow(r)' = M arrow(r)$.
 The above theorem states that every initial value problem
 $
   arrow(r)' = M arrow(r) wide "and" wide arrow(r)(t_0) = mat(x_1; dots.v; x_n)
 $
-has a unique solution. Thus, the space of all solutions can be no "bigger" than the set of all initial conditions. Notice that we have $n+1$ parameters to choose for
+has a unique solution. Further, every solution must pass through _some point_ in $RR^n$ at _some time_.
+Thus, the space of all solutions can be no "bigger" than the set of all initial conditions. Notice that we have $n+1$ parameters to choose for
 initial conditions. We have $n$ choices coming from $x_1$, ..., $x_n$ with one more choice coming from the value of $t_0$.
 
 This means that the dimension of $cal(S)$ is bounded above by $n+1$.#footnote[To make this argument fully rigorous, you need to establish the existence of a smooth map between the
@@ -273,15 +276,12 @@ $
 $
 
 This argument leads to the following theorem.
-#theorem(
-  title: [Solution Space Upper Bound],
-  [
-    Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t)$. Then
-    $
-      dim(cal(S)) <= n.
-    $
-  ],
-)
+#theorem(title: [Solution Space Upper Bound], [
+  Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to $arrow(r)'(t) = M arrow(r)(t)$. Then
+  $
+    dim(cal(S)) <= n.
+  $
+])
 
 === Finding a basis of solutions
 
@@ -335,68 +335,151 @@ also holds when $M$ is _not_ diagonalizable. However, the proof relies on findin
 The preceding section shows us that if we have a full set of eigenvectors#footnote["full set" means that for an $n times n$ matrix we have $n$ linearly independent eigenvectors.]
 for a matrix $M$, _every solution_ can be expressed as a linear combination of the eigen solutions.
 
-#example(
-  prompt: [Find all solutions of the system of differential equations],
-  [
-    $
-      (dif x) / (dif t) &= 2 x + y \
-      (dif y) / (dif t) &= x + 2 y
-    $
+#example(prompt: [Find all solutions of the system of differential equations], [
+  $
+    (dif x) / (dif t) & = 2 x + y \
+    (dif y) / (dif t) & = x + 2 y
+  $
 
-    We can write this system in matrix form as:
-    $
-      mat((dif x) / (dif t); (dif y) / (dif t))
-      = mat(2, 1; 1, 2) mat(x; y)
-    $
-    and if we let $arrow(r) = mat(x; y)$ and $M = mat(2, 1; 1, 2)$, we can write the system as:
-    $ (dif arrow(r)) / (dif t) = M arrow(r), $
-    where $arrow(r)$ is a vector of the two dependent variables and $M$ is the coefficient matrix.
+  We can write this system in matrix form as:
+  $
+    mat((dif x) / (dif t); (dif y) / (dif t))
+    = mat(2, 1; 1, 2) mat(x; y)
+  $
+  and if we let $arrow(r) = mat(x; y)$ and $M = mat(2, 1; 1, 2)$, we can write the system as:
+  $ (dif arrow(r)) / (dif t) = M arrow(r), $
+  where $arrow(r)$ is a vector of the two dependent variables and $M$ is the coefficient matrix.
 
-    We can find the eigenvalues and eigenvectors of the matrix $M$:
-    - $lambda_1 = 3$ with eigenvector $arrow(v_1) = mat(1; 1),$
+  We can find the eigenvalues and eigenvectors of the matrix $M$:
+  - $lambda_1 = 3$ with eigenvector $arrow(v_1) = mat(1; 1),$
 
-    - $lambda_2 = 1$ with eigenvector $arrow(v_2) = mat(1; -1).$
+  - $lambda_2 = 1$ with eigenvector $arrow(v_2) = mat(1; -1).$
 
-    We can now write the eigen solutions of the system of differential equations:
-    $
-      arrow(r_1)(t) &= arrow(v_1) e^(3 t) = mat(1; 1) e^(3 t), \
-      arrow(r_2)(t) &= arrow(v_2) e^(1 t) = mat(1; -1) e^(1 t).
-    $
+  We can now write the eigen solutions of the system of differential equations:
+  $
+    arrow(r_1)(t) & = arrow(v_1) e^(3 t) = mat(1; 1) e^(3 t),  \
+    arrow(r_2)(t) & = arrow(v_2) e^(1 t) = mat(1; -1) e^(1 t).
+  $
 
-    Linear combination of these two solutions form general solution:
-    $
-      arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
-    $
-    where $alpha$ and $beta$ are constants that depend on the initial conditions of the system.
-  ],
-)
+  Linear combination of these two solutions form general solution:
+  $
+    arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
+  $
+  where $alpha$ and $beta$ are constants that depend on the initial conditions of the system.
+])
 
-#example(
-  prompt: [Find the solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$ that satisfies $arrow(r)(0) = mat(1; 0)$.],
-  [
-    We already found the general solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$:
-    $
-      arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
-    $
-    where $alpha$ and $beta$ are parameters.
+#example(prompt: [Find the solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$ that satisfies $arrow(r)(0) = mat(1; 0)$.], [
+  We already found the general solution to $arrow(r)'=mat(2, 1; 1, 2)arrow(r)$:
+  $
+    arrow(r)(t) = alpha mat(1; 1) e^(3 t) + beta mat(1; -1) e^(1 t),
+  $
+  where $alpha$ and $beta$ are parameters.
 
-    Since we require $arrow(r)(0)=mat(1; 0)$, we can solve
-    $
-      arrow(r)(0) = alpha mat(1; 1) e^(3 dot 0) + beta mat(1; -1) e^(1 dot 0) \
-      mat(1; 0) &= alpha mat(1; 1) + beta mat(1; -1)
-    $
-    to get $alpha= 1 / 2$ and $beta= 1 / 2$.
-    Thus the solution that satisfies the initial condition is:
-    $
-      arrow(r)(t) &= (1 / 2) mat(1; 1) e^(3 t) + (1 / 2) mat(1; -1) e^(1 t) \
-      &= (1 / 2) mat(e^(3t) + e^t; e^(3t) - e^t).
-    $
-  ],
-)
+  Since we require $arrow(r)(0)=mat(1; 0)$, we can solve
+  $
+    arrow(r)(0) = alpha mat(1; 1) e^(3 dot 0) + beta mat(1; -1) e^(1 dot 0)                                       \
+                                                                  mat(1; 0) & = alpha mat(1; 1) + beta mat(1; -1)
+  $
+  to get $alpha= 1 / 2$ and $beta= 1 / 2$.
+  Thus the solution that satisfies the initial condition is:
+  $
+    arrow(r)(t) & = (1 / 2) mat(1; 1) e^(3 t) + (1 / 2) mat(1; -1) e^(1 t) \
+                & = (1 / 2) mat(e^(3t) + e^t; e^(3t) - e^t).
+  $
+])
 
 === Eigen solutions in phase space
 
-XXX Finish
+Eigen solutions have a certain look in phase space. Recall that eigen solutions take the form of
+$
+  arrow(r)(t) = e^(lambda t)arrow(v) ,
+$
+where $lambda$ is an eigenvalue of the coefficient matrix $M$ and $arrow(v)$ is the corresponding eigenvector. When graphed in phase space,
+this eigen solution will look like the set of positive multiples of $arrow(v)$. More specifically, it is will look like a straight half-line kissing the origin.
+
+#{
+  import "@preview/lilaq:0.4.0" as lq
+  import "@preview/tiptoe:0.3.1"
+  import "../libs/_ode_solvers.typ": solve_2d_ivp
+  let F(x, y) = (2 * x + y, x)
+  let soln = solve_2d_ivp(F, (.4145, -1), 100, Delta: .1, method: "rk4")
+  let soln2 = solve_2d_ivp(F, (-.414, 1), 100, Delta: .1, method: "rk4")
+
+
+  let diag = lq.diagram(
+    title: [Solutions to $arrow(r)'=mat(2, 1; 1, 0)arrow(r)$ in Phase Space],
+    xlim: (-1, 1),
+    ylim: (-1, 1),
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    lq.line((0, 0), (1 + calc.sqrt(2), 1), stroke: (paint: blue, dash: (4pt, 1pt))),
+    //lq.line(
+    //  (0, 0),
+    //  (1 - calc.sqrt(2), 1),
+    //  stroke: blue,
+    //),
+    lq.plot(
+      soln.map(((x, y)) => x),
+      soln.map(((x, y)) => y),
+      mark: none,
+      stroke: orange,
+    ),
+    lq.plot(
+      soln2.map(((x, y)) => x),
+      soln2.map(((x, y)) => y),
+      mark: none,
+      stroke: orange,
+    ),
+  )
+
+  align(center, diag)
+}
+The above figure shows an eigen solution in phase space (dashed) along with two non-eigen solutions (solid).
+
+The converse also holds: solutions whose graphs in phase space are straight lines heading towards or away from the origin are eigen solutions.
+
+#{
+  import "@preview/lilaq:0.4.0" as lq
+  import "@preview/tiptoe:0.3.1"
+  import "../libs/_ode_solvers.typ": solve_2d_ivp
+  import "../libs/_graphics.typ": vector_field
+  let F(x, y) = (2 * x + y, x)
+  let soln = solve_2d_ivp(F, (.4145, -1), 100, Delta: .1, method: "rk4")
+  let soln2 = solve_2d_ivp(F, (-.414, 1), 100, Delta: .1, method: "rk4")
+
+
+  let diag = vector_field(
+    F,
+    xlim: (-1, 1),
+    ylim: (-1, 1),
+    spacing: (.15, .15),
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+  )
+  let diag2 = vector_field(
+    F,
+    xlim: (-1, 1),
+    ylim: (-1, 1),
+    spacing: (.15, .15),
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    lq.line((0, 0), (1 + calc.sqrt(2), 1), stroke: (paint: blue, dash: (4pt, 1pt), thickness: 1.5pt)),
+    lq.line((0, 0), (1 - calc.sqrt(2), 1), stroke: (paint: blue, dash: (4pt, 1pt), thickness: 1.5pt)),
+    lq.line((0, 0), (-1 - calc.sqrt(2), -1), stroke: (paint: blue, dash: (4pt, 1pt), thickness: 1.5pt)),
+    lq.line((0, 0), (-1 + calc.sqrt(2), -1), stroke: (paint: blue, dash: (4pt, 1pt), thickness: 1.5pt)),
+  )
+
+  align(center, stack(
+    dir: ltr,
+    spacing: 1em,
+    diag,
+    diag2,
+  ))
+}
+
+Above is graphed a phase portrait for $arrow(r)'=mat(2,1;1,0)arrow(r)$ along with a version of the phase portrait with graphs of the eigen solutions overlaid (dashed lines).
+You can verify that the eigen solutions in phase space follow the trajectories of the eigen vectors of $mat(2,1;1,0)$.
+
 
 === Stability of the Equilibrium Solutions
 
@@ -419,9 +502,9 @@ $
 where $c_1$ and $c_2$ parameters. We want to study the long-term behaviour of solutions, which depends on the long-term behaviour of the exponential function:
 $
   lim_(t arrow infinity) e^(lambda t) = cases(
-    0 &" if " lambda < 0,
-    1 &" if " lambda = 0,
-    infinity &" if " lambda > 0,
+    0 & " if " lambda < 0,
+    1 & " if " lambda = 0,
+    infinity & " if " lambda > 0,
   ).
 $
 
@@ -448,69 +531,63 @@ We can now consider cases based on $lambda_1$ and $lambda_2$:
 
 The following tables summarize our findings:
 
-#align(
-  center,
-  simple_table(
-    headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
-    content: (
-      // real, both negative
-      $lambda_1<0$,
-      $lambda_2<0$,
-      [Stable and Attracting],
-      // real, both positive
-      $lambda_1>0$,
-      $lambda_2>0$,
-      [Unstable and Repelling],
-      // real, one positive, one negative
-      $lambda_1<0$,
-      $lambda_2>0$,
-      [Unstable],
-      table.hline(stroke: .5pt),
-      $lambda_1=0$,
-      $lambda_2=0$,
-      [Stable],
-      // real, 0 + negative
-      $lambda_1=0$,
-      $lambda_2<0$,
-      [Stable],
-      // real, 0 + positive
-      $lambda_1=0$,
-      $lambda_2>0$,
-      [Unstable],
-      table.hline(stroke: .5pt),
-    ),
+#align(center, simple_table(
+  headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
+  content: (
+    // real, both negative
+    $lambda_1<0$,
+    $lambda_2<0$,
+    [Stable and Attracting],
+    // real, both positive
+    $lambda_1>0$,
+    $lambda_2>0$,
+    [Unstable and Repelling],
+    // real, one positive, one negative
+    $lambda_1<0$,
+    $lambda_2>0$,
+    [Unstable],
+    table.hline(stroke: .5pt),
+    $lambda_1=0$,
+    $lambda_2=0$,
+    [Stable],
+    // real, 0 + negative
+    $lambda_1=0$,
+    $lambda_2<0$,
+    [Stable],
+    // real, 0 + positive
+    $lambda_1=0$,
+    $lambda_2>0$,
+    [Unstable],
+    table.hline(stroke: .5pt),
   ),
-)
+))
 
 or
 
-#align(
-  center,
-  simple_table(
-    headers: ([Sign of Eigenvalues], [Stability of Equilibrium]),
-    content: (
-      // real, both negative
-      [Both negative],
-      [Stable and Attracting],
-      // real, both positive
-      [Both positive],
-      [Unstable and Repelling],
-      // real, one positive, one negative
-      [One negative, one positive],
-      [Unstable],
-      table.hline(stroke: .5pt),
-      [Both zero],
-      [Stable],
-      // real, 0 + negative
-      [One is zero, one is negative],
-      [Stable],
-      // real, 0 + positive
-      [One is zero, one is positive],
-      [Unstable],
-      table.hline(stroke: .5pt),
-    ),
+#align(center, simple_table(
+  headers: ([Sign of Eigenvalues], [Stability of Equilibrium]),
+  content: (
+    // real, both negative
+    [Both negative],
+    [Stable and Attracting],
+    // real, both positive
+    [Both positive],
+    [Unstable and Repelling],
+    // real, one positive, one negative
+    [One negative, one positive],
+    [Unstable],
+    table.hline(stroke: .5pt),
+    [Both zero],
+    [Stable],
+    // real, 0 + negative
+    [One is zero, one is negative],
+    [Stable],
+    // real, 0 + positive
+    [One is zero, one is positive],
+    [Unstable],
+    table.hline(stroke: .5pt),
   ),
-)
+))
 
 #example(
   prompt: [Suppose $arrow(r)'=M arrow(r)$ has a general solution $ arrow(r)(t) = alpha mat(1; 1) e^(t) + beta mat(0; 1) e^(-t). $
