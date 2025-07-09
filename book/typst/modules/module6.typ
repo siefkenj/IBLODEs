@@ -514,7 +514,7 @@ We immediately see:
 
 What can this tell us about the stability of the equilibrium solution?
 
-Recall the informal classification of equilibrium solutions#footnote([Check @mod:equilibrium for the precise definition.]) from @mod:equilibrium.
+Recall the informal classification of equilibrium solutions from @mod:equilibrium.
 
 #show_def("equilibrium_classification_informal")
 
