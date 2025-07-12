@@ -39,8 +39,8 @@
   #(env.module)(
     title: [Simulation],
     [
-      
-      #import "modules/module4-practice-problems.typ": questions
+      #include "modules/module2.typ"
+      #import "modules/module2-practice-problems.typ": questions
       #exercises(questions, module_number: 2)
       #solutions(questions, module_number: 2)
     ]
