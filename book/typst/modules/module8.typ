@@ -231,94 +231,71 @@ to write down a general real solution is the correct number of linearly independ
 As we have seen in @mod:real, the stability of equilibrium solutions of a matrix/affine system
 is determined by the eigenvalues of the coefficient matrix.
 
-We previously only considered real eigenvalues. But, the case 
+We previously only considered real eigenvalues. But, the case
 is similar when the eigenvalues are complex. Specifically, the stability of the equilibrium solutions
 is determined by the _real part of the eigenvalues_.
 
 Consider the matrix differential equation
 $ (dif arrow(r)) / (dif t) = M arrow(r), $
-where $M$ is a $2 times 2$ matrix with eigenvalues $lambda_1 = a + i b$ and $lambda_2 = a - i b$.
+where $M$ is a $2 times 2$ matrix with eigenvalues $lambda = a plus.minus i b$.
 
-First, observe that the unique equilibrium solution is $arrow(r)(t) = mat(0; 0)$, so we want to establish the stability of this equilibrium solution.
-
-Following the process described earlier in this module, we know that the solutions of the system of differential equations will have the form
+We can write eigen solutions to this system as
 $
-  arrow(r)_i (t)
-  = arrow(v)_i e^(lambda_i t)
-  = arrow(v)_i e^(a t) e^(i b t)
-  = arrow(v)_i e^(a t) (cos(b t) + i sin(b t)),
+  arrow(r) (t)
+  = arrow(v) e^(lambda t)
+  = arrow(v) e^(a t) e^(plus.minus i b t)
+  = arrow(v) e^(a t) (cos(b t) plus.minus i sin(b t)),
 $
-where $arrow(v)_i$ is the eigenvector associated with the eigenvalue $lambda_i$.
-
-We can now study what will happen to the solutions as $t$ approaches infinity, by focusing on each term of the solution
+where $arrow(v)$ is the eigenvector associated with the eigenvalue $lambda$. Analyzing whether $arrow(r)(t)$ heads towards or away from
+the origin as $t arrow infinity$, we compute
 $
-  arrow(r)_i (t)
-  = arrow(v)_i e^(a t) (cos(b t) + i sin(b t)).
+  ||arrow(r)(t)|| & = ||arrow(v) e^(a t) (cos(b t) plus.minus i sin(b t))||                   \
+                  & = ||arrow(v)|| dot abs(e^(a t)) dot abs((cos(b t) plus.minus i sin(b t))) \
+                  & = ||arrow(v)||dot e^(a t) dot 1                                           \
+                  & = ||arrow(v)||dot e^(a t).
 $
+Since $||arrow(v)||$ does not depend on $t$, whether $||arrow(r)(t)||$ heads towards or away from the origin is entirely determined by $e^(a t)$:
 
-The first term $arrow(v)_i$ is a constant vector, so it will not affect the stability of the equilibrium solution.
+- If $a < 0$, then $e^(a t)$ will approach 0 as $t$ approaches infinity, and so $||arrow(r)(t)|| arrow 0$.
 
-The third term $cos(b t) + i sin(a t)$ is a periodic function, so it will not affect the stability of the equilibrium solution either.
+- If $a > 0$, then $e^(a t)$ will approach infinity as $t$ approaches infinity, and so $||arrow(r)(t)|| arrow infinity$.
 
-The only term that can affect the stability of the equilibrium solution is the second term $e^(a t)$.
+- If $a = 0$, then $e^(a t)$ will be equal to 1 for all $t$, and so $||arrow(r)(t)||$ is constant and eigen solutions neither move towards or away from the origin.
 
-- If $a < 0$, then $e^(a t)$ will approach 0 as $t$ approaches infinity, and the equilibrium solution will be _stable_ and _attracting_.
+==== Putting it all together
 
-- If $a > 0$, then $e^(a t)$ will approach infinity as $t$ approaches infinity, and the equilibrium solution will be _unstable_ and _repelling_.
+For the matrix equation $arrow(r)'(t) = M arrow(r)(t)$, where $M$ is a $2 times 2$ matrix with eigenvalues $a plus.minus b i$, there is an equilibrium
+solution $arrow(r)(t)=arrow(0)$. Further, we can express all solutions as linear combinations of eigen solutions.
+We have determined that eigen solutions either head towards or away from the origin (or stay the same distance from the origin) based on $a$, i.e., based
+on the _real part_ of the eigenvalue.
 
-- If $a = 0$, then $e^(a t)$ will be equal to 1 for all $t$, and the equilibrium solution will be _stable_ but neither attracting nor repelling.
-
-
-=== Summary // of Stability of Equilibrium Solutions
-
-Below we combine all the results obtained in the last modules about the stability of equilibrium solutions of systems of differential equations with constant coefficients.
-
-Consider the following system of differential equations
-$ (dif arrow(r)) / (dif t) = M arrow(r) + arrow(b), $
-where the eigenvalues of the coefficient matrix $M$ are $lambda_1$ and $lambda_2$.
-The stability of the equilibrium solution $arrow(r)(t) = - M^(-1) arrow(b)$ is determined by the eigenvalues of the coefficient matrix $M$.
-
+Thus, we have the following table for determining the stability of the equilibrium solution $arrow(r)(t) = arrow(0)$:
 #align(center, simple_table(
   headers: ([Eigenvalue $lambda_1$], [Eigenvalue $lambda_2$], [Stability of Equilibrium]),
   content: (
-    // real, both negative
-    $lambda_1<0$,
-    $lambda_2<0$,
-    [Stable and Attracting],
-    // real, both positive
-    $lambda_1>0$,
-    $lambda_2>0$,
-    [Unstable and Repelling],
-    // real, one positive, one negative
-    $lambda_1<0$,
-    $lambda_2>0$,
-    [Unstable and Repelling],
-    table.hline(stroke: .5pt),
-    // real, 0 + negative
-    $lambda_1=0$,
-    $lambda_2<0$,
-    [Stable],
-    // real, 0 + positive
-    $lambda_1=0$,
-    $lambda_2>0$,
-    [Unstable],
-    table.hline(stroke: .5pt),
     // complex, both negative real part
-    $lambda_1 = a + i b, a<0$,
-    $lambda_2 = a - i b, a<0$,
+    $"real part"(lambda_1)<0$,
+    $"real part"(lambda_2)<0$,
     [Stable and Attracting],
     // complex, both positive real part
-    $lambda_1 = a + i b, a>0$,
-    $lambda_2 = a - i b, a>0$,
+    $"real part"(lambda_1)>0$,
+    $"real part"(lambda_2)>0$,
     [Unstable and Repelling],
     // complex, zero real part
-    $lambda_1 = i b$,
-    $lambda_2 = - i b$,
+    $"real part"(lambda_1) = 0$,
+    $"real part"(lambda_2) = 0$,
     [Stable],
   ),
 ))
 
-OR
+Because the eigenvalues of a real matrix always come in complex-conjugate pairs, there are no other options (if the eigenvalues are complex).
+
+We can now extend our table from @mod:real.
+Let $M$ be a $2 times 2$ matrix with eigenvalues $lambda_1$ and $lambda_2$. The equilibrium solution $arrow(r)(t) = arrow(0)$ to the matrix equation
+$
+  arrow(r)'(t) = M arrow(r)(t)
+$
+can be classified as follows:
 
 #align(center, simple_table(
   headers: ([Real/Complex], [Sign of Eigenvalues], [Stability of Equilibrium]),
@@ -359,17 +336,3 @@ OR
     [Stable],
   ),
 ))
-
-XXX CHOOSE ONE TABLE!!
-
-
-
-
-
-
-
-
-
-
-
-
