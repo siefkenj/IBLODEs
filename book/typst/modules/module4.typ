@@ -581,7 +581,27 @@ Solutions to this system all end up with oscillatory behaviour and they all have
 a solution which is perfectly periodic (in this situation we say that the system has a _limit cycle_). The study of what behaviour solutions can be "attracted to"
 leads to concepts like fractals and chaos (advanced differential equations courses touch on these topics!).
 
-XXX Figure
+#{
+  let F(x, y) = (y, 0.08 * (1 - x * x) * y - x)
+  let path1 = solve_2d_ivp(F, (11, -6.4), 400, Delta: .1, method: "rk4")
+  let path2 = solve_2d_ivp(F, (-11, -6.4), 400, Delta: .1, method: "rk4")
+  let path3 = solve_2d_ivp(F, (5, -10.4), 400, Delta: .1, method: "rk4")
+
+  let diag = lq.diagram(
+    title: [Van der Pol System\ with $mu=0.08$ in _Phase Space_],
+    xaxis: (label: $x$, tick-distance: 3.9),
+    yaxis: (label: $y$, tick-distance: 3.9),
+    ylim: (-10, 10),
+    xlim: (-10, 10),
+    lq.plot(path1.map(((x, y)) => x), path1.map(((x, y)) => y), mark: none),
+    lq.plot(path2.map(((x, y)) => x), path2.map(((x, y)) => y), mark: none, stroke: (dash: (4pt, 1pt))),
+    lq.plot(path3.map(((x, y)) => x), path3.map(((x, y)) => y), mark: none, stroke: (dash: (2pt, 2pt))),
+  )
+
+  align(center, diag)
+}
+
+In the above diagram you can see the oval-shaped limit cycle in the center to which solutions are attracted.
 
 #example(prompt: [Find an classify all equilibrium solutions to XXX Finish], [
   XXX Finish
