@@ -1,4 +1,4 @@
-#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/lilaq:0.3.0" as lq
 
 
 /// Merge to `stroke` objects with any properties defined on the second one taking precedence.
@@ -222,25 +222,21 @@
 
   let x = lq.arange(xmin, xmax + x_spacing, step: x_spacing)
   let y = lq.arange(ymin, ymax + y_spacing, step: y_spacing)
-  let (directions) = lq.mesh(
-    x,
-    y,
-    (x, y) => {
-      let (val_x, val_y) = F(x, y)
-      // Avoid things like floating point -0.0
-      let val_x = if val_x == 0 { 0.0 } else { val_x }
-      let val_y = if val_y == 0 { 0.0 } else { val_y }
+  let (directions) = lq.mesh(x, y, (x, y) => {
+    let (val_x, val_y) = F(x, y)
+    // Avoid things like floating point -0.0
+    let val_x = if val_x == 0 { 0.0 } else { val_x }
+    let val_y = if val_y == 0 { 0.0 } else { val_y }
 
-      let mag = calc.sqrt(val_x * val_x + val_y * val_y)
-      let scale = if mag == 0 {
-        0
-      } else {
-        1 / mag * _sigmoid(mag)
-      }
+    let mag = calc.sqrt(val_x * val_x + val_y * val_y)
+    let scale = if mag == 0 {
+      0
+    } else {
+      1 / mag * _sigmoid(mag)
+    }
 
-      (val_x * scale, val_y * scale)
-    },
-  )
+    (val_x * scale, val_y * scale)
+  })
 
   let magnitudes = directions.map(d => d.map(v => calc.sqrt(v.at(0) * v.at(0) + v.at(1) * v.at(1))))
 
@@ -275,3 +271,14 @@
   xlabel: $t$,
   ylabel: lq.label($P$, dx: -1cm),
 ),
+
+#let F(x, y) = ((0.01 * y - 1.1) * x, (1.1 - 0.1 * x) * y)
+#vector_field(
+  F,
+  xlim: (-5, 40),
+  ylim: (-30, 310),
+  spacing: (3, 19),
+  scale_segments: 20.0,
+  width: 6.5cm,
+  height: 6.5cm,
+)

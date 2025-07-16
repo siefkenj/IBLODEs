@@ -9,7 +9,7 @@
 
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": workbook, show_def
+#import "../common/settings-book.typ": show_def, workbook
 #let (sans, serif, module, definition, example) = workbook
 
 In this module you will learn
@@ -64,22 +64,19 @@ to the solution curve look like. It stands to reason that if we
 draw little segments of tangent lines all over the $(t,P)$--plane, we can visually guess at the shape of the solution curve.
 
 #{
-  align(
-    center,
-    slope_field(
-      F,
-      xlim: (-.3, 1.1),
-      ylim: (-.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      spacing: (.06, .25),
-      scale_segments: .05,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
-      xlabel: $t$,
-      ylabel: lq.label($P$, dx: -1cm),
-    ),
-  )
+  align(center, slope_field(
+    F,
+    xlim: (-.3, 1.1),
+    ylim: (-.3, 3.3),
+    width: 7cm,
+    height: 3cm,
+    spacing: (.06, .25),
+    scale_segments: .05,
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
+    xlabel: $t$,
+    ylabel: lq.label($P$, dx: -1cm),
+  ))
 }
 
 The above diagram, where small segments of tangent lines to solutions populate the plane, is called a _slope field_.
@@ -102,29 +99,21 @@ Starting at $(t,P(t)) = (0,#(y_0))$, we can trace out what an approximate soluti
   let xs = soln.map(((x, y)) => x)
   let ys = soln.map(((x, y)) => y)
 
-  align(
-    center,
-    slope_field(
-      F,
-      xlim: (-.3, 1.1),
-      ylim: (-.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      spacing: (.06, .25),
-      scale_segments: .05,
-      // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
-      xlabel: $t$,
-      ylabel: lq.label($P$, dx: -1cm),
-      lq.plot(
-        xs,
-        ys,
-        mark: none,
-        stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
-    ),
-  )
+  align(center, slope_field(
+    F,
+    xlim: (-.3, 1.1),
+    ylim: (-.3, 3.3),
+    width: 7cm,
+    height: 3cm,
+    spacing: (.06, .25),
+    scale_segments: .05,
+    // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3.))),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
+    xlabel: $t$,
+    ylabel: lq.label($P$, dx: -1cm),
+    lq.plot(xs, ys, mark: none, stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt))),
+  ))
 }
 
 The solution curve we draw should be tangent to every line segment it passes through. In the drawing above, the solution curve is decreasing
@@ -132,7 +121,7 @@ and slightly concave up. Based on the drawing, we can estimate $P(1) approx #(ap
 
 Tracing out solutions on slope fields is a good way to see overall qualities of a solution, like whether it is increasing/decreasing or its concavity.
 But, its numerical accuracy is limited. A small change in how we sketched the curve could lead to estimates
-that $P(1) approx #(calc.round(approx_rounded - .2, digits: 1))$ or $P(1) approx #(approx_rounded + .2)$,
+like $P(1) approx #(calc.round(approx_rounded - .2, digits: 1))$ or $P(1) approx #(approx_rounded + .2)$,
 a wide range. If we're after precise numerical estimates, we can formalize this "slope field estimation" by means of Euler's method.
 
 
@@ -179,31 +168,23 @@ so we get an approximation of $ P(1) approx P(0) + P'(0)(t-0)lr(|, size: #(0pt +
   let xs = soln.map(((x, y)) => x)
   let ys = soln.map(((x, y)) => y)
 
-  align(
-    center,
-    lq.diagram(
-      xlim: (-.3, 1.1),
-      ylim: (-.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
-      xlabel: $t$,
-      ylabel: lq.label($P$, dx: -1cm),
-      lq.plot(
-        soln_xs,
-        soln_ys,
-        mark: none,
-        stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
-      lq.plot(
-        xs,
-        ys,
-        //mark: "square",
-        //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
+  align(center, lq.diagram(
+    xlim: (-.3, 1.1),
+    ylim: (-.3, 3.3),
+    width: 7cm,
+    height: 3cm,
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
+    xlabel: $t$,
+    ylabel: lq.label($P$, dx: -1cm),
+    lq.plot(soln_xs, soln_ys, mark: none, stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt))),
+    lq.plot(
+      xs,
+      ys,
+      //mark: "square",
+      //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
     ),
-  )
+  ))
 }
 
 Our approximation is an underestimate. How can we be more accurate? By using two tangent lines!
@@ -235,31 +216,23 @@ $
   let xs = soln.map(((x, y)) => x)
   let ys = soln.map(((x, y)) => y)
 
-  align(
-    center,
-    lq.diagram(
-      xlim: (-.3, 1.1),
-      ylim: (-.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
-      xlabel: $t$,
-      ylabel: lq.label($P$, dx: -1cm),
-      lq.plot(
-        soln_xs,
-        soln_ys,
-        mark: none,
-        stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
-      lq.plot(
-        xs,
-        ys,
-        //mark: "square",
-        //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
+  align(center, lq.diagram(
+    xlim: (-.3, 1.1),
+    ylim: (-.3, 3.3),
+    width: 7cm,
+    height: 3cm,
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
+    xlabel: $t$,
+    ylabel: lq.label($P$, dx: -1cm),
+    lq.plot(soln_xs, soln_ys, mark: none, stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt))),
+    lq.plot(
+      xs,
+      ys,
+      //mark: "square",
+      //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
     ),
-  )
+  ))
 }
 
 This process becomes more accurate the more (approximate) tangent lines we use. Here is a picture showing what happens if we use four tangent lines.
@@ -278,31 +251,23 @@ This process becomes more accurate the more (approximate) tangent lines we use. 
   let xs = soln.map(((x, y)) => x)
   let ys = soln.map(((x, y)) => y)
 
-  align(
-    center,
-    lq.diagram(
-      xlim: (-.3, 1.1),
-      ylim: (-.3, 3.3),
-      width: 7cm,
-      height: 3cm,
-      yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-      xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
-      xlabel: $t$,
-      ylabel: lq.label($P$, dx: -1cm),
-      lq.plot(
-        soln_xs,
-        soln_ys,
-        mark: none,
-        stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
-      lq.plot(
-        xs,
-        ys,
-        //mark: "square",
-        //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-      ),
+  align(center, lq.diagram(
+    xlim: (-.3, 1.1),
+    ylim: (-.3, 3.3),
+    width: 7cm,
+    height: 3cm,
+    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1.))),
+    xlabel: $t$,
+    ylabel: lq.label($P$, dx: -1cm),
+    lq.plot(soln_xs, soln_ys, mark: none, stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt))),
+    lq.plot(
+      xs,
+      ys,
+      //mark: "square",
+      //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
     ),
-  )
+  ))
 }
 
 The process of using many tangent lines to iteratively approximate a solution to a differential equation is called
@@ -324,55 +289,49 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
   [
     We will implement Euler's method by making a table to help us track the relevant quantities.
 
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (sym.dots.v, sym.dots.v, sym.dots.v, sym.dots.v),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (sym.dots.v, sym.dots.v, sym.dots.v, sym.dots.v),
+    ))
 
     We can start by filling out the "Step" and $t$ columns. We start at $t=0$ and at Step $0$. Since we have a step size of $Delta = .25$, we will
     increment $t$ by $Delta$ at each step until we reach $t=1$.
 
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (
-          $0$,
-          $0$,
-          none,
-          none,
-          $1$,
-          $0.25$,
-          none,
-          none,
-          $2$,
-          $0.5$,
-          none,
-          none,
-          $3$,
-          $0.75$,
-          none,
-          none,
-          $4$,
-          $1$,
-          none,
-          none,
-        ),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (
+        $0$,
+        $0$,
+        none,
+        none,
+        $1$,
+        $0.25$,
+        none,
+        none,
+        $2$,
+        $0.5$,
+        none,
+        none,
+        $3$,
+        $0.75$,
+        none,
+        none,
+        $4$,
+        $1$,
+        none,
+        none,
+      ),
+    ))
 
     At time $t=0$, we know the exact value of $P(t)$ and of $P'(t)$, so we can fill in the first row of the table.
     #let soln = solve_1d_ivp(
@@ -387,39 +346,36 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
     )
     #let P_approx = soln.map(((x, y)) => y)
     #let P_prime_approx = soln.map(((x, y)) => F(x, y))
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (
-          $0$,
-          $0$,
-          $#(P_approx.at(0))$,
-          $#(P_prime_approx.at(0))$,
-          $1$,
-          $0.25$,
-          none,
-          none,
-          $2$,
-          $0.5$,
-          none,
-          none,
-          $3$,
-          $0.75$,
-          none,
-          none,
-          $4$,
-          $1$,
-          none,
-          none,
-        ),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (
+        $0$,
+        $0$,
+        $#(P_approx.at(0))$,
+        $#(P_prime_approx.at(0))$,
+        $1$,
+        $0.25$,
+        none,
+        none,
+        $2$,
+        $0.5$,
+        none,
+        none,
+        $3$,
+        $0.75$,
+        none,
+        none,
+        $4$,
+        $1$,
+        none,
+        none,
+      ),
+    ))
 
     To find $P_"approx" (0.25)$, we use a tangent line centered at $(t, P)=(0, 3)$. Thus,
     $
@@ -428,39 +384,36 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
     We can now fill in the second row of the table, noting that we get $P'_"approx" (0.25)$ from the formula
     $P'(t) = formula$.
 
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (
-          $0$,
-          $0$,
-          $#(P_approx.at(0))$,
-          $#(P_prime_approx.at(0))$,
-          $1$,
-          $0.25$,
-          $#(P_approx.at(1))$,
-          $#(calc.round(P_prime_approx.at(1), digits: 3))$,
-          $2$,
-          $0.5$,
-          none,
-          none,
-          $3$,
-          $0.75$,
-          none,
-          none,
-          $4$,
-          $1$,
-          none,
-          none,
-        ),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (
+        $0$,
+        $0$,
+        $#(P_approx.at(0))$,
+        $#(P_prime_approx.at(0))$,
+        $1$,
+        $0.25$,
+        $#(P_approx.at(1))$,
+        $#(calc.round(P_prime_approx.at(1), digits: 3))$,
+        $2$,
+        $0.5$,
+        none,
+        none,
+        $3$,
+        $0.75$,
+        none,
+        none,
+        $4$,
+        $1$,
+        none,
+        none,
+      ),
+    ))
 
     We can now compute $P_"approx" (0.5)$ using a tangent line centered at $(t, P)=(0.25, #(P_approx.at(1)))$.
     $
@@ -469,78 +422,70 @@ denoted by $Delta$, where $Delta = "domain of approximation" / "# of tangent lin
     $
     and so
 
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (
-          $0$,
-          $0$,
-          $#(P_approx.at(0))$,
-          $#(P_prime_approx.at(0))$,
-          $1$,
-          $0.25$,
-          $#(P_approx.at(1))$,
-          $#(calc.round(P_prime_approx.at(1), digits: 3))$,
-          $2$,
-          $0.5$,
-          $#(calc.round(P_approx.at(2), digits: 3))$,
-          $#(calc.round(P_prime_approx.at(2), digits: 3))$,
-          $3$,
-          $0.75$,
-          none,
-          none,
-          $4$,
-          $1$,
-          none,
-          none,
-        ),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (
+        $0$,
+        $0$,
+        $#(P_approx.at(0))$,
+        $#(P_prime_approx.at(0))$,
+        $1$,
+        $0.25$,
+        $#(P_approx.at(1))$,
+        $#(calc.round(P_prime_approx.at(1), digits: 3))$,
+        $2$,
+        $0.5$,
+        $#(calc.round(P_approx.at(2), digits: 3))$,
+        $#(calc.round(P_prime_approx.at(2), digits: 3))$,
+        $3$,
+        $0.75$,
+        none,
+        none,
+        $4$,
+        $1$,
+        none,
+        none,
+      ),
+    ))
 
     Continuing this process, we can fill in the rest of the table.
-    #align(
-      center,
-      simple_table(
-        headers: (
-          [Step],
-          $t$,
-          $P_"approx" (t)$,
-          $P'_"approx" (t)$,
-        ),
-        content: (
-          $0$,
-          $0$,
-          $#(P_approx.at(0))$,
-          $#(P_prime_approx.at(0))$,
-          $1$,
-          $0.25$,
-          $#(P_approx.at(1))$,
-          $#(calc.round(P_prime_approx.at(1), digits: 3))$,
-          $2$,
-          $0.5$,
-          $#(calc.round(P_approx.at(2), digits: 3))$,
-          $#(calc.round(P_prime_approx.at(2), digits: 3))$,
-          $3$,
-          $0.75$,
-          $#(calc.round(P_approx.at(3), digits: 3))$,
-          $#(calc.round(P_prime_approx.at(3), digits: 3))$,
-          $4$,
-          $1$,
-          $#(calc.round(P_approx.at(4), digits: 3))$,
-          none,
-        ),
+    #align(center, simple_table(
+      headers: (
+        [Step],
+        $t$,
+        $P_"approx" (t)$,
+        $P'_"approx" (t)$,
       ),
-    )
+      content: (
+        $0$,
+        $0$,
+        $#(P_approx.at(0))$,
+        $#(P_prime_approx.at(0))$,
+        $1$,
+        $0.25$,
+        $#(P_approx.at(1))$,
+        $#(calc.round(P_prime_approx.at(1), digits: 3))$,
+        $2$,
+        $0.5$,
+        $#(calc.round(P_approx.at(2), digits: 3))$,
+        $#(calc.round(P_prime_approx.at(2), digits: 3))$,
+        $3$,
+        $0.75$,
+        $#(calc.round(P_approx.at(3), digits: 3))$,
+        $#(calc.round(P_prime_approx.at(3), digits: 3))$,
+        $4$,
+        $1$,
+        $#(calc.round(P_approx.at(4), digits: 3))$,
+        none,
+      ),
+    ))
     This gives an Euler estimate of
-    $
-      P(1) approx P_"approx" (1) = #(calc.round(P_approx.at(4), digits: 3)).
-    $ (Note, there is no need to compute $P'_"approx" (1)$ since we are not using it, but there is no harm in computing it either.)
+    $ P(1) approx P_"approx" (1) = #(calc.round(P_approx.at(4), digits: 3)). $ (Note, there is no need to compute $P'_"approx" (1)$ since we are not using it, but there is no harm in computing it either.)
 
   ],
 )
@@ -595,72 +540,65 @@ For this example, we will use $Delta=0.25$ and our familiar initial value proble
   ),
 )
 
-#align(
-  center,
-  stack(
-    dir: ltr,
-    spacing: 1em,
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: (
-        "A1": (
-          value: `t`,
-          alignment: center,
-        ),
-        "B1": (
-          value: `P(t)`,
-          alignment: center,
-        ),
-        "C1": (
-          value: `P'(t)`,
-          alignment: center,
-        ),
-        "A2": (
-          value: "0",
-        ),
-        "A3": (
-          value: [`=A2+0.25`],
-          alignment: left,
-        ),
-        "B2": (
-          value: "3",
-        ),
+#align(center, stack(
+  dir: ltr,
+  spacing: 1em,
+  draw_spreadsheet(
+    cols: 3,
+    rows: 6,
+    cells: (
+      "A1": (
+        value: `t`,
+        alignment: center,
       ),
-      select_cells: (pos: "A3", corner_cursor: (se: true)),
-      additional_draw_function: cell_extents => {
-        import "@preview/cetz:0.3.4"
-        import cetz.draw: *
-
-        let (right, bottom) = cell_extents("A3")
-        let (right: right2, bottom: bottom2) = cell_extents("A6")
-        let color = red.darken(20%)
-
-        circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
-        line(
-          "circ.start",
-          (right2, bottom2),
-          stroke: (paint: color, dash: (2pt, 2pt)),
-          mark: (end: (symbol: "straight")),
-          name: "line",
-        )
-        content(
-          ("line.start", 20%, "line.end"),
-          angle: "line.end",
-          anchor: "north",
-          padding: .2,
-          text(fill: color)[Drag down],
-        )
-      },
+      "B1": (
+        value: `P(t)`,
+        alignment: center,
+      ),
+      "C1": (
+        value: `P'(t)`,
+        alignment: center,
+      ),
+      "A2": (
+        value: "0",
+      ),
+      "A3": (
+        value: [`=A2+0.25`],
+        alignment: left,
+      ),
+      "B2": (
+        value: "3",
+      ),
     ),
-    align(horizon, sym.arrow),
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: spreadsheet_so_far,
-    ),
+    select_cells: (pos: "A3", corner_cursor: (se: true)),
+    additional_draw_function: cell_extents => {
+      import "@preview/cetz:0.3.4"
+      import cetz.draw: *
+
+      let (right, bottom) = cell_extents("A3")
+      let (right: right2, bottom: bottom2) = cell_extents("A6")
+      let color = red.darken(20%)
+
+      circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
+      line(
+        "circ.start",
+        (right2, bottom2),
+        stroke: (paint: color, dash: (2pt, 2pt)),
+        mark: (end: (symbol: "straight")),
+        name: "line",
+      )
+      content(("line.start", 20%, "line.end"), angle: "line.end", anchor: "north", padding: .2, text(
+        fill: color,
+      )[Drag down])
+    },
   ),
-)
+  align(horizon, sym.arrow),
+  draw_spreadsheet(
+    cols: 3,
+    rows: 6,
+    cells: spreadsheet_so_far,
+  ),
+))
 
 Next, we enter the formula for $P' (t)$, making reference to the appropriate cells to get the values of $t$ and $P(t)$.
 Here, the formula we enter into `C2` is `=SIN(PI() / 2 * B2 - A2) - 1.5`.#footnote[To get the value $pi$ we must enter `PI()` with the parenthesis `()` at the end.]
@@ -680,55 +618,48 @@ Here, the formula we enter into `C2` is `=SIN(PI() / 2 * B2 - A2) - 1.5`.#footno
     }),
 ).to-dict()
 
-#align(
-  center,
-  stack(
-    dir: ltr,
-    spacing: 1em,
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: (
-        ..spreadsheet_so_far,
-        "C2": (
-          value: [`=SIN(PI() / 2 * B2 - A2) - 1.5`],
-          alignment: left,
-        ),
+#align(center, stack(
+  dir: ltr,
+  spacing: 1em,
+  draw_spreadsheet(
+    cols: 3,
+    rows: 6,
+    cells: (
+      ..spreadsheet_so_far,
+      "C2": (
+        value: [`=SIN(PI() / 2 * B2 - A2) - 1.5`],
+        alignment: left,
       ),
-      select_cells: (pos: "C2", corner_cursor: (se: true)),
-      additional_draw_function: cell_extents => {
-        import "@preview/cetz:0.3.4"
-        import cetz.draw: *
-
-        let (right, bottom) = cell_extents("C2")
-        let (right: right2, bottom: bottom2) = cell_extents("C6")
-        let color = red.darken(20%)
-
-        circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
-        line(
-          "circ.start",
-          (right2, bottom2),
-          stroke: (paint: color, dash: (2pt, 2pt)),
-          mark: (end: (symbol: "straight")),
-          name: "line",
-        )
-        content(
-          ("line.start", 20%, "line.end"),
-          angle: "line.end",
-          anchor: "north",
-          padding: .2,
-          text(fill: color)[Drag down],
-        )
-      },
     ),
-    align(horizon, sym.arrow),
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: spreadsheet_so_far2,
-    ),
+    select_cells: (pos: "C2", corner_cursor: (se: true)),
+    additional_draw_function: cell_extents => {
+      import "@preview/cetz:0.3.4"
+      import cetz.draw: *
+
+      let (right, bottom) = cell_extents("C2")
+      let (right: right2, bottom: bottom2) = cell_extents("C6")
+      let color = red.darken(20%)
+
+      circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
+      line(
+        "circ.start",
+        (right2, bottom2),
+        stroke: (paint: color, dash: (2pt, 2pt)),
+        mark: (end: (symbol: "straight")),
+        name: "line",
+      )
+      content(("line.start", 20%, "line.end"), angle: "line.end", anchor: "north", padding: .2, text(
+        fill: color,
+      )[Drag down])
+    },
   ),
-)
+  align(horizon, sym.arrow),
+  draw_spreadsheet(
+    cols: 3,
+    rows: 6,
+    cells: spreadsheet_so_far2,
+  ),
+))
 
 Note: our spreadsheet currently has _incorrect_ values for $P'$ since the formula for $P' (t)$ in the spreadsheet is referencing
 cells that have not yet been populated with values.#footnote[Spreadsheets typically interpret empty cells as the number $0$. They do this
@@ -759,70 +690,54 @@ Finally, we can enter the formula for $P (t)$. Based on the tangent line approxi
     let t = ts.at(i)
     let P = Ps.at(i)
     let P_prime = P_primes.at(i)
-    ret.insert(
-      "A" + str(row),
-      (
-        value: str(t),
-      ),
-    )
-    ret.insert(
-      "B" + str(row),
-      (
-        value: str(calc.round(P, digits: 5)),
-      ),
-    )
-    ret.insert(
-      "C" + str(row),
-      (
-        value: str(calc.round(P_prime, digits: 5)),
-      ),
-    )
+    ret.insert("A" + str(row), (
+      value: str(t),
+    ))
+    ret.insert("B" + str(row), (
+      value: str(calc.round(P, digits: 5)),
+    ))
+    ret.insert("C" + str(row), (
+      value: str(calc.round(P_prime, digits: 5)),
+    ))
   }
   ret
 }
 
-#align(
-  center,
-  stack(
-    dir: ltr,
-    spacing: 1em,
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: (
-        ..spreadsheet_so_far2,
-        "B3": (
-          value: [`=B2+0.25*C2`],
-          alignment: left,
-        ),
+#align(center, stack(
+  dir: ltr,
+  spacing: 1em,
+  draw_spreadsheet(
+    cols: 3,
+    rows: 6,
+    cells: (
+      ..spreadsheet_so_far2,
+      "B3": (
+        value: [`=B2+0.25*C2`],
+        alignment: left,
       ),
-      select_cells: (pos: "B3", corner_cursor: (se: true)),
-      additional_draw_function: cell_extents => {
-        import "@preview/cetz:0.3.4"
-        import cetz.draw: *
-
-        let (right, bottom) = cell_extents("B3")
-        let (right: right2, bottom: bottom2) = cell_extents("B6")
-        let color = red.darken(20%)
-
-        circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
-        line(
-          "circ.start",
-          (right2, bottom2),
-          stroke: (paint: color, dash: (2pt, 2pt)),
-          mark: (end: (symbol: "straight")),
-          name: "line",
-        )
-      },
     ),
-    align(horizon, sym.arrow),
-    draw_spreadsheet(
-      cols: 3,
-      rows: 6,
-      cells: (:..spreadsheet_so_far, ..full_spreadsheet),
-    ),
+    select_cells: (pos: "B3", corner_cursor: (se: true)),
+    additional_draw_function: cell_extents => {
+      import "@preview/cetz:0.3.4"
+      import cetz.draw: *
+
+      let (right, bottom) = cell_extents("B3")
+      let (right: right2, bottom: bottom2) = cell_extents("B6")
+      let color = red.darken(20%)
+
+      circle((right, bottom), radius: 5pt, stroke: (paint: color, dash: (2pt, 2pt)), name: "circ")
+      line(
+        "circ.start",
+        (right2, bottom2),
+        stroke: (paint: color, dash: (2pt, 2pt)),
+        mark: (end: (symbol: "straight")),
+        name: "line",
+      )
+    },
   ),
-)
+  align(horizon, sym.arrow),
+  draw_spreadsheet(cols: 3, rows: 6, cells: (:..spreadsheet_so_far, ..full_spreadsheet)),
+))
 
 Our spreadsheet has now taken care of all the tedious calculations! It is also _reactive_. For example, if we change the initial conditions (i.e., change the value of $P(0)$ in cell `B2`),
 the spreadsheet will automatically recompute the value in all other cells.
@@ -888,10 +803,7 @@ different step sizes, we see that the smaller the step size, the more accurate t
       ),
     ))
 
-  align(
-    center,
-    stack(..diagrams, spacing: 1em, dir: ltr),
-  )
+  align(center, stack(..diagrams, spacing: 1em, dir: ltr))
 }
 
 In the above example, we knew the exact solution, but what if we didn't? It is possible to get explicit bounds on the
@@ -926,37 +838,34 @@ Plotting with $Delta = 0.3$, $0.2$, $0.1$, $0.05$, $0.03$, and $0.01$ we see dif
   })
 
 
-  align(
-    center,
-    lq.diagram(
-      title: [Euler Approximations with $Delta=0.3$ to $0.01$],
-      xlim: (-.3, 3.1),
-      ylim: (-1.1, 2.3),
-      width: 8cm,
-      height: 5cm,
-      yaxis: (
-        position: 0,
-        tip: tiptoe.stealth,
-        filter: ((v, d) => v != 0),
-        tick-distance: 1.0,
-      ),
-      xaxis: (
-        position: 0,
-        tip: tiptoe.stealth,
-        filter: ((v, d) => v != 0),
-        tick-distance: 1.0,
-      ),
-      ..deltas
-        .zip(solns)
-        .map(((delta, solns)) => lq.plot(
-          solns.at(0),
-          solns.at(1),
-          mark: none,
-          //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-          //title: $Delta = #(delta)$,
-        )),
+  align(center, lq.diagram(
+    title: [Euler Approximations with $Delta=0.3$ to $0.01$],
+    xlim: (-.3, 3.1),
+    ylim: (-1.1, 2.3),
+    width: 8cm,
+    height: 5cm,
+    yaxis: (
+      position: 0,
+      tip: tiptoe.stealth,
+      filter: ((v, d) => v != 0),
+      tick-distance: 1.0,
     ),
-  )
+    xaxis: (
+      position: 0,
+      tip: tiptoe.stealth,
+      filter: ((v, d) => v != 0),
+      tick-distance: 1.0,
+    ),
+    ..deltas
+      .zip(solns)
+      .map(((delta, solns)) => lq.plot(
+        solns.at(0),
+        solns.at(1),
+        mark: none,
+        //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+        //title: $Delta = #(delta)$,
+      )),
+  ))
 }
 
 Initially, it may not seem like the approximations are converging to an exact solution.
@@ -980,37 +889,34 @@ However, if we keep plotting with smaller and smaller $Delta$'s, we see that the
   })
 
 
-  align(
-    center,
-    lq.diagram(
-      title: [Euler Approximations with $Delta=0.01$ to $0.0005$],
-      xlim: (-.3, 3.1),
-      ylim: (-1.1, 2.3),
-      width: 8cm,
-      height: 5cm,
-      yaxis: (
-        position: 0,
-        tip: tiptoe.stealth,
-        filter: ((v, d) => v != 0),
-        tick-distance: 1.0,
-      ),
-      xaxis: (
-        position: 0,
-        tip: tiptoe.stealth,
-        filter: ((v, d) => v != 0),
-        tick-distance: 1.0,
-      ),
-      ..deltas
-        .zip(solns)
-        .map(((delta, solns)) => lq.plot(
-          solns.at(0),
-          solns.at(1),
-          mark: none,
-          //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
-          //title: $Delta = #(delta)$,
-        )),
+  align(center, lq.diagram(
+    title: [Euler Approximations with $Delta=0.01$ to $0.0005$],
+    xlim: (-.3, 3.1),
+    ylim: (-1.1, 2.3),
+    width: 8cm,
+    height: 5cm,
+    yaxis: (
+      position: 0,
+      tip: tiptoe.stealth,
+      filter: ((v, d) => v != 0),
+      tick-distance: 1.0,
     ),
-  )
+    xaxis: (
+      position: 0,
+      tip: tiptoe.stealth,
+      filter: ((v, d) => v != 0),
+      tick-distance: 1.0,
+    ),
+    ..deltas
+      .zip(solns)
+      .map(((delta, solns)) => lq.plot(
+        solns.at(0),
+        solns.at(1),
+        mark: none,
+        //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+        //title: $Delta = #(delta)$,
+      )),
+  ))
 }
 
 When approximations start looking consistent, this provides strong evidence that the approximations are close to the exact solution.
@@ -1147,10 +1053,157 @@ sources of error far greater than the error arising from Euler's method).
 
 
 #example(
-  prompt: [Use Euler's method to estimate whether the solution to the initial value problem ... is periodic or not],
+  prompt: [Use Euler's method and slope fields to estimate whether the solution to the initial value problem
+    $ y'(t) = sin(5 t)/(1/2 + y^4) wide "and" wide y(0) = 0 $ is periodic or not.],
   [
-    XXX Finish. Come up with a nice example where it's not super obvious.
+    We can use Euler's method to approximate the solution to this initial value problem.
+    Starting with $Delta=0.1$, we get the following picture.
+    #{
+      let deltas = (0.1,)
+      let F(x, y) = calc.sin(5 * x) / (.5 + y * y * y * y)
+      let x_max = 11
+      let solns = deltas.map(delta => {
+        let soln = solve_1d_ivp(
+          F,
+          (0, 0),
+          calc.ceil(x_max / delta),
+          Delta: delta,
+          method: "euler",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+        (xs, ys)
+      })
 
+
+      align(center, lq.diagram(
+        title: [Euler Approximation with $Delta=0.1$],
+        xlim: (-.3, 10.1),
+        ylim: (-1.1, 1.3),
+        width: 8cm,
+        height: 5cm,
+        yaxis: (
+          position: 0,
+          tip: tiptoe.stealth,
+          filter: ((v, d) => v != 0),
+          tick-distance: 1.0,
+        ),
+        xaxis: (
+          position: 0,
+          tip: tiptoe.stealth,
+          filter: ((v, d) => v != 0),
+          tick-distance: 1.0,
+        ),
+        ..deltas
+          .zip(solns)
+          .map(((delta, solns)) => lq.plot(
+            solns.at(0),
+            solns.at(1),
+            mark: none,
+            //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            //title: $Delta = #(delta)$,
+          )),
+      ))
+    }
+
+    The simulated solution drifts upwards and is not periodic. However, before
+    making a conclusion, we will simulate with a range of smaller step sizes and see if any patterns arise.
+
+    #{
+      let deltas = (0.05, 0.02, 0.005)
+      let F(x, y) = calc.sin(5 * x) / (.5 + y * y * y * y)
+      let x_max = 11
+      let solns = deltas.map(delta => {
+        let soln = solve_1d_ivp(
+          F,
+          (0, 0),
+          calc.ceil(x_max / delta),
+          Delta: delta,
+          method: "euler",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+        (xs, ys)
+      })
+
+
+      align(center, lq.diagram(
+        title: [Euler Approximation with\ $Delta=0.05$, $0.02$, and $0.005$],
+        xlim: (-.3, 10.1),
+        ylim: (-1.1, 1.3),
+        width: 8cm,
+        height: 5cm,
+        yaxis: (
+          position: 0,
+          tip: tiptoe.stealth,
+          filter: ((v, d) => v != 0),
+          tick-distance: 1.0,
+        ),
+        xaxis: (
+          position: 0,
+          tip: tiptoe.stealth,
+          filter: ((v, d) => v != 0),
+          tick-distance: 1.0,
+        ),
+        ..deltas
+          .zip(solns)
+          .map(((delta, solns)) => lq.plot(
+            solns.at(0),
+            solns.at(1),
+            mark: none,
+            //stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            //title: $Delta = #(delta)$,
+          )),
+      ))
+    }
+
+    From the plot we see that as $Delta$ gets smaller and smaller our simulated solutions appear to be converging to a periodic solution.
+
+    #v(1em)
+
+    An alternative approach is to analyze the slope field.
+
+    #{
+      let F(x, y) = calc.sin(5 * x) / (.5 + y * y * y * y)
+      let soln = solve_1d_ivp(
+        F,
+        (
+          0,
+          y_0,
+        ),
+        20,
+        Delta: 0.05,
+        method: "rk4",
+      )
+      let xs = soln.map(((x, y)) => x)
+      let ys = soln.map(((x, y)) => y)
+
+      align(center, slope_field(
+        F,
+        xlim: (-.3, 3.1),
+        ylim: (-1.1, 1.3),
+        slope_color: blue,
+        width: 7cm,
+        height: 3cm,
+        //       spacing: (.06, .25),
+        scale_segments: .1,
+        // yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+        yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (-1, 1., 2., 3.))),
+        xaxis: (
+          position: 0,
+          tip: tiptoe.stealth,
+          //filter: ((v, d) => calc.round(v, digits: 2) in (0, calc.pi / 5, 1., 2, 3)),
+          ticks: range(0, 10).map(i => calc.pi / 5 * i).zip(($0$, $pi/5$, $(2 pi) / 5$, $(3pi)/5$, $(4pi)/5$)),
+        ),
+        xlabel: lq.label($t$, dy: .7cm),
+        ylabel: lq.label($y$),
+      ))
+    }
+
+    Notice that the slope field is symmetric about the line $t=pi/5$. That means a solution moving forward from $(0,0)$ must intersect a solution moving backward from $((2pi)/5, 0)$
+    somewhere along the line $t=pi/5$. Similarly, the slope field is symmetric about the line $t=(3pi)/5$, so a solution moving forward from $((2pi)/5, 0)$
+    must intersect a solution moving backward from $((4pi)/5, 0)$ somewhere along the line $t=(3pi)/5$. This pattern repeats. The result is that a solution
+    passing through $(0,0)$ must be periodic with period $(2pi)/5$.
   ],
 )
 
