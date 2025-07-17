@@ -1,15 +1,10 @@
 
 /// Create a marker of a given color with a bullet inside of it
 /// so its content can be copy-and-pasted and still appear as a list.
-#let make_marker(color: blue) = move(
-  dy: 2pt,
-  box(
-    fill: color,
-    width: 4.5pt,
-    height: 4.5pt,
-    move(dy: -2pt, text(fill: color, [•])),
-  ),
-)
+#let make_marker(color: blue) = move(dy: 2pt, box(fill: color, width: 4.5pt, height: 4.5pt, move(dy: -2pt, text(
+  fill: color,
+  [•],
+))))
 
 
 /// Accept any number of arguments and return only the content in positional arguments.
@@ -193,10 +188,7 @@
     }
   } // Check if we are referencing an equation and use parenthesized numbering.
   else if el.func() == math.equation {
-    let eq_number = numbering(
-      el.numbering,
-      ..counter(math.equation).at(el.location()),
-    )
+    let eq_number = numbering(el.numbering, ..counter(math.equation).at(el.location()))
     let supp = it.supplement
     if is_empty(supp) {
       supp = none
@@ -205,10 +197,7 @@
       supp = "Equation"
     }
     if supp != none {
-      return link(
-        el.location(),
-        [#supp~#eq_number],
-      )
+      return link(el.location(), [#supp~#eq_number])
     } else {
       return link(
         el.location(),
@@ -308,7 +297,10 @@
         prompt
         parbreak()
         v(.5em)
-        block(content)
+        block(
+          width: 100%,
+          content,
+        )
       },
       width: 100%,
     )
@@ -326,15 +318,12 @@
       stroke: (left: thm_color + 1.5pt),
       inset: 7pt,
       {
-        block(
-          sticky: true,
-          text(
-            [Theorem (#box(title))],
-            fill: color.purple,
-            weight: "bold",
-            font: sans_font,
-          ),
-        )
+        block(sticky: true, text(
+          [Theorem (#box(title))],
+          fill: color.purple,
+          weight: "bold",
+          font: sans_font,
+        ))
         block(content)
       },
       width: 100%,
@@ -370,30 +359,15 @@
         pos,
         dy: 3pt,
         dx: if banner_side == "left" { 3pt } else { -3pt },
-        box(
-          fill: banner_color,
-          width: banner_width - 3pt,
-          height: 100% - 6pt,
-          {
-            set text(
-              fill: white,
-              size: 1.25em,
-            )
-            place(
-              top + center,
-              dy: 20%,
-              sans(
-                rotate(
-                  -90deg,
-                  reflow: true,
-                  {
-                    module_label
-                  },
-                ),
-              ),
-            )
-          },
-        ),
+        box(fill: banner_color, width: banner_width - 3pt, height: 100% - 6pt, {
+          set text(
+            fill: white,
+            size: 1.25em,
+          )
+          place(top + center, dy: 20%, sans(rotate(-90deg, reflow: true, {
+            module_label
+          })))
+        }),
       )
     }
   }
@@ -437,17 +411,11 @@
     set page(..module_page_set_args)
     set page(background: place_banner(banner_for: "module", banner_color: banner_color, title: title))
     show heading.where(depth: 1): it => {
-      block(
-        width: 100%,
-        align(center, move(dx: 5pt, it)),
-      )
+      block(width: 100%, align(center, move(dx: 5pt, it)))
     }
     show heading: it => {
       set text(fill: title_color, weight: "light")
-      move(
-        dx: -5pt,
-        sans(it),
-      )
+      move(dx: -5pt, sans(it))
     }
     show link: _show_link
 
@@ -473,17 +441,11 @@
     set page(..module_page_set_args)
     set page(background: place_banner(banner_for: "appendix", banner_color: appendix_banner_color, title: title))
     show heading.where(depth: 1): it => {
-      block(
-        width: 100%,
-        align(center, move(dx: 5pt, it)),
-      )
+      block(width: 100%, align(center, move(dx: 5pt, it)))
     }
     show heading: it => {
       set text(fill: title_color, weight: "light")
-      move(
-        dx: -5pt,
-        sans(it),
-      )
+      move(dx: -5pt, sans(it))
     }
 
     heading(level: 1, [#title <appendix_start>])
@@ -509,22 +471,13 @@
       full: true,
     )
     show heading.where(depth: 1): it => {
-      block(
-        width: 100%,
-        align(center, move(dx: 5pt, it)),
-      )
+      block(width: 100%, align(center, move(dx: 5pt, it)))
     }
     show heading: it => {
       set text(fill: title_color, weight: "light")
-      move(
-        dx: -5pt,
-        sans(it),
-      )
+      move(dx: -5pt, sans(it))
     }
-    set page(
-      numbering: "1",
-      margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in),
-    )
+    set page(numbering: "1", margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in))
 
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
     pagebreak(to: "odd", weak: true)
@@ -539,40 +492,29 @@
     question_counter.step()
     if include_start_marker {
       v(4em, weak: true)
-      place(
-        dx: -.5in,
-        dy: -.8em,
-        box({
-          line(length: 2in, stroke: .5pt)
-          place(
-            dy: 6pt,
-            sans(
-              text(
-                [#context question_counter.display()],
-                fill: color.rgb("#aaa"),
-                size: 1em,
-              ),
-            ),
-          )
-        }),
-      )
+      place(dx: -.5in, dy: -.8em, box({
+        line(length: 2in, stroke: .5pt)
+        place(dy: 6pt, sans(text(
+          [#context question_counter.display()],
+          fill: color.rgb("#aaa"),
+          size: 1em,
+        )))
+      }))
     }
     set enum(
       numbering: (..n) => {
         let n = n.pos()
         // If this is a top-level enumeration, we want to display a "question-style" counter.
         if n.len() == 1 {
-          sans(
-            text(
-              context {
-                let part_label = [#question_counter.display().#n.at(0)]
-                _core_exercise_label_state.update(part_label)
-                part_label
-              },
-              fill: color.rgb("#666666"),
-              size: .85em,
-            ),
-          )
+          sans(text(
+            context {
+              let part_label = [#question_counter.display().#n.at(0)]
+              _core_exercise_label_state.update(part_label)
+              part_label
+            },
+            fill: color.rgb("#666666"),
+            size: .85em,
+          ))
         } else {
           // We display sub-enumerations as usual.
           let n = n.slice(1)
@@ -633,10 +575,7 @@
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
 #let exercises(questions, module_number: 0) = {
   [== Practice Problems]
-  columns(
-    2,
-    enum(..questions.map(q => enum.item(q.statement))),
-  )
+  columns(2, enum(..questions.map(q => enum.item(q.statement))))
 }
 
 /// Display solutions for exercises.
@@ -644,17 +583,7 @@
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
 #let solutions(questions, module_number: 0, type: "Module") = {
   [== Solutions for #type #module_number]
-  columns(
-    2,
-    enum(
-      ..questions.map(q => enum.item(
-        text(
-          fill: blue,
-          q.at("solution", default: []),
-        ),
-      )),
-    ),
-  )
+  columns(2, enum(..questions.map(q => enum.item(text(fill: blue, q.at("solution", default: []))))))
 }
 
 /// Display a term list with each items contents aligned.
@@ -664,25 +593,22 @@
 /// ```
 /// to activate.
 #let aligned_terms(..items, separator: [], spacing: auto, tight: true) = context {
-  pad(
-    left: 1.5em,
-    grid(
-      columns: 2,
-      align: (right, left),
-      row-gutter: if spacing != auto { spacing } else if tight { par.leading } else { par.spacing },
-      column-gutter: 8pt,
-      // note: 'box(width: 0pt)' is to ensure weak spacing is not collapsed
-      ..items
-        .pos()
-        .map(it => (
-          [
-            #it.term#separator#box(width: 0pt);
-          ],
-          it.description,
-        ))
-        .join()
-    ),
-  )
+  pad(left: 1.5em, grid(
+    columns: 2,
+    align: (right, left),
+    row-gutter: if spacing != auto { spacing } else if tight { par.leading } else { par.spacing },
+    column-gutter: 8pt,
+    // note: 'box(width: 0pt)' is to ensure weak spacing is not collapsed
+    ..items
+      .pos()
+      .map(it => (
+        [
+          #it.term#separator#box(width: 0pt);
+        ],
+        it.description,
+      ))
+      .join()
+  ))
 }
 
 /// Create a simple table with a header row and centered columns.

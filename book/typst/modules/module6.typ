@@ -477,8 +477,8 @@ The converse also holds: solutions whose graphs in phase space are straight line
   ))
 }
 
-Above is graphed a phase portrait for $arrow(r)'=mat(2,1;1,0)arrow(r)$ along with a version of the phase portrait with graphs of the eigen solutions overlaid (dashed lines).
-You can verify that the eigen solutions in phase space follow the trajectories of the eigen vectors of $mat(2,1;1,0)$.
+Above is graphed a phase portrait for $arrow(r)'=mat(2, 1; 1, 0)arrow(r)$ along with a version of the phase portrait with graphs of the eigen solutions overlaid (dashed lines).
+You can verify that the eigen solutions in phase space follow the trajectories of the eigen vectors of $mat(2, 1; 1, 0)$.
 
 
 === Stability of the Equilibrium Solutions
@@ -591,9 +591,31 @@ or
 
 #example(
   prompt: [Suppose $arrow(r)'=M arrow(r)$ has a general solution $ arrow(r)(t) = alpha mat(1; 1) e^(t) + beta mat(0; 1) e^(-t). $
-    Prove that the equilibrium solution $arrow(s)(t)=arrow(0)$ unstable and _not_ repelling.],
+    where $alpha$ and $beta$ are parameters.
+    Prove that the equilibrium solution $arrow(s)(t)=arrow(0)$ unstable and _not_ repelling.
+  ],
   [
-    XXX Finish
+
+    Define
+    $
+      arrow(r)_a (t) = a mat(1; 1) e^(t) wide "and" wide
+      arrow(r)_b (t) = b mat(0; 1) e^(-t)
+    $
+    and notice that both $arrow(r)_a$ and $arrow(r)_b$ are solutions for any $a,b in RR$. By choosing $a>0$
+    very small, we can ensure that $arrow(r)_a (0)$ is as close to $arrow(0)$ as we like.
+    However, no matter the choice of $a$ (as long as it's positive), we have
+    $
+      lim_(t arrow infinity) arrow(r)_a (t) = mat(infinity; infinity)
+    $
+    diverges, and so the equilibrium solution $arrow(s)(t)=arrow(0)$ must be unstable.
+
+    Alternatively, for any choice of $b$ we have
+    $
+      lim_(t arrow infinity) arrow(r)_b (t) = mat(0; 0),
+    $
+    and so $arrow(r)_b$ always heads towards the equilibrium solution $arrow(s)(t)=arrow(0)$.
+    Thus, $arrow(s)(t)=arrow(0)$ cannot be a repelling equilibrium solution, because there  is at least one solution
+    which heads towards it.
   ],
 )
 
