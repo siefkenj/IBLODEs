@@ -1,3 +1,5 @@
+#import "../libs/_workbook.typ": simple_table
+
 #let questions = (
   (
     statement: [
@@ -75,7 +77,7 @@
       A student is trying to solve a question about a car with the instruction that "The car is moving east at a rate propotional to the square of it's distance from the origin." 
       The student writes down the following in an attempt to solve the differential equation:
 
-      //#include "fakeStudentScratchWork.pdf"
+      #image("../images/presentation-1.png")
 
       + Is what the student has written down correct? If not, what is wrong with it?
       + Is the student finished? If not, what else do they need to do?
@@ -85,29 +87,29 @@
   (
     statement: [
       A company called Swipe Date is runs a "50% discount for one month of use" promotional deal for their app as the company grows. Due to recent success, they are trying to wean off the use of the promotional deal over time but not get rid of it entriely. The following is a table of the amount of people given the deal in 2024 by month:
-      /*#align(
+      #align(
         center,
         block(
           breakable: false,
           simple_table(
             headers: ([Month], [Given Deals]),
             content: (
-              $Jan$, $7983360$,
-              $Feb$, $3991680$,
-              $Mar$, $2661120$,
-              $Apl$, $1995840$,
-              $May$, $1596672$,
-              $Jun$, $1330560$,
+              "Jan", $7983360$,
+              "Feb", $3991680$,
+              "Mar", $2661120$,
+              "Apl", $1995840$,
+              "May", $1596672$,
+              "Jun", $1330560$,
             ),
           ),
         ),
-      )*/
+      )
       Make the following assumption about the data:
       (M1) Once a person has been given the discount, they will never be given it again.
       + Make a further assumption (M2) that will lead to a seperable differential equation (D1) that measures the number of people that have been given the deal as fuction of time in 2024, and write down that differential equation.
       - (M2)
       - (D1)
-      + Solve the differential equation (D1) to find a general solution (G1) //(See @app.seperable).
+      + Solve the differential equation (D1) to find a general solution (G1) //(See @app:seperable). XXX Validate reference 
     ],
   ),
   (
@@ -122,7 +124,7 @@
     statement: [
       //(IVP solve with different initial conditions)
       Colloquially, we think of partical accelerartors as humongous machines, but they can actually by quite small! Mathis is a physics undergrad at the University of Waterloo who is doing trial and error experiments to find the optimal velocity of some electrons in campus particle accelerator, for the electrons to exibit a specific behaviour. He finds that the velocity of the electrons is modelled by the  equation
-      $ta(t) + v(t) - 1 = 0$
+      $t a(t) + v(t) - 1 = 0$
       where $a(t)$ is the acceleration of the electrons at time $t$ in mircoseconds, and $v(t)$ is the velocity of the electrons at time $t$ in meters per microsecond. Assuming the the elections start at rest, what is a formula for the velocity of the electrons at time $t$ in microseconds? (Don't use a computer beyond just a standard calculator at the end.)
     ],
   ),
@@ -166,5 +168,5 @@
       6. Small thing but I think "Solving differential equations" should be called something else like "solutions to differential equations". That is just a bit easier to look up when a student is studying. It also might be a good idea in the section to state right before defining what a general solutions is to state that "There are problems asked more than any other when studying and solving differentatial equations: What is the general solution to this differential equation? and what is the particular solution to this differential equation given this some inital condition? There are respectily two kinds of answers to these questions: a general solution to a differentatial equation that doesn't specify an initial condition, and a specific function that is the solustion to an initial value problem". I am basically saying that there is parhaps room for a into to the ideas of solutions after the first two examples.
       7. I think I am understanding the structure of the book a little more now. I think it might make sense to have a couple of exercises interspersed in the books text as well as at the end of each section. This doesn't currently seem to be the case.
     ],
-  )
+  ),
 )
