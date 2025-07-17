@@ -113,7 +113,7 @@ the formula `=A1+1` is being interpolated to "add one to the previous cell".
       ),
       select_cells: (pos: "A2", corner_cursor: (se: true)),
       additional_draw_function: cell_extents => {
-        import "@preview/cetz:0.3.4"
+        import "@preview/cetz:0.4.0"
         import cetz.draw: *
 
         let (right, bottom) = cell_extents("A2")
@@ -163,7 +163,7 @@ the formula `=A1+1` is being interpolated to "add one to the previous cell".
         ),
       ),
       additional_draw_function: cell_extents => {
-        import "@preview/cetz:0.3.4"
+        import "@preview/cetz:0.4.0"
         import cetz.draw: *
 
         let (top, left) = cell_extents("A2")
@@ -236,7 +236,7 @@ We can prevent interpolation of a row/column/both by adding a "`$`" before the r
         ),
         select_cells: (pos: "B3", corner_cursor: (se: true)),
         additional_draw_function: cell_extents => {
-          import "@preview/cetz:0.3.4"
+          import "@preview/cetz:0.4.0"
           import cetz.draw: *
 
           let (right, bottom) = cell_extents("B3")
@@ -277,7 +277,7 @@ We can prevent interpolation of a row/column/both by adding a "`$`" before the r
           "B5": (value: [`=B4+$A$2`], alignment: left),
         ),
         additional_draw_function: cell_extents => {
-          import "@preview/cetz:0.3.4"
+          import "@preview/cetz:0.4.0"
           import cetz.draw: *
 
           let (top, left) = cell_extents("B3")

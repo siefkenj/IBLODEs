@@ -2,8 +2,8 @@
 #import "../libs/_workbook.typ": label_module, simple_table
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 #import "../libs/_spreadsheet.typ": draw_spreadsheet
-#import "@preview/lilaq:0.2.0" as lq
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/tiptoe:0.3.1"
 
 #label_module(<mod:simulation>)
 
@@ -572,7 +572,7 @@ For this example, we will use $Delta=0.25$ and our familiar initial value proble
     ),
     select_cells: (pos: "A3", corner_cursor: (se: true)),
     additional_draw_function: cell_extents => {
-      import "@preview/cetz:0.3.4"
+      import "@preview/cetz:0.4.0"
       import cetz.draw: *
 
       let (right, bottom) = cell_extents("A3")
@@ -633,7 +633,7 @@ Here, the formula we enter into `C2` is `=SIN(PI() / 2 * B2 - A2) - 1.5`.#footno
     ),
     select_cells: (pos: "C2", corner_cursor: (se: true)),
     additional_draw_function: cell_extents => {
-      import "@preview/cetz:0.3.4"
+      import "@preview/cetz:0.4.0"
       import cetz.draw: *
 
       let (right, bottom) = cell_extents("C2")
@@ -718,7 +718,7 @@ Finally, we can enter the formula for $P (t)$. Based on the tangent line approxi
     ),
     select_cells: (pos: "B3", corner_cursor: (se: true)),
     additional_draw_function: cell_extents => {
-      import "@preview/cetz:0.3.4"
+      import "@preview/cetz:0.4.0"
       import cetz.draw: *
 
       let (right, bottom) = cell_extents("B3")

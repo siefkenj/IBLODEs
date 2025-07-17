@@ -3,8 +3,8 @@
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_graphics.typ": slope_field, vector_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.3.0" as lq
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/tiptoe:0.3.1"
 #let (sans, serif, module, definition, example) = workbook
 
 In this module you will learn

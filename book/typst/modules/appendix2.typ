@@ -2,8 +2,8 @@
 #import "../common/settings-book.typ": workbook, show_def
 #import "../libs/_workbook.typ": simple_table, label_appendix
 #let (sans, serif, module, definition, example, theorem) = workbook
-#import "@preview/lilaq:0.2.0" as lq
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/tiptoe:0.3.1"
 
 
 #label_appendix(<app:separable>)

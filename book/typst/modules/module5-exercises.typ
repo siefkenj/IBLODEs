@@ -1,7 +1,7 @@
 #import "../libs/_workbook.typ": aligned_terms, label_core_exercise
-#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/lilaq:0.4.0" as lq
 #import "../libs/_graphics.typ": vector_field, slope_field
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/tiptoe:0.3.1"
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$

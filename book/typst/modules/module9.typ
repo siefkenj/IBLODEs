@@ -4,8 +4,8 @@
 #import "../libs/_workbook.typ": label_module, simple_table
 #import "../libs/_graphics.typ": vector_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/tiptoe:0.3.0"
-#import "@preview/lilaq:0.3.0" as lq
+#import "@preview/tiptoe:0.3.1"
+#import "@preview/lilaq:0.4.0" as lq
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 //== kkk

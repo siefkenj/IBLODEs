@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.1"
+#import "@preview/cetz:0.4.0"
 
 /// Cap the length of a vector to 1.
 #let scale_cap(v) = {

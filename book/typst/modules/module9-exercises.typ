@@ -1,7 +1,7 @@
 #import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 #import "../libs/_graphics.typ": slope_field
-#import "@preview/lilaq:0.3.0" as lq
+#import "@preview/lilaq:0.4.0" as lq
 #import "@preview/tiptoe:0.3.1"
 
 #let MM = $upright(bold("M"))$

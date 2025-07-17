@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.4"
+#import "@preview/cetz:0.4.0"
 #import "../libs/_ode_solvers.typ": solve_2d_ivp, draw_vec, linspace, scale_cap
 
 #let coverorange = color.rgb("#ffd33c")

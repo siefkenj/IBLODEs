@@ -4,7 +4,7 @@
 #import "../common/settings-book.typ": show_def, workbook
 #import "../libs/_graphics.typ": slope_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/tiptoe:0.3.0"
+#import "@preview/tiptoe:0.3.1"
 #import "@preview/lilaq:0.4.0" as lq
 #let (sans, serif, module, definition, example) = workbook
 
@@ -67,7 +67,7 @@ We will assume:
 - Clean water flows into Pond $B$ at a rate of $0.02$ million litres per day.
 
 #align(center, {
-  import "@preview/cetz:0.3.4"
+  import "@preview/cetz:0.4.0"
   cetz.canvas({
     import cetz.draw: *
 

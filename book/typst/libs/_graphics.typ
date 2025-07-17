@@ -1,4 +1,4 @@
-#import "@preview/lilaq:0.3.0" as lq
+#import "@preview/lilaq:0.4.0" as lq
 
 
 /// Merge to `stroke` objects with any properties defined on the second one taking precedence.
@@ -172,7 +172,7 @@
       color: if slope_color != auto {
         slope_color
       } else {
-        (x, y) => {
+        (x, y, u, v) => {
           let angle = calc.atan2(1, F(x, y))
           let raw_angle = angle.rad()
           let color_angle = (calc.tanh(raw_angle / 1.8) + 1) / 1.5
