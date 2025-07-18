@@ -1,6 +1,6 @@
 
 // This file is meant to be imported and not compiled on its own.
-#import "../libs/_workbook.typ": label_module
+#import "../libs/_workbook.typ": label_module, simple_table
 #import "../common/settings-book.typ": show_def, workbook
 #import "../libs/_graphics.typ": slope_field
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
@@ -603,8 +603,39 @@ leads to concepts like fractals and chaos (advanced differential equations cours
 
 In the above diagram you can see the oval-shaped limit cycle in the center to which solutions are attracted.
 
-#example(prompt: [Find an classify all equilibrium solutions to XXX Finish], [
-  XXX Finish
-])
+#example(
+  prompt: [Find an classify all equilibrium solutions to $y'=sin(y)$.],
+  [
+    Since equilibrium solutions are constant solutions, we can solve for when $y'=0$ to find all equilibrium solutions.
+    Solving,
+    $
+      y'=0=sin(y)
+    $
+    when $y(t)=k dot pi$ for $k in ZZ$. Thus, $y'=sin(y)$ has an infinite number of equilibrium solutions.
+
+    We will start classifying them one by one and then see if there is a pattern.
+
+    Case $y(t)=0$: Suppose that $y approx 0$ and that $y>0$. From the differential equation, we know $ y' = sin("slightly bigger than" 0) > 0 $ so $y(t)$ will increase;
+    i.e., solutions near $y(t)=0$ but above $y(t)=0$ will tend away from $y(t)=0$. This means that $y(t)=0$ is _unstable_. Now,
+    suppose $y approx 0$ and $y < 0$. Then $ y' = sin("slightly smaller than" 0) < 0 $
+    and so $y(t)$ will be decreasing and move away from $0$. This means that $y(t)=0$ is is an unstable and _repelling_ equilibrium solution.
+
+    Case $y(t)=pi$: Suppose that $y approx pi$ and that $y>pi$. Then $ y' = sin("slightly bigger than" pi) < 0 $ so $y(t)$ will decrease, heading towards $pi$.
+    Alternatively, suppose $y approx pi$ and $y < pi$. Then $ y' = sin("slightly smaller than" pi) > 0 $ so $y(t)$ will increase, heading towards $pi$.
+    This means that solutions near $y(t)=pi$ are attracted to $y(t)=pi$. Thus, $y(t)=pi$ is a _stable_ and _attracting_ equilibrium solution.
+
+    To conclude, notice that $y'=sin(y)$ is periodic with period $2pi$; therefore, the nature of the equilibrium solutions will repeat every $2pi$.
+    This gives a final classification of:
+    #align(center, simple_table(
+      headers: ("Equilibrium Solution", "Classification"),
+      content: (
+        [$y(t)=k dot pi$ for $k$ even],
+        [unstable and repelling],
+        [$y(t)=k dot pi$ for $k$ odd],
+        [stable and attracting],
+      ),
+    ))
+  ],
+)
 
 
