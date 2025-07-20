@@ -5,21 +5,22 @@
     statement: [
       Every year, Statistics Canada estimates the total population of the "rural and small town" areas of Canada. The following table shows the estimated population on Jan 1st in millions for the years 2015 to 2018:
 
-      /*#align(
+      #align(
         center,
         block(
           breakable: false,
           simple_table(
             headers: ([Year], [Population (millions)], [Population Change (millions)]),
+             
             content: (
-              $2015$, $5.938$, ,
-              $2016$, $5.967$, ,
-              $2017$, $6.005$, ,
-              $2018$, $6.044$, ,
+              $2015$, $5.938$,"",
+              $2016$, $5.967$,"",
+              $2017$, $6.005$,"",
+              $2018$, $6.044$,"",
             ),
           ),
         ),
-      )*/
+      )
 
       + Make an assumption in the form of a sentance (M1) that will lead a function (F1)  characteristic of an explicit model. Such an function does not have to fit the data *exactly*, but should be reasonabily close.
       - (M1) 
@@ -131,27 +132,27 @@
   (
     statement: [
       All of the differential equations in this question are functions of $t$. Classify the following differential equations by type: autonomous/non-autonomous, First order/Not first order, one dimensional/Higher dimensional, linear/non-linear, separable/non-separable, homogeneous/non-homogeneous:
-      /*#align(
+      #align(
         center,
         block(
           breakable: false,
           simple_table(
             headers: ([Equation], [Autonomous], [First order], [One dimensional], [Linear], [Separable], [Homogeneous]),
             content: (
-              $y' = y$, , , , , , ,
-              $y' = y^2$, , , , , , ,
-              $y' = y + t$, , , , , , ,
-              $y'y = 1$, , , , , , ,
-              $y' = 0$, , , , , , ,
-              $y'' = e^{y'}$, , , , , , ,
-              $y' = z$ & $z' = y$, , , , , , ,
-              $y' = y + z$ & $z' = y$, , , , , , ,
-              $y' = sin(xy)$ & $x'' = 0$, , , , , ,
-              $y' = ln(t)$ & , , , , , , ,
+              $y' = y$,"","","","","","",
+              $y' = y^2$,"","","","","","",
+              $y' = y + t$,"","","","","","",
+              $y'y = 1$,"","","","","","",
+              $y' = 0$,"","","","","","",
+              $y'' = e^y'$,"","","","","","",
+              //{$y' = z$$z' = y$},"","","","", 
+              //$y' = y + z$ & $z' = y$,"","","","", 
+              //$y' = sin(xy)$ & $x'' = 0$,"","","","", 
+              //$y' = ln(t)$ & $y'' = 0$,"","","","",
             ), 
           ),
         ),
-      )*/
+      )
 
       // I recognize that we probably don't want to have linear, seperable, or homgeneous in here. I put it as an option anyway.
     ],
