@@ -272,3 +272,7 @@ Above to go from matrix to affine, we translate solutions by $mat(2; 1)$. To go 
 
 But, *make sure to actually compute the equilibrium solution(s)*. When confronted with an equation like $arrow(r)' = M arrow(r) + arrow(p)$, it is tempting to
 claim that $arrow(p)$ is an equilibrium solution. In all likelihood, *it is not*! (It is actually $-M^(-1) arrow(p)$.)
+
+== Superposition Principle
+
+XXX Explain how this can all be restated in terms of the superposition principle.
