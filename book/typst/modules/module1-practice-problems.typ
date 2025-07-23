@@ -31,7 +31,7 @@
       + Make an assumption (M1) that will lead to a linear and/or seperable differential equation. 
       - (M1) 
       - (D1)
-      Note: A model needs both some applicable mathmatical analysis, and some assumptions.
+      Note: As stated in the module, a model needs all of some assumptions, some definitions of variables, and mathematical analysis of those assumptions.
       /*I didn't follow the directions of question 1 here`. I sorta think that it is good to have a question that really focuses on what a model actually is. Getting them used to having the assumptions that they make about their models also being part of their Models. I have rewritten the question 1 instructions for question 2.*/
     ],
     solution: [
@@ -44,32 +44,83 @@
       + Build a discrete model modelling population by year and compute pop after first three years
       + By month
       + Modify it to be a continuous model*/
+      A small population of fish have been introduced to a large lake. Make the following assumptions about the population of fish in the lake:
+      - (M1) All the population of fish in the lake are the same species.
+      - (M2) The inital population of fish in the lake is 28.
+      - (M3) After 1 year, the population of fish is app is approximately 57.
+      - (M4) The year to year ratio of the population of fish in the lake is approximately constant.
+      + Make a table of the population of fish in the lake by year for the first 5 years. (Use 3 decimal places for table entries.)
+      + Make a table of the population of fish in the lake by month for the first 5 months. (Use 3 decimal places for table entries.)
+      + Complete this discrete model, by coming up with a continuous equation (E1) that models the population of fish in the lake over time.
+      - (E1)
+      + List two new assumptions (M5) and (M6) could also be made in this model, and make a note on the advantages or dissadvantages of including them.
+      - (M5)
+      - (M6)
+    ],
+  ),
+  (
+    statement: [
+      True or false:
+      + A model can't just include a function between two variables and nothing else.
+      + A model must be only one of an explicit model, a recursive model, or a differential model.
+      + The only differential equation models that make sense, and that are able to give us information about world, are models for which the differential equation is able to be solved. 
+      + A model must have a finite number of assumptions, since it is impossible to write down an infinite number of assumptions.
+      + The general solution to a differential equation can be found by either adding of multiplying an arbitrary constant to a particular solution to a differential equation.
+      + Any autonomous linear first order differential equation can be solved by separation of variables.
+      + Assume that $y' = F(y,t)$ with $y(1) = 2$ is an initial value problem that has $y(t)$ as a solution. Assume that $F(y,t)$ and $y(t)$ are continuous except at $t = 0$. In this case $y(t)$ is unique as a solution to the initial value problem on it's domain.
+      + The differential equation $y' = y$, when solved threw seperation of variables, gives the result 
+      $|y| = C e^t$ 
+      with $C > 0$. This generalizes to the general solution $y = C e^t$ for all 
+      $C in R$ after some analysis of cases when removing the absolute value.
     ],
   ),
   (
     statement: [
       /*(Thrid question about modelling; similar to first but not a population model)*/
+      Cancer researchers are modelling the effect of exercise has on remission rates of cancer patients. Make the following assumptions about the remission rate of cancer patients in the exercise group of the study:
+      - (M1) At the beginning of the study 100% of cancer patients are in remission.
+      - (M2) Based on their data, every year the change in the proportion of cancer patients in remission halves, in the exersice group.
+      - (M3) Based on previous studies, the yearly change in the proportion of cancer patients in remission is approximately $7.5 \%/y e a r$.
+      - (M4) The inital change in remission rate, in the exersice group is unaffected by the fact that the patients are in the exercise group.
+      + Make a table of the proportion of cancer patients in remission by year for the first 5 years. (Use 3 decimal places for table entries.)
+      + Make a table of the proportion of cancer patients in remission by month for the first 5 months. (Use 3 decimal places for table entries.)
+      + Complete this discrete model, by coming up with a continuous equation (E1) that models the proportion of cancer patients in remission over time.
+      - (E1)
+      + The researchers make based on their data the additional assumption (M5) that for the cancer patients in the non-exercise group, the change in the remission mission rate in being reduced by a multiple of 1.75. After 10 years, what is the difference in the proportion of cancer patients in remission between the exercise group and the non-exercise group? (Use 3 decimal places for your answer.)
     ],
     solution: [
     ],
   ),
   (
     statement: [
-      (Forth question about modelling; requires some real-world judgement, e.g. maybe something involving seasons)
+      /*(Forth question about modelling; requires some real-world judgement, e.g. maybe something involving seasons)*/
+      Winnie the Pooh, who is notably a bear, hibernates every winter. He wakes up every spring in April, and goes back to sleep every winter in October. Worried about Winnie's heath, his friend Tiger, decides to model Winnie's weight over the year.
+      Tiger makes the following assumptions about Winnie the Pooh's weight:
+      - (M1) Winnie is 150 kg when he wakes up on April 15th. (Winnie told him this.)
+      - (M2) Winnie is 100 kg when he goes to sleep on October 16th. (Again, Winnie told him this.)
+      - (M3) While Winnie hibernates his weight is decreasing linearly.
+      - (M4) While Winnie is awake, his weight is increasing linearly.
+      + Based on these assumptions, a graph of Winnie's weight over the year, with the x-axis being the date in the year, and the y-axis being Winnie's weight in kg.
+      + Is the graph together with the assumptions? If not, what is wrong with it? If so why? 
+      + Is this model for Winnie's weight reasonable? Why or why not? (Hint: Think about the assumptions Tiger made.)
+
     ],
   ),
   (
     statement: [
       /*Give two diffeq models and ask which one
       grows faster initially; justif*/
-      A biologist is measuring the population of bacteria in a petri dish. They are measuring two bacteria that grow at different rates. Population P_1 grows at a rate according to the equation $P_1'(t) = 3140 t P_1(t)$, and population P_2 grows at a rate according to the equation $P_2'(t) = 2880 t^2 P_2(t)$, where t is measured in days. The biologist biologist places exactly one cell simotaniously on each side of the petri dish at time $t=0$. The biologist know hypothesises that if one of the populations grows faster than the other of the entriety of the first day in the petry dish, then that population will eventually take over the petri dish. Will the biologist be able to test their hypothesises? If so, why? If not, why not?
+      A biologist is measuring the population of bacteria in a petri dish. They are measuring two bacteria that grow at different rates. Population $P_1$ grows at a rate according to the equation $P_1'(t) = 3140 t P_1(t)$, and population $P_2$ grows at a rate according to the equation $P_2'(t) = 2880 t^2 P_2(t)$, where t is measured in days. The biologist biologist places exactly one cell simotaniously on each side of the petri dish at time $t=0$. The biologist know hypothesises that if one of the populations grows faster than the other of the entriety of the first day in the petry dish, then that population will eventually take over the petri dish. Will the biologist be able to test their hypothesises? If so, why? If not, why not?
     ],
   ),
   (
     statement: [
       /*(Give a diffeq model with solutions that have maxes and mins. Ask what time(s) the solution could have a max/min (they need to use calculus to
       determine where $y'(t)=0$ could occur))*/
-
+      
+      \[
+        P'(t) = P(t) - 1/9 t^2 P^3(t)
+      \]
     ],
   ),
   (
@@ -145,7 +196,7 @@
               $y'y = 1$,"","","","","","",
               $y' = 0$,"","","","","","",
               $y'' = e^y'$,"","","","","","",
-              //{$y' = z$$z' = y$},"","","","", 
+              //$y' = z$  $z' = y$,"","","","","","",
               //$y' = y + z$ & $z' = y$,"","","","", 
               //$y' = sin(xy)$ & $x'' = 0$,"","","","", 
               //$y' = ln(t)$ & $y'' = 0$,"","","","",
