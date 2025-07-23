@@ -18,7 +18,11 @@ In this module you will learn
 Most differential equations do not have explicit _elementary_ solutions. That is, solutions which can be written in
 terms of polynomials, exponentials, logarithms, etc..
 Put another way: most differential equations do not have "nice" solutions. However, most ordinary differential equations
-that you will encounter _will have solutions_ (even though you cannot write them down).
+that you will encounter _will have solutions_ 
+#footnote([
+  We will see later in the course (in @mod:existence_uniqueness) some results regarding the existence and uniqueness of solutions of differential equations.
+])
+(even though you cannot write them down).
 
 There are two approaches when a differential equation cannot be explicitly "solved":
 1. Make up a new name for a function _defined_ to be the solution.
@@ -505,7 +509,8 @@ To use a spreadsheet to implement Euler's method, we will recreate the table fro
 - labelling our columns
 - inputting our initial conditions, and
 - setting up a formula that increments $t$ by $Delta$ at each step.
-For this example, we will use $Delta=0.25$ and our familiar initial value problem $P'(t) = formula$ with $P(0) = 3$.
+For this example, we will use $Delta=0.25$ and our familiar initial value problem 
+$ P'(t) = formula " with " P(0) = 3. $
 
 #let spreadsheet_so_far = (
   "A1": (
