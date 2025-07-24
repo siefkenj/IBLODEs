@@ -240,6 +240,7 @@ However, they can be hard to interpret. For example, in the plot above, it is ha
 
 Also, when we have more than two dependent variables, as in the following example, a phase plot becomes almost impossible to visualize.
 
+XXX Revise and improve the conclusion
 
 #example(
   prompt: [The Three-dimensional Lorenz Equations],
