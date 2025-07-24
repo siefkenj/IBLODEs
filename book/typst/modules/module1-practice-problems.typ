@@ -117,10 +117,20 @@
     statement: [
       /*(Give a diffeq model with solutions that have maxes and mins. Ask what time(s) the solution could have a max/min (they need to use calculus to
       determine where $y'(t)=0$ could occur))*/
-      
+      Tragically, a new desease has been sweeping throughout the cattle population of Ohio. Stacy Bets, a bovine desease spedialist, is on the case!
+      In her current model, she predicts that 5 million cattle have the desease currently, and that the spread of the desease, if no action is taken, will be governed by the equation
       \[
         P'(t) = P(t) - 1/9 t^2 P^3(t)
       \]
+      where $P(t)$ is the population in millions of cattle that have the desease, and time $t$ is in years. She must report back to the Ohio state goverment if, with no intervension,
+      - the amount of cattle that get the desease is unbounded, bounded, or will achieve a maximum
+      - the deseased population will eventually stagnate and if so to what value
+      + What will Stacy Bets find for the first of these equations? Will the solution to her differential equation be unbounded, bounded, or achieve a maximum? (Hint: Concider first when if and when it is possible that $P'(t) = 0$)
+      + If you answered part (a) with unbounded, when will every cattle be infected given that there are 20 million cattle in Ohio. If you answered bounded, what is the lower upper bound possible? If maximum, when is this maximum achieved?
+      //I don't know if you can actually answer this without finding the solution.
+      + Is when this maximum is achieved affected by the starting infected population of 5 million cattle? If not, why not? If yes, come up with a function that takes in the amount of cattle initially infected, and outputs time when the maximum amount of cattle in infected
+      // I also know know if this is possible to answer. If it is possible maybe make this a bonus question in the solutions.
+      + Without doing calculations beyond the one already done, when do you thing Stacy Bets will finc for the second question of her report? Will the population of infected cattle stagnate? If not, why not? If so, to what value and why?
     ],
   ),
   (
