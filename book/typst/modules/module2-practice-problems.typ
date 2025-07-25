@@ -17,16 +17,16 @@
   ),
   (
     statement: [
-      A sample of Uranium is decaying. Make the follwing assumptions about the decay of the Uranium sample:
-      - When the sample if first observed, it has a mass of 1 kilograms.
-      - Initially the sample is decaying at a rate of 0.1 kilograms per year. $1.55 * 10^-10$ kilograms per year. 
+      A sample of Uranium is decaying. Make the following assumptions about the decay of the Uranium sample:
+      - When the sample if first observed, it has a mass of 1 kilogram.
+      - Initially the sample is decaying at a rate of $1.55 * 10^-10$ kilograms per year. 
       - The rate of decay is proportional to the mass of the sample.
-      + Build a differential equation that pairs with these assumptions to make a differential equation model for the mass of the sample. Use Euler's method in excel with a step size of 1 million years to approximate the half life of the sample.
-      + The differential equation that you came up with in part (a) is most likely seperable. Use this to find the solution to your differential equation, then use that solution to find exactly the half life of the sample of Uranium. How close what your approximation to the true value?
-      + Would it have been possible to find the half life without the solution to the the differential equation? In this case, parhaps you could use only the differential equation itself and not its soluation. 
-      + Get the solution approximation with euler's method. This should be done by by hand this time, so there must be a way to incentivize this.
+      + Build a differential equation that pairs with these assumptions to make a differential equation model for the mass of the sample. Use Euler's method in excel with a step size of 1 million years to approximate the half-life of the sample.
+      + The differential equation that you came up with in part (a) is most likely seperable. Use this to find the solution to your differential equation, then use that solution to find exactly the half-life of the sample of Uranium. How close is your approximation to the true value?
+      + Would it have been possible to find the half-life without the solution to the differential equation? In this case, parhaps you could use only the differential equation itself and not its solution. 
+      /* + Get the solution approximation with Euler's method. This should be done by hand this time, so there must be a way to incentivize this.
       + Graph the solution you just found by hand.
-      + Use desmos (or maybe find the graph of the true solution on this page of the textbook or something). Is the graph that you came up with with eulers method an understestimate? Why?
+      + Use desmos (or maybe find the graph of the true solution on this page of the textbook or something). Is the graph that you came up with with eulers method an understestimate? Why? */
     ],
     solution: [
       + Way 1 is good
@@ -42,12 +42,12 @@
   (
     statement: [
       True or false: 
-      + Since particular solutions to a differential equation differ by a constant, they are all parallel to each other on a slope feild.
+      + Since particular solutions to a differential equation differ by a constant, they are all parallel to each other on a slope field.
       + There is a differential equation for which Euler's method is perfectly accurate.
-      + Assume that you are given a differential equation with initial condition $(t, P(t)) = (a,b)$. Euler's method has a starting point of the initial condition and only goes forward in time, it can only be used to approximate solutions for $t > a$.
+      + Assume that you are given a differential equation with initial condition $(t, P(t)) = (a,b)$. Since Euler's method has a starting point of the initial condition and only goes forward in time, it can only be used to approximate solutions for $t > a$.
       + When using Euler's method on a differential equation, a smaller step size will always yield a more accurate approximation.
-      + It is possible to use Euler's method to approximate a solution to a differential equation with an initial condition. (My mathematics mind is telling me that this might be false barring some special case, but I can't think of one. It is probably true because of the existance and uniqueness theorem.) (This one might be kinda weak.)
-      + Other than the initial condition itself which we know are correct, the points given to use by Euler's method always have the least error in the point closest to the initial condition.
+      + It is possible to use Euler's method to approximate a solution to a differential equation with an initial condition. /*(My mathematics mind is telling me that this might be false barring some special case, but I can't think of one. It is probably true because of the existance and uniqueness theorem.) (This one might be kinda weak.)*/
+      + Other than the initial condition itself, which we know is correct, the points given to us by Euler's method always have the least error closest to the initial condition.
       + Euler's method only works for autonomous differential equations.
     ],
   ),
