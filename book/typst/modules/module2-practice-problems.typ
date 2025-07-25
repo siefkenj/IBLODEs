@@ -1,9 +1,29 @@
 #let questions = (
   (
     statement: [
-      (This time model a population
-      that is growing exponentially.)
-      + Build a model with a differential equation.
+      
+    ],
+    solution: [
+      
+    ],
+  ),
+  (
+    statement: [
+      
+    ],
+    solution: [
+
+    ],
+  ),
+  (
+    statement: [
+      A sample of Uranium is decaying. Make the follwing assumptions about the decay of the Uranium sample:
+      - When the sample if first observed, it has a mass of 1 kilograms.
+      - Initially the sample is decaying at a rate of 0.1 kilograms per year. $1.55 * 10^-10$ kilograms per year. 
+      - The rate of decay is proportional to the mass of the sample.
+      + Build a differential equation that pairs with these assumptions to make a differential equation model for the mass of the sample. Use Euler's method in excel with a step size of 1 million years to approximate the half life of the sample.
+      + The differential equation that you came up with in part (a) is most likely seperable. Use this to find the solution to your differential equation, then use that solution to find exactly the half life of the sample of Uranium. How close what your approximation to the true value?
+      + Would it have been possible to find the half life without the solution to the the differential equation? In this case, parhaps you could use only the differential equation itself and not its soluation. 
       + Get the solution approximation with euler's method. This should be done by by hand this time, so there must be a way to incentivize this.
       + Graph the solution you just found by hand.
       + Use desmos (or maybe find the graph of the true solution on this page of the textbook or something). Is the graph that you came up with with eulers method an understestimate? Why?
@@ -12,11 +32,11 @@
       + Way 1 is good
       + Way 2 is better
     ],
-    citation: [X]
   ),
   (
     statement: [
-      (Pair the differential equation with a slope field and then pair that slope field with a graph of the solution kinda question.)
+      /* Pair the differential equation with a slope field and then pair that slope field with a graph of the solution kinda question. */
+
     ],
   ),
   (
