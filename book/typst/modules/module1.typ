@@ -302,7 +302,7 @@ for autonomous equations do not depend on the starting time. This encompasses mo
 There are other classifications commonly encountered in the study of differential equations:
 - _Linear differential equations_: a differential equation that can be written as $a_0(t) dot y(t) + a_1(t)dot y'(t) + dots.c + a_n (t) dot y^((n))(t) = b(t)$
   where $a_0$, #sym.dots, $a_n$, and $b$ are functions of $t$.
-- _Homogeneous linear differential equations_: a linear differential equation where the "constant term" $b(t)$ is zero.
+- _Homogeneous linear differential equations_: a linear differential equation where the _forcing term_ $b(t)$ is zero.
 
 While we will be studying linear and homogeneous linear differential equations, classifying equations as linear/non-linear and homogeneous/non-homogeneous
 won't be important to us.
@@ -313,8 +313,8 @@ won't be important to us.
 There are a number of algorithms and techniques to find explicit solutions to particular classes
 of differential equations. These include:
 - _Separation of variables_, a technique applicable to differential equations of the form $x'(t) = F(x(t)) dot G(t)$. (See @app:separable)
-- _Integrating factors_, a technique applicable to differential equations of the form $x'(t) + f(t) dot x(t) = g(t)$. (See @app:integrating_factor)
-- _Series solutions_, a technique to express the solution to a differential equation as a power series (e.g., $f(t) = sum_(n=0)^infinity a_n t^n$). (See @app:series_solution)
+- _Integrating factors_, a technique applicable to first-order linear differential equations, i.e., of the form $x'(t) + f(t) dot x(t) = g(t)$. (See @app:integrating_factor)
+- _Series solutions_, a technique to express the solution to a differential equation as a power series (e.g., $x(t) = sum_(n=0)^infinity a_n t^n$). (See @app:series_solution)
 
 Unfortunately, despite these techniques, *there is no algorithm for explicitly solving a general differential equation*.
 But, it is easy to check whether a particular
@@ -322,7 +322,7 @@ function is a solution to a differential equation, since there _is_ an algorithm
 #footnote([
   More specifically, there is an algorithm
   to differentiate the _elementary_ functions, those functions formed by compositions,
-  sums, products, and quotients of polynomials, trig, exponentials, and logs.
+  sums, products, and quotients of polynomials, trigonometric functions, exponentials, and logarithms.
 ])
 This means *guess and check* is an effective method for finding explicit solutions to differential equations, and,
 though we will learn some other solving techniques, guess and check will be our go-to method.

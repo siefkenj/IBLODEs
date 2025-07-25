@@ -98,13 +98,13 @@ We will assume:
       name: "canal2",
     )
 
-    content("canal1", text(fill: white, $<-->$))
+    content("canal1", text(fill: white, $-->$))
     content(
       (name: "canal1", anchor: 20%),
       box(inset: 2pt, text(fill: blue, [Canals\ $0.1 m l / d$])),
       anchor: "south",
     )
-    content("canal2", text(fill: white, $<-->$))
+    content("canal2", text(fill: white, $<--$))
 
 
     // Draw inflows
@@ -182,6 +182,9 @@ $
   A' & = & -0.15 dot & A & quad & + &  quad 0.1 dot & B & quad + quad & 0.05 \
   B' & = &   0.1 dot & A & quad & - & quad 0.12 dot & B &             &
 $
+
+XXX The units are correct because the total amount of water in each pond is 1 million litres. Should we explain a little that on the right-hand side, we really have A/1 and B/1 ?
+
 
 With our model defined, we can now make plots showing the amount of pesticide vs. time given different initial conditions.
 

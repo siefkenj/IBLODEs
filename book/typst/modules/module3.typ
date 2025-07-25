@@ -48,7 +48,7 @@ with $c$ representing the growth of the aphid population due to the presence of 
 (this term has a positive effect on the growth of aphids since they will be protected from predators),
 and $d$ representing the natural death of aphids in the absence of ants (they will be eaten by other creatures if ants aren't around to protect them).
 
-The parameters $a, b, c, d >= 0$ depend on the habitat. They could be from data, but we will instead use artificially nice values of $a,b,c,d$.
+The parameters $a, b, c, d >= 0$ depend on the habitat. They could be gathered from data, but we will instead use artificially nice values of $a,b,c,d$.
 //As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
 //In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
@@ -203,7 +203,7 @@ using a step size of $Delta = #(_Delta2)$, The new, more accurate estimates are 
 == Component and Phase Spaces
 
 The graphs above is called _component graphs_. They show the dependent variables (the populations of ants and aphids) vs. the independent
-variable (time).#footnote[It is actually two component graphs, one for the ants and one for the aphids.]
+variable (time).#footnote[It is actually composed of two component graphs, one for the ants and one for the aphids.]
 
 However, we often want to consider the relationship _between the dependent variables_.
 In this example, we might plot the population of ants vs. the population of aphids.
@@ -234,13 +234,19 @@ Plots like the one above are called _phase plots_ or _plots in phase space_. The
 
 #show_def("component_and_phase")
 
-XXX We need a nice conclusion
+Phase plots are useful for visualizing the relationship between dependent variables, which represent the relations expressed in the system of differential equations.
+
+However, they can be hard to interpret. For example, in the plot above, it is hard to see how the populations of ants and aphids change over time. 
+
+Also, when we have more than two dependent variables, as in the following example, a phase plot becomes almost impossible to visualize.
+
+XXX Revise and improve the conclusion
 
 #example(
   prompt: [The Three-dimensional Lorenz Equations],
   [
     Phase space is not limited to two dimensions.
-    Consider the Lorentz equations, introduced by Edward Lorenz to demonstrate the inherent challenge in weather prediction.#footnote[The Lorenz equations
+    Consider the Lorenz equations, introduced by Edward Lorenz to demonstrate the inherent challenge in weather prediction.#footnote[The Lorenz equations
       would go on to become a foundational example in the study of chaos theory---a deterministic but hard to predict dependence on initial conditions.]
     The Lorenz equations are
     $
@@ -303,7 +309,7 @@ XXX We need a nice conclusion
       ),
     )
 
-    From the plot in phase space, we can see the spiralling nature of solutions. Something that is much harder to see from the component graphs.
+    Even though the phase plot is hard to interpret due to the three-dimensional nature of the data, we can still  see the spiralling nature of solutions. Something that is much harder to see from the component graphs below.
 
     #align(
       center,
