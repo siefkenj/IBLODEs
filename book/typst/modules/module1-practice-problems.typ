@@ -22,17 +22,16 @@
         ),
       )
 
-      + Make an assumption in the form of a sentence (M1) that will lead a function (F1)  characteristic of an explicit model. Such a function does not have to fit the data *exactly*, but should be reasonably close.
-      - (M1) 
-      - (F1)
-      + Make an assumption (M1) that will lead to an equation (E1) characteristic of a recursive model.
-      - (M1) 
-      - (E1) 
-      + Make an assumption (M1) that will lead to a linear and/or separable differential equation (D1). 
-      - (M1) 
-      - (D1)
-      Note: As stated in the module, a model needs all of: some assumptions, some definitions of variables, and mathematical analysis of those assumptions.
-      /*I didn't follow the directions of question 1 here`. I sorta think that it is good to have a question that really focuses on what a model actually is. Getting them used to having the assumptions that they make about their models also being part of their Models. I have rewritten the question 1 instructions for question 2.*/
+      + Based on the assumption (M1) below, give an explicit function (F1) that models the population of rural and small town Canada in millions of people as a function of time in years since 2015.)
+        - (M1) From 2015 to 2018, every year the population of rural and small town Canada multiplies by 1.0059.//Here is an assumption, give F1. Linear make if linear. "Imagagration"
+        - (F1)
+      + Make an assumption (M1) that will lead to the given equation (E1) characteristic of a recursive model. Here $P_n$ is the population of rural and small town Canada in millions of people at time $n$ years since 2015.
+        - (M1) 
+        - (E1) $P_(n+1) = P_n + 0.0353$ with $P_0 = 5.938$. //Here is the relationship what assumption. but now we also have brith rate or somethign. 
+      +  For each of the two questions above, make a differential equation, (D1) and (D2), that respect the assumed relationship in (a) and (b). //Make a differential equation based on the the two previous parts. 
+        - (D1) from (a) $P'(t) = $
+        - (D2) fram (b) $P'(t) = $
+      Note: As stated in the module, a model needs all of: A question, some assumptions, some definitions of variables, and mathematical analysis of those assumptions.
     ],
     solution: [
     ],
@@ -46,30 +45,46 @@
       + Modify it to be a continuous model*/
       A small population of fish have been introduced to a large lake. Make the following assumptions about the population of fish in the lake:
       - (M1) All the population of fish in the lake are the same species.
-      - (M2) The inital population of fish in the lake is 28.
+      - (M2) The inital population of fish in the lake is 28 fish.
       - (M3) After 1 year, the population of fish is approximately 57.
       - (M4) The year to year ratio of the population of fish in the lake is approximately constant.
-      + Make a table of the population of fish in the lake by year for the first 5 years. (Use 3 decimal places for table entries.)
-      + Make a table of the population of fish in the lake by month for the first 5 months. (Use 3 decimal places for table entries.)
-      + Complete this discrete model, by creating a continuous equation (E1) that models the population of fish in the lake over time that is conistant with the assumptions and data above.
-      - (E1)
-      + List two new assumptions (M5) and (M6) that could also be presented in this model, and make a note on the advantages or dissadvantages of including them.
-      - (M5)
-      - (M6)
+      + Make a table of the population of fish in the lake by year for the first 5 years.
+      + Make a table of the population of fish in the lake by month for the first 5 months.
+      + Complete this discrete model, by creating a continuous equation (E1) that models the population of fish in the lake over time that is conistant with the assumptions and data above. //Tiffany think that this exponential with this function . 
+        - (E1)
+      //+ List two new assumptions (M5) and (M6) that could also be presented in this model, and make a note on the advantages or dissadvantages of including them. 
+      // List assumptions that make tiffany's model wrong. 
+      //- (M5)
+      //- (M6)
     ],
   ),
   (
     statement: [
       True or false:
-      + A model can't just include a function between two variables and nothing else.
+      // y' = sin(y^2)
+      // 
+      + A model can just include a function between two variables and nothing else.
       + A model must be only one of an explicit model, a recursive model, or a differential model.
       + The only differential equation models that make sense, and that are able to give us information about the world, are models for which the differential equation is able to be solved. 
       + A model must have a finite number of assumptions, since it is impossible to write down an infinite number of assumptions.
-      + The general solution to a differential equation can be found by either adding or multiplying an arbitrary constant to a particular solution of a differential equation.
-      + Any autonomous linear first order differential equation can be solved by separation of variables.
-      + Assume that $y' = F(y,t)$ with $y(1) = 2$ is an initial value problem that has $y(t)$ as a solution. Assume that $F(y,t)$ and $y(t)$ are continuous except at $t = 0$. In this case $y(t)$ is unique as a solution to the initial value problem on its domain.
-      + The differential equation $y' = y$, when solved through seperation of variables, gives the result 
-      $|y| = C e^t$ with $C > 0$. This gives rise to the general solution $y = C e^t$, for all $C in R$, after some analysis of cases, when removing the absolute value.
+      + The general solution to a differential 
+        equation can be found by either adding or 
+        multiplying an arbitrary constant to a 
+        particular solution of a differential 
+        equation.
+      + Any autonomous linear first order 
+        differential equation can be solved by 
+        separation of variables.
+      + Assume that $y' = F(y,t)$ with 
+        $y(1) = 2$ is an initial value 
+        problem that has $y(t)$ as a solution. 
+        Assume that $F(y,t)$ and $y(t)$ are 
+        continuous except at $t = 0$. In this case 
+        $y(t)$ is unique as a solution to the 
+        initial value problem on its domain.
+      + The differential equation 
+        $y' = y$, when solved through seperation of variables, gives the result 
+        $|y| = C e^t$ with $C > 0$. This gives rise to the general solution $y = C e^t$, for all $C in R$, after some analysis of cases, when removing the absolute value.
     ],
   ),
   (
@@ -222,10 +237,26 @@
       1. Green ants? Why not make them red or black? Green ants are kinda a hard mental image other than maybe like really small green ones.
       2. 3.222 is not a number of ants. Currently it says 3.222! which kinda looks visually like 222! - a very big number. I don't know if this is a big deal, but it might be a small deal.
       3. 'An explicit model based on known functions seems a little vague to me. I think what is really trying to be said is that the functions can be written down in a closed form. 
-      4. I think that maybe just before defineing what a differential equation is, it might be good to state explicitly that, in this case for $A'(n) = k A(n)$, we already had a model and so writing the differential equation is a bit superfluous. However, in the future we will not be able to write an explicit or recursive model so easily.
+      4. I think that maybe just before defining 
+        what a differential equation is, it might 
+        be good to state explicitly that, in this 
+        case for $A'(n) = k A(n)$, we already had a 
+        model and so writing the differential 
+        equation is a bit superfluous. However, in 
+        the future we will not be able to write an 
+        explicit or recursive model so easily.
       5. I really like the first example. It kinda desribes the thought process one should have when guessing and checking. It might be good to follow up this example with a sanity check question of like "Is this solution the same as the one we had before?" or something like that. I guess right now you kinda do it for them, which is fine too.
       6. Small thing but I think "Solving differential equations" should be called something else like "solutions to differential equations". That is just a bit easier to look up when a student is studying. It also might be a good idea in the section to state right before defining what a general solutions is to state that "There are problems asked more than any other when studying and solving differentatial equations: What is the general solution to this differential equation? and what is the particular solution to this differential equation given this some inital condition? There are respectily two kinds of answers to these questions: a general solution to a differentatial equation that doesn't specify an initial condition, and a specific function that is the solustion to an initial value problem". I am basically saying that there is parhaps room for a into to the ideas of solutions after the first two examples.
       7. I think I am understanding the structure of the book a little more now. I think it might make sense to have a couple of exercises interspersed in the books text as well as at the end of each section. This doesn't currently seem to be the case.
+    ],
+  ),
+  (
+    statement: [
+      Bonus questions:
+        +
+          + How would you write down the explicit function you found in question 1 (a) as a recursive relationship?
+          + How would you write down the recursive relationship you found in question 1 (b) as an explicit function?
+        + 
     ],
   ),
 )
