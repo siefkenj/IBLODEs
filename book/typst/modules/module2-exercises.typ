@@ -51,30 +51,39 @@
 
       #align(
         center,
+        stack(
+          dir:ltr,
+          spacing: 1em,
         simple_table(
-          headers: ([Time], [Pop. ($Delta = 0.1$)], [Time], [Pop. ($Delta = 0.2$)]),
+          headers: ([Time], [Pop. ($Delta = 0.1$)]),
           content: (
-            [0.0],
-            [10],
             [0.0],
             [10],
             [0.1],
             [11.1],
             [0.2],
-            [12.2],
-            [0.2],
             [12.321],
-            [0.4],
-            [14.884],
             [0.3],
             [13.67631],
-            [0.6],
-            [18.15848],
             [0.4],
             [15.1807041],
+          ),
+        ),
+        simple_table(
+          headers: ([Time], [Pop. ($Delta = 0.2$)]),
+          content: (
+            [0.0],
+            [10],
+            [0.2],
+            [12.2],
+            [0.4],
+            [14.884],
+            [0.6],
+            [18.15848],
             [0.8],
             [22.1533456],
           ),
+        )
         ),
       )
 
@@ -222,9 +231,11 @@
         ),
       )
 
-      + Guess what the population vs. time curves look like for each model.
-      + Create a differential equation for each model.
-      + Simulate population vs. time curves for each model (but pick a common initial population).
+      + Model $NN$ introduces the concept of "resources available per individual". 
+       + Come up with a definition/notation/assumptions for this concept.
+       + Create a differential equation for model $NN$.
+      + Repeat the modelling process for model $OO$.
+      + Simulate population vs. time curves for each model.
 
     ],
   )
@@ -247,9 +258,7 @@
 
     + Determine which population grows fastest in the short term and which grows fastest in the long term.
     + Are some models more sensitive to your choice of $Delta$ when simulating?
-    + Are your simulations for each model consistently underestimates? Overestimates?
-    + Compare your simulated results with your guesses from question //#ref(many-models).#ref(model-guess-part).
-      What did you guess correctly? Where were you off the mark?
+    + Are your simulations for each model consistently underestimates? Overestimates? Do any results surprise you?
    ])
 
   //book_only(pagebreak())

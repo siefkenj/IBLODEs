@@ -99,7 +99,7 @@
       [
         An equilibrium solution $f$ is called
         - _attracting at time $t_0$_ if
-          there exists $epsilon > 0$ such that for all solutions $g$ satisfying $abs(g(t_0) - f(t_0)) < epsilon$, we have $lim_(t -> infinity) f(t) = lim_(t -> infinity) g(t)$.
+          there exists $epsilon > 0$ such that for all solutions $g$ satisfying $abs(g(t_0) - f(t_0)) < epsilon$, we have $display(lim_(t -> infinity) f(t) = lim_(t -> infinity) g(t))$.
         - _repelling at time $t_0$_ if there exists $epsilon > 0$ and $delta > 0$ such that for all
           solutions $g$ that satisfy $0 < abs(g(t_0) - f(t_0)) < epsilon$ there exists $T in RR$ so that for all $t > T$ we have
           $abs(g(t) - f(t)) > delta$.

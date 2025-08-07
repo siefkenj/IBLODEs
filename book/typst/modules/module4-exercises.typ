@@ -20,9 +20,9 @@
 
   question(
     slide(force_scale: .95em)[
-      Open the spreadsheet
+      Open and make a copy of the spreadsheet
 
-      #link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits]
+      #align(center, link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits])
 
       which contains an Euler approximation for the Foxes and Rabbits population.
       $
@@ -105,7 +105,7 @@
       $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $
       Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
 
-      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, unstable, or semi-stable.
+      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or unstable.
       + Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
 
     ],
@@ -140,8 +140,8 @@
 
       #link("https://www.desmos.com/calculator/ghavqzqqjn")
 
-      + If you were sketching the slope field for model #OO by hand, what line would you sketch
-        (a segment of) at $(5, 3)$? Write an equation for that line.
+      + If you were sketching the slope field for model #OO by hand, what (straight) line would you sketch
+        a segment of at $(5, 3)$? Write an equation for that line.
       + How can you recognize equilibrium solutions in a slope field?
       + Give qualitative descriptions of different solutions to the _differential equation_ used in model #OO (i.e., use words to describe them). Do all
         of those solutions make sense in terms of _model #(OO)_?

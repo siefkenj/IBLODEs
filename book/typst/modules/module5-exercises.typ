@@ -99,11 +99,22 @@
       // % Without Euler's built in:
       // % https://www.desmos.com/calculator/vrk0q4espx
 
-      Sketch your own vector field where the corresponding system of differential equations:
+      The unknown (continuous) system of differential equations $x'=...$, $y'=...$ has an 
+      _attracting_ equilibrium solution $
+      x_"eq" (t)&=2\
+      y_"eq" (t)&=4
+      $
 
-      + Has an attracting equilibrium solution.
-      + Has a repelling equilibrium solution.
-      + Has no equilibrium solutions.
+      + 
+       + Sketch component graphs for the equilibrium solution.
+       + Sketch the equilibrium in _phase space_.
+      + Suppose $(x(t),y(t))$ is a solution that satisfies $(x(0), y(0))=(3,3)$. Sketch a 
+        possible graph for this solution. Make sketches in both component and phase spaces.
+      + Draw a possible phase portrait for this system that agrees with your answer to the previous parts.
+      + Sketch a phase portrait for a _new_ system of differential equations that has a repelling
+        equilibrium solution.
+      + Sketch a phase portrait for a _new_ system of differential equations that has no
+        equilibrium solutions.
 
     ],
   )
