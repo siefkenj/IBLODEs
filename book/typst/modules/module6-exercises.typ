@@ -1,5 +1,6 @@
-#import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
 #import "../libs/_graphics.typ": vector_field
+#import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/tiptoe:0.3.1"
 
@@ -25,14 +26,14 @@
 
       Consider the system of differential equations
       $
-        x'(t) &= x(t)\
-        y'(t) &= 2y(t)
+        x'(t) & = x(t) \
+        y'(t) & = 2y(t)
       $
 
 
       + Make a phase portrait for the system.
 
-      #link("https://www.desmos.com/calculator/h3wtwjghv0")
+        #link("https://www.desmos.com/calculator/h3wtwjghv0")
 
       + What are the equilibrium solution(s) of the system?
       + Find a formula for $x(t)$ and $y(t)$ that satisfy the initial conditions $(x(0), y(0))=(x_0, y_0)$.
@@ -43,6 +44,8 @@
 
       + Write a solution to $arrow(r)' = A arrow(r)$ (where $A$ is the matrix you came up with).
 
+        _Hint: you already did most of the work!_
+
     ],
   )
 
@@ -50,20 +53,44 @@
   book_only(pagebreak())
   question(
     slide[
+      The _superposition principle_ states that solutions to
+      the matrix equation $arrow(r)' = A arrow(r)$ form a subspace.
 
-      Let $A$ be an unknown matrix and suppose $arrow(p)$ and $arrow(q)$ are solutions to $arrow(r)'=A arrow(r)$.
+      + Justify that if $arrow(p)$ and $arrow(q)$ are solutions to $arrow(r)'=A arrow(r)$,
+        then so is $arrow(s)(t)=arrow(p)(t)+arrow(q)(t)$. Does this show that solutions
+        to $arrow(r)' = A arrow(r)$ form a subspace? What is left to show?
 
-      + Is $arrow(s)(t)=arrow(p)(t)+arrow(q)(t)$ a solution to $arrow(r)'=A arrow(r)$? Justify your answer.
-      + Can you construct other solutions from $arrow(p)$ and $arrow(q)$? If yes, how so?
+      + #label_core_exercise(<ex:basic_system_span>) Recall the differential equation $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ from @ex:basic_system.
+        Express the solutions you found as a span.
 
+      + Let $cal(S)$ be the set of all solutions to $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$
+        and consider the following theorem:
 
+        #theorem(
+          title: [Solution Space Dimension],
+          [
+            Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all
+            solutions to $arrow(r)'(t) = M arrow(r)(t)$. Then   $dim(cal(S)) = n.$
+          ],
+        )
+
+        Use this theorem to justify that your span from @ex:basic_system_span[]
+        is equal to $cal(S)$.
+
+      + Let $cal(K)="span"{mat(e^t; e^(2t)), mat(7e^t; 7 e^(2t))}$.  Is $cal(K)=cal(S)$?
+
+        Let $cal(J)="span"{mat(e^t; e^(2t)), mat(e^t; 7 e^(2t))}$.
+        Is $cal(J)=cal(S)$?
+
+        Justify your answers.
 
     ],
   )
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.9em)[
+      XXX: remove (move to practice problems/HW)
 
       #show_def("linear_dependence_algebraic")
 
@@ -89,6 +116,7 @@
   question(
     slide[
 
+      XXX: remove
 
       Recall
 
@@ -111,6 +139,8 @@
   book_only(pagebreak())
   question(
     slide[
+
+      XXX: remove (move to practice problems)
 
       Consider the differential equation
       $ y'(t) = 2 dot.c y(t). $
@@ -175,8 +205,8 @@
 
       Consider the system
       $
-        x'(t) &= 2x(t) \
-        y'(t) &= 3y(t)
+        x'(t) & = 2x(t) \
+        y'(t) & = 3y(t)
       $
 
 
@@ -184,11 +214,10 @@
       + Classify the following as solutions or non-solutions to the system.
 
       $
-        arrow(r)_1(t) &= e^(2t) & wide wide
-        arrow(r)_2(t) &= mat(e^(2t); 0) \
-        arrow(r)_3(t) &= mat(e^(2t); 4e^(3t)) &
-        arrow(r)_4(t) &= mat(e^(3t); e^(2t)) \
-        arrow(r)_5(t) &= mat(0; 0)
+        arrow(r)_1(t) & = e^(2t)               & wide wide
+                                                 arrow(r)_2(t) & = mat(e^(2t); 0) \
+        arrow(r)_3(t) & = mat(e^(2t); 4e^(3t)) & arrow(r)_4(t) & = mat(e^(3t); e^(2t)) \
+        arrow(r)_5(t) & = mat(0; 0)
       $
 
       + State the definition of an eigenvector for the matrix $M$.
@@ -206,8 +235,8 @@
 
       Recall the system
       $
-        x'(t) &= 2x(t) \
-        y'(t) &= 3y(t)
+        x'(t) & = 2x(t) \
+        y'(t) & = 3y(t)
       $
       has eigen solutions $arrow(r)_2(t)=mat(e^(2t); 0)$ and $arrow(r)_6(t)=mat(0; e^(3t))$
 
@@ -230,6 +259,7 @@
               center,
               {
                 lq.diagram(
+                  title: "(A)",
                   xlim: (-.5, 5.5),
                   ylim: (-.5, 5.5),
                   width: width,
@@ -245,6 +275,7 @@
                 )
                 h(1em)
                 lq.diagram(
+                  title: "(B)",
                   xlim: (-.5, 5.5),
                   ylim: (-.5, 5.5),
                   width: width,
@@ -260,6 +291,7 @@
                 )
                 h(1em)
                 lq.diagram(
+                  title: "(C)",
                   xlim: (-.5, 5.5),
                   ylim: (-.5, 5.5),
                   width: width,
@@ -303,24 +335,51 @@
       Consider the following phase portrait for a system of the form $arrow(r)' = A arrow(r)$
       for an unknown matrix $A$.
 
-      #let F(x, y) = (y, x)
-      #align(
-        center,
-        vector_field(
-          F,
-          xlim: (-10, 10),
-          ylim: (-10, 10),
-          spacing: (1.5, 1.5),
-          scale_segments: 20.0,
-          width: 5cm,
-          height: 5cm,
-          yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
-          xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
-        ),
-      )
+      #{
+        let F(x, y) = (y, x)
+        let res = solve_2d_ivp(F, (-8.5, 10), 50, Delta: .05, method: "rk4")
+        let (xs, ys) = (res.map(((x, y)) => x), res.map(((x, y)) => y))
+        align(
+          center,
+          vector_field(
+            F,
+            xlim: (-10, 10),
+            ylim: (-10, 10),
+            spacing: (1.5, 1.5),
+            scale_segments: 20.0,
+            width: 5cm,
+            height: 5cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+            xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+            lq.plot(
+              (0, 10),
+              (0, -10),
+              mark: none,
+              stroke: 1.5pt,
+            ),
+            lq.plot(
+              (0, 10),
+              (0, 5),
+              mark: none,
+              stroke: 1.5pt,
+            ),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: 1.5pt,
+            ),
+            lq.place(10, 5, align: left, text(fill: orange.darken(20%), pad(.3em)[$arrow(f)(t)$])),
+            lq.place(10, -9, align: left, text(fill: blue.darken(20%), pad(.3em)[$arrow(g)(t)$])),
+            lq.place(8, 9, align: left, text(fill: red.darken(40%), pad(.3em)[$arrow(h)(t)$])),
+          ),
+        )
+      }
 
-      + Can you identify any eigen solutions?
-      + What are the eigenvalues of $A$? What are their signs?
+      + Identify which of $arrow(f)$, $arrow(g)$, and $arrow(h)$ are _solutions_ to the
+        differential equation. Which are _eigen solutions_?
+      + Graph of an additional eigen solution.
+      + What can you say about the eigenvalues of $A$? What are their signs?
     ],
   )
 
@@ -328,16 +387,16 @@
   question(
     slide[
 
-      Consider the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 1; 1, 0)$.
+      Consider the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
 
       + Verify that $mat(1; 1)$ and $mat(1; -1)$ are eigenvectors for $M$. What are the corresponding eigenvalues?
 
       +
-        + Is $arrow(r)_1(t) = e^t mat(1; 0)$ a solution to the differential equation? An eigen solution?
-        + Is $arrow(r)_2(t) = e^t mat(1; 1)$ a solution to the differential equation? An eigen solution?
-        + Is $arrow(r)_3(t) = e^(2t) mat(1; -1)$ a solution to the differential equation? An eigen solution?
+        + Is $arrow(r)_1(t) = e^(2t) mat(1; 0)$ a solution to the differential equation? An eigen solution?
+        + Is $arrow(r)_2(t) = e^(2t) mat(1; 1)$ a solution to the differential equation? An eigen solution?
+        + Is $arrow(r)_3(t) = e^(t) mat(1; -1)$ a solution to the differential equation? An eigen solution?
 
-      + Find an eigen solution for the system corresponding to the eigenvalue $-1$. Write your answer in vector form.
+      + Find an eigen solution for the system corresponding to the eigenvalue $-2$. Write your answer in vector form.
 
       + Let $arrow(v)$ be an eigenvector for $M$ with eigenvalue $lambda$. Explain how to write down an eigen solution to $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$.
 
@@ -349,7 +408,7 @@
   question(
     slide[
       #slides_only(v(0.5em))
-      Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 1; 1, 0)$.
+      Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
 
       + Write down a general solution to the differential equation.
       + Write down a solution to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
@@ -483,8 +542,8 @@
       + Come up with a rule to determine the nature of the equilibrium solution $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly independent eigen solutions).
       + Consider the system of differential equations
         $
-          x'(t) &= x(t) + 2 dot y(t) \
-          y'(t) &= 3 dot x(t) - 4 dot y(t)
+          x'(t) & = x(t) + 2 dot y(t) \
+          y'(t) & = 3 dot x(t) - 4 dot y(t)
         $
 
         + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any method you want.

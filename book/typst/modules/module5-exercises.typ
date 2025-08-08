@@ -267,7 +267,8 @@
 
         Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
 
-      + Predict what happens to a tree near equilibrium in condition $b_5$ and a tree near equilibrium in condition $b_(12)$.
+      + Predict what happens to a tree near equilibrium (but not at equilibrium) when $b=b_5$.
+        What about when $b=b_(12)$.
     ],
   )
 }
