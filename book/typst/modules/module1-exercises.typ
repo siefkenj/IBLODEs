@@ -24,7 +24,7 @@
         "#new children per year" ~ "size of current population"
       $
 
-      + Come up with a mathematical model for the number of star fish in a given year. Your model should
+      + Come up with a mathematical model for the number of starfish in a given year. Your model should
         - Define any notation (variables and parameters) you use
         - Include at least one formula/equation
         - Explain how your formula/equation relates to the starting assumption

@@ -3,6 +3,153 @@
 #let questions = (
   (
     statement: [
+      For the following differential 
+      equations, check if the given function 
+      solves the differential equation,
+      + $P' = P^2$ with the function 
+        $P(x) = - 1/x$ as the 
+        potential solution.
+      + $y'y = t$, with 
+        $y(t) = sqrt(t^2+1)$
+      + $P' = P^2 + 5$, 
+        with 
+        $P(x) = 5tan(5x)$
+      + $(dif w)/(dif t) = e^t + t$ with $w(t) 
+        = e^t - 
+        pi + t^2/2$
+    ]
+  ),
+  (
+    statement: [
+      For the following initial value 
+      problems, check if  the given function solve 
+      the initial value problem.
+      + $y'' + ln(5) = t$, $y(5) = 4$, 
+        $y'(5) = 15/2 - 5 ln(5)$ with the function
+        $y = t^3/6 - 1/ 2 ln(5)t^2 - 5 t + 18 ln(5)$
+      + $y'' + y = sin(t)$, $y(0) = 0$, 
+        $y'(0) = 1/2$
+        with the function
+        $y(t) = sin(t) - 1/2 t cos(t)$ as the 
+        potential solution.
+      + $x'(t) = 2 x(t) + 3 y(t)$ and 
+        $y'(t) = 2 x(t) + y(t)$, 
+        $x(0) = 5$, $y(0) = 0$ 
+        with the functions $x(t) = 3e^(4t) + 2e^(-t)$, $y(t) = 2e^(4t) - 2e^(-t)$.  
+      + $c' = 0$, $c(0) = 1$, with $c(x) = 1$ 
+        as the potential solution
+    ],
+  ),
+  (
+    statement: [
+      For each of the differential equations 
+      in questions (1) and (2), 
+      write whether the equation is 
+      *autonomous* or *non-autonomous*, 
+      whether they are
+      *first order* or *higher order*,
+      and whether they are
+      *one dimensional* or a *higher dimensional*
+      system of differential equations
+    ]
+  ),
+  (
+    statement: [
+      /*(Forth question about modelling; requires 
+      some real-world judgement, e.g. maybe 
+      something involving seasons)*/
+      Winnie the Pooh, who is notably a bear, 
+      hibernates every winter. He wakes up every 
+      spring in April, and goes back to sleep every 
+      winter in October. This year he 
+      goes to sleep on October 1st and wakes 
+      up on april 1st. Worried about Winnie's 
+      health, his friend Tigger, decides to model 
+      Winnie's weight over the this 
+      time in hibernation.
+      Tigger makes the following assumptions about 
+      Winnie the Pooh's weight:
+      - (T1) Winnie is 100 kg when he wakes up on 
+        April 15th. (Winnie told him this.)
+      - (T2) Winnie is 150 kg when he goes to sleep 
+        on October 16th. (Again, Winnie told 
+        him this.)
+      - (T3) While Winnie hibernates his weight 
+        is decreasing linearly.
+      + Based on these assumptions, make a graph by
+        hand of Winnie's weight over the his time
+        in hibernation, with 
+        the x-axis being the time $t$ of hibernation
+        so 
+        far in days, and the y-axis being Winnie's.
+        weight $w$ in kg.
+      + Write down a differential equation 
+        of the form 
+        $
+          w' = 
+        $
+        that is conistent with 
+        the above graph. (Note: This is not the 
+        function you just graphed.)
+      + Tigger has another friend, Donkey. Looking at
+        Tigger's model Donkey cites Kleiber's Law
+        - (D1) that the metabolic rate of animals is 
+          proportional to the weight of the animal 
+          to the power of $3/4$. 
+        - (D2) Donkey also makes 
+          the assumption that metabolic rate of
+          Winnie is 
+          proportional to the daily weightloss of 
+          the animal.
+        Based on Donkey's assumptions write
+        down a differential equation of the form
+        $
+          w' = 
+        $
+        and determine whether Donkey's model is 
+        consistent with Tigger's. 
+    ],
+  ),
+  (
+    statement: [
+      A student tries to guess and check the 
+      general solution
+      to the differential equation
+      $
+        y' = k y^2
+      $
+      with the following work:
+      
+      - The power on the $y$ in $y' = k y^2$ makes 
+        me think of the power rule so lets try 
+        $y = t$. In that case, $y' = 1$ and 
+        $k y^2 = k t^2$ so they are not equal. 
+        It seems like the power of $t$ in the $y'$
+        part of the equation went in the wrong 
+        direction so lets try a function where taking
+        the derivative makes the exponential larger.
+        Lets try, $y = 1/t$ then $y' = -1/t^2$
+        and $k y^2 = k/t^2$. This is close, but 
+        this is still off by a constant and a 
+        negative sign. Lets consider then 
+        $y = -1/(k t)$ then 
+        by the chain rule 
+        $y' = -1/(k t^2) times k = k y^2$ which 
+        is exactly a solution to our differential 
+        equation. This means that 
+        the general solution will be 
+        $y = - c/(k t)$.
+      
+      This student has made an error 
+      in their solution.
+      + Where and what is the error in their solution?
+      + How would your resolve the error that 
+        they made? (Hint: Think about how the 
+        chain rule works.)
+    ]
+  ),
+  (
+    statement: [
       Every year, Statistics Canada estimates the total population of the "rural and small town" areas of Canada. The following table shows the estimated population on Jan. 1st in millions of people for the years 2015 to 2018:
 
       #align(
@@ -28,7 +175,9 @@
       + Make an assumption (M1) that will lead to the given equation (E1) characteristic of a recursive model. Here $P_n$ is the population of rural and small town Canada in millions of people at time $n$ years since 2015.
         - (M1) 
         - (E1) $P_(n+1) = P_n + 0.0353$ with $P_0 = 5.938$. //Here is the relationship what assumption. but now we also have brith rate or somethign. 
-      +  For each of the two questions above, make a differential equation, (D1) and (D2), that respect the assumed relationship in (a) and (b). //Make a differential equation based on the the two previous parts. 
+      + For each of the two questions above, make a 
+        differential equation, (D1) and (D2), that respect 
+        the assumed relationship in (a) and (b). //Make a differential equation based on the the two previous parts. 
         - (D1) from (a) $P'(t) = $
         - (D2) fram (b) $P'(t) = $
       Note: As stated in the module, a model needs all of: A question, some assumptions, some definitions of variables, and mathematical analysis of those assumptions.
@@ -40,18 +189,34 @@
   (
     statement: [
       /*(Situation with a new model)
-      + Build a discrete model modelling population by year and compute pop after first three years
+      + Build a discrete model modelling population by year 
+        and compute pop after first three years
       + By month
       + Modify it to be a continuous model*/
-      A small population of fish have been introduced to a large lake. Make the following assumptions about the population of fish in the lake:
-      - (M1) All the population of fish in the lake are the same species.
-      - (M2) The inital population of fish in the lake is 28 fish.
-      - (M3) After 1 year, the population of fish is approximately 57.
-      - (M4) The year to year ratio of the population of fish in the lake is approximately constant.
-      + Make a table of the population of fish in the lake by year for the first 5 years.
-      + Make a table of the population of fish in the lake by month for the first 5 months.
-      + Complete this discrete model, by creating a continuous equation (E1) that models the population of fish in the lake over time that is conistant with the assumptions and data above. //Tiffany think that this exponential with this function . 
-        - (E1)
+      A small population of fish have been introduced to a 
+      large lake. Make the following assumptions about the 
+      population of fish in the lake:
+      - (M1) All the population of fish in the lake are the 
+        same species.
+      - (M2) The inital population of fish in the lake is 28 
+        fish.
+      - (M3) After 1 year, the population of fish is 
+        approximately 57.
+      - (M4) The year to year ratio of the population of fish 
+        in the lake is approximately constant.
+      + Make a table of the population of fish in the lake by 
+        year for the first 5 years.
+      + Tiffany believes that the growth of the fish 
+        population in the lake can be modelled with an 
+        exponential function. Is Tiffany's belief consistant
+        with the assumptions above? If not, which assumption
+        is contradicted? If so, what rate $k$ will the 
+        exponential have?
+      + Make a table of the population of fish in the lake by 
+        month for the first 5 months.
+      
+      //+ Complete this discrete model, by creating a continuous equation (E1) that models the population of fish in the lake over time that is consistent with the assumptions and data above. //Tiffany think that this exponential with this function . 
+      //  - (E1)
       //+ List two new assumptions (M5) and (M6) that could also be presented in this model, and make a note on the advantages or dissadvantages of including them. 
       // List assumptions that make tiffany's model wrong. 
       //- (M5)
@@ -61,32 +226,38 @@
   (
     statement: [
       True or false:
+      + $y = e^x$ solves both the 
+        differential equations $y' = y$ and 
+        $y' = e^x$. This means that both 
+        of these differential
+        equations have the the same general solution. 
       // y' = sin(y^2)
       // 
-      + A model can just include a function between two variables and nothing else.
-      + A model must be only one of an explicit model, a recursive model, or a differential model.
-      + The only differential equation models that make sense, and that are able to give us information about the world, are models for which the differential equation is able to be solved. 
-      + A model must have a finite number of assumptions, since it is impossible to write down an infinite number of assumptions.
-      + The general solution to a differential 
+      //+ A model can just include a function between two variables and nothing else.
+      //+ A model must be only one of an explicit model, a recursive model, or a differential model.
+      //+ The only differential equation models that make sense, and that are able to give us information about the world, are models for which the differential equation is able to be solved. 
+      //+ A model must have a finite number of assumptions, since it is impossible to write down an infinite number of assumptions.
+      /*+ The general solution to a differential 
         equation can be found by either adding or 
         multiplying an arbitrary constant to a 
         particular solution of a differential 
-        equation.
-      + Any autonomous linear first order 
+        equation.*/
+      /*+ Any autonomous linear first order 
         differential equation can be solved by 
-        separation of variables.
-      + Assume that $y' = F(y,t)$ with 
+        separation of variables.*/
+      /*+ Assume that $y' = F(y,t)$ with 
         $y(1) = 2$ is an initial value 
         problem that has $y(t)$ as a solution. 
         Assume that $F(y,t)$ and $y(t)$ are 
         continuous except at $t = 0$. In this case 
         $y(t)$ is unique as a solution to the 
-        initial value problem on its domain.
-      + The differential equation 
+        initial value problem on its domain.*/
+      /*+ The differential equation 
         $y' = y$, when solved through seperation of variables, gives the result 
-        $|y| = C e^t$ with $C > 0$. This gives rise to the general solution $y = C e^t$, for all $C in R$, after some analysis of cases, when removing the absolute value.
+        $|y| = C e^t$ with $C > 0$. This gives rise to the general solution $y = C e^t$, for all $C in R$, after some analysis of cases, when removing the absolute value.*/
     ],
   ),
+/*
   (
     statement: [
       /*(Thrid question about modelling; similar to first but not a population model)*/
@@ -250,13 +421,16 @@
       7. I think I am understanding the structure of the book a little more now. I think it might make sense to have a couple of exercises interspersed in the books text as well as at the end of each section. This doesn't currently seem to be the case.
     ],
   ),
+*/
   (
     statement: [
       Bonus questions:
         +
-          + How would you write down the explicit function you found in question 1 (a) as a recursive relationship?
-          + How would you write down the recursive relationship you found in question 1 (b) as an explicit function?
-        + 
+          + How would you write down the explicit function you found in question 7 (a) as a recursive relationship?
+          + How would you write down the recursive relationship you found in question 7 (b) as an explicit function?
+        + In question 5, do you have any critisisms 
+          of how student presented their work? 
+          Is their any way they could be better?
     ],
   ),
 )
