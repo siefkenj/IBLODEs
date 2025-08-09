@@ -24,9 +24,9 @@
       For the following initial value 
       problems, check if  the given function solve 
       the initial value problem.
-      + $y'' + ln(5) = t$, $y(5) = 4$, 
-        $y'(5) = 15/2 - 5 ln(5)$ with the function
-        $y = t^3/6 - 1/ 2 ln(5)t^2 - 5 t + 18 ln(5)$
+      + $y' + ln(5) = t$, $y(5) = 4$, 
+        with the function
+        $y = t^2 - ln(5)t - 25$
       + $y'' + y = sin(t)$, $y(0) = 0$, 
         $y'(0) = 1/2$
         with the function
@@ -86,7 +86,7 @@
       + Write down a differential equation 
         of the form 
         $
-          w' = 
+          w' = underline("          ")
         $
         that is conistent with 
         the above graph. (Note: This is not the 
@@ -104,7 +104,7 @@
         Based on Donkey's assumptions write
         down a differential equation of the form
         $
-          w' = 
+          w' = underline("          ") 
         $
         and determine whether Donkey's model is 
         consistent with Tigger's. 
@@ -230,7 +230,10 @@
         differential equations $y' = y$ and 
         $y' = e^x$. This means that both 
         of these differential
-        equations have the the same general solution. 
+        equations have the the same general solution.
+      + Any differential equation in terms of
+        $y'$, $y$, and $t$ can be 
+        written in the form $f(y',y,t) = 0$.
       // y' = sin(y^2)
       // 
       //+ A model can just include a function between two variables and nothing else.
