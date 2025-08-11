@@ -1,3 +1,12 @@
+#import "../libs/_graphics.typ": slope_field
+#import "../libs/_workbook.typ": label_module, simple_table
+#import "../libs/_ode_solvers.typ": solve_1d_ivp
+#import "../libs/_spreadsheet.typ": draw_spreadsheet
+#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/tiptoe:0.3.0"
+
+
+
 #let questions = (
   (
     statement: [
@@ -7,7 +16,7 @@
       and range 
       $R = (-4,4)$ 
       draw 
-      a slope feild of the following 
+      a slope field of the following 
       differential equations, 
       with a slope at all
       coordinates $(n,m)$, with 
@@ -30,7 +39,39 @@
       equation that goes through the point 
       $(0,1)$.
     ]
-  ), 
+  ),
+  /*(
+    statement: [
+      With the differential equation 
+      $
+        (dif T)/(dif x) = 10T - T^2
+      $
+      and initial condition
+      $(x_0,T_0) = (0,2)$, 
+      fill
+      in using Euler's the following table,
+      or make a filled in
+      copy of it on a seperate
+      paper. 
+      #align(
+        center,
+        block(
+          breakable: false,
+          simple_table(
+            headers: ([$x$], [$T$], [$(dif T)/(dif x)$]),
+            content: (
+              $"  "0"  "$,$"  "2"  "$,$"  "" ""  "$,
+              $"  "0.4"  "$,$"  "" ""  "$,$"  "" ""  "$,
+              $"  "/*0.8*/"  "$,$"  "" ""  "$,$"  "" ""  "$,
+              $"  "/*1.2*/"  "$,$"  "" ""  "$,$"  "" ""  "$,
+              $"  "/*1.6*/"  "$,$"  "" ""  "$,$"  "" ""  "$,
+              $"  "2"  "$,$"  "" ""  "$,$"  "" ""  "$,
+            ), 
+          ),
+        ),
+      ),
+    ],
+  ),  
   (
     statement: [
       Use Excel, and 
@@ -66,6 +107,296 @@
 
     ],
   ),
+    (
+    statement: [
+      Pair the differential equation with a slope 
+      field and pair that slope field with a 
+      graph of the solution for the following 
+      differential questions/slope fields/
+      functions.
+      #let F(x, y) = calc.sin(calc.pi / 2 * y - x)
+      #let formF = $sin(pi / 2 y(t) - t)$
+      
+      #let G(x, y) = 3 * y - calc.pow(y,2)
+      #let formG = $3y(t) - y(t)^2$
+
+      #let H(x, y) = 9 - calc.pow(y,2)
+      #let formH = $9 - y(t)^2$
+
+      #let I(x, y) = -x / 2
+      #let formI = $-t/2$
+
+      + $y'(t) = formF$
+      + $y'(t) = formG$
+      + $y'(t) = formH$
+      + $y'(t) = formI$
+      + #{
+        align(
+          center,
+          slope_field(
+            I,
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            spacing: (1/3, 1/3),
+            scale_segments: .25,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+          ),
+        )
+      }
+      + #{
+        align(
+          center,
+          slope_field(
+            H,
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            spacing: (1/3, 1/3),
+            scale_segments: .25,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+          ),
+        )
+      }
+      + #{
+        align(
+          center,
+          slope_field(
+            F,
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            spacing: (1/3, 1/3),
+            scale_segments: .25,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+          ),
+        )
+      }
+      + #{
+        align(
+          center,
+          slope_field(
+            G,
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            spacing: (1/3, 1/3),
+            scale_segments: .25,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+          ),
+        )
+      }
+      + #{
+        let soln = solve_1d_ivp(
+          F,
+          (
+            0,
+            0.443,
+          ),
+          400,
+          Delta: 0.01,
+          method: "rk4",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+
+        align(
+          center,
+          lq.diagram(
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            ),
+          ),
+        )
+      }
+      + #{
+        let soln = solve_1d_ivp(
+          G,
+          (
+            0,
+            1,
+          ),
+          400,
+          Delta: 0.01,
+          method: "rk4",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+
+        align(
+          center,
+          lq.diagram(
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            ),
+          ),
+        )
+      } 
+      + #{
+        let soln = solve_1d_ivp(
+          H,
+          (
+            0,
+            1,
+          ),
+          400,
+          Delta: 0.01,
+          method: "rk4",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+
+        align(
+          center,
+          lq.diagram(
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            ),
+          ),
+        )
+      }
+      + #{
+        let soln = solve_1d_ivp(
+          I,
+          (
+            0,
+            3,
+          ),
+          400,
+          Delta: 0.01,
+          method: "rk4",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+
+        align(
+          center,
+          lq.diagram(
+            xlim: (-.3, 4.4),
+            ylim: (-.3, 4.4),
+            width: 4cm,
+            height: 3cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (1., 2., 3., 4.))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (0, 1., 2., 3.,4.))),
+            xlabel: $t$,
+            ylabel: lq.label($y$),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            ),
+          ),
+        )
+      }
+    ],
+  ),*/
+  /*(
+    statement: [
+      /* A word question.*/
+      A pilot of a fighter plane in the airforce
+      is given by her commanding officer
+      the differential equation 
+      $w' = |60 sin(h/2.4)|$, where $w'$ is the 
+      speed in $"km"/"hr"$ of the wind west at that a given height $h$ in $"km"$
+      from sea level. 
+      From experience and protocol,
+      she knows that 
+      when she flys her fighter, her 
+      change in height will be proportional
+      to the wind west speed, until she is 
+      given orders to take action otherwise. 
+      Historically, the constant of 
+      proprotiontionality between the wind 
+      speed and her 
+      rate of assent has been $1.2$
+      in similar conditions. She will be 
+      begining her journey $0.5 "km"$ above sea 
+      level.
+      + Given conditions
+        that the pilot is understanding, 
+        write down a differential equation
+        that descibe 
+        the rate of her assent as a function
+        of the height that she is at currently.
+      + With $Delta = 0.1 "hr"$ and going
+        up to at least $t = 20"hr"$, use Euler's 
+        method to produce a graph of an 
+        appoximation of a solution
+        the differential equation you wrote 
+        in part (a). Use this to make 
+        a prediction about how high the pilot 
+        will go.
+      + Repeat part (b) with $Delta = 0.02 "hr"$.
+        Again make a prediction 
+        of how high the pilot will go.
+      + If the previous two parts were done 
+        corrently, your predictions should
+        differ greatly. This difference is 
+        too great to be described solely by
+        the normal "make $Delta$ small"
+        explanation. 
+        Describe in one or two sentances 
+        what about this differential equation,
+        and making $Delta small$,
+        is causing such a great deviation
+        in the results of Euler's
+        method in (b) and (c). 
+        (Hint: Try making a slope
+        field around the hieight you think the 
+        maximum height should be in 
+        part (c).)
+    ],
+  ),*/
   (
     statement: [
       A sample of Uranium is decaying. Make the 
@@ -109,10 +440,22 @@
   ),
   (
     statement: [
-      /* Pair the differential equation with a slope field and then pair that slope field with a graph of the solution kinda question. */
-
+      /*Here is two graphs produces with 
+      Euler's method. Use all the tools at your
+      disposel to determine which of them has
+      the smaller Delta and give an explanation
+      as to why the one you chose is
+      has the smaller delta.*/
+      
     ],
   ),
+  (
+    statment: [
+      /* Make Euler's method work on a 
+      two dimensional system.
+      */
+    ]
+  ), 
   (
     statement: [
       True or false: 
@@ -165,7 +508,7 @@
         differential equations.
     ],
   ),
-  (
+/*  (
     statement: [
       (This time build a model with some wavy behaviour. That if 
       delta is too big you get really really bad stuff, but if delta is small it is not so bad.)
@@ -218,7 +561,7 @@
       + In example 1 in the chapter, I think the visuals could be workshopped to be a bit better.
       + This might be too meny question in the problem set here. 
     ],
-  ),
+  ),*/
   (
     statement: [
       Bonus questions: 
