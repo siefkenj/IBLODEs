@@ -145,7 +145,48 @@
 #set math.mat(delim: "[")
 
 
+#counter(page).update(0)
 #serif[
+
+  #{
+    // XXX: this should be fixed and made proper, but for now we copy all the settings from _workbook.typ
+
+    let serif_font = ("New Computer Modern", "DejaVu Sans Mono", "Bitstream Charter")
+    let sans_font = ("Droid Sans", "DejaVu Sans")
+    let mono_font = ("Droid Sans Mono", "DejaVu Sans Mono")
+    let def_color = color.rgb("#8dc73e")
+    let thm_color = color.rgb("#ed9537")
+    let title_color = color.rgb("#00a2cb")
+    let banner_color = color.rgb("#8900b3")
+    let appendix_banner_color = color.rgb("#8dc73e")
+    let banner_width = 1.15in
+    import "common/settings-book.typ": env
+    show heading.where(depth: 1): it => {
+      block(width: 100%, align(center, move(dx: 5pt, it)))
+    }
+    show heading: it => {
+      set text(fill: title_color, weight: "light")
+      move(dx: -5pt, sans(it))
+    }
+    set page(
+      footer: context {
+        grid(
+          columns: (1fr, auto, 1fr),
+          align: (left, center, right),
+          none, counter(page).display(), copyright,
+        )
+      },
+    )
+    let _show_link(it) = {
+      if type(it.dest) == str {
+        return (env.at("mono"))(it)
+      }
+      it
+    }
+    show link: _show_link
+    include "modules/introduction.typ"
+  }
+
   // Module 1
   #(env.module)(
     title: [Modelling],
