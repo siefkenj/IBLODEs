@@ -38,9 +38,9 @@
       field the solution to the differential 
       equation that goes through the point 
       $(0,1)$.
-    ]
+    ],
   ),
-  /*(
+  (
     statement: [
       With the differential equation 
       $
@@ -71,7 +71,7 @@
         ),
       ),
     ],
-  ),  
+  ),
   (
     statement: [
       Use Excel, and 
@@ -107,7 +107,7 @@
 
     ],
   ),
-    (
+  (
     statement: [
       Pair the differential equation with a slope 
       field and pair that slope field with a 
@@ -339,8 +339,8 @@
         )
       }
     ],
-  ),*/
-  /*(
+  ),
+  (
     statement: [
       /* A word question.*/
       A pilot of a fighter plane in the airforce
@@ -380,14 +380,14 @@
         Again make a prediction 
         of how high the pilot will go.
       + If the previous two parts were done 
-        corrently, your predictions should
+        correctly, your predictions should
         differ greatly. This difference is 
         too great to be described solely by
         the normal "make $Delta$ small"
         explanation. 
         Describe in one or two sentances 
         what about this differential equation,
-        and making $Delta small$,
+        and making "$Delta$ small",
         is causing such a great deviation
         in the results of Euler's
         method in (b) and (c). 
@@ -396,7 +396,7 @@
         maximum height should be in 
         part (c).)
     ],
-  ),*/
+  ),
   (
     statement: [
       A sample of Uranium is decaying. Make the 
@@ -450,12 +450,12 @@
     ],
   ),
   (
-    statment: [
+    statement: [
       /* Make Euler's method work on a 
       two dimensional system.
       */
     ]
-  ), 
+  ),
   (
     statement: [
       True or false: 
