@@ -342,6 +342,42 @@
   ),
   (
     statement: [
+      A sample of Uranium is decaying. Make the 
+      following assumptions about the decay of 
+      the Uranium sample:
+      - When the sample if first observed, it has 
+        a mass of 1 kilogram.
+      - Initially the sample is decaying at a 
+        rate of $1.55 times 10^(-10)$ kilograms 
+        per year. 
+      - The rate of decay is proportional to the 
+        mass of the sample.
+      + Build a differential equation that pairs 
+        with these assumptions to make model for 
+        the mass of the sample. 
+      + Use Euler's 
+        method in Excel, or an equivalent 
+        software, with 
+        a step size of 
+        $1 "million years"$ to construct a graph 
+        that approximates a solution to this
+        differential equation. 
+      + Use this graph approximate the 
+        half-life of the sample.
+      + Repeat parts (b) and (c) multiple times
+        with different $Delta$s that you choose
+        in order to write down as good an 
+        appoximation to the actual half half-life
+        as you can. (Accuate up to at 
+        least $3$ decimal places.)
+    ],
+    solution: [
+      + Way 1 is good
+      + Way 2 is better
+    ],
+  ),
+  (
+    statement: [
       /* A word question.*/
       A pilot of a fighter plane in the airforce
       is given by her commanding officer
@@ -399,54 +435,97 @@
   ),
   (
     statement: [
-      A sample of Uranium is decaying. Make the 
-      following assumptions about the decay of 
-      the Uranium sample:
-      - When the sample if first observed, it has 
-        a mass of 1 kilogram.
-      - Initially the sample is decaying at a 
-        rate of $1.55 times 10^(-10)$ kilograms 
-        per year. 
-      - The rate of decay is proportional to the 
-        mass of the sample.
-      + Build a differential equation that pairs 
-        with these assumptions to make model for 
-        the mass of the sample. Use Euler's 
-        method in excel with a step size of 1 
-        million years to approximate the 
-        half-life of the sample.
-      + The differential equation that you came 
-        up with in part (a) is most likely 
-        seperable. Use this to find the solution 
-        to your differential equation, then use 
-        that solution to find exactly the 
-        half-life of the sample of Uranium. How 
-        close is your approximation to the true 
-        value?
-      + Would it have been possible to find the  
-        half-life without the solution to the 
-        differential equation? In this case, 
-        parhaps you could use only the 
-        differential equation itself and not its 
-        solution. 
-      /* + Get the solution approximation with Euler's method. This should be done by hand this time, so there must be a way to incentivize this.
-      + Graph the solution you just found by hand.
-      + Use desmos (or maybe find the graph of the true solution on this page of the textbook or something). Is the graph that you came up with with eulers method an understestimate? Why? */
-    ],
-    solution: [
-      + Way 1 is good
-      + Way 2 is better
-    ],
-  ),
-  (
-    statement: [
       /*Here is two graphs produces with 
       Euler's method. Use all the tools at your
       disposel to determine which of them has
       the smaller Delta and give an explanation
       as to why the one you chose is
       has the smaller delta.*/
-      
+      A physicist named John is trying using a 
+      differential equation to come up 
+      with graph that represents 
+      the mass of space around a black whole. 
+      where $x$  is 
+      light hours, 
+      in $"ly-h"$, /*seconds? years? days?*/ 
+      from the black hole, and $m$ is the 
+      mass of the black hole, 
+      in solar masses  $"M"$.  The 
+      differential equation he is looking at
+      has the following 
+      slope feild:
+      #let F(x, y) = - 3 / x
+      #{
+        align(
+          center,
+          slope_field(
+            F,
+            xlim: (-2.2, 2.2),
+            ylim: (0, 18.2),
+            width: 4cm,
+            height: 3cm,
+            spacing: (1/3, 2),
+            scale_segments: .25,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (5,10,15))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (-2, -1, 0, 1, 2))),
+            xlabel: $x$,
+            ylabel: lq.label($m$, dx:0.75cm, dy:-1.55cm),
+
+          ),
+        )
+      }
+      John's coworker has made with 
+      Euler's method two graphs, 
+      which are below,
+      that are the same except for one 
+      graph has a smaller $Delta$ than 
+      the other. Use all you have learned 
+      so far to determine which of the 
+      graph John is looking as has 
+      the smaller step size.
+      + #{       
+        let soln = solve_1d_ivp(
+          F,
+          (
+            -2,
+            3,
+          ),
+          100,
+          Delta: 0.01,
+          method: "euler",
+        )
+        let xs = soln.map(((x, y)) => x)
+        let ys = soln.map(((x, y)) => y)
+        align(
+          center,
+          lq.diagram(
+            F,
+            xlim: (-2.2, 2.2),
+            ylim: (0, 18.2),
+            width: 4cm,
+            height: 3cm,
+            yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (5,10,15))),
+            xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => calc.round(v, digits: 2) in (-2, -1, 0, 1, 2))),
+            xlabel: $x$,
+            ylabel: lq.label($m$, dx:0.75cm, dy:-1.55cm),
+            lq.plot(
+              xs,
+              ys,
+              mark: none,
+              stroke: (paint: gray.darken(20%), thickness: 1pt, dash: (2pt, .5pt)),
+            ),
+          ),
+        )
+      }
+      + 
+      /* I don't think this how black wholes
+      work. Maybe I should make a note about that.
+      I wish I could modify this question 
+      to be more in line with how black holes 
+      actually work. Right now the physicist 
+      just looks like a little bit of an 
+      idiot. He can't even integrate that 
+      function.*/
     ],
   ),
   (
@@ -454,6 +533,56 @@
       /* Make Euler's method work on a 
       two dimensional system.
       */
+      In this question the idea of using
+      Euler's method on a multidimensional
+      system of differential equations
+      is introduced. 
+      Consider the system of differential
+      equations
+      $
+        x' = y \ y' = x
+      $
+      where $x = f(t)$ and $y = g(t)$ are both 
+      functions of $t$. 
+      + Assume $(t_0,x_0,y_0) = (0,0,1)$ 
+        is the initial condition of this 
+        differential equation. 
+        Use this initial condition, similar
+        to if you had only one differential
+        equation to compute $x'$ and $y'$ 
+        and the this initial condition.
+      + You now since you have 
+        $x_0 = f(0)$, $y_0 = g(0)$, 
+        $x'|_(t=0) = f'(0)$, and 
+        $y'|_(t=0) = g'(0)$  you should be 
+        able to use linear appoximation calculate
+        $
+          x_1 = x_0 + Delta dot x'|_(t=0) \
+          y_1 = y_0 + Delta dot y'|_(t=0)
+        $
+        with $Delta = 0.1$.
+      + Again, you now should have a point 
+        $(t_1,x_1,y_1)$ where 
+        $t_1 = t_0+Delta$. Again use 
+        your pair of differential equations
+        to calculate $x'$ and $y'$ at $t_1$.
+      + Use the same process as part (b) 
+        to calculate linear 
+        appoximations 
+        $x_2 approx f(t_2)$ and 
+        $y_2 approx g(t_2)$, where 
+        $t_2 = t_1 + Delta$.
+      + Enter all your data into
+        a table with $5$ columns. 
+        Continue until you have 
+        $x_4 approx f(t_4)$, $y_4 approx g(t_4)$, 
+        $x'|_(t=t_4) = f'(t_4)$, and 
+        $y'|_(t=t_4) = g'(t_4)$
+      + Enter all this data into a program 
+        similar to Excel such that all
+        calculations are computed automatically.
+        What is the value of 
+        $(t_(365),x_(365),y_(365))$.
     ]
   ),
   (
@@ -568,9 +697,47 @@
       + Is the Excel graph in your solution
         to question 3 (c), consistent with 
         the slope feild that you drew in 
-        question 1 (c)? If so, is this solution
-        special in some way that you can describe?
+        question 1 (c)? If so, is this 
+        particular solution
+        special in some way that you can describe
+        with respect to the differential 
+        equation?
         If not, why is it inconsistent?
+      + This question is a continuation of 
+        question 6:
+        + The differential equation that you came 
+          up with in question 6 (a) is most likely 
+          seperable. Use this to find the solution 
+          to your differential equation
+        + Use that solution to find exactly the 
+          half-life of the sample of Uranium. How 
+          close is your approximation to the true 
+          value?
+        + Would it have been possible to find the  
+          half-life without the solution to the 
+          differential equation? In this case, 
+          parhaps you could use only the 
+          differential equation itself and not its 
+          solution.
+          //Not sure this is possible.
+        + Get the solution approximation with 
+          Euler's method. This should 
+          be done by hand this time, 
+          so there must be a way 
+          to incentivize this.
+        + Graph the solution you just found 
+          by hand and use desmos to 
+          graph the solution. 
+          Confirm that these graphs 
+          the same, at least relative to their 
+          accuacy.
+      + In question 9, make a graph of 
+        $y$ as a function of $x$. What shape 
+        do you get? Write a sentance or two
+        descibing how and why changing 
+        the value of $Delta$ changes this
+        shape. What would the shape look like 
+        if you could make delta infinitly small?
     ],
   ),
 )
