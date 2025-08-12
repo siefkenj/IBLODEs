@@ -1,10 +1,13 @@
 
 /// Create a marker of a given color with a bullet inside of it
 /// so its content can be copy-and-pasted and still appear as a list.
-#let make_marker(color: blue) = move(dy: 2pt, box(fill: color, width: 4.5pt, height: 4.5pt, move(dy: -2pt, text(
-  fill: color,
-  [•],
-))))
+#let make_marker(color: blue) = move(dy: 2pt, box(fill: color, width: 4.5pt, height: 4.5pt, move(
+  dy: -2pt,
+  text(
+    fill: color,
+    [•],
+  ),
+)))
 
 
 /// Accept any number of arguments and return only the content in positional arguments.
@@ -383,9 +386,16 @@
     indent: 5pt,
     full: true,
   )
-  let module_page_set_args = (
+  let module_page_set_args(copyright: none) = (
     numbering: "1",
     margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in),
+    footer: context {
+      grid(
+        columns: (1fr, auto, 1fr),
+        align: (left, center, right),
+        none, counter(page).display(), copyright,
+      )
+    },
   )
   let module_list_set_args(bullet_color) = (
     marker: make_marker(color: bullet_color.darken(20%)),
@@ -395,7 +405,7 @@
 
   /// Define a module containing the given content.
   /// Modules have a big banner along the side.
-  let module(title: [], content) = {
+  let module(title: [], copyright: none, content) = {
     let darker_color = title_color.darken(20%)
 
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
@@ -408,8 +418,12 @@
 
     set list(..module_list_set_args(darker_color))
     set enum(..module_enum_set_args)
-    set page(..module_page_set_args)
-    set page(background: place_banner(banner_for: "module", banner_color: banner_color, title: title))
+    set page(..module_page_set_args(copyright: copyright))
+    set page(background: place_banner(
+      banner_for: "module",
+      banner_color: banner_color,
+      title: title,
+    ))
     show heading.where(depth: 1): it => {
       block(width: 100%, align(center, move(dx: 5pt, it)))
     }
@@ -425,7 +439,7 @@
 
   /// Define an appendix containing the given content.
   /// Appendices have a big banner along the side.
-  let appendix(title: [], content) = {
+  let appendix(title: [], copyright: none, content) = {
     let title_color = appendix_banner_color.darken(10%)
     let darker_color = title_color.darken(20%)
 
@@ -438,8 +452,12 @@
 
     set list(..module_list_set_args(darker_color))
     set enum(..module_enum_set_args)
-    set page(..module_page_set_args)
-    set page(background: place_banner(banner_for: "appendix", banner_color: appendix_banner_color, title: title))
+    set page(..module_page_set_args(copyright: copyright))
+    set page(background: place_banner(
+      banner_for: "appendix",
+      banner_color: appendix_banner_color,
+      title: title,
+    ))
     show heading.where(depth: 1): it => {
       block(width: 100%, align(center, move(dx: 5pt, it)))
     }
@@ -477,7 +495,12 @@
       set text(fill: title_color, weight: "light")
       move(dx: -5pt, sans(it))
     }
-    set page(numbering: "1", margin: (inside: 1in, outside: banner_width + 10pt, bottom: .55in, top: .35in))
+    set page(numbering: "1", margin: (
+      inside: 1in,
+      outside: banner_width + 10pt,
+      bottom: .55in,
+      top: .35in,
+    ))
 
     // Make sure modules always start on the "right" page (i.e., on the front of a two-sided page).
     pagebreak(to: "odd", weak: true)
@@ -527,7 +550,12 @@
       full: true,
     )
     set terms(indent: 1.5em)
-    show terms: it => aligned_terms(..it.children, separator: it.separator, tight: it.tight, spacing: it.spacing)
+    show terms: it => aligned_terms(
+      ..it.children,
+      separator: it.separator,
+      tight: it.tight,
+      spacing: it.spacing,
+    )
     set list(
       indent: 1.5em,
       spacing: 1em,
