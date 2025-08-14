@@ -348,7 +348,7 @@ in the menu, select `Insert` > `Chart` > *`Scatter with Straight Lines`*.
 
 #{
   show: align.with(center)
-  image("../images/spreadsheet-plotting-1.png", height: 3.5in)
+  image("../images/spreadsheet-plotting-1.svg", height: 3.5in)
 }
 
 It is important that you pick a plot from the "Scatter" category if you want to plot one column vs.
@@ -374,4 +374,20 @@ external plotting program like #link("https://www.desmos.com/calculator")[Desmos
 The free-to-use online graphing calculator, _Desmos_, is available at
 https://www.desmos.com/calculator.
 
-XXX Finish
+To plot your data in Desmos, copy your data columns *without headers* (i.e., only copy the numbers)
+and paste them into a Desmos input graph.
+
+#{
+  show: align.with(center)
+  image("../images/spreadsheet-plotting-3.png", height: 3in)
+}
+
+Then, `Shift + Click` or long `Click` on the icon next to the $y$ variable and set the plot style to
+"lines".
+
+#{
+  show: align.with(center)
+  image("../images/spreadsheet-plotting-4.svg", height: 2.5in)
+}
+
+If you want multiple graphs in the same plot, repeat the copy-and-paste process in a new cell.
