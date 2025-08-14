@@ -248,6 +248,11 @@
 
         to make a phase portrait for the system.
 
+      // + Consider the solution $arrow(s)(t) = arrow(r)_2(t) - arrow(r)_6(t)$.
+
+      //   Calculate $arrow(s)(-1)$, $arrow(s)(0)$, $arrow(s)(1)$, and $arrow(s)(2)$. Use this
+      //   data to sketch a graph of $arrow(s)$ in phase space.
+
       + #{
           let xs = lq.linspace(0, 5, num: 20)
           let stroke = (paint: green.darken(20%), thickness: 1pt, dash: (4pt, 1pt))
@@ -378,7 +383,7 @@
 
       + Identify which of $arrow(f)$, $arrow(g)$, and $arrow(h)$ are _solutions_ to the
         differential equation. Which are _eigen solutions_?
-      + Graph of an additional eigen solution.
+      + Graph an additional eigen solution.
       + What can you say about the eigenvalues of $A$? What are their signs?
     ],
   )
@@ -420,8 +425,8 @@
   question(
     slide[
 
-      The phase portrait for a differential equation arising from the matrix $mat(0, 1; 1, 0)$ (left)
-      and $mat(1, 0; 0, -1)$ (right) are shown.
+      The phase portrait for a differential equation arising from the matrix $mat(0, 2; 2, 0)$ (left)
+      and $mat(2, 0; 0, -2)$ (right) are shown.
 
       #align(
         center,
@@ -452,20 +457,19 @@
         },
       )
 
-      Both have eigenvalues $plus.minus 1$, but they have different eigenvectors.
+      Both have eigenvalues $plus.minus 2$, but they have different eigenvectors.
 
       + How are the phase portraits related to each other?
-      + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 1$. In what ways could
+      + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 2$. In what ways could
         the phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
         In what way(s) must it look the same?
     ],
   )
 
   book_only(pagebreak())
-  question(
-    slide[
-
-      Consider the following phase plane with lines in the direction of $arrow(a)$ (dashed green) and $arrow(b)$ (red).
+  question({
+    let intro = [
+      The lines with directions $arrow(a)$ (dashed green) and $arrow(b)$ (red) are graphs of eigen solutions to a differential equation.
 
 
       #align(
@@ -497,8 +501,22 @@
           )
         },
       )
+    ]
 
-      + Sketch a phase portrait where the directions $arrow(a)$ and $arrow(b)$ correspond to eigen solutions with eigenvalues that are:
+    slide(force_scale: .9em)[
+      #intro
+
+      + Suppose the eigenvalue for $arrow(a)$ is $-1$ and the eigenvalue for $arrow(b)$ is $1$.
+        + Sketch five possible solutions to the differential equation and mark where each solution curve
+          is traced out fastest vs. slowest.
+        + Sketch a phase portrait for the differential equation. Pay close attention to when
+          the arrows are long vs. short.
+    ]
+    slide(force_scale: .9em)[
+      #slides_only(intro)
+      
+      #enum.item(2)[ Sketch a phase portrait where the eigenvalues associated with $arrow(a)$
+      and $arrow(b)$ are:
 
         #align(
           center,
@@ -506,16 +524,16 @@
             headers: ([], [sign for $arrow(a)$], [sign for $arrow(b)$]),
             content: (
               [1],
-              [pos],
+              [neg],
               [pos],
               [2],
-              [neg],
+              [pos],
               [neg],
               [3],
-              [neg],
+              [pos],
               [pos],
               [4],
-              [pos],
+              [neg],
               [neg],
               [5],
               [pos],
@@ -523,11 +541,12 @@
             ),
           ),
         )
+        ]
 
       + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
       + Would any of your classifications in the previous part change if the directions of $arrow(a)$ and $arrow(b)$ changed?
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
