@@ -66,12 +66,12 @@
       Solve $y' + 3 x^2 y = x^2$.
     ],
     solution: [
-      $y = C e^(- x^3) + 1/3$
+      $y = C e^(- x^3) + 1/3$ where $C$ is a parameter.
     ],
   ),
   (
     statement: [
-      Solve $y' + 2 sin(2 x) y = 2 sin(2 x)$, $y(pi / 2) = 3$.A third question.
+      Solve $y' + 2 sin(2 x) y = 2 sin(2 x)$, $y(pi / 2) = 3$.
     ],
     solution: [
       $y = 2 e^(cos(2 x) + 1) + 1$
