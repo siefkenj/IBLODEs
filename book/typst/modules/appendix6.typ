@@ -4,3 +4,5 @@
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 #label_appendix(<app:linear_algebra>)
+
+XXX Finish
