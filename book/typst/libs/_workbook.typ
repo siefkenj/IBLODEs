@@ -611,7 +611,27 @@
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
 #let solutions(questions, module_number: 0, type: "Module") = {
   [== Solutions for #type #module_number]
-  columns(2, enum(..questions.map(q => enum.item(text(fill: blue, q.at("solution", default: []))))))
+  columns(2, {
+    enum(
+      ..questions
+        .enumerate()
+        .map(((i, q)) => {
+          let item_number = i + 1
+          // Only display the solution if one is defined
+          if q.at("solution", default: none) == none {
+            none
+          } else {
+            enum.item(
+              item_number,
+              {
+                text(fill: blue, q.at("solution"))
+              },
+            )
+          }
+        })
+        .filter(it => it != none),
+    )
+  })
 }
 
 /// Display a term list with each items contents aligned.
