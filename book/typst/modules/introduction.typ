@@ -17,21 +17,21 @@ To optimally learn from this text, you should:
 - Work through the practice problems. These will serve as a check on whether you've understood the
   main ideas well enough to apply them.
 
-*The core exercises.*
+*Core exercises.*
 Most (but not all) core exercises will be worked through during lecture time, and after each of the
 core exercises there is space provided for you to work. The point of the core exercises is to
 develop the main ideas of differential equations by exploring examples.
 
 *Contributing to the book.* Did you find an error? Do you have a better way to explain a
 differential equations concept? Please, contribute to this book! This book is open-source, and we
-welcome contributions. Contributions/issues should be made on GitHub at
+welcome contributions. Contributions/Issues should be raised on GitHub at
 https://github.com/siefkenj/IBLODEs
 
 == For the instructor
 
 This book was designed for a one-semester introductory differential equations course in the second
 year with a focus on modelling and simulation (MAT244 at the University of Toronto). It has not been
-designed for a proofs-based course, nor is it designed for a "learn 5 methods to solve specific
+designed for a proofs-based course nor a "learn 5 methods to solve specific
 ODEs"-course.
 
 The book leans heavily on simulation via Euler's method. It's main thrust is the analysis of the
@@ -42,8 +42,7 @@ Theorems about existence and uniqueness aren't emphasized until the end of the t
 ordinary differential equations have solutions and cases of non-uniqueness are often contrived, this
 text opts to motivate the question of existence and uniqueness via an introduction to boundary value
 problems. (But, instead of answering the very hard question of conditions for the existence and
-uniqueness of solutions to boundary value problems, we state the standard theorems for ordinary
-differential equations.)
+uniqueness of solutions to boundary value problems, we state the standard theorems for initial value problems.)
 
 This book is grouped into modules. Each module contains exposition about a subject, practice
 problems (for students to work on by themselves), and core exercises (for students to work on with
