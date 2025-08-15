@@ -65,7 +65,10 @@
       .len()
     let (module_headings, appendix_headings) = headings.chunks(num_module_headings)
 
-    let module_number = 0
+
+    // The first part is the introduction.
+    // XXX this is a hack to get the module numbers to line up correctly
+    let module_number = -1
     for (i, item_heading) in module_headings.enumerate() {
       if item_heading.level == 1 {
         module_number += 1

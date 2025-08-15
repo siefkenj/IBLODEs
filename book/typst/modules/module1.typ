@@ -71,8 +71,8 @@ Your friend has a point. Their model is elegant, but your model can predict how 
 minute $3.222$! (Though, your friend would probably complain that $46.654$ is not a number of
 ants#sym.dots.) You and your friend have just come up with two different mathematical models for the
 number of ants that walk across the sidewalk. They happen to make similar predictions for each
-minute; they each have strengths and weaknesses. In this text, we will focus on third type
-of mathematical model---one that uses differential equations at its core.
+minute; they each have strengths and weaknesses. In this text, we will focus on third type of
+mathematical model---one that uses differential equations at its core.
 
 == Types of Models
 
@@ -196,7 +196,8 @@ guess-and-check.
     which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there
     are other solutions. Because
     $dif / (dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$
-    for every number $C$, the function $A(n)=C e^(k n)$ where $C in RR$ is a solution to $A'(n)=k A(n)$.
+    for every number $C$, the function $A(n)=C e^(k n)$ where $C in RR$ is a solution to
+    $A'(n)=k A(n)$.
 
     By guessing-and-checking, we have found an infinite number of solutions to $A'(n)=k A(n)$.
   ],
@@ -266,12 +267,13 @@ $
 models often involve many variables. It's important to distinguish which variables come from
 modelling assumptions and which are free parameters of your solution.
 
-For example, when finding the general solution to $y'=k y$, if we wrote "$space.thin y(t) = C e^(k t)space.thin$", it
-wouldn't be clear if every choice of $C$ gives a valid solution, if every choice of $k$ gives a
-valid solution, or both. Here, $k$ comes from the equation/model and we are not allowed to choose it
-when solving. However, $C$ can be chosen by us and every choice results in a valid solution.#footnote[
-  You might be thinking, "But didn't we choose $k$ when we fitted the model to data?"
-  Yep! Sometimes we change the role of a symbol from a fixed value to a parameter during the modelling process.
+For example, when finding the general solution to $y'=k y$, if we wrote
+"$space.thin y(t) = C e^(k t)space.thin$", it wouldn't be clear if every choice of $C$ gives a valid
+solution, if every choice of $k$ gives a valid solution, or both. Here, $k$ comes from the
+equation/model and we are not allowed to choose it when solving. However, $C$ can be chosen by us
+and every choice results in a valid solution.#footnote[
+  You might be thinking, "But didn't we choose $k$ when we fitted the model to data?" Yep! Sometimes
+  we change the role of a symbol from a fixed value to a parameter during the modelling process.
   When we're done, though, every symbol has a specific meaning.
 ]
 
@@ -323,14 +325,14 @@ Autonomous equations, where the independent variable does not appear in the equa
 of as "time independent" equations because solutions to initial value problems for autonomous
 equations do not depend on the starting time. This encompasses most equations of physics: if you're
 modelling the motion of a pendulum, it doesn't matter whether "t=0" is the start of the day, the
-start of the year, or the instant our sun started having fusion reactions.
+start of the year, or the instant our sun started having fusion reactions. The pendulum will have
+the same motion regardless.
 
 There are other classifications commonly encountered in the study of differential equations:
 - _Linear differential equations_: a differential equation that can be written as
   $a_0(t) dot y(t) + a_1(t)dot y'(t) + dots.c + a_n (t) dot y^((n))(t) = b(t)$ where $a_0$,
   #sym.dots, $a_n$, and $b$ are functions of $t$.
-- _Homogeneous linear differential equations_: a linear differential equation where the _forcing
-    term_ $b(t)$ is zero.
+- _Homogeneous linear differential equations_: a linear differential equation where $b(t)$ is zero.
 
 While we will be studying linear and homogeneous linear differential equations, classifying
 equations as linear/non-linear and homogeneous/non-homogeneous won't be important to us.
@@ -355,6 +357,6 @@ differential equation, since there _is_ an algorithm to differentiate functions.
   functions formed by compositions, sums, products, and quotients of polynomials, trigonometric
   functions, exponentials, and logarithms.
 ])
-This means *guess and check* is an effective method for finding explicit solutions to differential
-equations, and, though we will learn some other solving techniques, guess and check will be our
-go-to method.
+This means *guess and check* is the only universally applicable method for finding explicit
+solutions to differential equations, and, though we will learn some other solving techniques, guess
+and check will be our go-to method.
