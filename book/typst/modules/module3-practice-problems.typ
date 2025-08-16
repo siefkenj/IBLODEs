@@ -3,12 +3,78 @@
     statement: [
       /* Build a model with a 
       system of differential equations */
+      An ecologist is measuring the population
+      of bears in northern Ontario
+      and the population of 
+      feas that are inffecting the bears.
+      The ecologists make the following 
+      assumptions about these bears
+      - The bears reproduction is 
+        uneffected by the flea population, 
+        and is only affected 
+      - The bears die at a rate
+        relative to the square of
+        the current bear population.
+      - The flea's reproduction and 
+        death rates are dependent
+        only on the current flea and bear 
+        populations.
+      + Write down a system of differential 
+        equations that encapsulates 
+        the above model.
+      + Write down one or two sentances 
+        commenting on the quality of this model.
     ],
   ),
   (
     statement: [
       /* Check if these functions solve
       these differential equation. */
+      For the following systems of 
+      differential equations check 
+      if the given functions solve the 
+      given system:
+      + /* Linear and basic */
+        $
+          x' = 4y - 2x\
+          y' = 3x - 3y
+        $
+        with 
+        $
+          x(t) = - e^(-6x)\
+          y(t) = e^(-6x) \
+        $
+      + /* Linear solved by sin and cos */
+        $
+          d' = -5d - 2v \
+          v' = 13d + 5v 
+        $
+        with 
+        $
+          d(t) = 2sin(t) \
+          v(t) = 5sin(t) + cos(t) \
+        $
+      + /* Non-linear more complicated */
+        $
+          (dif P_1)/(dif t) = P_2\
+          (dif P_2)/(dif t) = -(P_1^2 - 1)P_2 - P_1 
+        $
+        with 
+        $
+          P_1(t) = y(x-1))\
+          P_2(t) = x - y \
+        $
+      + /* Non-linear but system is just 
+        two unrelated equations. */
+        $ 
+          r'(x) = x^2 + 1\
+          s'(x) = s
+        $
+        with 
+        $
+          r(x) = 1/3 x^3 + x + 3\
+          s(x) = 8e^s \
+        $
     ],
   ),
   (
@@ -17,13 +83,29 @@
       equation to approximate the solution to a 
       differential equation. Plot what the phase 
       space. */
+      Consider the following system of differential
+      equations:
+      $
+        x' = - x + y - 1 \
+        y' = - y - x + 3
+      $
+      Consider this system with the inital 
+      condition $(x_0, y_0) = (4,4)$
+      + Use Euler's method with $delta = 0.01$
+        and going up to at least $t = 500$
+      + Polt your approximation to 
+      + It should look as though your 
+        solution approximation is settling around 
+        a specific pair of value of $x$ and $y$.
+        What is this value?
     ],
   ),
   (
-    statment: [
+    statement: [
       /* Build this differential equation 
       model. Use Euler's method to find 
       the solution. Give the component graphs */
+
     ],
   ),
   (
@@ -106,6 +188,19 @@
   (
     statement: [
       Bonus questions:
+      + In question 3 you got values 
+        for $x$ and $y$ that your 
+        solution approximation was approuching 
+        as time when on. Call this point 
+        $(x_0, y_0)$ Input $(x_0,y_0)$ 
+        into the original 
+        differential equation of question 3.
+        You should get a very interesting 
+        value for $x'$ and $y'$ at $(x_0,y_0)$. 
+        What does 
+        this value of $x'$ and $y'$ at $(x_0,y_0)$
+        mean about the point $(x_0,y_0)$.
+
     ],
   )
 )
