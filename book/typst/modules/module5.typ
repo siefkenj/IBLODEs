@@ -255,8 +255,8 @@ points in phase space? Doing so, we would produce a _phase portrait_.
 )
 
 Analyzing the phase portrait, like the slope field, we can see solutions with different qualities.
-For example, we can divide phase space into sets of initial conditions where the ant population
-goes to zero and another region where the ant population is unbounded.
+For example, we can divide phase space into sets of initial conditions where the ant population goes
+to zero and another region where the ant population is unbounded.
 
 #align(
   center,
@@ -295,7 +295,8 @@ portrait depends on what questions we are trying to answer.
 
 === Phase Portraits and Missing Time
 
-One important piece of information that is missing from phase portraits is a sense of time. While
+One important piece of information that is missing from phase portraits is a sense of time. This is
+why phase portraits should only be used to analyze _autonomous_ systems of equations. While
 component space includes the independent variable, phase space does not. We partially make up for
 this by adjusting the length of an arrow in a phase portrait to correspond to the speed that a
 solution passes through the arrow at that point.
@@ -382,12 +383,171 @@ stop) and then speed up again. When graphed in component space, the difference i
   )
 }
 
-XXX Add example that asks, say, to draw a phase portrait for periodic solutions that are sines vs.
-that aren't.
+All of this is to say that the length of the arrows in a phase portrait are important; they help you
+to distinguish properties of differential equations that merely studying plots in phase space would
+miss.
 
-An important note is that phase portraits are useful for _autonomous equations_, equations where the
-independent variable does not appear. Non-autonomous must be analyzed a different way.
+#example(
+  prompt: [Draw two phase portraits. The graphs of solutions in _phase space_ should look the same
+    for both phase portraits, but the graphs of solutions in _component space_ should look
+    different.],
+  [
+    Consider the phase portraits (A) and (B) below.
 
-== Phase Portraits for Single Equations
+    #let F1(x, y) = (-y, x)
+    #let F2(x, y) = (
+      -y * (1.15 + calc.sin(4 * calc.atan2(y, x))),
+      x * (1.15 + calc.sin(4 * calc.atan2(y, x))),
+    )
+    #{
+      align(
+        center,
+        {
+          vector_field(
+            title: lq.title([(A)]),
+            F1,
+            xlim: (-5, 5),
+            ylim: (-5, 5),
+            spacing: (.5, .5),
+            scale_segments: 15.0,
+            width: 5cm,
+            height: 5cm,
+            xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+            yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+          )
+          h(2em)
+          vector_field(
+            title: lq.title([(B)]),
+            F2,
+            xlim: (-5, 5),
+            ylim: (-5, 5),
+            spacing: (.5, .5),
+            scale_segments: 10.0,
+            width: 5cm,
+            height: 5cm,
+            xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+            yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+          )
+        },
+      )
+    }
 
-XXX Finish - write about 1d phase portraits
+    In both phase portraits, the graphs of solutions (in phase space) will look like circles.
+    However, the component graphs for solutions look very different.
+
+    #{
+      let _Delta = 0.05
+      let steps = 200
+      let soln1 = solve_2d_ivp(F1, (0, 1), steps, Delta: _Delta, method: "rk4")
+      let soln2 = solve_2d_ivp(F2, (0, 1), steps, Delta: _Delta, method: "rk4")
+      let xs = lq.arange(0, _Delta * (steps + 1), step: _Delta)
+      align(
+        center,
+        {
+          lq.diagram(
+            title: lq.title([Component Graphs for (A)]),
+            lq.plot(
+              xs,
+              soln1.map(((x, y)) => x),
+              mark: none,
+            ),
+            lq.plot(
+              xs,
+              soln1.map(((x, y)) => y),
+              mark: none,
+            ),
+            xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none, label: $t$),
+            yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+          )
+          h(2em)
+          lq.diagram(
+            title: lq.title([Component Graphs for (B)]),
+            lq.plot(
+              xs,
+              soln2.map(((x, y)) => x),
+              mark: none,
+            ),
+            lq.plot(
+              xs,
+              soln2.map(((x, y)) => y),
+              mark: none,
+            ),
+            xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none, label: $t$),
+            yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+          )
+        },
+      )
+    }
+
+  ],
+)
+
+=== Phase Portraits and Continuity
+
+While solutions to differential equations are always continuous (they have derivatives after all),
+we haven't yet discussed continuity of the differential equations themselves. While we don't require
+differential equations to be continuous, most differential equations that we will study are
+continuous. And, one can usually tell by looking at a phase portrait if a system of differential
+equations is continuous.
+
+For example, consider the following two phase portraits. Each phase portrait is for a system with an
+equilibrium point at $(0,0)$.
+
+#let F1(x, y) = (-y, x)
+#let F2(x, y) = (
+  -y * 1 / (.001 + calc.sqrt(x * x + y * y)),
+  x * 1 / (.001 + calc.sqrt(x * x + y * y)),
+)
+#{
+  align(
+    center,
+    {
+      vector_field(
+        title: lq.title([Continuous System (A)]),
+        F1,
+        xlim: (-5, 5),
+        ylim: (-5, 5),
+        spacing: (.5, .5),
+        scale_segments: 15.0,
+        width: 5cm,
+        height: 5cm,
+        xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+        yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+      )
+      h(2em)
+      vector_field(
+        title: lq.title([Discontinuous System (B)]),
+        F2,
+        xlim: (-5, 5),
+        ylim: (-5, 5),
+        spacing: (.5, .5),
+        scale_segments: 60.0,
+        width: 5cm,
+        height: 5cm,
+        xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+        yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+      )
+    },
+  )
+}
+
+The phase portrait on the left, (A), is the phase portrait for a continuous system of differential
+equations while the one on the right, (B), is the phase portrait for a discontinuous system of
+differential equations. How can we tell? The giveaway is at the origin.
+
+Look at phase portrait (B). All of the arrows are the same length, which means solutions always move
+at the same "speed". However, the speed of the equilibrium solution at $(0,0)$ is
+zero.#footnote[Equilibrium solutions don't move in phase space, so their speed in phase space is
+  always zero.] Thus, the speed of a solution does not continuously vary as a function of the
+position in phase space. This means that the underlying system of differential equations was not
+continuous.
+
+In contrast, in phase portrait (A), the arrows near the origin are very short, which means that
+solutions near the origin move very slowly. The speed decreases to zero as one gets closer and
+closer to the equilibrium point at $(0,0)$. This is compatible with having an underlying system of
+differential equations which is continuous.
+
+
+// == Phase Portraits for Single Equations
+
+// XXX Finish - write about 1d phase portraits
