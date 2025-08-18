@@ -103,7 +103,11 @@
       #label_core_exercise(<ex:m_star>)
 
       In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point during the year.
-      + Create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$ times per year (at regular intervals).
+
+      We want to create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$ times per year (at regular intervals).
+      + Let $t_0$, $t_1$, $t_2$, ..., be the times that children are born in model $MM_n$.
+        Find expressions for $t_0$, $t_1$, $t_2$, ....
+      + Find a (recursive) formula that gives the population for model $MM_n$.
       + Simulate the models $MM_1$, $MM_2$, $MM_3$ in Excel. Which grows fastest?
         #solution[
           $MM_3$ grows fastest.
@@ -129,7 +133,7 @@
       + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n (t)$.
       + Write an expression for $Delta P_n$, the change in population from time $t$ to $t + Delta t$.
       + Write an expression for $(Delta P_n) / (Delta t)$.
-      + Write down a differential equation relating $P'(t)$ to $P(t)$ where $P(t) = display(lim_(n arrow infty) P_n(t))$.
+      + Write down a differential equation relating $P'(t)$ to $P(t)$ where $P(t) = display(lim_(n arrow infty) P_n (t))$.
     ],
   )
 
@@ -176,7 +180,7 @@
     slide[
       Suppose that the estimates produced by $MM_1$ agree with the actual (measured) population of starfish.
 
-      Fill out the table indicating which models have which properties.
+      Fill out the table with  #sym.checkmark or #sym.crossmark indicating which models have which properties.
 
       #let fill_box = book_only(box(width: 5cm, height: 4cm))
       #align(
@@ -218,14 +222,18 @@
         otherwise: [#M1#MInf],
       )
 
-      + Suppose that $MM_1$ accurately predicts the population. Can you find a value of $k$ so that $MM_infty$ accurately predicts the population?
+      For this question, we will assume that that $MM_1$ accurately predicts the population.
+
+      + If $k=K=1.1$, does $MM_infty$ underestimate or overestimate the population?
+      + If $k=0.5$, does $MM_infty$ underestimate or overestimate the population?
+      + Can you find a value of $k$ so that $MM_infty$ accurately predicts the population?
     ],
   )
 
   book_only(pagebreak())
   question(
     slide(
-      force_two_column: true,
+      //force_two_column: false,
       [
         After more observations, scientists notice a seasonal effect on starfish. They propose a new
         model called $SS$:

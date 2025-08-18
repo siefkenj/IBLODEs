@@ -15,11 +15,11 @@
     _solution(content),
   )
 
-let springmass = {
+  let springmass = {
     let ts = lq.linspace(1.5, 30, num: 150)
     let thickness = 1.5pt
-    
-    
+
+
     align(
       center,
       {
@@ -32,15 +32,16 @@ let springmass = {
           yaxis: none,
           xaxis: none,
           lq.rect(
-            -1,-1,
+            -1,
+            -1,
             width: 1,
             height: 2,
             stroke: none,
             fill: color.rgb("#8B4513"), // brown
           ),
           lq.line(
-            (0,-1),
-            (0,1),
+            (0, -1),
+            (0, 1),
             stroke: (paint: black, thickness: thickness),
           ),
           lq.plot(
@@ -50,7 +51,7 @@ let springmass = {
             stroke: (paint: black, thickness: thickness),
           ),
           lq.ellipse(
-            0.6 + 1.2 * (0.3 * 30 - calc.sin(30))-1, 
+            0.6 + 1.2 * (0.3 * 30 - calc.sin(30)) - 1,
             1.2 * (1 - calc.cos(30)) - 2,
             height: 2,
             width: 2,
@@ -58,88 +59,83 @@ let springmass = {
             stroke: (paint: black, thickness: thickness),
           ),
           lq.place(0.6 + 1.2 * (0.3 * 30 - calc.sin(30)), 1.2 * (1 - calc.cos(30)) - 1)[M],
-        )               
+        )
       },
     )
-  
-}
+  }
 
 
   question(
     slide(force_scale: 0.75em)[
-      
 
-  Consider a spring with a mass attached to the end.
-  
-  #springmass
-            
 
-  Let $x(t) =$ displacement to the right of the spring from equilibrium at time $t$.
+      Consider a spring with a mass attached to the end.
 
-  Recall from Physics the following laws:
+      #springmass
 
-  - (HL) Hooke's Law: For an elastic spring, force is proportional to negative the displacement from equilibrium.
-  - (NL) Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
-  - (ML) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
 
-  // #v(1in)
+      Let $x(t) =$ displacement to the right of the spring from equilibrium at time $t$.
 
-  + Model $x(t)$ with a differential equation.
+      Recall from Physics the following laws:
 
-    For the remaining parts, assume the elasticity of the spring is $k = 1$ and the mass is $1$.
+      - (HL) Hooke's Law: For an elastic spring, force is proportional to negative the displacement from equilibrium.
+      - (NL) Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
+      - (ML) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
 
-  + Suppose the spring is stretched $0.5$m from equilibrium and then let go (at time $t = 0$).
-    + At $t = 0$, what are $x$, $x'$, and $x''$?
-    + Modify Euler's method to approximate a solution to the initial value problem.
+      // #v(1in)
 
-  + Introduce the auxiliary equation $y = x'$. Can the second-order spring equation be rewritten as a first-order system involving $x'$ and $y'$? If so, do it.
+      + Model $x(t)$ with a differential equation.
 
-  + Simulate the _system_ you found in the previous part using Euler's method.
+        For the remaining parts, assume the elasticity of the spring is $k = 1$ and the mass is $1$.
 
-      
+      + Suppose the spring is stretched $0.5$m from equilibrium and then let go (at time $t = 0$).
+        + At $t = 0$, what are $x$, $x'$, and $x''$?
+        + Modify Euler's method to approximate a solution to the initial value problem.
+
+      + Introduce the auxiliary equation $y = x'$. Can the second-order spring equation be rewritten as a first-order system involving $x'$ and $y'$? If so, do it.
+
+      + Simulate the _system_ you found in the previous part using Euler's method.
+
+
     ],
   )
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.95em)[
 
-  Recall a spring with a mass attached to the end.
+      Recall a spring with a mass attached to the end.
 
-  #springmass
+      #springmass
 
 
-  $x(t)$ = displacement to the right of the spring from equilibrium at time $t$
+      $x(t)$ = displacement to the right of the spring from equilibrium at time $t$
 
-  We have two competing models
+      We have two competing models
 
-#math.equation(
-  block: true,
-  numbering: "(A)",
-  $ x'' = -k x $,
-)<eq:spring>
-  
+      #math.equation(
+        block: true,
+        numbering: _ => "(A)",
+        $ x'' = -k x $,
+      )<eq:spring>
 
-#math.equation(
-  block: true,
-  numbering: "(A)",
-  $ mat(x; y)' = mat(0, 1; -k, 0) mat(x; y) $,
-)<eq:spring_system>
-where $y = x'$
-  
 
-  #v(1em)
+      #math.equation(
+        block: true,
+        numbering: _ => "(B)",
+        $ mat(x; y)' = mat(0, 1; -k, 0) mat(x; y) $,
+      )<eq:spring_system>
+      where $y = x'$
 
-  XXX CHANGE EQUATION LABELS TO (A) AND (B) IN THE BOOK VERSION
 
-  + Make a phase portrait for system @eq:spring_system[]. What are the axes on the phase portrait? What do you expect general solutions to look like?
-  + Use eigenvalues/eigenvectors to find a general solution to @eq:spring_system[]. (You may use a computer to compute eigenvalues/vectors.)
-  + Use your solution to @eq:spring_system[] to find a general solution to @eq:spring[].
+      + Make a phase portrait for system @eq:spring_system[]. What are the axes on the phase portrait? What do you expect general solutions to look like?
+      + Use eigenvalues/eigenvectors to find a general solution to @eq:spring_system[]. (You may use a computer to compute eigenvalues/vectors.)
+      + Use your solution to @eq:spring_system[] to find a general solution to @eq:spring[].
 
     ],
   )
 
-book_only(pagebreak())
+  book_only(pagebreak())
   question(
     slide[
 
@@ -166,6 +162,4 @@ book_only(pagebreak())
 
     ],
   )
-
-
 }

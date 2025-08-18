@@ -71,12 +71,12 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.9em)[
       #label_core_exercise(<ex:fox_and_rabbit>)
       // https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
-      Open the spreadsheet
+      Open and make a copy of the spreadsheet
 
-      #link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits]
+      #align(center, link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits])
 
       which contains an Euler approximation for the Foxes and Rabbits population.
       $
@@ -84,18 +84,24 @@
         R'(t) &= (1.1 - 0.1 dot F(t)) dot R(t)
       $
 
-      + Is the maximum population of the rabbits over/under estimated? Sometimes over, sometimes under?
-      + What about the foxes?
-      + What about the min populations?
+      + Simulate the rabbit population using different step sizes $Delta$.
+       + Does the choice of $Delta$ affect the qualitative "shape" of the population curve?
+       + Does it affect the height of the peaks and valleys?
+       + Does it affect the _time_ when the peaks and valleys occur?
+      + We want to know about the peaks and valleys of the _exact_ population curve for rabbits.
+        
+        Do your simulations consistently under or over estimate the population of rabbits?
+      + Let $p_1$ and $p_2$ be the first and second local maxima for the (exact) rabbit population.
+        Is $p_1$ bigger, smaller, or equal to $p_2$? Justify with numerical evidence.
     ],
   )
 
   book_only(pagebreak())
   question(
     slide(force_scale: 0.76em)[
-      Open the spreadsheet
+      Open and make a copy of the spreadsheet
 
-      #link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits]
+      #align(center, link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits])
 
       which contains an Euler approximation for the Foxes and Rabbits population.
       $

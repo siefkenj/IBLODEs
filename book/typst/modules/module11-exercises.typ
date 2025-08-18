@@ -48,7 +48,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.95em)[
 
       #slides_only([*Boundary Value Problems*])
 
@@ -58,14 +58,21 @@
     so we put a hammer at the end of the spring. Whenever the displacement is maximal,
     the hammer strikes a bell producing a ring.
 
-    Consider the subspaces
-    $ S_1 = "span"{ sin(t), cos(t) } quad S_2 = { A cos(t + d) : A, d in RR } $
+    The general solution to the spring-mass system can also be written as
+    $
+      x(t) = A cos(t + d)
+    $
+    where $A,d in RR$ are parameters.
 
-    + What dimension is each subspace?
-    + Which subspaces are sets of solutions to the spring-mass system?
-    + Use what you know about complete solutions and linear algebra to prove $S_1 = S_2$.
+    // Consider the subspaces
+    // $ S_1 = "span"{ sin(t), cos(t) } quad S_2 = { A cos(t + d) : A, d in RR } $
 
-      Use your knowledge about $S_1$ and $S_2$ to analytically answer the remaining questions.
+    // + What dimension is each subspace?
+    // + Which subspaces are sets of solutions to the spring-mass system?
+    // + Use what you know about complete solutions and linear algebra to prove $S_1 = S_2$.
+
+    //   Use your knowledge about $S_1$ and $S_2$ to 
+    Analytically answer the remaining questions.
     + You start by displacing the hammer by $1$m and letting go. Is it possible that the bell rings every 1 second?
     + You start by displacing the hammer by $1$m and giving the hammer a push. Is it possible that the bell rings every 1 second?
     + What is the smallest amount of time between consecutive rings (given a positive displacement)?

@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 #import "../libs/_graphics.typ": slope_field
 #import "@preview/lilaq:0.4.0" as lq
@@ -48,30 +48,34 @@
     ],
   )
 
+  let LL = $upright(bold("L"))$
   book_only(pagebreak())
   question(
     slide[
 
       #label_core_exercise(<ex:linear_approx_1d>)
 
-      A simple logistic model for a population is
+      A simple logistic model $LL$ for a population is
       $ (dif P) / (dif t) = P(t) dot (1 - (P(t)) / 2) $
       where $P(t)$ represents the population at time $t$.
 
-      We'd like to approximate $(dif P) / (dif t)$ when $P approx 1 / 2$.
+      //We'd like to find a "simpler" version of model $LL$. Since simplifications require tradeoffs,
+      We will focus on finding a simpler version of model $LL$ that works when $P approx 1/2$.
+      // to approximate $(dif P) / (dif t)$ when $P approx 1 / 2$.
 
-      + What is the value of $(dif P) / (dif t)$ when $P = 1 / 2$?
+      //+ What is the value of $(dif P) / (dif t)$ when $P = 1 / 2$?
 
-      + Define $f(P) = P dot (1 - P / 2)$ and notice $(dif P) / (dif t) = f(P(t))$.
+      + Define $f(P) = P dot (1 - P / 2)$ and let $A_(1/2)(P)$ denote
+        the affine approximation#footnote[In calculus, this is called a "linear approximation".]
+        to $f$ centered at $P=1/2$.
+        Find $A_(1/2)(P)$.
 
-        Approximate $(dif P) / (dif t)$ (i.e, approximate $f$) when $P = 1 / 2 + Delta$ and $Delta$ is small.
+      + Notice that $(dif P)/(dif t)=f(P(t))$. Use this observation to create a "simple"
+        model $LL_(1/2)$ that approximates $LL$ when $P approx 1/2$.
 
-      + Write down an approximation $S(Delta)$ that approximates $(dif P) / (dif t)$ when $P$ is $Delta$ away from $1 / 2$.
+      + Model $LL_(1/2)$ is called an _affine approximation of model $LL$ centered at $P=1/2$_.
 
-      + Let $A_(1 / 2)(P)$ be an _affine_ approximation to $(dif P) / (dif t)$ that is a good approximation when $P approx 1 / 2$.
-        Find a formula for $A_(1 / 2)(P)$.
-
-      + Find additional affine approximations to $(dif P) / (dif t)$ centered at each equilibrium solution.
+        Find additional affine approximations to model $LL$ centered at each equilibrium solution.
 
     ],
   )
@@ -91,21 +95,15 @@
           align: (right, left, left),
           columns: 3,
           // Original ODE
-          [(Original)],
-          [$P' = P (1 - P / 2)$],
-          [(#link("https://www.desmos.com/calculator/v1coz4shtw"))],
+          [(Original $LL$)], [$P' = P (1 - P / 2)$], [(#link("https://www.desmos.com/calculator/v1coz4shtw"))],
           // Linear approximation at P = 1/2
-          [($A_{1 / 2}$)],
+          [($LL_(1 / 2)$)],
           [$P' approx 3 / 8 + 1 / 2 (P - 1 / 2)$],
           [(#link("https://www.desmos.com/calculator/zsb2apxhqs"))],
           // Linear approximation at P = 0
-          [($A_0$)],
-          [$P' approx P$],
-          [(#link("https://www.desmos.com/calculator/vw48bvqgrc"))],
+          [($LL_0$)], [$P' approx P$], [(#link("https://www.desmos.com/calculator/vw48bvqgrc"))],
           // Linear approximation at P = 2
-          [($A_2$)],
-          [$P' approx - (P - 2)$],
-          [(#link("https://www.desmos.com/calculator/i2utk6vnqh"))],
+          [($LL_2$)], [$P' approx - (P - 2)$], [(#link("https://www.desmos.com/calculator/i2utk6vnqh"))],
         ),
       )
 
@@ -123,8 +121,8 @@
 
       Consider the differential equation whose slope field is sketched below.
       $
-        P'(t) &= - P(t) dot (0.1 + P(t)) dot (0.2 + P(t)) \
-        &= - (P(t))^3 - 0.3 dot (P(t))^2 - 0.02 dot P(t)
+        P'(t) & = - P(t) dot (0.1 + P(t)) dot (0.2 + P(t)) \
+              & = - (P(t))^3 - 0.3 dot (P(t))^2 - 0.02 dot P(t)
       $
 
       #text(size: 0.9em, link("https://www.desmos.com/calculator/ikp9rgo0kv"))
@@ -175,7 +173,7 @@
 
   book_only(pagebreak())
   question({
-    slide[
+    slide(force_scale: 0.94em)[
 
       To make a 1d affine approximation of a function $f$ at the point $E$ we have the formula
       $ f(x) wide approx wide f(E) + f'(E) (x - E). $
@@ -196,14 +194,14 @@
 
     book_only(v(5em))
 
-    slide[
+    slide(force_scale: 0.907em)[
 
       Recall our model from Exercise @ex:tree_model for the life cycle of a tree where $H(t)$ was
       height, $A(t)$ was the leaves' surface area, and $t$ was time:
 
       $
-        H'(t) &= 0.3 dot A(t) - b dot H(t) \
-        A'(t) &= -0.3 dot (H(t))^2 + A(t)
+        H'(t) & = 0.3 dot A(t) - b dot H(t) \
+        A'(t) & = -0.3 dot (H(t))^2 + A(t)
       $
       with $0 <= b <= 2$
 
@@ -231,6 +229,8 @@
   book_only(pagebreak())
   question(
     slide[
+
+      #slides_only(v(1em))
 
       Define $arrow(F)(x, y) = mat(y; - x y + x^2 - x - y)$ and consider the differential equation
       $ mat(x'; y') = arrow(F)(x, y). $

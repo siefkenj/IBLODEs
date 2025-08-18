@@ -16,16 +16,16 @@
 
 
   question(
-    slide[
+    slide(force_scale: 0.912em)[
 
 	Consider the following *FD* model of Fleas and Dogs where 
     $ F(t) & = "number of parasites (fleas) at year " t " (in millions)" \
     D(t) & = "number of hosts (dogs) at year " t " (in thousands)" $
 
     - (P$1_F$) Ignoring all else, the number of parasites decays in proportion to its population (with constant 1).
-    - (P$2_F$) Ignoring all else, parasite numbers grow in proportion to the number of hosts (with constant 1).
+    - (P$2_F$) Ignoring all else, parasite numbers grow in proportion to the number of hosts (with constant 1 $"mega flea"/"kilo dog"$).
     - (P$1_D$) Ignoring all else, hosts numbers grow in proportion to their current number (with constant 1).
-    - (P$2_D$) Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2).
+    - (P$2_D$) Ignoring all else, host numbers decrease in proportion to the number of parasites (with constant 2 $"kilo dog"/"mega flea"$).
     - (P$1_c$) Anti-flea collars remove 2 million fleas per year.
     - (P$2_c$) Constant dog breeding adds 1 thousand dogs per year.
 
@@ -41,7 +41,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.85em)[
 
     Recall the *FD* model of Fleas and Dogs where 
     $ F(t) &= "number of parasites (fleas) at year " t " (in millions)" \
@@ -66,7 +66,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.85em)[
 
 
     Recall the *FD* model of Fleas and Dogs where 
@@ -98,7 +98,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.85em)[
 
     Recall the *FD* model of Fleas and Dogs where 
     $ F(t) &= "number of parasites (fleas) at year " t " (in millions)" \

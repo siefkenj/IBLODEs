@@ -23,6 +23,7 @@ Consider the following model of Social Media Usage where
 $ P(t) & = "millions of social media posts at year " t \
  U(t) & = "millions of social media users at year " t $
 
+// The units here are actually correct, but you have to think about it...
 - (P$1_P$) Ignoring all else, each year posts decay proportionally to the current number of posts with proportionality constant 1.
 - (P$2_P$) Ignoring all else (independent of decay), posts grow by a constant amount of 2 million posts every year.
 - (P$1_U$) Ignoring all else, social media users increase/decrease in proportion to the number of posts.
@@ -50,7 +51,7 @@ $ P' &= -P + 2 \
 where
 $ P(t) &= "millions of social media posts at year " t \
  U(t) &= "millions of social media users at year " t \
- a &in [-1/2, 1] $
+ a &in inline([-1/2, 1]) $
 
 + What are the equilibrium solution(s)?
 + Make a phase portrait for the system.
@@ -74,7 +75,7 @@ $ P' &= -P + 2 \
 where
 $ P(t) &= "millions of social media posts at year " t \
  U(t) &= "millions of social media users at year " t \
- a &in [-1/2, 1] $
+ a &in inline([-1/2, 1]) $
 
   + Can you rewrite the system in matrix form? I.e., in the form $arrow(r)'(t) = M arrow(r)(t)$ for some matrix $M$ where $arrow(r)(t) = mat(P(t); U(t))$.
   + Define $arrow(s)(t) = mat(S_P(t); S_U(t))$ to be the displacement from equilibrium in the *SM* model at time $t$ (provided an equilibrium exists).
@@ -99,7 +100,7 @@ $ P(t) &= "millions of social media posts at year " t \
   where
   $ P(t) &= "millions of social media posts at year " t \
   U(t) &= "millions of social media users at year " t \
-  a &in [-1/2, 1] $
+  a &in inline([-1/2, 1]) $
 
 
   Some politicians have been looking at the model. They made the following posts on social media:
