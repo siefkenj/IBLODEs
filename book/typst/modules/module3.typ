@@ -349,15 +349,15 @@ As you may have noticed in the above definition, phase space is not limited to t
 
 === When to use Phase Plots and Component Graphs
 
-Component graphs are almost always useful, but by their nature, they help you visualize how
-quantities change over time. When quantities are interrelated, plots in phase space help reveal the
-relationships. Additionally, phase plots should only be used when studying *autonomous* systems of
-differential equations.
+Component graphs are almost always useful, helping to visualize how quantities change over time,
+however relationships between quantities can be hard to see from component graphs. When quantities
+are interrelated, plots in _phase space_ help reveal the relationships.
 
-Why only use phase plots for autonomous systems? By definition, phase space does not include the
-independent variable (usually time). For autonomous equations, you can pick any point along a
-solution curve to represent "time zero". This makes phase plots for autonomous systems easy to
-interpret. For non-autonomous systems, the exact time (i.e., whether it is time $0$ or time $1$,
-etc.) matters. But phase plots have no way to encode time information, so you end up with a plot
-that loses so much information, it's rarely useful.
+However, phase plots should only be used when studying *autonomous* systems of differential
+equations. Why? Because, by definition, phase space does not include the independent variable
+(usually time). For autonomous equations, you can pick any point along a solution curve to represent
+"time zero". This makes phase plots for autonomous systems easy to interpret. For non-autonomous
+systems, the exact time (i.e., whether it is time $0$ or time $1$, etc.) matters. But phase plots
+have no way to encode time information, so you end up with a plot that loses so much information,
+it's rarely useful.
 
