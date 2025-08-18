@@ -16,7 +16,7 @@ In this module you will learn
 
 We have a firm grasp on how to solve matrix differential equations of the form $arrow(r)'=M arrow(r)$.
 What about equations of the form $arrow(r)'=M arrow(r) + arrow(b)$?
-Unfortunately, that extra "$+arrow(b)$" changes a lot. For example, the solution set is no longer a subspace!
+Unfortunately, that extra "$+ space.thin arrow(b)$" changes a lot. For example, the solution set is no longer a subspace!
 
 #example(
   prompt: [Show that solutions to $y'=2y+1$ do _not_ form a subspace.],
@@ -35,7 +35,7 @@ Unfortunately, that extra "$+arrow(b)$" changes a lot. For example, the solution
 )
 
 The issue is that $arrow(r)'=M arrow(r) + arrow(b)$ is no loner a matrix equation, it is an _affine equation_. Affine equations
-are matrix equations plus a vector of constants. We will soon see how to compensate for the extra "$+arrow(b)$".
+are matrix equations plus a vector of constants. We will soon see how to compensate for the extra "$+ space.thin arrow(b)$".
 
 == Centering about the Equilibrium
 
