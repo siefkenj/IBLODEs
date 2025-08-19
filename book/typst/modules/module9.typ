@@ -14,7 +14,7 @@ In this module you will learn
 - How to use _linearization_, the process of finding an affine approximation to a system of
   differential equations, to analyze the equilibrium solutions of non-linear systems of differential
   equations.
-- When using linearization to study equilibrium solutions is appropriate.
+- When to use/not use linearization to study equilibrium solutions.
 
 We have a complete theory, based on eigenvalues, for classifying the equilibria of systems written
 in matrix or affine form. Unfortunately, most equations that come from real-world models cannot be
@@ -149,9 +149,9 @@ That means that when $x approx E$, we have #math.equation(
   $,
 )<eqScalar>
 There is a similar formula for multi-variable functions.#footnote[Here, we give the formula for
-  functions $arrow(F):RR arrow RR^2$, but the generalized formula also holds for functions
-  $arrow(F):RR arrow RR^n$.] Let $arrow(F)(x,y)=mat(F_1(x,y); F_2(x,y))$ and let $arrow(E) in RR^2$.
-Then, when $mat(x; y) approx arrow(E)$, #math.equation(
+  functions $arrow(F):RR^2 arrow RR^2$, but the generalized formula also holds for functions
+  $arrow(F):RR^n arrow RR^n$.] Let $arrow(F)(x,y)=mat(F_1(x,y); F_2(x,y))$ and let
+$arrow(E) in RR^2$. Then, when $mat(x; y) approx arrow(E)$, #math.equation(
   numbering: "(1)",
   block: true,
   $
@@ -212,7 +212,7 @@ $
 $
 Define $arrow(G)(x, y) = mat(0.01 x y - 1.1 x; 1.1 y - 0.1 x y)$. Our equation can now be written as
 $
-  mat(F'(t); R'(t)) = arrow(G)(F(t), R(t)).
+  mat(F'; R') = arrow(G)(F, R).
 $
 It's important to note here that when we write $F'$ or $R'$, we mean $(dif F(t)) / (dif t)$ or
 $(dif R(t)) / (dif t)$, i.e., the derivative with respect to $t$. The function $arrow(G)$, on the
@@ -507,15 +507,15 @@ towards the origin.
 We can make our analysis rigorous by analyzing @eqNonLinAttracting directly. If solutions spiral
 towards the origin, then there should consistently be a component of $mat(x'_"nonlin"; y'_"nonlin")$
 that points towards the origin. Since, at the point $mat(x; y)$, the vector $mat(-x; -y)$ points
-towards the origin, we can use linear algebra to find the component of
+directly towards the origin, we can use linear algebra to find the component of
 $mat(x'_"nonlin"; y'_"nonlin")=mat(-y - x^3; x)$ that points in the direction of $mat(-x; -y)$.
 After computing, we see
 $
   mat(x'_"nonlin"; y'_"nonlin") = (x^4) / sqrt(x^2+y^2)mat(-x; -y) + (y x^3 + x^2+y^2) / sqrt(x^2+y^2) mat(-y; x),
 $
-and so, as long as $x != 0$, the vector $mat(x'_"nonlin"; y'_"nonlin")$ points towards the origin
-(and never points away from the origin). Since $x=0$ and $y != 0$ is not an equilibrium solution, we
-conclude that all non-equilibrium solutions spiral towards the origin.
+and so, as long as $x != 0$, the vector $mat(x'_"nonlin"; y'_"nonlin")$ points slightly towards the
+origin (and never points away from the origin). Since $x=0$ and $y != 0$ is not an equilibrium
+solution, we conclude that all non-equilibrium solutions spiral towards the origin.
 
 The conclusion is that for @eqNonLinAttracting, the equilibrium solution is _stable_ and
 _attracting_.
@@ -538,7 +538,7 @@ The equilibrium solution for @eqLinApprox is _stable_ and _not attracting_. We c
 we've just learned in a table.
 
 #align(center, simple_table(
-  headers: ([Equation], [Equilibrium Classification], [Equilibrium of _Linearization_]),
+  headers: ([Equation], [Equilibrium], [Equilibrium of _Linearization_]),
   content: (
     [
       //@eqLinCircular
