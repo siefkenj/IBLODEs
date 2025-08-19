@@ -12,7 +12,7 @@
 
 In this module you will learn
 - What equilibrium solutions and equilibrium points are.
-- How to equilibrium points related to the long term behavior of a differential equation/system of differential equations.
+- How are equilibrium points related to the long term behavior of a differential equation/system of differential equations.
 
 Models built from differential equations tell you how quantities _change_. Equally important, though,
 are the conditions under which quantities _do not_ change. In science and engineering, when a system is in a state that
@@ -56,8 +56,7 @@ It is the _equilibrium solution_ to the differential equation corresponding to t
 
 Let's consider a more complicated example.
 
-Two ponds, Pond $A$ and Pond $B$, each with a volume of 1 million litres, are connected by canals. Pond $A$ is fed by a stream with contaminated with pesticides from
-a nearby farm.
+Two ponds, Pond $A$ and Pond $B$, each with a volume of 1 million litres, are connected by canals. Pond $A$ is fed by a stream contaminated with pesticides from a nearby farm.
 Pond $B$ is fed by a mountain stream of clean water. The ponds exchange water through their canals at a rate of 0.1 million litres per day.
 Additionally, the ponds have spill-gates that allow any excess water to flow out of each pond so they maintain a constant volume.
 
@@ -169,7 +168,7 @@ We will assume:
   })
 })
 
-Let $A(t)$ be the amount of pesticide in Pond $A$ at time $t$, and let $B(t)$ be the amount of pesticide in Pond $B$ at time $t$.
+Let $A(t)$ be the amount of pesticide (in kg) in Pond $A$ at time $t$, and let $B(t)$ be the amount of pesticide (in kg) in Pond $B$ at time $t$.
 
 We can model $A$ and $B$ with the following system of differential equations.#footnote[
   To come up with this model, notice that $A'$, the change in the amount of pesticide in Pond $A$,
@@ -183,7 +182,7 @@ $
   B' & = &   0.1 dot & A & quad & - & quad 0.12 dot & B &             &
 $
 
-XXX The units are correct because the total amount of water in each pond is 1 million litres. Should we explain a little that on the right-hand side, we really have A/1 and B/1 ?
+// XXX The units are correct because the total amount of water in each pond is 1 million litres. Should we explain a little that on the right-hand side, we really have A/1 and B/1 ?
 
 
 With our model defined, we can now make plots showing the amount of pesticide vs. time given different initial conditions.
@@ -282,7 +281,7 @@ is the only equilibrium solution to this system.
       $,
       [and],
       $
-        P(t) & = -3 / 2 \
+        P(t) & = -inline(3 / 2) \
         Q(t) & = 6
       $,
     ))
@@ -430,8 +429,8 @@ It has two equilibrium solutions: $P(t)=0$ and $P(t)=100$ (shown in solid colors
 }
 
 We call the equilibrium solution $P(t)=0$ _unstable_ and _repelling_. That is, while it is true that a population of exactly zero will stay that way,
-if there is even one individual (in this model at least), the population will grow substantially. Alternatively, we call
-the equilibrium solution $P(t)=100$ _stable_ and _attracting_. If the population is exactly $100$, it will stay that way, but if the population is
+if there is even one individual (in this model at least), the population will grow substantially. On the other hand, we call
+the equilibrium solution $P(t)=100$ _stable_ and _attracting_ -- if the population is exactly $100$, it will stay that way, but if the population is
 slightly less than or slightly more than $100$, it will tend towards $100$.
 
 In general, equilibrium solutions can be classified as attracting, repelling, stable, and/or unstable depending on the

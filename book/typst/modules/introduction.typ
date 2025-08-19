@@ -38,11 +38,13 @@ The book leans heavily on simulation via Euler's method. It's main thrust is the
 equilibria of non-linear first-order systems of differential equations via studying linear/affine
 approximations to said systems. These tools are then applied to higher-order differential equations.
 
-Theorems about existence and uniqueness aren't emphasized until the end of the text. Since most
-ordinary differential equations have solutions and cases of non-uniqueness are often contrived, this
-text opts to motivate the question of existence and uniqueness via an introduction to boundary value
-problems. (But, instead of answering the very hard question of conditions for the existence and
-uniqueness of solutions to boundary value problems, we state the standard theorems for initial value problems.)
+Theorems about existence and uniqueness aren't emphasized in this book.
+Since most ordinary differential equations have solutions and cases of
+non-uniqueness are often contrived, this
+text opts to motivate the question of existence and uniqueness via a brief introduction to boundary value
+problems. We then state a Theorem on the existence and uniqueness of solution for initial value problems without going into details.
+// (But, instead of answering the very hard question of conditions for the existence and
+// uniqueness of solutions to boundary value problems, we state the standard theorems for initial value problems.)
 
 This book is grouped into modules. Each module contains exposition about a subject, practice
 problems (for students to work on by themselves), and core exercises (for students to work on with
@@ -70,8 +72,9 @@ A typical class day looks like:
   also time for the instructor to ensure that everyone has understood the main point of the exercise
   (since it is sometimes easy to miss the point!).
 
-  If students are having trouble, the instructor can give hints and additional guidance to ensure
+  If students are having trouble, the instructor can give hints and additional guidance to ensure the
   students’ struggle is productive.
+
 
 + *Repeat step 3.*
 
@@ -112,9 +115,9 @@ A typical 50 minute class is enough to get through 2–3 core exercises (dependi
 and class observations show that class time is split 50/50 between students working and instructor
 explanations.
 
-Please contact the author with feedback and suggestions, or if you are decide to use the book in a
+Please contact the authors with feedback and suggestions, or if you are decide to use the book in a
 course you are teaching. You can also easily submit feedback about an error or typo by creating a
-_GitHub Issue_ at https://github.com/albertlind/IBLODEs/issues
+_GitHub Issue_ at https://github.com/siefkenj/IBLODEs/issues
 
 == License
 _Differential Equations_ by Bernardo Galvão-Sousa & Jason Siefken is licensed under a #link(
@@ -122,7 +125,7 @@ _Differential Equations_ by Bernardo Galvão-Sousa & Jason Siefken is licensed u
 )[Creative Commons Attribution-ShareAlike 4.0 International License]. You are free to download, use,
 print, and even sell this work as you wish to. You can also modify the text as much as you like
 (create a custom edition for your students, for example), as long as you attribute the parts of the
-text you use to the author.
+text you use to the authors.
 
 If you are interested in using parts of the book combined with another text with a similar but
 different license (GFDL, for example), email the authors to get permission to modify the license.
