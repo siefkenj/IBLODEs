@@ -205,7 +205,7 @@ and dashed) along with the old estimates (dotted).
 == Component and Phase Spaces
 
 The graphs above are called _component graphs_. They show the dependent variables (the populations
-of ants and aphids) vs. the independent variable (time).#footnote[It is actually composed of two
+of ants and aphids) vs. the independent variable (time).#footnote[Each is actually composed of two
   component graphs, one for the ants and one for the aphids.]
 
 However, we often want to consider the relationship _between the dependent variables_. In this
@@ -220,7 +220,7 @@ example, we might plot the population of ants vs. the population of aphids.
     yaxis: (position: left, tip: tiptoe.stealth),
     xaxis: (position: bottom, tip: tiptoe.stealth),
     xlabel: [\# Ants\ (thousands)],
-    ylabel: [\# Aphids\ (thousands)],
+    ylabel: [\# Aphids #h(0.75em)\ (thousands)],
     lq.plot(
       ants,
       aphids,
@@ -349,9 +349,10 @@ As you may have noticed in the above definition, phase space is not limited to t
 
 === When to use Phase Plots and Component Graphs
 
+
 Component graphs are almost always useful, helping to visualize how quantities change over time,
 however relationships between quantities can be hard to see from component graphs. When quantities
-are interrelated, plots in _phase space_ help reveal the relationships.
+are interrelated, plots in _phase space_ help reveal their relationships.
 
 However, phase plots should only be used when studying *autonomous* systems of differential
 equations. Why? Because, by definition, phase space does not include the independent variable
@@ -360,4 +361,5 @@ equations. Why? Because, by definition, phase space does not include the indepen
 systems, the exact time (i.e., whether it is time $0$ or time $1$, etc.) matters. But phase plots
 have no way to encode time information, so you end up with a plot that loses so much information,
 it's rarely useful.
+
 

@@ -140,7 +140,7 @@ Starting at $(t,P(t)) = (0,#(y_0))$, we can trace out what an approximate soluti
     ylabel: lq.label($P$, dx: -1cm),
     lq.plot(xs, ys, mark: none, stroke: (
       paint: gray.darken(20%),
-      thickness: 1pt,
+      thickness: 1.5pt,
       dash: (2pt, .5pt),
     )),
   ))
@@ -843,7 +843,7 @@ spreadsheet will automatically recompute the value in all other cells.
 == Accuracy of Euler's Method
 
 When using Euler's method, in general, smaller step sizes produce more accurate approximations.
-And, when taking a limit towards an infinitely small step size, the approximation converges to an
+And, when taking a limit towards an infinitesimally small step size, the approximation converges to an
 exact solution.#footnote[As long as there is a solution to converge to...]
 
 For example, consider the initial value problem $y'(t) = sin(5 t)$ with $y(0)=0.8$. We can solve
