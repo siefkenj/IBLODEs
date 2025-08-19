@@ -41,7 +41,8 @@
 
       #h(1em)
 
-      + Visually classify the stability of each equilibrium solution as attracting/repelling/etc. Does the stability depend on $b$? Are you confident in your visual assessment?
+      + Visually classify the stability of each equilibrium solution as attracting/repelling/etc.
+        Does the stability depend on $b$? Are you confident in your visual assessment?
       + Can you rewrite the system in matrix/affine form? Why or why not?
 
 
@@ -65,13 +66,12 @@
 
       //+ What is the value of $(dif P) / (dif t)$ when $P = 1 / 2$?
 
-      + Define $f(P) = P dot (1 - P / 2)$ and let $A_(1/2)(P)$ denote
-        the affine approximation#footnote[In calculus, this is called a "linear approximation".]
-        to $f$ centered at $P=1/2$.
-        Find $A_(1/2)(P)$.
+      + Define $f(P) = P dot (1 - P / 2)$ and let $A_(1/2)(P)$ denote the affine
+        approximation#footnote[In calculus, this is called a "linear approximation".] to $f$
+        centered at $P=1/2$. Find $A_(1/2)(P)$.
 
-      + Notice that $(dif P)/(dif t)=f(P(t))$. Use this observation to create a "simple"
-        model $LL_(1/2)$ that approximates $LL$ when $P approx 1/2$.
+      + Notice that $(dif P)/(dif t)=f(P(t))$. Use this observation to create a "simple" model
+        $LL_(1/2)$ that approximates $LL$ when $P approx 1/2$.
 
       + Model $LL_(1/2)$ is called an _affine approximation of model $LL$ centered at $P=1/2$_.
 
@@ -85,7 +85,8 @@
   question(
     slide[
 
-      Based on our calculations from @ex:linear_approx_1d, we have several different affine approximations.
+      Based on our calculations from @ex:linear_approx_1d, we have several different affine
+      approximations.
 
 
       #align(
@@ -95,7 +96,9 @@
           align: (right, left, left),
           columns: 3,
           // Original ODE
-          [(Original $LL$)], [$P' = P (1 - P / 2)$], [(#link("https://www.desmos.com/calculator/v1coz4shtw"))],
+          [(Original $LL$)],
+          [$P' = P (1 - P / 2)$],
+          [(#link("https://www.desmos.com/calculator/v1coz4shtw"))],
           // Linear approximation at P = 1/2
           [($LL_(1 / 2)$)],
           [$P' approx 3 / 8 + 1 / 2 (P - 1 / 2)$],
@@ -103,12 +106,15 @@
           // Linear approximation at P = 0
           [($LL_0$)], [$P' approx P$], [(#link("https://www.desmos.com/calculator/vw48bvqgrc"))],
           // Linear approximation at P = 2
-          [($LL_2$)], [$P' approx - (P - 2)$], [(#link("https://www.desmos.com/calculator/i2utk6vnqh"))],
+          [($LL_2$)],
+          [$P' approx - (P - 2)$],
+          [(#link("https://www.desmos.com/calculator/i2utk6vnqh"))],
         ),
       )
 
 
-      + What are the similarities/differences in the Desmos plots of solutions to the original equation vs. the other equations?
+      + What are the similarities/differences in the Desmos plots of solutions to the original
+        equation vs. the other equations?
       + Does the nature of the equilibrium solutions change when using an affine approximation?
       + Classify each equilibrium solution of the original equation by using affine approximations.
 
@@ -178,11 +184,13 @@
       To make a 1d affine approximation of a function $f$ at the point $E$ we have the formula
       $ f(x) wide approx wide f(E) + f'(E) (x - E). $
 
-      To make a 2d approximation of a function $arrow(F)(x, y) = (F_1(x, y), F_2(x, y))$ at the point $arrow(E)$,
-      we have a similar formula
-      $ arrow(F)(x, y) wide approx wide arrow(F)(arrow(E)) + D_(arrow(F))(arrow(E)) (mat(x; y) - arrow(E)) $
-      where $D_(arrow(F))(arrow(E))$ is the _total derivative_ of $arrow(F)$ at $arrow(E)$, which can be expressed
-      as the matrix
+      To make a 2d approximation of a function $arrow(F)(x, y) = (F_1(x, y), F_2(x, y))$ at the
+      point $arrow(E)$, we have a similar formula
+      $
+        arrow(F)(x, y) wide approx wide arrow(F)(arrow(E)) + D_(arrow(F))(arrow(E)) (mat(x; y) - arrow(E))
+      $
+      where $D_(arrow(F))(arrow(E))$ is the _total derivative_ of $arrow(F)$ at $arrow(E)$, which
+      can be expressed as the matrix
       $
         D_(arrow(F))(arrow(E)) = mat(
           (diff F_1) / (diff x), (diff F_1) / (diff y);
@@ -214,13 +222,19 @@
 
       Define $arrow(F)(H, A) = (H', A')$
 
+      #book_only(pagebreak())
       + Find the matrix for $D_(arrow(F))$, the total derivative of $arrow(F)$.
-      + Create an affine approximation to $arrow(F)$ around $arrow(e) = (0, 0)$ and use this to write an approximation to the original system.
-      + In the original system, the equilibrium $(0, 0)$ is unstable and not repelling. Justify this using your affine approximation.
+      + Create an affine approximation to $arrow(F)$ around $arrow(e) = (0, 0)$ and use this to
+        write an approximation to the original system.
+      + In the original system, the equilibrium $(0, 0)$ is unstable and not repelling. Justify this
+        using your affine approximation.
       + #label_core_exercise(<ex:affine-approx-part3>)
-        Create an affine approximation to $arrow(F)$ around $arrow(e) = (100 / 9 b, 1000 / 27 b^2)$ and use this to write an approximation to the original system.
-      + Make a phase portrait for the original system and your approximation from part @ex:affine-approx-part3[]. How do they compare?
-      + Analyze the nature of the equilibrium solution in part @ex:affine-approx-part3[] using eigen techniques. Relate your analysis to the original system.
+        Create an affine approximation to $arrow(F)$ around $arrow(e) = (100 / 9 b, 1000 / 27 b^2)$
+        and use this to write an approximation to the original system.
+      + Make a phase portrait for the original system and your approximation from part
+        @ex:affine-approx-part3[]. How do they compare?
+      + Analyze the nature of the equilibrium solution in part @ex:affine-approx-part3[] using eigen
+        techniques. Relate your analysis to the original system.
 
     ]
   })
@@ -235,13 +249,16 @@
       Define $arrow(F)(x, y) = mat(y; - x y + x^2 - x - y)$ and consider the differential equation
       $ mat(x'; y') = arrow(F)(x, y). $
 
-      + Make a phase portrait for this differential equation. Based on your phase portrait, can you determine the nature of the equilibrium at $(0, 0)$?
+      + Make a phase portrait for this differential equation. Based on your phase portrait, can you
+        determine the nature of the equilibrium at $(0, 0)$?
 
         #link("https://www.desmos.com/calculator/peby3xd7jj")
 
       + Find an affine approximation to $arrow(F)$ centered at $(0, 0)$.
       + Write down a differential equation that approximates the original equation near $(0, 0)$.
-      + Analyze the nature of the equilibrium solution $arrow(r)(t) = (0, 0)$ using eigen techniques. (You may use a computer to assist in eigen computations.) Relate your analysis to the original system.
+      + Analyze the nature of the equilibrium solution $arrow(r)(t) = (0, 0)$ using eigen
+        techniques. (You may use a computer to assist in eigen computations.) Relate your analysis
+        to the original system.
 
 
     ],
