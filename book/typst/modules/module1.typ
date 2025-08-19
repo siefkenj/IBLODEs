@@ -35,7 +35,7 @@ ants for you to count.
 Since you lost count of the ants, you decide to use mathematics to predict how many ants walked by
 on minutes $5$, $6$, $dots$. You notice a pattern:
 $
-  "Green ants per minute" n = 2^(n-1) · 10.
+  "Green ants during minute" n = 2^(n-1) · 10.
 $
 Stupendous! Mathematics now predicts there were $160$ ants during minute $5$. But something else
 catches your eye. Across the sidewalk are brown ants. You count these ants every minute.
@@ -69,10 +69,10 @@ $
 $
 Your friend has a point. Their model is elegant, but your model can predict how many ants pass by at
 minute $3.222$! (Though, your friend would probably complain that $46.654$ is not a number of
-ants#sym.dots.) You and your friend have just come up with two different mathematical models for the
+ants#sym.dots.) You and your friend have just come up with two different _mathematical models_ for the
 number of ants that walk across the sidewalk. They happen to make similar predictions for each
-minute; they each have strengths and weaknesses. In this text, we will focus on third type of
-mathematical model---one that uses differential equations at its core.
+minute; they each have strengths and weaknesses. In this text, we will focus on a third type of
+_mathematical model_---one that uses differential equations at its core.
 
 == Types of Models
 
@@ -84,7 +84,7 @@ an ant?" by using common-sense conventions and so
 // that "the number of ants is a whole number and one colored blob that moves under its own power corresponds to one ant"; thus,
 we could use single numbers to represent our quantity of interest (the ants).
 
-You and your friend already came up with two types of models.
+You and your friend already came up with two _types of models_:
 - An *explicit* model based on known functions.
 - A *recursive* model where subsequent terms are based on previous terms and initial conditions.
 
@@ -96,13 +96,13 @@ $A(n) = 2 dot A(n-1)$
 with $A(1) = 10$.
 
 Each model has pros and cons. For example, the explicit model allows you to calculate the number of
-ants at any minute with few button presses on a calculator, whereas the recursive model is more
+ants at any minute with few button presses on a calculator#footnote([Note that calculator button presses are misleading, since each button press can involve several complicated operations.]), whereas the recursive model is more
 difficult to calculate but makes it clear that the number of ants is doubling every minute.
 
 Often times recursive models are easier to write down than explicit models#footnote([In fact, in
   many real-world situations, an explicit model in terms of already known functions doesn't
   exist.]), but they may be harder to analyze. A third type of model has similarities to both
-explicit and recursive models but adds more by bringing the power of calculus to modeling.
+explicit and recursive models but adds more by bringing the power of calculus to modelling.
 - A *differential-equations* model is a model based on a relationship between a function’s
   derivative(s), its values, and an initial condition.
 
@@ -193,7 +193,7 @@ guess-and-check.
     $dif / (dif n) e^n=e^n=k e^n$
     if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
-    which holds for all $k$. Thus $A(n)=e^(k n)$ is _a_ solution to $A'(n)=k A(n)$. However, there
+    which holds for all $k$. Thus $A(n)=e^(k n)$ is #underline([a]) solution to $A'(n)=k A(n)$. However, there
     are other solutions. Because
     $dif / (dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$
     for every number $C$, the function $A(n)=C e^(k n)$ where $C in RR$ is a solution to
@@ -240,7 +240,7 @@ that was first guessed for brown ants.
 
 A given differential equation can have many solutions.
 
-The _solution set_, _complete solution_, or _general solution_ is the family of all functions that
+The _solution set_, _complete solution_, or _general solution_ is the family of _all functions_ that
 satisfy the differential equation on a given domain.
 
 For example, we can easily verify that the functions $y(t)=e^(2t)$ and $y(t)=17e^(2t)$ both satisfy
@@ -250,7 +250,7 @@ $
   {f: f(t)=C e^(2t) "for some" C in RR}
 $
 is a set of solutions to the differential equation $y'=2y$. Because there are no other
-solutions#footnote[This fact is no obvious---it needs to be proved!],
+solutions#footnote[This fact is not obvious---it needs to be proved!],
 ${f: f(t)=C e^(2t) "for some" C in RR}$ is *the* _solution set_/_complete solution_ to the
 differential equation.
 
@@ -334,8 +334,8 @@ There are other classifications commonly encountered in the study of differentia
   #sym.dots, $a_n$, and $b$ are functions of $t$.
 - _Homogeneous linear differential equations_: a linear differential equation where $b(t)$ is zero.
 
-While we will be studying linear and homogeneous linear differential equations, classifying
-equations as linear/non-linear and homogeneous/non-homogeneous won't be important to us.
+// While we will be studying linear and homogeneous linear differential equations, classifying
+// equations as linear/non-linear and homogeneous/non-homogeneous won't be important to us.
 
 === Solving Methods
 

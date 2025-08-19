@@ -30,7 +30,7 @@
       title: "Order of a Differential Equation",
       label: <def_orderdiffeq>,
       [
-        A differential equation is said to be _order $n$_ if the highest derivative that appears in the differential equation is the $n$th derivative.
+        A differential equation is said to be _order $n$_ if the highest derivative that appears in the differential equation is the $n^"th"$ derivative.
       ],
     ),
     autonomous: definition_env(
@@ -167,7 +167,7 @@
       label: <def_solution>,
       [
         A _solution_ to a differential equation on a domain $D$ is a function with domain $D$
-        which satisfies the differential equation on $D$. (The domain $D$ is usually take to
+        which satisfies the differential equation on $D$. (The domain $D$ is usually taken to
         be a connected set like an interval.)
       ],
     ),
