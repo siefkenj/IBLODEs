@@ -32,7 +32,8 @@ $ y' + p(x) y &= f(x) , \
  e^( integral p(x) d x ) y' + e^( integral p(x) d x ) p(x) y &= e^( integral p(x) d x ) f(x) , \
  d/(d x) [ e^( integral p(x) d x ) y ] &= e^( integral p(x) d x ) f(x) , \
  e^( integral p(x) d x ) y &= integral e^( integral p(x) d x ) f(x) d x + C , \
- y &= e^( - integral p(x) d x ) ( integral e^( integral p(x) d x ) f(x) d x + C ) . $
+ y &= e^( - integral p(x) d x ) ( integral e^( integral p(x) d x ) f(x) d x + C ) , $
+ where $C$ is a constant.
 
 Of course, to get a closed form formula for $y$, we need to be able to find a closed form formula for the integrals appearing above.
 

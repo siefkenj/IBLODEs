@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": aligned_terms, simple_table, label_module
+#import "../libs/_workbook.typ": aligned_terms, label_module, simple_table
 #import "../libs/_ode_solvers.typ": solve_2d_ivp
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/tiptoe:0.3.1"
@@ -6,7 +6,7 @@
 #label_module(<mod:systems>)
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": workbook, show_def
+#import "../common/settings-book.typ": show_def, workbook
 #let (sans, serif, module, definition, example) = workbook
 
 
@@ -20,35 +20,35 @@ In this module you will learn
 
 == Modelling
 
-In the previous two modules, we modeled a single quantity. But,
-what happens when we have multiple interrelated quantities?
+In the previous two modules, we modeled single quantities in isolation. But, what happens when we
+have multiple interrelated quantities?
 
-To explore this, we will model populations of _Yellow Meadow Ants_.
-The Yellow Meadow Ant is a species of _farming_ ant.
-They tend to farms of aphids, which are small insects that suck the sap from plants. The ants protect the aphids from predators and in
-return the aphids secrete a sugary substance called honeydew, which the ants eat. The population of ants and the population of
-aphids are symbiotically interrelated, as the growth of one population depends on the other.
+To explore this, we will model populations of _Yellow Meadow Ants_. The Yellow Meadow Ant is a
+species of _farming_ ant. They tend to farms of aphids, which are small insects that suck the sap
+from plants. The ants protect the aphids from predators and in return the aphids secrete a sugary
+substance called honeydew, which the ants eat. The population of ants and the population of aphids
+are symbiotically interrelated, as the growth of one population depends on the other.
 
 We can create a _system_ of differential equations to model the interrelated populations:
 
 $
-  dif / (dif t) ("# ants at minute " t)
-  &= a ("# ants at minute " t ) + b ("# aphids at time " t) \
-  dif / (dif t) ("# aphids at minute " t)
-  &= c ("# ants at minute " t ) - d ("# aphids at time " t)
+    dif / (dif t) ("# ants at week " t) & = a ("# ants at week " t ) + b ("# aphids at week " t) \
+  dif / (dif t) ("# aphids at week " t) & = c ("# ants at week " t ) - d ("# aphids at week " t)
 $
 
-The first equation models the growth of the ant population,
-with $a$ representing the natural growth of ants in the absence of aphids
-and $b$ representing the growth of the ant population due to the presence of aphids
-(this term provides a "boost" to the ant population since the presence of aphids will mean more food for the ants).
+The first equation models the growth of the ant population, with $a$ representing the natural growth
+of ants in the absence of aphids and $b$ representing the growth of the ant population due to the
+presence of aphids (this term provides a "boost" to the ant population since the presence of aphids
+will mean more food for the ants).
 
-The second equation models the growth of the aphid population,
-with $c$ representing the growth of the aphid population due to the presence of ants
-(this term has a positive effect on the growth of aphids since they will be protected from predators),
-and $d$ representing the natural death of aphids in the absence of ants (they will be eaten by other creatures if ants aren't around to protect them).
+The second equation models the growth of the aphid population, with $c$ representing the growth of
+the aphid population due to the presence of ants (this term has a positive effect on the growth of
+aphids since they will be protected from predators), and $d$ representing the natural death of
+aphids in the absence of ants (they will be eaten by other creatures if ants aren't around to
+protect them).
 
-The parameters $a, b, c, d >= 0$ depend on the habitat. They could be gathered from data, but we will instead use artificially nice values of $a,b,c,d$.
+The parameters $a, b, c, d >= 0$ depend on the habitat; they could be gathered from data, but we
+will instead use artificially nice values of $a,b,c,d$.
 //As we discussed in @mod:modelling, these constants can be estimated from data, but to do so, we need to be able to find the analytic solution to the system of differential equations.
 //In @mod:real[Modules], @mod:affine[], and @mod:complex[] we will learn how to solve some types of systems of differential equations like this one, called linear systems of differential equations with constant coefficients.
 
@@ -56,24 +56,26 @@ The parameters $a, b, c, d >= 0$ depend on the habitat. They could be gathered f
 
 == Simulation
 
-We will use a modified version of Euler's method (see @mod:simulation) to simulate a solution to a system of differential equations.
-The change will be that we will use two tangent lines to estimate the next data point---one tangent line for ants and one for aphids.
+We will use a modified version of Euler's method (see @mod:simulation) to simulate a solution to
+this system of differential equations. But, we will use two tangent lines to estimate the next data
+point---one tangent line for ants and one for aphids.
 
-For now, we will assume $a=1, b=c=d=1 / 2$ and that units are in thousands (or ands and aphids). The initial population will be $10$ thousand ants and $100$ thousand aphids.
-Using a time step of $Delta = 0.25$, we compute
+For now, we will assume $a=1, b=c=d=1 / 2$ and that units are in thousands. The initial population
+will be $10$ thousand ants and $100$ thousand aphids. Using a time step of $Delta = 0.25$, we
+compute
 $
-  ("# Ants")'(0) &= 1 dot 10 + 1 / 2 dot 100 = 60 \
-  ("# Aphids")'(0) &= 1 / 2 dot 10 - 1 / 2 dot 100 = -45
+    ("# Ants")'(0) & = 1 dot 10 + 1 / 2 dot 100 = 60 \
+  ("# Aphids")'(0) & = 1 / 2 dot 10 - 1 / 2 dot 100 = -45
 $
 
 and so
 $
-  ("# Ants") (0.25) &approx 10 + 0.25 dot 60 = 25 \
-  ("# Aphids") (0.25) &approx 100 + 0.25 dot (-45) = 88.75
+    ("# Ants") (0.25) & approx 10 + 0.25 dot 60 = 25 \
+  ("# Aphids") (0.25) & approx 100 + 0.25 dot (-45) = 88.75
 $
 #let t_max = 1.75
-We can now repeat this processes at $t=0.25$ to find approximate values for the number of ants and aphids at $t=0.5$, etc..
-Repeating until $t=#(t_max)$, we arrive at the following table of values:
+We can now repeat this processes at $t=0.25$ to find approximate values for the number of ants and
+aphids at $t=0.5$, etc.. Repeating until $t=#(t_max)$, we arrive at the following table of values:
 
 // #align(
 //         center,
@@ -123,8 +125,7 @@ Repeating until $t=#(t_max)$, we arrive at the following table of values:
   ),
 )
 
-In the graph below, our simulated solution is shown with the solid curve representing
-the population of ants and the dashed curve representing the population of aphids.
+The graph below shows the simulated Ant and Aphid populations over time.
 
 #align(
   center,
@@ -153,8 +154,9 @@ the population of ants and the dashed curve representing the population of aphid
 )
 
 #let _Delta2 = 0.05
-Of course, if we wanted a more accurate simulation, we could use a smaller step size. Below is a graph
-using a step size of $Delta = #(_Delta2)$, The new, more accurate estimates are shown (solid and dashed) along with the old estimates (dotted).
+Of course, if we wanted a more accurate simulation, we could use a smaller step size. Below is a
+graph using a step size of $Delta = #(_Delta2)$, The new, more accurate estimates are shown (solid
+and dashed) along with the old estimates (dotted).
 
 #let steps2 = calc.ceil(t_max / _Delta2)
 #let soln2 = solve_2d_ivp(F, v_0, steps2, Delta: _Delta2, method: "euler")
@@ -189,24 +191,25 @@ using a step size of $Delta = #(_Delta2)$, The new, more accurate estimates are 
       times,
       ants,
       mark: none,
-      stroke: (paint: gray, dash: (1pt, 2pt)),
+      stroke: (paint: black, dash: (1pt, 2pt)),
     ),
     lq.plot(
       times,
       aphids,
       mark: none,
-      stroke: (paint: gray, dash: (1pt, 2pt)),
+      stroke: (paint: black, dash: (1pt, 2pt)),
     ),
   ),
 )
 
 == Component and Phase Spaces
 
-The graphs above is called _component graphs_. They show the dependent variables (the populations of ants and aphids) vs. the independent
-variable (time).#footnote[It is actually composed of two component graphs, one for the ants and one for the aphids.]
+The graphs above are called _component graphs_. They show the dependent variables (the populations
+of ants and aphids) vs. the independent variable (time).#footnote[It is actually composed of two
+  component graphs, one for the ants and one for the aphids.]
 
-However, we often want to consider the relationship _between the dependent variables_.
-In this example, we might plot the population of ants vs. the population of aphids.
+However, we often want to consider the relationship _between the dependent variables_. In this
+example, we might plot the population of ants vs. the population of aphids.
 
 #align(
   center,
@@ -225,34 +228,30 @@ In this example, we might plot the population of ants vs. the population of aphi
   ),
 )
 
-This plot suggests a relationship: there is a threshold where if the \# ants is above that threshold, they enable growth in \# aphids.
-More analysis is needed to see if this observation is valid, but the graph points us in the right direction.#footnote[See if you can find what the threshold \# ants is
-  by analyzing the differential equation directly.]
+This plot suggests a relationship: there is a threshold where if the \# ants is above that
+threshold, they enable growth in \# aphids. More analysis is needed to see if this observation
+always holds, but the graph points us in the right direction.#footnote[See if you can find what the
+  threshold \# ants is by analyzing the differential equation directly.]
 
 #v(1em)
-Plots like the one above are called _phase plots_ or _plots in phase space_. The space where each axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
+Plots like the one above are called _phase plots_ or _plots in phase space_. The space where each
+axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
 
 #show_def("component_and_phase")
 
-Phase plots are useful for visualizing the relationship between dependent variables, which represent the relations expressed in the system of differential equations.
-
-However, they can be hard to interpret. For example, in the plot above, it is hard to see how the populations of ants and aphids change over time. 
-
-Also, when we have more than two dependent variables, as in the following example, a phase plot becomes almost impossible to visualize.
-
-XXX Revise and improve the conclusion
+As you may have noticed in the above definition, phase space is not limited to two dimensions.
 
 #example(
   prompt: [The Three-dimensional Lorenz Equations],
   [
-    Phase space is not limited to two dimensions.
-    Consider the Lorenz equations, introduced by Edward Lorenz to demonstrate the inherent challenge in weather prediction.#footnote[The Lorenz equations
-      would go on to become a foundational example in the study of chaos theory---a deterministic but hard to predict dependence on initial conditions.]
-    The Lorenz equations are
+    Phase space is not limited to two dimensions. Consider the Lorenz equations, introduced by
+    Edward Lorenz to demonstrate the inherent challenge in weather prediction.#footnote[The Lorenz
+      equations would go on to become a foundational example in the study of chaos theory---a
+      deterministic but hard to predict dependence on initial conditions.] The Lorenz equations are
     $
-      (dif x) / (dif t) &= sigma (y - x) \
-      (dif y) / (dif t) &= x (rho - z) - y \
-      (dif z) / (dif t) &= x y - beta z
+      (dif x) / (dif t) & = sigma (y - x) \
+      (dif y) / (dif t) & = x (rho - z) - y \
+      (dif z) / (dif t) & = x y - beta z
     $
     where $sigma = 10$, $rho = 28$, and $beta = 8 / 3$.
 
@@ -309,7 +308,9 @@ XXX Revise and improve the conclusion
       ),
     )
 
-    Even though the phase plot is hard to interpret due to the three-dimensional nature of the data, we can still  see the spiralling nature of solutions. Something that is much harder to see from the component graphs below.
+    Even though the phase plot is hard to interpret due to the three-dimensional nature of the data,
+    we can still see the spiralling nature of solutions. Something that is much harder to see from
+    the component graphs below.
 
     #align(
       center,
@@ -346,13 +347,17 @@ XXX Revise and improve the conclusion
   ],
 )
 
+=== When to use Phase Plots and Component Graphs
 
+Component graphs are almost always useful, but by their nature, they help you visualize how
+quantities change over time. When quantities are interrelated, plots in phase space help reveal the
+relationships. Additionally, phase plots should only be used when studying *autonomous* systems of
+differential equations.
 
-
-
-
-
-
-
-
+Why only use phase plots for autonomous systems? By definition, phase space does not include the
+independent variable (usually time). For autonomous equations, you can pick any point along a
+solution curve to represent "time zero". This makes phase plots for autonomous systems easy to
+interpret. For non-autonomous systems, the exact time (i.e., whether it is time $0$ or time $1$,
+etc.) matters. But phase plots have no way to encode time information, so you end up with a plot
+that loses so much information, it's rarely useful.
 

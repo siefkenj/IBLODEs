@@ -72,7 +72,7 @@
       Solve $y' = 2 x y$.
     ],
     solution: [
-      The solution is $y = C e^(x^2)$.
+      The solution is $y = C e^(x^2)$ where $C$ is a parameter.
     ],
   ),
   (
@@ -104,7 +104,7 @@
       Find an implicit solution to $y' = (sin(x))/(cos(y))$.
     ],
     solution: [
-      The solution is $sin(y) = -cos(x) + C$.
+      The solution is $sin(y) = -cos(x) + C$ where $C$ is a parameter.
     ],
   ),
   (
