@@ -11,15 +11,15 @@
 #label_module(<mod:higher_order>)
 
 In this module you will learn
-- How to use transform a higher order differential equation into a first order system of
-  differential equations
+- How to transform a higher order differential equation into a system of first order differential
+  equations.
 - How to analyze the stability of a higher order differential equation using eigenvalues and
-  eigenvectors
-- How to approximate solutions to higher order differential equations using numerical methods
+  eigenvectors.
+- How to approximate solutions to higher order differential equations.
 
 
 
-== Order of a differential equation
+== Order of a Differential Equation
 
 #show_def("orderdiffeq")
 
@@ -27,7 +27,7 @@ So far, we have primarily studied first order differential equations (and system
 make the jump to higher order differential equations---i.e. differential equations involving more
 than just the first derivative.
 
-== Converting higher order to first order systems
+== Converting Higher Order to First Order Systems
 
 Rather than introducing new techniques to study higher order differential equations, we will use a
 trick to convert a higher-order equation into a system of first order differential equations.
@@ -35,6 +35,7 @@ trick to convert a higher-order equation into a system of first order differenti
 Consider the differential equation $f''=-f$. We now define a new function $g$ by $g=f'$. Thus,
 $g' = f''=0$. It follows that:
 
+#v(-1em)
 #align(center + horizon, stack(
   dir: ltr,
   spacing: 1em,
@@ -59,11 +60,13 @@ appears.
   [
     We introduce two new functions:
     - $v(x) = u'(x)$
-    - $w(x) = v'(x)$
-    Notice that $w(x) = u''(x)$, so $w'(x) = u'''(x)$.
+    - $w(x) = u''(x)$
+    Notice that $w(x) = u''(x)=v'(x)$ and that $w'(x) = u'''(x)$.
 
-    We can then write the differential equation using these variables and their first derivatives:
-    $ w' - tan(w) + 3 sqrt(1 + v^2) + sin(w) dot.c u = e^x $
+    Substituting, we obtain
+    $
+      w' - tan(w) + 3 sqrt(1 + v^2) + sin(w) dot.c u = e^x.
+    $
 
     Thus the original third order differential equation is equivalent to
     $
@@ -78,11 +81,11 @@ appears.
 
 == Solutions to higher order equations
 
-Recall our example $f''=-f$, which is equivalent to the system #box(baseline: 1em, $f'=g\ g'=-f$).
+Recall our example $f''=-f$, which is equivalent to the system $display(cases(f'&=g, g'&=-f))$.
 Using the techniques we have learned for systems, we can find a general solution:
 $
-  f(t)= A cos(t) + B sin(t) \
-  g(t)= A (-sin(t)) + B cos(t)
+  f(t) & = A cos(t) + B sin(t) \
+  g(t) & = A (-sin(t)) + B cos(t)
 $
 where $A$ and $B$ are parameters. Since the original differential equation was only about $f$, to
 solve $f''=-f$, we throw away the solution for $g$, keeping only the solution for $f$. Thus, the
@@ -146,16 +149,17 @@ coordinates for all but our function of interest.
 
 === Equilibrium solutions and stability for higher order differential equations
 
-For a higher-order differential equation, the definition of an equilibrium solution: a solution that
-is constant. What changes slightly is what it means to be "stable" or "unstable".
+For a higher-order differential equation, the definition of an equilibrium solution is unchanged. It
+is still _a solution that is constant_. What changes slightly is what it means to be "stable" or
+"unstable".
 
 Consider $f''=-f$. The only constant solution to this differential equation is $f(t)=0$. But, what
-does it mean for a function $g$ to pass "close to" $f(0)=0$? In the case of first-order equations,
-this meant that $g(0) approx f(0)$. For higher-order equations, we take the definition to mean that
-$g$ and all its lower-order derivatives are close to $f$ and its lower-order derivatives. In this
+does it mean for a function $h$ to pass "close to" $f(0)=0$? In the case of first-order equations,
+this meant that $h(0) approx f(0)$. For higher-order equations, we take the definition to mean that
+$h$ and all its lower-order derivatives are close to $f$ and its lower-order derivatives. In this
 case, that means
 $
-  g(0) approx f(0) wide "and" wide g'(0) approx f'(0).
+  h(0) approx f(0) wide "and" wide h'(0) approx f'(0).
 $
 
 Combining this with our method for rewriting a higher-order equation in terms of a system of
@@ -177,7 +181,7 @@ first-order equations we arrive at the following fact:
     we can solve to find that $mat(f(t); g(t))=arrow(0)$ is the only equilibrium solution. Using
     eigenvalues, we classify this equilibrium solution as stable and not attracting.
 
-    Applying this to $f''-f$, we conclude that there is exactly one equilibrium solution, $f(t)=0$,
+    Applying this to $f''=-f$, we conclude that there is exactly one equilibrium solution, $f(t)=0$,
     and it is stable but not attracting.
   ],
 )
