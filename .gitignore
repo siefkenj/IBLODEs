@@ -17,3 +17,5 @@ tmp*
 *.bak*
 test*
 *.zip
+.DS_Store
+book/.DS_Store
