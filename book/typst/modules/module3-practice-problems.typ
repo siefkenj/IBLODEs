@@ -1,3 +1,11 @@
+#import "../libs/_graphics.typ": slope_field
+#import "../libs/_workbook.typ": label_module, simple_table
+#import "../libs/_ode_solvers.typ": solve_1d_ivp
+#import "../libs/_spreadsheet.typ": draw_spreadsheet
+#import "@preview/lilaq:0.2.0" as lq
+#import "@preview/tiptoe:0.3.0"
+
+
 #let questions = (
   (
     statement: [
@@ -180,6 +188,25 @@
       Use eulers to determine 
       which of these graphs are for which of the
       plot. */
+      #let F(x, y) = (0.02*x + 0.005*y, -0.003*x+0.04*y)
+
+      #let g(x) = 1
+
+      #let v_0 = (0, 20000)
+      #let steps = 100
+      #let _Delta = 1
+
+      #let soln = (v_0,)
+      #for i in range(steps) {
+        let (x_0, y_0) = soln.at(-1)
+        let (dx, dy) = F(x_0, y_0)
+        let v = (x_0 + _Delta * dx, y_0 + _Delta * dy)
+        soln.push(v)
+      }
+      #let times = range(0, steps + 1).map(i => i * _Delta)
+      #let x = soln.map(v => v.at(0))
+      #let y = soln.map(v => v.at(1))
+
       A tech startup manufacturing industrial
       computers
       has been granted $\$20,000$, and 
@@ -204,10 +231,72 @@
         $q$. Why is this the case?
       + Which of the following graphs similar to 
         the graph of $R(q)$
-        -
-        -
-        -
-
+        - #align(
+            center,
+            lq.diagram(
+              width: 4cm,
+              height: 3cm,
+              yaxis: (position: 0, tip: tiptoe.stealth),
+              xaxis: (position: 0, tip: tiptoe.stealth),
+              xlabel: $t$,
+              legend: (position: bottom + right),
+              lq.plot(
+                times,
+                x,
+                mark: none,
+              ),
+            ),
+          )
+        - #align(
+            center,
+            lq.diagram(
+              width: 4cm,
+              height: 3cm,
+              yaxis: (position: 0, tip: tiptoe.stealth),
+              xaxis: (position: 0, tip: tiptoe.stealth),
+              xlabel: $t$,
+              legend: (position: bottom + right),
+              lq.plot(
+                times,
+                y,
+                mark: none,
+              ),
+            ),
+          )
+        - #let f(x) = calc.sin(x) + x
+          #align(
+            center,
+            lq.diagram(
+              width: 4cm,
+              height: 3cm,
+              yaxis: (position: 0, tip: tiptoe.stealth),
+              xaxis: (position: 0, tip: tiptoe.stealth),
+              xlabel: $t$,
+              legend: (position: bottom + right),
+              lq.plot(
+                times,
+                y,
+                mark: none,
+              ),
+            ),
+          ) 
+        - #let g(x) = calc.sqrt(x)
+          #align(
+            center,
+            lq.diagram(
+              width: 4cm,
+              height: 3cm,
+              yaxis: (position: 0, tip: tiptoe.stealth),
+              xaxis: (position: 0, tip: tiptoe.stealth),
+              xlabel: $t$,
+              legend: (position: bottom + right),
+              lq.plot(
+                times,
+                y,
+                mark: none,
+              ),
+            ),
+          )
     ],
   ),
   (
@@ -215,16 +304,35 @@
       /* Here are 3 differential equations, 
       for each of these differential equations 
       draw a vector plase plot and then some solutions.*/
+      For each of the following autonomous
+      differential 
+      equations make in phase space a make 
+      a plot so that at every point 
+
+      Make at least one of them by hand with a pen/
+      pensil 
+      and paper. 
+      + #block(
+          inset: (bottom: .5em),
+          [
+            $cases(y' + ln(5) = t, y(5) = 4)$ and\
+            $y = t^2 - ln(5)t - 25$
+          ],
+        )
+      +
+      + 
+      + 
     ],
   ),
   (
     statement: [
       /* Do Euler's method on this differenetial 
-      equation that has a stable solulation. Now 
+      equation that has a stable solution. Now 
       reduce the error. What happens? Maybe 
       I give them a model here and try to get
       some implication about the actual solution
       of the model from the simulation.*/
+
     ],
   ), 
   (
