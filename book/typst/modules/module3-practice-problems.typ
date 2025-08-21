@@ -105,7 +105,73 @@
       /* Build this differential equation 
       model. Use Euler's method to find 
       the solution. Give the component graphs */
-
+      A desease, which will call Finnish
+      Undergarment Necrosis (FUN), is  spreading through a population
+      of $100,000$ people in Finland.
+      Let $S(t)$ be the population
+      of healthy people susceptible to the 
+      desease. Let $I(t)$ be the population of 
+      infected people. Let $R(t)$ be the population:
+      - Once a person has contracted FUN and 
+        recovered, they are not longer susceptible
+        to it.
+      - The entire population of $100,000$ begins 
+        susceptible to FUN with the exception 
+        of the 50 people originally to have 
+        the desease.
+      - An infected person tends to infect 
+        4 susceptible people a week. 
+      - It takes a person appoximately 2 weeks
+        to recover from FUN.
+      - Nobody dies of FUN, or anything else
+        during the span of the FUN pandemic.
+      + Let $t$ be measured *in days*. 
+        Come up with a system of 3 differential 
+        equations, in a initial value problem \ 
+        #block(
+          inset: (bottom: .5em),
+          [
+            $cases(
+              (dif S(t))/(dif t) = 
+              underline("                 ")\ 
+              (dif I(t))/(dif t) = 
+              underline("                 ")\ 
+              (dif R(t))/(dif t) = 
+              underline("                 ")\
+              (0,S(0),I(0),R(0)) = 
+              underline("                 ")
+            )$\
+          ]
+        )
+        that corresponds with the assumptions above
+      + Now change the assumptions so that:
+        - People can only contract FUN after the age 
+          of 16.
+        - The entire original population is above 
+          the age of 16. 
+        - There is a population of young people out of 
+          which people become age 16 at rate $b$.
+        - Members of the total population die at rate 
+          $d$.
+        - Susceptible, infected, and recovered people
+          die at the same rate.
+        based on these added/edited assumptions 
+        remake the differential equations that you 
+        made in part (a). 
+      + *Ignore* the differential equations that you 
+        made in part (b) and consider the differential
+        equations that you made *in part (a)*. 
+        Use Euler's method with an approriate $Delta$
+        step size, and enouph 
+        data in $t$ to get an idea of the populations 
+        behavior, to estimate the maximum amount of 
+        people that are infected with FUN at one 
+        time. 
+      + Make 3 component graphs: one for each of 
+        $S(t)$, $I(t)$, and $R(t)$. Use these 
+        graphs to predict whether of not 
+        the entire population will be infected with 
+        FUN/
     ],
   ),
   (
@@ -114,6 +180,34 @@
       Use eulers to determine 
       which of these graphs are for which of the
       plot. */
+      A tech startup manufacturing industrial
+      computers
+      has been granted $\$20,000$, and 
+      are trying to understand the cost 
+      and revenue of producing $q$ computers 
+      in the following year. They can only
+      produce a maximum of $100$ computers.
+      They find that
+      $
+        text("MC")(q) = 0.02C(q) + 0.005R(q)\
+        text("MR")(q) = -0.003C(q) + 0.04R(q).
+      $
+      Here $C(q)$ is the cost of producing 
+      $q$, $R(q)$ is the revenue gotten 
+      from of producing $q$ computers, 
+      $text("MC")(q)$ is the cost of 
+      producing the $(q+1)$th computer, 
+      and $text("MR")(q)$ is the revenue from $(q+1)$th
+      computer. 
+      + $text("MC")$ and $text("MR")$ are essentially the 
+        derivatives of $C$ and $R$ with repect to 
+        $q$. Why is this the case?
+      + Which of the following graphs similar to 
+        the graph of $R(q)$
+        -
+        -
+        -
+
     ],
   ),
   (
