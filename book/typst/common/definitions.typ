@@ -66,7 +66,7 @@
       [
         For a differential equation involving the functions $F_1$, $F_2$, #sym.dots, $F_n$, and
         the variable $t$, the _component graphs_ are the $n$ graphs
-        of $(t, F_1 (t))$, $(t, F_2 (t))$, #sym.dots.
+        of $(t, F_1 (t))$, $(t, F_2 (t))$, #sym.dots, $(t, F_n (t))$.
 
         The _phase plane_ or _phase space_ associated with the
         differential equation is the $n$-dimensional space with
@@ -192,6 +192,51 @@
         $
           e^(i t) = cos(t) + i sin(t).
         $
+      ],
+    ),
+    subspace: definition_env(
+      title: "Subspace",
+      label: <subspace>,
+      [
+        A non-empty subset $V subset.eq RR^n$ is called a *subspace* if for all $arrow(u), arrow(v) in V$ and all scalars $k$ we have
+        #set enum(numbering: "(i)")
+          + $arrow(u)+arrow(v) in V$;
+          + $k arrow(u) in V$.
+      ],
+    ),
+    trivial_subspace: definition_env(
+      title: "Trivial Subspace",
+      label: <trivial_subspace>,
+      [
+        The subset ${arrow(0)} subset.eq RR^n$ is called the *trivial subspace*.
+      ],
+    ),
+    basis: definition_env(
+      title: "Basis",
+      label: <basis>,
+      [
+        A basis for a subspace $cal(V)$ is a linearly independent set of vectors, $cal(B)$, so that $"span" cal(B)= cal(V)$.
+      ],
+    ),
+    dimension: definition_env(
+      title: "Dimension",
+      label: <dimension>,
+      [
+        The *dimension* of a subspace $cal(V)$ is the number of vectors in a basis for $cal(V)$.
+      ],
+    ),
+    standard_basis: definition_env(
+      title: "Standard Basis",
+      label: <standard_basis>,
+      [
+        The *standard basis* for $RR^n$ is the set ${⃗arrow(e)_1, dots, arrow(e)_n}$ where
+        $
+          arrow(e)_1 = mat(1;0;0; dots.v) quad  
+          arrow(e)_2 = mat(0;1;0; dots.v) quad  
+          arrow(e)_3 = mat(0;0;1; dots.v) quad 
+          dots .
+        $
+        That is $arrow(e)_i$ is the vector with a 1 in its $i^"th"$ coordinate and zeros elsewhere.
       ],
     ),
   )
