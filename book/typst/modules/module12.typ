@@ -190,9 +190,10 @@ existence business. It is quite possible that the solution only exists for a sho
   ],
 )
 
-For most of this course we will be interested in equations where existence and uniqueness holds, and
-in fact holds "globally" unlike for the equation $y' = y^2$.
+We mostly encounter equations where existence and uniqueness holds, and in fact holds "globally"
+unlike for the equation $y' = y^2$, but it is good to be aware of when a solution might not exist or
+might not be unique.
 // But it is necessary to understand the examples where things fail for the
 // aforementioned reasons.
 
-XXX: add some mention of singular points and equations like $x dot y'=1$?
+//XXX: add some mention of singular points and equations like $x dot y'=1$?

@@ -23,8 +23,8 @@ Consider the following two situations:
 + You place a cookie sheet in an oven with an initial temperature of $180 degree$. You'd like to
   study the temperature of the cookie sheet as it heats up in the oven.
 + You place a rod in the ground, deep into the permafrost. Because the permafrost never melts, one
-  side of the rod is always at $0 degree$. The other end of the rod starts at $10 degree$. You'd
-  like to study the temperature of the rod over time.
+  side of the rod is always at $0 degree$. The other end of the rod is $10 degree$. You'd like to
+  study the temperature of the rod at different places along its length.
 
 The first situation is one we're familiar with. It is modeled by an _initial value problem_. I.e.
 differential equations coupled with a set of values each functions should take on at a specific
@@ -58,7 +58,7 @@ where to start approximating solutions!
 
 To work around this shortcoming, we will use the _shooting method_.
 
-Suppose you would like to solve the boundary value problem with the shooting method.
+Suppose you would like to solve the following boundary value problem with the shooting method.
 $
   cases(
     u''(t) = - u(t),
@@ -83,7 +83,7 @@ The idea is as follows.
   prompt: [Simulate a solution to the boundary value problem
     $
       cases(
-        u'' = - 2 u' - 2u,
+        u''(x) = - 2 u'(x) - 2u(x),
         u(0) = 1,
         u(1) = 1
       )
@@ -200,13 +200,17 @@ The idea is as follows.
 === Limitations of Boundary Value Problems
 
 Whereas initial value problems usually have solutions, boundary value problems often do not. For
-example, consider $y'=-y$ with boundary conditions $y(0)=1$ and $y(1)=2$. Given these conditions, we
-know that $y'(0) = -1$, $y'(1) = -2$, and $y' < 0$ whenever $y > 0$. Thus, a solution starting at
-$y(0)=1$ will start by decreasing, and will not increase until/unless it passes below the $x$-axis.
-This is incompatible with $y(1)=2$. Therefore, $y'=-y$ with $y(0)=1$ and $y(1)=2$ has no solution.
+example, consider
+$
+  cases(y'=-y, y(0)=1, y(1)=2).
+$
+Given these conditions, we know that $y'(0) = -1$,
+$y'(1) = -2$, and $y' < 0$ whenever $y > 0$. Thus, a solution starting at $y(0)=1$ will start by
+decreasing, and will not increase until/unless it passes below the $x$-axis. This is incompatible
+with $y(1)=2$. Therefore, $y'=-y$ with $y(0)=1$ and $y(1)=2$ has no solution.
 
 The situation is even worse than it first appears because, although there are general theorems for
 the existence of solutions to initial value problems, there are no known general theorems for the
-existence of solutions to boundary value problems. Don't let that stop you from exploring though!
+existence of solutions to boundary value problems. Don't let that stop you from exploring, though!
 Many models of the real world lend themselves to boundary value problems.
 

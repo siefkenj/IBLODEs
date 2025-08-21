@@ -6,12 +6,12 @@
 #label_appendix(<app:spreadsheet>)
 
 In this appendix you will learn:
-- The basics of spreadsheet usage
-- How to set up formulas in spreadsheets
+- The basics of spreadsheet usage.
+- How to set up formulas in spreadsheets.
 
 _Spreadsheets_ serve as a powerful data analysis and management tool. Commonly associated with
 Microsoft Excel, spreadsheets provide an interactive table that, for us, is ideal for implementing
-some of the basic algorithms for simulating solutions to differential equations.
+the basic algorithms used to approximate solutions to differential equations.
 
 == Spreadsheet Basics
 
@@ -342,7 +342,7 @@ spreadsheets:
 
 == Graphing
 
-To plot in a spreadsheet, select your data columns for your your x and y values. (This might be time
+To plot in a spreadsheet, select your data columns for your $x$ and $y$ values. (This might be time
 vs. ... for a plot in component space or $"var"_1$ vs. $"var"_2$ for a plot in phase space.) Then,
 in the menu, select `Insert` > `Chart` > *`Scatter with Straight Lines`*.
 
@@ -353,12 +353,12 @@ in the menu, select `Insert` > `Chart` > *`Scatter with Straight Lines`*.
 
 It is important that you pick a plot from the "Scatter" category if you want to plot one column vs.
 another (For example, if you select two columns and plot with a "Line" plot you will end up with two
-graphs, not a single graph of one column vs. the other.). It is also important that you select the
+graphs, not a single graph of one column vs. the other). It is also important that you select the
 "Straight Lines" variant of the scatter plot. If you choose the "Smooth Lines" variant, the graph
 will be misleading when it comes to interpreting errors in your approximations.
 
-To make multiple graphs vs. *the same* $x$ variable, you can select the column of $x$s and then any
-number of columns of $y$s.
+To make multiple graphs vs. *the same $x$ variable*, you can select the column of $x$'s and then any
+number of columns of $y$'s.
 
 #{
   show: align.with(center)
@@ -375,7 +375,7 @@ The free-to-use online graphing calculator, _Desmos_, is available at
 https://www.desmos.com/calculator.
 
 To plot your data in Desmos, copy your data columns *without headers* (i.e., only copy the numbers)
-and paste them into a Desmos input graph.
+and paste them into a Desmos cell.
 
 #{
   show: align.with(center)
