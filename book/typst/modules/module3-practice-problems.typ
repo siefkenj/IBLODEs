@@ -235,7 +235,7 @@
             center,
             lq.diagram(
               width: 4cm,
-              height: 3cm,
+              height: 2.5cm,
               yaxis: (position: 0, tip: tiptoe.stealth),
               xaxis: (position: 0, tip: tiptoe.stealth),
               xlabel: $t$,
@@ -251,7 +251,7 @@
             center,
             lq.diagram(
               width: 4cm,
-              height: 3cm,
+              height: 2.5cm,
               yaxis: (position: 0, tip: tiptoe.stealth),
               xaxis: (position: 0, tip: tiptoe.stealth),
               xlabel: $t$,
@@ -263,38 +263,67 @@
               ),
             ),
           )
-        - #let f(x) = calc.sin(x) + x
+        - #let x = lq.linspace(0, 100)
+          #let f(x) = 2000*(20*calc.sin(x/10) + x)
+          #lq.diagram(
+            width: 4cm,
+            height: 2.5cm,
+            yaxis: (position: 0, tip: tiptoe.stealth),
+            xaxis: (position: 0, tip: tiptoe.stealth),
+            xlabel: $t$,
+            legend: (position: bottom + right),
+            lq.plot(
+              x, 
+              x.map(x => f(x)),
+              mark: none,
+            )
+          )
+        - #let f(x) = 10000*(20*calc.sin(x/10) + x) + 20000
+          #lq.diagram(
+            width: 4cm,
+            height: 2.5cm,
+            yaxis: (position: 0, tip: tiptoe.stealth),
+            xaxis: (position: 0, tip: tiptoe.stealth),
+            xlabel: $t$,
+            legend: (position: bottom + right),
+            lq.plot(
+              x, 
+              x.map(x => f(x)),
+              mark: none,
+            )
+          )
+        - #let g(x) = 20*calc.sqrt(1000000*x)
           #align(
             center,
             lq.diagram(
               width: 4cm,
-              height: 3cm,
+              height: 2.5cm,
               yaxis: (position: 0, tip: tiptoe.stealth),
               xaxis: (position: 0, tip: tiptoe.stealth),
               xlabel: $t$,
               legend: (position: bottom + right),
               lq.plot(
-                times,
-                y,
+                x, 
+                x.map(x => g(x)),
                 mark: none,
-              ),
+              )
             ),
-          ) 
-        - #let g(x) = calc.sqrt(x)
+          )
+        - #let g(x) = 100*calc.sqrt(1000000*x) + 20000
           #align(
             center,
             lq.diagram(
               width: 4cm,
-              height: 3cm,
+              height: 2.5cm,
               yaxis: (position: 0, tip: tiptoe.stealth),
               xaxis: (position: 0, tip: tiptoe.stealth),
               xlabel: $t$,
               legend: (position: bottom + right),
               lq.plot(
-                times,
-                y,
+                x, 
+                x.map(x => g(x)),
                 mark: none,
-              ),
+              )
             ),
           )
     ],
@@ -306,22 +335,54 @@
       draw a vector plase plot and then some solutions.*/
       For each of the following autonomous
       differential 
-      equations make in phase space a make 
-      a plot so that at every point 
-
-      Make at least one of them by hand with a pen/
-      pensil 
+      equations make in phase space with 
+      $-4 <= y <= 4$ and $-4 <= x <= 4$ 
+      a plot so that every interger coordinate 
+      $(n,m) 
+      in ZZ^2$ has vector coming out of it 
+      of the form $v =(x'(n),y'(m))$. You can scale
+      the vectors down to fit on the graph better, 
+      but do so uniformly, so that the relative
+      sizes of the vectors are maintained. 
+      Make at least one of them by hand with a 
+      pen/pensil 
       and paper. 
       + #block(
           inset: (bottom: .5em),
           [
-            $cases(y' + ln(5) = t, y(5) = 4)$ and\
-            $y = t^2 - ln(5)t - 25$
+            $
+              x' = -2x + 6y \
+              y' = 1.4x - 4.2y
+            $
           ],
         )
-      +
-      + 
-      + 
+      + #block(
+          inset: (bottom: .5em),
+          [
+            $
+              x' = -7/4 x + 5/2 y \
+              y' = -13/8 x + 7/4y
+            $
+          ],
+        )
+      + #block(
+          inset: (bottom: .5em),
+          [
+            $
+              x' = 3x + 6y \
+              y' = 6x + 3y
+            $
+          ],
+        )
+      + #block(
+          inset: (bottom: .5em),
+          [
+            $
+              x' = -3/2 x + 1/2 y \
+              y' = 1/2 x - 3/2 y
+            $
+          ],
+        )
     ],
   ),
   (
