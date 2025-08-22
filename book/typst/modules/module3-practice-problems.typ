@@ -63,15 +63,33 @@
           v(t) = 5sin(t) + cos(t) \
         $
       + /* Non-linear more complicated */
-        $
-          (dif P_1)/(dif t) = P_2\
-          (dif P_2)/(dif t) = -(P_1^2 - 1)P_2 - P_1 
-        $
+            $
+              (dif P_1)/(dif t) = P_1 P_2\
+              (dif P_2)/(dif t) =  P_1
+            $
         with 
         $
-          P_1(t) = y(x-1))\
-          P_2(t) = x - y \
+          P_1(t) = tan^2(
+            sqrt(2)/2 t)+1\
+          P_2(t) = 
+            sqrt(2)tan(sqrt(2)/2 t)
         $
+        Note: This example highlights how 
+        challenging non-linear differential 
+        equations are. By some qualitative
+        measure this system of differential 
+        equation seem close to linear formulaically,
+        while clearly being non-linear.
+        Dispite that, this system is still
+        quite harder to check
+        than the previous examples. This continues
+        with more complicated non-linear
+        differential 
+        equations. Most non-linear differenetial
+        equation systems do not have, to human knowledge,
+        a solution that we can write with 
+        with the functions we see regularly
+        in a calculus class. 
       + /* Non-linear but system is just 
         two unrelated equations. */
         $ 
@@ -179,7 +197,7 @@
         $S(t)$, $I(t)$, and $R(t)$. Use these 
         graphs to predict whether of not 
         the entire population will be infected with 
-        FUN/
+        FUN.
     ],
   ),
   (
@@ -340,7 +358,7 @@
       a plot so that every interger coordinate 
       $(n,m) 
       in ZZ^2$ has vector coming out of it 
-      of the form $v =(x'(n),y'(m))$. You can scale
+      of the form $arrow(v) =(x'(n),y'(m))$. You can scale
       the vectors down to fit on the graph better, 
       but do so uniformly, so that the relative
       sizes of the vectors are maintained. 
@@ -393,7 +411,43 @@
       I give them a model here and try to get
       some implication about the actual solution
       of the model from the simulation.*/
-
+      + Use Euler's method 
+        on the system of equations
+        $
+          x' = - y \
+          y' = x
+        $
+        In order to make a phase plot on the 
+        $x y$-axis of the solution to 
+        a with initial $(0,1)$.
+        Use a step size $Delta$ of $1$.
+        Make sure you plot enouph data so that 
+        the behaviour of your 
+        appoximate solution is clear.
+      + What happens to this plot when you make 
+        $Delta = 0.1$? What about $Delta = 0.01$?
+        Make a conclusion about the behavior of 
+        of true solution based on this observation.
+      + Consider the system of
+        differential equations  
+        $
+          x' = -(y^2 - 1)x - y \
+          y' = x 
+        $
+        with the initial condition 
+        $(0,1)$. Again use Euler's method
+        to, this time with 
+        step size $Delta = 0.1$
+        to make a simulation of the solution
+        to this differential equation. 
+        Reduce to $Delta = 0.01$
+        Describe what is difference between
+        the vector phase plots in this 
+        system of differential equations
+        example and that in the previous
+        example in part (a) that accounts 
+        for the different behavior of 
+        the simulated solutions.
     ],
   ), 
   (
@@ -423,6 +477,7 @@
       Maybe ask after how this is different 
       from the error and emphisies how it 
       is very different.*/
+
     ],
   ),
   (
@@ -433,6 +488,7 @@
       which. Where is each variable maximized
       and minimized. Based on this rouphly
       sketch the component graphs.*/
+
     ],
   ),
   (
