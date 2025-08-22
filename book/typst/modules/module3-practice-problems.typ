@@ -477,7 +477,79 @@
       Maybe ask after how this is different 
       from the error and emphisies how it 
       is very different.*/
+      + Consider the following two _component_ 
+        graphs of a solution to 
+        the unknown system of
+        autonomous differential equations $A'(t)= dots$ and $B'(t)= dots$.
 
+        #lq.diagram(
+          width: 5cm,
+          height: 3cm,
+          yaxis: (position: 0, tip: tiptoe.stealth),
+          xaxis: (position: 0, tip: tiptoe.stealth),
+          title: [$t$ vs. $A(t)$],
+          lq.plot(
+            (0, 2, 4, 6, 8),
+            (-1, 2, 2, 0, -1),
+            mark: none,
+          ),
+        ),
+
+        #lq.diagram(
+          width: 5cm,
+          height: 3cm,
+          yaxis: (position: 0, tip: tiptoe.stealth),
+          xaxis: (position: 0, tip: tiptoe.stealth),
+          title: [$t$ vs. $B(t)$],
+          lq.plot(
+            (0, 2, 6, 8),
+            (0, -1, 1, 0),
+            mark: none,
+          ),
+        ),
+        + What are the initial conditions of the graphed solution?
+        + Is the solution periodic or not? Explain.
+
+          _Hint: your explanation should use the fact that the system is autonomous._
+        + Sketch the solution in _phase space_.
+
+      + Consider the differential equation 
+        _component_ graphs for the differential 
+        equation system 
+        $C'(t) = dots$, $D'(t) = dots$. 
+
+        #lq.diagram(
+          width: 5cm,
+          height: 3cm,
+          yaxis: (position: 0, tip: tiptoe.stealth),
+          xaxis: (position: 0, tip: tiptoe.stealth),
+          title: [$t$ vs. $C(t)$],
+          lq.plot(
+            (0, 2, 4, 6, 8),
+            (0, -0.5, 0, 1, 0),
+            mark: none,
+          ),
+        ),
+        #lq.diagram(
+          width: 5cm,
+          height: 3cm,
+          yaxis: (position: 0, tip: tiptoe.stealth),
+          xaxis: (position: 0, tip: tiptoe.stealth),
+          title: [$t$ vs. $D(t)$],
+          lq.plot(
+            (0, 2, 4, 4.5, 7.5, 8),
+            (0, 0.5, 0, 1, 1, 0),
+            mark: none,
+          ),
+        ),
+        + It is not possible for this system of 
+          differential equation to be autonomous.
+          Why is this the case?
+        + Though you cannot make a phase 
+          plot with vectors, since this equation
+          is not autonomous, make a sketch of 
+          the solution to this system of
+          differential equations in _phase space_.
     ],
   ),
   (
@@ -488,7 +560,50 @@
       which. Where is each variable maximized
       and minimized. Based on this rouphly
       sketch the component graphs.*/
+      The following is a graph in _phase space_ 
+        of a solution to the unknown autonomous 
+        system of
+        differential equations $W'(t)= dots$ and 
+        $V'(t)= dots$ with 
+        initial conditions $W(0)=10$ and
+        $V(0)=20$.
 
+        #{
+
+          lq.diagram(
+            width: 5cm,
+            height: 3cm,
+            xlim: (0, 30),
+            ylim: (0, 30),
+            yaxis: (position: 0, tip: tiptoe.stealth),
+            xaxis: (position: 0, tip: tiptoe.stealth),
+            title: [$W(t)$ vs. $V(t)$],
+            lq.plot(
+              (10,14,18,22,26,26,22,18,14,10),
+              (20,23,24,22,21,19,18,15,16,20),
+              mark: none,
+            ),
+          )
+        }
+        + Which variable corresponds to which axis
+          on the phase plot.
+          Justify your answer.
+        + Is the solution to this 
+          system of differential equation 
+          cyclical. Justify your answer. 
+        + Are there a points on the phase plot
+          where $W(t)$, 
+          or $V(t)$ are maximized? If so,
+          at what point(s)? Either way, justify 
+          your answer. Answer this question 
+          again but with "minimized" instead
+          of "maximized".
+        + Are there points on the phase plot
+          of this solution for which 
+          $W(t) = V(t)$? If so, at what 
+          point(s)? Either way, justify your answer. 
+        + Draw the possible component graphs 
+          for this solution.
     ],
   ),
   (
