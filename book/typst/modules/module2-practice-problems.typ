@@ -550,7 +550,7 @@
         Use this initial condition, similar
         to if you had only one differential
         equation to compute $x'$ and $y'$ 
-        and the this initial condition.
+        at this initial condition.
       + You now since you have 
         $x_0 = f(0)$, $y_0 = g(0)$, 
         $x'|_(t=0) = f'(0)$, and 
@@ -560,7 +560,7 @@
           x_1 = x_0 + Delta dot x'|_(t=0) \
           y_1 = y_0 + Delta dot y'|_(t=0)
         $
-        with $Delta = 0.1$.
+        with $Delta = 0.1$. Do this calculation.
       + Again, you now should have a point 
         $(t_1,x_1,y_1)$ where 
         $t_1 = t_0+Delta$. Again use 
