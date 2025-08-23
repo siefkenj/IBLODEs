@@ -17,7 +17,7 @@
       feas that are inffecting the bears.
       The ecologists make the following 
       assumptions about these bears
-      - The bears reproduction is 
+      - The bear's reproduction is 
         uneffected by the flea population, 
         and is only affected 
       - The bears die at a rate
