@@ -92,8 +92,8 @@
       } else {
         // We are at a subheading
         v(-.3em)
-        stack(
-          dir: ltr,
+        grid(
+          columns: (auto, auto, 1fr, auto),
           h(4em + 1em * item_heading.level),
           text(size: 0.8em, box(item_heading.body)),
           h(1fr),
@@ -129,8 +129,8 @@
       } else {
         // We are at a subheading
         v(-.3em)
-        stack(
-          dir: ltr,
+        grid(
+          columns: (auto, auto, 1fr, auto),
           h(4em + 1em * item_heading.level),
           text(size: 0.8em, box(item_heading.body)),
           h(1fr),
@@ -200,6 +200,7 @@
     [
       #include "modules/module1.typ"
       #import "modules/module1-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 1)
     ],
   )
@@ -216,6 +217,7 @@
     [
       #include "modules/module2.typ"
       #import "modules/module2-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 2)
     ],
   )
@@ -232,6 +234,7 @@
     [
       #include "modules/module3.typ"
       #import "modules/module3-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 3)
     ],
   )
@@ -248,6 +251,7 @@
     [
       #include "modules/module4.typ"
       #import "modules/module4-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 4)
     ],
   )
@@ -264,6 +268,7 @@
     [
       #include "modules/module5.typ"
       #import "modules/module5-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 5)
     ],
   )
@@ -280,6 +285,7 @@
     [
       #include "modules/module6.typ"
       #import "modules/module6-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 6)
     ],
   )
@@ -296,6 +302,7 @@
     [
       #include "modules/module7.typ"
       #import "modules/module7-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 7)
     ],
   )
@@ -312,6 +319,7 @@
     [
       #include "modules/module8.typ"
       #import "modules/module8-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 8)
     ],
   )
@@ -328,6 +336,7 @@
     [
       #include "modules/module9.typ"
       #import "modules/module9-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 9)
     ],
   )
@@ -344,6 +353,7 @@
     [
       #include "modules/module10.typ"
       #import "modules/module10-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 10)
     ],
   )
@@ -360,6 +370,7 @@
     [
       #include "modules/module11.typ"
       #import "modules/module11-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 11)
     ],
   )
@@ -376,6 +387,7 @@
     [
       #include "modules/module12.typ"
       #import "modules/module12-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: 12)
     ],
   )
@@ -395,6 +407,7 @@
     [
       #include "modules/appendix1.typ"
       #import "modules/appendix1-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "A")
     ],
   )
@@ -406,6 +419,7 @@
     [
       #include "modules/appendix2.typ"
       #import "modules/appendix2-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "B")
     ],
   )
@@ -417,6 +431,7 @@
     [
       #include "modules/appendix3.typ"
       #import "modules/appendix3-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "C")
     ],
   )
@@ -428,6 +443,7 @@
     [
       #include "modules/appendix4.typ"
       #import "modules/appendix4-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "D")
     ],
   )
@@ -439,6 +455,7 @@
     [
       #include "modules/appendix5.typ"
       #import "modules/appendix5-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "E")
     ],
   )
@@ -450,6 +467,7 @@
     [
       #include "modules/appendix6.typ"
       #import "modules/appendix6-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "F")
     ],
   )
@@ -461,6 +479,7 @@
     [
       #include "modules/appendix7.typ"
       #import "modules/appendix7-practice-problems.typ": questions
+      #set text(size: .85em)
       #exercises(questions, module_number: "G")
     ],
   )
@@ -470,6 +489,7 @@
     title: [Solutions to Selected Practice Problems],
     copyright: copyright,
     {
+      set text(size: .85em)
       {
         import "modules/module1-practice-problems.typ": questions
         solutions(questions, module_number: 1)

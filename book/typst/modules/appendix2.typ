@@ -19,7 +19,7 @@ expression
 $ y(x) = integral f(x, y(x)) d x + C. $
 Notice the dependence on $y$ in the integral.
 
-=== Separable equations
+== Separable equations
 
 We say a differential equation is *separable* if we can write it as
 $ y' = f(x) g(y), $
