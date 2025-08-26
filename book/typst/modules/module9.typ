@@ -396,7 +396,7 @@ systems.
 }
 
 In the figures, you can see that as the initial conditions get closer to $(F,R)=(10,110)$ (where we
-centered our approximation), the solution to the linearized system (the solid curve) matches more an
+centered our approximation), the solution to the linearized system (the solid curve) matches more and
 more closely to the solution to the original system (the dashed curve).#footnote[You might wonder if
   the reduction in error is meaningful. Since as $(F,R) arrow (10, 110)$, solutions look more and
   more constant, there is less oscillation overall when initial conditions are close to $(10, 110)$.
@@ -454,7 +454,7 @@ and #math.equation(
   $,
 )<eqNonLinAttracting>
 
-The both have an equilibrium solutions $(x(t),y(t))=(0,0)$. Since @eqLinCircular can be rewritten as
+The both have an equilibrium solution $(x(t),y(t))=(0,0)$. Since @eqLinCircular can be rewritten as
 a matrix equation, we can solve it explicitly:
 
 #align(center, grid(

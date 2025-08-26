@@ -197,7 +197,7 @@ _Proof:_ We leave the proof as an exercise for the reader.
 
 == Solving Affine Equations
 
-Centring (and uncentering) about the equilibrium can be used to solve affine equations. Let's use
+Centering (and uncentering) about the equilibrium can be used to solve affine equations. Let's use
 our example from earlier:
 $
   arrow(r)'= mat(0, 1; 1, 0) arrow(r) + mat(-1; -2)

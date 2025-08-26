@@ -159,7 +159,7 @@ are called _singular solutions_.
 #example(
   prompt: [
 
-    Bob made a cup of coffee, and Bob likes to drink coffee only once reaches 60 degrees Celsius and
+    Bob made a cup of coffee, and Bob likes to drink coffee only once it reaches 60 degrees Celsius and
     will not burn him. Initially at time $t = 0$ minutes, Bob measured the temperature and the
     coffee was 89 degrees Celsius. One minute later, Bob measured the coffee again and it had 85
     degrees. The temperature of the room (the ambient temperature) is 22 degrees. When should Bob

@@ -70,7 +70,7 @@
         assumptions that make up Kleiber's Law:
         - (D1) The metabolic rate of animals is proportional to the weight of the animal to the
           power of $3/4$.
-        - (D2) The metabolic rate of an animal is proportional to the daily weightloss of the animal
+        - (D2) The metabolic rate of an animal is proportional to the daily weight loss of the animal
           (if they are not eating).
         Based on Donkey's assumptions, write down a new differential-equations based model
         $
@@ -135,12 +135,12 @@
       )
 
       + _Assumption (M1): From 2015 to 2018, every year the population of rural and small town
-          Canada increases by a factor of 1.0059._//Here is an assumption, give F1. Linear make if linear. "Imagagration"
+          Canada increases by a factor of 1.0059._//Here is an assumption, give F1. Linear make if linear. "Immigration"
 
         Based on the assumption (M1), find an _explicit_ model for the population of rural and small
         towns in Canada
       + Consider the following _recursive_ model for the population of rural and small towns in
-        Canada $n$ years after 2015: $P_(n+1) = P_n + 0.0353$ with $P_0 = 5.938$. //Here is the relationship what assumption. but now we also have brith rate or somethign.
+        Canada $n$ years after 2015: $P_{n+1} = P_n + 0.0353$ with $P_0 = 5.938$. //Here is the relationship what assumption. but now we also have birth rate or something.
 
         Identify and write down what assumptions that were made to arrive at this model.
       + Create two differential-equations based models, one using assumption(s) from part (a) and
@@ -157,12 +157,12 @@
       A small population of fish have been introduced to a large lake. Make the following
       assumptions about the population of fish in the lake:
       - (M1) All the population of fish in the lake are the same species.
-      - (M2) The inital population of fish in the lake is 28 fish.
+      - (M2) The initial population of fish in the lake is 28 fish.
       - (M3) After 1 year, the population of fish is approximately 57.
       - (M4) The year to year ratio of the population of fish in the lake is approximately constant.
       + Make a table of the population of fish in the lake by year for the first 5 years.
       + Tiffany believes that the growth of the fish population in the lake can be modelled with an
-        exponential function. Is Tiffany's belief consistant with the assumptions above? If not,
+        exponential function. Is Tiffany's belief consistent with the assumptions above? If not,
         which assumption is contradicted? If so, what rate $k$ will the exponential have?
       + Make a table of the population of fish in the lake by month for the first 5 months.
 
@@ -380,7 +380,7 @@
           relationship?
         + How would you write down the recursive relationship you found in question 7 (b) as an
           explicit function?
-      + In question 5, do you have any critisisms of how student presented their work? Is their any
+      + In question 5, do you have any criticisms of how student presented their work? Is their any
         way they could be better?
     ],
   ),
