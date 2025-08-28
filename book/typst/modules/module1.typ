@@ -99,7 +99,7 @@ Each model has pros and cons. For example, the explicit model allows you to calc
 ants at any minute with few button presses on a calculator#footnote([Note that calculator button presses are misleading, since each button press can involve several complicated operations.]), whereas the recursive model is more
 difficult to calculate but makes it clear that the number of ants is doubling every minute.
 
-Often times recursive models are easier to write down than explicit models#footnote([In fact, in
+Oftentimes recursive models are easier to write down than explicit models#footnote([In fact, in
   many real-world situations, an explicit model in terms of already known functions doesn't
   exist.]), but they may be harder to analyze. A third type of model has similarities to both
 explicit and recursive models but adds more by bringing the power of calculus to modelling.
