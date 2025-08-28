@@ -27,6 +27,7 @@ suppose that fish are continually added at $𝐴$ fish per unit of time.
     ],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 1.6.103]
   ),
+  /*
   (
     statement: [
       Below is the phase space showing the path travelled by a bee when it ventured out of the hive this morning. Find and classify the equilibrium point, can you tell if the bee is attracted to a flower or running away from a predator?
@@ -51,6 +52,7 @@ suppose that fish are continually added at $𝐴$ fish per unit of time.
   )
     ]
   ),
+  */
   (
     statement: [
       Suppose $x'$ is positive for $0<x<1$, it is zero when $x=0$ and $x=1$, and it is negative for all other values of $x$. 
