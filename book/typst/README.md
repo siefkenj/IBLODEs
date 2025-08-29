@@ -1,4 +1,4 @@
-# IBLODEs Typst Vrsion
+# IBLODEs Typst Version
 
 This is a [Typst](https://typst.app/docs/) version of IBLODEs. It uses (mostly) one source to compile
  - Slides
