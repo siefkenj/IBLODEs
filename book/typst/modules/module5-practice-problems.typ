@@ -23,6 +23,10 @@
       + $cases(x'=x+y+y^2,y'=x)$#v(.7em)
       + $cases(x'=(x-1)^2+y,y'=x^2+y)$#v(.7em)
     ],
+    solution: [
+      + Equilirbium points: $(1,0),(1,1)$.
+      + Equilibrium points: $(0,0),(0,-1)$.
+      + Equilibrium points: $(1/2, (-1)/4)$.],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 3.1.101]
   ),
   (
@@ -36,6 +40,10 @@
       + #image("../images/M5_Question_Plots/1.2.104(b).png")
       + #image("../images/M5_Question_Plots/1.2.104(c).png")
     ],
+    solution: [
+      + $y'=cos(y)$
+      + $y'=y cos(x)$
+      + $y'=sin(x)$],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 1.2.104]
   ),
   (
@@ -48,6 +56,10 @@
       + #image("../images/M5_Question_Plots/3.1.102(b).png")
       + #image("../images/M5_Question_Plots/3.1.102(c).png")
     ],
+    solution: [#v(.7em)
+      + $cases(x'=y,y'=(x-1)(x+1))$#v(.7em)
+      + $cases(x'=y+x^2,y'=-x)$#v(.7em)
+      + $cases(x'=y^2,y'=-x^2)$],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 3.1.102]
   )
 )

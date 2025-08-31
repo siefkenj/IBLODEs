@@ -1,6 +1,25 @@
 #import "../libs/_workbook.typ": aligned_terms
 #let questions = (
   (
+    statement: [Let $A$ be a $3 times 3$ matrix with eigenvalue of $3$ and a corresponding eigenvector $arrow(v) = mat(1;-1;3)$. Find $A arrow(v)$.#v(.7em)],
+    citation: [_Notes on Diffy Q's_ by Jiří Lebl 2.4.5]
+  ),
+  (
+    statement: [Find the general solution of $cases(x'_1=3x_1+x_2,x'_2=2x_1+4x_2)$ using the eigenvalue method. Do not use complex exponentials in your solution.#v(0.5em)],
+    citation: [_Notes on Diffy Q's_ by Jiří Lebl 2.4.7]
+  ),
+  (
+    statement: [Solve $cases(x'_1=x_2, x'_2=x_1)$ using the eigenvalue method.#v(0.7em)],
+    solution: [
+      $arrow(x)= C_1 mat(1; 1)e^t + C_2 mat(1; -1) e^(-t)$#v(.7em)
+    ],
+    citation: [_Notes on Diffy Q's_ by Jiří Lebl 2.4.103]
+  ),
+  (
+    statement: [Let $A = mat(5, -3; 3, -1)$. Find the general solution of $arrow(x)' = A arrow(x)$.],
+    citation: [_Notes on Diffy Q's_ by Jiří Lebl 2.8.2]
+  ),
+  (
     statement: [
       Define
 

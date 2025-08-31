@@ -15,6 +15,9 @@
       + $x'=(x-1)(x-2)x^2$
       + $x'=e^(-x)$
     ],
+    solution: [
+      (c) For $x'=(x-1)(x-2)x^2$, the equilibrium points are: $x = 0$ (unstable/semistable), $x = 1$ (stable), $x = 2$ (unstable).
+      (d) For $x'=e^(-x)$, there are no equilibrium points.],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 1.6.3, 1.6.4, 1.6.101, 1.6.102]
   ),
   (
@@ -25,6 +28,9 @@ suppose that fish are continually added at $𝐴$ fish per unit of time.
     + Find and classify the equilibrium point(s).
     + What is the new limiting population?
     ],
+    solution: [
+      (a) $(dif x)/(dif t) = k x (M - x) + A$, where $A$ is a parameter. 
+      (c) The new limiting population can be expressed as: $(k M + sqrt((k M)^2 +4 A k))/(2 k)$.],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 1.6.103]
   ),
   /*
