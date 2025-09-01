@@ -604,7 +604,27 @@
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
 #let exercises(questions, module_number: 0) = {
   [== Practice Problems]
-  columns(2, enum(..questions.map(q => enum.item(q.statement))))
+  columns(
+    2,
+    questions
+      .enumerate()
+      .map(((i, q)) => (
+        {
+          show: block.with(inset: (left: 1.5em))
+          {
+            show: place.with(top)
+            show: move.with(dx: -1.5em)
+            [#(i + 1).]
+            if q.at("citation", default: none) != none {
+              show: footnote.with(numbering: "*")
+              text(fill: blue, [#q.citation])
+            }
+          }
+          q.statement
+        }
+      ))
+      .join(),
+  )
 }
 
 /// Display solutions for exercises.
