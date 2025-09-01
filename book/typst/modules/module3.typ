@@ -281,7 +281,7 @@ As you may have noticed in the above definition, phase space is not limited to t
     #let y = soln.map(v => v.at(1))
     #let z = soln.map(v => v.at(2))
 
-    #import "@preview/plotsy-3d:0.1.0": plot-3d-parametric-curve
+    #import "@preview/plotsy-3d:0.2.0": plot-3d-parametric-curve
 
     #let xfunc(t) = x.at(int(t))
     #let yfunc(t) = y.at(int(t))
@@ -294,16 +294,16 @@ As you may have noticed in the above definition, phase space is not limited to t
         yfunc,
         zfunc,
         subdivisions: 1, //number of line segments per unit
-        scale_dim: (0.01, 0.01, 0.01), // relative and global scaling
+        scale-dim: (0.01, 0.01, 0.01), // relative and global scaling
         tdomain: (0, steps),
         // axis_step: (5,5,5), // adjust distance between x, y, z number labels
-        dot_thickness: 0.02em,
-        front_axis_thickness: 0.0em,
-        rear_axis_dot_scale: (0.08, 0.08),
-        rear_axis_text_size: 0.5em,
-        // axis_label_size: 1.5em,
-        rotation_matrix: ((-.5, 1, 4), (0, -1, 1)),
-        axis_label_offset: (1, .6, .5),
+        dot-thickness: 0.02em,
+        front-axis-thickness: 0.0em,
+        rear-axis-dot-scale: (0.08, 0.08),
+        rear-axis-text-size: 0.5em,
+        //axis-label-size: 1.5em,
+        rotation-matrix: ((-.5, 1, 4), (0, -1, 1)),
+        axis-label-offset: (1, .6, .5),
         // matrix transform-rotate-dir() from cetz
       ),
     )
