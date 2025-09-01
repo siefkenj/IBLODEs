@@ -604,6 +604,7 @@
 /// - questions ( ((statement: content, solution: content | none, citation: content | none),) ): A list of questions (possibly with solutions).
 #let exercises(questions, module_number: 0) = {
   [== Practice Problems]
+  counter(footnote).update(0)
   columns(
     2,
     questions
