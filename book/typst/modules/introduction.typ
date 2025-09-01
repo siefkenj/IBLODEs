@@ -1,6 +1,18 @@
 #let cc_by_sa = box(width: 3em, place(dy: -.85em, image("../images/by-sa.svg", height: 1em)))
 #let copyright = [_#sym.copyright Galvão-Sousa & Siefken, 2025 #cc_by_sa _]
 
+#{
+  show: align.with(center)
+  set text(size: 24pt, weight: "bold")
+  [Differential Equations]
+  parbreak()
+  set text(size: 14pt, weight: "regular")
+  [#copyright]
+  linebreak()
+  set text(size: 10pt, weight: "light")
+  [Creative Commons Attribution-ShareAlike 4.0 International License]
+}
+
 = About this Book
 == For the student
 
@@ -31,18 +43,17 @@ https://github.com/siefkenj/IBLODEs
 
 This book was designed for a one-semester introductory differential equations course in the second
 year with a focus on modelling and simulation (MAT244 at the University of Toronto). It has not been
-designed for a proofs-based course nor a "learn 5 methods to solve specific
-ODEs"-course.
+designed for a proofs-based course nor a "learn 5 methods to solve specific ODEs"-course.
 
 The book leans heavily on simulation via Euler's method. It's main thrust is the analysis of the
 equilibria of non-linear first-order systems of differential equations via studying linear/affine
 approximations to said systems. These tools are then applied to higher-order differential equations.
 
-Theorems about existence and uniqueness aren't emphasized in this book.
-Since most ordinary differential equations have solutions and cases of
-non-uniqueness are often contrived, this
-text opts to motivate the question of existence and uniqueness via a brief introduction to boundary value
-problems. We then state a Theorem on the existence and uniqueness of solution for initial value problems without going into details.
+Theorems about existence and uniqueness aren't emphasized in this book. Since most ordinary
+differential equations have solutions and cases of non-uniqueness are often contrived, this text
+opts to motivate the question of existence and uniqueness via a brief introduction to boundary value
+problems. We then state a Theorem on the existence and uniqueness of solution for initial value
+problems without going into details.
 // (But, instead of answering the very hard question of conditions for the existence and
 // uniqueness of solutions to boundary value problems, we state the standard theorems for initial value problems.)
 
@@ -72,8 +83,8 @@ A typical class day looks like:
   also time for the instructor to ensure that everyone has understood the main point of the exercise
   (since it is sometimes easy to miss the point!).
 
-  If students are having trouble, the instructor can give hints and additional guidance to ensure the
-  students’ struggle is productive.
+  If students are having trouble, the instructor can give hints and additional guidance to ensure
+  the students’ struggle is productive.
 
 
 + *Repeat step 3.*
@@ -138,5 +149,6 @@ were incorporated from the creative-commons licensed book _Linear Algebra_ by Ja
 
 This book is a collaborative effort. The following people have contributed to its creation:
 #quote(block: true)[
+  Rui Geng,
   Jake Zimmermann
 ]
