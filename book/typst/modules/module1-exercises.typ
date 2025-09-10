@@ -137,6 +137,19 @@
     ],
   )
 
+  let M1 = [
+    Recall the model $MM_1$ defined by:
+    - $P_1(0) = 10$
+    - $P_1(t + 1) = P_1(t) + K P_1(t)$ for $t >= 0$ years and $K = 1.1$.
+  ]
+
+  let MInf = [
+    Define the model $MM_infty$ by:
+    - $P(0) = 10$
+    - $P'(t) = k P(t)$.
+  ]
+
+
   book_only(pagebreak())
   question(
     slide[
@@ -149,17 +162,6 @@
       // Define the model $MM_infty$ by:
       // - $P(0) = 10$
       // - $P'(t) = k P(t)$.
-      #let M1 = [
-        Recall the model $MM_1$ defined by:
-        - $P_1(0) = 10$
-        - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
-      ]
-
-      #let MInf = [
-        Define the model $MM_infty$ by:
-        - $P(0) = 10$
-        - $P'(t) = k P(t)$.
-      ]
 
       #book_only(
         // In book mode, put the models side by side
@@ -200,17 +202,17 @@
   book_only(pagebreak())
   question(
     slide[
-      #let M1 = [
-        Recall the model $MM_1$ defined by:
-        - $P_1(0) = 10$
-        - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
-      ]
+      // #let M1 = [
+      //   Recall the model $MM_1$ defined by:
+      //   - $P_1(0) = 10$
+      //   - $P_1(t + 1) = P_1(t) + K P_1(t)$ for $t >= 0$ years and $K = 1.1$.
+      // ]
 
-      #let MInf = [
-        Define the model $MM_infty$ by:
-        - $P(0) = 10$
-        - $P'(t) = k P(t)$.
-      ]
+      // #let MInf = [
+      //   Define the model $MM_infty$ by:
+      //   - $P(0) = 10$
+      //   - $P'(t) = k P(t)$.
+      // ]
 
       #book_only(
         // In book mode, put the models side by side
