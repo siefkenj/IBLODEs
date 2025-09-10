@@ -164,7 +164,7 @@
               align: bottom + left,
               pad(x: 0.2em, y: .0em)[
                 #set text(colors.at(1))
-                $Delta=0.2$
+                $Delta=0.1$
               ],
             ),
             lq.plot(
