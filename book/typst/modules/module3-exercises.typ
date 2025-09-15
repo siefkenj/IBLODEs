@@ -38,7 +38,7 @@
         F'(t) &= (B_F - D_F) dot F(t) \
         R'(t) &= (B_R - D_R) dot R(t)
       $
-      where $B_{?}$ stands for births and $D_{?}$ stands for deaths.
+      where $B_(space.thin ?)$ stands for births and $D_(space.thin ?)$ stands for deaths.
 
       We will assume:
       #aligned_terms(
