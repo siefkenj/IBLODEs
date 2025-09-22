@@ -72,22 +72,6 @@
   )
 
   book_only(pagebreak())
-  question(
-    slide[
-
-      #slides_only(show_def("equilibrium_classification_informal"))
-
-      Recall the starfish population model #OO given by
-      $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $
-      Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
-
-      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or unstable.
-      + Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
-
-    ],
-  )
-
-  book_only(pagebreak())
   question({
     slides_only(
       slide(force_scale: 0.75em)[
@@ -110,6 +94,22 @@
       + Could $f$ be stable but _not_ attracting?
     ]
   })
+
+  book_only(pagebreak())
+  question(
+    slide[
+
+      #slides_only(show_def("equilibrium_classification_informal"))
+
+      Recall the starfish population model #OO given by
+      $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $
+      Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
+
+      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or unstable.
+      + Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
+
+    ],
+  )
 
   book_only(pagebreak())
   question(
