@@ -1,6 +1,6 @@
 #import "../libs/_workbook.typ": aligned_terms, label_core_exercise
 #import "@preview/lilaq:0.4.0" as lq
-#import "../libs/_graphics.typ": vector_field, slope_field
+#import "../libs/_graphics.typ": slope_field, vector_field
 #import "@preview/tiptoe:0.3.1"
 
 #let MM = $upright(bold("M"))$
@@ -31,8 +31,8 @@
         ],
       )
 
-      Three dimensional slope fields are possible, but hard to interpret.
-      This is a slope field for the Foxes--Rabbits model.
+      Three dimensional slope fields are possible, but hard to interpret. This is a slope field for
+      the Foxes--Rabbits model.
 
 
       + What are the three dimensions in the plot?
@@ -79,10 +79,11 @@
 
 
       + What do the $x$ and $y$ axes correspond to?
-      + Identify the equilibria in the phase portrait. What are the lengths of the vectors at those points?
+      + Identify the equilibria in the phase portrait. What are the lengths of the vectors at those
+        points?
       + Classify each equilibrium as stable/unstable.
-      + Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the resulting
-        curve fit with the picture?
+      + Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the
+        resulting curve fit with the picture?
       // + Why is the vector at $(5,100)$ longer than the vector at $(10,100)$? Justify numerically.
 
 
@@ -99,22 +100,24 @@
       // % Without Euler's built in:
       // % https://www.desmos.com/calculator/vrk0q4espx
 
-      The unknown (continuous) system of differential equations $x'=...$, $y'=...$ has an 
-      _attracting_ equilibrium solution $
-      x_"eq" (t)&=2\
-      y_"eq" (t)&=4
+      The unknown (continuous) system of differential equations $x'=...$, $y'=...$ has an
+      _attracting_ equilibrium solution
+      $
+        x_"eq" (t) & =2 \
+        y_"eq" (t) & =4
       $
 
-      + 
-       + Sketch component graphs for the equilibrium solution.
-       + Sketch the equilibrium in _phase space_.
-      + Suppose $(x(t),y(t))$ is a solution that satisfies $(x(0), y(0))=(3,3)$. Sketch a 
-        possible graph for this solution. Make sketches in both component and phase spaces.
-      + Draw a possible phase portrait for this system that agrees with your answer to the previous parts.
+      +
+        + Sketch component graphs for the equilibrium solution.
+        + Sketch the equilibrium in _phase space_.
+      + Suppose $(x(t),y(t))$ is a solution that satisfies $(x(0), y(0))=(3,3)$. Sketch a possible
+        graph for this solution. Make sketches in both component and phase spaces.
+      + Draw a possible phase portrait for this system that agrees with your answer to the previous
+        parts.
       + Sketch a phase portrait for a _new_ system of differential equations that has a repelling
         equilibrium solution.
-      + Sketch a phase portrait for a _new_ system of differential equations that has no
-        equilibrium solutions.
+      + Sketch a phase portrait for a _new_ system of differential equations that has no equilibrium
+        solutions.
 
     ],
   )
@@ -144,7 +147,8 @@
 
       + What would a phase portrait for model $OO$ look like? Draw it.
       + Where are the arrows the longest? Shortest?
-      + How could you tell from a 1d phase portrait whether an equilibrium solution is attracting/repelling/etc.?
+      + How could you tell from a 1d phase portrait whether an equilibrium solution is
+        attracting/repelling/etc.?
     ],
   )
 
@@ -156,16 +160,15 @@
       // Completed phase portrait in desmos:
       // https://www.desmos.com/calculator/tvjag852ja
 
-      The following differential equation models the life cycle of a tree.
-      In the model
+      The following differential equation models the life cycle of a tree. In the model
 
       - $H(t) =$ height (in meters) of tree trunk at time $t$
       - $A(t) =$ surface area (in square meters) of all leaves at time $t$
 
 
       $
-        H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
-        A'(t) &= -0.3 dot.c (H(t))^2 + A(t)
+        H'(t) & = 0.3 dot.c A(t)-b dot.c H(t) \
+        A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
       $
 
       and $0 lt.eq b lt.eq 2$.
@@ -189,16 +192,15 @@
 
       #slides_only(
         block[
-          The following differential equation models the life cycle of a tree.
-          In the model
+          The following differential equation models the life cycle of a tree. In the model
 
           - $H(t) =$ height (in meters) of tree trunk at time $t$
           - $A(t) =$ surface area (in square meters) of all leaves at time $t$
 
 
           $
-            H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
-            A'(t) &= -0.3 dot.c (H(t))^2 + A(t)
+            H'(t) & = 0.3 dot.c A(t)-b dot.c H(t) \
+            A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
           $
 
           and $0 lt.eq b lt.eq 2$.
@@ -206,8 +208,8 @@
       )
 
 
-      + Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial conditions.
-        Plot the results on your phase portrait from @ex:tree_model_part1[].
+      + Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial
+        conditions. Plot the results on your phase portrait from @ex:tree_model_part1[].
       + What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
       + What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
 
@@ -223,28 +225,31 @@
     slide[
       The tree model
       $
-        H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
-        A'(t) &= -0.3 dot.c (H(t))^2 + A(t)
+        H'(t) & = 0.3 dot.c A(t)-b dot.c H(t) \
+        A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
       $
 
       was based on the premises
 
       #aligned_terms(
-        terms.item($("P"_("height 1"))$, [$"CO"_2$ is absorbed by the leaves and turned directly into trunk height.]),
+        terms.item($("P"_("height 1"))$, [$"CO"_2$ is absorbed by the leaves and turned directly
+          into trunk height.]),
         terms.item(
           $("P"_("height 2"))$,
           [The tree is in a swamp and constantly sinks at a speed proportional to its height.],
         ),
         terms.item($("P"_("leaves"))$, [Leaves grow proportionality to the energy available.]),
-        terms.item($("P"_("energy 1"))$, [The tree gains energy from the sun proportionally to the leaf area.]),
-        terms.item($("P"_("energy 2"))$, [The tree loses energy proportionally to the square of its height.]),
+        terms.item($("P"_("energy 1"))$, [The tree gains energy from the sun proportionally to the
+          leaf area.]),
+        terms.item($("P"_("energy 2"))$, [The tree loses energy proportionally to the square of its
+          height.]),
       )
 
 
       + How are the premises expressed in the differential equations?
       + What does the parameter $b$ represent (in the real world)?
-      + Applying Euler's method to this system shows solutions that pass from the 1st to 4th quadrants of the phase plane.
-        Is this realistic? Describe the life cycle of such a tree?
+      + Applying Euler's method to this system shows that some solutions pass from the 1st to 4th
+        quadrant of the phase plane. Is this realistic? Describe the life cycle of such a tree?
 
     ],
   )
@@ -255,20 +260,20 @@
     slide[
       Recall the tree model
       $
-        H'(t) &= 0.3 dot.c A(t)-b dot.c H(t) \
-        A'(t) &= -0.3 dot.c (H(t))^2 + A(t)
+        H'(t) & = 0.3 dot.c A(t)-b dot.c H(t) \
+        A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
       $
 
       + Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
-      + For which $b$ does a tree have the possibility of living forever? If the wind occasionally blew off a few random leaves,
-        would that change your answer?
+      + For which $b$ does a tree have the possibility of living forever? If the wind occasionally
+        blew off a few random leaves, would that change your answer?
       +
         Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
 
         Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
 
-      + Predict what happens to a tree near equilibrium (but not at equilibrium) when $b=b_5$.
-        What about when $b=b_(12)$.
+      + Predict what happens to a tree near equilibrium (but not at equilibrium) when $b=b_5$. What
+        about when $b=b_(12)$.
     ],
   )
 }
