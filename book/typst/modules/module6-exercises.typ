@@ -114,12 +114,12 @@
       + Rewrite the system in matrix form.
       + Classify the following as solutions or non-solutions to the system.
 
-      $
-        arrow(r)_1(t) & = e^(2t)               & wide wide
-                                                 arrow(r)_2(t) & = mat(e^(2t); 0) \
-        arrow(r)_3(t) & = mat(e^(2t); 4e^(3t)) & arrow(r)_4(t) & = mat(e^(3t); e^(2t)) \
-        arrow(r)_5(t) & = mat(0; 0)
-      $
+        $
+          arrow(r)_1(t) & = e^(2t)               & wide wide
+                                                  arrow(r)_2(t) & = mat(e^(2t); 0) \
+          arrow(r)_3(t) & = mat(e^(2t); 4e^(3t)) & arrow(r)_4(t) & = mat(e^(3t); e^(2t)) \
+          arrow(r)_5(t) & = mat(0; 0)
+        $
 
       + State the definition of an eigenvector for the matrix $M$.
       + What should the definition of an _eigen solution_ be for this system? #label_core_exercise(
