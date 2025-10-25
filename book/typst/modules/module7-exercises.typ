@@ -78,7 +78,7 @@ $ P(t) &= "millions of social media posts at year " t \
  a &in inline([-1/2, 1]) $
 
   + Can you rewrite the system in matrix form? I.e., in the form $arrow(r)'(t) = M arrow(r)(t)$ for some matrix $M$ where $arrow(r)(t) = mat(P(t); U(t))$.
-  + Define $arrow(s)(t) = mat(S_P(t); S_U(t))$ to be the displacement from equilibrium in the *SM* model at time $t$ (provided an equilibrium exists).
+  + Define $arrow(s)(t) = mat(S_P (t); S_U (t))$ to be the displacement from equilibrium in the *SM* model at time $t$ (provided an equilibrium exists).
     + Write $arrow(s)$ in terms of $P$ and $U$.
     + Find $arrow(s)'$ in terms of $P$ and $U$.
     + Find $arrow(s)'$ in terms of $S_P$ and $S_U$.
