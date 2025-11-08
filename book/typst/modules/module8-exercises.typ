@@ -112,7 +112,7 @@
 
   
     + What is the dimension of the space of solutions to $arrow(s)'(t) = M arrow(s)(t)$?
-    + Give a basis for all solutions to $arrow(s)'(t) = M arrow(s)(t)$.
+    + Give a _real_ basis for all solutions to $arrow(s)'(t) = M arrow(s)(t)$.
     + Find a solution satisfying $arrow(s)(0) = mat(1; 3)$.
     + Using what you know, find a general formula for $arrow(r)(t)$.
     + Find a formula for $arrow(r)(t)$ satisfying $arrow(r)(0) = mat(4; 8)$.
