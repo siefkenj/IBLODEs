@@ -159,7 +159,7 @@ $
 $
 Since we have two linearly-independent solutions, we can write the general solution as
 $
-  arrow(r)(t) = P arrow(r)_3(t) + Q arrow(r)_4(t) & = P mat(-cos(2 t); 2 sin(2 t)) + Q mat(cos(2 t); -2 sin(2 t))
+  arrow(r)(t) = P arrow(r)_3(t) + Q arrow(r)_4(t) & = P mat(sin(2 t); 2 cos(2 t)) + Q mat(-cos(2 t); 2 sin(2 t))
 $
 where $P$ and $Q$ are parameters. Here, *as long as we pick $P$ and $Q$ to be real numbers, the
   result will be a real solution*.
@@ -291,8 +291,8 @@ the origin is entirely determined by $e^(a t)$:
 Let $M$ be a $2 times 2$ matrix with eigenvalues $a plus.minus b i$. Then, the matrix equation
 $arrow(r)'(t) = M arrow(r)(t)$ has an equilibrium solution $arrow(r)(t)=arrow(0)$. Further, we can
 express all solutions as linear combinations of eigen solutions. We have determined that eigen
-solutions either head towards or away  (in phase space) from the origin (or stay the same distance from the origin)
-based on $a$, i.e., based on the _real part_ of the eigenvalue.
+solutions either head towards or away (in phase space) from the origin (or stay the same distance
+from the origin) based on $a$, i.e., based on the _real part_ of the eigenvalue.
 
 Thus, we have the following table for determining the stability of the equilibrium solution
 $arrow(r)(t) = arrow(0)$:

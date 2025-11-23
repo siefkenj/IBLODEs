@@ -177,8 +177,8 @@ _first-order approximations_.
     We start by computing the total derivative of $arrow(F)$ at the point $(x,y)$.
     $
       D_(arrow(F))(x,y) & = mat(
-                            (partial (x^2 y)) / (partial x), (partial (y^3 -2)) / (partial y);
-                            (partial (x^2 y)) / (partial x), (partial (y^3 -2)) / (partial y)
+                            (partial (x^2 y)) / (partial x), (partial (x^2 y)) / (partial y);
+                            (partial (y^3 - 2)) / (partial x), (partial (y^3 -2)) / (partial y)
                           ) \
                         & = mat(
                             2 x y, x^2;
