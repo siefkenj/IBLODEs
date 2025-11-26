@@ -209,7 +209,7 @@
 
       The only forces acting on the rope are gravity and tension.
 
-      Similarly to the previous exercise, we can find a vector $arrow(V)_R = mat(1, H'(d + Delta))$ in the direction of $arrow(T)_R$, but with possibly different magnitude.
+      Similarly to the previous exercise, we can find a vector $arrow(V)_R = mat(1; H'(d + Delta))$ in the direction of $arrow(T)_R$, but with possibly different magnitude.
 
       So far we have:
       - $arrow(T)_L = alpha arrow(V)_L$ for some $alpha > 0$, and

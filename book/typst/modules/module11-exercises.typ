@@ -122,7 +122,7 @@
         problem has.
       + Can you find analytic arguments to justify your conclusions?
 
-        Hint: The general solution can be written as
+        _Hint_: The general solution can be written as
         $
           x(t)=A cos t + B sin t " or " x(t) = A cos(t + d)
         $
