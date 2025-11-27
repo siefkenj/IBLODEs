@@ -119,11 +119,11 @@
           [
             $cases(
               (dif S(t))/(dif t) =
-              underline("                 ")\
+              underline("                 "),
               (dif I(t))/(dif t) =
-              underline("                 ")\
+              underline("                 "),
               (dif R(t))/(dif t) =
-              underline("                 ")\
+              underline("                 "),
               (0,S(0),I(0),R(0)) =
               underline("                 ")
             )$\

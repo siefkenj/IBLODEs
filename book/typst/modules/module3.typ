@@ -281,7 +281,7 @@ As you may have noticed in the above definition, phase space is not limited to t
     #let y = soln.map(v => v.at(1))
     #let z = soln.map(v => v.at(2))
 
-    #import "@preview/plotsy-3d:0.2.0": plot-3d-parametric-curve
+    #import "@preview/plotsy-3d:0.2.1": plot-3d-parametric-curve
 
     #let xfunc(t) = x.at(int(t))
     #let yfunc(t) = y.at(int(t))

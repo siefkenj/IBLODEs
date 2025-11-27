@@ -193,8 +193,8 @@
       can be expressed as the matrix
       $
         D_(arrow(F))(arrow(E)) = mat(
-          (diff F_1) / (diff x), (diff F_1) / (diff y);
-          (diff F_2) / (diff x), (diff F_2) / (diff y)
+          (partial F_1) / (partial x), (partial F_1) / (partial y);
+          (partial F_2) / (partial x), (partial F_2) / (partial y)
         )
       $
       evaluated at $arrow(E)$.

@@ -237,7 +237,7 @@ of linearly independent real solutions.
     $
       arrow(r)(t) = -1 mat(sin(1.1 t)/10; cos(1.1 t)) - 10 mat(-cos(1.1 t)/10; sin(1.1 t))
       = mat(
-        -sin(1.1 t)/10 + cos(1.1 t); \
+        -sin(1.1 t)/10 + cos(1.1 t);
         cos(1.1 t) - 10 sin(1.1 t)
       ).
     $

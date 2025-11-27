@@ -222,10 +222,10 @@ is not directly related to the variable $t$.
 To approximate our differential equation, we need to find the total derivative of $arrow(G)$.
 $
   D_(arrow(G))(x,y) = mat(
-    (partial ) / (partial x) space.thin (0.01 x y - 1.1 x), (partial ) / (partial y) space.thin (0.01 x y - 1.1 x); \
+    (partial ) / (partial x) space.thin (0.01 x y - 1.1 x), (partial ) / (partial y) space.thin (0.01 x y - 1.1 x);
     (partial ) / (partial x) space.thin (1.1 y - 0.1 x y), (partial ) / (partial y) space.thin (1.1 y - 0.1 x y)
   ) = mat(
-    0.01 y - 1.1, 0.01 x; \
+    0.01 y - 1.1, 0.01 x;
     -0.1 y, - 0.1 x + 1.1
   )
 $

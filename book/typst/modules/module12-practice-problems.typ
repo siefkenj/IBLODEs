@@ -90,7 +90,7 @@
   (
     statement: [
       Suppose $y' = f(x,y)$ is such that $f(x,1) = 0$ for every $x$, $f$ is continuous and
-      $(diff f)/(diff y)$ exists and is continuous for every $x$ and $y$.
+      $(partial f)/(partial y)$ exists and is continuous for every $x$ and $y$.
       + Guess a solution given the initial condition $y(0) = 1$.
       + Can graphs of two solutions of the equation for different initial conditions ever intersect?
       + Given $y(0) = 0$, what can you say about the solution. In particular, can $y(x) > 1$ for any
@@ -109,7 +109,7 @@
     ],
     solution: [
       Yes a solution exists. The equation is $y' = f(x,y)$ where $f(x,y) = x y$. The function
-      $f(x,y)$ is continuous and $(diff f)/(diff y) = x$, which is also continuous near $(0,0)$. So
+      $f(x,y)$ is continuous and $(partial f)/(partial y) = x$, which is also continuous near $(0,0)$. So
       a solution exists and is unique. (In fact, $y=0$ is the solution.)
     ],
   ),

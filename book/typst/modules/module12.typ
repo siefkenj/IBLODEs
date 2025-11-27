@@ -157,7 +157,7 @@ Of course there is. We have the following theorem, known as Picard's theorem
     // Picard's theorem
   ],
   [
-    If $f(x, y)$ is continuous (as a function of two variables) and $(diff f) / (diff y)$ exists and
+    If $f(x, y)$ is continuous (as a function of two variables) and $(partial f) / (partial y)$ exists and
     is continuous near some $(x_0, y_0)$, then a solution to
 
     $ y' = f(x, y), quad y(x_0) = y_0, $
