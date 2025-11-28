@@ -201,7 +201,7 @@
 
   book_only(pagebreak())
   question(
-    slide(force_scale: 0.78em)[
+    slide(force_scale: 0.75em)[
 
       Consider a rope hanging from two poles.
 
