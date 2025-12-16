@@ -338,7 +338,7 @@ can be classified as follows:
     // real, one positive, one negative
     [Real],
     [One negative, one positive],
-    [Unstable and Repelling],
+    [Unstable],
     table.hline(stroke: .5pt),
     // real, 0 + negative
     [Real],
