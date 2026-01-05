@@ -11,8 +11,8 @@
     solution: [
       + $y(x)=A+x^2/2; A$ is a parameter.
       + $y(x)=A+B x plus.minus x^3/6; A,B$ are parameters.
-      + $y(x)=a_0(1+2x+2x^2+4/3x^3+2/3x^4+4/15x^5+...)$
-      + $y(x)=a_0+a_1x+a_0/6x^3+a_1/12x^4+a_0/180x^6+...$
+      + $y(x)=a_0(1+2x+2x^2+4/3x^3+2/3x^4+4/15x^5+...); a_0$ is a parameter.#v(.7em)
+      + $y(x)=a_0+a_1x+a_0/6x^3+a_1/12x^4+a_0/180x^6+...; a_0,a_1$ are parameters.#v(.7em)
     ],
   ),
   (
