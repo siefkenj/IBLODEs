@@ -338,7 +338,7 @@ showing what happens if we use four tangent lines.
 
 The process of using many tangent lines to iteratively approximate a solution to a differential
 equation is called _Euler's method_, and the resulting approximation is called an _Euler
-  approximation_.
+approximation_.
 
 #show_def("eulers_method")
 
@@ -842,8 +842,8 @@ spreadsheet will automatically recompute the value in all other cells.
 
 == Accuracy of Euler's Method
 
-When using Euler's method, in general, smaller step sizes produce more accurate approximations.
-And, when taking a limit towards an infinitesimally small step size, the approximation converges to an
+When using Euler's method, in general, smaller step sizes produce more accurate approximations. And,
+when taking a limit towards an infinitesimally small step size, the approximation converges to an
 exact solution.#footnote[As long as there is a solution to converge to...]
 
 For example, consider the initial value problem $y'(t) = sin(5 t)$ with $y(0)=0.8$. We can solve

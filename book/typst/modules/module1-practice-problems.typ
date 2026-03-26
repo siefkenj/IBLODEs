@@ -70,8 +70,8 @@
         assumptions that make up Kleiber's Law:
         - (D1) The metabolic rate of animals is proportional to the weight of the animal to the
           power of $3/4$.
-        - (D2) The metabolic rate of an animal is proportional to the daily weight loss of the animal
-          (if they are not eating).
+        - (D2) The metabolic rate of an animal is proportional to the daily weight loss of the
+          animal (if they are not eating).
         Based on Donkey's assumptions, write down a new differential-equations based model
         $
           w'(t) = underline("          ")
@@ -135,7 +135,7 @@
       )
 
       + _Assumption (M1): From 2015 to 2018, every year the population of rural and small town
-          Canada increases by a factor of 1.0059._//Here is an assumption, give F1. Linear make if linear. "Immigration"
+        Canada increases by a factor of 1.0059._//Here is an assumption, give F1. Linear make if linear. "Immigration"
 
         Based on the assumption (M1), find an _explicit_ model for the population of rural and small
         towns in Canada

@@ -144,7 +144,7 @@ For those familiar with careful manipulation of power series, the previous secti
 some eyebrows. After all, differentiating a power series term by term should only be done when the
 series _absolutely convergent_. Yet, in our previous examples, we differentiated abstractly without
 checking any radius of convergence, etc. This is okay because *series solutions are a form of guess
-  and check*.
+and check*.
 
 So far, we have been lax on the checking. Let's try another example where we're more careful.
 

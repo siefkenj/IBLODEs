@@ -78,9 +78,12 @@
 
       Recall from Physics the following laws:
 
-      - (HL) Hooke's Law: For an elastic spring, force is proportional to negative the displacement from equilibrium.
-      - (NL) Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
-      - (ML) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
+      - (HL) Hooke's Law: For an elastic spring, force is proportional to negative the displacement
+        from equilibrium.
+      - (NL) Newton's Second Law: Force is proportional to acceleration (the proportionality
+        constant is called mass).
+      - (ML) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the
+        time derivative of velocity.
 
       // #v(1in)
 
@@ -92,7 +95,8 @@
         + At $t = 0$, what are $x$, $x'$, and $x''$?
         + Modify Euler's method to approximate a solution to the initial value problem.
 
-      + Introduce the auxiliary equation $y = x'$. Can the second-order spring equation be rewritten as a first-order system involving $x'$ and $y'$? If so, do it.
+      + Introduce the auxiliary equation $y = x'$. Can the second-order spring equation be rewritten
+        as a first-order system involving $x'$ and $y'$? If so, do it.
 
       + Simulate the _system_ you found in the previous part using Euler's method.
 
@@ -128,8 +132,10 @@
       where $y = x'$
 
 
-      + Make a phase portrait for system @eq:spring_system[]. What are the axes on the phase portrait? What do you expect general solutions to look like?
-      + Use eigenvalues/eigenvectors to find a general solution to @eq:spring_system[]. (You may use a computer to compute eigenvalues/vectors.)
+      + Make a phase portrait for system @eq:spring_system[]. What are the axes on the phase
+        portrait? What do you expect general solutions to look like?
+      + Use eigenvalues/eigenvectors to find a general solution to @eq:spring_system[]. (You may use
+        a computer to compute eigenvalues/vectors.)
       + Use your solution to @eq:spring_system[] to find a general solution to @eq:spring[].
 
     ],
@@ -142,19 +148,24 @@
       Consider the second-order differential equation
       $ x'' = - (1 + x) dot x' + x^2 - x $
 
-      + Rewrite the second-order differential equation as a system of first-order differential equations. (Hint: you may need to introduce an auxiliary equation.)
+      + Rewrite the second-order differential equation as a system of first-order differential
+        equations. (Hint: you may need to introduce an auxiliary equation.)
 
-      + The following Desmos link plots a phase portrait and draws an Euler approximation on the phase portrait:
+      + The following Desmos link plots a phase portrait and draws an Euler approximation on the
+        phase portrait:
 
         #link("https://www.desmos.com/calculator/fvqxqp6eds")
 
         Use the link to make a phase portrait for your system and answer the following questions:
-        + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ is always increasing?
-        + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ first decreases and then increases?
+        + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ is always
+          increasing?
+        + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ first decreases and
+          then increases?
 
       + Show that $x(t) = 0$ is an equilibrium solution for this equation.
 
-      + Use linearization and eigenvalues to classify the equilibrium $(x, x') = (0, 0)$ in phase space.
+      + Use linearization and eigenvalues to classify the equilibrium $(x, x') = (0, 0)$ in phase
+        space.
 
       + Let $x(t)$ be a solution to the original equation and suppose $x(0) = delta_1 approx 0$.
         + If $x'(0) = delta_2 approx 0$, speculate on the long term behaviour of $x(t)$.

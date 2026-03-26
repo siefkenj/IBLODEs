@@ -36,8 +36,8 @@ no longer a subspace!
 )
 
 The issue is that $arrow(r)'=M arrow(r) + arrow(b)$ is no loner a matrix equation, it is an _affine
-  equation_. Affine equations are matrix equations plus a vector of constants. We will soon see how
-to compensate for the extra "$+ space.thin arrow(b)$".
+equation_. Affine equations are matrix equations plus a vector of constants. We will soon see how to
+compensate for the extra "$+ space.thin arrow(b)$".
 
 == Centering about the Equilibrium
 
@@ -275,8 +275,8 @@ See how one phase portrait is a translate of the other?
 
 
 A word of caution: when there is an equation in front of you, *actually compute the equilibrium
-  solution(s)* since they may not be easy to directly read off from the equation. For example, with
-an equation like $arrow(r)' = M arrow(r) + arrow(p)$, it is tempting to claim that $arrow(p)$ is an
+solution(s)* since they may not be easy to directly read off from the equation. For example, with an
+equation like $arrow(r)' = M arrow(r) + arrow(p)$, it is tempting to claim that $arrow(p)$ is an
 equilibrium solution. In all likelihood, *it is not*! (It is actually $-M^(-1) arrow(p)$.)
 
 == The Superposition Principle

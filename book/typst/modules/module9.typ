@@ -281,7 +281,7 @@ Comparing phase portraits, we see they are quite similar *near the point $(F,R)=
 === Linearized Solutions vs. True Solutions
 
 Solutions to a linearized system closely approximate solutions to the original system _when the
-  values of the solution are near to the point of linearization_.
+values of the solution are near to the point of linearization_.
 
 Continuing with the Fox-and-Rabbit example, let's focus on the linearization near
 $(F, R)=(11, 110)$. We have the original model
@@ -396,15 +396,15 @@ systems.
 }
 
 In the figures, you can see that as the initial conditions get closer to $(F,R)=(10,110)$ (where we
-centered our approximation), the solution to the linearized system (the solid curve) matches more and
-more closely to the solution to the original system (the dashed curve).#footnote[You might wonder if
-  the reduction in error is meaningful. Since as $(F,R) arrow (10, 110)$, solutions look more and
-  more constant, there is less oscillation overall when initial conditions are close to $(10, 110)$.
-  Thus, we would expect approximations (provided that they also oscillate less) to more closely
-  match the original system. This is certainly true and is an observation about _absolute error_.
-  However, if you pay attention to the scale on the axes of the figures, you see that the _relative
-    error_ is decreasing. That is, even if you zoom in (negating the lessening of oscillations), the
-  approximation still more closely matches the true solution.]
+centered our approximation), the solution to the linearized system (the solid curve) matches more
+and more closely to the solution to the original system (the dashed curve).#footnote[You might
+  wonder if the reduction in error is meaningful. Since as $(F,R) arrow (10, 110)$, solutions look
+  more and more constant, there is less oscillation overall when initial conditions are close to
+  $(10, 110)$. Thus, we would expect approximations (provided that they also oscillate less) to more
+  closely match the original system. This is certainly true and is an observation about _absolute
+  error_. However, if you pay attention to the scale on the axes of the figures, you see that the
+  _relative error_ is decreasing. That is, even if you zoom in (negating the lessening of
+  oscillations), the approximation still more closely matches the true solution.]
 
 == Classifying Equilibria Using Linearization
 

@@ -395,8 +395,8 @@
         equation.
       + Use this graph approximate the half-life of the sample.
       + Repeat parts (b) and (c) multiple times with different $Delta$s that you choose in order to
-        write down as good an approximation to the actual half-life as you can. (Accurate up to
-        at least $3$ decimal places.)
+        write down as good an approximation to the actual half-life as you can. (Accurate up to at
+        least $3$ decimal places.)
     ],
     solution: [
       + Way 1 is good
@@ -406,13 +406,13 @@
   (
     statement: [
       /* A word question.*/
-      A pilot of a fighter plane in the Air Force is given by her commanding officer the differential
-      equation $w' = |60 sin(h/2.4)|$, where $w'$ is the speed in $"km"/"hr"$ of the wind west at
-      that a given height $h$ in $"km"$ from sea level. From experience and protocol, she knows that
-      when she flies her fighter, her change in height will be proportional to the wind west speed,
-      until she is given orders to take action otherwise. Historically, the constant of
-      proportionality between the wind speed and her rate of ascent has been $1.2$ in similar
-      conditions. She will be beginning her journey $0.5 "km"$ above sea level.
+      A pilot of a fighter plane in the Air Force is given by her commanding officer the
+      differential equation $w' = |60 sin(h/2.4)|$, where $w'$ is the speed in $"km"/"hr"$ of the
+      wind west at that a given height $h$ in $"km"$ from sea level. From experience and protocol,
+      she knows that when she flies her fighter, her change in height will be proportional to the
+      wind west speed, until she is given orders to take action otherwise. Historically, the
+      constant of proportionality between the wind speed and her rate of ascent has been $1.2$ in
+      similar conditions. She will be beginning her journey $0.5 "km"$ above sea level.
       + Given conditions that the pilot is understanding, write down a differential equation that
         describes the rate of her ascent as a function of the height that she is at currently.
       + With $Delta = 0.1 "hr"$ and going up to at least $t = 20"hr"$, use Euler's method to produce

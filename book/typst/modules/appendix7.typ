@@ -1,26 +1,27 @@
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": workbook, show_def
-#import "../libs/_workbook.typ": simple_table, label_appendix
+#import "../common/settings-book.typ": show_def, workbook
+#import "../libs/_workbook.typ": label_appendix, simple_table
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 #label_appendix(<app:complex>)
 
-In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring the bulk of this appendix.] you will learn:
+In this appendix#footnote[Special thanks to Rhupert Ashmore-Sharpe for authoring the bulk of this
+  appendix.] you will learn:
 - What a complex numbers is,
 - The geometry of complex numbers, and
 - The basics of manipulating complex numbers.
 
 == Preliminaries
 
-The imaginary numbers are built from a special symbol $i$, whose square is
-$i^2 = -1$. An _imaginary_ number is a pure multiple of $i$, like $b i$, where $b$ is real. A
-_complex_ number is a sum of a real and imaginary number, and generally
-looks like $a + b i$. The set of all complex numbers, denoted $CC$, is
+The imaginary numbers are built from a special symbol $i$, whose square is $i^2 = -1$. An
+_imaginary_ number is a pure multiple of $i$, like $b i$, where $b$ is real. A _complex_ number is a
+sum of a real and imaginary number, and generally looks like $a + b i$. The set of all complex
+numbers, denoted $CC$, is
 $
   CC = { a + b i : a, b in RR }.
 $
-To add and multiply complex numbers, you can treat "$i$" like a variable, use the usual rules of arithmetic, and then simplify any occurrences of $i^2$ to $-1$.
-For example,
+To add and multiply complex numbers, you can treat "$i$" like a variable, use the usual rules of
+arithmetic, and then simplify any occurrences of $i^2$ to $-1$. For example,
 $
   (1 + 2 i) + (3 + 4 i) = (1 + 3) + (2 + 4)i = 4 + 6 i
 $
@@ -29,17 +30,15 @@ $
   (1 + 2 i)dot (3 + 4 i) = 3 + 4 i + 6 i + 8 i^2 = (3 - 8) + (4 + 6)i = -5 + 10 i.
 $
 
-If $z = a + b i$, we call $a$ the _real part_ of $z$ and $b$ the _imaginary part_ of $z$. Note: both the real part and the imaginary part of a complex number
-are _real numbers_.
+If $z = a + b i$, we call $a$ the _real part_ of $z$ and $b$ the _imaginary part_ of $z$. Note: both
+the real part and the imaginary part of a complex number are _real numbers_.
 
 == Geometry of the Complex Numbers
 
-The real numbers ($RR$) can be identified with a number
-line. Multiplying by a real number stretches, compresses, or reflects this number line (depending on whether
-the number is greater than 1, less than 1, or negative). For example,
-consider the interval $[1, 2]$. The figure
-on the left shows the effect of multiplication by $-1$ and on the right
-multiplication by $2$:
+The real numbers ($RR$) can be identified with a number line. Multiplying by a real number
+stretches, compresses, or reflects this number line (depending on whether the number is greater than
+1, less than 1, or negative). For example, consider the interval $[1, 2]$. The figure on the left
+shows the effect of multiplication by $-1$ and on the right multiplication by $2$:
 
 #{
   import "@preview/cetz:0.4.0"
@@ -157,9 +156,9 @@ multiplication by $2$:
   )
 }
 
-Just like the real numbers, the complex numbers have a geometric meaning.
-A complex number $1 + 2 i$ can be thought of as a point in the complex plane (with one axis the _real axis_
-and the other axis the _imaginary axis_).
+Just like the real numbers, the complex numbers have a geometric meaning. A complex number $1 + 2 i$
+can be thought of as a point in the complex plane (with one axis the _real axis_ and the other axis
+the _imaginary axis_).
 
 #{
   import "@preview/cetz:0.4.0"
@@ -241,7 +240,8 @@ and the other axis the _imaginary axis_).
   )
 }
 
-If we multiply $1 + 2 i$ by $i$, we get $i dot (1 + 2 i) = i + 2 i^2 = -2 + i$, which geometrically corresponds to a rotation counter-clockwise by 90 degrees.
+If we multiply $1 + 2 i$ by $i$, we get $i dot (1 + 2 i) = i + 2 i^2 = -2 + i$, which geometrically
+corresponds to a rotation counter-clockwise by 90 degrees.
 
 #{
   import "@preview/cetz:0.4.0"
@@ -337,7 +337,8 @@ If we multiply $1 + 2 i$ by $i$, we get $i dot (1 + 2 i) = i + 2 i^2 = -2 + i$, 
 
 
 For a complex number $z = a + b i$, we define the *complex conjugate* as $macron(z) = a - b i$.
-Geometrically, taking the complex conjugate of a complex number reflects it over the real axis. For example, take $z = 2 + 2 i$ and its complex conjugate $macron(z) = 2 - 2 i$.
+Geometrically, taking the complex conjugate of a complex number reflects it over the real axis. For
+example, take $z = 2 + 2 i$ and its complex conjugate $macron(z) = 2 - 2 i$.
 
 #{
   import "@preview/cetz:0.4.0"
@@ -422,18 +423,20 @@ Geometrically, taking the complex conjugate of a complex number reflects it over
   )
 }
 
-If $z = a + b i$, then $z dot macron(z) = a^2 + b^2$, which is a real number.
-The *absolute value* or *modulus* of a complex number $z = a + b i$ is
+If $z = a + b i$, then $z dot macron(z) = a^2 + b^2$, which is a real number. The *absolute value*
+or *modulus* of a complex number $z = a + b i$ is
 $
   |z| = sqrt(a^2 + b^2) = sqrt(z dot macron(z)).
 $
-Here is a list of other nice properties of the complex conjugate (verify these by working out the algebra yourself):
+Here is a list of other nice properties of the complex conjugate (verify these by working out the
+algebra yourself):
 
 - $overline(z^n) = macron(z)^n$ #v(.4em)
 - $overline(z_1 / z_2) = macron(z)_1 / macron(z)_2$ #v(.4em)
 - $overline(z_1 + z_2) = macron(z)_1 + macron(z)_2$
 
-The reciprocal, $1 / z$, of a complex number can be simplified by multiplying the numerator and denominator by $macron(z)$:
+The reciprocal, $1 / z$, of a complex number can be simplified by multiplying the numerator and
+denominator by $macron(z)$:
 
 $
   1 / z = macron(z) / (z macron(z)) = macron(z) / abs(z)^2
@@ -446,18 +449,16 @@ $
 
 == Euler's Formula and Polar Form for Complex Numbers
 
-A complex number written in the form "$a+b i$" is said to be written in _rectangular form_.
-However, similarly to how we can represent any point in the plane in polar coordinates, we
-can also write a complex number in _polar form_. For any complex number $z$,
-there is a real number $r$ and
-angle $theta$ so that
+A complex number written in the form "$a+b i$" is said to be written in _rectangular form_. However,
+similarly to how we can represent any point in the plane in polar coordinates, we can also write a
+complex number in _polar form_. For any complex number $z$, there is a real number $r$ and angle
+$theta$ so that
 $
   z = r (cos(theta) + i sin(theta)).
 $
 
-We call $theta$ the *argument* of $z$ and write $theta = arg(z)$. The number $r$
-is usually positive, but is is not required to be. When it is positive, it
-is equal to $abs(z)$.
+We call $theta$ the *argument* of $z$ and write $theta = arg(z)$. The number $r$ is usually
+positive, but is is not required to be. When it is positive, it is equal to $abs(z)$.
 
 #{
   import "@preview/cetz:0.4.0"
@@ -572,28 +573,30 @@ and it's closely related to polar form.
 
 #show_def("eulers_formula")
 
-Suppose $z_1 = e^(i theta_1)$ and $z_2 = e^(i theta_2)$ are two complex numbers. By the rules of exponents,
-we know
+Suppose $z_1 = e^(i theta_1)$ and $z_2 = e^(i theta_2)$ are two complex numbers. By the rules of
+exponents, we know
 $
   z_1 dot z_2 =
   e^(i theta_1) e^(i theta_2) = e^(i (theta_1 + theta_2)).
 $
-More generally, if $z_1 = r_1 e^(i theta_1)$ and
-$z_2 = r_2 e^(i theta_2)$, then
+More generally, if $z_1 = r_1 e^(i theta_1)$ and $z_2 = r_2 e^(i theta_2)$, then
 $
   z_1 z_2 = r_1 r_2 e^(i (theta_1 + theta_2)) .
 $
 
-This shows that when two complex numbers are multiplied, their angles are added adn their moduli are multiplied. (If $theta = 0$ or $pi$, then the complex number is real;
-test your intuition to make sure this formula does what you think for real numbers.)
+This shows that when two complex numbers are multiplied, their angles are added adn their moduli are
+multiplied. (If $theta = 0$ or $pi$, then the complex number is real; test your intuition to make
+sure this formula does what you think for real numbers.)
 
 == Applying Complex Numbers
 
-When solving quadratics $a x^2 + b x +c=0$, we have a general solution in terms of the quadratic formula:
+When solving quadratics $a x^2 + b x +c=0$, we have a general solution in terms of the quadratic
+formula:
 $
   x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2 a).
 $
-If $b^2-4 a c < 0$, there is no real solution to the equation, however, there is _always_ a complex solution.
+If $b^2-4 a c < 0$, there is no real solution to the equation, however, there is _always_ a complex
+solution.
 
 #example(
   prompt: [
@@ -611,18 +614,19 @@ In fact, all non-constant polynomials have roots in the complex numbers.
 #theorem(
   title: "Fundamental Theorem of Algebra",
   [
-    Every non-constant polynomial with complex coefficients has roots in the complex plane and the sum of the multiplicity of those
-    roots is equal to the degree of the polynomial.
+    Every non-constant polynomial with complex coefficients has roots in the complex plane and the
+    sum of the multiplicity of those roots is equal to the degree of the polynomial.
   ],
 )
 
-Because of the Fundamental Theorem of Algebra, complex numbers are useful in situations involving polynomials, like eigenvalue/eigenvector problems
-in linear algebra.
+Because of the Fundamental Theorem of Algebra, complex numbers are useful in situations involving
+polynomials, like eigenvalue/eigenvector problems in linear algebra.
 
 #example(
   prompt: [Find all eigenvalues and eigenvectors of $M=mat(0, -1; 1, 0)$],
   [
-    Computing $det(M- lambda I) = lambda^2+1=0$, we see the eigenvalues of $M$ are $lambda=plus.minus i$.
+    Computing $det(M- lambda I) = lambda^2+1=0$, we see the eigenvalues of $M$ are
+    $lambda=plus.minus i$.
 
     To find the eigenvectors corresponding to $lambda =i$, we compute
     $
@@ -630,9 +634,12 @@ in linear algebra.
     $
     Thus, the eigenvectors corresponding to $lambda = i$ are non-zero multiples of $mat(1; -i)$.
 
-    Similarly, the eigenvectors corresponding to $lambda = -i$ are non-zero multiples of $mat(1; i)$.
+    Similarly, the eigenvectors corresponding to $lambda = -i$ are non-zero multiples of
+    $mat(1; i)$.
   ],
 )
 
-Note, when dealing with complex matrices, it can be more difficult to spot by eye when two vectors are linearly dependent. For example,
-${mat(-2; -1), mat(-1, -2)}$ is a linearly _independent_, but the set ${mat(-i; -1), mat(-1; -i)}$ is linearly _dependent_. (Verify this yourself by row reducing!)
+Note, when dealing with complex matrices, it can be more difficult to spot by eye when two vectors
+are linearly dependent. For example, ${mat(-2; -1), mat(-1, -2)}$ is a linearly _independent_, but
+the set ${mat(-i; -1), mat(-1; -i)}$ is linearly _dependent_. (Verify this yourself by row
+reducing!)

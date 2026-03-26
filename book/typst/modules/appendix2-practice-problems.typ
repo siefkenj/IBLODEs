@@ -59,12 +59,15 @@
   ),
   (
     statement: [
-      Find an explicit solution for $y' = y e^(-x^2)$, $y(0) = 1$. It is alright to leave a definite integral in your answer.
+      Find an explicit solution for $y' = y e^(-x^2)$, $y(0) = 1$. It is alright to leave a definite
+      integral in your answer.
     ],
   ),
   (
     statement: [
-      Suppose a cup of coffee is at 100 degrees Celsius at time $t = 0$, it is at 70 degrees at $t = 10$ minutes, and it is at 50 degrees at $t = 20$ minutes. Compute the ambient temperature.
+      Suppose a cup of coffee is at 100 degrees Celsius at time $t = 0$, it is at 70 degrees at
+      $t = 10$ minutes, and it is at 50 degrees at $t = 20$ minutes. Compute the ambient
+      temperature.
     ],
   ),
   (
@@ -87,7 +90,7 @@
     statement: [
       Find an implicit solution for $x' = 1/(3 x^2 + 1)$, $x(0) = 1$.
     ],
-    solution : [
+    solution: [
       The solution is $x^3 + x = t + 2$.
     ],
   ),
@@ -109,18 +112,25 @@
   ),
   (
     statement: [
-      Take the coffee example from #ref(<ex_coffee>, form: "page") with the same numbers: 89 degrees at $t = 0$, 85 degrees at $t = 1$, and ambient temperature of 22 degrees. Suppose these temperatures were measured with precision of $plus.minus 0.5$ degrees. Given this imprecision, the time it takes the coffee to cool to (exactly) 60 degrees is also only known in a certain range. Find this range. Hint: Think about what kind of error makes the cooling time longer and what shorter.
+      Take the coffee example from #ref(<ex_coffee>, form: "page") with the same numbers: 89 degrees
+      at $t = 0$, 85 degrees at $t = 1$, and ambient temperature of 22 degrees. Suppose these
+      temperatures were measured with precision of $plus.minus 0.5$ degrees. Given this imprecision,
+      the time it takes the coffee to cool to (exactly) 60 degrees is also only known in a certain
+      range. Find this range. Hint: Think about what kind of error makes the cooling time longer and
+      what shorter.
     ],
     solution: [
       The range is approximately 7.45 to 12.15 minutes.
     ],
   ),
- (
+  (
     statement: [
-      A population $x$ of rabbits on an island is modeled by $x' = x - (1/1000) x^2$, where the independent variable is time in months. At time $t = 0$, there are 40 rabbits on the island.
+      A population $x$ of rabbits on an island is modeled by $x' = x - (1/1000) x^2$, where the
+      independent variable is time in months. At time $t = 0$, there are 40 rabbits on the island.
 
-        + Find the solution to the equation with the initial condition.
-        + How many rabbits are on the island in 1 month, 5 months, 10 months, 15 months (round to the nearest integer).
+      + Find the solution to the equation with the initial condition.
+      + How many rabbits are on the island in 1 month, 5 months, 10 months, 15 months (round to the
+        nearest integer).
     ],
     solution: [
       + $x = (1000 e^t)/(e^t + 24)$.

@@ -367,7 +367,7 @@ Combined with our previous result, we now have the following theorem.
 In this text, we will only consider matrix differential equations where the matrix is
 diagonalizable, but the above theorem also holds when $M$ is _not_ diagonalizable. The proof relies
 on finding a basis of solutions, some of which are not eigen solutions, though the study of _Jordan
-  forms_. In this text we do not worry about the general solution to non-diagonalizable matrix
+forms_. In this text we do not worry about the general solution to non-diagonalizable matrix
 equations.
 
 

@@ -1,5 +1,5 @@
 #import "@preview/lilaq:0.4.0" as lq
-#import "../libs/_workbook.typ": aligned_terms, simple_table, label_core_exercise
+#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
 #import "../libs/_ode_solvers.typ": solve_1d_ivp
 
 #let MM = $upright(bold("M"))$
@@ -52,44 +52,45 @@
       #align(
         center,
         stack(
-          dir:ltr,
+          dir: ltr,
           spacing: 1em,
-        simple_table(
-          headers: ([Time], [Pop. ($Delta = 0.1$)]),
-          content: (
-            [0.0],
-            [10],
-            [0.1],
-            [11.1],
-            [0.2],
-            [12.321],
-            [0.3],
-            [13.67631],
-            [0.4],
-            [15.1807041],
+          simple_table(
+            headers: ([Time], [Pop. ($Delta = 0.1$)]),
+            content: (
+              [0.0],
+              [10],
+              [0.1],
+              [11.1],
+              [0.2],
+              [12.321],
+              [0.3],
+              [13.67631],
+              [0.4],
+              [15.1807041],
+            ),
           ),
-        ),
-        simple_table(
-          headers: ([Time], [Pop. ($Delta = 0.2$)]),
-          content: (
-            [0.0],
-            [10],
-            [0.2],
-            [12.2],
-            [0.4],
-            [14.884],
-            [0.6],
-            [18.15848],
-            [0.8],
-            [22.1533456],
+          simple_table(
+            headers: ([Time], [Pop. ($Delta = 0.2$)]),
+            content: (
+              [0.0],
+              [10],
+              [0.2],
+              [12.2],
+              [0.4],
+              [14.884],
+              [0.6],
+              [18.15848],
+              [0.8],
+              [22.1533456],
+            ),
           ),
-        )
         ),
       )
 
       #slides_only(colbreak())
       + Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?
-      + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What does the graph show?
+      + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What
+        does the graph show?
 
         #v(.7cm)
       + What $Delta$s give the largest estimate for the population at time $t$?
@@ -203,7 +204,8 @@
         )
 
         #enum.item(1)[Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?]
-        + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What does the graph show?
+        + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What
+          does the graph show?
 
           #v(.7cm)
         + What $Delta$s give the largest estimate for the population at time $t$?
@@ -223,17 +225,19 @@
         terms.item(MM, [\# new children per year $~$ current population.]),
         terms.item(
           NN,
-          [\# new children per year $~$ current population times resources available per individual.],
+          [\# new children per year $~$ current population times resources available per
+            individual.],
         ),
         terms.item(
           OO,
-          [\# new children per year $~$ current population times the fraction of total resources remaining.],
+          [\# new children per year $~$ current population times the fraction of total resources
+            remaining.],
         ),
       )
 
-      + Model $NN$ introduces the concept of "resources available per individual". 
-       + Come up with a definition/notation/assumptions for this concept.
-       + Create a differential equation for model $NN$.
+      + Model $NN$ introduces the concept of "resources available per individual".
+        + Come up with a definition/notation/assumptions for this concept.
+        + Create a differential equation for model $NN$.
       + Repeat the modelling process for model $OO$.
       + Simulate population vs. time curves for each model.
 
@@ -244,22 +248,25 @@
   question(slide[
     Recall the models
 
-      #aligned_terms(
-        terms.item(MM, [\# new children per year $~$ current population.]),
-        terms.item(
-          NN,
-          [\# new children per year $~$ current population times resources available per individual.],
-        ),
-        terms.item(
-          OO,
-          [\# new children per year $~$ current population times the fraction of total resources remaining.],
-        ),
-      )
+    #aligned_terms(
+      terms.item(MM, [\# new children per year $~$ current population.]),
+      terms.item(
+        NN,
+        [\# new children per year $~$ current population times resources available per individual.],
+      ),
+      terms.item(
+        OO,
+        [\# new children per year $~$ current population times the fraction of total resources
+          remaining.],
+      ),
+    )
 
-    + Determine which population grows fastest in the short term and which grows fastest in the long term.
+    + Determine which population grows fastest in the short term and which grows fastest in the long
+      term.
     + Are some models more sensitive to your choice of $Delta$ when simulating?
-    + Are your simulations for each model consistently underestimates? Overestimates? Do any results surprise you?
-   ])
+    + Are your simulations for each model consistently underestimates? Overestimates? Do any results
+      surprise you?
+  ])
 
   //book_only(pagebreak())
   //question(slide[ ])

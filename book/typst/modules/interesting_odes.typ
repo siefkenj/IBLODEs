@@ -9,7 +9,17 @@
 #let infty = math.infinity
 
 #let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def, theorem) = env
+  let (
+    sans,
+    serif,
+    slide,
+    restrict,
+    question,
+    definition,
+    solution: _solution,
+    show_def,
+    theorem,
+  ) = env
   let slides_only = restrict.with(when: ("slides", "slides-solutions"))
   let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
   let guide_only = restrict.with(when: "guide")
@@ -181,19 +191,23 @@
 
       We will consider the following premises and physics laws:
       - ($P_D$) The linear density of the rope is constant: $rho$ kg/m
-      - ($P_G$) Gravity pulls downwards in proportion to mass (the proportionality constant is called $g$)
+      - ($P_G$) Gravity pulls downwards in proportion to mass (the proportionality constant is
+        called $g$)
       - ($P_T$) Tension pulls tangentially to the rope
       // - (S) The rope is not moving (it is stationary)
-      - ($P_(N L)$) Newton's First Law: a body at rest will remain at rest unless it is acted upon by a force
+      - ($P_(N L)$) Newton's First Law: a body at rest will remain at rest unless it is acted upon
+        by a force
       // - (NL) Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
       // - (ML) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
 
-      To model the rope, imagine it is made of *small rigid rods*.
-      We will focus on one such rod, $S$, (drawn in the figure) from $d$ to $d + Delta$.
+      To model the rope, imagine it is made of *small rigid rods*. We will focus on one such rod,
+      $S$, (drawn in the figure) from $d$ to $d + Delta$.
 
-      + Given ($P_(N L)$), find a relation between the force vectors $arrow(T)_L$, $arrow(T)_R$, $arrow(F)_g$.
+      + Given ($P_(N L)$), find a relation between the force vectors $arrow(T)_L$, $arrow(T)_R$,
+        $arrow(F)_g$.
       + Approximate the length of the segment #SS and its mass. Approximate the vector $arrow(F)_g$.
-      + Find a vector $arrow(V)_L$ in the direction of $arrow(T)_L$ (the magnitude doesn't matter at this point).
+      + Find a vector $arrow(V)_L$ in the direction of $arrow(T)_L$ (the magnitude doesn't matter at
+        this point).
 
     ],
   )
@@ -209,13 +223,15 @@
 
       The only forces acting on the rope are gravity and tension.
 
-      Similarly to the previous exercise, we can find a vector $arrow(V)_R = mat(1; H'(d + Delta))$ in the direction of $arrow(T)_R$, but with possibly different magnitude.
+      Similarly to the previous exercise, we can find a vector $arrow(V)_R = mat(1; H'(d + Delta))$
+      in the direction of $arrow(T)_R$, but with possibly different magnitude.
 
       So far we have:
       - $arrow(T)_L = alpha arrow(V)_L$ for some $alpha > 0$, and
       - $arrow(T)_R = beta arrow(V)_R$ for some $beta > 0$.
 
-      + Can you find approximations of the vectors $arrow(F)_g$, $arrow(T)_L$, $arrow(T)_R$ that only use $H(d)$, $H'(d)$, and $H''(d)$?
+      + Can you find approximations of the vectors $arrow(F)_g$, $arrow(T)_L$, $arrow(T)_R$ that
+        only use $H(d)$, $H'(d)$, and $H''(d)$?
 
         Hint:
         - $H(d + Delta) approx H(d) + Delta dot H'(d)$,
@@ -243,7 +259,8 @@
       We have the following model for it:
       $ H''(d) = k sqrt(1 + (H'(d))^2) $
 
-      Toronto Hydro is stringing some wire. The posts are 20m apart and at a height of 10m. At the lowest point, the wire is 5m above the ground.
+      Toronto Hydro is stringing some wire. The posts are 20m apart and at a height of 10m. At the
+      lowest point, the wire is 5m above the ground.
 
       + Set up a boundary value problem that can be used to find the total length of the wire.
 
@@ -253,11 +270,11 @@
 
       + It happens that $k = frac(rho g, T)$ where $T$ is the minimum tension in the rope.
 
-        Suppose Toronto Hydro hung the wires so that they were at minimum 9m above the ground.
-        Would the tension be higher or lower? By how much?
+        Suppose Toronto Hydro hung the wires so that they were at minimum 9m above the ground. Would
+        the tension be higher or lower? By how much?
 
-      + Should the difference between maximum and minimum tension
-        be higher or lower for low-hanging wires? What does your intuition say? What does the phase portrait say?
+      + Should the difference between maximum and minimum tension be higher or lower for low-hanging
+        wires? What does your intuition say? What does the phase portrait say?
 
       // The wire has a (linear) density of 1 kg/m and gravity is 9.8 m/s^2.
       // For safety reasons, the wire's tensile strength needs to be 5 times the maximum tension when the wire is resting.
@@ -371,28 +388,33 @@
           stroke: none,
           { pendulum },
           [
-            $theta(t) =$ the angle the pendulum makes with the vertical axis (positive in the counterclockwise direction and negative in the clockwise direction).
+            $theta(t) =$ the angle the pendulum makes with the vertical axis (positive in the
+            counterclockwise direction and negative in the clockwise direction).
           ],
         ),
       )
 
-      Assume the pendulum is composed of a weightless rigid rod of length $1$m and a mass of $1$kg at its end. In
-      addition assume:
+      Assume the pendulum is composed of a weightless rigid rod of length $1$m and a mass of $1$kg
+      at its end. In addition assume:
 
-      - ($P_G$) Gravity pulls downwards in proportion to mass (the proportionality constant is called $g$).
+      - ($P_G$) Gravity pulls downwards in proportion to mass (the proportionality constant is
+        called $g$).
       - ($P_T$) Tension pulls the mass in the direction of the rod.
-      - ($P_(N L)$) Newton's Second Law: Force is proportional to acceleration (the proportionality constant is called mass).
-      - ($P_(M L)$) Laws of Motion: Velocity is the time derivative of displacement and acceleration is the time derivative of velocity.
+      - ($P_(N L)$) Newton's Second Law: Force is proportional to acceleration (the proportionality
+        constant is called mass).
+      - ($P_(M L)$) Laws of Motion: Velocity is the time derivative of displacement and acceleration
+        is the time derivative of velocity.
 
-      + Let $theta(t)$ be the angle at time $t$ and let $arrow(r)(t)$ be the mass's position at time $t$.
+      + Let $theta(t)$ be the angle at time $t$ and let $arrow(r)(t)$ be the mass's position at time
+        $t$.
 
         Find $arrow(r)(t)$ and $arrow(r)''(t)$ in terms of $theta(t)$.
       + Find the vector $arrow(F)_g$.
       + Find a vector $arrow(T)_d$ so that $arrow(T) = alpha arrow(T)_d$ for some $alpha > 0$.
       //	Find the velocity and acceleration vectors for the mass.
       + Find a second-order differential equation for the pendulum.
-        _Hint: ($P_(N L)$) gives you an equation for each coordinate. Solve one for $(theta')^2$ and substitute it into
-          the other equation._
+        _Hint: ($P_(N L)$) gives you an equation for each coordinate. Solve one for $(theta')^2$ and
+        substitute it into the other equation._
       //	Write the differential equation as a system of 1$^{rm st}$-order differential equations.
 
 
@@ -416,7 +438,8 @@
           stroke: none,
           { pendulum },
           [
-            $theta(t) =$ the angle the pendulum makes with the vertical axis (positive in the counterclockwise direction and negative in the clockwise direction).
+            $theta(t) =$ the angle the pendulum makes with the vertical axis (positive in the
+            counterclockwise direction and negative in the clockwise direction).
           ],
         ),
       )
@@ -425,20 +448,24 @@
       $ theta''(t) = - (g / L) sin(theta(t)) $
 
 
-      Let (P) be the corresponding system of first-order differential equations.
-      The following Desmos link is already set up with (P).
+      Let (P) be the corresponding system of first-order differential equations. The following
+      Desmos link is already set up with (P).
 
       #link("https://www.desmos.com/calculator/acmiingcqf")
 
-      + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *small* push, what does the motion look like?
+      + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *small* push,
+        what does the motion look like?
 
-      + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *big* push, what does the motion look like?
+      + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *big* push,
+        what does the motion look like?
 
-      + Why are there infinitely many equilibrium solutions? Based on your physical intuition, which equilibria are stable and which are unstable?
+      + Why are there infinitely many equilibrium solutions? Based on your physical intuition, which
+        equilibria are stable and which are unstable?
 
       + Find an affine approximation to (P) around $(theta, theta') = (0, 0)$.
 
-      + Physicists often claim that $theta(t)$ oscillates like a sine wave with period $2 pi sqrt(L /g)$. Under what conditions are the (mostly) correct?
+      + Physicists often claim that $theta(t)$ oscillates like a sine wave with period
+        $2 pi sqrt(L /g)$. Under what conditions are the (mostly) correct?
 
       // + Show that $theta(t) = k pi$ are equilibrium solutions for all $k in mathbb{Z}$. Analyze its nature using eigen techniques.
       //

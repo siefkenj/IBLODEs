@@ -17,14 +17,15 @@
 
   question(
     slide[
-      You are observing starfish that made their way to a previously uninhabited tide-pool. You’d like to predict
-      the year-on-year population of these starfish.
-      You start with a simple assumption
+      You are observing starfish that made their way to a previously uninhabited tide-pool. You’d
+      like to predict the year-on-year population of these starfish. You start with a simple
+      assumption
       $
         "#new children per year" ~ "size of current population"
       $
 
-      + Come up with a mathematical model for the number of star fish in a given year. Your model should
+      + Come up with a mathematical model for the number of star fish in a given year. Your model
+        should
         - Define any notation (variables and parameters) you use
         - Include at least one formula/equation
         - Explain how your formula/equation relates to the starting assumption
@@ -79,20 +80,23 @@
       $
       + Are $MM_1$ and $MM^*_1$ different models or the same?
         #solution([
-          They are different models. $MM_1$ is a discrete model while $MM^*_1$ is a continuous model. Their values also
-          differ after several steps.
+          They are different models. $MM_1$ is a discrete model while $MM^*_1$ is a continuous
+          model. Their values also differ after several steps.
         ])
       + Which of $MM_1$ or $MM^*_1$ is better?
         #solution([
-          Neither model is intrinsically better than the other. It all depends on what you are trying to learn from the model.
+          Neither model is intrinsically better than the other. It all depends on what you are
+          trying to learn from the model.
         ])
       + List an advantage and a disadvantage for each of $MM_1$ and $MM^*_1$.
         #solution[
-          $MM_1$ is easy to simulate and it is easy to explain where it came from. However,
-          in order to find the population at year $t$, you must first find the population at all previous years.
+          $MM_1$ is easy to simulate and it is easy to explain where it came from. However, in order
+          to find the population at year $t$, you must first find the population at all previous
+          years.
 
-          $MM^*_1$ is easy to compute (provided you have a calculator). It can compute the population at any time without
-          computing the population at all previous times. However, it is harder to explain where it came from.
+          $MM^*_1$ is easy to compute (provided you have a calculator). It can compute the
+          population at any time without computing the population at all previous times. However, it
+          is harder to explain where it came from.
         ]
     ],
   )
@@ -102,11 +106,13 @@
     slide[
       #label_core_exercise(<ex:m_star>)
 
-      In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point during the year.
+      In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point
+      during the year.
 
-      We want to create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$ times per year (at regular intervals).
-      + Let $t_0$, $t_1$, $t_2$, ..., be the times that children are born in model $MM_n$.
-        Find expressions for $t_0$, $t_1$, $t_2$, ....
+      We want to create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$
+      times per year (at regular intervals).
+      + Let $t_0$, $t_1$, $t_2$, ..., be the times that children are born in model $MM_n$. Find
+        expressions for $t_0$, $t_1$, $t_2$, ....
       + Find a (recursive) formula that gives the population for model $MM_n$.
       + Simulate the models $MM_1$, $MM_2$, $MM_3$ in Excel. Which grows fastest?
         #solution[
@@ -114,8 +120,8 @@
         ]
       + What happens to $MM_n$ as $n arrow infinity$? #label_core_exercise(<ex:m_star2>)
         #solution[
-          $MM_n$ continues to increase as $n arrow infty$, however this increase is bounded and $display(lim_(n arrow infty) M_n)$ converges
-          to another model.
+          $MM_n$ continues to increase as $n arrow infty$, however this increase is bounded and
+          $display(lim_(n arrow infty) M_n)$ converges to another model.
         ]
     ],
   )
@@ -128,12 +134,15 @@
       We can rewrite the assumptions of $MM_n$ as follows:
       - At time $t$ there are $P_n (t)$ starfish.
       - $P_n (0) = 10$
-      - During the time interval $(t, t + 1 / n)$ there will be (on average) $K / n$ new children per starfish.
+      - During the time interval $(t, t + 1 / n)$ there will be (on average) $K / n$ new children
+        per starfish.
 
       + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n (t)$.
-      + Write an expression for $Delta P_n$, the change in population from time $t$ to $t + Delta t$.
+      + Write an expression for $Delta P_n$, the change in population from time $t$ to
+        $t + Delta t$.
       + Write an expression for $(Delta P_n) / (Delta t)$.
-      + Write down a differential equation relating $P'(t)$ to $P(t)$ where $P(t) = display(lim_(n arrow infty) P_n (t))$.
+      + Write down a differential equation relating $P'(t)$ to $P(t)$ where
+        $P(t) = display(lim_(n arrow infty) P_n (t))$.
     ],
   )
 
@@ -180,9 +189,11 @@
   book_only(pagebreak())
   question(
     slide[
-      Suppose that the estimates produced by $MM_1$ agree with the actual (measured) population of starfish.
+      Suppose that the estimates produced by $MM_1$ agree with the actual (measured) population of
+      starfish.
 
-      Fill out the table with  #sym.checkmark or #sym.crossmark indicating which models have which properties.
+      Fill out the table with #sym.checkmark or #sym.crossmark indicating which models have which
+      properties.
 
       #let fill_box = book_only(box(width: 5cm, height: 4cm))
       #align(
@@ -250,5 +261,5 @@
     ),
   )
 }
-)
+
 

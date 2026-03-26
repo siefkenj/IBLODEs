@@ -69,8 +69,8 @@ $
 $
 Your friend has a point. Their model is elegant, but your model can predict how many ants pass by at
 minute $3.222$! (Though, your friend would probably complain that $46.654$ is not a number of
-ants#sym.dots.) You and your friend have just come up with two different _mathematical models_ for the
-number of ants that walk across the sidewalk. They happen to make similar predictions for each
+ants#sym.dots.) You and your friend have just come up with two different _mathematical models_ for
+the number of ants that walk across the sidewalk. They happen to make similar predictions for each
 minute; they each have strengths and weaknesses. In this text, we will focus on a third type of
 _mathematical model_---one that uses differential equations at its core.
 
@@ -96,13 +96,15 @@ $A(n) = 2 dot A(n-1)$
 with $A(1) = 10$.
 
 Each model has pros and cons. For example, the explicit model allows you to calculate the number of
-ants at any minute with few button presses on a calculator#footnote([Note that calculator button presses are misleading, since each button press can involve several complicated operations.]), whereas the recursive model is more
-difficult to calculate but makes it clear that the number of ants is doubling every minute.
+ants at any minute with few button presses on a calculator#footnote([Note that calculator button
+  presses are misleading, since each button press can involve several complicated operations.]),
+whereas the recursive model is more difficult to calculate but makes it clear that the number of
+ants is doubling every minute.
 
-Oftentimes recursive models are easier to write down than explicit models#footnote([In fact, in
-  many real-world situations, an explicit model in terms of already known functions doesn't
-  exist.]), but they may be harder to analyze. A third type of model has similarities to both
-explicit and recursive models but adds more by bringing the power of calculus to modelling.
+Oftentimes recursive models are easier to write down than explicit models#footnote([In fact, in many
+  real-world situations, an explicit model in terms of already known functions doesn't exist.]), but
+they may be harder to analyze. A third type of model has similarities to both explicit and recursive
+models but adds more by bringing the power of calculus to modelling.
 - A *differential-equations* model is a model based on a relationship between a function’s
   derivative(s), its values, and an initial condition.
 
@@ -193,8 +195,8 @@ guess-and-check.
     $dif / (dif n) e^n=e^n=k e^n$
     if $k=1$, but it doesn't work for other $k$'s. Trying $e^(k n)$ instead yields
     $dif / (dif n) e^(k n)=k e^(k n)$
-    which holds for all $k$. Thus $A(n)=e^(k n)$ is #underline([a]) solution to $A'(n)=k A(n)$. However, there
-    are other solutions. Because
+    which holds for all $k$. Thus $A(n)=e^(k n)$ is #underline([a]) solution to $A'(n)=k A(n)$.
+    However, there are other solutions. Because
     $dif / (dif n)C e^(k n)=C (k e^(k n))=k(C e^(k n))$
     for every number $C$, the function $A(n)=C e^(k n)$ where $C in RR$ is a solution to
     $A'(n)=k A(n)$.
@@ -350,7 +352,7 @@ differential equations. These include:
   series (e.g., $x(t) = sum_(n=0)^infinity a_n t^n$). (See @app:series_solution)
 
 Unfortunately, despite these techniques, *there is no algorithm for explicitly solving a general
-  differential equation*. But, it is easy to check whether a particular function is a solution to a
+differential equation*. But, it is easy to check whether a particular function is a solution to a
 differential equation, since there _is_ an algorithm to differentiate functions.
 #footnote([
   More specifically, there is an algorithm to differentiate the _elementary_ functions, those

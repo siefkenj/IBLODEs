@@ -33,10 +33,10 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // // ]
 // XXX ADD DIAGRAM
 
-// There's something special about sets that can be expressed as 
+// There's something special about sets that can be expressed as
 // (untranslated) spans. In particular, since a linear combination
 // of linear combinations is still a linear combination, a span
-// is _closed_ with respect to linear combinations. That is, 
+// is _closed_ with respect to linear combinations. That is,
 // by taking linear combinations of vectors in a span, you cannot
 // escape the span. In general, sets that have this property are called
 // _subspaces_.
@@ -48,23 +48,23 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // property (ii) is called being _closed with respect to
 // scalar multiplication_.
 
-// Subspaces generalize the idea of _flat spaces through the origin_. They include 
+// Subspaces generalize the idea of _flat spaces through the origin_. They include
 // lines, planes, volumes and more.
 
 // #example(
-//   prompt: 
-//   [ Let $cal(V) subset.eq RR^2$ be the complete solution to 
+//   prompt:
+//   [ Let $cal(V) subset.eq RR^2$ be the complete solution to
 //   $x + 2 y = 0$. Show that $cal(V)$ is a subspace.]
 //   ,
 //   [
-//   Let $arrow(u) = mat(u_1; u_2)$ and 
-//   $arrow(v) = mat(v_1; v_2)$ be in $cal(V)$, 
+//   Let $arrow(u) = mat(u_1; u_2)$ and
+//   $arrow(v) = mat(v_1; v_2)$ be in $cal(V)$,
 //   and let $k$ be a scalar.
 
-//   By definition, we have 
+//   By definition, we have
 //   $ u_1 + 2 u_2 & = 0 \
 //     v_1 + 2 v_2 & = 0 $
-  
+
 //   We will show that $cal(V)$ is nonempty and that
 //     (i) $arrow(u) + arrow(v) in cal(V)$; and
 //     (ii) $k arrow(u) in cal(V)$.
@@ -80,7 +80,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 //     (u_1 + 2 u_2) + (v_1 + 2 v_2) =
 //     0 + 0 = 0
 //   $
-//   Since the coordinates of $arrow(u) + arrow(v)$ satisfy the equation $x + 2 y = 0$, 
+//   Since the coordinates of $arrow(u) + arrow(v)$ satisfy the equation $x + 2 y = 0$,
 //   we have shown that $arrow(u) + arrow(v) in cal(V)$.
 
 //   Next we will show (ii).
@@ -90,13 +90,13 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 //   $
 //   and the coordinates of $k arrow(u)$ satisfy
 //   $
-//     (k u_1) + 2 (k u_2) = 
+//     (k u_1) + 2 (k u_2) =
 //     k (u_1 + 2 u_2) =
 //     k 0 = 0
 //   $
 //   And so, we have shown that $k arrow(u) in cal(V)$.
 
-//   Finally, since $arrow(0) = mat(0; 0)$ satisfies $x + 2 y = 0$, 
+//   Finally, since $arrow(0) = mat(0; 0)$ satisfies $x + 2 y = 0$,
 //   we conclude that $arrow(0) in cal(V)$
 //   and so $cal(V)$ is non-empty.
 
@@ -107,7 +107,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // #example(
 //   prompt: [
 //   Let $cal(W) subset.eq RR^2$ be the line expressed in vector form
-//   as 
+//   as
 //   $
 //     arrow(x) = t mat(1; 2) + mat(1; 1)
 //   $
@@ -139,7 +139,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // //   is non-empty because $cal(X) subseteq cal(V)$ and if $cal(X) = Set{}$, then $cal(V) = Set{arrow(0)}$,
 // //   and so is still non-empty.
 
-// //   Fix $arrow(v), arrow(u) in cal(V)$. By definition there are $arrow(x)_1, arrow(x)_2, ..., arrow(y)_1, arrow(y)_2, ... in cal(X)$ 
+// //   Fix $arrow(v), arrow(u) in cal(V)$. By definition there are $arrow(x)_1, arrow(x)_2, ..., arrow(y)_1, arrow(y)_2, ... in cal(X)$
 // //   and scalars $alpha_1, alpha_2, ..., beta_1, beta_2, ...$ so that
 // //   $
 // //     arrow(v) = sum alpha_i arrow(x)_i
@@ -153,7 +153,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // //   is also a linear combination of vectors in $cal(X)$ (because all $arrow(x)_i$ and $arrow(y)_i$
 // //   are in $cal(X)$), and so $arrow(u) + arrow(v) in Span cal(X) = cal(V)$.
 
-// //   To verify property (ii), observe that for any scalar $alpha$, 
+// //   To verify property (ii), observe that for any scalar $alpha$,
 // //   $
 // //     alpha arrow(v) = alpha sum alpha_i arrow(x)_i = sum (alpha alpha_i) arrow(x)_i in
 // //     Span cal(X) = cal(V)
@@ -170,10 +170,10 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // //   $
 // //     arrow(x) = sum alpha_i arrow(v)_i
 // //   $
-// //   Observe that 
+// //   Observe that
 // //   $alpha_i arrow(v)_i in cal(V)$ for all $i$, since $cal(V)$ is closed under scalar
 // //   multiplication. It follows that $alpha_1 arrow(v)_1 + alpha_2 arrow(v)_2 in cal(V)$,
-// //   because $cal(V)$ is closed under sums. Continuing, 
+// //   because $cal(V)$ is closed under sums. Continuing,
 // //   $(alpha_1 arrow(v)_1 + alpha_2 arrow(v)_2) + alpha_3 arrow(v)_3 in cal(V)$ because
 // //   $cal(V)$ is closed under sums. Applying the principle of finite induction, we see
 // //   $
@@ -190,8 +190,8 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // thing. Spans provide a _constructive_ definition of lines/planes/volumes/etc. through the origin. That is,
 // when you describe a line/plane/etc. through the origin as a span, you're saying "this is a line/plane/etc. through the origin
 // because every point in it is a linear combination of _these specific vectors_". In contrast, subspaces provide a _categorical_
-// definition of lines/planes/etc. through the origin. 
-// When you describe a line/plane/etc. through the origin as a subspace, 
+// definition of lines/planes/etc. through the origin.
+// When you describe a line/plane/etc. through the origin as a subspace,
 // you're saying "this is a line/plane/etc. through the origin because these _properties_ are satisfied".
 // // Categorical definitions are useful when working with objects where it's hard to pin down exactly what the elements inside are.
 
@@ -233,7 +233,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 // //   // Typst does not support TikZ directly. You may use an image or Typst's own drawing primitives.
 // //   _[Diagram: line through origin and direction vector. Replace with Typst drawing or image as needed.]_
 // // ]
-// // 
+// //
 // XXX ADD DIAGRAM
 
 // We know that $ell$ is a subspace, and we defined $ell$ as the span of ${arrow(d)}$,
@@ -251,7 +251,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 
 // In short, a basis for a subspace is a linearly independent set that spans that
 // subspace.
- 
+
 // #example(
 //   prompt: [
 //   // EXLINEBASIS
@@ -275,7 +275,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 //   ]
 // )
 
-// Unpacking the definition of basis a bit more, we can see that 
+// Unpacking the definition of basis a bit more, we can see that
 // a basis for a subspace
 // is a set of vectors
 // that is _just the right size_ to describe everything in the subspace.
@@ -291,10 +291,10 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 
 // You can prove the first fact by observing that if $cal(B) = {arrow(b)_1, arrow(b)_2, ...}$ is a basis
 // with at least one element#footnote([The empty set is a basis for the trivial subspace.])
-// then ${2 arrow(b)_1, 2 arrow(b)_2, ...}$ is a different basis. The second fact is a consequence of all bases 
+// then ${2 arrow(b)_1, 2 arrow(b)_2, ...}$ is a different basis. The second fact is a consequence of all bases
 // being linearly independent. The third fact is less obvious and takes some legwork to prove, so we will accept it
-// as is. 
- 
+// as is.
+
 // === Dimension
 
 // Let $cal(V)$ be a subspace. Though there are many bases for $cal(V)$, they all
@@ -337,7 +337,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 //   [
 //   $A$ is the complete solution to the system
 //   $
-//     x_1 + 2 x_2 - x_3 &= 0 \ 
+//     x_1 + 2 x_2 - x_3 &= 0 \
 //     x_1 + 6 x_4 &= 0
 //   $
 //   which can be expressed in vector form as
@@ -348,7 +348,7 @@ Eigenvalues and Eigenvectors, and Module 16 on Diagonalization.
 //   is a linearly independent spanning set with two elements, $A$ is two dimensional.
 //   ]
 // )
- 
+
 // Like $RR^2$ and $RR^3$, whenever we discuss $RR^n$, we always have a standard basis that comes
 // along for the ride.
 

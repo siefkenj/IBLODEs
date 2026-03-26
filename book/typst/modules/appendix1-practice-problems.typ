@@ -9,7 +9,7 @@
       + Way 1 is good
       + Way 2 is better
     ],
-    citation: [X]
+    citation: [X],
   ),
   (
     statement: [
@@ -23,5 +23,5 @@
     statement: [
       A third question.
     ],
-  )
+  ),
 )

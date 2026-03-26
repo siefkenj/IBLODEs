@@ -204,10 +204,10 @@ example, consider
 $
   cases(y'=-y, y(0)=1, y(1)=2).
 $
-Given these conditions, we know that $y'(0) = -1$,
-$y'(1) = -2$, and $y' < 0$ whenever $y > 0$. Thus, a solution starting at $y(0)=1$ will start by
-decreasing, and will not increase until/unless it passes below the $x$-axis. This is incompatible
-with $y(1)=2$. Therefore, $y'=-y$ with $y(0)=1$ and $y(1)=2$ has no solution.
+Given these conditions, we know that $y'(0) = -1$, $y'(1) = -2$, and $y' < 0$ whenever $y > 0$.
+Thus, a solution starting at $y(0)=1$ will start by decreasing, and will not increase until/unless
+it passes below the $x$-axis. This is incompatible with $y(1)=2$. Therefore, $y'=-y$ with $y(0)=1$
+and $y(1)=2$ has no solution.
 
 The situation is even worse than it first appears because, although there are general theorems for
 the existence of solutions to initial value problems, there are no known general theorems for the

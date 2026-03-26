@@ -142,13 +142,12 @@ If you are interested in using parts of the book combined with another text with
 different license (GFDL, for example), email the authors to get permission to modify the license.
 
 *Incorporated Content.* This book incorporates some exposition and exercises from _Notes on Diffy
-  Qs_ by Jiří Lebl following a Creative Commons Attribution-ShareAlike license. As well, passages
-were incorporated from the creative-commons licensed book _Linear Algebra_ by Jason Siefken.
+Qs_ by Jiří Lebl following a Creative Commons Attribution-ShareAlike license. As well, passages were
+incorporated from the creative-commons licensed book _Linear Algebra_ by Jason Siefken.
 
 == Contributors
 
 This book is a collaborative effort. The following people have contributed to its creation:
 #quote(block: true)[
-  Rui Geng,
-  Jake Zimmermann
+  Rui Geng, Jake Zimmermann
 ]

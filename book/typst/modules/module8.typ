@@ -162,7 +162,7 @@ $
   arrow(r)(t) = P arrow(r)_3(t) + Q arrow(r)_4(t) & = P mat(sin(2 t); 2 cos(2 t)) + Q mat(-cos(2 t); 2 sin(2 t))
 $
 where $P$ and $Q$ are parameters. Here, *as long as we pick $P$ and $Q$ to be real numbers, the
-  result will be a real solution*.
+result will be a real solution*.
 
 === Other Methods to Find Real Solutions
 

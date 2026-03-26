@@ -109,8 +109,8 @@
     ],
     solution: [
       Yes a solution exists. The equation is $y' = f(x,y)$ where $f(x,y) = x y$. The function
-      $f(x,y)$ is continuous and $(partial f)/(partial y) = x$, which is also continuous near $(0,0)$. So
-      a solution exists and is unique. (In fact, $y=0$ is the solution.)
+      $f(x,y)$ is continuous and $(partial f)/(partial y) = x$, which is also continuous near
+      $(0,0)$. So a solution exists and is unique. (In fact, $y=0$ is the solution.)
     ],
   ),
   (

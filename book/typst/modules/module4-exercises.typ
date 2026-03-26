@@ -26,17 +26,18 @@
 
       which contains an Euler approximation for the Foxes and Rabbits population.
       $
-        F'(t) &= (0.01 dot R(t) - 1.1) dot F(t) \
-        R'(t) &= (1.1 - 0.1 dot F(t)) dot R(t)
+        F'(t) & = (0.01 dot R(t) - 1.1) dot F(t) \
+        R'(t) & = (1.1 - 0.1 dot F(t)) dot R(t)
       $
 
       #show_def("equilibrium_solution")
 
-      + By changing initial conditions, what is the "smallest" curve you can get in the phase plane? What happens at
-        those initial conditions?
+      + By changing initial conditions, what is the "smallest" curve you can get in the phase plane?
+        What happens at those initial conditions?
       + What should $F'$ and $R'$ be if $F$ and $R$ are _equilibrium solutions_?
       + How many equilibrium solutions are there for the fox-and-rabbit system? Justify your answer.
-      + What do the equilibrium solutions look like in the phase plane? What about their component graphs?
+      + What do the equilibrium solutions look like in the phase plane? What about their component
+        graphs?
     ],
   )
 
@@ -48,7 +49,8 @@
       #aligned_terms(
         terms.item(
           OO,
-          [\# new children per year $~$ current population times the fraction of total resources remaining],
+          [\# new children per year $~$ current population times the fraction of total resources
+            remaining],
         ),
       )
 
@@ -66,8 +68,10 @@
       Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
 
       + What are the equilibrium solutions for model #OO?
-      + What does a "phase plane" for model #OO look like? What do graphs of equilibrium solutions look like?
-      + Classify the behaviour of solutions that lie _between_ the equilibrium solutions. E.g., are they increasing, decreasing, oscillating?
+      + What does a "phase plane" for model #OO look like? What do graphs of equilibrium solutions
+        look like?
+      + Classify the behaviour of solutions that lie _between_ the equilibrium solutions. E.g., are
+        they increasing, decreasing, oscillating?
     ],
   )
 
@@ -105,7 +109,8 @@
       $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $
       Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
 
-      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or unstable.
+      + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or
+        unstable.
       + Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
 
     ],
@@ -133,18 +138,19 @@
         ),
       )
 
-      A _slope field_ is a plot of small segments of tangent lines
-      to solutions of a differential equation at different initial conditions.
+      A _slope field_ is a plot of small segments of tangent lines to solutions of a differential
+      equation at different initial conditions.
 
       On the left is a slope field for model #OO, available at
 
       #link("https://www.desmos.com/calculator/ghavqzqqjn")
 
-      + If you were sketching the slope field for model #OO by hand, what (straight) line would you sketch
-        a segment of at $(5, 3)$? Write an equation for that line.
+      + If you were sketching the slope field for model #OO by hand, what (straight) line would you
+        sketch a segment of at $(5, 3)$? Write an equation for that line.
       + How can you recognize equilibrium solutions in a slope field?
-      + Give qualitative descriptions of different solutions to the _differential equation_ used in model #OO (i.e., use words to describe them). Do all
-        of those solutions make sense in terms of _model #(OO)_?
+      + Give qualitative descriptions of different solutions to the _differential equation_ used in
+        model #OO (i.e., use words to describe them). Do all of those solutions make sense in terms
+        of _model #(OO)_?
 
     ],
   )

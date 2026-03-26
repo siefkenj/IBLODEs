@@ -4,7 +4,7 @@
       Find the power series solution to:
 
       + $y'=x$
-      + $y''= plus.minus x$      
+      + $y''= plus.minus x$
       + $y'=2y$
       + $y''-x y=0$
     ],
