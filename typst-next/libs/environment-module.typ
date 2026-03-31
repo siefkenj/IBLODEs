@@ -27,7 +27,7 @@
     let width = if margins.outside_edge == right { margins.right } else { margins.left }
     show: place.with(top + margins.outside_edge)
     show: block.with(
-      width: width,
+      width: width - 2 * BANNER_INSET_FROM_EDGE,
       height: 100%,
       fill: bar_color,
       outset: -BANNER_INSET_FROM_EDGE,
@@ -46,6 +46,33 @@
       other_page_label
     }
   })
+  it
+}
+
+/// Set up show rules for headings, lists, etc.
+#let _heading_and_list_show_rule(it, primary_color: color.black, secondary_color: color.gray) = {
+  set list(
+    marker: make_marker(color: secondary_color),
+    indent: 5pt,
+    body-indent: 3pt,
+  )
+  set enum(
+    numbering: (..n) => {
+      let depth = n.pos().len()
+      let marker = ("1.", "(a)", "i.", "A.", "I.").at(depth - 1, default: "(1)")
+      numbering(marker, n.at(-1))
+    },
+    indent: 5pt,
+    full: true,
+  )
+  show heading.where(depth: 1): it => {
+    block(width: 100%, align(center, move(dx: 5pt, it)))
+  }
+  show heading: it => {
+    set text(fill: primary_color, weight: "light")
+    move(dx: -4pt, sans(it))
+  }
+
   it
 }
 
@@ -69,29 +96,13 @@
       pagebreak(to: "odd", weak: true)
     }
 
-    set list(
-      marker: make_marker(color: darker_color),
-      indent: 5pt,
-      body-indent: 3pt,
+    show: _heading_and_list_show_rule.with(
+      primary_color: primary_accent_color,
+      secondary_color: darker_color,
     )
-    set enum(
-      numbering: (..n) => {
-        let depth = n.pos().len()
-        let marker = ("1.", "(a)", "i.", "A.", "I.").at(depth - 1, default: "(1)")
-        numbering(marker, n.at(-1))
-      },
-      indent: 5pt,
-      full: true,
-    )
-    show heading.where(depth: 1): it => {
-      block(width: 100%, align(center, move(dx: 5pt, it)))
-    }
-    show heading: it => {
-      set text(fill: primary_accent_color, weight: "light")
-      move(dx: -5pt, sans(it))
-    }
 
-    let first_label = context [#module_settings.supplement #module_counter.display(
+    let first_label = context [#module_settings.supplement
+      #module_counter.display(
         module_settings.numbering,
       )]
     let other_label = if _is_empty(it.title) {
@@ -103,9 +114,10 @@
 
     show: _colored_sidebar.with(
       bar_color: primary_accent_color,
-      first_page_label: text(fill: white, size: 1.25em, sans(first_label)),
+      first_page_label: text(fill: white, size: 1.5em, sans(first_label)),
       other_page_label: text(fill: white, sans(other_label)),
     )
+    show: pad.with(left: 3pt)
     module_heading
     it.body
   }),

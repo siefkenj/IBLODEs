@@ -48,17 +48,20 @@ Don't forget about @module-test-three in the appendix!
   ]
 ]
 
-== Test double sided mode 
+== Test double sided mode
 
 #show: e.set_(global_settings, double_sided: true)
 #set page(margin: (outside: 1in))
 
 #module(title: [Double Sided Module], label: <module-test-four>)[
-  This module is in double sided mode. It should have a different sidebar banner on odd and even pages.
+  This module is in double sided mode. It should have a different sidebar banner on odd and even
+  pages.
 
   - Item one
   - Item two
     - Nested item
 
   #lorem(90)
+
+  == Heading that shouldn't overlap on the left side with the colored bar.
 ]
