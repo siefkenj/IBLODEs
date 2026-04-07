@@ -113,12 +113,16 @@
       breakable: true,
       inset: 7pt,
       {
-        show: sans
-        text([Example.], fill: color.black, weight: "bold")
+        {
+          show: sans
+          text([Example.], fill: color.black, weight: "bold")
+        }
         if it.prompt != none {
           sym.space.quad
+          // XXX: where is this needed?
           // Use of `box` prevents excessive line breaks from being displayed.
-          box(it.prompt)
+          // box(it.prompt, baseline: 100% - 1em)
+          it.prompt
         }
         parbreak()
         v(.5em)

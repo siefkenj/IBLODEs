@@ -3,6 +3,7 @@
 
 #show: e.set_(slide_settings, active: false)
 #show: book_template
+#show ref: allow_missing_refs
 
 #{
   // We don't have module bars in the introduction, so set inner and outer margins equal.
@@ -24,4 +25,12 @@
   ]
   set page(margin: (inside: 1in, outside: 1in))
   include "modules/module-01-exercises.typ"
+}
+
+#{
+  module(title: [Simulation], label: <mod:simulation>)[
+    #include "modules/module-02-body.typ"
+  ]
+  set page(margin: (inside: 1in, outside: 1in))
+  include "modules/module-02-exercises.typ"
 }

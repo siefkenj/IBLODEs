@@ -1,16 +1,6 @@
-#import "../libs/_graphics.typ": slope_field
-#import "../libs/_workbook.typ": label_module, simple_table
-#import "../libs/_ode_solvers.typ": solve_1d_ivp
-#import "../libs/_spreadsheet.typ": draw_spreadsheet
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
-
-#label_module(<mod:simulation>)
-
-
-// This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#let (sans, serif, module, definition, example) = workbook
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 In this module you will learn
 - How to use slope fields and Euler's method to approximate solutions to differential equations.

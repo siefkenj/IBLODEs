@@ -1,6 +1,6 @@
+#import "../libs/lib.typ": *
+#show: e.prepare(question)
 #import "@preview/lilaq:0.4.0" as lq
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
-#import "../libs/_ode_solvers.typ": solve_1d_ivp
 
 #let MM = $upright(bold("M"))$
 #let NN = $upright(bold("N"))$
@@ -10,17 +10,7 @@
 // #let QQ = $upright(bold("Q"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
-
-
+#{
   question(
     slide[
 
@@ -215,34 +205,29 @@
   })
 
   book_only(pagebreak())
-  question(
-    slide[
-      #label_core_exercise(<ex:models_MNO>)
+  question(label: <ex:models_MNO>, slide[
+    Consider the following models for starfish growth:
 
-      Consider the following models for starfish growth:
+    #aligned_terms(
+      terms.item(MM, [\# new children per year $~$ current population.]),
+      terms.item(
+        NN,
+        [\# new children per year $~$ current population times resources available per individual.],
+      ),
+      terms.item(
+        OO,
+        [\# new children per year $~$ current population times the fraction of total resources
+          remaining.],
+      ),
+    )
 
-      #aligned_terms(
-        terms.item(MM, [\# new children per year $~$ current population.]),
-        terms.item(
-          NN,
-          [\# new children per year $~$ current population times resources available per
-            individual.],
-        ),
-        terms.item(
-          OO,
-          [\# new children per year $~$ current population times the fraction of total resources
-            remaining.],
-        ),
-      )
+    + Model $NN$ introduces the concept of "resources available per individual".
+      + Come up with a definition/notation/assumptions for this concept.
+      + Create a differential equation for model $NN$.
+    + Repeat the modelling process for model $OO$.
+    + Simulate population vs. time curves for each model.
 
-      + Model $NN$ introduces the concept of "resources available per individual".
-        + Come up with a definition/notation/assumptions for this concept.
-        + Create a differential equation for model $NN$.
-      + Repeat the modelling process for model $OO$.
-      + Simulate population vs. time curves for each model.
-
-    ],
-  )
+  ])
 
   book_only(pagebreak())
   question(slide[

@@ -28,8 +28,8 @@
 )
 
 /// Things that should be rendered only when in slide mode.
-#let slide_only = e.element.declare(
-  "slide_only",
+#let slides_only = e.element.declare(
+  "slides_only",
   prefix: PREFIX,
   doc: "Show content only in when in slide mode.",
   display: it => e.get(get => {

@@ -26,7 +26,7 @@
   if str(it.target) in all-bib-entries() or it.element != none {
     it
   } else {
-    text(fill: red)[\<Target not found: #emph(str(it.target))\>]
+    text(fill: red)[\<NOT FOUND #emph(str(it.target))\>]
   }
 }
 
