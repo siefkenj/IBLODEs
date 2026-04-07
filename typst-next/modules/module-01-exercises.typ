@@ -1,20 +1,22 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
+#import "../libs/lib.typ": *
+#show: e.prepare(question)
+
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
+// #let setup(env) = {
+//   let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
+//   let slides_only = restrict.with(when: ("slides", "slides-solutions"))
+//   let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
+//   let guide_only = restrict.with(when: "guide")
+//   let solution = content => restrict(
+//     when: ("guide", "book-solutions", "slides-solutions"),
+//     _solution(content),
+//   )
 
-
+#{
   question(
     slide[
       You are observing starfish that made their way to a previously uninhabited tide-pool. You’d
@@ -49,11 +51,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:m1>)(
     slide[
-      #label_core_exercise(<ex:m1>)
-
-
       Let
 
       #aligned_terms(
@@ -68,10 +67,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:m1_star>)(
     slide[
-      #label_core_exercise(<ex:m1_star>)
-
       Recall the model $MM_1$ (from the #link(<ex:m1>)[previous question]).
 
       Define the model $MM^*_1$ to be
@@ -102,10 +99,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:m_star>)(
     slide[
-      #label_core_exercise(<ex:m_star>)
-
       In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point
       during the year.
 
@@ -118,7 +113,7 @@
         #solution[
           $MM_3$ grows fastest.
         ]
-      + What happens to $MM_n$ as $n arrow infinity$? #label_core_exercise(<ex:m_star2>)
+      + What happens to $MM_n$ as $n arrow infinity$? #label_question_part(<ex:m_star2>)
         #solution[
           $MM_n$ continues to increase as $n arrow infty$, however this increase is bounded and
           $display(lim_(n arrow infty) M_n)$ converges to another model.
@@ -160,18 +155,8 @@
 
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:m_infinity>)(
     slide[
-      #label_core_exercise(<ex:m_infinity>)
-
-      // Recall the model $MM_1$ defined by:
-      // - $P_1(0) = 10$
-      // - $P_1(t + 1) = K P(t)$ for $t >= 0$ years and $K = 1.1$.
-
-      // Define the model $MM_infty$ by:
-      // - $P(0) = 10$
-      // - $P'(t) = k P(t)$.
-
       #book_only(
         // In book mode, put the models side by side
         table(
@@ -213,18 +198,6 @@
   book_only(pagebreak())
   question(
     slide[
-      // #let M1 = [
-      //   Recall the model $MM_1$ defined by:
-      //   - $P_1(0) = 10$
-      //   - $P_1(t + 1) = P_1(t) + K P_1(t)$ for $t >= 0$ years and $K = 1.1$.
-      // ]
-
-      // #let MInf = [
-      //   Define the model $MM_infty$ by:
-      //   - $P(0) = 10$
-      //   - $P'(t) = k P(t)$.
-      // ]
-
       #book_only(
         // In book mode, put the models side by side
         table(

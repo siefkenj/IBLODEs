@@ -135,3 +135,12 @@
     return value == none
   }
 }
+
+/// Only show `content` when the `active_env` equals the `when` condition.
+#let restrict(when: "", active_env: "", content, otherwise: none) = {
+  if (type(when) == array and when.contains(active_env)) or when == active_env {
+    content
+  } else if otherwise != none {
+    otherwise
+  }
+}

@@ -48,5 +48,17 @@
       doc: "Whether the textbook is double-sided. If true, odd and even pages will have different margins.",
       default: true,
     ),
+    e.field(
+      "solutions_visible",
+      bool,
+      doc: "Whether solutions to core exercises are visible.",
+      default: false,
+    ),
+    e.field(
+      "display_mode",
+      e.types.union("book", "guide", "slides"),
+      doc: "The display mode of the textbook. This can be set to 'book', 'guide', or 'slides'. This will affect what content is shown and how it is laid out.",
+      default: "book",
+    ),
   ),
 )

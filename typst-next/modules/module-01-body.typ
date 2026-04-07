@@ -239,7 +239,7 @@ that was first guessed for brown ants.
 
 === General Solutions
 
-// #show_def("solution")
+#show_def("solution")
 
 A given differential equation can have many solutions.
 

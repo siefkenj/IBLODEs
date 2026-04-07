@@ -1,4 +1,4 @@
-#import "../libs/_workbook.typ": simple_table
+#import "../libs/lib.typ": simple_table
 
 #let questions = (
   (

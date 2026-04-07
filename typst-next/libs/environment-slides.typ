@@ -1,6 +1,9 @@
 #import "./common.typ": *
 #import "./settings.typ": *
 #import "./settings-slides.typ": *
+#import "./settings-question.typ": *
+#import "./environment-question.typ": question
+#import "./environment-module.typ": module
 #import "./environments.typ": *
 #import "./utils.typ": *
 
@@ -17,6 +20,8 @@
   display: it => e.get(get => {
     let global_config = get(global_settings)
     let slide_config = get(slide_settings)
+    let question_counter = e.counter(question)
+    let module_counter = e.counter(module)
 
     // If the slide environment is not active, pass through the content un-modified.
     if not slide_config.active {
@@ -64,8 +69,12 @@
         set text(fill: heading_text_color, weight: "bold")
         show: sans
         if it.title == none {
-          [Exercise //#context question_counter.display()
-          ]
+          [Exercise #question_counter.display()]
+          // If the module counter is > 0, show the current module
+          if module_counter.get().at(0, default: 0) > 0 {
+            h(1fr)
+            [(Module #module_counter.display())]
+          }
         } else {
           it.title
         }
@@ -80,7 +89,7 @@
           height: 100% + FILL_BLEED,
           inset: (y: 2pt, left: left_margin + FILL_BLEED, right: right_margin + FILL_BLEED),
         )
-        set text(size: .9em, fill: footer_text_color)
+        set text(size: .83em, fill: footer_text_color)
         place(top + center, [#context counter(page).display()])
         set align(right)
         slide_config.copyright
@@ -187,3 +196,25 @@
     ),
   ),
 )
+
+/// Template for making a slides. This should be used as
+/// ```typst
+/// #show: slides_template
+/// ```
+#let slides_template(it) = {
+  show: e.set_(slide_settings, active: true)
+  show: e.set_(global_settings, display_mode: "slides")
+  show: e.set_(question_settings, include_start_marker: false)
+  set par(justify: true)
+  set page(
+    width: 16cm,
+    height: 9cm,
+    margin: (
+      top: 1.2em,
+      bottom: 3cm,
+      left: .5cm,
+      right: .5cm,
+    ),
+  )
+  it
+}

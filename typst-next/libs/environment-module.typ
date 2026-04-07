@@ -87,6 +87,12 @@
   display: it => e.get(get => {
     let global_settings = get(global_settings)
     let module_settings = get(module_settings)
+
+    if module_settings.active == false {
+      return
+    }
+
+
     let primary_accent_color = module_settings.sidebar_color
     let darker_color = primary_accent_color.darken(10%)
     let module_counter = e.counter(it)
@@ -127,28 +133,17 @@
       if label == none {
         return
       }
+      let get = e.ctx(it).get
+      let module_settings = get(module_settings)
       // This cannot be called within a context block for some reason...
       // If it is, it gives the value at current location instead of the value at the module definition.
       let count = e.counter(it).get().first()
       show: link.with(label)
-      link(label, [#it.supplement #numbering(it.numbering, count)])
+      link(label, [#module_settings.supplement #numbering(module_settings.numbering, count)])
     },
   ),
-  construct: default_constructor => (..args) => {
-    // Custom constructor that sets the supplement and numbering fields based on the current module settings.
-    // XXX: Hopefully there is a way to get rid of this in the future, because it wraps all the content in a `context`!
-    e.get(get => {
-      let supplement = args.at("supplement", default: none)
-      if supplement == none {
-        supplement = get(module_settings).supplement
-      }
-      let numbering = args.at("numbering", default: none)
-      if numbering == none {
-        numbering = get(module_settings).numbering
-      }
-      default_constructor(..args, supplement: supplement, numbering: numbering)
-    })
-  },
+  // Needed in order to use `e.ctx(it).get` in the custom reference implementation (for reading module settings at the location of declaration).
+  contextual: true,
   fields: (
     e.field("title", e.types.option(content), doc: "The title of the module."),
     e.field("body", content, required: true, doc: "The body of the module."),
