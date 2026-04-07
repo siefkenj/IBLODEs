@@ -1,21 +1,13 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
-#import "@preview/lilaq:0.4.0" as lq
-#import "../libs/_graphics.typ": slope_field
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show: e.prepare(question)
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let OO = $upright(bold("O"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
+#{
 
 
   question(
@@ -117,10 +109,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:O_slope_field>)(
     slide(force_scale: 0.83em)[
-
-      #label_core_exercise(<ex:O_slope_field>)
 
       #slides_only(v(1em))
 

@@ -1,14 +1,8 @@
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../libs/_workbook.typ": label_module, simple_table
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_graphics.typ": slope_field
-#import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/tiptoe:0.3.1"
-#import "@preview/lilaq:0.4.0" as lq
-#let (sans, serif, module, definition, example) = workbook
-
-#label_module(<mod:equilibrium>)
 
 In this module you will learn
 - What equilibrium solutions and equilibrium points are.
@@ -237,7 +231,7 @@ different initial conditions.
   let width = 4.8cm
   stack(
     dir: ltr,
-    spacing: -1.8em,
+    // spacing: -1.8em,
     lq.diagram(
       //legend: (position: bottom + right),
       width: width,

@@ -1,13 +1,8 @@
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_workbook.typ": label_module, simple_table
-#import "../libs/_graphics.typ": vector_field
-#import "@preview/tiptoe:0.3.1"
-#import "@preview/lilaq:0.4.0" as lq
-#let (sans, serif, module, definition, example, theorem) = workbook
-
-#label_module(<mod:complex>)
 
 In this module you will learn
 - How to find explicit real solutions to systems of differential equations with constant

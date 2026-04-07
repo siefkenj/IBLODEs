@@ -1,11 +1,8 @@
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_graphics.typ": slope_field, vector_field
-#import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
-#let (sans, serif, module, definition, example) = workbook
 
 In this module you will learn
 - How slope fields can be used to analyze a differential equation.

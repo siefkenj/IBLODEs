@@ -1,40 +1,14 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
-#import "../libs/_graphics.typ": vector_field
-#import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
+#import "../libs/lib.typ": *
+#show: e.prepare(question)
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let infty = math.infinity
 
 
-#let setup(env) = {
-  let (
-    sans,
-    serif,
-    slide,
-    restrict,
-    question,
-    definition,
-    example,
-    theorem,
-    solution: _solution,
-    show_def,
-  ) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
-
-
-  question(
+#{
+  question.with(label: <ex:basic_system>)(
     slide[
-      #label_core_exercise(<ex:basic_system>)
-
       Consider the system of differential equations
       $
         x'(t) & = x(t) \
@@ -72,7 +46,7 @@
         is $arrow(s)(t)=arrow(p)(t)+arrow(q)(t)$. Does this show that solutions to
         $arrow(r)' = A arrow(r)$ form a subspace? What is left to show?
 
-      + #label_core_exercise(<ex:basic_system_span>) Recall the differential equation
+      + #label_question_part(<ex:basic_system_span>) Recall the differential equation
         $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ from @ex:basic_system. Express the solutions you found
         as a span.
 
@@ -100,10 +74,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:system_eigen_solutions>)(
     slide(force_scale: 0.85em)[
-      #label_core_exercise(<ex:system_eigen_solutions>)
-
       Consider the system
       $
         x'(t) & = 2x(t) \
@@ -122,7 +94,7 @@
         $
 
       + State the definition of an eigenvector for the matrix $M$.
-      + What should the definition of an _eigen solution_ be for this system? #label_core_exercise(
+      + What should the definition of an _eigen solution_ be for this system? #label_question_part(
           <ex:system_eigen_solutions_part2>,
         )
       + Which functions from @ex:system_eigen_solutions_part2[] are eigen solutions?
@@ -160,63 +132,65 @@
       + #{
           let xs = lq.linspace(0, 5, num: 20)
           let stroke = (paint: green.darken(20%), thickness: 1pt, dash: (4pt, 1pt))
-          let width = slides_only(2cm, otherwise: 3cm)
+          let draw_diagram(width) = {
+            box(
+              width: 100%,
+              align(
+                center,
+                {
+                  lq.diagram(
+                    title: "(A)",
+                    xlim: (-.5, 5.5),
+                    ylim: (-.5, 5.5),
+                    width: width,
+                    height: width,
+                    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    lq.plot(
+                      xs,
+                      xs.map(x => calc.pow(x, 3 / 2)),
+                      mark: none,
+                      stroke: stroke,
+                    ),
+                  )
+                  h(1em)
+                  lq.diagram(
+                    title: "(B)",
+                    xlim: (-.5, 5.5),
+                    ylim: (-.5, 5.5),
+                    width: width,
+                    height: width,
+                    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    lq.plot(
+                      xs,
+                      xs.map(x => calc.pow(x, 2 / 3)),
+                      mark: none,
+                      stroke: stroke,
+                    ),
+                  )
+                  h(1em)
+                  lq.diagram(
+                    title: "(C)",
+                    xlim: (-.5, 5.5),
+                    ylim: (-.5, 5.5),
+                    width: width,
+                    height: width,
+                    yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
+                    lq.plot(
+                      xs,
+                      xs.map(x => 2 * x),
+                      mark: none,
+                      stroke: stroke,
+                    ),
+                  )
+                },
+              ),
+            )
+          }
+          slides_only(draw_diagram(2cm), otherwise: draw_diagram(3cm))
 
-          box(
-            width: 100%,
-            align(
-              center,
-              {
-                lq.diagram(
-                  title: "(A)",
-                  xlim: (-.5, 5.5),
-                  ylim: (-.5, 5.5),
-                  width: width,
-                  height: width,
-                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  lq.plot(
-                    xs,
-                    xs.map(x => calc.pow(x, 3 / 2)),
-                    mark: none,
-                    stroke: stroke,
-                  ),
-                )
-                h(1em)
-                lq.diagram(
-                  title: "(B)",
-                  xlim: (-.5, 5.5),
-                  ylim: (-.5, 5.5),
-                  width: width,
-                  height: width,
-                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  lq.plot(
-                    xs,
-                    xs.map(x => calc.pow(x, 2 / 3)),
-                    mark: none,
-                    stroke: stroke,
-                  ),
-                )
-                h(1em)
-                lq.diagram(
-                  title: "(C)",
-                  xlim: (-.5, 5.5),
-                  ylim: (-.5, 5.5),
-                  width: width,
-                  height: width,
-                  yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
-                  lq.plot(
-                    xs,
-                    xs.map(x => 2 * x),
-                    mark: none,
-                    stroke: stroke,
-                  ),
-                )
-              },
-            ),
-          )
         }
         In which phase plane above is the dashed (green) curve the graph of a solution to the
         system? Explain.

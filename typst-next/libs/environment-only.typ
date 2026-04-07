@@ -18,11 +18,12 @@
     }
   }),
   fields: (
-    e.field("body", content, required: true, doc: "The body of the content."),
+    e.field("body", e.types.any, required: true, doc: "The body of the content."),
     e.field(
       "otherwise",
-      e.types.option(content),
+      e.types.option(e.types.any),
       doc: "Content to show when the main content is not visible.",
+      default: none,
     ),
   ),
 )
@@ -41,11 +42,12 @@
     }
   }),
   fields: (
-    e.field("body", content, required: true, doc: "The body of the content."),
+    e.field("body", e.types.any, required: true, doc: "The body of the content."),
     e.field(
       "otherwise",
-      e.types.option(content),
+      e.types.option(e.types.any),
       doc: "Content to show when the main content is not visible.",
+      default: none,
     ),
   ),
 )

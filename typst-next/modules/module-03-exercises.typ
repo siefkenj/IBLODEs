@@ -1,20 +1,12 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show: e.prepare(question)
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
-
-
+#{
   question(
     slide[
       A simple model for population growth has the form
@@ -29,10 +21,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:LV_model>)(
     slide[
-      #label_core_exercise(<ex:LV_model>)
-
       _Lotka-Volterra Predator-Prey_ models predict two populations, $F$ (foxes) and $R$ (rabbits),
       simultaneously. They take the form
       $
@@ -72,9 +62,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:fox_and_rabbit>)(
     slide(force_scale: 0.9em)[
-      #label_core_exercise(<ex:fox_and_rabbit>)
       // https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
       Open and make a copy of the spreadsheet
 

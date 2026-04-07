@@ -139,6 +139,7 @@
       spacing: 1em,
     )
 
+    show pagebreak: colbreak()
     it.body
   }),
   reference: (

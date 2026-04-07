@@ -1,13 +1,8 @@
-#import "../libs/_workbook.typ": aligned_terms, label_module, simple_table
-#import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
-
-#label_module(<mod:systems>)
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+// #show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#let (sans, serif, module, definition, example) = workbook
 
 
 

@@ -34,7 +34,7 @@
       "thm_color",
       color,
       doc: "The color of the box surrounding a theorem",
-      default: color.rgb("#ed9537"),
+      default: color.rgb("#be38e7"), // color.rgb("#ed9537"),
     ),
     e.field(
       "ex_color",

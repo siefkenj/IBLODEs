@@ -1,22 +1,13 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise, simple_table
-#import "../libs/_ode_solvers.typ": solve_1d_ivp
-#import "../libs/_graphics.typ": slope_field
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
+#import "../libs/lib.typ": *
+#show: e.prepare(question)
+#show ref: allow_missing_refs
+
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
+#{
 
 
   question(
@@ -51,10 +42,8 @@
 
   let LL = $upright(bold("L"))$
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:linear_approx_1d>)(
     slide[
-
-      #label_core_exercise(<ex:linear_approx_1d>)
 
       A simple logistic model $LL$ for a population is
       $ (dif P) / (dif t) = P(t) dot (1 - (P(t)) / 2) $
@@ -228,7 +217,7 @@
         write an approximation to the original system.
       + In the original system, the equilibrium $(0, 0)$ is unstable and not repelling. Justify this
         using your affine approximation.
-      + #label_core_exercise(<ex:affine-approx-part3>)
+      + #label_question_part(<ex:affine-approx-part3>)
         Create an affine approximation to $arrow(F)$ around $arrow(e) = (100 / 9 b, 1000 / 27 b^2)$
         and use this to write an approximation to the original system.
       + Make a phase portrait for the original system and your approximation from part

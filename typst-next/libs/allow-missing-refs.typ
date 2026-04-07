@@ -16,6 +16,8 @@
   }
 }
 
+#let STYLED_FUNC = (text(fill: red, "xxx")).func()
+
 /// Modified from https://github.com/typst/typst/issues/4035
 /// Use with
 /// ```typ
@@ -23,6 +25,11 @@
 /// ```
 /// at the top of every file where missing refs should be allowed.
 #let allow_missing_refs(it) = {
+  let matches = query(it.target)
+  if matches.len() == 1 and matches.at(0).func() == STYLED_FUNC {
+    return text(fill: red)[\<ERROR cannot reference styled element #str(it.target)\>]
+  }
+  // return text(fill:red , "XXX")
   if str(it.target) in all-bib-entries() or it.element != none {
     it
   } else {
@@ -30,4 +37,4 @@
   }
 }
 
-#show ref: allow_missing_refs
+// #show ref: allow_missing_refs

@@ -1,10 +1,8 @@
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_workbook.typ": label_module, simple_table
-#let (sans, serif, module, definition, example, theorem) = workbook
-
-#label_module(<mod:real>)
 
 In this module you will learn:
 - How to find explicit solutions to systems of differential equations with constant coefficients by
@@ -447,9 +445,6 @@ multiples of $arrow(v)$. More specifically, it is will look like a straight half
 origin.
 
 #{
-  import "@preview/lilaq:0.4.0" as lq
-  import "@preview/tiptoe:0.3.1"
-  import "../libs/_ode_solvers.typ": solve_2d_ivp
   let F(x, y) = (2 * x + y, x)
   let soln = solve_2d_ivp(F, (.4145, -1), 100, Delta: .1, method: "rk4")
   let soln2 = solve_2d_ivp(F, (-.414, 1), 100, Delta: .1, method: "rk4")
@@ -492,10 +487,6 @@ The converse also holds: solutions whose graphs in phase space are straight line
 away from the origin are eigen solutions.
 
 #{
-  import "@preview/lilaq:0.4.0" as lq
-  import "@preview/tiptoe:0.3.1"
-  import "../libs/_ode_solvers.typ": solve_2d_ivp
-  import "../libs/_graphics.typ": vector_field
   let F(x, y) = (2 * x + y, x)
   let soln = solve_2d_ivp(F, (.4145, -1), 100, Delta: .1, method: "rk4")
   let soln2 = solve_2d_ivp(F, (-.414, 1), 100, Delta: .1, method: "rk4")

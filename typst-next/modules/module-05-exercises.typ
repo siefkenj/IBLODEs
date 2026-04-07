@@ -1,22 +1,13 @@
-#import "../libs/_workbook.typ": aligned_terms, label_core_exercise
-#import "@preview/lilaq:0.4.0" as lq
-#import "../libs/_graphics.typ": slope_field, vector_field
-#import "@preview/tiptoe:0.3.1"
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show: e.prepare(question)
 
 #let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
 #let OO = $upright(bold("O"))$
 #let infty = math.infinity
 
-#let setup(env) = {
-  let (sans, serif, slide, restrict, question, definition, solution: _solution, show_def) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
+#{
 
 
   book_only(pagebreak())
@@ -153,10 +144,8 @@
   )
 
   book_only(pagebreak())
-  question(
+  question.with(label: <ex:tree_model>)(
     slide[
-      #label_core_exercise(<ex:tree_model>)
-
       // Completed phase portrait in desmos:
       // https://www.desmos.com/calculator/tvjag852ja
 
@@ -178,7 +167,7 @@
         #link("https://www.desmos.com/calculator/vrk0q4espx")
 
         to make a phase portrait for the tree model.
-        #label_core_exercise(<ex:tree_model_part1>)
+        #label_question_part(<ex:tree_model_part1>)
       + What do equilibrium solutions mean in terms of tree growth?
       + For $b=1$ what are the equilibrium solution(s)?
 

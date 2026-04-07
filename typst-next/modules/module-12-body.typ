@@ -1,14 +1,8 @@
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#let (sans, serif, module, definition, example, theorem) = workbook
-#import "../libs/_workbook.typ": label_module
-
-#import "../libs/_graphics.typ": slope_field
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
-
-#label_module(<mod:existence_uniqueness>)
 
 This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on
   Diffy Qs"].
