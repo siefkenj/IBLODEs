@@ -107,10 +107,7 @@
       secondary_color: darker_color,
     )
 
-    let first_label = context [#module_settings.supplement
-      #module_counter.display(
-        module_settings.numbering,
-      )]
+    let first_label = it.ref_label
     let other_label = if _is_empty(it.title) {
       first_label
     } else {
@@ -133,17 +130,20 @@
       if label == none {
         return
       }
-      let get = e.ctx(it).get
-      let module_settings = get(module_settings)
-      // This cannot be called within a context block for some reason...
-      // If it is, it gives the value at current location instead of the value at the module definition.
-      let count = e.counter(it).get().first()
       show: link.with(label)
-      link(label, [#module_settings.supplement #numbering(module_settings.numbering, count)])
+      link(label, it.ref_label)
     },
   ),
   // Needed in order to use `e.ctx(it).get` in the custom reference implementation (for reading module settings at the location of declaration).
   contextual: true,
+  synthesize: it => {
+    let get = e.ctx(it).get
+    let module_settings = get(module_settings)
+    let count = e.counter(it).get().first()
+
+    it.ref_label = module_settings.supplement + " " + numbering(module_settings.numbering, count)
+    it
+  },
   fields: (
     e.field("title", e.types.option(content), doc: "The title of the module."),
     e.field("body", content, required: true, doc: "The body of the module."),
@@ -156,6 +156,12 @@
       "numbering",
       e.types.option(str),
       doc: "The numbering to be used when referring to this module. E.g. \"1\", or \"A\". Overrides the global setting for this module.",
+    ),
+    e.field(
+      "ref_label",
+      str,
+      doc: "The label to be used when referring to this module. E.g. \"Module 1\", or \"Appendix A\". Overrides the default reference format which is [supplement numbering].",
+      synthesized: true,
     ),
   ),
 )

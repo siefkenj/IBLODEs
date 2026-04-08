@@ -1,11 +1,4 @@
-#import "../libs/_graphics.typ": slope_field
-#import "../libs/_workbook.typ": label_module, simple_table
-#import "../libs/_ode_solvers.typ": solve_1d_ivp
-#import "../libs/_spreadsheet.typ": draw_spreadsheet
-#import "@preview/lilaq:0.2.0" as lq
-#import "@preview/tiptoe:0.3.0"
-
-
+#import "../libs/lib.typ": *
 
 #let questions = (
   (
@@ -81,9 +74,6 @@
       + $y'(t) = ln(t y(t))$, $Delta = 0.02$, $t_0 = 1$, $y_0 = 1$, $t_1 = 5$, $y_1 = " " ?$.
       + Optional but perhaps bad: $y'(t) = sqrt(y(t))$, $Delta = 0.2$, $t_0 = 0$, $y_0 = 0$,
         $t_1 = 10^5$, $y_1 = " " ?$.
-
-    ],
-    solution: [
 
     ],
   ),
@@ -487,7 +477,6 @@
           align(
             center,
             lq.diagram(
-              F,
               xlim: (-2.2, 2.2),
               ylim: (0, 18.2),
               width: 4cm,
@@ -514,14 +503,6 @@
           )
         }
       +
-      /* I don't think this how black wholes
-      work. Maybe I should make a note about that.
-      I wish I could modify this question
-      to be more in line with how black holes
-      actually work. Right now the physicist
-      just looks like a little bit of an
-      idiot. He can't even integrate that
-      function.*/
     ],
   ),
   (
@@ -539,7 +520,7 @@
         this initial condition, similar to if you had only one differential equation to compute $x'$
         and $y'$ at this initial condition.
       + You now since you have $x_0 = f(0)$, $y_0 = g(0)$, $x'|_(t=0) = f'(0)$, and
-        $y'|_(t=0) = g'(0)$ you should be able to use linear appoximation calculate
+        $y'|_(t=0) = g'(0)$ you should be able to use linear approximation calculate
         $
           x_1 = x_0 + Delta dot x'|_(t=0) \
           y_1 = y_0 + Delta dot y'|_(t=0)
@@ -547,7 +528,7 @@
         with $Delta = 0.1$. Do this calculation.
       + Again, you now should have a point $(t_1,x_1,y_1)$ where $t_1 = t_0+Delta$. Again use your
         pair of differential equations to calculate $x'$ and $y'$ at $t_1$.
-      + Use the same process as part (b) to calculate linear appoximations $x_2 approx f(t_2)$ and
+      + Use the same process as part (b) to calculate linear approximations $x_2 approx f(t_2)$ and
         $y_2 approx g(t_2)$, where $t_2 = t_1 + Delta$.
       + Enter all your data into a table with $5$ columns. Continue until you have
         $x_4 approx f(t_4)$, $y_4 approx g(t_4)$, $x'|_(t=t_4) = f'(t_4)$, and
@@ -571,76 +552,15 @@
       + Assume that you are given a differential equation with initial condition
         $(t, P(t)) = (a,b)$. Since Euler's method has a starting point of the initial condition and
         only goes forward in time, it can only be used to approximate solutions for $t > a$.
-      /*+ When using Euler's method on
-      a differential equation, a smaller
-      step size will always yield
-      a more accurate approximation.
-      // This one is don't think is good
-      // and should be thrown out*/
       + It is possible only to use Euler's method to approximate a solution to a differential
         equation if you are given an initial condition.
       + Other than the initial condition itself, which we know is correct, the points given to us by
         Euler's method always have the least error closest to the initial condition.
-      // I am torn on this one.
       + Euler's method only works for autonomous differential equations.
       + Euler's method only works for systems of differential equations that are one dimensional.
       + Euler's method only works first order differential equations.
     ],
   ),
-  /*  (
-    statement: [
-      (This time build a model with some wavy behaviour. That if
-      delta is too big you get really really bad stuff, but if delta is small it is not so bad.)
-      + Model with euler's method with a large delta. Using computer this time.
-      + Qualitatively do you expect this ?
-      + How does this error chenge if you use a smaller delta?
-      + why does the bigger delta give you such a bad reasult?
-      + For the smaller delta, do we still get an underestimate like in the first question? What is different, and what annalogous behaviour can we notice about our model that is not not an over or underestimate?
-    ],
-    solution: [
-      The answer to the second question.
-    ],
-  ),
-  (
-    statement: [
-      (They shouldn't have to model for this one, I think we should just give then the differential equation, but importantly it is a differential equation such that if the step is too big, then Euler's method will overshoot an equalibrium solution and go into space where as the actual solution is bounded.))
-    ],
-  ),
-  (
-    statement: [
-      (Maybe we could have a very simple
-      + draw a slope field of this DE by hand
-      + draw some solution curve on that slope field given some initial conditions by hand
-      + confirm you answer on desmos
-      + maybe a qualitative question "without proof does it feel like any solutions will ever cross each other?"
-      kinda question)
-    ],
-  ),
-  (
-    statement: [
-      (Another modeling question. This one should be a little more challenging to model. Similar to module 1, but this time I would like them to use Euler's method.)
-    ],
-  ),
-  (
-    statement: [
-      (Question that uses second derivative euler's method, They shouldn't have to model for this this one.)
-    ],
-  ),
-  (
-    statement: [
-      (Better Euler's method question. This question and the previous one I am not sure if this is what we want, but I do like the idea of challenging the students in this way.)
-    ],
-  ),
-  (
-    statement: [
-      Notes from Jake while reading the book:
-      + Once Jason likened defining a new function to be "that which solves some differential equation" to defining "e" to be "that number that is the limit of $(1 + 1/n)^n$ as $n$ approaches infinity" or "$e^x$" as "that function that is it's own derivative". I think this is a good analogy, and furthermore I think that it might be cool to somehow incorporate this into the first few paragraph of this chapter.
-      + In my opinion, the words "linear appoximation" must be said if introducing Euler's method. I believe students coming out of calculus have linear appoximation etched into their brains, and so it is a good idea to use this term.
-      + In the first example of the use of Euler's method I think that it is also important to mention that we do not know the value of $P'(0.5)$, not just that we do not know $P(0.5)$.
-      + In example 1 in the chapter, I think the visuals could be workshopped to be a bit better.
-      + This might be too meny question in the problem set here.
-    ],
-  ),*/
   (
     statement: [
       Bonus questions:

@@ -1,4 +1,5 @@
-#import "../libs/_workbook.typ": aligned_terms
+#import "../libs/lib.typ": *
+
 #let questions = (
   (
     statement: [Let $A$ be a $3 times 3$ matrix with eigenvalue of $3$ and a corresponding

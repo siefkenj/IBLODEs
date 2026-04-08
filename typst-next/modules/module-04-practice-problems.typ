@@ -1,6 +1,4 @@
-#import "../libs/_ode_solvers.typ": solve_2d_ivp
-#import "@preview/lilaq:0.2.0" as lq
-#import "@preview/tiptoe:0.3.0"
+#import "../libs/lib.typ": *
 
 #let f1(A, B) = (calc.sin(B), A - B)
 #let path1 = solve_2d_ivp(f1, (0.0, 5.0), 600, Delta: .1, method: "rk4")

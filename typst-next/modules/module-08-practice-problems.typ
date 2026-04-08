@@ -1,3 +1,5 @@
+#import "../libs/lib.typ": *
+
 #let questions = (
   (
     statement: [Find the eigenvalues and solve $cases(x'_1=x_2, x'_2=-x_1)$.#v(.7em)],

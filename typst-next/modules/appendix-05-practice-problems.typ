@@ -1,3 +1,5 @@
+#import "../libs/lib.typ": *
+
 #let questions = (
   // (
   //   statement: [

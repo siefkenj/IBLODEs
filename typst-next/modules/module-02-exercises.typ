@@ -1,6 +1,5 @@
 #import "../libs/lib.typ": *
 #show: e.prepare(question)
-#import "@preview/lilaq:0.4.0" as lq
 
 #let MM = $upright(bold("M"))$
 #let NN = $upright(bold("N"))$

@@ -1,9 +1,4 @@
-#import "../libs/_graphics.typ": slope_field
-#import "../libs/_workbook.typ": label_module, simple_table
-#import "../libs/_ode_solvers.typ": solve_1d_ivp
-#import "../libs/_spreadsheet.typ": draw_spreadsheet
-#import "@preview/lilaq:0.2.0" as lq
-#import "@preview/tiptoe:0.3.0"
+#import "../libs/lib.typ": *
 
 
 #let questions = (
