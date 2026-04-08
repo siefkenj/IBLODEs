@@ -2,6 +2,7 @@
 #import "../common/settings-book.typ": show_def, workbook
 #import "../libs/_workbook.typ": label_appendix, simple_table
 #import "../libs/_spreadsheet.typ": draw_spreadsheet
+#show: e.prepare()
 #let (sans, serif, module, definition, example, theorem) = workbook
 #label_appendix(<app:spreadsheet>)
 

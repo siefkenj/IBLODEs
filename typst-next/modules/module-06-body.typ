@@ -1,5 +1,6 @@
 #import "../libs/lib.typ": *
 #import "definitions.typ": show_def
+#show: e.prepare()
 #show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.

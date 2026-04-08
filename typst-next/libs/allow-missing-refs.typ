@@ -26,10 +26,12 @@
 /// at the top of every file where missing refs should be allowed.
 #let allow_missing_refs(it) = {
   let matches = query(it.target)
-  if matches.len() == 1 and matches.at(0).func() == STYLED_FUNC {
-    return text(fill: red)[\<ERROR cannot reference styled element #str(it.target)\>]
-  }
-  // return text(fill:red , "XXX")
+  // XXX: This doesn't work right now. Maybe it can be fixed some how...
+  // if matches.len() == 1 and matches.at(0).func() == STYLED_FUNC {
+  //   // If the reference is to a styled element, it probably means we forgot to call `show: e.prepare()` in the module file.
+  //   return text(fill: red)[\<ERROR cannot reference styled element #str(it.target)\> did you forget
+  //     `e.prepare()`?]
+  // }
   if str(it.target) in all-bib-entries() or it.element != none {
     it
   } else {

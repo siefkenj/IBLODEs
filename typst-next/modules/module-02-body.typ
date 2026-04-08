@@ -1,5 +1,6 @@
 #import "../libs/lib.typ": *
 #import "definitions.typ": show_def
+#show: e.prepare()
 #show ref: allow_missing_refs
 
 In this module you will learn

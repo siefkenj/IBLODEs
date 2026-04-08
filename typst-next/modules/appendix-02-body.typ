@@ -4,6 +4,7 @@
 #let (sans, serif, module, definition, example, theorem) = workbook
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/tiptoe:0.3.1"
+#show: e.prepare()
 
 
 #label_appendix(<app:separable>)

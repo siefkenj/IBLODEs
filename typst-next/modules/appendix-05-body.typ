@@ -1,6 +1,7 @@
 // This file is meant to be imported and not compiled on its own.
 #import "../common/settings-book.typ": show_def, workbook
 #import "../libs/_workbook.typ": label_appendix, simple_table
+#show: e.prepare()
 #let (sans, serif, module, definition, example, theorem) = workbook
 
 #label_appendix(<app:reduction_of_order>)
