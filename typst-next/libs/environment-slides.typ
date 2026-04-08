@@ -205,6 +205,7 @@
   show: e.set_(slide_settings, active: true)
   show: e.set_(global_settings, display_mode: "slides")
   show: e.set_(question_settings, include_start_marker: false)
+  show link: _show_link
   set par(justify: true)
   set page(
     width: 16cm,

@@ -1,5 +1,6 @@
 #import "./common.typ": *
 #import "environment-module.typ": _heading_and_list_show_rule, module_settings
+#import "environments.typ": _show_link
 
 
 /// Template for making a book. This should be used as
@@ -14,5 +15,6 @@
     numbering: "1",
     number-align: center,
   )
+  show link: _show_link
   it
 }

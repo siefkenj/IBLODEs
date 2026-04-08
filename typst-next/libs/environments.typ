@@ -164,3 +164,15 @@
     e.field("content", content, required: true, doc: "The body of the theorem."),
   ),
 )
+
+/// Show rule to make links mono-spaced font. Use:
+/// ```typst
+/// show link: _show_link
+/// ```
+#let _show_link(it) = {
+  if type(it.dest) == str {
+    mono(it)
+  } else {
+    it
+  }
+}
