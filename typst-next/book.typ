@@ -11,12 +11,27 @@
 #show: book_template
 #show ref: allow_missing_refs
 
+
+#make_cover(
+  text("Differential Equations", size: 45pt),
+  authors: ([Jason Siefken], [Bernardo Galvão-Sousa]),
+  subtitle: align(left, stack(
+    [MAT244 Workbook],
+    text([#datetime.today().display("[year]/[month]/[day] Edition")], size: 12pt),
+    spacing: .6em,
+  )),
+)
+
 #{
   // We don't have module bars in the introduction, so set inner and outer margins equal.
   set page(margin: (inside: 1in, outside: 1in))
   // Reset the page counter and set it to roman numerals.
   counter(page).update(1)
   set page(numbering: "i")
+
+  outline(depth: 3, target: e.selector(module, outline: true).or(heading))
+
+  pagebreak(to: "odd")
   include "modules/introduction.typ"
 
   set page(numbering: none)

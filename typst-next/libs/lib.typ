@@ -1,4 +1,5 @@
 #import "common.typ": *
+#import "cover.typ": make_cover
 #import "settings.typ": global_settings
 #import "environments.typ": definition, example, mono, sans, serif, theorem
 #import "environment-module.typ": module, module_settings

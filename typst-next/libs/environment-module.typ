@@ -113,7 +113,9 @@
     } else {
       [#first_label --- #it.title]
     }
-    let module_heading = if _is_empty(it.title) { [] } else { heading(level: 1, it.title) }
+    let module_heading = if _is_empty(it.title) { [] } else {
+      heading(level: 1, outlined: false, it.title)
+    }
 
     show: _colored_sidebar.with(
       bar_color: primary_accent_color,
@@ -127,6 +129,14 @@
     module_heading
     it.body
   }),
+  outline: (
+    caption: it => {
+      it.ref_label
+      if it.title != none {
+        [: #it.title]
+      }
+    },
+  ),
   reference: (
     custom: it => {
       let label = it.at("label", default: none)
