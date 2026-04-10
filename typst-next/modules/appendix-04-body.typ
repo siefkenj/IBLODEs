@@ -1,10 +1,10 @@
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_workbook.typ": label_appendix, simple_table
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
 #show: e.prepare()
-#let (sans, serif, module, definition, example, theorem) = workbook
+#show ref: allow_missing_refs
 
-#label_appendix(<app:series_solution>)
+
 
 In this appendix you will learn
 - How to find a series solution to a differential equation.

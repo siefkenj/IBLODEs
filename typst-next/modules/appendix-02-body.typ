@@ -1,13 +1,10 @@
 // This file is meant to be imported and not compiled on its own.
-#import "../common/settings-book.typ": show_def, workbook
-#import "../libs/_workbook.typ": label_appendix, simple_table
-#let (sans, serif, module, definition, example, theorem) = workbook
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
+#import "../libs/lib.typ": *
+#import "definitions.typ": show_def
 #show: e.prepare()
+#show ref: allow_missing_refs
 
 
-#label_appendix(<app:separable>)
 
 This appendix is adapted from #link("https://www.jirka.org/diffyqs/")[Jiri Lebl's book "Notes on
   Diffy Qs"].
@@ -224,23 +221,6 @@ are called _singular solutions_.
         },
       )
     }
-
-
-
-    // #figure(
-    //     image("coffeefig-1-2", width: 9in),
-    //     caption: [
-    //         Graphs of the coffee temperature function $T(t)$.
-    //         On the left, horizontal
-    //         lines are drawn at temperatures 60, 85, and 89. Vertical lines
-    //         are drawn at $t = 1$ and $t = 9.21$. Notice that the
-    //         temperature of the coffee hits 85 at $t = 1$, and 60 at
-    //         $t approx 9.21$. On the right, the graph is over a longer period of time,
-    //         with a horizontal line at the ambient temperature 22.
-    //         (label: sintro:coffeefig)
-    //     ]
-    // )
-    // ]
   ],
 )<ex_coffee>
 

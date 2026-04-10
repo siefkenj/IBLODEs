@@ -25,7 +25,7 @@
   ),
   (
     statement: [
-      Solve $y' + 3 x^2 y = sin(x) e^{ - x^3 }$, with $y(0) = 1$.
+      Solve $y' + 3 x^2 y = sin(x) e^( - x^3 )$, with $y(0) = 1$.
     ],
   ),
   (

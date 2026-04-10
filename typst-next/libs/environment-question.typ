@@ -100,6 +100,8 @@
     let question_config = get(question_settings)
     let question_counter = e.counter(it)
 
+    set page(footer: _footer_with_copyright(global_config.copyright))
+
     if question_config.include_start_marker {
       _draw_start_marker(question_counter)
     }

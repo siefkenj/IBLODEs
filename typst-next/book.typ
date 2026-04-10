@@ -1,8 +1,13 @@
 #import "libs/lib.typ": *
 #import "libs/environment-book.typ": book_template
 
+/// Logo for CC BY-SA license
+#let cc_by_sa = box(width: 3em, place(dy: -.85em, image("images/by-sa.svg", height: 1em)))
+#let copyright = [_#sym.copyright Galvão-Sousa & Siefken, 2025 #cc_by_sa _]
+
 #show: e.prepare()
 #show: e.set_(slide_settings, active: false)
+#show: e.set_(global_settings, copyright: copyright)
 #show: book_template
 #show ref: allow_missing_refs
 
@@ -34,7 +39,7 @@
 #{
   module(title: [Simulation], label: <mod:simulation>)[
     #include "modules/module-02-body.typ"
-    #import "modules/module-02-practice-problems.typ": questions
+    #import "modules/module-01-practice-problems.typ": questions
     #set text(size: 0.85em)
     #practice_problems(questions)
   ]
@@ -161,6 +166,80 @@
   include "modules/module-12-exercises.typ"
 }
 
+// Appendices Start Here
+#show: e.set_(
+  module_settings,
+  sidebar_color: color.rgb("#7db967"),
+  supplement: "Appendix",
+  numbering: "A",
+)
+#e.counter(module).update(0)
+
+#{
+  module(title: [Spreadsheets and Programming], label: <app:spreadsheet>)[
+    #include "modules/appendix-01-body.typ"
+    #import "modules/appendix-01-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  show: e.set_(global_settings, copyright: [_#sym.copyright Jiří Lebl 2008--2025 #cc_by_sa _])
+  module(title: [Separable Equations], label: <app:separable>)[
+    #include "modules/appendix-02-body.typ"
+    #import "modules/appendix-02-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  show: e.set_(global_settings, copyright: [_#sym.copyright Jiří Lebl 2008--2025 #cc_by_sa _])
+  module(title: [Integrating Factors], label: <app:integrating_factor>)[
+    #include "modules/appendix-03-body.typ"
+    #import "modules/appendix-03-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  module(title: [Series Solutions], label: <app:series_solution>)[
+    #include "modules/appendix-04-body.typ"
+    #import "modules/appendix-04-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  show: e.set_(global_settings, copyright: [_#sym.copyright Jiří Lebl 2008--2025 #cc_by_sa _])
+  module(title: [Reduction of Order], label: <app:reduction_of_order>)[
+    #include "modules/appendix-05-body.typ"
+    #import "modules/appendix-05-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  module(title: [Linear Algebra], label: <app:linear_algebra>)[
+    #include "modules/appendix-06-body.typ"
+    #import "modules/appendix-06-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
+
+#{
+  module(title: [Complex Numbers], label: <app:complex>)[
+    #include "modules/appendix-07-body.typ"
+    #import "modules/appendix-07-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}
 
 #{
   module(

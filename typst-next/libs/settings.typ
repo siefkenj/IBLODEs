@@ -60,5 +60,11 @@
       doc: "The display mode of the textbook. This can be set to 'book', 'guide', or 'slides'. This will affect what content is shown and how it is laid out.",
       default: "book",
     ),
+    e.field(
+      "copyright",
+      e.types.option(content),
+      doc: "The copyright notice to be displayed in the footer of each page. If `none`, no copyright notice will be displayed.",
+      default: none,
+    ),
   ),
 )

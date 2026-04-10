@@ -135,3 +135,33 @@
 
   #practice_problem_solutions()
 ]
+
+= Test copyright setting
+
+#show: e.set_(
+  global_settings,
+  copyright: "Copyright 2024. All rights reserved.",
+  double_sided: false,
+)
+
+#module(
+  title: [Copyright Test Module],
+)[
+  This module should have a copyright.
+]
+
+#[
+  #show: e.set_(global_settings, copyright: "No copying permitted.")
+
+  #module(
+    title: [Copyright Test Module 2],
+  )[
+    This module should have a different copyright.
+  ]
+]
+
+#module(
+  title: [Copyright Test Module 3],
+)[
+  This module should have the same copyright as two modules previous.
+]

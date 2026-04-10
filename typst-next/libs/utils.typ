@@ -136,6 +136,22 @@
   }
 }
 
+/// Render a footer with the supplied copyright notice.
+/// Usage:
+/// ```typst
+/// #set page(footer: _footer_with_copyright("Copyright 2024"))
+/// ```
+#let _footer_with_copyright(copyright) = {
+  if page.numbering != none {
+    context {
+      show: place.with(center)
+      numbering(page.numbering, ..counter(page).get())
+    }
+  }
+  show: place.with(right)
+  text(copyright, size: 0.75em, fill: gray)
+}
+
 /// Only show `content` when the `active_env` equals the `when` condition.
 #let restrict(when: "", active_env: "", content, otherwise: none) = {
   if (type(when) == array and when.contains(active_env)) or when == active_env {

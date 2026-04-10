@@ -120,6 +120,9 @@
       first_page_label: text(fill: white, size: 1.5em, sans(first_label)),
       other_page_label: text(fill: white, sans(other_label)),
     )
+    set page(footer: _footer_with_copyright(global_settings.copyright))
+
+
     show: pad.with(left: 3pt)
     module_heading
     it.body

@@ -1,6 +1,6 @@
 #import "common.typ": *
 #import "settings.typ": global_settings
-#import "environments.typ": definition, example, theorem
+#import "environments.typ": definition, example, mono, sans, serif, theorem
 #import "environment-module.typ": module, module_settings
 #import "environment-slides.typ": slide, slide_settings
 #import "environment-question.typ": label_question_part, question, question_settings
