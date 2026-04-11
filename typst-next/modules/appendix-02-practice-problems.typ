@@ -114,12 +114,13 @@
   ),
   (
     statement: [
-      Take the coffee example from #ref(<ex_coffee>, form: "page") with the same numbers: 89 degrees
-      at $t = 0$, 85 degrees at $t = 1$, and ambient temperature of 22 degrees. Suppose these
-      temperatures were measured with precision of $plus.minus 0.5$ degrees. Given this imprecision,
-      the time it takes the coffee to cool to (exactly) 60 degrees is also only known in a certain
-      range. Find this range. Hint: Think about what kind of error makes the cooling time longer and
-      what shorter.
+      // XXX: Fix the reference here
+      //Take the coffee example from #ref(<ex_coffee>, form: "page") with the same numbers: 89 degrees
+      Take the coffee example with the same numbers: 89 degrees at $t = 0$, 85 degrees at $t = 1$,
+      and ambient temperature of 22 degrees. Suppose these temperatures were measured with precision
+      of $plus.minus 0.5$ degrees. Given this imprecision, the time it takes the coffee to cool to
+      (exactly) 60 degrees is also only known in a certain range. Find this range. Hint: Think about
+      what kind of error makes the cooling time longer and what shorter.
     ],
     solution: [
       The range is approximately 7.45 to 12.15 minutes.

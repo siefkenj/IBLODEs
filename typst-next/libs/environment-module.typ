@@ -115,6 +115,10 @@
     }
     let module_heading = if _is_empty(it.title) { [] } else {
       heading(level: 1, outlined: false, it.title)
+      // Create a non-outlined invisible heading that gets used for the PDF outline.
+      // We do this because we want the PDF outline to include the word "Module 1" before the name of the module.
+      show heading: none
+      heading(level: 1, outlined: false, bookmarked: true, numbering: none, other_label)
     }
 
     show: _colored_sidebar.with(

@@ -142,6 +142,17 @@
     )
 
     show pagebreak: colbreak()
+    {
+      // Put an invisible header that only shows up in the PDF outline with the question number.
+      show heading: none
+      heading(
+        level: 3,
+        outlined: false,
+        bookmarked: true,
+        numbering: none,
+        [#question_counter.display()],
+      )
+    }
     it.body
   }),
   reference: (
@@ -151,7 +162,6 @@
         return
       }
       link(label, [Question #e.counter(it).display() ])
-      // link(label, it.title)
     },
   ),
   prepare: (elem, it) => {
