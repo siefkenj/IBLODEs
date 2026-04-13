@@ -202,6 +202,7 @@
 /// #show: slides_template
 /// ```
 #let slides_template(it) = {
+  show: e.prepare(question)
   show: e.set_(slide_settings, active: true)
   show: e.set_(global_settings, display_mode: "slides")
   show: e.set_(question_settings, include_start_marker: false)

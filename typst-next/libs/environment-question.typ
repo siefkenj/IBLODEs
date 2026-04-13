@@ -3,6 +3,7 @@
 #import "./settings-question.typ": *
 #import "./environments.typ": *
 #import "./utils.typ": *
+#import "environment-only.typ": book_only
 
 #let _question_label_state = state("question_label", "??")
 #let _question_label_metadata = metadata("question_part_label")
@@ -141,7 +142,11 @@
       spacing: 1em,
     )
 
-    show pagebreak: colbreak()
+    show pagebreak: it => {
+      book_only(
+        colbreak(weak: it.weak),
+      )
+    }
     {
       // Put an invisible header that only shows up in the PDF outline with the question number.
       show heading: none
