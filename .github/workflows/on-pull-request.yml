@@ -13,24 +13,24 @@ jobs:
 
         steps:
             - name: Checkout sources
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Debug paths
               run: |
                   echo "Current directory: $(pwd)"
                   echo "Files in current directory:"
                   ls -la
-                  ls book/typst/
+                  ls book/
             - name: Compile Typst Files
               uses: siefkenj/compile-typst-action@main
               with:
-                  source_paths: "book/typst/book.typ book/typst/slides.typ book/typst/slides-white.typ"
-                  output_paths: "book/typst/book.pdf book/typst/slides.pdf book/typst/slides-white.pdf"
-                  fonts_path: "book/typst"
+                  source_paths: "book/book.typ book/slides.typ book/slides-white.typ"
+                  output_paths: "book/book.pdf book/slides.pdf book/slides-white.pdf"
+                  fonts_path: "book"
 
             # upload all the built PDFs as an artifact.
             - name: Upload build artifacts
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                   name: build-artifacts
                   include-hidden-files: true
@@ -47,10 +47,10 @@ jobs:
 
         steps:
             - name: Checkout sources
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Download textbook PDFs
-              uses: actions/download-artifact@v4
+              uses: actions/download-artifact@v6
               with:
                   name: build-artifacts
                   path: ./
@@ -58,10 +58,10 @@ jobs:
             - name: Merge PDFs into website
               run: |
                   mkdir -p website/landing-page/assets/textbook
-                  cp book/typst/*.pdf website/landing-page/assets/textbook/
+                  cp book/*.pdf website/landing-page/assets/textbook/
 
             - name: Upload artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                   name: website
                   path: website/landing-page
@@ -86,19 +86,19 @@ jobs:
 
         steps:
             - name: Download website artifact
-              uses: actions/download-artifact@v4
+              uses: actions/download-artifact@v6
               with:
                   name: website
                   path: website
 
             - name: Setup Pages
-              uses: actions/configure-pages@v4
+              uses: actions/configure-pages@v6
 
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-pages-artifact@v6
               with:
                   path: "./website"
 
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v4
+              uses: actions/deploy-pages@v6
