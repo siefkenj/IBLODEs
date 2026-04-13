@@ -2,10 +2,7 @@
 #import "definitions.typ": show_def
 #show: e.prepare(question)
 
-#let MM = $upright(bold("M"))$
-#let SS = $upright(bold("S"))$
 #let OO = $upright(bold("O"))$
-#let infty = math.infinity
 
 #{
   book_only(pagebreak())

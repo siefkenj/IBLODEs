@@ -12,6 +12,8 @@
   display: it => e.get(get => {
     let global_config = get(global_settings)
     if global_config.solutions_visible {
+      show: block.with(fill: blue.lighten(90%), inset: 4pt, width: 100%)
+      set text(fill: blue.darken(50%))
       it.body
     }
   }),

@@ -1,10 +1,6 @@
 #import "../libs/lib.typ": *
 #show: e.prepare(question)
 
-#let MM = $upright(bold("M"))$
-#let SS = $upright(bold("S"))$
-#let infty = math.infinity
-
 #{
   question(
     slide(force_scale: 0.89em)[

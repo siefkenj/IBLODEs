@@ -2,10 +2,6 @@
 #import "definitions.typ": show_def
 #show: e.prepare(question)
 
-#let MM = $upright(bold("M"))$
-#let SS = $upright(bold("S"))$
-#let infty = math.infinity
-
 #{
   question(
     slide[

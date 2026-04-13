@@ -3,10 +3,6 @@
 #show ref: allow_missing_refs
 
 
-#let MM = $upright(bold("M"))$
-#let SS = $upright(bold("S"))$
-#let infty = math.infinity
-
 #{
 
 
@@ -211,7 +207,7 @@
 
       Define $arrow(F)(H, A) = (H', A')$
 
-      #book_only(pagebreak())
+      #book_only(colbreak())
       + Find the matrix for $D_(arrow(F))$, the total derivative of $arrow(F)$.
       + Create an affine approximation to $arrow(F)$ around $arrow(e) = (0, 0)$ and use this to
         write an approximation to the original system.
