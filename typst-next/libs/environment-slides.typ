@@ -98,12 +98,23 @@
     //
     // Lay out the content
     //
-    show: block.with(
-      breakable: false,
-      width: 100%,
-      height: 100%,
-      inset: (y: 3pt),
-    )
+
+    show footnote.entry: it => {
+      it
+      v(3pt)
+    }
+    show: it => {
+      // XXX: this is a hack to get footnotes working. The only footnote we currently have is in exercise 54.
+      // In theory the footnote and the content of the slide can overlap.
+      show: place
+      show: block.with(
+        breakable: false,
+        width: 100%,
+        height: 100%,
+        inset: (y: 3pt),
+      )
+      it
+    }
     // [#body_height, #page.height]
     let content = it.body
     if it.autosize == false {

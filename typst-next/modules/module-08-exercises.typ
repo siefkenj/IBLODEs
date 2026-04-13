@@ -6,10 +6,8 @@
 #let infty = math.infinity
 
 #{
-
-
   question(
-    slide(force_scale: 0.912em)[
+    slide(force_scale: 0.85em)[
 
       Consider the following *FD* model of Fleas and Dogs where
       $
@@ -25,6 +23,7 @@
         constant 1).
       - (P$2_D$) Ignoring all else, host numbers decrease in proportion to the number of parasites
         (with constant 2 $"kilo dog"/"mega flea"$).
+        #slides_only(colbreak())
       - (P$1_c$) Anti-flea collars remove 2 million fleas per year.
       - (P$2_c$) Constant dog breeding adds 1 thousand dogs per year.
 

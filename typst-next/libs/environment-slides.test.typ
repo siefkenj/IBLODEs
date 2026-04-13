@@ -157,3 +157,11 @@
     The counter should be the same as the previous slide.
   ]
 })
+
+= Slide with a footnote
+
+#slide[
+  This slide has a footnote#footnote[The slide footnote.].
+
+  The footnote should appear on the same page as the slide.
+]
