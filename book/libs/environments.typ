@@ -132,7 +132,6 @@
     )
   }),
   reference: (supplement: [Example], numbering: "1"),
-  labelable: true,
   fields: (
     e.field("prompt", e.types.option(content), doc: "A short prompt shown inline after 'Example.'"),
     e.field("content", content, required: true, doc: "The body of the example."),
