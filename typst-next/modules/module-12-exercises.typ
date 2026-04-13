@@ -6,10 +6,8 @@
 #let infty = math.infinity
 
 #{
-
-
   question(
-    slide(force_scale: 0.87em)[
+    slide(force_scale: 0.89em)[
 
       #slides_only([*Existence and Uniqueness*])
 

@@ -8,16 +8,15 @@
 #let infty = math.infinity
 
 #{
-
-
   book_only(pagebreak())
   question(
     slide[
       #align(
         center,
-        block[
+        block(breakable: false)[
           #image("../images/slope-field-3d.png", width: 2in)
 
+          #v(-7pt)
           #link("https://www.desmos.com/3d/kvyztvmp0g")
         ],
       )
@@ -37,7 +36,7 @@
 
   book_only(pagebreak())
   question(
-    slide(force_scale: 0.83em)[
+    slide(force_scale: 0.87em)[
 
       //https://www.desmos.com/calculator/wdgtznxndp
       //
@@ -134,6 +133,7 @@
       )
 
 
+      #slides_only(colbreak())
       Recall the #link(<ex:O_slope_field>)[slope field for model $OO$].
 
       + What would a phase portrait for model $OO$ look like? Draw it.
@@ -161,6 +161,8 @@
       $
 
       and $0 lt.eq b lt.eq 2$.
+
+      #slides_only(colbreak())
 
       + Modify
 

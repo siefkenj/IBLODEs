@@ -75,13 +75,12 @@
 
   book_only(pagebreak())
   question.with(label: <ex:system_eigen_solutions>)(
-    slide(force_scale: 0.85em)[
+    slide(force_scale: .85em)[
       Consider the system
       $
         x'(t) & = 2x(t) \
         y'(t) & = 3y(t)
       $
-
 
       + Rewrite the system in matrix form.
       + Classify the following as solutions or non-solutions to the system.
@@ -190,7 +189,6 @@
             )
           }
           slides_only(draw_diagram(2cm), otherwise: draw_diagram(3cm))
-
         }
         In which phase plane above is the dashed (green) curve the graph of a solution to the
         system? Explain.
@@ -201,7 +199,6 @@
   book_only(pagebreak())
   question(
     slide[
-
       Suppose $A$ is a $2 times 2$ matrix and $arrow(s)_1$ and $arrow(s)_2$ are eigen solutions to
       $arrow(r)' = A arrow(r)$ with eigenvalues $1$ and $-1$, respectively.
 
@@ -215,7 +212,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: .9em)[
 
       Consider the following phase portrait for a system of the form $arrow(r)' = A arrow(r)$ for an
       unknown matrix $A$.

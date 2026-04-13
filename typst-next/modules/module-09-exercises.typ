@@ -191,7 +191,7 @@
 
     book_only(v(5em))
 
-    slide(force_scale: 0.907em)[
+    slide(force_scale: 0.85em)[
 
       Recall our model from Exercise @ex:tree_model for the life cycle of a tree where $H(t)$ was
       height, $A(t)$ was the leaves' surface area, and $t$ was time:

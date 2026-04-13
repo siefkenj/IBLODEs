@@ -53,7 +53,7 @@
       top: top_margin,
       bottom: bottom_margin,
     ) = _compute_margins()
-    let body_height = page.height - top_margin - bottom_margin
+    // let body_height = page.height - top_margin - bottom_margin
 
     set page(
       header-ascent: 0pt,
@@ -73,7 +73,7 @@
           // If the module counter is > 0, show the current module
           if module_counter.get().at(0, default: 0) > 0 {
             h(1fr)
-            [(Module #module_counter.display())]
+            text(weight: "thin", size: .8em, baseline: -2pt)[Module #module_counter.display()]
           }
         } else {
           it.title
@@ -209,13 +209,12 @@
   show link: _show_link
   set par(justify: true)
   set page(
-    width: 16cm,
-    height: 9cm,
+    width: 17.7cm,
+    height: 10cm,
     margin: (
-      top: 1.2em,
+      x: 4pt,
+      top: 1.15em,
       bottom: 3cm,
-      left: .5cm,
-      right: .5cm,
     ),
   )
   it

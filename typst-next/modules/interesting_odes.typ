@@ -1,36 +1,9 @@
-#import "../libs/_workbook.typ": aligned_terms
-#import "@preview/lilaq:0.4.0" as lq
-#import "@preview/tiptoe:0.3.1"
+#import "../libs/lib.typ": *
+#show: e.prepare(question)
 
-
-
-#let MM = $upright(bold("M"))$
 #let SS = $upright(bold("S"))$
-#let infty = math.infinity
-
-#let setup(env) = {
-  let (
-    sans,
-    serif,
-    slide,
-    restrict,
-    question,
-    definition,
-    solution: _solution,
-    show_def,
-    theorem,
-  ) = env
-  let slides_only = restrict.with(when: ("slides", "slides-solutions"))
-  let book_only = restrict.with(when: ("book", "guide", "book-solutions"))
-  let guide_only = restrict.with(when: "guide")
-  let solution = content => restrict(
-    when: ("guide", "book-solutions", "slides-solutions"),
-    _solution(content),
-  )
-
-
   // Catenary Problem
-
+#{
   let catenary = {
     let xs = lq.linspace(-1, 1.5, num: 25)
     let thickness = 1.5pt
@@ -466,24 +439,6 @@
 
       + Physicists often claim that $theta(t)$ oscillates like a sine wave with period
         $2 pi sqrt(L /g)$. Under what conditions are the (mostly) correct?
-
-      // + Show that $theta(t) = k pi$ are equilibrium solutions for all $k in mathbb{Z}$. Analyze its nature using eigen techniques.
-      //
-      // #raw(block: true)[
-      //   \bigskip
-      // ]
-      //
-      // + Using the following Desmos link, use different initial conditions to explore the different behaviours of the pendulum with $L = 3$.
-      //
-      //   #link("https://www.desmos.com/calculator/5qifixelmb")
-      //
-      // + If the pendulum starts vertically with a 5 m/s push to the right, is the solution periodic?
-      //
-      // + Assume $theta(0) = 0$. Find an initial velocity $v^star$ such that the behaviour of the phase portrait for $theta'(0) < v^star$ is different than that for $theta'(0) > v^star$. What is the practical meaning of $v^star$?
-      //
-      // + We have a pendulum with $L = 3$ m on Earth. We want to take a pendulum to the Moon that will behave exactly in the same way. What should be the specifications of that pendulum?
-
-
     ],
   )
 }

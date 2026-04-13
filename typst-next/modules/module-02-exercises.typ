@@ -24,7 +24,7 @@
         $ P(2) approx P(1) + P'(1) dot 1 = P(0) = 10. $
         And so on.
 
-        So, the population of starfish remains constant.
+        So, the population of starfish remains constant. #h(1fr)
       ]
 
       + Do you believe this argument? Can it be improved?

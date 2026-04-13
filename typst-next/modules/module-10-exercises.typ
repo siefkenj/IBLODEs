@@ -1,12 +1,7 @@
 #import "../libs/lib.typ": *
 #show: e.prepare(question)
 
-#let MM = $upright(bold("M"))$
-#let SS = $upright(bold("S"))$
-#let infty = math.infinity
-
 #{
-
   let springmass = {
     let ts = lq.linspace(1.5, 30, num: 150)
     let thickness = 1.5pt
@@ -58,7 +53,7 @@
 
 
   question(
-    slide(force_scale: 0.75em)[
+    slide(force_scale: 0.90em)[
 
 
       Consider a spring with a mass attached to the end.

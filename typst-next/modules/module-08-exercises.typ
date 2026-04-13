@@ -128,9 +128,6 @@
       + Find a solution satisfying $arrow(s)(0) = mat(1; 3)$.
       + Using what you know, find a general formula for $arrow(r)(t)$.
       + Find a formula for $arrow(r)(t)$ satisfying $arrow(r)(0) = mat(4; 8)$.
-
-
-
     ],
   )
 

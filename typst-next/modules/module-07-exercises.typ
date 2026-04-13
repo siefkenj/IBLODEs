@@ -104,8 +104,6 @@
   book_only(pagebreak())
   question(
     slide[
-
-
       The *SM* model of Social Media Usage is
       $
         P' & = -P + 2 \

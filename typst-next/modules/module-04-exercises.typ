@@ -8,8 +8,6 @@
 #let infty = math.infinity
 
 #{
-
-
   question(
     slide(force_scale: .95em)[
       Open and make a copy of the spreadsheet
@@ -35,7 +33,7 @@
 
   book_only(pagebreak())
   question(
-    slide[
+    slide(force_scale: 0.95em)[
 
       Recall the logistic model for starfish growth (introduced in @ex:models_MNO):
       #aligned_terms(
@@ -75,9 +73,10 @@
         #show_def("equilibrium_classification_formal")
       ],
     )
-    slide(force_scale: 0.9em)[
+    slide(force_scale: 0.95em)[
       #show_def("equilibrium_classification_informal")
 
+      #slides_only(colbreak())
       Let
       $
         F'(t) = class("normal", ?)
@@ -97,6 +96,7 @@
 
       #slides_only(show_def("equilibrium_classification_informal"))
 
+      #slides_only(colbreak())
       Recall the starfish population model #OO given by
       $ P'(t) = k dot P(t) dot (1 - R_i / R dot P(t)) $
       Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.

@@ -63,7 +63,7 @@
 
   book_only(pagebreak())
   question.with(label: <ex:fox_and_rabbit>)(
-    slide(force_scale: 0.9em)[
+    slide(force_scale: 0.95em)[
       // https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
       Open and make a copy of the spreadsheet
 
@@ -89,7 +89,7 @@
 
   book_only(pagebreak())
   question(
-    slide(force_scale: 0.76em)[
+    slide(force_scale: 0.77em)[
       Open and make a copy of the spreadsheet
 
       #align(center, link("https://uoft.me/foxes-and-rabbits")[https://uoft.me/foxes-and-rabbits])
@@ -110,10 +110,4 @@
         of fox and rabbit population vs. time)?
     ],
   )
-
-  //book_only(pagebreak())
-  //question(slide[ ])
-
-  //book_only(pagebreak())
-  //question(slide[ ])
 }

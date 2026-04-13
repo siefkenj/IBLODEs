@@ -1,5 +1,6 @@
 #import "environment-slides.typ": *
 #import "environments.typ": *
+#import "environment-question.typ": *
 #show: e.prepare()
 
 #set page(
@@ -127,3 +128,32 @@
     content.
   ]
 ]
+
+#pagebreak()
+
+= Slide inside a question
+
+#pagebreak()
+#show: e.prepare(question)
+#show: e.set_(question_settings, include_start_marker: false)
+#question[
+  #slide[
+    This slide is inside a question, so it should be formatted like a normal slide, but there should
+    be no question number or "question-style" counter.
+
+    #lorem(50)
+
+    #lorem(50)
+  ]
+]
+
+#question({
+  slide[
+    Two slides for one question (A)
+  ]
+  slide[
+    Two slides for one question (B)
+
+    The counter should be the same as the previous slide.
+  ]
+})

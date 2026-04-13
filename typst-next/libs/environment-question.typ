@@ -4,6 +4,7 @@
 #import "./environments.typ": *
 #import "./utils.typ": *
 #import "environment-only.typ": book_only
+#import "settings-slides.typ": *
 
 #let _question_label_state = state("question_label", "??")
 #let _question_label_metadata = metadata("question_part_label")
@@ -99,9 +100,13 @@
   display: it => e.get(get => {
     let global_config = get(global_settings)
     let question_config = get(question_settings)
+    let slide_config = get(slide_settings)
     let question_counter = e.counter(it)
 
-    set page(footer: _footer_with_copyright(global_config.copyright))
+    // Show a copyright footer, unless slides are active, in which case the slides will handle it
+    set page(footer: _footer_with_copyright(global_config.copyright)) if (
+      slide_config.active == false
+    )
 
     if question_config.include_start_marker {
       _draw_start_marker(question_counter)
@@ -143,9 +148,13 @@
     )
 
     show pagebreak: it => {
-      book_only(
-        colbreak(weak: it.weak),
-      )
+      if slide_config.active {
+        it
+      } else {
+        book_only(
+          colbreak(weak: it.weak),
+        )
+      }
     }
     {
       // Put an invisible header that only shows up in the PDF outline with the question number.
