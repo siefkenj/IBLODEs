@@ -306,6 +306,7 @@ $
 $
 
 This argument leads to the following theorem.
+
 #theorem(title: [Solution Space Upper Bound], [
   Let $M$ be an $n times n$ matrix and let $cal(S)$ be the set of all solutions to
   $arrow(r)'(t) = M arrow(r)(t)$. Then
@@ -450,7 +451,6 @@ origin.
   let soln = solve_2d_ivp(F, (.4145, -1), 100, Delta: .1, method: "rk4")
   let soln2 = solve_2d_ivp(F, (-.414, 1), 100, Delta: .1, method: "rk4")
 
-
   let diag = lq.diagram(
     title: [Solutions to $arrow(r)'=mat(2, 1; 1, 0)arrow(r)$ in Phase Space],
     width: 5cm,
@@ -460,20 +460,15 @@ origin.
     yaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
     xaxis: (position: 0, tip: tiptoe.stealth, filter: ((v, d) => false)),
     lq.line((0, 0), (1 + calc.sqrt(2), 1), stroke: (paint: blue, dash: (4pt, 1pt))),
-    //lq.line(
-    //  (0, 0),
-    //  (1 - calc.sqrt(2), 1),
-    //  stroke: blue,
-    //),
     lq.plot(
-      soln.map(((x, y)) => x),
-      soln.map(((x, y)) => y),
+      soln.map(((x, y)) => calc.clamp(x, -2, 2)),
+      soln.map(((x, y)) => calc.clamp(y, -2, 2)),
       mark: none,
       stroke: orange,
     ),
     lq.plot(
-      soln2.map(((x, y)) => x),
-      soln2.map(((x, y)) => y),
+      soln2.map(((x, y)) => calc.clamp(x, -2, 2)),
+      soln2.map(((x, y)) => calc.clamp(y, -2, 2)),
       mark: none,
       stroke: orange,
     ),
