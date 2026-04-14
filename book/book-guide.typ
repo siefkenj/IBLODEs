@@ -1,6 +1,5 @@
 #import "libs/lib.typ": *
-#import "@preview/marginalia:0.3.1"
-#import "libs/environment-slides.typ": slides_template
+#import "libs/environment-guide.typ": guide_template
 
 #set page(paper: "us-letter")
 
@@ -22,12 +21,7 @@
 )
 
 // #show: marginalia.show-frame
-#show: marginalia.setup.with(
-  book: false,
-  outer: (far: 10pt, sep: 10pt, width: 5cm),
-  top: 1.5cm,
-  bottom: 1cm,
-)
+#show: guide_template
 
 // Modules start
 #counter(page).update(1)

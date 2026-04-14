@@ -1,7 +1,7 @@
 /// Create a marker of a given color with a bullet inside of it
 /// so its content can be copy-and-pasted and still appear as a list.
 #let make_marker(color: blue) = move(dy: 2pt, box(fill: color, width: 4.5pt, height: 4.5pt, move(
-  dy: -2pt,
+  dy: -1.75pt,
   dx: 1pt,
   text(
     fill: color,

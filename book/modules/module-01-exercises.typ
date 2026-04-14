@@ -7,7 +7,44 @@
 #let infty = math.infinity
 
 #{
-  question(
+  question({
+    learning_objectives(
+      [Recognize how many assumptions must be made to formalize a problem into math.],
+      [Distinguish Definitions/Assumptions/Relationships when setting up a modelling problem.],
+      [Interpret commonly-used notation like "$~$" and "$\#$" in the context of a modelling
+        problem.],
+    )
+    notes[
+      Take your time with this question. It sets up the tone for the course. Make students *pin
+      down* their assumptions.
+
+      - Most students will not recognize half of the assumptions they are making. One of the goals
+        is to get student aware of how many assumptions go into setting up a model and how
+        mathematical notation can remove ambiguity.
+
+      - Students will be wondering "when do we stop writing down our assumptions?" Have a good
+        answer ready (along the lines of, "there's no algorithm that tells you when enough is
+        enough; part of being in this class is learning what the standards are in a math class;
+        other fields will have other standards (e.g., physics, or law, or engineering, etc.)")
+
+      - The class may be split over two very reasonable interpretations:
+        + Starfish are born at the start of the year then give birth *at the end of the year*.
+        + Starfish are born at the start of the year then give birth *at the start of the next
+          year*.
+        This gives rise to the formulas
+        $
+          P(t+1) = P(t) + K P(t)
+        $
+        *or*
+        $
+          P(t+1) = P(t) + K P(t+1).
+        $
+        Be prepare with an explanation and a decision on which to standardize on.
+
+      - They will come up with lots of definitions/notation. After collecting ideas, circle a
+        minimal set to work with going forward. Explain that "there are many ways to model this
+        situation, and we will focus on these definitions for now".
+    ]
     slide[
       You are observing starfish that made their way to a previously uninhabited tide-pool. You’d
       like to predict the year-on-year population of these starfish. You start with a simple
@@ -36,10 +73,14 @@
 
         Relationships:
         - $P(t+1) = P(t) + K P(t)$
+
+        or, if $C(t)$ is the children born during year $t$,
+        - $C(t) = K P(t)$
+        - $P(t+1) = P(t) + C(t)$
       ])
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
   question.with(label: <ex:m1>)(
