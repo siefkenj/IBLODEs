@@ -28,18 +28,23 @@
         other fields will have other standards (e.g., physics, or law, or engineering, etc.)")
 
       - The class may be split over two very reasonable interpretations:
-        + Starfish are born at the start of the year then give birth *at the end of the year*.
-        + Starfish are born at the start of the year then give birth *at the start of the next
-          year*.
-        This gives rise to the formulas
+        + $P(t)$ measures star fish at the *start* of year $t$.
+        + $P(t)$ measures star fish at the *end* of year $t$.
+
+        In case 1, you get
         $
-          P(t+1) = P(t) + K P(t)
+          P(t+1) = P(t) + C(t).
         $
-        *or*
+        In case 2, you get
         $
-          P(t+1) = P(t) + K P(t+1).
+          P(t+1) = P(t) + C(t+1).
         $
-        Be prepare with an explanation and a decision on which to standardize on.
+
+        _Make sure you have this distinction straight in your head._ One way to help the students is
+        to have them make a chart of Adults, Children, and Total Population for each year.
+
+        Both formulations lead to $P(t+1) = P(t) + K P(t)$ *if you are careful*. Case 1 is easier to
+        see; standardize on case 1.
 
       - They will come up with lots of definitions/notation. After collecting ideas, circle a
         minimal set to work with going forward. Explain that "there are many ways to model this
@@ -55,26 +60,29 @@
 
       + Come up with a mathematical model for the number of star fish in a given year. Your model
         should
-        - Define any notation (variables and parameters) you use
-        - Include at least one formula/equation
-        - Explain how your formula/equation relates to the starting assumption
+        - *Definitions*: any notation, variables, and parameters you use.
+        - *Assumptions*: what assumptions do you need to make to simplify the situation enough to
+          get a model?
+        - *Relationships*: how do quantities in your model relate to each other? (In math,
+          relationships are often stated in terms of equations.)
 
       #solution([
         Definitions:
-        - $P(t)$ is the number of starfish at the start of year $t$.
+        - $P(t)$ is the number of starfish at the *start of year* $t$.
         - $K$ is the number of children born during the year per starfish per year.
         - $P(0) = P_0$ is the initial population of starfish.
+        - $C(t)$ is the number of children born during year $t$.
 
         Assumptions:
         - Starfish have children once per year.
-        - Baby starfish are ready to procreate immediately.
+        - Baby starfish are ready to procreate at the next breeding cycle.
         - Starfish do not die or otherwise leave the tide-pool.
         - We are measuring starfish in units large enough that "fractions" make sense.
 
         Relationships:
         - $P(t+1) = P(t) + K P(t)$
 
-        or, if $C(t)$ is the children born during year $t$,
+        or
         - $C(t) = K P(t)$
         - $P(t+1) = P(t) + C(t)$
       ])

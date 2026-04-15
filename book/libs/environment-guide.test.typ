@@ -106,3 +106,20 @@
     Objectives visible but notes not.
   ]
 }
+
+#pagebreak()
+== Test some lessons
+
+#lesson(title: "First lesson")[
+  This is the first lesson
+]
+
+#question[some question]
+#question[some question]
+
+#lesson(title: "Second lesson")[
+  This is the second lesson
+]
+
+#question[some question]
+#question[some question]

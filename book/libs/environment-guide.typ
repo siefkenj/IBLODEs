@@ -225,6 +225,44 @@
   _notes(body)
 }
 
+/// Insert a page that describes a "lesson". This will reference `questions` that come after it and before the next `lesson`.
+#let lesson = e.element.declare(
+  "lesson",
+  prefix: PREFIX,
+  doc: "Insert a lesson page that references questions that come after it.",
+  display: it => e.get(get => {
+    import "./environment-question.typ": question
+    let global_config = get(global_settings)
+    let guide_config = get(guide_settings)
+    let module_counter = e.counter(module)
+    let lesson_counter = e.counter(it)
+    let question_counter = e.counter(question)
+    let lesson_num = lesson_counter.get().at(0, default: 0)
+
+    let lessons_after = e.query(e.func(it), after: here())
+    let included_questions = e.query(question, after: here(), before: none)
+
+    [#included_questions.len() ]
+    [#lessons_after.len() ]
+    [#e.func(it)]
+
+    [ this is a lesson]
+  }),
+  fields: (
+    e.field(
+      "body",
+      content,
+      required: true,
+      doc: "The body of the lesson.",
+    ),
+    e.field(
+      "title",
+      content,
+      doc: "The title of the lesson.",
+    ),
+  ),
+)
+
 /// Template for making a guide. This should be used as
 /// ```typst
 /// #show: guide_template
