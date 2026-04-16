@@ -10,28 +10,71 @@
 #let infty = math.infinity
 
 #{
-  question(
-    slide[
+  question(label: <q:yearly_starfish>, slide[
 
-      Consider the following argument for the population model #SS where
-      $P'(t) = P(t) dot abs(sin(2 pi t))$ with $P(0) = 10$:
+    Consider the following argument for the population model #SS where
+    $P'(t) = P(t) dot abs(sin(2 pi t))$ with $P(0) = 10$:
 
-      #quote(block: true)[
-        #set text(blue)
-        At $t = 0$, the change in population $approx P'(0) = 0$, so
-        $ P(1) approx P(0) + P'(0) dot 1 = P(0) = 10. $
-        At $t = 1$, the change in population $approx P'(1) = 0$, so
-        $ P(2) approx P(1) + P'(1) dot 1 = P(0) = 10. $
-        And so on.
+    #quote(block: true)[
+      #set text(blue)
+      At $t = 0$, the change in population $approx P'(0) = 0$, so
+      $ P(1) approx P(0) + P'(0) dot 1 = P(0) = 10. $
+      At $t = 1$, the change in population $approx P'(1) = 0$, so
+      $ P(2) approx P(1) + P'(1) dot 1 = P(0) = 10. $
+      And so on.
 
-        So, the population of starfish remains constant. #h(1fr)
+      So, the population of starfish remains constant. #h(1fr)
+    ]
+
+    + Do you believe this argument? Can it be improved?
+      #solution[
+        No. While the logic follows a good idea, we know $P(t + Delta)approx P(t) + Delta P'(t)$
+        when $Delta approx 0$. In the reasoning above, $Delta = 1$year was used. Over the course of
+        a year, the equation $P'(t) = P(t) dot abs(sin(2 pi t))$ varies significantly, and is zero
+        _only_ when $t$ is a multiple of $1/2$.
+
+        A better argument would be to use a smaller $Delta$. If $Delta = 0.05$, for example, the
+        population estimate would not be constant.
+      ]
+    + Simulate an improved version using a spreadsheet.
+      #solution[
+        Simulating with $Delta = 0.05$ via the formula
+        $
+          P(t + Delta) approx P(t) + P(t) abs(sin(2 pi t)) Delta quad P(0) = 10,
+        $
+        we get the following spreadsheet.
+
+        #{
+          let sim = solve_1d_ivp(
+            (t, P) => P * calc.abs(calc.sin(2 * calc.pi * t)),
+            (0, 10),
+            5,
+            Delta: 0.05,
+            method: "euler",
+          )
+
+          let cells = (
+            "A1": "Delta t",
+            "A2": "0.05",
+            "B1": "t",
+            "C1": "P",
+          )
+
+          for i in range(sim.len()) {
+            let row = i + 2
+            let t = sim.at(i).at(0)
+            let P = sim.at(i).at(1)
+            cells.insert("B" + str(row), str(calc.round(t, digits: 2)))
+            cells.insert("C" + str(row), str(calc.round(P, digits: 4)))
+          }
+
+          align(center, draw_spreadsheet(cols: 3, rows: 7, cells: cells))
+        }
+
+        The spreadsheet shows that the population grows above 10.
       ]
 
-      + Do you believe this argument? Can it be improved?
-      + Simulate an improved version using a spreadsheet.
-
-    ],
-  )
+  ])
 
   book_only(pagebreak())
   question({
@@ -78,12 +121,31 @@
 
       #slides_only(colbreak())
       + Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?
+        #solution[
+          The $Delta = 0.2$ simulation grows faster. Euler's method overestimates here, and the
+          larger step accumulates larger overestimation.
+        ]
       + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What
         does the graph show?
+        #solution[
+          The two curves both increase, but the $Delta = 0.2$ curve sits above the $Delta = 0.1$
+          curve and separates more over time. Big picture: for this growth model, coarser steps
+          produce less reliable long-term estimates.
+        ]
 
-        #v(.7cm)
+        #slides_only(v(.7cm))
       + What $Delta$s give the largest estimate for the population at time $t$?
+        #solution[
+          Among positive step sizes with Euler's method, larger $Delta$s give larger estimates at a
+          fixed future time $t$ (provided the computation reaches that time). This is consistent
+          with the trend in the table/plot.
+        ]
       + Is there a limit as $Delta arrow 0$?
+        #solution[
+          Yes. As $Delta arrow 0$, Euler approximations converge to the solution of the differential
+          equation (the continuous-model value). Numerically, the curves stabilize toward a common
+          trajectory.
+        ]
     ]
 
     // This is a recreation of the previous slide with a graphic. It will only appear in a slide deck
@@ -222,9 +284,53 @@
 
     + Model $NN$ introduces the concept of "resources available per individual".
       + Come up with a definition/notation/assumptions for this concept.
+        #solution[
+          One reasonable choice is:
+          - $R(t)$ = total available resource in the tide-pool.
+          - Resource per individual: $r(t) = R(t)/P(t)$.
+
+          Assumptions:
+          - Births are proportional to population and to per-capita resource.
+          - On the time scale of this model, treat $R(t)$ as approximately constant $R_0 > 0$.
+
+          Then per-capita resource is $r(t)=R_0/P(t)$.
+        ]
       + Create a differential equation for model $NN$.
+        #solution[
+          Let $b>0$ be a proportionality constant. If
+          $
+            "birth rate" ~ P(t) dot r(t),
+          $
+          then
+          $
+            P'(t) = b P(t) r(t) = b P(t) (R_0 / P(t)) = b R_0.
+          $
+          So model $NN$ gives approximately linear growth in time.
+        ]
     + Repeat the modelling process for model $OO$.
+      #solution[
+        Let $K$ be carrying capacity (resource-limited maximum population). A standard way to model
+        ``fraction of resources remaining'' is
+        $
+          1 - P(t)/K.
+        $
+        If births are proportional to population times this fraction, then
+        $
+          P'(t) = r P(t) (1 - P(t)/K),
+        $
+        where $r>0$ is a growth parameter. Big picture: this adds feedback that slows growth as
+        resources are depleted.
+      ]
     + Simulate population vs. time curves for each model.
+      #solution[
+        A typical comparison (same $P(0)=10$ and tuned parameters) is:
+        - $MM$: exponential growth.
+        - $NN$ (with constant total resource): roughly linear growth.
+        - $OO$: logistic growth (initially increasing quickly, then leveling near $K$).
+
+        For lecture prep, plotting all three together is useful: students can visually connect
+        modelling assumptions to long-term behaviour.
+      ]
 
   ])
 
@@ -247,9 +353,32 @@
 
     + Determine which population grows fastest in the short term and which grows fastest in the long
       term.
+      #solution[
+        With matched initial data and reasonable parameters:
+        - Short term: either $MM$ or $OO$ can look fastest depending on chosen $r$ and $K$, but $OO$
+          often tracks $MM$ briefly when $P << K$.
+        - Long term: $MM$ is fastest (unbounded exponential), $OO$ levels off at $K$, and $NN$ grows
+          linearly.
+
+        The key concept is asymptotic behaviour: assumptions about resource limits dominate long-run
+        predictions.
+      ]
     + Are some models more sensitive to your choice of $Delta$ when simulating?
+      #solution[
+        Yes. $MM$ is typically most sensitive because fast exponential growth amplifies numerical
+        error. $OO$ is usually moderate (self-limiting dynamics help), and linear-growth $NN$ is
+        usually least sensitive.
+      ]
     + Are your simulations for each model consistently underestimates? Overestimates? Do any results
       surprise you?
+      #solution[
+        For increasing solutions with Euler's method, coarse-step simulations are often
+        overestimates, not underestimates. This is strongest for $MM$ and weaker for $NN$.
+
+        A common surprise is that qualitatively correct models can still give quantitatively poor
+        predictions when $Delta$ is too large. This is a valuable reminder to separate model error
+        from numerical-method error.
+      ]
   ])
 
   //book_only(pagebreak())

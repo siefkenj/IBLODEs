@@ -117,9 +117,8 @@
 #question[some question]
 #question[some question]
 
-#lesson(title: "Second lesson")[
+#lesson[
   This is the second lesson
 ]
 
-#question[some question]
 #question[some question]

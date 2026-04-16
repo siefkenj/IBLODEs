@@ -165,16 +165,6 @@
     e.field("title", e.types.option(content), doc: "The title of the module."),
     e.field("body", content, required: true, doc: "The body of the module."),
     e.field(
-      "supplement",
-      e.types.option(content),
-      doc: "The way this module is referenced. E.g. \"Module\", or \"Appendix\". Overrides the global setting for this module.",
-    ),
-    e.field(
-      "numbering",
-      e.types.option(str),
-      doc: "The numbering to be used when referring to this module. E.g. \"1\", or \"A\". Overrides the global setting for this module.",
-    ),
-    e.field(
       "ref_label",
       str,
       doc: "The label to be used when referring to this module. E.g. \"Module 1\", or \"Appendix A\". Overrides the default reference format which is [supplement numbering].",

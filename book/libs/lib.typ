@@ -8,7 +8,7 @@
 #import "environment-solutions.typ": solution
 #import "environment-only.typ": book_only, slides_only
 #import "environment-practice-problems.typ": practice_problem_solutions, practice_problems
-#import "environment-guide.typ": learning_objectives, notes
+#import "environment-guide.typ": learning_objectives, lesson, notes
 #import "utils.typ": aligned_terms, simple_table
 #import "allow-missing-refs.typ": allow_missing_refs
 #import "graphics/graphics.typ": draw_vec, slope_field, vector_field

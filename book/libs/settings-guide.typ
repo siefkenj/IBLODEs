@@ -20,6 +20,12 @@
       default: color.rgb("#ed4c8a"),
     ),
     e.field(
+      "lesson_color",
+      color,
+      doc: "Color of the sidebar used in guide pages.",
+      default: color.rgb("#bb5fdf"),
+    ),
+    e.field(
       "learning_objectives_visible",
       e.types.smart(bool),
       doc: "Whether learning objectives annotations should be shown. If `auto`, it will be the same as `active`.",
@@ -29,6 +35,12 @@
       "notes_visible",
       e.types.smart(bool),
       doc: "Whether notes annotations should be shown. If `auto`, it will be the same as `active`.",
+      default: auto,
+    ),
+    e.field(
+      "lessons_visible",
+      e.types.smart(bool),
+      doc: "Whether lessons annotations should be shown. If `auto`, it will be the same as `active`.",
       default: auto,
     ),
     e.field(

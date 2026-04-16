@@ -32,12 +32,12 @@
   include "modules/module-01-exercises.typ"
 }
 
-// #{
-//   module(title: [Simulation], label: <mod:simulation>)[
-//     #include "modules/module-02-body.typ"
-//   ]
-//   include "modules/module-02-exercises.typ"
-// }
+#{
+  module(title: [Simulation], label: <mod:simulation>)[
+    #include "modules/module-02-body.typ"
+  ]
+  include "modules/module-02-exercises.typ"
+}
 
 // #{
 //   module(title: [Systems and Models with Interacting Terms], label: <mod:systems>)[

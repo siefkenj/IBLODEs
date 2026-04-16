@@ -7,6 +7,7 @@
 #let infty = math.infinity
 
 #{
+  lesson(title: [The Introduction], include "lesson-week-01.typ")
   question({
     learning_objectives(
       [Recognize how many assumptions must be made to formalize a problem into math.],
@@ -59,7 +60,7 @@
       $
 
       + Come up with a mathematical model for the number of star fish in a given year. Your model
-        should
+        should provide
         - *Definitions*: any notation, variables, and parameters you use.
         - *Assumptions*: what assumptions do you need to make to simplify the situation enough to
           get a model?

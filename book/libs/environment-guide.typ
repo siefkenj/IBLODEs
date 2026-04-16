@@ -3,7 +3,7 @@
 #import "./settings-slides.typ": *
 #import "./settings-question.typ": *
 #import "./settings-guide.typ": *
-#import "./environment-module.typ": module
+#import "./environment-module.typ": _colored_sidebar, module
 #import "./environments.typ": *
 #import "./utils.typ": *
 
@@ -234,20 +234,73 @@
     import "./environment-question.typ": question
     let global_config = get(global_settings)
     let guide_config = get(guide_settings)
+    let lesson_active = if guide_config.lessons_visible == auto {
+      guide_config.active
+    } else {
+      guide_config.lessons_visible
+    }
+    if not lesson_active {
+      return
+    }
+
     let module_counter = e.counter(module)
     let lesson_counter = e.counter(it)
     let question_counter = e.counter(question)
-    let lesson_num = lesson_counter.get().at(0, default: 0)
 
-    let lessons_after = e.query(e.func(it), after: here())
-    let included_questions = e.query(question, after: here(), before: none)
+    // This is some black magic elembic code. There is no direct way to query for the location of elements using `e.query`,
+    // so we query for the metadata directly. Then we can find it's location to *then* do a query for the questions between this lesson and the next one.
+    let lesson_metadata_after = query(
+      selector(e.selector(e.func(it), meta: true)).after(here()),
+    ).at(1, default: none)
+    let next_lesson_location = if lesson_metadata_after != none {
+      lesson_metadata_after.location()
+    } else {
+      none
+    }
+    let q_selector = if next_lesson_location != none {
+      selector(e.selector(question, meta: true)).after(here()).before(next_lesson_location)
+    } else {
+      selector(e.selector(question, meta: true)).after(here())
+    }
+    // Questions are assumed to be listed in sequence.
+    let included_questions_metadata = query(q_selector)
+    let included_question_nums = included_questions_metadata.map(qm => question_counter
+      .at(qm.location())
+      .at(0, default: 0))
 
-    [#included_questions.len() ]
-    [#lessons_after.len() ]
-    [#e.func(it)]
+    let question_range = if included_question_nums.len() == 0 {
+      "(No exercises)"
+    } else if included_question_nums.len() == 1 {
+      [#included_question_nums.at(0)]
+    } else {
+      [#included_question_nums.at(0);--#included_question_nums.at(-1)]
+    }
 
-    [ this is a lesson]
+    let title = if it.title != none {
+      [#it.ref_label: #it.title]
+    } else {
+      it.ref_label
+    }
+    let formatted_title = sans(text(title, size: 1.5em, weight: "medium", fill: white))
+    show: _colored_sidebar.with(
+      first_page_label: formatted_title,
+      other_page_label: formatted_title,
+      bar_color: guide_config.lesson_color,
+    )
+
+    heading(title)
+
+    [== #text(weight: "medium")[Core Exercises:] #question_range]
+
+    v(1em)
+
+    it.body
   }),
+  synthesize: it => {
+    let count = e.counter(it).get().first()
+    it.ref_label = [Lesson #count]
+    it
+  },
   fields: (
     e.field(
       "body",
@@ -257,8 +310,14 @@
     ),
     e.field(
       "title",
-      content,
+      e.types.option(content),
       doc: "The title of the lesson.",
+    ),
+    e.field(
+      "ref_label",
+      str,
+      doc: "The label to be used when referring to this lesson.",
+      synthesized: true,
     ),
   ),
 )
