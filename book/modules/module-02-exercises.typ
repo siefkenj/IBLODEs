@@ -77,7 +77,7 @@
   ])
 
   book_only(pagebreak())
-  question({
+  question(label: <ex:euler_delta_comparison>, {
     slide[
       (Simulating $MM_(infty)$ from @ex:m_infinity with different $Delta$s)
 
@@ -122,29 +122,91 @@
       #slides_only(colbreak())
       + Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?
         #solution[
-          The $Delta = 0.2$ simulation grows faster. Euler's method overestimates here, and the
-          larger step accumulates larger overestimation.
+          Looking at the table and carefully comparing like values of $t$, we see the $Delta = 0.1$
+          simulation grows faster.
         ]
       + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What
         does the graph show?
         #solution[
-          The two curves both increase, but the $Delta = 0.2$ curve sits above the $Delta = 0.1$
-          curve and separates more over time. Big picture: for this growth model, coarser steps
-          produce less reliable long-term estimates.
+          #let all_sims = {
+            let ret = (:)
+            for Delta in (0.1, 0.2) {
+              let steps = calc.ceil(2.4 / Delta)
+              let sim = solve_1d_ivp(
+                (x, y) => 1.1 * y,
+                (0, 10),
+                steps,
+                Delta: Delta,
+                method: "euler",
+              )
+              ret.insert(
+                "d" + str(Delta),
+                (
+                  xs: sim.map(v => v.at(0)),
+                  ys: sim.map(v => v.at(1)),
+                ),
+              )
+            }
+            ret
+          }
+
+          #let colors = (
+            purple,
+            red.darken(10%),
+          )
+
+          #align(
+            center,
+            lq.diagram(
+              xlim: (0, 2.8),
+              ylim: (0, 130),
+              lq.plot(
+                all_sims.at("d0.1").xs,
+                all_sims.at("d0.1").ys,
+                mark: none,
+                color: colors.at(0),
+                stroke: 1.2pt,
+              ),
+              lq.place(
+                all_sims.at("d0.1").xs.last(),
+                all_sims.at("d0.1").ys.last(),
+                align: bottom + left,
+                pad(x: 0.2em, y: .0em)[
+                  #set text(colors.at(0))
+                  $Delta=0.1$
+                ],
+              ),
+              lq.plot(
+                all_sims.at("d0.2").xs,
+                all_sims.at("d0.2").ys,
+                mark: none,
+                color: colors.at(1),
+                stroke: 1.2pt,
+              ),
+              lq.place(
+                all_sims.at("d0.2").xs.last(),
+                all_sims.at("d0.2").ys.last(),
+                align: bottom + left,
+                pad(x: .2em, y: -.1em)[
+                  #set text(colors.at(1))
+                  $Delta=0.2$
+                ],
+              ),
+            ),
+          )
+
+          The curve for $Delta = 0.1$ grows faster than the curve for $Delta = 0.2$.
         ]
 
         #slides_only(v(.7cm))
       + What $Delta$s give the largest estimate for the population at time $t$?
         #solution[
-          Among positive step sizes with Euler's method, larger $Delta$s give larger estimates at a
-          fixed future time $t$ (provided the computation reaches that time). This is consistent
-          with the trend in the table/plot.
+          Simulating _this_ model, smaller $Delta$ values give larger estimates.
         ]
       + Is there a limit as $Delta arrow 0$?
         #solution[
-          Yes. As $Delta arrow 0$, Euler approximations converge to the solution of the differential
-          equation (the continuous-model value). Numerically, the curves stabilize toward a common
-          trajectory.
+          Yes, but it isn't necessarily obvious from the data. As $Delta arrow 0$, the Euler
+          estimates converge to the continuous solution.
         ]
     ]
 
@@ -335,7 +397,7 @@
   ])
 
   book_only(pagebreak())
-  question(slide[
+  question(label: <ex:model_growth_comparison>, slide[
     Recall the models
 
     #aligned_terms(
