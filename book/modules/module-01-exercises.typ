@@ -8,7 +8,7 @@
 
 #{
   lesson(title: [The Introduction], include "lesson-week-01.typ")
-  question({
+  question(label: <ex:intro_modelling>, {
     learning_objectives(
       [Recognize how many assumptions must be made to formalize a problem into math.],
       [Distinguish Definitions/Assumptions/Relationships when setting up a modelling problem.],
@@ -18,6 +18,10 @@
     notes[
       Take your time with this question. It sets up the tone for the course. Make students *pin
       down* their assumptions.
+
+      - Emphasize that modelling is an *iterative* process. After you write some
+        Definitions/Assumptions, you might revise or modify them after trying to write down
+        Relationships.
 
       - Most students will not recognize half of the assumptions they are making. One of the goals
         is to get student aware of how many assumptions go into setting up a model and how
@@ -62,8 +66,8 @@
       + Come up with a mathematical model for the number of star fish in a given year. Your model
         should provide
         - *Definitions*: any notation, variables, and parameters you use.
-        - *Assumptions*: what assumptions do you need to make to simplify the situation enough to
-          get a model?
+        - *Assumptions*: what "real world" effects are important and which should be ignored? (Start
+          simple and add complexity only as needed.)
         - *Relationships*: how do quantities in your model relate to each other? (In math,
           relationships are often stated in terms of equations.)
 
@@ -92,7 +96,32 @@
   })
 
   book_only(pagebreak())
-  question.with(label: <ex:m1>)(
+  question.with(label: <ex:m1>)({
+    learning_objectives(
+      [Recognize that evaluating a recursive model is done iteratively (and may feel different than
+        evaluating a function from calculus).],
+      [Use a table to organize and track values when evaluating a recursive model.],
+      [Use a spreadsheet to automate calculations that would otherwise be done by hand.],
+    )
+    notes[
+      - *After @ex:table_by_hand[]*, do a brief introduction to spreadsheets before this question
+        (only the basics). See @app:spreadsheet.
+
+        Many students will claim that they already know spreadsheets, but what they mean is that
+        they have seen spreadsheets. They are not familiar with at least one of: indexing
+        conventions, dragging down to continue a formula or to extend a pattern in a row/column,
+        locking an index with \$, etc.
+
+      - Students may ask if they can use a "real" programming language instead. If you are teaching
+        this class based on spreadsheets, tell them they are welcome to _also_ use another
+        programming language, but they must be able to do the computations with a spreadsheet as
+        well.
+
+      - *Warning*: The iPad\/tablet/phone versions of spreadsheets are hard to use, waste time, and
+        encounter strange errors. Tell students to avoid them. (Online spreadsheets tend to work
+        better.)
+
+    ]
     slide[
       Let
 
@@ -103,7 +132,9 @@
 
       and define the model $MM_1$ to be the model for starfish population with these parameters.
 
-      + Simulate the total number of starfish per year using Excel.
+      + #label_question_part(<ex:table_by_hand>) Use a table to compute the starfish population for
+        the first 3 years. You may use a calculator (but not a spreadsheet).
+      + Simulate the total number of starfish per year using a spreadsheet.
         #solution[
           #{
             let sim = solve_1d_ivp((t, P) => 1.1 * P, (0, 10), 5, Delta: 1, method: "euler")
@@ -124,17 +155,53 @@
             align(center, draw_spreadsheet(cols: 3, rows: 7, cells: cells))
           }
         ]
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question.with(label: <ex:m1_star>)(
+  question.with(label: <ex:m1_star>)({
+    learning_objectives(
+      [Recognize that a "model" includes both predictions and mechanisms. I.e., two _different_
+        models can make the same predictions.],
+      [Explore pros and cons of recursive models vs. models given by a single formula (like a
+        function from calculus).],
+    )
+    notes[
+      Students love closed-form expressions. They are comfortable with them, and because of that
+      they think they are "better". This question aims to expose them to another perspective.
+
+      - The number $0.74194$ is an approximation of $ln(2.1) approx #calc.ln(2.1)$. This number is
+        *meant to be mysterious*. Don't tell the students where it comes from (though some may
+        figure it out on their own).
+
+      - $MM_1$ and $MM_1^*$ would produce the same output if $ln(2.1)$ were used instead of
+        $0.74194$. As given, if students simulate $MM_1$ and $MM_1^*$ with a spreadsheet, they will
+        see that the outputs differ after 1 year (if they show all decimal places) or after 11 years
+        (if they round to whole numbers).
+
+        Because of this, students will happily say that $MM_1$ and $MM^*_1$ are different because
+        they produce different outputs. Acknowledge that that is a good answer, but encourage them
+        to think deeper: if more decimal places of $0.74194$ were used such that the numbers matched
+        exactly, would the models still be different?
+
+      - In @ex:pros_cons_of_m_star[], many will say that $MM^*_1$ is "easier to calculate". This is
+        a matter of perspective. By hand, $MM_1$ is easier! With a calculator $MM_1^*$ might be
+        easier. The real key difference is that $MM^*_1$ can be calculated for a year directly,
+        where as $MM_1$ requires you to calculate all previous years first.
+
+      - Make sure that "explainability" comes out as an advantage for $MM_1$. This will be revisited
+        in @ex:pros_and_cons_table.
+
+      - Let them know that "`=EXP(X)`" is how you compute $e^X$ in a spreadsheet.
+
+
+    ]
     slide[
       Recall the model $MM_1$ (from the #link(<ex:m1>)[previous question]).
 
       Define the model $MM^*_1$ to be
       $
-        P(t) = P_0 e^(0.742t)
+        P(t) = P_0 e^(0.74194 space.thin t).
       $
       + Are $MM_1$ and $MM^*_1$ different models or the same?
         #solution([
@@ -146,7 +213,8 @@
           Neither model is intrinsically better than the other. It all depends on what you are
           trying to learn from the model.
         ])
-      + List an advantage and a disadvantage for each of $MM_1$ and $MM^*_1$.
+      + #label_question_part(<ex:pros_cons_of_m_star>) List an advantage and a disadvantage for each
+        of $MM_1$ and $MM^*_1$.
         #solution[
           $MM_1$ is easy to simulate and it is easy to explain where it came from. However, in order
           to find the population at year $t$, you must first find the population at all previous
@@ -156,17 +224,61 @@
           population at any time without computing the population at all previous times. However, it
           is harder to explain where it came from.
         ]
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question.with(label: <ex:m_star>)(
+  question.with(label: <ex:m_star>)({
+    learning_objectives(
+      [Shift thinking about a recursive model as "$P(t+1) = f(P(t))$" to thinking
+        "$P("next time") = f(P("previous time"))$".],
+      [Simulate a more complicated recursive model.],
+      [Compare data tables with different increments of the independent variable (e.g., different
+        time steps).],
+    )
+    notes[
+      - For @ex:fill_m2_table[], some students will put $t=0,1/2,1$ and others will want to put
+        $t=0,1,2$. During discussion, emphasize that $t=0,1/2,1$ is correct.
+
+        In general, the students who choose $t=0,1,2$ know something is happening at $t=1/2$, etc.,
+        but don't include it on their table.
+      - In spreadsheets it is easy to make two plots on the same axis *if they share an independent
+        variable*. Since the $t$-series are different for different $MM_n$'s, they are very hard to
+        compare graphically in a spreadsheet. Show students how to copy-and-paste their data into
+        Desmos for graphing. See @app:spreadsheet.
+
+      - While making a spreadsheet for $MM_2$/$MM_3$ may seem as easy as making a spreadsheet for
+        $MM_1$, students are still beginners and will find it much more challenging.
+
+      - The goal of @ex:m_star2[] is to explore and build intuition for the next few exercises.
+
+
+    ]
     slide[
       In the model #link(<ex:m1>)[$MM_1$], we assumed the starfish had $K$ children at one point
       during the year.
 
       We want to create a model $MM_n$ where the starfish are assumed to have $K\/n$ children $n$
       times per year (at regular intervals).
+      + #label_question_part(<ex:fill_m2_table>) Consider $MM_2$. Complete the following table
+        assuming $K=1.1$.
+
+        #{
+          set align(center)
+          table(
+            columns: (.5fr, 1fr, 1fr),
+            rows: 1.6em,
+            align: horizon,
+            [$t$], [$P(t)$], [$C(t)$],
+            [0], [10], [#solution[$K/2 dot 10$]],
+            [#solution[1/2]],
+            [#solution[$10 + K/2 dot 10$]],
+            [#solution[$K/2 dot (10 + K/2 dot 10)$]],
+
+            [#solution[1]], [], [],
+          )
+        }
+
       + Let $t_0$, $t_1$, $t_2$, ..., be the times that children are born in model $MM_n$. Find
         expressions for $t_0$, $t_1$, $t_2$, ....
         #solution[
@@ -182,28 +294,44 @@
             P(t + inline(1/n)) = P(t) + inline((K/n)) P(t) = (1 + inline(K/n)) P(t).
           $
         ]
-      + Simulate the models $MM_1$, $MM_2$, $MM_3$ in Excel. Which grows fastest?
+      + Simulate the models $MM_1$, $MM_2$, $MM_3$ with a spreadsheet. Which grows fastest?
         #solution[
           $MM_3$ grows fastest.
         ]
-      + What happens to $MM_n$ as $n arrow infinity$? #label_question_part(<ex:m_star2>)
+      + #label_question_part(<ex:m_star2>) What happens to $MM_n$ as $n arrow infinity$?
         #solution[
           Simulations of $MM_n$ get larger as $n$ increases. These simulations appear to settle down
           (i.e., converge).
         ]
-    ],
-  )
+    ]
+  })
 
+  lesson(title: [Deriving and Simulating Differential Equations], include "lesson-week-02.typ")
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [- Convert a recursive model into a differential equation model by taking limits.],
+    )
+    notes[
+      The goal of this exercise is to use Calculus-style thinking to _pass to_ a differential
+      equation, not to rigorously create a differential equations model from a recursive model.
+      Focus on the ideas and not details about interchanging limits and regularity.
+
+      This question is hard for students and will take more guidance.
+
+      - Explain that $Delta$ in expressions like "$Delta t$" means "change in $t$".
+
+      - The "analysis details" of @ex:passing_to_limit_details[] should not be focused on. It is
+        enough that students see the connection as reasonable.
+
+    ]
     slide[
       #heading(depth: 3, outlined: false, [Exploring $MM_n$])
 
       We can rewrite the assumptions of $MM_n$ as follows:
       - At time $t$ there are $P_n (t)$ starfish.
       - $P_n (0) = 10$
-      - During the time interval $(t, t + 1 / n)$ there will be (on average) $K / n$ new children
-        per starfish.
+      - During the time interval $(t, t + 1 / n)$ there will be $K / n$ new children per starfish.
 
       + Write an expression for $P_n (t + 1 / n)$ in terms of $P_n (t)$.
         #solution[
@@ -226,20 +354,39 @@
             (Delta P_n) / (Delta t) = K P_n (t).
           $
         ]
-      + Write down a differential equation relating $P'(t)$ to $P(t)$ where
-        $P(t) = display(lim_(n arrow infty) P_n (t))$.
-        #solution[
-          Taking the limit $n arrow infty$, we have
-          $
-            lim_(n arrow infty) (Delta P_n) / (Delta t) = P'.
-          $
-          Putting it together, we arrive at the model
-          $
-            P'(t) = K P(t), quad P(0)=10.
-          $
-        ]
-    ],
-  )
+      + Define $P(t) = display(lim_(n arrow infty) P_n (t))$.
+        + Find $display(lim_(n arrow infty)) (Delta P_n) / (Delta t)$.
+          #solution[
+            $
+              lim_(n arrow infty) (Delta P_n) / (Delta t) = lim_(n arrow infty) K P_n (t) = K P(t).
+            $
+          ]
+        + #label_question_part(<ex:passing_to_limit_details>) Express $P'(t)$ using limits. Can you
+          write $P'$ in terms of $Delta P_n$?
+          #solution[
+            By definition of the derivative,
+            $
+              P'(t) = lim_(Delta t arrow 0) (P(t + Delta t) - P(t)) / (Delta t).
+            $
+            We can rewrite this as
+            $P'(t) = display(lim_(n arrow infty)) (P(t + inline(1 / n)) - P(t)) / (inline(1 / n))$.
+            Since $Delta t = 1/n$ and $P(t+1/n) - P(t) approx Delta P_n$ when $n$ is large, we get
+            $P'(t) = display(lim_(n arrow infty)) (Delta P_n) / (Delta t).$
+          ]
+
+        + Write down a differential equation relating $P'(t)$ to $P(t)$.
+          #solution[
+            Taking the limit $n arrow infty$, we have
+            $
+              lim_(n arrow infty) (Delta P_n) / (Delta t) = P'.
+            $
+            Putting it together, we arrive at the model
+            $
+              P'(t) = K P(t), quad P(0)=10.
+            $
+          ]
+    ]
+  })
 
   let M1 = [
     Recall the model $MM_1$ defined by:
@@ -255,7 +402,11 @@
 
 
   book_only(pagebreak())
-  question.with(label: <ex:m_infinity>)(
+  question.with(label: <ex:m_infinity>)({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       #book_only(
         // In book mode, put the models side by side
@@ -271,11 +422,15 @@
         #solution[
           No. A quick side-by-side simulation/table shows they agree at $t=0$ but differ after that.
         ]
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question(label: <ex:pros_and_cons_table>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       Suppose that the estimates produced by $MM_1$ agree with the actual (measured) population of
       starfish.
@@ -319,11 +474,15 @@
 
         No model gets all #sym.checkmark. #text(size: 2em, emoji.face.frown)
       ]
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       #book_only(
         // In book mode, put the models side by side
@@ -352,11 +511,15 @@
           The matching value is $k = ln(2.1) approx 0.742$. With this choice, $MM_infty$ and $MM_1$
           agree (or nearly agree) at integer years.
         ]
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(
       //force_two_column: false,
       [
@@ -411,8 +574,8 @@
           ]
 
       ],
-    ),
-  )
+    )
+  })
 }
 
 

@@ -175,7 +175,7 @@
       if label == none {
         return
       }
-      link(label, [Question #e.counter(it).display() ])
+      link(label, [Core Exercise #e.counter(it).display()])
     },
   ),
   prepare: (elem, it) => {

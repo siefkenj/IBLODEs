@@ -1,5 +1,18 @@
+// Make a "How to use this guide" section
+
+
 The first week is about:
 - Setting the tone of the class
-- Motivating why we would study differential equations
-- Exploring iterative methods for simulating models
+- Exploring how to model real-world problems including:
+  - The importance of assumptions, including how many assumptions we make without realizing it
+  - Our expectations of level of detail for this course
+  - Introducing the "Definitions + Assumptions + Relationships" modeling framework used in this
+    course
 - Offloading simulation arithmetic to spreadsheets
+
+// Explain a bit about not using full DeXABAR
+// Emphasize students need to be told that the DAR processes is not linear. They may revisit definitions and assumptions after they try writing down relationships, etc.
+
+// Do active learning introduction
+// Emphasize simulation focus -- talk about why we chose Excel rather than another programming language.
+

@@ -10,7 +10,12 @@
 #let infty = math.infinity
 
 #{
-  question(label: <q:yearly_starfish>, slide[
+  question(label: <q:yearly_starfish>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
+    slide[
 
     Consider the following argument for the population model #SS where
     $P'(t) = P(t) dot abs(sin(2 pi t))$ with $P(0) = 10$:
@@ -74,10 +79,15 @@
         The spreadsheet shows that the population grows above 10.
       ]
 
-  ])
+  ]
+  })
 
   book_only(pagebreak())
   question(label: <ex:euler_delta_comparison>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       (Simulating $MM_(infty)$ from @ex:m_infinity with different $Delta$s)
 
@@ -328,7 +338,12 @@
   })
 
   book_only(pagebreak())
-  question(label: <ex:models_MNO>, slide[
+  question(label: <ex:models_MNO>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
+    slide[
     Consider the following models for starfish growth:
 
     #aligned_terms(
@@ -394,10 +409,16 @@
         modelling assumptions to long-term behaviour.
       ]
 
-  ])
+  ]
+  })
 
   book_only(pagebreak())
-  question(label: <ex:model_growth_comparison>, slide[
+  question(label: <ex:model_growth_comparison>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
+    slide[
     Recall the models
 
     #aligned_terms(
@@ -441,7 +462,8 @@
         predictions when $Delta$ is too large. This is a valuable reminder to separate model error
         from numerical-method error.
       ]
-  ])
+  ]
+  })
 
   //book_only(pagebreak())
   //question(slide[ ])

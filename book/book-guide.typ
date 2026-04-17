@@ -123,3 +123,21 @@
 //   ]
 //   include "modules/interesting_odes.typ"
 // }
+
+// Appendices Start Here
+#show: e.set_(
+  module_settings,
+  sidebar_color: color.rgb("#7db967"),
+  supplement: "Appendix",
+  numbering: "A",
+)
+#e.counter(module).update(0)
+
+#{
+  module(title: [Spreadsheets and Programming], label: <app:spreadsheet>)[
+    #include "modules/appendix-01-body.typ"
+    #import "modules/appendix-01-practice-problems.typ": questions
+    #set text(size: 0.85em)
+    #practice_problems(questions)
+  ]
+}

@@ -3,7 +3,11 @@
 #show: e.prepare(question)
 
 #{
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       A simple model for population growth has the form
       $
@@ -13,11 +17,16 @@
 
       + Create a better model for population that includes both births and deaths.
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
   question.with(label: <ex:LV_model>)(
+    {
+      learning_objectives(
+        [???],
+      )
+      notes[???]
     slide[
       _Lotka-Volterra Predator-Prey_ models predict two populations, $F$ (foxes) and $R$ (rabbits),
       simultaneously. They take the form
@@ -39,11 +48,16 @@
       + Speculate on when $B_F$, $D_F$, $B_R$, and $D_R$ would be at their maximum(s)/minimum(s),
         given our assumptions.
       + Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$.
-    ],
+    ]
+    },
   )
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       Suppose the population of $F$ (foxes) and $R$ (rabbits) evolves over time following the rule
       $
@@ -54,11 +68,16 @@
       + Simulate the population of foxes and rabbits with a spreadsheet.
       + Do the populations continue to grow/shrink forever? Are they cyclic?
       + Should the humps/valleys in the rabbit and fox populations be in phase? Out of phase?
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
   question.with(label: <ex:fox_and_rabbit>)(
+    {
+      learning_objectives(
+        [???],
+      )
+      notes[???]
     slide(force_scale: 0.95em)[
       // https://utoronto-my.sharepoint.com/:x:/g/personal/jason_siefken_utoronto_ca/Eay4QOMvy7lNr5pOKRv22NgBLGUw7qMpSCShUjeAdrhsHQ?e=bpg4CP
       Open and make a copy of the spreadsheet
@@ -80,11 +99,16 @@
         Do your simulations consistently under or over estimate the population of rabbits?
       + Let $p_1$ and $p_2$ be the first and second local maxima for the (exact) rabbit population.
         Is $p_1$ bigger, smaller, or equal to $p_2$? Justify with numerical evidence.
-    ],
+    ]
+    },
   )
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.77em)[
       Open and make a copy of the spreadsheet
 
@@ -104,6 +128,6 @@
         the model.
       + What is easier to see from plots in the phase plane than from component graphs (the graphs
         of fox and rabbit population vs. time)?
-    ],
-  )
+    ]
+  })
 }
