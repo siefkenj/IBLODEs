@@ -117,8 +117,26 @@
 #question[some question]
 #question[some question]
 
+
 #lesson[
   This is the second lesson
 ]
+
+#module[]
+
+#question[some question]
+
+#lesson[
+  This is the third lesson
+]
+
+#module[]
+
+#question[some question]
+
+#lesson[
+  This is the third lesson
+]
+
 
 #question[some question]

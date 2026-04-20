@@ -225,6 +225,41 @@
   _notes(body)
 }
 
+/// Find all `item` between this lesson and the next. You must pass the lesson constructor for `lessons_func` and `item` must be an elembic element.
+/// E.g.
+/// ```typst
+/// #let items_between = _find_between_lessons(e.func(it), question)
+/// ```
+#let _find_between_lessons(lessons_func, item) = {
+  let item_counter = e.counter(item)
+  // This is some black magic elembic code. There is no direct way to query for the location of elements using `e.query`,
+  // so we query for the metadata directly. Then we can find it's location to *then* do a query for the questions between this lesson and the next one.
+  let lesson_metadata_after = query(
+    selector(e.selector(lessons_func, meta: true)).after(here()),
+  ).at(1, default: none)
+  let next_lesson_location = if lesson_metadata_after != none {
+    lesson_metadata_after.location()
+  } else {
+    none
+  }
+  let q_selector = if next_lesson_location != none {
+    selector(e.selector(item, meta: true)).after(here()).before(next_lesson_location)
+  } else {
+    selector(e.selector(item, meta: true)).after(here())
+  }
+  // Questions are assumed to be listed in sequence.
+  let included_item_metadata = query(q_selector)
+  let included_item_nums = included_item_metadata.map(qm => item_counter
+    .at(qm.location())
+    .at(0, default: 0))
+  let before_item_metadata = query(selector(e.selector(item, meta: true)).before(here()))
+  let before_item_nums = before_item_metadata.map(qm => item_counter
+    .at(qm.location())
+    .at(0, default: 0))
+
+  (before: before_item_nums, included: included_item_nums)
+}
+
 /// Insert a page that describes a "lesson". This will reference `questions` that come after it and before the next `lesson`.
 #let lesson = e.element.declare(
   "lesson",
@@ -243,30 +278,18 @@
       return
     }
 
-    let module_counter = e.counter(module)
-    let lesson_counter = e.counter(it)
-    let question_counter = e.counter(question)
+    // Lessons may overlap more than one module boundary. Since the core exercises come _after_ a module,
+    // we keep track of the module that came directly before the current lesson. We _definitely_ cover that module.
+    // We also cover any modules between us and the next lesson, *unless* the next lesson comes at the very start of
+    // the core exercises for the next module.
+    let (before: modules_before, included: included_modules) = _find_between_lessons(
+      e.func(it),
+      module,
+    )
+    // XXX: for now we just take the module immediately before us.
+    let module_num = modules_before.at(-1, default: 0)
 
-    // This is some black magic elembic code. There is no direct way to query for the location of elements using `e.query`,
-    // so we query for the metadata directly. Then we can find it's location to *then* do a query for the questions between this lesson and the next one.
-    let lesson_metadata_after = query(
-      selector(e.selector(e.func(it), meta: true)).after(here()),
-    ).at(1, default: none)
-    let next_lesson_location = if lesson_metadata_after != none {
-      lesson_metadata_after.location()
-    } else {
-      none
-    }
-    let q_selector = if next_lesson_location != none {
-      selector(e.selector(question, meta: true)).after(here()).before(next_lesson_location)
-    } else {
-      selector(e.selector(question, meta: true)).after(here())
-    }
-    // Questions are assumed to be listed in sequence.
-    let included_questions_metadata = query(q_selector)
-    let included_question_nums = included_questions_metadata.map(qm => question_counter
-      .at(qm.location())
-      .at(0, default: 0))
+    let (included: included_question_nums) = _find_between_lessons(e.func(it), question)
 
     let question_range = if included_question_nums.len() == 0 {
       "(No exercises)"
@@ -289,6 +312,10 @@
     )
 
     heading(title)
+
+    if module_num > 0 {
+      [== #text(weight: "medium")[Module:] #module_num]
+    }
 
     [== #text(weight: "medium")[Core Exercises:] #question_range]
 
