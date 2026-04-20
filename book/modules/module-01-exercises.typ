@@ -10,6 +10,7 @@
   lesson(title: [The Introduction], include "lesson-week-01.typ")
   question(label: <ex:intro_modelling>, {
     learning_objectives(
+      [Recognize that modelling is an imperfect process and one must make choices when modelling.],
       [Recognize how many assumptions must be made to formalize a problem into math.],
       [Distinguish Definitions/Assumptions/Relationships when setting up a modelling problem.],
       [Interpret commonly-used notation like "$~$" and "$\#$" in the context of a modelling
@@ -237,6 +238,8 @@
         time steps).],
     )
     notes[
+      In addition to exploring more complicated models, this exercise is the start of our journey of
+      deriving Euler's method.
       - For @ex:fill_m2_table[], some students will put $t=0,1/2,1$ and others will want to put
         $t=0,1,2$. During discussion, emphasize that $t=0,1/2,1$ is correct.
 
@@ -404,9 +407,26 @@
   book_only(pagebreak())
   question.with(label: <ex:m_infinity>)({
     learning_objectives(
-      [???],
+      // [Explain how a discrete model expressed as $Delta P= f(t,P)$ can produce a related continuous
+      //   model $P'=f(t,P)$.],
+      [Use $MM_n$'s to approximate $MM_infinity$.],
+      [Recognize that when passing from a discrete model to a continuous one, the model predictions
+        may differ even if the formulas look the same.],
+      // [Notice that $Delta P= f(t,P)$ and $P'=f(t,P)$ produce different population estimates even
+      //   though the right-hand side is the same.],
     )
-    notes[???]
+    notes[
+      This problem is about comparing continuous and discrete models, but *also* about previewing
+      Euler's method.
+
+      This question tries to balance:
+      + Comparing discrete and continuous models.
+      + Approximating continuous models as limits of discrete models.
+      + Previewing Euler's method.
+
+      Don't spend too much time on any one of these topics, since they come up again in future
+      questions.
+    ]
     slide[
       #book_only(
         // In book mode, put the models side by side
@@ -418,9 +438,17 @@
         otherwise: [#M1#MInf],
       )
 
-      + If $k = K = 1.1$, does the model $MM_infty$ produce the same population estimates as $MM_1$?
+      + How can the model(s) $MM_n$ be used to approximate the model $MM_infinity$?
         #solution[
-          No. A quick side-by-side simulation/table shows they agree at $t=0$ but differ after that.
+          We can approximate $MM_infinity$ by simulating $MM_n$ with a large $n$.
+        ]
+
+      + #label_question_part(<ex:comparing_m_infinity>) If $k = K = 1.1$, does the model $MM_infty$
+        produce the same population estimates as $MM_1$?
+        #solution[
+          No. Simulating model $MM_n$, we see that $MM_a$ gives a larger population estimate than
+          $MM_b$ when $a > b$. Thus $MM_infinity$ should give a larger population estimate than
+          $MM_1$.
         ]
     ]
   })
@@ -428,17 +456,41 @@
   book_only(pagebreak())
   question(label: <ex:pros_and_cons_table>, {
     learning_objectives(
-      [???],
+      [Be able to state pros and cons of different types of models.],
+      [Identify whether a particular model is explanatory.],
+      [State general properties that a model can have.],
+      [Recognize that modelling is an imperfect process and one must make choices when modelling.],
     )
-    notes[???]
+    notes[
+      *Continuity* is the heading to focus on for the last column.
+
+      The big idea is: no model gets checkmarks across an entire row. However, if we want checkmarks
+      across an entire row, our best bet is to modify $MM_infinity$ to be accurate (trying to
+      explain $MM_1^*$ _might_ be doable but it's not obvious how; $MM_1$ will never be continuous).
+
+      After you fill out a the whole table, ask the students which model can be modified (slightly)
+      to get all checkmarks.
+
+      - Students will come up with _your favourite property_ ideas like: "easy to compute",
+        "long-term accuracy", "sparks joy", etc..
+      - If they do not mention *continuous* for _your favourite property_, bring it up yourself.
+      - This question motivates the approach taken by the text for the entire semester. Take time to
+        appropriately emphasize it.
+
+    ]
     slide[
+      A model is:
+      - _Accurate_: if its predictions match the real-world measurements.
+      - _Explanatory_: if you can explain how the model relates to your assumptions and the world.
+
       Suppose that the estimates produced by $MM_1$ agree with the actual (measured) population of
       starfish.
 
       Fill out the table with #sym.checkmark or #sym.crossmark indicating which models have which
-      properties.
+      properties. In addition, think about *another* property that you would like a model to have
+      and indicate which models have that property.
 
-      #let fill_box = it => book_only(box(width: 1fr, height: 4cm, it))
+      #let fill_box = it => book_only(box(width: 1fr, height: 2cm, it))
       #align(
         center,
         table(
@@ -462,12 +514,14 @@
         ),
       )
       #solution[
-        - $MM_1$: accuracy #sym.checkmark (by definition), explanatory #sym.checkmark (we know where
-          the model comes from).
+        - $MM_1$: accuracy #sym.checkmark (by definition), explanatory #sym.checkmark (we can view
+          this model as saying "the change in population is proportional to the current population",
+          which directly relates to our original assumptions).
         - $MM^*_1$: accuracy #sym.crossmark (matches $MM_1$ for a while), explanatory #sym.crossmark
           (this model seemingly came out of nowhere).
         - $MM_infty$: accuracy #sym.crossmark (values aren't even close), explanatory #sym.checkmark
-          (we derived this model).
+          (we can view this model as saying "the change in population is proportional to the current
+          population", which directly relates to our original assumptions).
 
         The third column could be many things, but an important option is *continuous*. In this case
         - $MM_1$: #sym.crossmark #h(1em) $MM^*_1$: #sym.checkmark #h(1em) $MM_infty$: #sym.checkmark
@@ -480,9 +534,42 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Use $MM_n$'s to approximate $MM_infinity$.],
+      [Simulate a differential equation using a spreadsheet.],
+      [Experimentally tune a parameter in a model to match data.],
     )
-    notes[???]
+    notes[
+      Students have already done @ex:fixing_m_infinity1[] in @ex:comparing_m_infinity[], so it
+      should be quick.
+
+      Have students make a spreadsheet for @ex:fixing_m_infinity2[]; they should remember that they
+      can simulate $MM_infinity$ by simulating $MM_n$ with large $n$.
+
+      When they get to @ex:fixing_m_infinity3[], encourage them to make a spreadsheet with an
+      "adjustable $k$". That is, a cell that stores the value of $k$, which can be changed
+      on-the-fly.
+
+      Conclude the question by giving a quick demo of making the spreadsheet and using a
+      bisection-style search to find $k approx 0.742$.
+
+      After finding $k approx 0.742$, we now have a model that checks all boxes from
+      @ex:pros_and_cons_table[]! Emphasize this.
+
+      - Students are still beginners at spreadsheets. Be patient, but make sure they are actually
+        making spreadsheets (and not just trying to solve it in their heads).
+      - This question is much easier if students build a spreadsheet with an "adjustable $k$".
+        Encourage them to build a spreadsheet with adjustable $k$ right off the bat.
+      - Many students will see the "0.74194" from $MM_1^*$ and plug it in as a guess.
+
+        Ideally we want them to do some sort of bisection search; to aid this, erase formulas for
+        $MM_1^*$ from the board before start this question.
+
+      - After finding $k approx 0.742$, students may claim that this makes model $MM_1^*$
+        "explanatory". However, this is not the case. For model $MM_infinity$, we can label each
+        part of the equation with which assumption(s) it came from. Model $MM_1^*$ does not admit
+        such a labelling. So, although model $MM_1^*$ becomes less mysterious, it doesn't become
+        "explanatory".
+    ]
     slide[
       #book_only(
         // In book mode, put the models side by side
@@ -494,17 +581,20 @@
         otherwise: [#M1#MInf],
       )
 
-      For this question, we will assume that that $MM_1$ accurately predicts the population.
+      For this question, we will assume that $MM_1$ accurately predicts the population.
 
-      + If $k=K=1.1$, does $MM_infty$ underestimate or overestimate the population?
+      + #label_question_part(<ex:fixing_m_infinity1>) If $k=K=1.1$, does $MM_infty$ underestimate or
+        overestimate the population?
         #solution[
           Overestimate. Simulated values for $MM_infty$ sit above $MM_1$ once $t>0$.
         ]
-      + If $k=0.5$, does $MM_infty$ underestimate or overestimate the population?
+      + #label_question_part(<ex:fixing_m_infinity2>) If $k=0.5$, does $MM_infty$ underestimate or
+        overestimate the population?
         #solution[
           Underestimate. With this smaller $k$, simulated $MM_infty$ values lie below $MM_1$.
         ]
-      + Can you find a value of $k$ so that $MM_infty$ accurately predicts the population?
+      + #label_question_part(<ex:fixing_m_infinity3>) Can you find a value of $k$ so that $MM_infty$
+        accurately predicts the population?
         #solution[
           Yes. Tune $k$ in your simulation until the yearly values align with $MM_1$.
 

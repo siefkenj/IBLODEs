@@ -1,4 +1,5 @@
 // Make a "How to use this guide" section
+//  - State that blue box learning objectives are presented in a way that will be applicable to students. However, there are many "hidden" objectives givin in the notes boxes. (Because some exercises are not standalone exercises, the full objectives don't make sense to state in many cases.)
 
 
 The first week is about:
@@ -16,3 +17,4 @@ The first week is about:
 // Do active learning introduction
 // Emphasize simulation focus -- talk about why we chose Excel rather than another programming language.
 
+// Talk about modelling being an imperfect and creative processes.
