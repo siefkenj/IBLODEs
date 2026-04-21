@@ -309,7 +309,7 @@
     ]
   })
 
-  lesson(title: [Deriving and Simulating Differential Equations], include "lesson-week-02.typ")
+  lesson(title: [Connecting Models with Differential Equations], include "lesson-week-02.typ")
   book_only(pagebreak())
   question({
     learning_objectives(
