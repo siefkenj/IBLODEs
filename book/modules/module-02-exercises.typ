@@ -515,9 +515,14 @@
   book_only(pagebreak())
   question(label: <ex:model_growth_comparison>, {
     learning_objectives(
-      [???],
+      [Analyze, through simulation, the behaviour of solutions to differential equations.],
+      [Recognize the relationship between step size and whether an Euler approximation is an
+        over/under estimate depends on the differential equation.],
     )
-    notes[???]
+    notes[
+      This exercise pushes deeper into ideas started in @ex:models_MNO. It *can be skipped* if time
+      is short.
+    ]
     slide[
       Recall the models
 
@@ -535,8 +540,8 @@
         ),
       )
 
-      + Determine which population grows fastest in the short term and which grows fastest in the
-        long term.
+      + For each model, determine whether it predicts the fastest population growth in the short
+        term, in the long term, or something else.
         #solution[
           // Using the same initial population and the same values for common constants, we see:
           - $MM$ grows slowly then quickly (it is exponential).
@@ -546,7 +551,7 @@
       + Are some models more sensitive to your choice of $Delta$ when simulating?
         #solution[
           Yes. Model $OO$ should plateau to a value of $R/F$. However, if the step size is too
-          large, simulations will overshoot this value.
+          large, simulations will overshoot this value and oscillate.
         ]
       + Are your simulations for each model consistently underestimates? Overestimates? Do any
         results surprise you?
