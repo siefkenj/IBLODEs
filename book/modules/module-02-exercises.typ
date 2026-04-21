@@ -1,6 +1,8 @@
 #import "../libs/lib.typ": *
 #show: e.prepare(question)
 
+#show ref: allow_missing_refs
+
 #let MM = $upright(bold("M"))$
 #let NN = $upright(bold("N"))$
 #let OO = $upright(bold("O"))$
@@ -10,12 +12,40 @@
 #let infty = math.infinity
 
 #{
-  lesson(title: [Euler's Method], include "lesson-week-03.typ")
   question(label: <q:yearly_starfish>, {
     learning_objectives(
-      [???],
+      [Derive Euler's method.],
+      [Use a spreadsheet to execute Euler's method.],
+      [Evaluate another's argument.],
     )
-    notes[???]
+    notes[
+      This exercise is *very important*. It is where we derive Euler's method.
+
+      Ask students both what is _good_ about the argument and what is _bad_ about it. (Students are
+      pretty good at pointing out flaws, but not so good at seeing valuable ideas in incorrect
+      arguments.)
+
+      After discussing @ex:introduce_euler1[], introduce the vocabulary of "step size" and have them
+      build a spreadsheet to simulate using a similar idea to the presented argument but smaller
+      "step size".
+
+      Conclude the exercises by telling the students they have just derived Euler's method, and they
+      can now simulate the solution to _any_ (first-order, ordinary) differential equation!
+
+      - Students may have trouble with tangent lines. They are used to seeing
+        $f(x) approx f'(a)(x-a) + f(a)$. They are _not_ used to seeing
+        $f(a+Delta) approx f(a) + Delta f'(a)$. If needed, take some time to discuss how these forms
+        are equivalent.
+
+      - At this point, it is okay if students hard-code a step-size in their spreadsheet.
+
+        If some finish quickly, you can ask them to make a spreadsheet where the step-size is
+        adjustable.
+
+      - Students are still beginners at spreadsheets, but now is the time to set expectations. Tell
+        students they need to practice going from a blank spreadsheet to a working simulation (in
+        less than 5 minutes).
+    ]
     slide[
 
       Consider the following argument for the population model #SS where
@@ -23,7 +53,8 @@
 
       #quote(block: true)[
         #set text(blue)
-        At $t = 0$, the change in population $approx P'(0) = 0$, so
+        At $t = 0$, the change in population $approx P'(0) = 0$, so, using a tangent-line
+        approximation,
         $ P(1) approx P(0) + P'(0) dot 1 = P(0) = 10. $
         At $t = 1$, the change in population $approx P'(1) = 0$, so
         $ P(2) approx P(1) + P'(1) dot 1 = P(0) = 10. $
@@ -32,12 +63,14 @@
         So, the population of starfish remains constant. #h(1fr)
       ]
 
-      + Do you believe this argument? Can it be improved?
+      + #label_question_part(<ex:introduce_euler1>) Do you believe this argument? Can it be
+        improved?
         #solution[
-          No. While the logic follows a good idea, we know $P(t + Delta)approx P(t) + Delta P'(t)$
-          when $Delta approx 0$. In the reasoning above, $Delta = 1$year was used. Over the course
-          of a year, the equation $P'(t) = P(t) dot abs(sin(2 pi t))$ varies significantly, and is
-          zero _only_ when $t$ is a multiple of $1/2$.
+          The argument is *not* believable. While the logic follows a good idea, we know
+          $P(t + Delta)approx P(t) + Delta P'(t)$ when $Delta approx 0$. In the reasoning above,
+          $Delta = 1$ year was used. Over the course of a year, the equation
+          $P'(t) = P(t) dot abs(sin(2 pi t))$ varies significantly, and is zero _only_ when $t$ is a
+          multiple of $1/2$.
 
           A better argument would be to use a smaller $Delta$. If $Delta = 0.05$, for example, the
           population estimate would not be constant.
@@ -86,9 +119,32 @@
   book_only(pagebreak())
   question(label: <ex:euler_delta_comparison>, {
     learning_objectives(
-      [???],
+      [Correctly compare numerical data generated from a table; in particular compare population
+        estimates for like values of $t$ rather than by comparing the $n$#super[th] rows directly.],
+      [Conjecture as to the relationship between step size and Euler estimates.],
     )
-    notes[???]
+    notes[
+      Graphs are easy to compare; numerical data less so. One trap is for students to compare rows
+      of data without thinking about what the row means. Expect _some_ students to think $Delta=0.2$
+      grows faster for this reason.
+
+      Spreadsheets make it hard to graph independent sets of $x y$ pairs on the same plot. For this
+      reason, copying-and-pasting data into a Desmos is a good compromise for visualizing.
+
+      In @ex:visualize_simulations[], have students conjecture as to whether the approximations will
+      "converge" or whether they forever get bigger and diverge as $Delta arrow 0$. They don't have
+      the tools to answer this question rigorously, so leave it at a conjecture.
+
+      - Copy-and-pasting into Desmos is covered in @app:spreadsheet[].
+
+      - When copy-and-pasting into Desmos, do not copy the header column (only copy the numbers).
+
+      - There are two copies of this exercise in the slides. The first is with a table meant for use
+        with @ex:euler_delta_comparison1[] and @ex:euler_delta_comparison2[]. The second slide has
+        graphs and is meant for use with @ex:euler_delta_comparison3[] and
+        @ex:visualize_simulations[].
+
+    ]
     slide[
       (Simulating $MM_(infty)$ from @ex:m_infinity with different $Delta$s)
 
@@ -131,13 +187,14 @@
       )
 
       #slides_only(colbreak())
-      + Compare $Delta = 0.1$ and $Delta = 0.2$. Which approximation grows faster?
+      + #label_question_part(<ex:euler_delta_comparison1>) Compare $Delta = 0.1$ and $Delta = 0.2$.
+        Which approximation grows faster?
         #solution[
           Looking at the table and carefully comparing like values of $t$, we see the $Delta = 0.1$
           simulation grows faster.
         ]
-      + Graph the population estimates for $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What
-        does the graph show?
+      + #label_question_part(<ex:euler_delta_comparison2>) Graph the population estimates for
+        $Delta = 0.1$ and $Delta = 0.2$ on the same plot. What does the graph show?
         #solution[
           #let all_sims = {
             let ret = (:)
@@ -210,11 +267,12 @@
         ]
 
         #slides_only(v(.7cm))
-      + What $Delta$s give the largest estimate for the population at time $t$?
+      + #label_question_part(<ex:euler_delta_comparison3>) What $Delta$s give the largest estimate
+        for the population at time $t$?
         #solution[
           Simulating _this_ model, smaller $Delta$ values give larger estimates.
         ]
-      + Is there a limit as $Delta arrow 0$?
+      + #label_question_part(<ex:visualize_simulations>) Is there a limit as $Delta arrow 0$?
         #solution[
           Yes, but it isn't necessarily obvious from the data. As $Delta arrow 0$, the Euler
           estimates converge to the continuous solution.
@@ -341,9 +399,27 @@
   book_only(pagebreak())
   question(label: <ex:models_MNO>, {
     learning_objectives(
-      [???],
+      [Apply modelling techniques to new situations to establish differential-equations based
+        models.],
+      [Simulate more complicated models using a spreadsheet.],
     )
-    notes[???]
+    notes[
+      This exercise is mean for a "modelling hour" class. Use as many parts as time allows, and
+      leave the remaining parts for homework.
+
+      Emphasize the modelling processes again. Don't let students "jump to equations". One way to
+      encourage this is to pre-write on the board headings of Definitions/Assumptions/Relationships.
+
+      The modelling is more important than the simulations.
+
+      - Students will be surprised (and delighted?) to see model $NN$ giving linear growth.
+
+      - Model $OO$ is meant to give logistic growth. It is hard to parse and will be challenging for
+        students.
+
+      - For both models, students will be tempted to make the resources a function of time.
+        Encourage them to simplify and add complexity after they have a working model.
+    ]
     slide[
       Consider the following models for starfish growth:
 
@@ -362,53 +438,75 @@
       )
 
       + Model $NN$ introduces the concept of "resources available per individual".
-        + Come up with a definition/notation/assumptions for this concept.
+        + Come up with definitions and assumptions for this concept.
           #solution[
-            One reasonable choice is:
-            - $R(t)$ = total available resource in the tide-pool.
-            - Resource per individual: $r(t) = R(t)/P(t)$.
+            Definitions:
+            - $k > 0$ is the proportionality constant (natural growth rate per year).
+            - $R$ = total available resources in the tide-pool.
+            - $r(t) = R/P(t)$ is the resources per individual.
+
 
             Assumptions:
-            - Births are proportional to population and to per-capita resource.
-            - On the time scale of this model, treat $R(t)$ as approximately constant $R_0 > 0$.
-
-            Then per-capita resource is $r(t)=R_0/P(t)$.
+            - The only way starfish population changes is by births (e.g., no deaths, no migration,
+              etc.).
+            - $R$ is constant (e.g., resources replenishes every year).
+            - A continuous model is appropriate:
+              - Fractions of starfish make sense.
+              - Children are ready to reproduce immediately after birth.
+              - Children are born throughout the year.
           ]
-        + Create a differential equation for model $NN$.
+        + Come up with relationships pertaining to model $NN$ in the form of a differential
+          equation.
           #solution[
-            Let $b>0$ be a proportionality constant. If
+            Since
             $
-              "birth rate" ~ P(t) dot r(t),
+              "births" ~ P(t) dot r(t),
             $
             then
             $
-              P'(t) = b P(t) r(t) = b P(t) (R_0 / P(t)) = b R_0.
+              P'(t) = k P(t) r(t) = k P(t) inline(R / P(t)) = k R.
             $
-            So model $NN$ gives approximately linear growth in time.
+            So model $NN$ gives linear growth.
           ]
       + Repeat the modelling process for model $OO$.
         #solution[
-          Let $K$ be carrying capacity (resource-limited maximum population). A standard way to
-          model ``fraction of resources remaining'' is
+          _Definitions_:
+          - $k > 0$ is the proportionality constant (natural growth rate per year).
+          - $F$ = resources consumed per starfish per year.
+          - $R$ = total available resources in the tide-pool.
+          - $ell(t) = (R- F dot P(t))/R$ is the fraction of total resources remaining.
+
+          _Assumptions_:
+          - The only way starfish population changes is by births (e.g., no deaths, no migration,
+            etc.).
+          - $F$ is constant (e.g., each starfish consumes the same amount of resources regardless of
+            how many other starfish there are).
+          - $R$ is constant (e.g., resources replenishes every year).
+          - A continuous model is appropriate:
+            - Fractions of starfish make sense.
+            - Children are ready to reproduce immediately after birth.
+            - Children are born throughout the year.
+
+          _Relationships_:
+
+          Since
           $
-            1 - P(t)/K.
+            "births" ~ P(t) dot ell(t),
           $
-          If births are proportional to population times this fraction, then
+          then
           $
-            P'(t) = r P(t) (1 - P(t)/K),
+            P'(t) & = k P(t) ell(t) = k P(t) inline((R - F P(t))/R) \
+                  & = k P(t) (1 - inline(F/R) P(t)).
           $
-          where $r>0$ is a growth parameter. Big picture: this adds feedback that slows growth as
-          resources are depleted.
+
         ]
       + Simulate population vs. time curves for each model.
         #solution[
-          A typical comparison (same $P(0)=10$ and tuned parameters) is:
+          After picking initial populations and values for the constants, we observe the following
+          behaviours:
           - $MM$: exponential growth.
-          - $NN$ (with constant total resource): roughly linear growth.
-          - $OO$: logistic growth (initially increasing quickly, then leveling near $K$).
-
-          For lecture prep, plotting all three together is useful: students can visually connect
-          modelling assumptions to long-term behaviour.
+          - $NN$: linear growth.
+          - $OO$: logistic growth (initially increasing quickly, then leveling off).
         ]
 
     ]
@@ -440,30 +538,24 @@
       + Determine which population grows fastest in the short term and which grows fastest in the
         long term.
         #solution[
-          With matched initial data and reasonable parameters:
-          - Short term: either $MM$ or $OO$ can look fastest depending on chosen $r$ and $K$, but
-            $OO$ often tracks $MM$ briefly when $P << K$.
-          - Long term: $MM$ is fastest (unbounded exponential), $OO$ levels off at $K$, and $NN$
-            grows linearly.
-
-          The key concept is asymptotic behaviour: assumptions about resource limits dominate
-          long-run predictions.
+          // Using the same initial population and the same values for common constants, we see:
+          - $MM$ grows slowly then quickly (it is exponential).
+          - $NN$ grows consistently (it is linear).
+          - $OO$ grows slowly, then speeds up, then grows slowly (it is logistic).
         ]
       + Are some models more sensitive to your choice of $Delta$ when simulating?
         #solution[
-          Yes. $MM$ is typically most sensitive because fast exponential growth amplifies numerical
-          error. $OO$ is usually moderate (self-limiting dynamics help), and linear-growth $NN$ is
-          usually least sensitive.
+          Yes. Model $OO$ should plateau to a value of $R/F$. However, if the step size is too
+          large, simulations will overshoot this value.
         ]
       + Are your simulations for each model consistently underestimates? Overestimates? Do any
         results surprise you?
         #solution[
-          For increasing solutions with Euler's method, coarse-step simulations are often
-          overestimates, not underestimates. This is strongest for $MM$ and weaker for $NN$.
-
-          A common surprise is that qualitatively correct models can still give quantitatively poor
-          predictions when $Delta$ is too large. This is a valuable reminder to separate model error
-          from numerical-method error.
+          - $MM$ simulations are underestimates.
+          - $NN$ simulations are accurate (the model is linear, so Euler's method gives the exact
+            solution).
+          - $OO$ simulations are underestimates at the beginning, and overestimates at the end, with
+            very strange behaviour if the step size is too large
         ]
     ]
   })

@@ -18,3 +18,6 @@ The first week is about:
 // Emphasize simulation focus -- talk about why we chose Excel rather than another programming language.
 
 // Talk about modelling being an imperfect and creative processes.
+
+
+// Talk about how the first two weeks end in a "modelling hour", meant to fill whatever time is there with modelling practice.

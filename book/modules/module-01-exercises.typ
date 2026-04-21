@@ -309,7 +309,7 @@
     ]
   })
 
-  lesson(title: [Connecting Models with Differential Equations], include "lesson-week-02.typ")
+  lesson(title: [Differential Equations & Euler's Method], include "lesson-week-02.typ")
   book_only(pagebreak())
   question({
     learning_objectives(
@@ -405,7 +405,7 @@
 
 
   book_only(pagebreak())
-  question.with(label: <ex:m_infinity>)({
+  question(label: <ex:m_infinity>, {
     learning_objectives(
       // [Explain how a discrete model expressed as $Delta P= f(t,P)$ can produce a related continuous
       //   model $P'=f(t,P)$.],
@@ -607,9 +607,22 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Describe the behavior of solutions to a differential equation without solving it.],
+      [Use numerics to approximate a solutions to a differential equation.],
     )
-    notes[???]
+    notes[
+      This question is meant for exploration. It *can be skipped* if time is short.
+
+      - The $abs(sin)$ term ensure that online calculators, like WolframAlpha, will not output a
+        solution (even though the equation is separable).
+      - The question is constructed so that using a step-size of 1 results in an estimate that makes
+        no sense.
+
+        @ex:delta_1_wont_work[] forces students to reconsider a choice of 1 for a step size.
+      - Students do not know Euler's method yet, but they have done it several times without knowing
+        it. If they can use ideas from the previous starfish questions, they should be able to come
+        up with a simulation.
+    ]
     slide(
       //force_two_column: false,
       [
@@ -644,7 +657,8 @@
               ]
             }
           ]
-        + Assuming $k = 1.1$, estimate the population after 10.3 years.
+        + #label_question_part(<ex:delta_1_wont_work>) Assuming $k = 1.1$, estimate the population
+          after 10.3 years.
           #solution[
             Using the same simulation method as in the previous part,
             #{
