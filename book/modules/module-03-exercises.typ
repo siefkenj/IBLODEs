@@ -18,13 +18,9 @@
 
       + Create a better model for population that includes both births and deaths.
         #solution[
-          A simple improvement is to include a per-capita death rate $d$.
+          A simple improvement is to include a death rate $d >= 0$. Then we have
           $
-            P'(t) = (b - d) P(t), quad b,d >= 0.
-          $
-          Equivalently, if $B(t)=b P(t)$ and $D(t)=d P(t)$, then
-          $
-            P'(t) = B(t) - D(t).
+            P'(t) = (b - d) P(t).
           $
         ]
 
@@ -58,32 +54,30 @@
       + Speculate on when $B_F$, $D_F$, $B_R$, and $D_R$ would be at their maximum(s)/minimum(s),
         given our assumptions.
         #solution[
-          Under the assumptions, we expect:
-          - $D_F$ (fox deaths) to be largest when $F$ is large and smallest when $F=0$.
-          - $B_R$ (rabbit births) to be largest when $R$ is large and smallest when $R=0$.
-          - $B_F$ (fox births) to be largest when both $F$ and $R$ are large, and smallest when
-            either population is $0$.
-          - $D_R$ (rabbit deaths from predation) to be largest when both $F$ and $R$ are large, and
-            smallest when either population is $0$.
+          #set align(center)
+          #table(
+            columns: 3,
+            stroke: 0.5pt,
+            [*Rate*], [*Maximum*], [*Minimum*],
+            [$B_F$ (fox births)], [When $R$ is large], [When $R$ is small],
+            [$D_F$ (fox deaths)], [(Constant)], [(Constant)],
+            [$B_R$ (rabbit births)], [(Constant)], [(Constant)],
+            [$D_R$ (rabbit deaths)], [When $F$ is large], [When $F$ is small],
+          )
         ]
       + Come up with appropriate formulas for $B_F$, $B_R$, $D_F$, and $D_R$.
         #solution[
-          A standard Lotka-Volterra choice is
+          Let $b_F, b_R, d_F, d_R >= 0$ be constants. Then
           $
-            B_F = alpha F R, quad D_F = gamma F, quad B_R = beta R, quad D_R = delta F R,
-          $
-          where $alpha,beta,gamma,delta > 0$ are constants.
-
-          Then
-          $
-            F' = (alpha R - gamma) F, quad R' = (beta - delta F) R.
+            B_F & = b_F dot R & wide D_F & = d_F \
+            B_R & = b_R       & wide D_R & = d_R dot F
           $
         ]
     ]
   })
 
   book_only(pagebreak())
-  question({
+  question(label: <ex:lv_simulation>, {
     learning_objectives(
       [???],
     )
@@ -97,18 +91,55 @@
 
       + Simulate the population of foxes and rabbits with a spreadsheet.
         #solution[
-          Using Euler's method with a small step size (for example, $Delta = 0.05$), simulations
-          show oscillating fox and rabbit populations over time.
+          Using Euler's method with a step size of $Delta = 0.05$ and initial values $F(0) = 5$,
+          $R(0) = 100$, we get:
+
+          #{
+            let Delta = 0.05
+            let sim = solve_2d_ivp(
+              (F, R) => ((0.01 * R - 1.1) * F, (1.1 - 0.1 * F) * R),
+              (5, 100),
+              5,
+              Delta: Delta,
+              method: "euler",
+            )
+
+            let cells = (
+              "A1": "Delta t",
+              "A2": str(Delta),
+              "B1": "t",
+              "C1": "F",
+              "D1": "R",
+              "E1": "F'",
+              "F1": "R'",
+            )
+
+            for i in range(sim.len()) {
+              let row = i + 2
+              let t = i * Delta
+              let F = sim.at(i).at(0)
+              let R = sim.at(i).at(1)
+              let F_prime = (0.01 * R - 1.1) * F
+              let R_prime = (1.1 - 0.1 * F) * R
+              cells.insert("B" + str(row), str(calc.round(t, digits: 2)))
+              cells.insert("C" + str(row), str(calc.round(F, digits: 2)))
+              cells.insert("D" + str(row), str(calc.round(R, digits: 2)))
+              cells.insert("E" + str(row), str(calc.round(F_prime, digits: 2)))
+              cells.insert("F" + str(row), str(calc.round(R_prime, digits: 2)))
+            }
+
+            align(center, draw_spreadsheet(cols: 6, rows: 7, cells: cells))
+          }
         ]
       + Do the populations continue to grow/shrink forever? Are they cyclic?
         #solution[
-          The simulation suggests the populations are cyclic rather than monotone. They rise and
-          fall repeatedly.
+          Simulations suggest that the populations of foxes and rabbits rise and fall (oscillate).
         ]
       + Should the humps/valleys in the rabbit and fox populations be in phase? Out of phase?
         #solution[
-          They should be out of phase. Rabbit peaks typically happen first, then fox peaks follow
-          after a delay because fox growth depends on rabbit availability.
+          They should be out of phase. When the rabbit population gets large, foxes are born. They
+          then eat the rabbits, reducing the rabbit population. As the rabbit population gets
+          smaller, the foxes start to die off.
         ]
     ]
   })
@@ -134,30 +165,107 @@
       + Simulate the rabbit population using different step sizes $Delta$.
         + Does the choice of $Delta$ affect the qualitative "shape" of the population curve?
           #solution[
-            Yes. For small $Delta$, the oscillatory shape is similar, but for larger $Delta$ the
-            curve is visibly distorted and may look more spiral-like across cycles.
+            No. For small $Delta$, the population curves oscillate similarly.
           ]
         + Does it affect the height of the peaks and valleys?
           #solution[
-            Yes. The estimated peak and valley heights change with $Delta$.
+            Yes. The larger the $Delta$, the higher the peaks become (and the lower the valleys).
           ]
         + Does it affect the _time_ when the peaks and valleys occur?
           #solution[
-            Yes. The estimated times of peaks and valleys shift as $Delta$ changes.
+            No. The time each peak/valley occurs is approximately the same for different $Delta$
+            values.
           ]
-      + We want to know about the peaks and valleys of the _exact_ population curve for rabbits.
+      + #label_question_part(<ex:lv_peaks>) We want to know about the peaks and valleys for the
+        _exact_ rabbit population curve.
 
         Do your simulations consistently under or over estimate the population of rabbits?
         #solution[
-          No. Euler simulations are not consistently above or below the exact rabbit curve over all
-          times; the sign of the error can change during the cycle.
+          Yes. As we shrink $Delta$, we notice that the height of the first peak gets smaller and
+          the height of the first valley gets larger. Since smaller $Delta$'s give a more accurate
+          approximation, we conjecture that the exact rabbit population peaks are lower than the
+          peaks in our simulations (and the valleys are higher).
         ]
-      + Let $p_1$ and $p_2$ be the first and second local maxima for the (exact) rabbit population.
-        Is $p_1$ bigger, smaller, or equal to $p_2$? Justify with numerical evidence.
+      + #label_question_part(<ex:lv_peaks_get_closer>) Let $p_1$ and $p_2$ be the first and second
+        local maxima for the (exact) rabbit population. Is $p_1$ bigger, smaller, or equal to $p_2$?
+        Justify with numerical evidence.
         #solution[
-          They are equal for the exact Lotka-Volterra model (periodic orbit). Numerically, using
-          smaller $Delta$ values, the first two rabbit peaks get closer and closer to the same
-          value, with differences attributable to discretization error.
+          They are equal for an exact solution. Using Euler simulations, we can compare the first
+          two rabbit peaks for decreasing values of $Delta$. We see that the peaks appear to be
+          stabilizing and tending towards the same height.
+
+          Using initial populations of $F(0) = 5$ and $R(0) = 100$, we get:
+
+          #{
+            let find_peak(values) = {
+              let peaks = ()
+              for j in range(1, values.len() - 1) {
+                let prev = values.at(j - 1)
+                let curr = values.at(j)
+                let next = values.at(j + 1)
+                if prev < curr and curr > next {
+                  peaks.push(curr)
+                }
+              }
+              peaks
+            }
+
+            let d1 = 0.05
+            let deltas = (d1, d1 / 2, d1 / 4, d1 / 8)
+            let results = ()
+
+            for i in range(deltas.len()) {
+              let Delta = deltas.at(i)
+              let total_time = 10
+              let steps = calc.ceil(total_time / Delta)
+
+              let sim = solve_2d_ivp(
+                (F, R) => ((0.01 * R - 1.1) * F, (1.1 - 0.1 * F) * R),
+                (5, 100),
+                steps,
+                Delta: Delta,
+                method: "euler",
+              )
+
+              let rabbit_values = sim.map(v => v.at(1))
+              let peaks = find_peak(rabbit_values)
+
+              let p1 = peaks.at(0)
+              let p2 = peaks.at(1)
+              let diff = calc.abs(p2 - p1)
+              results.push((
+                str(Delta),
+                str(calc.round(p1, digits: 4)),
+                str(calc.round(p2, digits: 4)),
+                str(calc.round(diff, digits: 4)),
+              ))
+            }
+
+            align(
+              center,
+              {
+                let table_rows = ()
+                for result in results {
+                  table_rows.push([#result.at(0)])
+                  table_rows.push([#result.at(1)])
+                  table_rows.push([#result.at(2)])
+                  table_rows.push([#result.at(3)])
+                }
+
+                table(
+                  columns: 4,
+                  stroke: 0.5pt,
+                  table.header(
+                    [*$Delta$*],
+                    [*First peak ($p_1$)*],
+                    [*Second peak ($p_2$)*],
+                    [*$abs(p_2 - p_1)$*],
+                  ),
+                  ..table_rows,
+                )
+              },
+            )
+          }
         ]
     ]
   })
@@ -183,29 +291,53 @@
 
       + Plot the Fox vs. Rabbit population in the phase plane.
         #solution[
-          Plot points $(F(t), R(t))$ with foxes on the horizontal axis and rabbits on the vertical
-          axis, then connect points in increasing time order.
+          #{
+            let Delta = 0.05
+            let total_time = 20
+            let steps = calc.ceil(total_time / Delta)
+            let soln = solve_2d_ivp(
+              (F, R) => ((0.01 * R - 1.1) * F, (1.1 - 0.1 * F) * R),
+              (5, 100),
+              steps,
+              Delta: Delta,
+              method: "euler",
+            )
+            let foxes = soln.map(((F, R)) => F)
+            let rabbits = soln.map(((F, R)) => R)
+
+            align(center, lq.diagram(
+              title: [Phase plot: Foxes vs. Rabbits],
+              xlim: (0, 30),
+              ylim: (0, 260),
+              width: 8cm,
+              height: 5cm,
+              xaxis: (position: 0, tip: tiptoe.stealth),
+              yaxis: (position: 0, tip: tiptoe.stealth),
+              xlabel: $F$,
+              ylabel: lq.label($R$),
+              lq.plot(foxes, rabbits, mark: none),
+            ))
+          }
         ]
       + Should your plot show a closed curve or a spiral?
         #solution[
-          For the exact model, it should be a closed curve. With Euler simulation, you often see a
-          slight spiral (typically outward for larger $Delta$) due to numerical error.
+          For an exact solution, it should be a closed curve. Since, as we saw in @ex:lv_peaks and
+          @ex:lv_peaks_get_closer[], the peaks and valleys are over/under estimated, and drift
+          further apart as time goes on. Thus, the plot of the simulated data should spiral
+          outwards.
         ]
       + What “direction” do points move along the curve as time increases? Justify by referring to
         the model.
         #solution[
-          With the standard initial data in the spreadsheet, trajectories move counterclockwise in
-          the phase plane. At $(F,R)=(10,100)$, we have
-          $
-            F'=(0.01 dot 100 - 1.1) dot 10 < 0, quad R'=(1.1 - 0.1 dot 10) dot 100 > 0,
-          $
-          so motion starts up-and-left.
+          The curve is traced out in a clockwise direction. We can see this because, fi we look at a
+          peak of $R$, we know that the fox population should be increasing at that point, so the
+          graph must move to the right.
         ]
       + What is easier to see from plots in the phase plane than from component graphs (the graphs
         of fox and rabbit population vs. time)?
         #solution[
-          Phase plots make cycle geometry and predator-prey interaction easier to see: closed
-          orbits, relative lag, and how population size pairs $(F,R)$ evolve together.
+          The phase plots makes it clear that the fox and rabbit populations are cyclic, oscillating
+          in relation to each other.
         ]
     ]
   })
