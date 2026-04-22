@@ -39,12 +39,12 @@
   include "modules/module-02-exercises.typ"
 }
 
-// #{
-//   module(title: [Systems and Models with Interacting Terms], label: <mod:systems>)[
-//     #include "modules/module-03-body.typ"
-//   ]
-//   include "modules/module-03-exercises.typ"
-// }
+#{
+  module(title: [Systems and Models with Interacting Terms], label: <mod:systems>)[
+    #include "modules/module-03-body.typ"
+  ]
+  include "modules/module-03-exercises.typ"
+}
 
 // #{
 //   module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
@@ -124,6 +124,7 @@
 //   include "modules/interesting_odes.typ"
 // }
 
+#lessons_end()
 // Appendices Start Here
 #show: e.set_(
   module_settings,

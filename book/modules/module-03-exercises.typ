@@ -3,7 +3,7 @@
 #show: e.prepare(question)
 
 #{
-  lesson[]
+  lesson(title: [Systems of ODEs], include "lesson-week-03.typ")
   question({
     learning_objectives(
       [???],

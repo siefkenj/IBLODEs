@@ -108,6 +108,7 @@
 }
 
 #pagebreak()
+#set page(height: 2.2in)
 == Test some lessons
 
 #lesson(title: "First lesson")[
@@ -128,15 +129,22 @@
 
 #lesson[
   This is the third lesson
+
+  #context {
+    set text(size: .5em)
+    // _find_all_questions_modules_lessons(lesson)
+  }
 ]
 
 #module[]
-
-#question[some question]
-
 #lesson[
   This is the third lesson
 ]
-
-
 #question[some question]
+#question[some question]
+
+// #{
+//   let a = (1,2,3,4,5)
+
+//   a.slice(0, none)
+// }

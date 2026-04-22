@@ -225,39 +225,64 @@
   _notes(body)
 }
 
-/// Find all `item` between this lesson and the next. You must pass the lesson constructor for `lessons_func` and `item` must be an elembic element.
-/// E.g.
-/// ```typst
-/// #let items_between = _find_between_lessons(e.func(it), question)
-/// ```
-#let _find_between_lessons(lessons_func, item) = {
-  let item_counter = e.counter(item)
-  // This is some black magic elembic code. There is no direct way to query for the location of elements using `e.query`,
-  // so we query for the metadata directly. Then we can find it's location to *then* do a query for the questions between this lesson and the next one.
-  let lesson_metadata_after = query(
-    selector(e.selector(lessons_func, meta: true)).after(here()),
-  ).at(1, default: none)
-  let next_lesson_location = if lesson_metadata_after != none {
-    lesson_metadata_after.location()
-  } else {
-    none
-  }
-  let q_selector = if next_lesson_location != none {
-    selector(e.selector(item, meta: true)).after(here()).before(next_lesson_location)
-  } else {
-    selector(e.selector(item, meta: true)).after(here())
-  }
-  // Questions are assumed to be listed in sequence.
-  let included_item_metadata = query(q_selector)
-  let included_item_nums = included_item_metadata.map(qm => item_counter
-    .at(qm.location())
-    .at(0, default: 0))
-  let before_item_metadata = query(selector(e.selector(item, meta: true)).before(here()))
-  let before_item_nums = before_item_metadata.map(qm => item_counter
-    .at(qm.location())
-    .at(0, default: 0))
+/// Marker for the end of the lessons. This is used to determine which questions/modules belong to which lessons.
+#let lessons_end = e.element.declare(
+  "lessons_end",
+  prefix: PREFIX,
+  doc: "Marker for the end of the lessons. This is used to determine which questions/modules belong to which lessons.",
+  display: it => none,
+  fields: (),
+)
 
-  (before: before_item_nums, included: included_item_nums)
+/// Find all questions/modules/lessons in the document. They are split between ones that are before `here()` and ones that are after `here()`.
+/// `lesson_func` must be passed in. If used inside the `lesson` display function, this should be `e.func(it)`.
+///
+/// If a `lessons_end` element is encountered, everything after that is ignored.
+#let _find_all_questions_modules_lessons(lesson_func) = {
+  import "environment-question.typ": question
+  import "environment-module.typ": module
+  let question_eid = e.eid(question)
+  let module_eid = e.eid(module)
+  let lesson_eid = e.eid(lesson_func)
+  let lessons_end_eid = e.eid(lessons_end)
+
+  let instance_to_data(instance_meta) = {
+    let eid = e.eid(instance_meta.value)
+    let (name, counter) = if eid == question_eid {
+      ("question", e.counter(question))
+    } else if eid == module_eid {
+      ("module", e.counter(module))
+    } else if eid == lesson_eid {
+      ("lesson", e.counter(lesson_func))
+    } else if eid == lessons_end_eid {
+      ("lessons_end", counter("unknown"))
+    } else {
+      ("unknown", counter("unknown"))
+    }
+    let location = instance_meta.location()
+    let num = counter.at(location).at(0, default: 0)
+    (
+      name: name,
+      num: num,
+      location: location,
+    )
+  }
+
+  let base_selector = selector(e.selector(lesson_func, meta: true))
+    .or(e.selector(question, meta: true))
+    .or(e.selector(module, meta: true))
+    .or(e.selector(lessons_end, meta: true))
+  let before = query(base_selector.before(here())).map(qm => instance_to_data(qm))
+  let after = query(base_selector.after(here())).map(qm => instance_to_data(qm))
+  let self = after.at(0, default: none)
+  after = if after.len() > 0 {
+    after.slice(1)
+  } else {
+    after
+  }
+  after = after.slice(0, after.position(v => v.name == "lessons_end"))
+
+  (before: before, self: self, after: after)
 }
 
 /// Insert a page that describes a "lesson". This will reference `questions` that come after it and before the next `lesson`.
@@ -278,18 +303,40 @@
       return
     }
 
-    // Lessons may overlap more than one module boundary. Since the core exercises come _after_ a module,
-    // we keep track of the module that came directly before the current lesson. We _definitely_ cover that module.
-    // We also cover any modules between us and the next lesson, *unless* the next lesson comes at the very start of
-    // the core exercises for the next module.
-    let (before: modules_before, included: included_modules) = _find_between_lessons(
-      e.func(it),
-      module,
-    )
-    // XXX: for now we just take the module immediately before us.
-    let module_num = modules_before.at(-1, default: 0)
+    let (
+      before: before_items,
+      self: self_item,
+      after: after_items,
+    ) = _find_all_questions_modules_lessons(e.func(it))
 
-    let (included: included_question_nums) = _find_between_lessons(e.func(it), question)
+    // The included questions are those that come after us (the lesson) and before the next lesson.
+    let included_questions = after_items
+      .slice(0, after_items.position(v => v.name == "lesson"))
+      .filter(v => v.name == "question")
+    let included_question_nums = included_questions.map(q => q.num)
+    // Lessons may overlap more than one module boundary. The rules are:
+    //  1. A lesson includes the module immediately before it.
+    //  2. A lesson includes any modules following it, but before the next lesson UNLESS
+    //    - the next lesson comes directly after a module (with no questions in between), in which
+    //      case, that module is omitted.
+    let module_before = before_items.rev().find(v => v.name == "module")
+    // Filter out any modules "after" that are immediately followed by a lesson.
+    let after_filtered = after_items
+      .enumerate()
+      .filter(((i, v)) => {
+        v.name != "module" or after_items.at(i + 1, default: (name: "")).name != "lesson"
+      })
+      .map(((i, v)) => v)
+    let modules_after = after_filtered
+      .slice(0, after_filtered.position(v => v.name == "lesson"))
+      .filter(v => v.name == "module")
+
+    let included_modules = if module_before != none {
+      (module_before, ..modules_after)
+    } else {
+      modules_after
+    }
+
 
     let question_range = if included_question_nums.len() == 0 {
       "(No exercises)"
@@ -313,8 +360,12 @@
 
     heading(title)
 
-    if module_num > 0 {
-      [== #text(weight: "medium")[Module:] #module_num]
+    if included_modules.len() > 0 {
+      if included_modules.len() == 1 {
+        [== #text(weight: "medium")[Module:] #included_modules.at(0).num]
+      } else {
+        [== #text(weight: "medium")[Modules:] #included_modules.map(m => str(m.num)).join(", ")]
+      }
     }
 
     [== #text(weight: "medium")[Core Exercises:] #question_range]
