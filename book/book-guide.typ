@@ -46,12 +46,12 @@
   include "modules/module-03-exercises.typ"
 }
 
-// #{
-//   module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
-//     #include "modules/module-04-body.typ"
-//   ]
-//   include "modules/module-04-exercises.typ"
-// }
+#{
+  module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
+    #include "modules/module-04-body.typ"
+  ]
+  include "modules/module-04-exercises.typ"
+}
 
 // #{
 //   module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
