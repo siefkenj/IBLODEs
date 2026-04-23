@@ -53,12 +53,12 @@
   include "modules/module-04-exercises.typ"
 }
 
-// #{
-//   module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
-//     #include "modules/module-05-body.typ"
-//   ]
-//   include "modules/module-05-exercises.typ"
-// }
+#{
+  module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
+    #include "modules/module-05-body.typ"
+  ]
+  include "modules/module-05-exercises.typ"
+}
 
 // #{
 //   module(title: [Linear Systems with Constant Coefficients (Real Solutions)], label: <mod:real>)[

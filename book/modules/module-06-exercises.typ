@@ -2,6 +2,7 @@
 #show: e.prepare(question)
 
 #{
+  lesson(title: [Matrix Systems], include "lesson-week-06.typ")
   question.with(label: <ex:basic_system>)(
     slide[
       Consider the system of differential equations
@@ -346,6 +347,7 @@
     ],
   )
 
+  lesson(title: [Matrix Systems Continued], include "lesson-week-07.typ")
   book_only(pagebreak())
   question({
     let intro = [

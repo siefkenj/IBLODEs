@@ -2,6 +2,7 @@
 #show: e.prepare(question)
 
 #{
+  lesson(title: [Complex Solutions], include "lesson-week-08.typ")
   question(
     slide(force_scale: 0.85em)[
 

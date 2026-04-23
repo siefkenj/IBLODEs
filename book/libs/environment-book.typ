@@ -28,6 +28,11 @@
     numbering: "1",
     number-align: center,
   )
+  // Make sure limits always appear display-style
+  show math.equation.where(block: false): it => {
+    show math.op.where(limits: true): math.limits
+    it
+  }
   show link: _show_link
   show: _outline_show_rule
   it

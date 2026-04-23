@@ -5,6 +5,7 @@
 #let OO = $upright(bold("O"))$
 
 #{
+  lesson(title: [Introduction to Stability], include "lesson-week-04.typ")
   question({
     learning_objectives(
       [???],
