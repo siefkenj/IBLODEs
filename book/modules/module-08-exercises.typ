@@ -3,7 +3,11 @@
 
 #{
   lesson(title: [Complex Solutions], include "lesson-week-08.typ")
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.85em)[
 
       Consider the following *FD* model of Fleas and Dogs where
@@ -25,19 +29,27 @@
       - (P$2_c$) Constant dog breeding adds 1 thousand dogs per year.
 
         + Write a system of differential equations for the *FD* model.
+          #solution[???]
         + Can you rewrite the system in matrix form $arrow(r)' = M arrow(r)$? What about in _affine_
           form $arrow(r)' = M arrow(r) + arrow(b)$?
+          #solution[???]
         + Make a phase portrait for your model.
+          #solution[???]
         + What should solutions to the system look like in the phase plane? What are the equilibrium
           solution(s)?
+          #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.85em)[
 
       Recall the *FD* model of Fleas and Dogs where
@@ -54,17 +66,26 @@
       Define $arrow(s)(t)$ to be the displacement of $arrow(r)(t)$ from equilibrium at time $t$.
 
       + Find a formula for $arrow(s)$ in terms of $arrow(r)$.
+        #solution[???]
       + Can you find a matrix $M$ so that $arrow(s)'(t) = M arrow(s)(t)$?
+        #solution[???]
       + What are the eigenvalues of $M$?
+        #solution[???]
       + Find an eigenvector for each eigenvalue of $M$.
+        #solution[???]
       + What are the eigen solutions for $arrow(s)' = M arrow(s)$?
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.85em)[
 
 
@@ -89,21 +110,29 @@
       + Recall Euler's formula $e^(i t) = cos(t) + i sin(t)$.
         + Use Euler's formula to expand $arrow(s)_1 + arrow(s)_2$. Are there any imaginary numbers
           remaining?
+          #solution[???]
         + Use Euler's formula to expand $i (arrow(s)_1 - arrow(s)_2)$. Are there any imaginary
           numbers remaining?
+          #solution[???]
       + Verify that your formulas for $arrow(s)_1 + arrow(s)_2$ and $i (arrow(s)_1 - arrow(s)_2)$
         are solutions to
         $arrow(s)'(t) = M arrow(s)(t).$
+        #solution[???]
       + Can you give a third _real_ solution to $arrow(s)'(t) = M arrow(s)(t)?$
+        #solution[???]
 
 
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.85em)[
 
       Recall the *FD* model of Fleas and Dogs where
@@ -120,16 +149,25 @@
 
 
       + What is the dimension of the space of solutions to $arrow(s)'(t) = M arrow(s)(t)$?
+        #solution[???]
       + Give a _real_ basis for all solutions to $arrow(s)'(t) = M arrow(s)(t)$.
+        #solution[???]
       + Find a solution satisfying $arrow(s)(0) = mat(1; 3)$.
+        #solution[???]
       + Using what you know, find a general formula for $arrow(r)(t)$.
+        #solution[???]
       + Find a formula for $arrow(r)(t)$ satisfying $arrow(r)(0) = mat(4; 8)$.
-    ],
-  )
+        #solution[???]
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Recall the *FD* model of Fleas and Dogs where
@@ -154,32 +192,45 @@
       _These premises replace (P$1_F$) and (P$1_D$)._
 
       + Modify the previous *FD* model to incorporate the effects of the shampoo.
+        #solution[???]
       + Make a phase portrait for the *FD Shampoo* model.
+        #solution[???]
       + Find the equilibrium solutions for the *FD Shampoo* model.
+        #solution[???]
       + For each equilibrium solution determine its stability/instability/etc.
+        #solution[???]
       + Analytically justify your conclusions about stability/instability/etc.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Consider the differential equation
       $ arrow(s)'(t) = M arrow(s)(t) quad "where" quad M = mat(-1, -4; 2, 3) $
 
       + Make a phase portrait. Based on your phase portrait, classify the equilibrium solution.
+        #solution[???]
 
       #link("https://www.desmos.com/calculator/h3wtwjghv0")
       + Find eigen solutions for this differential equation (you may use a calculator/computer to
         assist).
+        #solution[???]
       + Find a general _real_ solution.
+        #solution[???]
       + Analytically classify the equilibrium solution.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 }

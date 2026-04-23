@@ -3,7 +3,11 @@
 
 #{
   lesson(title: [Matrix Systems], include "lesson-week-06.typ")
-  question.with(label: <ex:basic_system>)(
+  question.with(label: <ex:basic_system>)({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       Consider the system of differential equations
       $
@@ -16,24 +20,36 @@
 
         #link("https://www.desmos.com/calculator/h3wtwjghv0")
 
+        #solution[???]
+
       + What are the equilibrium solution(s) of the system?
+        #solution[???]
       + Find a formula for $x(t)$ and $y(t)$ that satisfy the initial conditions
         $(x(0), y(0))=(x_0, y_0)$.
+        #solution[???]
       + Let $arrow(r)(t)=(x(t),y(t))$. Find a matrix $A$ so that the differential equation can be
         equivalently expressed as
 
         $ arrow(r)'(t) = A arrow(r)(t). $
 
+        #solution[???]
+
       + Write a solution to $arrow(r)' = A arrow(r)$ (where $A$ is the matrix you came up with).
 
         _Hint: you already did most of the work!_
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       The _superposition principle_ states that solutions to the matrix equation
       $arrow(r)' = A arrow(r)$ form a subspace.
@@ -42,9 +58,13 @@
         is $arrow(s)(t)=arrow(p)(t)+arrow(q)(t)$. Does this show that solutions to
         $arrow(r)' = A arrow(r)$ form a subspace? What is left to show?
 
+        #solution[???]
+
       + #label_question_part(<ex:basic_system_span>) Recall the differential equation
         $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ from @ex:basic_system. Express the solutions you found
         as a span.
+
+        #solution[???]
 
       + Let $cal(S)$ be the set of all solutions to $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ and
         consider the following theorem:
@@ -60,17 +80,25 @@
         Use this theorem to justify that your span from @ex:basic_system_span[] is equal to
         $cal(S)$.
 
+        #solution[???]
+
       + Let $cal(K)="span"{mat(e^t; e^(2t)), mat(7e^t; 7 e^(2t))}$. Is $cal(K)=cal(S)$?
 
         Let $cal(J)="span"{mat(e^t; e^(2t)), mat(e^t; 7 e^(2t))}$. Is $cal(J)=cal(S)$?
 
         Justify your answers.
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question.with(label: <ex:system_eigen_solutions>)(
+  question.with(label: <ex:system_eigen_solutions>)({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: .85em)[
       Consider the system
       $
@@ -79,6 +107,7 @@
       $
 
       + Rewrite the system in matrix form.
+        #solution[???]
       + Classify the following as solutions or non-solutions to the system.
 
         $
@@ -88,20 +117,32 @@
           arrow(r)_5(t) & = mat(0; 0)
         $
 
+        #solution[???]
+
       + State the definition of an eigenvector for the matrix $M$.
+        #solution[???]
       + What should the definition of an _eigen solution_ be for this system? #label_question_part(
           <ex:system_eigen_solutions_part2>,
         )
+        #solution[???]
       + Which functions from @ex:system_eigen_solutions_part2[] are eigen solutions?
+        #solution[???]
       + Find an eigen solution $arrow(r)_6$ that is linearly independent from $arrow(r)_2$.
+        #solution[???]
       + Let $S="span"{arrow(r)_2, arrow(r)_6}$. Does $S$ contain _all_ solutions to the system?
         Justify your answer.
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Recall the system
@@ -113,11 +154,14 @@
 
 
       + Sketch $arrow(r)_2$ and $arrow(r)_6$ in the phase plane.
+        #solution[???]
       + Use
 
         https://www.desmos.com/calculator/h3wtwjghv0
 
         to make a phase portrait for the system.
+
+        #solution[???]
 
       // + Consider the solution $arrow(s)(t) = arrow(r)_2(t) - arrow(r)_6(t)$.
 
@@ -189,25 +233,39 @@
         In which phase plane above is the dashed (green) curve the graph of a solution to the
         system? Explain.
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       Suppose $A$ is a $2 times 2$ matrix and $arrow(s)_1$ and $arrow(s)_2$ are eigen solutions to
       $arrow(r)' = A arrow(r)$ with eigenvalues $1$ and $-1$, respectively.
 
       + Write possible formulas for $arrow(s)_1(t)$ and $arrow(s)_2(t)$.
+        #solution[???]
       + Sketch a phase plane with graphs of $arrow(s)_1$ and $arrow(s)_2$ on it.
+        #solution[???]
       + Add a non-eigen solution to your sketch.
+        #solution[???]
       + Sketch a possible phase portrait for $arrow(r)' = A arrow(r)$. Can you extend your phase
         portrait to all quadrants?
-    ],
-  )
+        #solution[???]
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: .9em)[
 
       Consider the following phase portrait for a system of the form $arrow(r)' = A arrow(r)$ for an
@@ -256,13 +314,20 @@
 
       + Identify which of $arrow(f)$, $arrow(g)$, and $arrow(h)$ are _solutions_ to the differential
         equation. Which are _eigen solutions_?
+        #solution[???]
       + Graph an additional eigen solution.
+        #solution[???]
       + What can you say about the eigenvalues of $A$? What are their signs?
-    ],
-  )
+        #solution[???]
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Consider the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
@@ -270,40 +335,63 @@
       + Verify that $mat(1; 1)$ and $mat(1; -1)$ are eigenvectors for $M$. What are the
         corresponding eigenvalues?
 
+        #solution[???]
+
       +
         + Is $arrow(r)_1(t) = e^(2t) mat(1; 0)$ a solution to the differential equation? An eigen
           solution?
+          #solution[???]
         + Is $arrow(r)_2(t) = e^(2t) mat(1; 1)$ a solution to the differential equation? An eigen
           solution?
+          #solution[???]
         + Is $arrow(r)_3(t) = e^(t) mat(1; -1)$ a solution to the differential equation? An eigen
           solution?
+          #solution[???]
 
       + Find an eigen solution for the system corresponding to the eigenvalue $-2$. Write your
         answer in vector form.
 
+        #solution[???]
+
       + Let $arrow(v)$ be an eigenvector for $M$ with eigenvalue $lambda$. Explain how to write down
         an eigen solution to $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$.
+
+        #solution[???]
 
       + Let $arrow(v) != arrow(0)$ be a non-eigenvector for $M$. Could
         $arrow(r)(t) = e^(lambda t) arrow(v)$ be a solution to $arrow(r)'(t) = M arrow(r)(t)$ for
         some $lambda$? Explain.
-    ],
-  )
+
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       #slides_only(v(0.5em))
       Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
 
       + Write down a general solution to the differential equation.
+        #solution[???]
       + Write down a solution to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
+        #solution[???]
       + Are your answers to the first two parts the same? Do they contain the same information?
-    ],
-  )
+        #solution[???]
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       The phase portrait for a differential equation arising from the matrix $mat(0, 2; 2, 0)$
@@ -341,15 +429,21 @@
       Both have eigenvalues $plus.minus 2$, but they have different eigenvectors.
 
       + How are the phase portraits related to each other?
+        #solution[???]
       + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 2$. In what ways could the
         phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
         In what way(s) must it look the same?
-    ],
-  )
+        #solution[???]
+    ]
+  })
 
   lesson(title: [Matrix Systems Continued], include "lesson-week-07.typ")
   book_only(pagebreak())
   question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     let intro = [
       The lines with directions $arrow(a)$ (dashed green) and $arrow(b)$ (red) are graphs of eigen
       solutions to a differential equation.
@@ -392,8 +486,10 @@
       + Suppose the eigenvalue for $arrow(a)$ is $-1$ and the eigenvalue for $arrow(b)$ is $1$.
         + Sketch five possible solutions to the differential equation and mark where each solution
           curve is traced out fastest vs. slowest.
+          #solution[???]
         + Sketch a phase portrait for the differential equation. Pay close attention to when the
           arrows are long vs. short.
+          #solution[???]
     ]
     slide(force_scale: .9em)[
       #slides_only(intro)
@@ -424,17 +520,24 @@
             ),
           ),
         )
+        #solution[???]
       ]
 
       + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
+        #solution[???]
       + Would any of your classifications in the previous part change if the directions of
         $arrow(a)$ and $arrow(b)$ changed?
+        #solution[???]
     ]
   })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
 
@@ -447,6 +550,7 @@
       + Come up with a rule to determine the nature of the equilibrium solution
         $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly
         independent eigen solutions).
+        #solution[???]
       + Consider the system of differential equations
         $
           x'(t) & = x(t) + 2 dot y(t) \
@@ -455,8 +559,10 @@
 
         + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any
           method you want.
+          #solution[???]
         + Justify your answer analytically using eigenvalues.
+          #solution[???]
 
-    ],
-  )
+    ]
+  })
 }

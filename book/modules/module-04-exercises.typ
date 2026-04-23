@@ -1,6 +1,7 @@
 #import "../libs/lib.typ": *
 #import "definitions.typ": show_def
 #show: e.prepare(question)
+#show ref: allow_missing_refs
 
 #let OO = $upright(bold("O"))$
 
@@ -27,18 +28,13 @@
       + By changing initial conditions, what is the "smallest" curve you can get in the phase plane?
         What happens at those initial conditions?
         #solution[
-          The smallest possible "curve" is a single point, obtained by starting at an equilibrium
-          initial condition.
-
-          For this system, that happens at $(F, R) = (0, 0)$ and $(F, R) = (11, 110)$. At either of
-          these initial conditions, the populations stay constant in time.
+          The smallest possible curve is a single point. Starting with initial conditions
+          $(F, R) = (11, 110)$, the rabbit and fox populations remain constant.
         ]
       + What should $F'$ and $R'$ be if $F$ and $R$ are _equilibrium solutions_?
         #solution[
           At an equilibrium solution, neither population changes, so both derivatives must be zero:
-          $
-            F' = 0 quad "and" quad R' = 0.
-          $
+          $F' = 0$ and $R' = 0$.
         ]
       + How many equilibrium solutions are there for the fox-and-rabbit system? Justify your answer.
         #solution[
@@ -46,24 +42,27 @@
 
           From
           $
-            F' = (0.01 R - 1.1) F
+            F' = (0.01dot R - 1.1) F
           $
-          we need $F = 0$ or $R = 110$. From
+          we get $F = 0$ or $R = 110$.
+
+          From
           $
-            R' = (1.1 - 0.1 F) R
+            R' = (1.1 - 0.1dot F) R
           $
-          we need $R = 0$ or $F = 11$. Intersections give
+          we get $R = 0$ or $F = 11$.
+
+          Thus
           $
-            (F, R) = (0, 0) "and" (11, 110).
+            (F, R) = (0, 0) wide "or" wide (F,R) = (11, 110).
           $
         ]
       + What do the equilibrium solutions look like in the phase plane? What about their component
         graphs?
         #solution[
-          In the phase plane, equilibria appear as fixed points (single points with no motion).
+          In the phase plane, equilibria appear as single points.
 
-          In component graphs, they appear as constant functions of time: both $F(t)$ and $R(t)$ are
-          horizontal lines.
+          As component graphs, they appear as horizontal lines.
         ]
     ]
   })
@@ -96,18 +95,13 @@
       - $R$ is the total number of resources
       - $R_i$ is the resources that one starfish wants to consume
 
-      Use $k = 1.1$, $R = 1$, and $R_i = 0.1$ unless instructed otherwise.
+      For this question, use $k = 1.1$, $R = 1$, and $R_i = 0.1$.
 
       + What are the equilibrium solutions for model #OO?
         #solution[
-          Model #OO is
-          $
-            P' = 1.1 P (1 - 0.1 P).
-          $
-          Equilibria satisfy $P' = 0$, so
-          $
-            P = 0 "or" 1 - 0.1 P = 0.
-          $
+          Solving $P' = 1.1 P (1 - 0.1 dot P)=0$, we get $P'=0$ when $P = 0$ or $1 - 0.1 dot P = 0$,
+          that is $P=10$.
+
           Thus the equilibrium solutions are
           $
             P(t) = 0 quad "and" quad P(t) = 10.
@@ -116,19 +110,17 @@
       + What does a "phase plane" for model #OO look like? What do graphs of equilibrium solutions
         look like?
         #solution[
-          Since this is a 1D model, the phase portrait is a line of $P$-values with equilibrium
-          points marked at $0$ and $10$.
-
-          The component graphs of equilibrium solutions are horizontal lines: $P(t)=0$ and
-          $P(t)=10$.
+          A phase plane for model $OO$ looks like a line, since there is only one dependent variable
+          (population). Equilibrium solutions still appear as dots along that line.
         ]
       + Classify the behaviour of solutions that lie _between_ the equilibrium solutions. E.g., are
         they increasing, decreasing, oscillating?
         #solution[
-          If $0 < P < 10$, then $P > 0$ and $(1 - 0.1 P) > 0$, so $P' > 0$. Therefore those
-          solutions increase.
-
-          They do not oscillate. They increase toward the carrying capacity $P=10$.
+          If $0 < P < 10$, then $P' > 0$, so solutions that start with a population between $0$ and
+          $10$ increase. If $P > 10$, then $P' < 0$, so solutions that start with a population above
+          $10$ decrease. Lastly, it makes no sense to have a negative population, but considered in
+          the abstract, if $P < 0$, then $P' < 0$, so solutions that start with a "negative
+          population" decrease.
         ]
     ]
   })
@@ -155,28 +147,152 @@
       $
       be an unknown differential equation with equilibrium solution $f(t) = 1$.
 
+      #let ts = lq.linspace(0, 4, num: 80)
+      #let ts_short = lq.linspace(0, 2, num: 80)
+      #let eq_stroke = (thickness: 1.5pt, paint: green.darken(30%))
+      #let nearby_stroke = (
+        thickness: .6pt,
+        paint: black,
+        dash: (2pt, 1pt),
+      )
+
       + Draw an example of what solutions might look like if $f$ is _attracting_.
         #solution[
-          For an attracting equilibrium at $f(t)=1$, nearby solutions move toward $1$ as time
-          increases. So curves starting slightly above and below $1$ both approach the horizontal
-          line $y=1$.
+          #align(center, lq.diagram(
+            width: 5.5cm,
+            xaxis: (label: [$t$], ticks: none),
+            yaxis: (label: [$y$], tick-distance: .5),
+            xlim: (0, 4),
+            ylim: (0, 2),
+            lq.plot(
+              ts,
+              ts.map(t => 1 + .7 * calc.exp(-1.4 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 + .35 * calc.exp(-1.1 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 - .35 * calc.exp(-1.1 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 - .7 * calc.exp(-1.4 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(ts, ts.map(t => 1), mark: none, stroke: eq_stroke),
+          ))
         ]
       + Draw an example of what solutions might look like if $f$ is _repelling_.
         #solution[
-          For a repelling equilibrium at $f(t)=1$, nearby solutions move away from $1$ as time
-          increases. Curves starting near $y=1$ separate from that horizontal line in forward time.
+          #align(center, lq.diagram(
+            width: 5.5cm,
+            xaxis: (label: [$t$], ticks: none),
+            yaxis: (label: [$y$], tick-distance: .5),
+            xlim: (0, 2),
+            ylim: (0, 2),
+            lq.plot(
+              ts_short,
+              ts_short.map(t => 1 + .08 * calc.exp(t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts_short,
+              ts_short.map(t => 1 + .15 * calc.exp(t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts_short,
+              ts_short.map(t => 1 - .08 * calc.exp(t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts_short,
+              ts_short.map(t => 1 - .12 * calc.exp(t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(ts_short, ts_short.map(t => 1), mark: none, stroke: eq_stroke),
+          ))
         ]
       + Draw an example of what solutions might look like if $f$ is _stable_.
         #solution[
-          For a stable equilibrium, solutions that start close to $y=1$ stay close for all future
-          time. A sketch should show trajectories remaining in a narrow band around $y=1$.
+          #align(center, lq.diagram(
+            width: 5.5cm,
+            xaxis: (label: [$t$], ticks: none),
+            yaxis: (label: [$y$], tick-distance: .5),
+            xlim: (0, 4),
+            ylim: (0, 2),
+            lq.plot(
+              ts,
+              ts.map(t => 1 + .7 * calc.exp(-1.4 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 + .35 * calc.exp(-1.1 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 - .35 * calc.exp(-1.1 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(
+              ts,
+              ts.map(t => 1 - .7 * calc.exp(-1.4 * t)),
+              mark: none,
+              stroke: nearby_stroke,
+            ),
+            lq.plot(ts, ts.map(t => 1), mark: none, stroke: eq_stroke),
+          ))
+          or
+          #align(center, lq.diagram(
+            width: 5.5cm,
+            xaxis: (label: [$t$], ticks: none),
+            yaxis: (label: [$y$], tick-distance: .5),
+            xlim: (0, 4),
+            ylim: (0, 2),
+            lq.plot(ts, ts.map(t => 1.35), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => 1.15), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => .85), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => .65), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => 1), mark: none, stroke: eq_stroke),
+          ))
+
+          Here solutions near $y=1$ stay close to $y=1$ for all future time.
         ]
       + Could $f$ be stable but _not_ attracting?
         #solution[
           Yes.
 
-          Example: $y' = 0$. Every solution is constant, so if you start near $y=1$, you stay near
-          $y=1$ (stable), but you do not move toward $1$ unless you started at $1$ (not attracting).
+          #align(center, lq.diagram(
+            width: 5.5cm,
+            xaxis: (label: [$t$], ticks: none),
+            yaxis: (label: [$y$], tick-distance: .5),
+            xlim: (0, 4),
+            ylim: (0, 2),
+            lq.plot(ts, ts.map(t => 1.35), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => 1.15), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => .85), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => .65), mark: none, stroke: nearby_stroke),
+            lq.plot(ts, ts.map(t => 1), mark: none, stroke: eq_stroke),
+          ))
+
         ]
     ]
   })
@@ -199,24 +315,34 @@
       + Classify the equilibrium solutions for model #OO as attracting, repelling, stable, or
         unstable.
         #solution[
-          With $k=1.1 > 0$, model #OO is
-          $
-            P' = 1.1 P (1 - 0.1 P).
-          $
-          Equilibria are $P=0$ and $P=10$.
+          Substituting in the values of $k$, $R$, and $R_i$, we see
+          $P' = 1.1 dot P (1 - 0.1 dot P)$. Notice $P'=0$ when $P=0$ or $P=10$, and so these are the
+          equilibrium solutions.
 
-          - Near $P=0$, solutions with small positive $P$ increase away from $0$, so $P=0$ is
-            repelling (unstable).
-          - Near $P=10$, solutions move toward $10$ from above and below (within the physical
-            region), so $P=10$ is attracting (stable).
+          *Case $P=10$*:
+
+          If $P$ is slightly above $10$, then $P'$ is negative, so a solution starting at $P > 10$
+          will decrease toward $10$.
+
+          If $P$ is slightly below $10$, then $P'$ is positive, so a solution starting at $P < 10$
+          will increase toward $10$.
+
+          Thus solutions near $P=10$ move toward $10$, so $P=10$ is stable and attracting.
+
+          *Case $P=0$*:
+
+          Since we cannot have negative population, it only makes sense to consider solutions that
+          start with $P>0$ when classifying the equilibrium $P=0$.
+
+          If $P$ is slightly above $0$, then $P'$ is positive, so a solution starting at $P > 0$
+          will increase away from $0$.
+
+          Thus, $P=0$ is unstable and repelling.
         ]
       + Does changing $k$ change the nature of the equilibrium solutions? How can you tell?
         #solution[
-          Changing the magnitude of $k$ changes the speed of motion, but not the equilibrium
-          locations (still $P=0$ and $P=10$).
-
-          For $k>0$, the classification stays the same ($0$ repelling, $10$ attracting). If the sign
-          of $k$ were reversed, the arrows reverse and the classifications swap.
+          As long as $k>0$, the nature of the equilibrium solutions does not change (because the
+          derivatives used in the arguments for stability/instability won't change sign).
         ]
 
     ]
@@ -256,35 +382,33 @@
       + If you were sketching the slope field for model #OO by hand, what (straight) line would you
         sketch a segment of at $(5, 3)$? Write an equation for that line.
         #solution[
-          At $(5,3)$, the slope is
+          At $(t, P) = (5,3)$, the slope is
           $
-            m = 1.1 dot 3 dot (1 - 0.1 dot 3) = 2.31.
+            P' = 1.1 dot 3 dot (1 - 0.1 dot 3) = 2.31.
           $
           So the tangent-line segment should lie on
           $
-            y - 3 = 2.31(x - 5).
+            y = 2.31(x - 5) + 3.
           $
         ]
       + How can you recognize equilibrium solutions in a slope field?
         #solution[
           Equilibrium solutions occur at $y$-values where the slope is always zero, so they appear
-          as horizontal bands of zero-slope line segments across all $x$.
-
-          For model #OO, these are $y=0$ and $y=10$.
+          as horizontal bands of zero-slope line segments. However, since not every point is given a
+          line segment in a slope field, sometimes you need to interpolate, looking for places that
+          the slopes change sign, and predicting that between those places, the slope must be zero.
         ]
       + Give qualitative descriptions of different solutions to the _differential equation_ used in
         model #OO (i.e., use words to describe them). Do all of those solutions make sense in terms
         of _model #(OO)_?
         #solution[
           Qualitatively:
-          - If $0 < P(0) < 10$, the solution increases toward $10$.
-          - If $P(0) > 10$, the solution decreases toward $10$.
-          - If $P(0)=0$ or $P(0)=10$, the solution is constant.
-          - If $P(0)<0$, the differential equation still has a solution, but it stays negative and
-            is not meaningful as a population.
+          - If $0 < P(0) < 10$, solutions are "S"-shaped and increase toward $10$.
+          - If $P(0) > 10$, solutions are "L"-shaped and decrease toward $10$.
+          - If $P(0)=0$ or $P(0)=10$, the solutions are constant (horizontal lines).
+          - If $P(0)<0$, the differential equation still has a solution, that curve downward.
 
-          So not every differential-equation solution is physically meaningful for the starfish
-          model; we usually restrict to $P(t) >= 0$.
+          Only solutions with $P>=0$ make sense in the context of model $OO$.
         ]
 
     ]

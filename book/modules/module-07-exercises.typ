@@ -2,9 +2,11 @@
 #show: e.prepare(question)
 
 #{
-
-
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
 
@@ -33,11 +35,17 @@
       + Model this situation using a system of differential equations. Explain which parts of your
         model correspond to which premise(s).
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       The *SM* model of Social Media Usage is
@@ -53,18 +61,27 @@
       $
 
       + What are the equilibrium solution(s)?
+        #solution[???]
       + Make a phase portrait for the system.
 
         #link("https://www.desmos.com/calculator/h3wtwjghv0")
 
+        #solution[???]
+
       + Use phase portraits to conjecture: what do you think happens to the equilibrium solution(s)
         as $a$ transitions from negative to positive? Justify with a computation.
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
 
@@ -82,23 +99,34 @@
 
       + Can you rewrite the system in matrix form? I.e., in the form $arrow(r)'(t) = M arrow(r)(t)$
         for some matrix $M$ where $arrow(r)(t) = mat(P(t); U(t))$.
+        #solution[???]
       + Define $arrow(s)(t) = mat(S_P (t); S_U (t))$ to be the displacement from equilibrium in the
         *SM* model at time $t$ (provided an equilibrium exists).
         + Write $arrow(s)$ in terms of $P$ and $U$.
+          #solution[???]
         + Find $arrow(s)'$ in terms of $P$ and $U$.
+          #solution[???]
         + Find $arrow(s)'$ in terms of $S_P$ and $S_U$.
+          #solution[???]
         + Can one of your differential equations for $arrow(s)$ be written in matrix form? Which
           one?
+          #solution[???]
         + Analytically classify the equilibrium solution for your differential equation for
           $arrow(s)$ when $a = -1/2$, $a = 1/2$, and $a = 1$. (You may use a calculator for
           computing eigenvectors/values.)
 
+          #solution[???]
 
-    ],
-  )
+
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
       The *SM* model of Social Media Usage is
       $
@@ -130,9 +158,12 @@
 
       + For each social media post, make an educated guess about what initial conditions and what
         value(s) of $a$ the politician was considering.
+        #solution[???]
       + The school board wants to limit the number of social media users to fewer than 10 million.
         Make a recommendation about what value of $a$ they should target.
 
-    ],
-  )
+        #solution[???]
+
+    ]
+  })
 }
