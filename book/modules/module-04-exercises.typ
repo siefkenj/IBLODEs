@@ -7,7 +7,7 @@
 
 #{
   lesson(title: [Introduction to Stability], include "lesson-week-04.typ")
-  question({
+  question(label: <ex:LV_equilibrium>, {
     learning_objectives(
       [???],
     )
