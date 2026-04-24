@@ -1,7 +1,7 @@
 #import "../libs/lib.typ": *
 #import "definitions.typ": show_def
 #show: e.prepare()
-// #show ref: allow_missing_refs
+#show ref: allow_missing_refs
 
 // This file is meant to be imported and not compiled on its own.
 
@@ -200,9 +200,10 @@ and dashed) along with the old estimates (dotted).
 
 == Component and Phase Spaces
 
-The graphs above are called _component graphs_. They show the dependent variables (the populations
-of ants and aphids) vs. the independent variable (time).#footnote[Each is actually composed of two
-  component graphs, one for the ants and one for the aphids.]
+The graphs above are called _graphs in component space_ (or _component graphs_). They show the
+dependent variables (the populations of ants and aphids) vs. the independent variable
+(time).#footnote[Each is actually composed of two component graphs, one for the ants and one for the
+  aphids.]
 
 However, we often want to consider the relationship _between the dependent variables_. In this
 example, we might plot the population of ants vs. the population of aphids.
@@ -230,10 +231,10 @@ always holds, but the graph points us in the right direction.#footnote[See if yo
   threshold \# ants is by analyzing the differential equation directly.]
 
 #v(1em)
-Plots like the one above are called _phase plots_ or _plots in phase space_. The space where each
-axis corresponds to a dependent variable is called _phase space_ or the _phase plane_.
+Plots like the one above are called _plots in phase space_ (or _phase plots_). The space where each
+axis corresponds to a dependent variable is called _phase space_ (or the _phase plane_).
 
-#show_def("component_and_phase")
+#show_def("component_and_phase_spaces")
 
 As you may have noticed in the above definition, phase space is not limited to two dimensions.
 

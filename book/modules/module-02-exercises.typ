@@ -544,9 +544,9 @@
         term, in the long term, or something else.
         #solution[
           // Using the same initial population and the same values for common constants, we see:
-          - $MM$ grows slowly then quickly (it is exponential).
-          - $NN$ grows consistently (it is linear).
-          - $OO$ grows slowly, then speeds up, then grows slowly (it is logistic).
+          - $MM$ grows slowly then quickly (exponential).
+          - $NN$ grows consistently (linear).
+          - $OO$ grows slowly, then speeds up, then grows slowly (logistic).
         ]
       + Are some models more sensitive to your choice of $Delta$ when simulating?
         #solution[

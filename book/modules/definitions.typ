@@ -65,17 +65,19 @@
         of the line segments is not important, but should be consistent.
       ],
     ),
-    component_and_phase: definition_env(
-      title: "Component Graph & Phase Plane",
-      label: <def_component_and_phase>,
+    component_and_phase_spaces: definition_env(
+      title: "Component & Phase Spaces",
+      label: <def_component_and_phase_spaces>,
       [
         For a differential equation involving the functions $F_1$, $F_2$, #sym.dots, $F_n$, and the
-        variable $t$, the _component graphs_ are the $n$ graphs of $(t, F_1 (t))$, $(t, F_2 (t))$,
-        #sym.dots, $(t, F_n (t))$.
+        variable $t$, the _component spaces_ are $n$ two-dimensional spaces with axes $(t, F_1)$,
+        $(t, F_2)$, #sym.dots, $(t, F_n)$.
 
-        The _phase plane_ or _phase space_ associated with the differential equation is the
-        $n$-dimensional space with axes corresponding to the values of $F_1$, $F_2$, #sym.dots,
-        $F_n$.
+        The _phase space_ (or _phase plane_) associated with the differential equation is the
+        $n$-dimensional space with axes $F_1$, $F_2$, #sym.dots, $F_n$.
+
+        _Graphs in component spaces_ are obtained by dropping coordinates from a solution. _Graphs
+        in phase space_ are obtained by omitting the independent variable $t$ from a solution.
       ],
     ),
     equilibrium_solution: definition_env(

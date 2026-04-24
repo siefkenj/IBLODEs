@@ -415,7 +415,7 @@
         conditions. Plot the results on your phase portrait from @ex:tree_model_part1[].
         #solution[
           For example, fix $b=1$ and $Delta t = 0.1$, and simulate the initial condition
-          $(H(0),A(0))=(10,10)$.
+          $(H(0),A(0))=(10,17)$.
 
           #{
             let b = 1.0
