@@ -1,5 +1,6 @@
 // Make a "How to use this guide" section
 //  - State that blue box learning objectives are presented in a way that will be applicable to students. However, there are many "hidden" objectives givin in the notes boxes. (Because some exercises are not standalone exercises, the full objectives don't make sense to state in many cases.)
+// Include a schedule for the appendices? Including the calculation methods that are not in the body of the text?
 
 
 The first week is about:

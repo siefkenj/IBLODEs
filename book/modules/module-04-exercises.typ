@@ -6,7 +6,7 @@
 #let OO = $upright(bold("O"))$
 
 #{
-  lesson(title: [Introduction to Stability], include "lesson-week-04.typ")
+  lesson(title: [Introduction to Equilibria & Stability], include "lesson-week-04.typ")
   question(label: <ex:LV_equilibrium>, {
     learning_objectives(
       [???],

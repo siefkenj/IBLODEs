@@ -14,7 +14,7 @@
   text("Differential Equations", size: 45pt),
   authors: ([Jason Siefken], [Bernardo Galvão-Sousa]),
   subtitle: align(left, stack(
-    [MAT244 Instructor Guide],
+    [MAT244 #box(fill: purple, outset: 4pt, [Instructor Guide])],
     text([#datetime.today().display("[year]/[month]/[day] Edition")], size: 12pt),
     spacing: .6em,
   )),
@@ -46,12 +46,12 @@
   include "modules/module-03-exercises.typ"
 }
 
-// #{
-//   module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
-//     #include "modules/module-04-body.typ"
-//   ]
-//   include "modules/module-04-exercises.typ"
-// }
+#{
+  module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
+    #include "modules/module-04-body.typ"
+  ]
+  include "modules/module-04-exercises.typ"
+}
 
 // #{
 //   module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
