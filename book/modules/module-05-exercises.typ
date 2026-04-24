@@ -533,30 +533,23 @@
 
       + How are the premises expressed in the differential equations?
         #solution[
-          In
           $
-            H' = 0.3 dot A - b dot H,
+            H' &= underbrace(0.3 dot A, "P"_("height 1")) & underbrace(- quad b dot H, "P"_("height 2")) \
+            A' &= underbrace(-0.3 dot H^2, "P"_("energy 2")) wide &+ underbrace(A, "P"_"leaves" space \& space "P"_("energy 1"))
           $
-          the term $+0.3 dot A$ encodes growth from leaf-driven energy and $-b dot H$ encodes
-          sinking loss. In
-          $
-            A' = -0.3 dot H^2 + A,
-          $
-          the $+A$ term is energy gain from sunlight (proportional to leaf area) and $-0.3 dot H^2$
-          is energy loss growing with tree size.
         ]
       + What does the parameter $b$ represent (in the real world)?
         #solution[
-          $b$ is the proportional sinking/decay rate of trunk height in the swamp: larger $b$ means
-          faster height loss for the same $H$.
+          $b$ is related to the rate of sinking. The larger $b$, the more the tree sinks, given its
+          height. $b$ could be interpreted as the inverse viscosity of the swamp.
         ]
       + Applying Euler's method to this system shows that some solutions pass from the 1st to 4th
         quadrant of the phase plane. Is this realistic? Describe the life cycle of such a tree?
         #solution[
-          No, not literally: the 4th quadrant has $A<0$, which is not physically meaningful
-          (negative leaf area). Interpreted biologically, the tree loses essentially all leaves, can
-          no longer sustain itself, and dies; the model is no longer realistic once it predicts
-          $A<0$.
+          No. A tree in the 4th quadrant would have "negative" leaf area, which makes no sense.
+          Realistically, when a tree reaches 0 leaf area, it should stay at 0 leaf area but continue
+          sinking (negative values of $H$ could be interpreted as the tree sinking below the
+          ground).
         ]
 
     ]
@@ -578,58 +571,54 @@
 
       + Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
         #solution[
-          Solve
+          Solving
           $
-            0 = 0.3 dot A - b dot H, quad 0 = -0.3 dot H^2 + A.
+            0 = 0.3 dot A - b dot H wide "and" wide 0 = -0.3 dot H^2 + A,
           $
-          From the second equation, $A=0.3 dot H^2$. Substituting into the first gives
+          we get
           $
-            0 = 0.09 dot H^2 - b dot H = H(0.09 dot H-b).
-          $
-          Hence
-          $
-            H=0 "or" H = 100b/9.
-          $
-          So equilibria are
-          $
-            (H,A)=(0,0)
-          $
-          and, for $b>0$,
-          $
-            (H,A)= (100b/9, 1000b^2/27).
+            (H,A)=(0,0) wide "or" wide
+            (H,A)= (100/9 b, 1000/27 b^2).
           $
         ]
       + For which $b$ does a tree have the possibility of living forever? If the wind occasionally
         blew off a few random leaves, would that change your answer?
         #solution[
-          A nonzero equilibrium exists when $b>0$, so in that sense a tree can persist forever for
-          any $b>0$. But robustness to perturbations is stronger when that equilibrium is attracting
-          (here, for larger $b$, approximately $b>1$). Random leaf loss can knock a tree away from a
-          non-attracting equilibrium, so perturbations make stability important.
+          If the tree is exactly at the equilibrium $(H,A) = (100/9 b, 1000/27 b^2)$, it will live
+          forever.
+
+          However, if we account for minor perturbations, like a few leaves blowing off, the
+          stability of the equilibrium becomes important. In that case, if the equilibrium is stable
+          or attracting, the tree has a possibility of living forever.
+
+          By inspecting the phase portrait, it appears that when $b > 1$, arrows near this
+          equilibrium spiral inwards, and so the equilibrium is attracting. When $b < 1$, arrows
+          near this equilibrium spiral outwards, and so the equilibrium is repelling. When $b=1$, it
+          is hard to tell what is happening.
         ]
       +
         Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
         #solution[
-          Using $H_* = 100b/9$, set $5=100b/9$, so
-          $
-            b_5 = 9/20 = 0.45.
-          $
+          At a (positive) equilibrium, $H = 100/9 b$.
+
+          Solving $5=100/9 b_5$, we get $b_5 = 9/20 = 0.45$.
         ]
 
         Find a value $b_(12)$ of $b$ so that there is an equilibrium with $H=12$.
         #solution[
-          Using $H_* = 100b/9$, set $12=100b/9$, so
-          $
-            b_(12) = 108/100 = 1.08.
-          $
+          At a (positive) equilibrium, $H = 100/9 b$.
+
+          Solving $12=100/9 b_(12)$, we get $b_(12) = 9/100 dot 12 = 108/100 = 1.08$.
         ]
 
       + Predict what happens to a tree near equilibrium (but not at equilibrium) when $b=b_5$. What
         about when $b=b_(12)$.
         #solution[
-          Near the nonzero equilibrium, the Jacobian has trace $1-b$ and determinant $b$. So for
-          $b=b_5=0.45<1$, nearby solutions are unstable (move away). For $b=b_(12)=1.08>1$, nearby
-          solutions are stable/attracting (move back toward equilibrium).
+          A tree near equilibrium when $b=b_5$ will eventually die. The fluctuations in leaf area
+          and height get bigger and bigger until it has no leaves left and sinks forevermore.
+
+          A tree near equilibrium when $b=b_(12)$ stabilize in height and leaf area. The
+          fluctuations in leaf area and height get smaller and smaller and the tree lives forever.
         ]
     ]
   })
