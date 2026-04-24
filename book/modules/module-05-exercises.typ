@@ -1,6 +1,7 @@
 #import "../libs/lib.typ": *
 #import "definitions.typ": show_def
 #show: e.prepare(question)
+#show ref: allow_missing_refs
 
 #let OO = $upright(bold("O"))$
 
@@ -307,7 +308,9 @@
 
 
       #slides_only(colbreak())
-      Recall the #link(<ex:O_slope_field>)[slope field for model $OO$].
+      // XXX put back link later; it breaks if the reference is not found.
+      // Recall the #link(<ex:O_slope_field>)[slope field for model $OO$].
+      Recall the slope field for model $OO$.
 
       + What would a phase portrait for model $OO$ look like? Draw it.
         #solution[
@@ -414,8 +417,7 @@
       + Fix a value of $b$ and use a spreadsheet to simulate some solutions with different initial
         conditions. Plot the results on your phase portrait from @ex:tree_model_part1[].
         #solution[
-          For example, fix $b=1$ and $Delta t = 0.1$, and simulate the initial condition
-          $(H(0),A(0))=(10,17)$.
+          For $b=1$, $Delta = 0.1$ and initial conditions $(H(0),A(0))=(10,17)$, we get:
 
           #{
             let b = 1.0
@@ -479,27 +481,17 @@
         ]
       + What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
         #solution[
-          Initially,
-          $
-            A'(0) = -0.3(20)^2 + 10 = -110,
-          $
-          so leaf area drops quickly for every $b$. Also $H'(0)=3-20b$, so trunk change depends on
-          $b$ at first, but trajectories typically move toward severe decline (often into unphysical
-          $A<0$ in the model). So the quantitative path depends on $b$, but the initial leaf-loss
-          trend does not.
+          Both the tree height and the leaf area will initially decrease. Following the arrows in
+          the phase portrait, we see that the leaf area will decrease to $0$ (and then the tree will
+          die).
+
+          This happens no matter the value of $b in [0,2]$.
         ]
       + What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
         #solution[
-          Here
-          $
-            A'(0)=-0.3(10)^2+10=-20,
-          $
-          so leaves initially decrease. But
-          $
-            H'(0)=3-10b,
-          $
-          so trunk initially rises if $b<0.3$ and falls if $b>0.3$. So yes, behaviour depends on
-          $b$.
+          Again, initially the tree height and leaf area will both decrease. However for $b > 1.25$
+          this decrease "turns around" before the tree is dead, and the height and leaf area
+          increase again.
         ]
 
 
