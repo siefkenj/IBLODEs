@@ -372,7 +372,7 @@
   })
 
   book_only(pagebreak())
-  question({
+  question(label: <ex:intro_to_phase_space>, {
     learning_objectives(
       [Distinguish between graphs in component space and graphs in phase space.],
       [Recognize when to use phase space or component space.],

@@ -10,9 +10,24 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Identify equilibrium solutions to systems of differential equations in (joint) component
+        space.],
+      [Explain why high-dimensional plots make the analysis of systems of differential equations
+        difficult.],
     )
-    notes[???]
+    notes[
+      The purpose of this exercise is to motivate phase portraits. Students catch on fairly quickly.
+
+      As a conclusion, rotate the plot in desmos to look straight down the $z$ axis and ask them if
+      it looks familiar. Does it remind them of their plots in phase space for
+      @ex:intro_to_phase_space?
+
+      - The 3d slope field is hard to make in Desmos. The lengths of the slopes are not always the
+        same. This is a limitation of the tool.
+
+      - We don't expect students to produce 3d slope fields. This is a stepping stone to phase
+        portraits, and we won't touch on it again.
+    ]
     slide[
       #align(
         center,
@@ -53,9 +68,38 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Use phase portraits to visualize solutions to a system of differential equations.],
+      [Use phase portraits to visualize and classify equilibria of a system of differential
+        equations.],
+      [Explain why a phase portrait is better than a "slope field in phase space".],
     )
-    notes[???]
+    notes[
+      We want students to have an intuitive understanding for phase portraits. This question works
+      with a model they are familiar with and adds in the details of the phase portrait.
+
+      Before finishing the exercise, have a discussion about what advantages phase portraits have
+      over a "slope field in phase space" (the collapsed 3d slope field from the previous question).
+      I.e., a phase portrait encodes direction (via the arrows) and speed (via the lengths of the
+      arrows); these would be lost in a "slope field in phase space".
+
+      - Students quickly become comfortable looking at phase portraits. However, many don't
+        internalize the definition. Specifically, they have a hard time explaining how the vectors
+        and their lengths relate to solutions.
+
+      - For @ex:classify_lv_equilibria_with_phase_portrait[], students may have trouble classifying
+        $(0,0)$ as unstable *not repelling*. Be prepared with an explanation.
+
+      - For @ex:put_data_in_phase_portrait[], remind students that they already have a spreadsheet
+        from @ex:intro_to_phase_space; they can reuse it.
+
+        After copy-and-pasting simulated data into Desmos, ask students whether solutions will
+        spiral out or not. We concluded in @ex:intro_to_phase_space that solutions do _not_ spiral,
+        but many student will have forgotten this.
+
+        This question is also a good chance to mention that phase portraits can be used to
+        double-check a simulation. If you programmed the simulation correctly, the graphed curve
+        should follow the arrows!
+    ]
     slide(force_scale: 0.87em)[
 
       //https://www.desmos.com/calculator/wdgtznxndp
@@ -99,13 +143,15 @@
           @ex:LV_equilibrium, finding $(F,R)=(0,0)$ and $(F,R)=(11,110)$. At these points, the
           lengths of the vectors in a phase portrait will be zero.
         ]
-      + Classify each equilibrium as stable/unstable.
+      + #label_question_part(<ex:classify_lv_equilibria_with_phase_portrait>) Classify each
+        equilibrium as stable/unstable.
         #solution[
-          $(0,0)$ is unstable and not repelling. $(11,110)$ appears stable, but it is hard to tell
-          from the phase portrait whether it is attracting or very subtly repelling.
+          $(0,0)$ is unstable and not repelling. $(11,110)$ appears stable. It is hard to tell from
+          the phase portrait whether it is attracting or very subtly repelling, but our analysis in
+          @ex:intro_to_phase_space shows that it stable (and not attracting).
         ]
-      + Copy and paste data from your simulation spreadsheet into the Desmos plot. Does the
-        resulting curve fit with the picture?
+      + #label_question_part(<ex:put_data_in_phase_portrait>) Copy and paste data from your
+        simulation spreadsheet into the Desmos plot. Does the resulting curve fit with the picture?
         #solution[
           Yes. The curve follows the arrows.
         ]
