@@ -165,9 +165,41 @@
   book_only(pagebreak())
   question(label: <ex:exploring_equilibria>, {
     learning_objectives(
-      [???],
+      [Create graphs in component and phase spaces for equilibrium solutions and solutions near
+        equilibrium solutions.],
+      [Identify whether an equilibrium solution is attracting, repelling, or neither based on phase
+        portraits.],
+      [Create phase portraits for systems with attracting or repelling equilibrium solutions, as
+        well as for systems with no equilibrium solution.],
     )
-    notes[???]
+    notes[
+      This question is about the relationship between component space, phase space, and phase
+      portraits. It presents an opportunity for you to set expectations about drawing graphs and
+      phase portraits (how many arrows, what about their lengths, etc.).
+
+      - Students are still beginner at thinking in terms of phase space and component space. *Do not
+        underestimate this exercise.* It will be hard for them.
+
+      - @ex:sketch_component_graphs_of_equilibrium[] will be easy for students, but many will get
+        stuck on @ex:sketch_phase_space_of_equilibrium[]. You can prompt them with: at time $0$,
+        what are the $x$ and $y$ values? How about at time $1$? $2$? Can you plot it now for all
+        times in phase space?
+
+      - @ex:sketch_attracting_equilibrium[] will also be hard. Prompting again helps. Ask them at
+        time $t=1$, where should their non-equilibrium solution be? What about time $t=2$? $t=3$?
+        Now sketch.
+
+      - After students become comfortable with lines in phase space heading towards or away from
+        equilibria, you/they can bring up spirals.
+
+      - Clarify to students expectations around phase portraits: there need to be enough arrows to
+        know what's going on (in all quadrants), arrows need to be _straight_, the length of the
+        arrows is short near equilibria and longer farther away.
+
+        Also, discuss what it means for the phase portrait to represent a _continuous_ system. For
+        the level of rigour in the course, it is sufficient that the length of the arrows doesn't
+        change too suddenly, nor does the direction of the arrows change suddenly.
+    ]
     slide[
 
       // % https://www.desmos.com/calculator/wdgtznxndp
@@ -183,7 +215,8 @@
       $
 
       +
-        + Sketch component graphs for the equilibrium solution.
+        + #label_question_part(<ex:sketch_component_graphs_of_equilibrium>) Sketch component graphs
+          for the equilibrium solution.
           #solution[
             #let ts = lq.linspace(0, 4, num: 80)
 
@@ -213,7 +246,8 @@
               spacing: 1em,
             ))
           ]
-        + Sketch the equilibrium in _phase space_.
+        + #label_question_part(<ex:sketch_phase_space_of_equilibrium>) Sketch the equilibrium in
+          _phase space_.
           #solution[
             #align(center, lq.diagram(
               width: 4cm,
@@ -227,8 +261,9 @@
               lq.place(2.65, 4.2, $(2,4)$),
             ))
           ]
-      + Suppose $(x(t),y(t))$ is a solution that satisfies $(x(0), y(0))=(3,3)$. Sketch a possible
-        graph for this solution. Make sketches in both component and phase spaces.
+      + #label_question_part(<ex:sketch_attracting_equilibrium>) Suppose $(x(t),y(t))$ is a solution
+        that satisfies $(x(0), y(0))=(3,3)$. Sketch a possible graph for this solution. Make
+        sketches in both component and phase spaces.
         #solution[
           #let ts = lq.linspace(0, 4, num: 80)
           #let X(t) = 2 + calc.exp(-t)
@@ -274,8 +309,8 @@
             lq.place(2.1, 3.95, $(2,4)$),
           ))
         ]
-      + Draw a possible phase portrait for this system that agrees with your answer to the previous
-        parts.
+      + Draw a possible _phase portrait_ for this system that agrees with your answer to the
+        previous parts.
         #solution[
           #align(center, vector_field(
             ((x, y) => (2 - x, 4 - y)),
@@ -293,7 +328,7 @@
       + Sketch a phase portrait for a _new_ system of differential equations that has a repelling
         equilibrium solution.
         #solution[
-          One example is $x'=x$, $y'=y$, which has a repelling equilibrium at $(0,0)$.
+          The phase portrait below has a repelling equilibrium at $(0,0)$.
 
           #align(center, vector_field(
             ((x, y) => (x, y)),
@@ -310,7 +345,7 @@
       + Sketch a phase portrait for a _new_ system of differential equations that has no equilibrium
         solutions.
         #solution[
-          One example is $x'=1$, $y'=1$, which has no point where both derivatives are zero.
+          The phase portrait below is for a system that has no equilibrium solution.
 
           #align(center, vector_field(
             ((x, y) => (1, 1)),
@@ -332,9 +367,24 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Draw phase portraits for a single differential equation.],
+      [Identify whether an equilibrium solution for a single differential equation is attracting,
+        repelling, or neither based on a phase portrait.],
     )
-    notes[???]
+    notes[
+      Often times, the 1-d case is easier than the 2-d case. However, students have trouble with 1-d
+      graphs. For this reason, we introduced 2-d phase portraits first. Now it's time to analyze the
+      1-d case.
+
+      This exercise can be left as homework if you're running short on time (1-d phase portraits
+      play a minor role compared to 2-d ones).
+
+      - Students often struggle to identify what the phase space looks like,
+        @ex:dimension_phase_space_modelO[] addresses this.
+
+      - In @ex:dimension_phase_space_modelO_equilibrium[], if it didn't come up already, discuss
+        what solutions look like when graphed in phase space.
+    ]
     slide[
 
       #let F(x, y) = 1.1 * y * (1 - 0.1 / 1 * y)
@@ -356,23 +406,33 @@
       #slides_only(colbreak())
       // XXX put back link later; it breaks if the reference is not found.
       // Recall the #link(<ex:O_slope_field>)[slope field for model $OO$].
-      Recall the slope field for model $OO$.
+      Recall the slope field for model $OO$, which had an equation of the form $P'= space.thin ???$.
 
-      + What would a phase portrait for model $OO$ look like? Draw it.
-        #solution[
-          Since model $OO$ has one dependent variable, the phase portrait would lie on a line.
+      + #label_question_part(<ex:dimension_phase_space_modelO>)
 
-          // XXX Make a figure here
-        ]
-      + Where are the arrows the longest? Shortest?
+        + What is the dimension of the phase space for model $OO$?
+          #solution[
+            The phase space is 1-dimensional, since there is only one dependent variable.
+          ]
+
+        + What would a phase portrait for model $OO$ look like? Draw it.
+          #solution[
+            Since model $OO$ has one dependent variable, the phase portrait would lie on a line with
+            arrows pointing down below $0$, up between $0$ and $10$, and down above $10$.
+
+            // XXX Make a figure here
+          ]
+      + #label_question_part(<ex:dimension_phase_space_modelO_arrow_size>) Where are the arrows the
+        longest? Shortest?
         #solution[
-          The arrows are longest for very negative or very positive $>>10$ values.
+          The arrows are longest for very negative or very positive values. They are also reasonably
+          long near $5$. The arrows are shortest near $0$ and $10$.
         ]
-      + How could you tell from a 1d phase portrait whether an equilibrium solution is
-        attracting/repelling/etc.?
+      + #label_question_part(<ex:dimension_phase_space_modelO_equilibrium>) How could you tell from
+        a 1d phase portrait whether an equilibrium solution is attracting/repelling/etc.?
         #solution[
-          Look at arrows on both sides of the equilibrium. If both point toward the equilibrium, it
-          is attracting (and stable). If both point away, it is repelling (unstable). If one side
+          Looking at arrows on both sides of the equilibrium, if both point toward the equilibrium,
+          it is attracting (and stable). If both point away, it is repelling (unstable). If one side
           points in and the other out, it is unstable but not repelling.
         ]
     ]
@@ -381,9 +441,34 @@
   book_only(pagebreak())
   question.with(label: <ex:tree_model>)({
     learning_objectives(
-      [???],
+      [Use Desmos to make a phase portrait for a system of differential equations that has a
+        parameter.],
+      [Interpret the meaning of equilibrium solutions in the context of a model.],
     )
-    notes[???]
+    notes[
+      This is the start of the _tree model_, which will be used throughout the course. *Do not skip*
+      this question.
+
+      Rather than deal with the complexity of the modelling process now, the aim of this question is
+      to get familiar with the equations/visualization of the equations for the tree model. We will
+      practice the modelling process for the tree model in future exercises.
+
+      - The goal of @ex:tree_model_part1[] is for students to translate between the model-specific
+        variables $H$ and $A$ into the desmos variables $x$ and $y$, and to figure out how to set
+        bounds on a parameter in Desmos.
+
+        After they have worked for a minute, make a general announcement: "If you're stuck, think
+        about which variables in the model correspond to $x$ and $y$ in Desmos."
+
+        Wrap this part up with a Demo. Show how to set the bounds of $b$ (many will not have even
+        thought about it).
+
+      - In @ex:tree_model_part3[], some will miss the equilibrium at $(0,0)$.
+
+        Some students will find the equilibriums graphically rather than algebraically. Make sure
+        all students eventually find the equilibrium algebraically.
+      // Tree model is important
+    ]
     slide[
       // Completed phase portrait in desmos:
       // https://www.desmos.com/calculator/tvjag852ja
@@ -403,12 +488,12 @@
 
       #slides_only(colbreak())
 
-      + Modify
+      + #label_question_part(<ex:tree_model_part1>) Modify
 
         #link("https://www.desmos.com/calculator/vrk0q4espx")
 
         to make a phase portrait for the tree model.
-        #label_question_part(<ex:tree_model_part1>)
+
         #solution[
           Make
           $
@@ -422,7 +507,7 @@
           Equilibria mean that the tree is not changing in height and the leaf area of the tree is
           not changing.
         ]
-      + For $b=1$ what are the equilibrium solution(s)?
+      + #label_question_part(<ex:tree_model_part3>) For $b=1$ what are the equilibrium solution(s)?
         #solution[
           Solving for when $H'=0$ and $A'=0$, we see the equilibria are
           $
@@ -437,9 +522,24 @@
   book_only(pagebreak())
   question(label: <ex:tree_modelling_with_spreadsheet>, {
     learning_objectives(
-      [???],
+      [Simulate the solution to a system of differential equations with a parameter, using a
+        spreadsheet.],
+      [Overlay a simulated solution on a phase portrait to check the simulation.],
+      [Interpret solutions to initial value problems in the context of a model.],
     )
-    notes[???]
+    notes[
+      None of these exercises are new, but the context of the tree model is new. Give them time to
+      work and then discuss.
+
+
+      - Make sure students actually make the spreadsheet (from scratch). They still need practice.
+      - Make sure to discuss what the 2nd, 3rd, and 4th quadrants mean in terms of the model: none
+        of them make sense.
+
+        This is discussed in more detail in @ex:tree_model_euler[].
+      - For @ex:sim_tree_20_10[] and @ex:sim_tree_10_10[], students can investigate graphically (no
+        need to simulate for different values of $b$, though doing simulations doesn't hurt!).
+    ]
     slide[
 
       #slides_only(
@@ -523,9 +623,10 @@
             ))
           }
 
-          This gives one Euler trajectory overlaid on the phase portrait.
+          Above is a plot of (a segment of) the simulated solution overlaid on the phase portrait.
         ]
-      + What will happen to a tree with $(H(0), A(0))=(20,10)$? Does this depend on $b$?
+      + #label_question_part(<ex:sim_tree_20_10>) What will happen to a tree with
+        $(H(0), A(0))=(20,10)$? Does this depend on $b$?
         #solution[
           Both the tree height and the leaf area will initially decrease. Following the arrows in
           the phase portrait, we see that the leaf area will decrease to $0$ (and then the tree will
@@ -533,7 +634,8 @@
 
           This happens no matter the value of $b in [0,2]$.
         ]
-      + What will happen to a tree with $(H(0), A(0))=(10,10)$? Does this depend on $b$?
+      + #label_question_part(<ex:sim_tree_10_10>) What will happen to a tree with
+        $(H(0), A(0))=(10,10)$? Does this depend on $b$?
         #solution[
           Again, initially the tree height and leaf area will both decrease. However for $b > 1.25$
           this decrease "turns around" before the tree is dead, and the height and leaf area
@@ -550,9 +652,28 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Match premises to terms of equations for an existing model.],
+      [Interpret parameters of a model in terms of the real world.],
     )
-    notes[???]
+    notes[
+      Now that we are familiar with the mechanics of the tree model, it is time to see where it
+      comes from.
+
+      We aren't doing a full modelling process, but we are practicing linking an existing model's
+      assumptions to differential equations.
+
+      - In @ex:tree_model_premises[], $"P"_"leaves"$ and $"P"_"energy 1/2"$ must be combined to get
+        the terms in the $A'$ equation.
+      - In @ex:tree_model_b[], students will have some creative answers. Not all of them will align
+        with the fact that, all else being equal, large $b$ means a tree sinks faster.
+
+        Two reasonable answers are: $b$ is the inverse viscosity of the swamp, or $b$ is the density
+        of the tree (suggested by a student in 2025!).
+
+        Students may say something like "$b$ is the speed of sinking". Encourage them to think about
+        real world properties that *$b$ could represent*, as opposed to how $b$ influences the
+        equations.
+    ]
     slide[
       The tree model
       $
@@ -577,20 +698,23 @@
       )
 
 
-      + How are the premises expressed in the differential equations?
+      + #label_question_part(<ex:tree_model_premises>) How are the premises expressed in the
+        differential equations?
         #solution[
           $
             H' &= underbrace(0.3 dot A, "P"_("height 1")) & underbrace(- quad b dot H, "P"_("height 2")) \
-            A' &= underbrace(-0.3 dot H^2, "P"_("energy 2")) wide &+ underbrace(A, "P"_"leaves" space \& space "P"_("energy 1"))
+            A' &= underbrace(-0.3 dot H^2, "P"_"leaves" space \& space "P"_("energy 2")) wide &+ underbrace(A, "P"_"leaves" space \& space "P"_("energy 1"))
           $
         ]
-      + What does the parameter $b$ represent (in the real world)?
+      + #label_question_part(<ex:tree_model_b>) What does the parameter $b$ represent (in the real
+        world)?
         #solution[
           $b$ is related to the rate of sinking. The larger $b$, the more the tree sinks, given its
           height. $b$ could be interpreted as the inverse viscosity of the swamp.
         ]
-      + Applying Euler's method to this system shows that some solutions pass from the 1st to 4th
-        quadrant of the phase plane. Is this realistic? Describe the life cycle of such a tree?
+      + #label_question_part(<ex:tree_model_euler>) Applying Euler's method to this system shows
+        that some solutions pass from the 1st to 4th quadrant of the phase plane. Is this realistic?
+        Describe the life cycle of such a tree?
         #solution[
           No. A tree in the 4th quadrant would have "negative" leaf area, which makes no sense.
           Realistically, when a tree reaches 0 leaf area, it should stay at 0 leaf area but continue
@@ -605,7 +729,9 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Find equilibrium solutions to a system of differential equations with a parameter.],
+      [Study the stability of equilibrium solutions.],
+      [Explain the consequences of stable/unstable equilibrium for a model.],
     )
     notes[???]
     slide[

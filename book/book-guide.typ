@@ -25,33 +25,33 @@
 
 // Modules start
 #counter(page).update(1)
-#{
-  module(title: [Modelling], label: <mod:modelling>)[
-    #include "modules/module-01-body.typ"
-  ]
-  include "modules/module-01-exercises.typ"
-}
+// #{
+//   module(title: [Modelling], label: <mod:modelling>)[
+//     #include "modules/module-01-body.typ"
+//   ]
+//   include "modules/module-01-exercises.typ"
+// }
 
-#{
-  module(title: [Simulation], label: <mod:simulation>)[
-    #include "modules/module-02-body.typ"
-  ]
-  include "modules/module-02-exercises.typ"
-}
+// #{
+//   module(title: [Simulation], label: <mod:simulation>)[
+//     #include "modules/module-02-body.typ"
+//   ]
+//   include "modules/module-02-exercises.typ"
+// }
 
-#{
-  module(title: [Systems and Models with Interacting Terms], label: <mod:systems>)[
-    #include "modules/module-03-body.typ"
-  ]
-  include "modules/module-03-exercises.typ"
-}
+// #{
+//   module(title: [Systems and Models with Interacting Terms], label: <mod:systems>)[
+//     #include "modules/module-03-body.typ"
+//   ]
+//   include "modules/module-03-exercises.typ"
+// }
 
-#{
-  module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
-    #include "modules/module-04-body.typ"
-  ]
-  include "modules/module-04-exercises.typ"
-}
+// #{
+//   module(title: [Equilibrium and Long-Term Behaviour], label: <mod:equilibrium>)[
+//     #include "modules/module-04-body.typ"
+//   ]
+//   include "modules/module-04-exercises.typ"
+// }
 
 #{
   module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
@@ -60,12 +60,12 @@
   include "modules/module-05-exercises.typ"
 }
 
-// #{
-//   module(title: [Linear Systems with Constant Coefficients (Real Solutions)], label: <mod:real>)[
-//     #include "modules/module-06-body.typ"
-//   ]
-//   include "modules/module-06-exercises.typ"
-// }
+#{
+  module(title: [Linear Systems with Constant Coefficients (Real Solutions)], label: <mod:real>)[
+    #include "modules/module-06-body.typ"
+  ]
+  include "modules/module-06-exercises.typ"
+}
 
 // #{
 //   module(
