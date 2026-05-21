@@ -733,7 +733,27 @@
       [Study the stability of equilibrium solutions.],
       [Explain the consequences of stable/unstable equilibrium for a model.],
     )
-    notes[???]
+    notes[
+      We are motivating:
+      - The importance/relevance of equilibrium solutions.
+      - The need for formal methods (beyond graphical inspection) for classifying equilibria.
+
+      At the moment, we can find equilibrium solutions by solving equations, but to classify them as
+      stable/unstable, we rely on visualizations and simulation. The conclusion of this question is:
+      _we need better tools for classifying equilibria_.
+
+      - In @ex:tree_model_part3[], we solve for the equilibrium solutions when $b=1$. We're doing it
+        generally now.
+      - In @ex:tree_model_live_forever[], students need to interpret what stable/unstable means in
+        the "real world". The $(0,0)$ equilibrium doesn't count as the tree "living". It needs
+        positive height/leaf area to be considered alive.
+
+        Students may struggle with converting "if the wind blows..." into mathematics. One way to
+        assist is to prompt students: "If the tree is at the equilibrium, and then a few leaves blow
+        off, where in phase space will the tree be? What happens to the tree from that point on?"
+
+      - @ex:tree_model_b5[] and @ex:tree_model_b12[] can be left as homework if time is short.
+    ]
     slide[
       Recall the tree model
       $
@@ -753,8 +773,9 @@
             (H,A)= (100/9 b, 1000/27 b^2).
           $
         ]
-      + For which $b$ does a tree have the possibility of living forever? If the wind occasionally
-        blew off a few random leaves, would that change your answer?
+      + #label_question_part(<ex:tree_model_live_forever>) For which $b$ does a tree have the
+        possibility of living forever? If the wind occasionally blew off a few random leaves, would
+        that change your answer?
         #solution[
           If the tree is exactly at the equilibrium $(H,A) = (100/9 b, 1000/27 b^2)$, it will live
           forever.
@@ -768,7 +789,7 @@
           near this equilibrium spiral outwards, and so the equilibrium is repelling. When $b=1$, it
           is hard to tell what is happening.
         ]
-      +
+      + #label_question_part(<ex:tree_model_b5>)
         Find a value $b_5$ of $b$ so that there is an equilibrium with $H=5$.
         #solution[
           At a (positive) equilibrium, $H = 100/9 b$.
@@ -783,8 +804,8 @@
           Solving $12=100/9 b_(12)$, we get $b_(12) = 9/100 dot 12 = 108/100 = 1.08$.
         ]
 
-      + Predict what happens to a tree near equilibrium (but not at equilibrium) when $b=b_5$. What
-        about when $b=b_(12)$.
+      + #label_question_part(<ex:tree_model_b12>) Predict what happens to a tree near equilibrium
+        (but not at equilibrium) when $b=b_5$. What about when $b=b_(12)$.
         #solution[
           A tree near equilibrium when $b=b_5$ will eventually die. The fluctuations in leaf area
           and height get bigger and bigger until it has no leaves left and sinks forevermore.
