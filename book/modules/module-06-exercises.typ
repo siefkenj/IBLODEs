@@ -21,20 +21,22 @@
         #link("https://www.desmos.com/calculator/h3wtwjghv0")
 
         #solution[
-          The origin is the only equilibrium. Away from the origin, arrows point away from
-          $(0,0)$ in every quadrant. The vertical component grows faster than the horizontal one
-          (because $y'=2y$), so trajectories bend toward vertical as $|t|$ increases.
+          XXX ADD PHASE PORTRAIT
         ]
+        // #solution[
+        //   The origin is the only equilibrium. Away from the origin, arrows point away from
+        //   $(0,0)$ in every quadrant. The vertical component grows faster than the horizontal one
+        //   (because $y'=2y$), so trajectories bend toward vertical as $|t|$ increases.
+        // ]
 
       + What are the equilibrium solution(s) of the system?
         #solution[
-          Equilibria satisfy $x'=0$ and $y'=0$, so $x=0$ and $y=0$. The only equilibrium solution is
-          $arrow(r)(t)=mat(0;0)$.
+          Equilibria satisfy $x'=0$ and $y'=0$, so $x=0$ and $y=0$. The only equilibrium solution is $x(t)=0$ and $y(t)=0$ for all $t$.
         ]
       + Find a formula for $x(t)$ and $y(t)$ that satisfy the initial conditions
         $(x(0), y(0))=(x_0, y_0)$.
         #solution[
-          Since $x'=x$ and $y'=2y$ are decoupled:
+          Since $x'=x$ and $y'=2y$ are independent of each other, we can solve them separately to get
           $
             x(t) = x_0 e^t wide
             y(t) = y_0 e^(2t).
@@ -57,13 +59,16 @@
         _Hint: you already did most of the work!_
 
         #solution[
-          One solution is
+          A solution can be found by substituting the formulas for $x(t)$ and $y(t)$ that we found into vector form:
+          $
+            arrow(r)(t)
+              =mat(x(t); y(t))
+              = mat(x_0 e^t; y_0 e^(2t)).
+          $
+
+          To get a solution, we can set $x_0=y_0=1$ to get
           $
             arrow(r)(t)=mat(e^t; e^(2t)).
-          $
-          More generally, all solutions have the form
-          $
-            arrow(r)(t)=mat(C_1 e^t; C_2 e^(2t)).
           $
         ]
 
@@ -94,7 +99,9 @@
           So $arrow(s)$ is a solution. This proves closure under addition.
 
           To conclude subspace, we still need closure under scalar multiplication and that the zero
-          function is in the set.
+          function is in the set, that is, we need to show that:
+          - If $arrow(p)$ is a solution and $c in RR$, then $c space.thin arrow(p)$ is a solution.
+          - The zero function $arrow(z)(t)=mat(0;0)$ is a solution.
         ]
 
       + #label_question_part(<ex:basic_system_span>) Recall the differential equation
@@ -102,12 +109,22 @@
         as a span.
 
         #solution[
+          The solutions we found can be expressed as
+          $ 
+            arrow(r)(t) = x_0 mat(e^t; 0) + y_0 mat(0; e^(2t)),
           $
-            cal(S) = "span"{mat(e^t; 0), mat(0; e^(2t))}.
+          so they are linear combination of the functions
+          $ 
+            mat(e^t; 0) quad "and" quad mat(0; e^(2t)).
+          $
+
+          Therefore, the set of solutions is the span of these two functions:
+          $
+            "span"{mat(e^t; 0), mat(0; e^(2t))}.
           $
         ]
 
-      + Let $cal(S)$ be the set of all solutions to $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ and
+      + #label_question_part(<ex:sol_space_dimension>) Let $cal(S)$ be the set of all solutions to $arrow(r)'= mat(1, 0; 0, 2)arrow(r)$ and
         consider the following theorem:
 
         #theorem(
@@ -139,12 +156,12 @@
         Justify your answers.
 
         #solution[
-          No for $cal(K)$. The second generator is $7$ times the first, so $cal(K)$ is 1-dimensional
+          No for $cal(K)$: The second function in the span is $7$ times the first, so $cal(K)$ is 1-dimensional
           and cannot equal the 2-dimensional space $cal(S)$.
 
-          Yes for $cal(J)$. Its generators are linearly independent, so $dim(cal(J))=2$. Also each
-          generator solves the system, so $cal(J) subset.eq cal(S)$. Two 2-dimensional subspaces of
-          the same ambient solution space must be equal, hence $cal(J)=cal(S)$.
+          Yes for $cal(J)$. Its generators are linearly independent, so $dim(cal(J))=2$. Also each of hte functions in the span are solutions of the system, so $cal(J) subset.eq cal(S)$. 
+          
+          Since $cal(J)$ and $cal(S)$ both have dimension $2$ and $cal(J) subset.eq cal(S)$, they must be equal.
         ]
 
     ]
@@ -183,9 +200,21 @@
           $arrow(r)_1$ is not even a vector-valued function (as written), so it is not a solution in
           this 2D system.
 
-          $arrow(r)_2$ is a solution. $arrow(r)_3$ is also a solution.
+          $arrow(r)_2$ is a solution, which can be checked by direct substitution into the system:
+          $ 
+            arrow(r)'_2(t) & = mat(2 e^(2t); 0) \
+            mat(2, 0; 0, 3) arrow(r)_2(t) & = mat(2 e^(2t); 0)
+          $
+          which matches, so $arrow(r)_2$ is a solution.
+          
+          $arrow(r)_3$ is also a solution (can be checked in a similar way).
 
-          $arrow(r)_4$ is not a solution (its components use the wrong growth rates).
+          $arrow(r)_4$ is not a solution:
+          $
+            arrow(r)'_4(t) & = mat(3 e^(3t); 2 e^(2t)) \
+            mat(2, 0; 0, 3) arrow(r)_4(t) & = mat(2 e^(3t); 3 e^(2t))
+          $
+          which do not match.
 
           $arrow(r)_5$ is a solution (the zero solution).
         ]
@@ -197,44 +226,56 @@
           $
             M arrow(v)=lambda arrow(v).
           $
+
+          In other words, $arrow(v)$ is an eigenvector if it is a nonzero vector that gets stretched/contracted by $M$ without changing direction.
         ]
       + What should the definition of an _eigen solution_ be for this system? #label_question_part(
           <ex:system_eigen_solutions_part2>,
         )
         #solution[
-          An eigen solution is a nonzero solution of the form
+          An eigen solution is a nonzero solution $arrow(r)(t)$ that doesn't change direction, so it satisfies
+          $ 
+              arrow(r)'(t) = lambda arrow(r)(t),
           $
-            arrow(r)(t)=e^(lambda t) arrow(v),
+          for some $lambda in RR$.
+          
+          Note that to be an eigen solution, it must also be a solution to the system, so it must also satisfy
           $
-          where $arrow(v)$ is an eigenvector of $M$ with eigenvalue $lambda$.
+            arrow(r)'(t) = M arrow(r)(t).
+          $
         ]
       + Which functions from @ex:system_eigen_solutions_part2[] are eigen solutions?
         #solution[
-          $arrow(r)_2$ is an eigen solution (direction $mat(1;0)$, eigenvalue $2$).
+          We only need to check the solutions from the previous part, which are $arrow(r)_2$ and $arrow(r)_3$.
+
+          $arrow(r)_2$ is an eigen solution since $arrow(r)'_2(t)=2 arrow(r)_2(t)$.
+
+          $arrow(r)_3$ is a solution but not an eigen solution because $arrow(r)'_3(t) = mat(2 e^(2t); 12 e^(3t))$ which cannot be written as a scalar multiple of $arrow(r)_3(t)$.
+
 
           $arrow(r)_5$ is a solution, but not counted as an eigen solution since it is the zero
           function.
 
-          $arrow(r)_3$ is a solution but not an eigen solution because it is a nontrivial sum of two
-          eigendirections.
         ]
       + Find an eigen solution $arrow(r)_6$ that is linearly independent from $arrow(r)_2$.
         #solution[
-          A standard choice is
+          Extending the example of $arrow(r)_2$, we can find another eigen solution by using the second component of the solution:
           $
             arrow(r)_6(t)=mat(0; e^(3t)).
           $
+          We can check that this is indeed an eigen solution:
+          $
+            arrow(r)'_6(t) & = mat(0; 3 e^(3t)) = 3 arrow(r)_6(t) 
+          $
+          so it is an eigen solution with eigenvalue $3$.
         ]
       + Let $S="span"{arrow(r)_2, arrow(r)_6}$. Does $S$ contain _all_ solutions to the system?
         Justify your answer.
 
         #solution[
-          Yes. We have two linearly independent solutions in a $2 times 2$ system, so they form a
-          basis for the full solution space. Equivalently,
-          $
-            arrow(r)(t)=C_1 mat(e^(2t);0)+C_2 mat(0;e^(3t))
-          $
-          gives every solution.
+          Yes. We have two linearly independent solutions, so $S$ has dimension 2 and $S subset.eq cal(S)$.
+          
+          From the Theorem in @ex:sol_space_dimension[], we know $cal(S)$ has dimension 2, so $S=cal(S)$.
         ]
 
     ]
@@ -258,6 +299,9 @@
 
       + Sketch $arrow(r)_2$ and $arrow(r)_6$ in the phase plane.
         #solution[
+
+          XXX ADD GRAPHS
+
           $arrow(r)_2$ traces the $x$-axis (for positive scalar multiples, it moves away from the
           origin as $t$ increases). $arrow(r)_6$ traces the $y$-axis (also away from the origin for
           positive multiples).
@@ -269,9 +313,7 @@
         to make a phase portrait for the system.
 
         #solution[
-          The phase portrait is a source at the origin. In each quadrant, arrows point away from
-          $(0,0)$. Motion in the $y$-direction is steeper/faster than in the $x$-direction because
-          the growth rate $3$ is larger than $2$.
+          XXX ADD PHASE PORTRAIT
         ]
 
       // + Consider the solution $arrow(s)(t) = arrow(r)_2(t) - arrow(r)_6(t)$.
@@ -345,13 +387,11 @@
         system? Explain.
 
         #solution[
-          (A), the curve $y=x^(3/2)$ (for $x >= 0$).
-
-          For $x'=2x$ and $y'=3y$,
+          The solutions have the form
+          $ 
+            arrow(r)(t)=mat(x_0 e^(2t); y_0 e^(3t)),
           $
-            y = C e^((3/2) ln x) = C x^(3/2)
-          $
-          along non-axis trajectories (in regions where $x$ keeps a fixed sign).
+          so as $t$ increases, the $y$-component grows faster than the $x$-component. The only curve that has this behavior is the one in diagram (A).
         ]
 
     ]
