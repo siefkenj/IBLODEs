@@ -10,9 +10,9 @@
 .vscode
 *.swp
 *.idx
-tutorials/*pdf
-book/**/*pdf
-book/draft
+*/tutorials/*pdf
+*/book/**/*pdf
+*/book/draft
 tmp*
 *.bak*
 test*
