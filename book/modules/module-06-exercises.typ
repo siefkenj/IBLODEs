@@ -735,7 +735,7 @@
   })
 
   book_only(pagebreak())
-  question({
+  question(label: <ex:system_eigen_solutions_in_general>, {
     learning_objectives(
       [???],
     )
@@ -748,14 +748,10 @@
         corresponding eigenvalues?
 
         #solution[
-          $
-            M mat(1; 1)=mat(2; 2)=2 mat(1; 1),
-          $
+          $M mat(1; 1)=mat(2; 2)=2 mat(1; 1),$
           so $mat(1; 1)$ has eigenvalue $2$.
 
-          $
-            M mat(1; -1)=mat(-2; 2)=-2 mat(1; -1),
-          $
+          $M mat(1; -1)=mat(-2; 2)=-2 mat(1; -1),$
           so $mat(1; -1)$ has eigenvalue $-2$.
         ]
 
@@ -763,31 +759,28 @@
         + Is $arrow(r)_1(t) = e^(2t) mat(1; 0)$ a solution to the differential equation? An eigen
           solution?
           #solution[
-            No. $arrow(r)_1'(t)=mat(2e^(2t); 0)$ but $M arrow(r)_1(t)=mat(0; 2e^(2t))$, so they are
-            not equal. Therefore it is neither a solution nor an eigen solution.
+            No. $arrow(r)'_1(t)=mat(2e^(2t); 0)$ but $M arrow(r)_1(t)=mat(0; 2e^(2t))$. Since the
+            two are not equal, it is neither a solution nor an eigen solution.
           ]
         + Is $arrow(r)_2(t) = e^(2t) mat(1; 1)$ a solution to the differential equation? An eigen
           solution?
           #solution[
-            Yes. Since $mat(1; 1)$ is an eigenvector with eigenvalue $2$,
-            $
-              arrow(r)_2'(t)=2e^(2t)mat(1; 1)=M arrow(r)_2(t).
-            $
-            So it is a solution, and specifically an eigen solution.
+            Yes.
+            $arrow(r)'_2 (t)=2e^(2t)mat(1; 1)=M arrow(r)_2(t),$
+            so it is a solution. Additionally, $arrow(r)'_2 (t) = 2 arrow(r)_2 (t)$, so it is an
+            eigen solution.
           ]
         + Is $arrow(r)_3(t) = e^(t) mat(1; -1)$ a solution to the differential equation? An eigen
           solution?
           #solution[
-            No. For $mat(1; -1)$ the matching exponential rate should be $e^(-2t)$, not $e^t$.
-            Indeed,
-            $
-              arrow(r)_3'(t)=e^t mat(1; -1),
-            $
-            while
+            No. Computing,
+            $arrow(r)'_3(t)=e^t mat(1; -1) = 1 arrow(r)_3 (t),$
+            but
             $
               M arrow(r)_3(t)=-2e^t mat(1; -1).
             $
-            So it is not a solution, hence not an eigen solution.
+            Because the two don't match, $arrow(r)_3$ is not a solution. Since it is not a solution,
+            it cannot be an eigen solution.
           ]
 
       + Find an eigen solution for the system corresponding to the eigenvalue $-2$. Write your
@@ -797,17 +790,14 @@
           $
             arrow(r)(t)=e^(-2t) mat(1; -1)
           $
-          (or any nonzero scalar multiple of this).
         ]
 
       + Let $arrow(v)$ be an eigenvector for $M$ with eigenvalue $lambda$. Explain how to write down
         an eigen solution to $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$.
 
         #solution[
-          Use
-          $
-            arrow(r)(t)=e^(lambda t) arrow(v).
-          $
+          Define
+          $arrow(r)(t)=e^(lambda t) arrow(v).$
           Then $arrow(r)'(t)=lambda e^(lambda t)arrow(v)=e^(lambda t)M arrow(v)=M arrow(r)(t)$.
         ]
 
@@ -818,10 +808,10 @@
         #solution[
           No. Substituting gives
           $
-            lambda e^(lambda t) arrow(v)=M(e^(lambda t)arrow(v))=e^(lambda t)M arrow(v),
+            lambda e^(lambda t) arrow(v)=M(e^(lambda t)arrow(v))=e^(lambda t)M arrow(v).
           $
-          so we must have $M arrow(v)=lambda arrow(v)$. That would make $arrow(v)$ an eigenvector,
-          contradicting the assumption.
+          Since $arrow(v) != arrow(0)$, we must have $M arrow(v)=lambda arrow(v)$. That would make
+          $arrow(v)$ an eigenvector, contradicting the assumption.
         ]
 
     ]
@@ -837,16 +827,19 @@
       #slides_only(v(0.5em))
       Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
 
-      + Write down a general solution to the differential equation.
+      + #label_question_part(<ex:general_eigen_solution_with_params>) Write down a general solution
+        to the differential equation.
         #solution[
-          Using eigenpairs $(2, mat(1; 1))$ and $(-2, mat(1; -1))$:
+          In @ex:system_eigen_solutions_in_general, we found eigen solutions $e^(2t) mat(1; 1)$ and
+          $e^(-2t) mat(1; -1)$. Linear combinations of these give us the general solution:
           $
-            arrow(r)(t)=C_1 e^(2t) mat(1; 1) + C_2 e^(-2t) mat(1; -1).
+            arrow(r)(t)=C_1 e^(2t) mat(1; 1) + C_2 e^(-2t) mat(1; -1)
           $
+          where $C_1$ and $C_2$ are parameters.
         ]
       + Write down a solution to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
         #solution[
-          Solve
+          Letting $t=0$ in the general solution, we have
           $
             mat(x_0; y_0)=C_1 mat(1; 1)+C_2 mat(1; -1),
           $
@@ -861,12 +854,17 @@
             + (x_0-y_0)/2 e^(-2t) mat(1; -1).
           $
         ]
-      + Are your answers to the first two parts the same? Do they contain the same information?
+      + #label_question_part(<ex:general_eigen_solution_with_initial_values>) Are your answers to
+        the first two parts the same? Do they contain the same information?
         #solution[
-          Yes. They are the same family of solutions written with different parameters.
+          No, they are not the same formula. However, they do contain the same information.
 
-          The general form uses free constants $(C_1,C_2)$; the IVP form rewrites those constants in
-          terms of the initial data $(x_0,y_0)$.
+          In @ex:general_eigen_solution_with_params[], we used parameters $C_1$ and $C_2$. In
+          @ex:general_eigen_solution_with_initial_values[], we wrote a solution in terms of an
+          arbitrary initial condition $(x_0,y_0)$. These are different ways of writing solutions,
+          however, every solution in @ex:general_eigen_solution_with_params[] can be written in the
+          form of the solution in @ex:general_eigen_solution_with_initial_values[] and vice versa,
+          so they contain the same information.
         ]
     ]
   })
@@ -915,18 +913,15 @@
 
       + How are the phase portraits related to each other?
         #solution[
-          They are both saddle portraits. One can be obtained from the other by a linear change of
-          coordinates (a rotation/scaling that aligns eigenvector directions).
+          They are rotations of each other.
         ]
       + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 2$. In what ways could the
         phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
         In what way(s) must it look the same?
         #solution[
-          It can look different in orientation (eigendirections can rotate), stretching, and overall
-          geometry under coordinate changes.
-
-          It must still have one stable eigendirection and one unstable eigendirection, so the
-          origin must remain a saddle (hence unstable).
+          The overall "flow" of the vectors must be the same (there is a line radiating away from
+          the origin and a line wih vectors pointing towards the origin), but those two lines can
+          point in any direction; they do not need to be orthogonal to each other.
         ]
     ]
   })
