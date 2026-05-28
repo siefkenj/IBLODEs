@@ -67,15 +67,15 @@
   include "modules/module-06-exercises.typ"
 }
 
-// #{
-//   module(
-//     title: [Linear Systems with Constant Coefficients (Affine Solutions)],
-//     label: <mod:affine>,
-//   )[
-//     #include "modules/module-07-body.typ"
-//   ]
-//   include "modules/module-07-exercises.typ"
-// }
+#{
+  module(
+    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
+    label: <mod:affine>,
+  )[
+    #include "modules/module-07-body.typ"
+  ]
+  include "modules/module-07-exercises.typ"
+}
 
 // #{
 //   module(

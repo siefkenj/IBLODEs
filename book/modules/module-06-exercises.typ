@@ -737,9 +737,23 @@
   book_only(pagebreak())
   question(label: <ex:system_eigen_solutions_in_general>, {
     learning_objectives(
-      [???],
+      [Identify solutions and eigen solutions to a matrix differential equation],
+      [Create an eigen solution for a matrix differential equation from an eigenvector and
+        eigenvalue.],
     )
-    notes[???]
+    notes[
+      Up to this point we've graphically explored eigen solutions and seen a couple of examples.
+      This question serves to connect eigen solutions with eigenvectors and eigenvalues of the
+      corresponding matrix.
+
+      - Take your time with this question. It's important that students thoroughly understand the
+        link between eigen solutions and eigenvectors/eigenvalues.
+
+      - The punchline comes in @ex:eigen_solution_from_vector_and_value[].
+        @ex:eigen_solution_from_vector_and_value_converse[] gives the converse, which completes the
+        picture, but if you're short on time, focus on @ex:eigen_solution_from_vector_and_value[] at
+        the expense of @ex:eigen_solution_from_vector_and_value_converse[].
+    ]
     slide[
 
       Consider the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
@@ -776,9 +790,7 @@
             No. Computing,
             $arrow(r)'_3(t)=e^t mat(1; -1) = 1 arrow(r)_3 (t),$
             but
-            $
-              M arrow(r)_3(t)=-2e^t mat(1; -1).
-            $
+            $M arrow(r)_3(t)=-2e^t mat(1; -1).$
             Because the two don't match, $arrow(r)_3$ is not a solution. Since it is not a solution,
             it cannot be an eigen solution.
           ]
@@ -792,26 +804,35 @@
           $
         ]
 
-      + Let $arrow(v)$ be an eigenvector for $M$ with eigenvalue $lambda$. Explain how to write down
-        an eigen solution to $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$.
+      + #label_question_part(<ex:eigen_solution_from_vector_and_value>) Let $arrow(v)$ be an
+        eigenvector for $M$ with eigenvalue $lambda$. Write down an eigen solution to
+        $arrow(r)'(t) = M arrow(r)(t)$ with eigenvalue $lambda$ and justify why $arrow(r)(t)$ is an
+        eigen solution.
 
         #solution[
           Define
           $arrow(r)(t)=e^(lambda t) arrow(v).$
-          Then $arrow(r)'(t)=lambda e^(lambda t)arrow(v)=e^(lambda t)M arrow(v)=M arrow(r)(t)$.
+          Then $arrow(r)'(t)=lambda e^(lambda t)arrow(v)=e^(lambda t)M arrow(v)=M arrow(r)(t)$, so
+          $arrow(r)(t)$ is an eigen solution.
         ]
 
-      + Let $arrow(v) != arrow(0)$ be a non-eigenvector for $M$. Could
+      + #label_question_part(<ex:eigen_solution_from_vector_and_value_converse>) Let
+        $arrow(v) != arrow(0)$ be a non-eigenvector for $M$. Could
         $arrow(r)(t) = e^(lambda t) arrow(v)$ be a solution to $arrow(r)'(t) = M arrow(r)(t)$ for
         some $lambda$? Explain.
 
         #solution[
-          No. Substituting gives
+          No. If $arrow(r)(t)$ is a solution then $arrow(r)'(t)=M arrow(r)(t)$. Using
+          $arrow(r)(t) = e^(lambda t) arrow(v)$, we compute
           $
-            lambda e^(lambda t) arrow(v)=M(e^(lambda t)arrow(v))=e^(lambda t)M arrow(v).
+             arrow(r)'(t) & = lambda e^(lambda t) arrow(v) \
+            M arrow(r)(t) & = M(e^(lambda t) arrow(v))=e^(lambda t)M arrow(v).
           $
-          Since $arrow(v) != arrow(0)$, we must have $M arrow(v)=lambda arrow(v)$. That would make
-          $arrow(v)$ an eigenvector, contradicting the assumption.
+          If $arrow(r)(t)$ is a solution, then $arrow(r)'(t) = M arrow(r)(t)$ and so
+          $
+            lambda e^(lambda t) arrow(v) = e^(lambda t) M arrow(v) <==> lambda arrow(v) = M arrow(v).
+          $
+          That would make $arrow(v)$ an eigenvector, contradicting the assumption.
         ]
 
     ]
@@ -820,9 +841,32 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Create a general solution to a matrix differential equation using eigen solutions.],
+      [Solve an initial value problem for a matrix differential equation using eigen solutions.],
     )
-    notes[???]
+    notes[
+      Working with the same matrix equation, we now turn our attention to general solutions and how
+      to use general solutions to solve initial value problems.
+
+      - In @ex:general_eigen_solution_with_params[], standardize on the name of the parameters
+        before moving on to @ex:general_solution_to_ivp[].
+
+      - In @ex:general_solution_to_ivp2[], some may propose "since the general solution contains all
+        solutions, it contains the solution to every initial value problem". In general, this is not
+        true. For example, solutions to
+        $
+          (x')^2 & = 1 -x^2 -y^2 \
+          (y')^2 & = 1 -x^2 -y^2
+        $
+        are contained in the unit disk, so initial value problems with initial conditions outside
+        the unit disk have no solutions.
+
+        However, an application of the Existence & Uniqueness Theorem I shows that this type of
+        counter example never happens for matrix systems.
+
+      - When explaining @ex:general_eigen_solution_with_initial_values[], draw a picture in phase
+        space and show a dot at an initial condition and a curve passing through it.
+    ]
     slide[
       #slides_only(v(0.5em))
       Recall the differential equation $arrow(r)'(t) = M arrow(r)(t)$ where $M = mat(0, 2; 2, 0)$.
@@ -837,8 +881,57 @@
           $
           where $C_1$ and $C_2$ are parameters.
         ]
-      + Write down a solution to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
+      + #label_question_part(<ex:general_solution_to_ivp>) Let $arrow(r)(t)$ be a solution to the
+        initial value problem $arrow(r)(0) = mat(3; 5)$.
+        + If you substitute $3$ and $5$ into the parameters in your answer to
+          @ex:general_eigen_solution_with_params[], do you get the solution $arrow(r)(t)$? Why or
+          why not?
+          #solution[
+            No. Letting $t=0$ and $C_1=3$, $C_2=5$ _or_ $C_1=5$, $C_2=3$, we don't get a solution
+            satisfying $arrow(r)(0) = mat(3; 5)$.
+          ]
+        + #label_question_part(<ex:general_solution_to_ivp2>) Is $arrow(r)(t)$ already included in
+          your answer to @ex:general_eigen_solution_with_params[]?
+          #solution[
+            Yes. Letting $C_1=4$ and $C_2=-1$ we get a solution satisfying
+            $arrow(r)(0) = mat(3; 5)$. These constants can be obtained by solving
+            $mat(3; 5) = C_1 mat(1; 1) + C_2 mat(1; -1)$.
+          ]
+        + Find a formula for $arrow(r)(t)$.
+          #solution[
+            Letting $C_1=4$ and $C_2=-1$, we get
+            $
+              arrow(r)(t) = 4 e^(2t) mat(1; 1) - e^(-2t) mat(1; -1).
+            $
+          ]
+
+      // +  Write down a solution
+      //   to the initial value problem $arrow(r)(0) = mat(x_0; y_0)$.
+      //   #solution[
+      //     Letting $t=0$ in the general solution, we have
+      //     $
+      //       mat(x_0; y_0)=C_1 mat(1; 1)+C_2 mat(1; -1),
+      //     $
+      //     so
+      //     $
+      //       C_1=(x_0+y_0)/2, quad C_2=(x_0-y_0)/2.
+      //     $
+      //     Therefore
+      //     $
+      //       arrow(r)(t)=
+      //       (x_0+y_0)/2 e^(2t) mat(1; 1)
+      //       + (x_0-y_0)/2 e^(-2t) mat(1; -1).
+      //     $
+      //   ]
+      + #label_question_part(<ex:general_eigen_solution_with_initial_values>) Consider the following
+        statement: "For every point $mat(x_0; y_0) in RR^2$, there is a solution to the differential
+        equation that passes through $mat(x_0; y_0)$."
+
+        Is the statement true or false? Justify your answer.
+
         #solution[
+          The statement is true.
+
           Letting $t=0$ in the general solution, we have
           $
             mat(x_0; y_0)=C_1 mat(1; 1)+C_2 mat(1; -1),
@@ -853,28 +946,41 @@
             (x_0+y_0)/2 e^(2t) mat(1; 1)
             + (x_0-y_0)/2 e^(-2t) mat(1; -1).
           $
+          solves the initial value problem.
         ]
-      + #label_question_part(<ex:general_eigen_solution_with_initial_values>) Are your answers to
-        the first two parts the same? Do they contain the same information?
-        #solution[
-          No, they are not the same formula. However, they do contain the same information.
 
-          In @ex:general_eigen_solution_with_params[], we used parameters $C_1$ and $C_2$. In
-          @ex:general_eigen_solution_with_initial_values[], we wrote a solution in terms of an
-          arbitrary initial condition $(x_0,y_0)$. These are different ways of writing solutions,
-          however, every solution in @ex:general_eigen_solution_with_params[] can be written in the
-          form of the solution in @ex:general_eigen_solution_with_initial_values[] and vice versa,
-          so they contain the same information.
-        ]
+      // Are your answers to the first two parts the same? Do they contain the same information?
+      //   #solution[
+      //     No, they are not the same formula. However, they do contain the same information.
+
+      //     In @ex:general_eigen_solution_with_params[], we used parameters $C_1$ and $C_2$. In
+      //     @ex:general_eigen_solution_with_initial_values[], we wrote a solution in terms of an
+      //     arbitrary initial condition $(x_0,y_0)$. These are different ways of writing solutions,
+      //     however, every solution in @ex:general_eigen_solution_with_params[] can be written in the
+      //     form of the solution in @ex:general_eigen_solution_with_initial_values[] and vice versa,
+      //     so they contain the same information.
+      //   ]
     ]
   })
 
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      (
+        [Given two matrix systems with the same eigenvalues, identify how their phase portraits are
+          the same and how they can be different.],
+      ),
     )
-    notes[???]
+    notes[
+      We are trying to build the intuition that eigenvalues determine the qualitative behavior of
+      solutions and eigenvectors give the rest of the details.
+
+      This question should be done visually. The matrices are provided as a crutch to the students,
+      but hopefully they think in terms of phase portraits.
+
+      - In @ex:how_can_same_eigenvalues_differ[], many will propose other rotations. Few will
+        propose non-orthogonal directions. Make sure this comes up in your explanation.
+    ]
     slide[
 
       The phase portrait for a differential equation arising from the matrix $mat(0, 2; 2, 0)$
@@ -915,12 +1021,13 @@
         #solution[
           They are rotations of each other.
         ]
-      + Suppose $P$ is a $2 times 2$ matrix with eigenvalues $plus.minus 2$. In what ways could the
-        phase portrait for $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits?
-        In what way(s) must it look the same?
+      + #label_question_part(<ex:how_can_same_eigenvalues_differ>) Suppose $P$ is a $2 times 2$
+        matrix with eigenvalues $plus.minus 2$. In what ways could the phase portrait for
+        $arrow(r)'(t) = P arrow(r)(t)$ look _different_ from the above portraits? In what way(s)
+        must it look the same?
         #solution[
           The overall "flow" of the vectors must be the same (there is a line radiating away from
-          the origin and a line wih vectors pointing towards the origin), but those two lines can
+          the origin and a line with vectors pointing towards the origin), but those two lines can
           point in any direction; they do not need to be orthogonal to each other.
         ]
     ]
@@ -930,9 +1037,33 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      [Sketch solutions in phase space to a matrix differential equation given information about
+        eigenvalues and eigenvectors of the matrix.],
+      [Sketch phase portraits for a matrix differential equation given information about eigenvalues
+        and eigenvectors of the matrix.],
+      [Classify the stability of an equilibrium solution to a matrix differential equation given
+        information about eigenvalues of the matrix.],
     )
-    notes[???]
+    notes[
+      We're continuing our journey of building visual intuition for the relationship of
+      eigenvalues/eigenvectors and solutions to the corresponding matrix system.
+
+      - In @ex:give_five_examples[], five examples are requested to encourage students to give a
+        non-eigen & non-trivial solution. Technically there are infinitely many eigen solutions, so
+        they can avoid answering the question the way we want. Ask for more solutions until they
+        give a non-eigen & non-trivial solution.
+
+        Asking students to "trace a solution with your fingers" is a great way to get interaction.
+
+      - In @ex:give_five_examples2[], during discussion, remind students the standards of the course
+        in terms of number of arrows, lengths of arrows, etc. for a phase portrait.
+
+      - In @ex:draw_many_phase_portraits[], the "pos, zero" condition is very hard for students.
+        It's okay to do this one during discussion.
+
+      - In @ex:what_if_you_change_eigen_directions[], don't dwell on technical details during
+        discussion. Have students think visually and intuitively.
+    ]
     let intro = [
       The lines with directions $arrow(a)$ (dashed green) and $arrow(b)$ (red) are graphs of eigen
       solutions to a differential equation.
@@ -973,33 +1104,140 @@
       #intro
 
       + Suppose the eigenvalue for $arrow(a)$ is $-1$ and the eigenvalue for $arrow(b)$ is $1$.
-        + Sketch five possible solutions to the differential equation and mark where each solution
-          curve is traced out fastest vs. slowest.
+        + #label_question_part(<ex:give_five_examples>) Sketch five possible solutions to the
+          differential equation and mark where each solution curve is traced out fastest vs.
+          slowest.
           #solution[
-            Sketch a saddle: trajectories approach the origin along direction $arrow(a)$ and move
-            away along direction $arrow(b)$.
 
-            Mark arrows short near the origin and long far from the origin (speed increases with
-            distance from equilibrium in this linear setting).
+            #{
+              set align(center)
+              // Matrix [[a,b],[c,d]] has eigenvalues 1 and -1 along directions y=3x and y=x/3
+              let (a, b, c, d) = (-5 / 4, 3 / 4, -3 / 4, 5 / 4)
+              let F(x, y) = (a * x + b * y, c * x + d * y)
+
+              let _Delta = 0.05
+              let steps = calc.ceil(3 / _Delta)
+
+              let soln1 = solve_2d_ivp(F, (3.5, .7), steps, Delta: _Delta, method: "rk4")
+              let soln2 = solve_2d_ivp(F, (3.5, 1.7), steps, Delta: _Delta, method: "rk4")
+              let soln3 = solve_2d_ivp(F, (-3.5, 0.1), steps, Delta: _Delta, method: "rk4")
+              let soln4 = solve_2d_ivp(F, (-3.5, -.5), steps, Delta: _Delta, method: "rk4")
+              let soln5 = solve_2d_ivp(F, (-3.5, -0.95), steps, Delta: _Delta, method: "rk4")
+
+              let xs = lq.linspace(-3.5, 3.5, num: 2)
+              let xticks = lq.linspace(-3, 3, num: 7)
+              lq.diagram(
+                xlim: (-3.5, 3.5),
+                ylim: (-3.5, 3.5),
+                width: 5cm,
+                height: 5cm,
+                yaxis: (
+                  position: 0,
+                  tip: tiptoe.stealth,
+                  ticks: xticks,
+                  filter: ((v, d) => false),
+                ),
+                xaxis: (
+                  position: 0,
+                  tip: tiptoe.stealth,
+                  ticks: xticks,
+                  filter: ((v, d) => false),
+                ),
+                lq.plot(
+                  xs,
+                  xs.map(x => 3 * x),
+                  mark: none,
+                  stroke: (paint: red, thickness: 1pt),
+                ),
+                lq.plot(
+                  xs,
+                  xs.map(x => x / 3),
+                  mark: none,
+                  stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
+                ),
+
+                lq.plot(
+                  soln1.map(((x, y)) => x),
+                  soln1.map(((x, y)) => y),
+                  mark: none,
+                  // stroke: (paint: blue.darken(20%), thickness: 1.8pt),
+                ),
+                lq.plot(
+                  soln2.map(((x, y)) => x),
+                  soln2.map(((x, y)) => y),
+                  mark: none,
+                  // stroke: (paint: blue.darken(20%), thickness: 1.8pt),
+                ),
+                lq.plot(
+                  soln3.map(((x, y)) => x),
+                  soln3.map(((x, y)) => y),
+                  mark: none,
+                  // stroke: (paint: blue.darken(20%), thickness: 1.8pt),
+                ),
+                lq.plot(
+                  soln4.map(((x, y)) => x),
+                  soln4.map(((x, y)) => y),
+                  mark: none,
+                  // stroke: (paint: blue.darken(20%), thickness: 1.8pt),
+                ),
+                lq.plot(
+                  soln5.map(((x, y)) => x),
+                  soln5.map(((x, y)) => y),
+                  mark: none,
+                  // stroke: (paint: blue.darken(20%), thickness: 1.8pt),
+                ),
+              )
+            }
+
+            Solutions are slowest near the origin and get faster away from the origin.
+
           ]
-        + Sketch a phase portrait for the differential equation. Pay close attention to when the
-          arrows are long vs. short.
+        + #label_question_part(<ex:give_five_examples2>) Sketch a phase portrait for the
+          differential equation. Pay close attention to when the arrows are long vs. short.
           #solution[
-            Draw invariant lines in directions $arrow(a)$ and $arrow(b)$, then add curved
-            trajectories bending from the stable direction toward the unstable direction. Arrow
-            lengths should be smallest near $(0,0)$ and larger farther away.
+
+            #{
+              let xs = lq.linspace(-3.5, 3.5, num: 2)
+              let (a, b, c, d) = (-5 / 4, 3 / 4, -3 / 4, 5 / 4)
+              let F(x, y) = (a * x + b * y, c * x + d * y)
+              set align(center)
+              vector_field(
+                F,
+                xlim: (-3.5, 3.5),
+                ylim: (-3.5, 3.5),
+                width: 5cm,
+                height: 5cm,
+                spacing: (.75, .75),
+                scale_segments: 15.0,
+                yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+                xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+                lq.plot(
+                  xs,
+                  xs.map(x => 3 * x),
+                  mark: none,
+                  stroke: (paint: red, thickness: 1pt),
+                ),
+                lq.plot(
+                  xs,
+                  xs.map(x => x / 3),
+                  mark: none,
+                  stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
+                ),
+              )
+            },
           ]
     ]
     slide(force_scale: .9em)[
       #slides_only(intro)
 
       #enum.item(2)[
-        Sketch a phase portrait where the eigenvalues associated with $arrow(a)$ and $arrow(b)$ are:
+        #label_question_part(<ex:draw_many_phase_portraits>) Sketch a phase portrait where the
+        eigenvalues associated with $arrow(a)$ and $arrow(b)$ are:
 
         #align(
           center,
           simple_table(
-            headers: ([], [sign for $arrow(a)$], [sign for $arrow(b)$]),
+            headers: ([], [sign for $lambda_arrow(a)$], [sign for $lambda_arrow(b)$]),
             content: (
               [1],
               [neg],
@@ -1020,29 +1258,97 @@
           ),
         )
         #solution[
-          Qualitative portraits:
 
-          (1) and (2): saddle.
+          #let make_plot(A, B) = {
+            // let A=1
+            // let B=-1
+            let xs = lq.linspace(-3.5, 3.5, num: 2)
+            let (a, b, c, d) = (
+              (9 * A - B) / 8,
+              (3 * (B - A)) / 8,
+              (3 * (A - B)) / 8,
+              (9 * B - A) / 8,
+            )
+            let F(x, y) = (a * x + b * y, c * x + d * y)
+            set align(center)
+            vector_field(
+              F,
+              xlim: (-3.5, 3.5),
+              ylim: (-3.5, 3.5),
+              width: 5cm,
+              height: 5cm,
+              spacing: (.75, .75),
+              scale_segments: 15.0,
+              yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              lq.plot(
+                xs,
+                xs.map(x => 3 * x),
+                mark: none,
+                stroke: (paint: red, thickness: 1pt),
+              ),
+              lq.plot(
+                xs,
+                xs.map(x => x / 3),
+                mark: none,
+                stroke: (paint: green.darken(20%), thickness: 1pt, dash: (3pt, 1pt)),
+              ),
+            )
+          }
 
-          (3): source/repelling node (both eigendirections unstable).
+          neg, pos:
+          #make_plot(-1, 1)
 
-          (4): sink/attracting node (both eigendirections stable).
+          pos, neg:
+          #make_plot(1, -1)
 
-          (5): one unstable eigendirection and one neutral eigendirection (line of non-decaying
-          behavior).
+          pos, pos:
+          #make_plot(1, 1)
+
+          neg, neg:
+          #make_plot(-1, -1)
+
+          pos, zero:
+          #make_plot(1, 0)
         ]
       ]
 
-      + Classify the solution at the origin for situations (1)--(5) as stable or unstable.
+      + #label_question_part(<ex:first_classification_table>) Classify the solution at the origin
+        for situations (1)--(5) as stable or unstable.
         #solution[
-          (1) unstable, (2) unstable, (3) unstable, (4) stable (asymptotically stable), (5)
-          unstable.
+          #align(
+            center,
+            simple_table(
+              headers: (
+                [sign for $lambda_arrow(a)$],
+                [sign for $lambda_arrow(b)$],
+                [Stability at origin],
+              ),
+              content: (
+                [neg],
+                [pos],
+                [unstable],
+                [pos],
+                [neg],
+                [unstable],
+                [pos],
+                [pos],
+                [unstable & repelling],
+                [neg],
+                [neg],
+                [stable & attracting],
+                [pos],
+                [zero],
+                [unstable],
+              ),
+            ),
+          )
         ]
-      + Would any of your classifications in the previous part change if the directions of
-        $arrow(a)$ and $arrow(b)$ changed?
+      + #label_question_part(<ex:what_if_you_change_eigen_directions>) Would any of your
+        classifications in the previous part change if the directions of $arrow(a)$ and $arrow(b)$
+        changed?
         #solution[
-          No. Classification depends on eigenvalue signs, not on the specific orientation of
-          eigendirections in the plane.
+          No. Classification depends on eigenvalue signs, not on the directions of the eigenvectors.
         ]
     ]
   })
@@ -1051,9 +1357,23 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      (
+        [Given a matrix differential equation, use eigenvalues to classify the stability of the
+          equilibrium solution.],
+      ),
     )
-    notes[???]
+    notes[
+      It's time to put it all together! This exercise should be satisfying to students, and brings
+      abstract "visualization" ideas back to equation-based ideas.
+
+      - If the table from @ex:first_classification_table is still on the board, it can be repurposed
+        for @ex:second_classification_table[] (leaving it on the board can also give the students a
+        nudge in the right direction).
+
+      - In @ex:analytically_classify_first_time[], after giving students some time to work, if they
+        are struggling finding the eigenvalues, announce, "Remind your neighbor how to find the
+        eigenvalues of a $2 times 2$ matrix".
+    ]
     slide[
 
 
@@ -1063,17 +1383,40 @@
       You would like to determine whether $arrow(r)(t) = mat(0; 0)$ is stable, unstable, attracting,
       or repelling.
 
-      + Come up with a rule to determine the nature of the equilibrium solution
-        $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$ (provided there exist two linearly
-        independent eigen solutions).
+      + #label_question_part(<ex:second_classification_table>) Come up with a rule to determine the
+        nature of the equilibrium solution $arrow(r)(t) = mat(0; 0)$ based on the eigenvalues of $M$
+        (provided there exist two linearly independent eigen solutions).
         #solution[
-          For a $2 times 2$ linear system with two independent eigen solutions:
-
-          - both eigenvalues $lt 0$: attracting/sink (asymptotically stable)
-          - both eigenvalues $gt 0$: repelling/source (unstable)
-          - opposite signs: saddle (unstable)
-          - one zero eigenvalue: not asymptotically stable; stability depends on the other sign
-            (with a positive other eigenvalue it is unstable).
+          #align(
+            center,
+            simple_table(
+              headers: (
+                [sign for $lambda_1$],
+                [sign for $lambda_2$],
+                [Stability at origin],
+              ),
+              content: (
+                [pos],
+                [neg],
+                [unstable],
+                [pos],
+                [pos],
+                [unstable & repelling],
+                [neg],
+                [neg],
+                [stable & attracting],
+                [pos],
+                [zero],
+                [unstable],
+                [neg],
+                [zero],
+                [stable],
+                [zero],
+                [zero],
+                [stable],
+              ),
+            ),
+          )
         ]
       + Consider the system of differential equations
         $
@@ -1084,9 +1427,10 @@
         + Classify the stability of the equilibrium solution $(x(t), y(t)) = (0, 0)$ using any
           method you want.
           #solution[
-            Unstable (a saddle).
+            Making a phase portrait on Desmos, we see that the origin is unstable and not repelling.
           ]
-        + Justify your answer analytically using eigenvalues.
+        + #label_question_part(<ex:analytically_classify_first_time>) Justify your answer
+          analytically using eigenvalues.
           #solution[
             The coefficient matrix is $M=mat(1, 2; 3, -4)$.
 
@@ -1094,8 +1438,8 @@
             $
               det(M-lambda I) = lambda^2 + 3lambda - 10 = (lambda-2)(lambda+5).
             $
-            So eigenvalues are $2$ and $-5$, which have opposite signs. Therefore $(0,0)$ is a
-            saddle equilibrium, hence unstable.
+            So eigenvalues are $2$ and $-5$, which have opposite signs. Therefore $(0,0)$ is
+            unstable and not repelling.
           ]
 
     ]
