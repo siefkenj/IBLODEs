@@ -10,15 +10,15 @@
 #show: e.set_(global_settings, solutions_visible: true)
 
 
-#make_cover(
-  text("Differential Equations", size: 45pt),
-  authors: ([Jason Siefken], [Bernardo Galvão-Sousa]),
-  subtitle: align(left, stack(
-    [MAT244 #box(fill: purple, outset: 4pt, [Instructor Guide])],
-    text([#datetime.today().display("[year]/[month]/[day] Edition")], size: 12pt),
-    spacing: .6em,
-  )),
-)
+// #make_cover(
+//   text("Differential Equations", size: 45pt),
+//   authors: ([Jason Siefken], [Bernardo Galvão-Sousa]),
+//   subtitle: align(left, stack(
+//     [MAT244 #box(fill: purple, outset: 4pt, [Instructor Guide])],
+//     text([#datetime.today().display("[year]/[month]/[day] Edition")], size: 12pt),
+//     spacing: .6em,
+//   )),
+// )
 
 // #show: marginalia.show-frame
 #show: guide_template
@@ -53,19 +53,19 @@
 //   include "modules/module-04-exercises.typ"
 // }
 
-#{
-  module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
-    #include "modules/module-05-body.typ"
-  ]
-  include "modules/module-05-exercises.typ"
-}
+// #{
+//   module(title: [Qualitative Analysis: Slope Fields and Phase Portraits])[
+//     #include "modules/module-05-body.typ"
+//   ]
+//   include "modules/module-05-exercises.typ"
+// }
 
-#{
-  module(title: [Linear Systems with Constant Coefficients (Real Solutions)], label: <mod:real>)[
-    #include "modules/module-06-body.typ"
-  ]
-  include "modules/module-06-exercises.typ"
-}
+// #{
+//   module(title: [Linear Systems with Constant Coefficients (Real Solutions)], label: <mod:real>)[
+//     #include "modules/module-06-body.typ"
+//   ]
+//   include "modules/module-06-exercises.typ"
+// }
 
 #{
   module(
