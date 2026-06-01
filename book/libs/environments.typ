@@ -146,7 +146,7 @@
   display: it => e.get(get => {
     let config = get(global_settings)
     _colored_box(
-      it.title,
+      [Theorem (#it.title)],
       it.content,
       config.thm_color,
     )

@@ -35,7 +35,12 @@
       + Model this situation using a system of differential equations. Explain which parts of your
         model correspond to which premise(s).
 
-        #solution[???]
+        #solution[
+          $
+            P' &= underbrace(-P, "P1"_(P)) &+ underbrace(2, "P2"_(P)) \
+            U' &= underbrace((1 - a) P, "P1"_(U)) &+ underbrace(a U, "P2"_(U)) & wide underbrace(-1, "P3"_(U))
+          $
+        ]
 
     ]
   })
@@ -61,17 +66,53 @@
       $
 
       + What are the equilibrium solution(s)?
-        #solution[???]
+        #solution[
+          $P=2$ and $U=1-1/a$, so long as $a != 0$. If $a=0$, there are no equilibrium solutions.
+        ]
       + Make a phase portrait for the system.
 
         #link("https://www.desmos.com/calculator/h3wtwjghv0")
 
-        #solution[???]
+        #solution[
+          #{
+            h(1fr)
+            let a = -1 / 2
+            vector_field(
+              ((x, y) => (-x + 2, (1 - a) * x + a * y - 1)),
+              xlim: (-4, 4),
+              ylim: (-4, 4),
+              spacing: (.7, .7),
+              scale_segments: 18,
+              width: 4.8cm,
+              height: 4.8cm,
+              xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              title: $a=-1/2$,
+            )
+            h(1fr)
+            let a = 1 / 2
+            vector_field(
+              ((x, y) => (-x + 2, (1 - a) * x + a * y - 1)),
+              xlim: (-4, 4),
+              ylim: (-4, 4),
+              spacing: (.7, .7),
+              scale_segments: 18,
+              width: 4.8cm,
+              height: 4.8cm,
+              xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              title: $a=1/2$,
+            )
+            h(1fr)
+          }
+        ]
 
       + Use phase portraits to conjecture: what do you think happens to the equilibrium solution(s)
         as $a$ transitions from negative to positive? Justify with a computation.
 
-        #solution[???]
+        #solution[
+          The equilibrium solution is stable and attracting when $a<0$ and unstable when $a>0$.
+        ]
 
     ]
   })
@@ -99,23 +140,45 @@
 
       + Can you rewrite the system in matrix form? I.e., in the form $arrow(r)'(t) = M arrow(r)(t)$
         for some matrix $M$ where $arrow(r)(t) = mat(P(t); U(t))$.
-        #solution[???]
+        #solution[
+          No. Multiplying out by a general matrix, we see that if
+          $mat(P; U)' = mat(p, q; r, s)mat(P; U)$, then the differential equation must take the form
+          $
+            P' & = p P + q U \
+            U' & = r P + s U
+          $
+          which ours does not.
+        ]
       + Define $arrow(s)(t) = mat(S_P (t); S_U (t))$ to be the displacement from equilibrium in the
         *SM* model at time $t$ (provided an equilibrium exists).
         + Write $arrow(s)$ in terms of $P$ and $U$.
-          #solution[???]
+          #solution[The equilibrium solution when $a != 0$ is $mat(2; 1-1/a)$ and so
+            $arrow(s)(t) = mat(P(t) - 2; U(t) - (1-1/a))
+            $]
         + Find $arrow(s)'$ in terms of $P$ and $U$.
-          #solution[???]
+          #solution[$arrow(s)' = mat(P - 2; U - (1-1/a))' = mat(P'; U') = mat(-P + 2; (1 - a) P + a U - 1)
+          $]
         + Find $arrow(s)'$ in terms of $S_P$ and $S_U$.
-          #solution[???]
+          #solution[
+            $arrow(s) = mat(S_P; S_U)= mat(P - 2; U - (1-1/a))$. Using the equation from the
+            previous part, we see
+            $arrow(s)' = mat(-P+2; (1 - a) P + a U - 1) = mat(-S_P; ??)$. Using some algebra we can solve for $??$ to get a final answer:
+            $
+              arrow(s)' = mat(-S_P; (1 - a) S_P + a S_U)
+            $
+          ]
         + Can one of your differential equations for $arrow(s)$ be written in matrix form? Which
           one?
-          #solution[???]
+          #solution[
+            Yes. We can write $arrow(s)' = mat(-1,0;1-a, a) mat(S_P; S_U)$.
+            ]
         + Analytically classify the equilibrium solution for your differential equation for
           $arrow(s)$ when $a = -1/2$, $a = 1/2$, and $a = 1$. (You may use a calculator for
           computing eigenvectors/values.)
 
-          #solution[???]
+          #solution[
+            ???
+            ]
 
 
     ]
