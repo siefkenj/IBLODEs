@@ -52,7 +52,11 @@
   }
 
 
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.90em)[
 
 
@@ -75,24 +79,33 @@
       // #v(1in)
 
       + Model $x(t)$ with a differential equation.
+        #solution[???]
 
         For the remaining parts, assume the elasticity of the spring is $k = 1$ and the mass is $1$.
 
       + Suppose the spring is stretched $0.5$m from equilibrium and then let go (at time $t = 0$).
         + At $t = 0$, what are $x$, $x'$, and $x''$?
+          #solution[???]
         + Modify Euler's method to approximate a solution to the initial value problem.
+          #solution[???]
 
       + Introduce the auxiliary equation $y = x'$. Can the second-order spring equation be rewritten
         as a first-order system involving $x'$ and $y'$? If so, do it.
+        #solution[???]
 
       + Simulate the _system_ you found in the previous part using Euler's method.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.95em)[
 
       Recall a spring with a mass attached to the end.
@@ -121,15 +134,22 @@
 
       + Make a phase portrait for system @eq:spring_system[]. What are the axes on the phase
         portrait? What do you expect general solutions to look like?
+        #solution[???]
       + Use eigenvalues/eigenvectors to find a general solution to @eq:spring_system[]. (You may use
         a computer to compute eigenvalues/vectors.)
+        #solution[???]
       + Use your solution to @eq:spring_system[] to find a general solution to @eq:spring[].
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Consider the second-order differential equation
@@ -137,6 +157,7 @@
 
       + Rewrite the second-order differential equation as a system of first-order differential
         equations. (Hint: you may need to introduce an auxiliary equation.)
+        #solution[???]
 
       + The following Desmos link plots a phase portrait and draws an Euler approximation on the
         phase portrait:
@@ -146,18 +167,24 @@
         Use the link to make a phase portrait for your system and answer the following questions:
         + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ is always
           increasing?
+          #solution[???]
         + Are there initial conditions with $x(0) < 0$ so that a solution $x(t)$ first decreases and
           then increases?
+          #solution[???]
 
       + Show that $x(t) = 0$ is an equilibrium solution for this equation.
+        #solution[???]
 
       + Use linearization and eigenvalues to classify the equilibrium $(x, x') = (0, 0)$ in phase
         space.
+        #solution[???]
 
       + Let $x(t)$ be a solution to the original equation and suppose $x(0) = delta_1 approx 0$.
         + If $x'(0) = delta_2 approx 0$, speculate on the long term behaviour of $x(t)$.
+          #solution[???]
         + If we put no conditions on $x'(0)$ will your answer be the same? Explain.
+          #solution[???]
 
-    ],
-  )
+    ]
+  })
 }

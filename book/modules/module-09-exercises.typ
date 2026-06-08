@@ -6,7 +6,11 @@
 #{
 
 
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
 
@@ -30,15 +34,21 @@
 
       + Visually classify the stability of each equilibrium solution as attracting/repelling/etc.
         Does the stability depend on $b$? Are you confident in your visual assessment?
+        #solution[???]
       + Can you rewrite the system in matrix/affine form? Why or why not?
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
   let LL = $upright(bold("L"))$
   book_only(pagebreak())
-  question.with(label: <ex:linear_approx_1d>)(
+  question(label: <ex:linear_approx_1d>, {
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       A simple logistic model $LL$ for a population is
@@ -54,20 +64,27 @@
       + Define $f(P) = P dot (1 - P / 2)$ and let $A_(1/2)(P)$ denote the affine
         approximation#footnote[In calculus, this is called a "linear approximation".] to $f$
         centered at $P=1/2$. Find $A_(1/2)(P)$.
+        #solution[???]
 
       + Notice that $(dif P)/(dif t)=f(P(t))$. Use this observation to create a "simple" model
         $LL_(1/2)$ that approximates $LL$ when $P approx 1/2$.
+        #solution[???]
 
       + Model $LL_(1/2)$ is called an _affine approximation of model $LL$ centered at $P=1/2$_.
 
         Find additional affine approximations to model $LL$ centered at each equilibrium solution.
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Based on our calculations from @ex:linear_approx_1d, we have several different affine
@@ -100,14 +117,21 @@
 
       + What are the similarities/differences in the Desmos plots of solutions to the original
         equation vs. the other equations?
+        #solution[???]
       + Does the nature of the equilibrium solutions change when using an affine approximation?
+        #solution[???]
       + Classify each equilibrium solution of the original equation by using affine approximations.
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       Consider the differential equation whose slope field is sketched below.
@@ -156,14 +180,20 @@
       }
 
       + Find all equilibrium solutions.
+        #solution[???]
       + Use affine approximations to classify the equilibrium solutions as stable/unstable/etc.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
   question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.94em)[
 
       To make a 1d affine approximation of a function $f$ at the point $E$ we have the formula
@@ -209,24 +239,34 @@
 
       #book_only(colbreak())
       + Find the matrix for $D_(arrow(F))$, the total derivative of $arrow(F)$.
+        #solution[???]
       + Create an affine approximation to $arrow(F)$ around $arrow(e) = (0, 0)$ and use this to
         write an approximation to the original system.
+        #solution[???]
       + In the original system, the equilibrium $(0, 0)$ is unstable and not repelling. Justify this
         using your affine approximation.
+        #solution[???]
       + #label_question_part(<ex:affine-approx-part3>)
         Create an affine approximation to $arrow(F)$ around $arrow(e) = (100 / 9 b, 1000 / 27 b^2)$
         and use this to write an approximation to the original system.
+        #solution[???]
       + Make a phase portrait for the original system and your approximation from part
         @ex:affine-approx-part3[]. How do they compare?
+        #solution[???]
       + Analyze the nature of the equilibrium solution in part @ex:affine-approx-part3[] using eigen
         techniques. Relate your analysis to the original system.
+        #solution[???]
 
     ]
   })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       #slides_only(v(1em))
@@ -239,13 +279,17 @@
 
         #link("https://www.desmos.com/calculator/peby3xd7jj")
 
+        #solution[???]
       + Find an affine approximation to $arrow(F)$ centered at $(0, 0)$.
+        #solution[???]
       + Write down a differential equation that approximates the original equation near $(0, 0)$.
+        #solution[???]
       + Analyze the nature of the equilibrium solution $arrow(r)(t) = (0, 0)$ using eigen
         techniques. (You may use a computer to assist in eigen computations.) Relate your analysis
         to the original system.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 }

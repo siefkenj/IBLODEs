@@ -152,7 +152,11 @@
     )
   }
 
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.87em)[
 
       Consider a rope hanging from two poles.
@@ -178,16 +182,23 @@
 
       + Given ($P_(N L)$), find a relation between the force vectors $arrow(T)_L$, $arrow(T)_R$,
         $arrow(F)_g$.
+        #solution[???]
       + Approximate the length of the segment #SS and its mass. Approximate the vector $arrow(F)_g$.
+        #solution[???]
       + Find a vector $arrow(V)_L$ in the direction of $arrow(T)_L$ (the magnitude doesn't matter at
         this point).
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.75em)[
 
       Consider a rope hanging from two poles.
@@ -210,17 +221,24 @@
         - $H(d + Delta) approx H(d) + Delta dot H'(d)$,
         - $H'(d + Delta) approx H'(d) + Delta dot H''(d)$.
 
+        #solution[???]
       + Put everything together to find a (second order) differential equation for $H$.
+        #solution[???]
 
       + Do $alpha$ or $beta$ depend on $d$? Explain.
+        #solution[???]
 
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.85em)[
 
       Recall a rope hanging from two poles.
@@ -236,18 +254,22 @@
       lowest point, the wire is 5m above the ground.
 
       + Set up a boundary value problem that can be used to find the total length of the wire.
+        #solution[???]
 
       + Using the following Desmos link, can you find a solution to the boundary value problem?
 
         #link("https://www.desmos.com/calculator/l4fair6454")
 
+        #solution[???]
       + It happens that $k = frac(rho g, T)$ where $T$ is the minimum tension in the rope.
 
         Suppose Toronto Hydro hung the wires so that they were at minimum 9m above the ground. Would
         the tension be higher or lower? By how much?
+        #solution[???]
 
       + Should the difference between maximum and minimum tension be higher or lower for low-hanging
         wires? What does your intuition say? What does the phase portrait say?
+        #solution[???]
 
       // The wire has a (linear) density of 1 kg/m and gravity is 9.8 m/s^2.
       // For safety reasons, the wire's tensile strength needs to be 5 times the maximum tension when the wire is resting.
@@ -256,8 +278,8 @@
       // Assuming the posts have different heights, relate the length of the rope with the tension at the posts.
 
 
-    ],
-  )
+    ]
+  })
 
 
   // Pendulum Problem
@@ -347,7 +369,11 @@
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.74em)[
 
       Consider a pendulum as in the figure below.
@@ -382,21 +408,29 @@
         $t$.
 
         Find $arrow(r)(t)$ and $arrow(r)''(t)$ in terms of $theta(t)$.
+        #solution[???]
       + Find the vector $arrow(F)_g$.
+        #solution[???]
       + Find a vector $arrow(T)_d$ so that $arrow(T) = alpha arrow(T)_d$ for some $alpha > 0$.
+        #solution[???]
       //	Find the velocity and acceleration vectors for the mass.
       + Find a second-order differential equation for the pendulum.
         _Hint: ($P_(N L)$) gives you an equation for each coordinate. Solve one for $(theta')^2$ and
         substitute it into the other equation._
+        #solution[???]
       //	Write the differential equation as a system of 1$^{rm st}$-order differential equations.
 
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.87em)[
 
 
@@ -428,17 +462,22 @@
 
       + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *small* push,
         what does the motion look like?
+        #solution[???]
 
       + If $L = 3$m, and you set the pendulum in motion at $theta = 0$ by giving it a *big* push,
         what does the motion look like?
+        #solution[???]
 
       + Why are there infinitely many equilibrium solutions? Based on your physical intuition, which
         equilibria are stable and which are unstable?
+        #solution[???]
 
       + Find an affine approximation to (P) around $(theta, theta') = (0, 0)$.
+        #solution[???]
 
       + Physicists often claim that $theta(t)$ oscillates like a sine wave with period
         $2 pi sqrt(L /g)$. Under what conditions are the (mostly) correct?
-    ],
-  )
+        #solution[???]
+    ]
+  })
 }

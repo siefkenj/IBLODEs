@@ -2,7 +2,11 @@
 #show: e.prepare(question)
 
 #{
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.89em)[
 
       #slides_only([*Existence and Uniqueness*])
@@ -34,18 +38,24 @@
 
         Rewrite the following differential equations in the form $F(t, x, x', x'', dots) = 0$:
         + $x'' = -k x$
+          #solution[???]
         + $x'' = -x dot x' + x^2$
+          #solution[???]
         + $x''' = (x')^2 - cos x$
+          #solution[???]
 
       + Which of the following does the theorem say _must_ have a unique solution on an interval
         containing $0$?
         + $y' = frac(3, 2) y^(1/3)$ with $y(0) = 0$
+          #solution[???]
         + $x'(t) = floor(t) x(t)$ with $x(0) = 0$
+          #solution[???]
         + $x'(t) = floor(t - frac(1, 2)) x(t) + t^2$ with $x(0) = 0$
+          #solution[???]
 
         Note: $floor(x)$ is the _floor_ of $x$, i.e., the largest integer less than or equal to $x$.
 
 
-    ],
-  )
+    ]
+  })
 }

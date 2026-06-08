@@ -4,7 +4,11 @@
 #{
 
 
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       #slides_only([*Boundary Value Problems*])
@@ -21,25 +25,34 @@
 
         #link("https://www.desmos.com/calculator/fvqxqp6eds")
 
+        #solution[???]
       + In the _Options Euler_ on Desmos, adjust $Delta$ and the number of steps so that simulated
         solutions are only shown for $t in [0, 1]$.
 
         Use simulations to answer the remaining questions.
 
+        #solution[???]
       + You start by displacing the hammer by $1$m and letting go. Is it possible that the bell
         rings every 1 second?
+        #solution[???]
 
       + You start by displacing the hammer by $1$m and giving the hammer a push. Is it possible that
         the bell rings every 1 second?
+        #solution[???]
 
       + What is the smallest amount of time between consecutive rings (given a positive
         displacement)?
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide(force_scale: 0.95em)[
 
       #slides_only([*Boundary Value Problems*])
@@ -67,17 +80,24 @@
       Analytically answer the remaining questions.
       + You start by displacing the hammer by $1$m and letting go. Is it possible that the bell
         rings every 1 second?
+        #solution[???]
       + You start by displacing the hammer by $1$m and giving the hammer a push. Is it possible that
         the bell rings every 1 second?
+        #solution[???]
       + What is the smallest amount of time between consecutive rings (given a positive
         displacement)?
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 
 
   book_only(pagebreak())
-  question(
+  question({
+    learning_objectives(
+      [???],
+    )
+    notes[???]
     slide[
 
       #slides_only([*Boundary Value Problems*])
@@ -109,6 +129,7 @@
 
       + Using phase portraits and simulations, determine how many solutions each boundary value
         problem has.
+        #solution[???]
       + Can you find analytic arguments to justify your conclusions?
 
         _Hint_: The general solution can be written as
@@ -116,7 +137,8 @@
           x(t)=A cos t + B sin t " or " x(t) = A cos(t + d)
         $
         where $A,B,d$ are parameters. Use whichever form makes the question easier.
+        #solution[???]
 
-    ],
-  )
+    ]
+  })
 }

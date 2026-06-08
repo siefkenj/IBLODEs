@@ -354,7 +354,7 @@
         #solution[
           Yes. Every solution $arrow(s)(t)$ is a translation of $arrow(r)(t)$. If $arrow(r)(t)$
           heads towards/away from the equilibrium, then $arrow(s)(t)$ moves towards/away from the
-          origin.
+          origin (its equilibrium).
         ]
 
     ]
