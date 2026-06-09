@@ -152,6 +152,7 @@
     )
   }
 
+  lesson(title: [Famous ODEs], include "lesson-week-12.typ")
   question({
     learning_objectives(
       [???],

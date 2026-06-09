@@ -4,6 +4,7 @@
 
 
 #{
+  lesson(title: [Linearization], include "lesson-week-09.typ")
   question({
     learning_objectives(
       [???],
@@ -428,6 +429,7 @@
 
 
   book_only(pagebreak())
+  lesson(title: [Linearization II & Higher Order Equations], include "lesson-week-10.typ")
   question({
     learning_objectives(
       [???],

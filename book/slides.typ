@@ -114,7 +114,7 @@
 }
 
 #{
-  module(title: [Interesting ODEs], label: <mod:interesting_odes>)[
+  module(title: [Famous ODEs], label: <mod:famous_odes>)[
   ]
-  include "modules/interesting_odes.typ"
+  include "modules/famous_odes-exercises.typ"
 }
