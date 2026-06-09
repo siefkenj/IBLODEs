@@ -122,12 +122,12 @@
 
       $x'=x^2(x+1)(x-1)$
 
-      They claim that: "The equilibrium solutions are at $x=0$, $x=-1$, and $x=1$ because that is where $x'=0$. Since $x=0$ has higher order, then it must be stable and attracting. $x=-1$ is negative, then it must be unstable and repelling. Finally, $x=1$ is positive, then it must be stable but not attracting."
+      They claim that: "The equilibrium solutions are at $x=0$, $x=−1$, and $x=1$ because that is where $x'=0$. Since $x=0$ has higher order, then it must be stable and attracting. $x=−1$ is negative, then it must be stable and attracting. Finally, $x=1$ is positive, then it must be unstable and repelling."
 
       Is the student correct? If not, explain the mistake(s) and give the correct solution.
     ],
     solution: [
-      The student had found the correct equilibrium solutions, but the wrong classifications. The sign approach should instead be that of $x'$ used on the neighbourhood of the equilibrium points. One can find that:
+      The student had found the correct equilibrium solutions. While the classifications for $x=plus.minus 1$ was correct, their justification was wrong. Then for $x=0$, their classification was incorrect. The sign approach should instead be that of $x'$ used on the neighbourhood of the equilibrium solutions. One can find that:
       - $x< -1$ has $x'>0$, and $-1 < x < 0$ has $x'< 0$. Indicating that $x=-1$ is a stable and attracting equilibrium solution.
       - Similarly, $-1 < x < 0$ has $x'< 0$, and $0 < x < 1$ has $x'< 0$. Indicating that $x=0$ is an unstable but not repelling equilibrium solution.
       - Finally, $0 < x < 1$ has $x'< 0$, and $x > 1$ has $x'> 0$. Indicating that $x=1$ is an unstable and repelling equilibrium solution.
@@ -147,13 +147,11 @@
       + Could there be an infinite number of equilibrium solutions? Justify your answer.
     ],
     solution: [
-      Given that equilibrium solution(s) occur at $x'=(x-2)^2+A=0$. We find that this is equivalent to $x'=x^2-4x+(4+A)=0$ and by the quadratic formula we get:
+      Given that equilibrium solution(s) occur at $x'=(x-2)^2+A=0$, we can solve for $(x-2)^2=-A$.
 
-      $x=(4 plus.minus sqrt(16-4A-16))/2=(4 plus.minus sqrt(-4A))/2$
-
-      + For there to be no equilibrium solution, the square root must be complex. We get $-4A<0$ implying that for the values of $A>0$, we have no equilibrium solution.
+      + For there to be no equilibrium solution, the square root must be complex. Implying that for the values of $A>0$, we have no equilibrium solution.
       + Similarly, for there to be exactly 1 equilibrium solution. We want the square root to vanish. We get that for the value of $A=0$, we have exactly 1 equilibrium solution located at $x=2$, and is unstable but not repelling.
-      + To obtain exactly 2 equilibrium solutions, we require the square root to be real and non-zero. This means that for the values of $A<0$, we have equilibrium solutions $x=2-sqrt(-A)$ (stable and attracting) and $x=2+sqrt(-A)$ (unstable and repelling).
+      + To obtain exactly 2 equilibrium solutions, we require the square root to be real and non-zero. This means that for the values of $A<0$, we have equilibrium solutions at $x=2 plus.minus sqrt(-A)$, where $x=2-sqrt(-A)$ is stable and attracting, and $x=2+sqrt(-A)$ is unstable and repelling.
       + Not possible, as $A$ is a real parameter rather than a function. Furthermore, for each fixed value of $A$, the equation $(x-2)^2+A=0$ is quadratic in $x$, so it can have at most 2 real equilibrium solutions.
     ],
   ),
@@ -185,7 +183,7 @@
       + Infinitely many equilibrium solutions at $x=(pi n)/2, y=pi/2+pi m$ where $m,n in ZZ$. In fact, this system contains: stable and attracting, unstable and repelling, unstable and not repelling types of equilibrium solutions. It is up to the reader to find out the specific nature of each equilibrium solution. Hint: The next module will provide a visual representation of their natures using a very powerful tool (Phase Portraits).
       + Infinitely many unstable but not repelling equilibrium solutions at the line $y=-x$.
       + There are no equilibrium solutions to this system.
-      + This system is constant, hence every point $(x,y)$ is a stable but not attracting equilibrium solution.
+      + All solutions are constant.
     ]
   ),
   (
@@ -274,7 +272,7 @@
 
   (
     statement: [
-      Given the following differential equations, find the corresponding first order Taylor approximation with the given initial conditions. How do they relate to the slope field?
+      Given the following differential equations, find the first order Taylor approximation of the solution with the given initial conditions. How do they relate to the slope field?
 
       + $x' = x$ with $x(0) = 1$
       + $y' = 0$ with $y(0) = 5$
