@@ -67,15 +67,15 @@
 //   include "modules/module-06-exercises.typ"
 // }
 
-#{
-  module(
-    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
-    label: <mod:affine>,
-  )[
-    #include "modules/module-07-body.typ"
-  ]
-  include "modules/module-07-exercises.typ"
-}
+// #{
+//   module(
+//     title: [Linear Systems with Constant Coefficients (Affine Solutions)],
+//     label: <mod:affine>,
+//   )[
+//     #include "modules/module-07-body.typ"
+//   ]
+//   include "modules/module-07-exercises.typ"
+// }
 
 #{
   module(
@@ -94,35 +94,35 @@
   include "modules/module-09-exercises.typ"
 }
 
-#{
-  module(title: [Higher Order Differential Equations], label: <mod:higher_order>)[
-    #include "modules/module-10-body.typ"
-  ]
-  include "modules/module-10-exercises.typ"
-}
+// #{
+//   module(title: [Higher Order Differential Equations], label: <mod:higher_order>)[
+//     #include "modules/module-10-body.typ"
+//   ]
+//   include "modules/module-10-exercises.typ"
+// }
 
-#{
-  module(title: [Introduction to Boundary Value Problems], label: <mod:boundary_value_problems>)[
-    #include "modules/module-11-body.typ"
-  ]
-  include "modules/module-11-exercises.typ"
-}
+// #{
+//   module(title: [Introduction to Boundary Value Problems], label: <mod:boundary_value_problems>)[
+//     #include "modules/module-11-body.typ"
+//   ]
+//   include "modules/module-11-exercises.typ"
+// }
 
-#{
-  module(
-    title: [Introduction to the Theory of Ordinary Differential Equations],
-    label: <mod:existence_uniqueness>,
-  )[
-    #include "modules/module-12-body.typ"
-  ]
-  include "modules/module-12-exercises.typ"
-}
+// #{
+//   module(
+//     title: [Introduction to the Theory of Ordinary Differential Equations],
+//     label: <mod:existence_uniqueness>,
+//   )[
+//     #include "modules/module-12-body.typ"
+//   ]
+//   include "modules/module-12-exercises.typ"
+// }
 
-#{
-  module(title: [Famous ODEs], label: <mod:famous_odes>)[
-  ]
-  include "modules/famous_odes-exercises.typ"
-}
+// #{
+//   module(title: [Famous ODEs], label: <mod:famous_odes>)[
+//   ]
+//   include "modules/famous_odes-exercises.typ"
+// }
 
 #lessons_end()
 // Appendices Start Here
