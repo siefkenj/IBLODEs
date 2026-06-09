@@ -16,13 +16,13 @@ on approximating a solution to a differential equation with _polynomial_.
 == Series Solutions
 
 Consider the differential $y'=y$. What would happen if we tried to write the "Taylor series" of a
-solution? The general form for a Taylor series (centered at $t=0$) is
+solution? The general form for a Taylor series (centered at $x=0$) is
 $
-  T(x) = a_0 + a_1 t + a_2 t^2 + dots.c
+  T(x) = a_0 + a_1 x + a_2 x^2 + dots.c
 $
 and, if $T$ is differentiable, we can compute its derivative term by term:
 $
-  T'(t) = a_1 + 2 a_2 t + 3 a_3 t^2 + dots.c.
+  T'(x) = a_1 + 2 a_2 x + 3 a_3 x^2 + dots.c.
 $
 
 We are trying to solve the differential equation $y'=y$, so what happens if we set $T'(x) = T(x)$
