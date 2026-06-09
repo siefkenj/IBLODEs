@@ -113,7 +113,7 @@
     solution: [
       + We can factor this into $x'=-(x+2)(x-1)^2(x-4)$. We can find that the equilibrium solutions are $x=-2$ (unstable and repelling), $x=1$ (unstable but not repelling), and $x=4$ (stable and attracting).
       + Since $x=4$ is a stable and attracting equilibrium solution, the initial condition $x(0)>1$ converges to $x=4$ as $t -> infinity$.
-      + If $x(0)< -2$, then $x'<0$ and the solution moves away to the left from $x=-2$.
+      + If $x(0)< -2$, then $x'<0$ and the solution moves away from $x=-2$.
     ],
   ),
   (
@@ -183,7 +183,7 @@
       + Infinitely many equilibrium solutions at $x=(pi n)/2, y=pi/2+pi m$ where $m,n in ZZ$. In fact, this system contains: stable and attracting, unstable and repelling, unstable and not repelling types of equilibrium solutions. It is up to the reader to find out the specific nature of each equilibrium solution. Hint: The next module will provide a visual representation of their natures using a very powerful tool (Phase Portraits).
       + Infinitely many unstable but not repelling equilibrium solutions at the line $y=-x$.
       + There are no equilibrium solutions to this system.
-      + All solutions are constant.
+      + All solutions are constant, hence every solution is a stable but not attracting equilibrium solution.
     ]
   ),
   (
