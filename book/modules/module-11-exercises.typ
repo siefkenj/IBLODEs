@@ -2,6 +2,7 @@
 #show: e.prepare(question)
 
 #{
+  lesson(title: [Boundary Value Problems], include "lesson-week-11.typ")
   question({
     learning_objectives(
       [???],

@@ -67,32 +67,32 @@
 //   include "modules/module-06-exercises.typ"
 // }
 
-#{
-  module(
-    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
-    label: <mod:affine>,
-  )[
-    #include "modules/module-07-body.typ"
-  ]
-  include "modules/module-07-exercises.typ"
-}
-
 // #{
 //   module(
-//     title: [Linear Systems with Constant Coefficients (Complex Solutions)],
-//     label: <mod:complex>,
+//     title: [Linear Systems with Constant Coefficients (Affine Solutions)],
+//     label: <mod:affine>,
 //   )[
-//     #include "modules/module-08-body.typ"
+//     #include "modules/module-07-body.typ"
 //   ]
-//   include "modules/module-08-exercises.typ"
+//   include "modules/module-07-exercises.typ"
 // }
 
-// #{
-//   module(title: [Quantitative Analysis: Linearization])[
-//     #include "modules/module-09-body.typ"
-//   ]
-//   include "modules/module-09-exercises.typ"
-// }
+#{
+  module(
+    title: [Linear Systems with Constant Coefficients (Complex Solutions)],
+    label: <mod:complex>,
+  )[
+    #include "modules/module-08-body.typ"
+  ]
+  include "modules/module-08-exercises.typ"
+}
+
+#{
+  module(title: [Quantitative Analysis: Linearization])[
+    #include "modules/module-09-body.typ"
+  ]
+  include "modules/module-09-exercises.typ"
+}
 
 // #{
 //   module(title: [Higher Order Differential Equations], label: <mod:higher_order>)[
@@ -119,9 +119,9 @@
 // }
 
 // #{
-//   module(title: [Interesting ODEs], label: <mod:interesting_odes>)[
+//   module(title: [Famous ODEs], label: <mod:famous_odes>)[
 //   ]
-//   include "modules/interesting_odes.typ"
+//   include "modules/famous_odes-exercises.typ"
 // }
 
 #lessons_end()

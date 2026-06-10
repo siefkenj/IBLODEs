@@ -363,9 +363,20 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      (
+        [From statements about the behaviour of specific solutions, infer the value of a parameter
+          in a model and/or initial conditions.],
+      ),
     )
-    notes[???]
+    notes[
+      This exercise is open-ended. Most values of the parameter $a$ work if you are specific enough
+      about the initial conditions.
+
+      This *can be skipped* if short on time.
+
+      - Encourage students to use Desmos to explore the model first and algebraic manipulation of
+        the equations only after they have a conjecture.
+    ]
     slide[
       The *SM* model of Social Media Usage is
       $
@@ -388,20 +399,46 @@
         #set enum(numbering: "1.")
 
         + _The model shows the number of posts will always be increasing. SAD!_
-        + _I see the number of social media users always increases. That's not what we want!_
         + _It looks like social media is just a fad. Although users initially increase, they
           eventually settle down._
+        + _I see the number of social media users always increases. That's not what we want!_
         + _I have a dream! That one day there will be social media posts, but eventually there will
           be no social media users!_
       ]
 
       + For each social media post, make an educated guess about what initial conditions and what
         value(s) of $a$ the politician was considering.
-        #solution[???]
+        #solution[
+          #set enum(numbering: "1.", full: false)
+          + *"Posts always increasing."* For any parameter $a$, as long as $P < 2$, we will have
+            $P'>0$, so posts will be increasing.
+
+          + *"Social media is a fad; users settle down."* This politician is likely observing an
+            attracting equilibrium in the phase portrait, so $a < 0$. Since users initially
+            increase, this means the initial conditions satisfy $(1-a)P+a U>1$.
+
+          + *"Users always increase."* This could happen in lots of ways! We need $U'>0$, which
+            happens whenever $P$ and $U$ satisfy $(1-a)P+a U>1$. For example, $a=-1/2$ and $(P, U)$
+            are within the triangle with vertices ${(2/3,0),(2,0), (2,4)}$. However, if the
+            politician is claiming that users substantially increase forever, this means there
+            cannot be an attracting equilibrium, and so $a >= 0$.
+
+          + *"Posts persist but eventually no users."* This politician might be looking at the case
+            where $a >= 1/2$ and $(1-a)P+a U<1$. In this case, users will decrease until they hit
+            $0$ while $P>0$. When users hit $0$, the model doesn't make further predictions.
+        ]
       + The school board wants to limit the number of social media users to fewer than 10 million.
         Make a recommendation about what value of $a$ they should target.
 
-        #solution[???]
+        #solution[
+          If $a <= -1/8$ then there will be an attracting equilibrium at $(P,U)$ with $U<10$. If
+          $P <= 2$ and $U <= 10$, this will ensure that the number of users never surpasses 10
+          million. If $P > 2$, the number of users may temporarily surpass 10 million, but will
+          eventually settle down to fewer than 10 million.
+
+          To handle a large variety of initial conditions, the school board should target
+          $a < -1/8$. For example $a=-1/4$.
+        ]
 
     ]
   })
