@@ -413,16 +413,6 @@
         nice, the big ideas may be lost on students. @ex:linearization_practice provides practice
         with 2d linearization with no model.
 
-      - $b=1$: it is outside the scope of the course to analytically determine the stability at
-        $b=1$. It happens to be stable and not attracting. This can be seen by showing that
-        trajectories near the equilibrium in phase space are closed loops (e.g., by solving
-        $(dif A)/(dif H) = (A'(t))/(H'(t))$. The resulting curves are given by
-        $
-          x^3/5 + 3/10 y^2 -2x y = k
-        $
-        where $k$ is a parameter.
-
-        See https://www.desmos.com/calculator/q1rpumr4e4
     ]
     slide(force_scale: 0.94em)[
 
@@ -572,6 +562,18 @@
       + #label_question_part(<ex:tree_model_linearization6>) Analyze the nature of the equilibrium
         solution in part @ex:affine-approx-part3[] using eigen techniques. Relate your analysis to
         the original system.
+        #notes[
+          - In @ex:tree_model_linearization6[], determining the stability for $b=1$ analytically is
+            outside the scope of the course. It happens to be stable and not attracting. This can be
+            seen by showing that trajectories near the equilibrium in phase space are closed loops
+            (e.g., by solving $(dif A)/(dif H) = (A'(t))/(H'(t))$. The resulting curves are given by
+            $
+              x^3/5 + 3/10 y^2 -2x y = k
+            $
+            where $k$ is a parameter.
+
+            See https://www.desmos.com/calculator/q1rpumr4e4
+        ]
         #solution[
           For $arrow(E)=mat(100 / 9 b; 1000 / 27 b^2)$ the eigenvalues of $D_(arrow(F))(arrow(E))$
           are
