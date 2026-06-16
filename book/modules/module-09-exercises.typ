@@ -622,9 +622,27 @@
   lesson(title: [Linearization II & Higher Order Equations], include "lesson-week-10.typ")
   question(label: <ex:linearization_practice>, {
     learning_objectives(
-      [???],
+      (
+        [Classify an equilibrium solution of a non-linear system of differential equations by
+          linearizing about the equilibrium point.],
+      ),
     )
-    notes[???]
+    notes[
+      After the complicated example in @ex:tree_model_linearization, it's time for some practice and
+      review.
+
+      This question has no model and no parameter.
+
+      - There are equilibrium points at $(0, 0)$ and $(1, 0)$, but students are only asked to
+        classify $(0,0)$. You can have them do $(1,0)$ for homework.
+
+      - Discussion time for this question is a good time to summarize the process of linearization
+        and applying the Classification via Linearization theorem.
+
+      - If your students seemed confused about linearization in @ex:tree_model_linearization, *don't
+        skip* this exercise. At this point in the term, going a little slower to make sure students
+        understand is worth it.
+    ]
     slide[
 
       #slides_only(v(1em))
@@ -645,7 +663,7 @@
               xlim: (-1.5, 1.5),
               ylim: (-1.5, 1.5),
               spacing: (.2, .2),
-              scale_segments: 8,
+              scale_segments: 10,
               width: 5cm,
               height: 5cm,
               xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
@@ -653,8 +671,7 @@
             )
           }
           The arrows near the origin appear to spiral inward, suggesting the equilibrium at $(0, 0)$
-          is attracting. However, it is difficult to distinguish a spiral from a center from a phase
-          portrait alone; analytic confirmation is needed.
+          is stable and attracting.
         ]
       + Find an affine approximation to $arrow(F)$ centered at $(0, 0)$.
         #solution[
@@ -665,36 +682,37 @@
               -y + 2 x - 1, -x - 1
             ).
           $
-          At $(0, 0)$: $D_(arrow(F))(0, 0) = mat(0, 1; -1, -1)$ and $arrow(F)(0, 0) = mat(0; 0)$.
-
-          The affine approximation is
+          Computing at $(0, 0)$, we get $D_(arrow(F))(0, 0) = mat(0, 1; -1, -1)$ and
+          $arrow(F)(0, 0) = mat(0; 0)$. Therefore, the affine approximation is given by
           $
             arrow(F)(x, y) approx mat(0, 1; -1, -1) mat(x; y).
           $
         ]
-      + Write down a differential equation that approximates the original equation near $(0, 0)$.
+      + Write down a differential equation based on your affine approximation.
+
+        For which initial conditions will solutions to this new equation be close to solutions to
+        the original?
         #solution[
           $
-            mat(x'_"approx"; y'_"approx") = mat(0, 1; -1, -1) mat(x_"approx"; y_"approx"),
+            mat(x'_"approx"; y'_"approx") = mat(0, 1; -1, -1) mat(x_"approx"; y_"approx")
           $
-          i.e., $x'_"approx" = y_"approx"$ and $y'_"approx" = -x_"approx" - y_"approx"$.
+
+          If $(x(t),y(t))$ is a solution to the original system and
+          $(x_"approx" (t), y_"approx" (t))$ is a solution to the linearized system, then
+          $(x_"approx", y_"approx")$ will be a good approximation of $(x, y)$ if
+          $(x_"approx" (0), y_"approx" (0)) = (x(0), y(0)) approx (0,0)$. I.e., the solutions start
+          at the same initial value and that value is near $arrow(0)$.
         ]
       + Analyze the nature of the equilibrium solution $arrow(r)(t) = (0, 0)$ using eigen
         techniques. (You may use a computer to assist in eigen computations.) Relate your analysis
         to the original system.
         #solution[
-          For $M = mat(0, 1; -1, -1)$, the characteristic polynomial is
-          $
-            det(M - lambda I) = det mat(-lambda, 1; -1, -1 - lambda)
-            = lambda(1 + lambda) + 1 = lambda^2 + lambda + 1 = 0.
-          $
-          The eigenvalues are
-          $
-            lambda = (-1 plus.minus sqrt(1 - 4)) / 2 = -1 / 2 plus.minus i sqrt(3) / 2.
-          $
-          The real part is $-1 / 2 < 0$, so the linearized equilibrium is *stable and attracting*.
-          By the Classification via Linearization theorem, the original equilibrium $(0, 0)$ is also
-          *attracting*.
+          For $M = mat(0, 1; -1, -1)$, the eigenvalues are
+          $lambda = -1 / 2 plus.minus i sqrt(3) / 2.$
+
+          The real part is $-1 / 2 < 0$, so the linearized equilibrium is *stable* and *attracting*.
+          By the Classification via Linearization theorem, the equilibrium point $(0,0)$ for the
+          original system is also *stable* and *attracting*.
         ]
 
 

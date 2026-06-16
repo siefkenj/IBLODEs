@@ -30,67 +30,96 @@
         D(t) & = "number of hosts (dogs) at year " t " (in thousands)"
       $
 
-      - (P$1_F$) Ignoring all else, the number of parasites decays in proportion to its population
-        (with constant 1).
-      - (P$2_F$) Ignoring all else, parasite numbers grow in proportion to the number of hosts (with
-        constant 1 $"mega flea"/"kilo dog"$).
-      - (P$1_D$) Ignoring all else, hosts numbers grow in proportion to their current number (with
-        constant 1).
-      - (P$2_D$) Ignoring all else, host numbers decrease in proportion to the number of parasites
-        (with constant 2 $"kilo dog"/"mega flea"$).
-        #slides_only(colbreak())
-      - (P$1_c$) Anti-flea collars remove 2 million fleas per year.
-      - (P$2_c$) Constant dog breeding adds 1 thousand dogs per year.
 
-        + Write a system of differential equations for the *FD* model.
-          #solution[
-            $
-              F' & = underbrace(-F, "P"1_F)       & underbrace(+D, "P"2_F) quad & underbrace(-2, "P"1_c) \
-              D' & = underbrace(-2F, "P"2_D) quad & underbrace(+D, "P"1_D) quad & underbrace(+1, "P"2_c)
-            $
-          ]
-        + Can you rewrite the system in matrix form $arrow(r)' = M arrow(r)$? What about in _affine_
-          form $arrow(r)' = M arrow(r) + arrow(b)$?
-          #solution[
-            The constant terms $-2$ and $+1$ prevent a pure matrix form. However, the system can be
-            written in affine form:
-            $
-              mat(F; D)' = underbrace(mat(-1, 1; -2, 1), M) mat(F; D) + underbrace(mat(-2; 1), arrow(b)).
-            $
-          ]
-        + #label_question_part(<ex:fd_phase_portrait>) Make a phase portrait for your model.
-          #solution[
-            #{
-              set align(center)
-              vector_field(
-                ((F, D) => (-F + D - 2, -2 * F + D + 1)),
-                xlim: (-1, 7),
-                ylim: (0, 10),
-                spacing: (.7, .7),
-                scale_segments: 18,
-                width: 5cm,
-                height: 5cm,
-                xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
-                yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
-              )
-            }
-          ]
-        + #label_question_part(<ex:fd_solution_shape>) What should solutions to the system look like
-          in the phase plane? What are the equilibrium solution(s)?
-          #solution[
-            The equilibrium is found by solving $M arrow(E) + arrow(b) = arrow(0)$:
-            $
-                -E_F + E_D & = 2 \
-              -2 E_F + E_D & = -1
-            $
-            Subtracting gives $E_F = 3$ and then $E_D = 5$, so the unique equilibrium is
-            $(F, D) = (3, 5)$.
+      #aligned_terms(
+        terms.item($("P"_"fleas 1")$, [Ignoring all else, the number of parasites decays in
+          proportion to its population (with constant 1).]),
+        terms.item(
+          $("P"_"fleas 2")$,
+          [Ignoring all else, parasite numbers grow in proportion to the number of hosts (with
+            constant 1 $"mega flea"/"kilo dog"$).],
+        ),
+        terms.item(
+          $("P"_"dogs 1")$,
+          [Ignoring all else, hosts numbers grow in proportion to their current number (with
+            constant 1).],
+        ),
+        terms.item(
+          $("P"_"dogs 2")$,
+          [Ignoring all else, host numbers decrease in proportion to the number of parasites (with
+            constant 2 $"kilo dog"/"mega flea"$).],
+        ),
+        terms.item(
+          $("P"_"collar")$,
+          [Anti-flea collars remove 2 million fleas per year.],
+        ),
+        terms.item(
+          $("P"_"breeding")$,
+          [Constant dog breeding adds 1 thousand dogs per year.],
+        ),
+      )
 
-            From the phase portrait, it looks like non-equilibrium solutions circle clockwise around
-            the equilibrium. However, we cannot be sure that the equilibrium is not subtly
-            attracting or repelling, which would make the solutions spiral towards or away from the
-            equilibrium.
-          ]
+      // Original: delete when confident the wording of the above is correct.
+      // - (P$1_F$) Ignoring all else, the number of parasites decays in proportion to its population
+      //   (with constant 1).
+      // - (P$2_F$) Ignoring all else, parasite numbers grow in proportion to the number of hosts (with
+      //   constant 1 $"mega flea"/"kilo dog"$).
+      // - (P$1_D$) Ignoring all else, hosts numbers grow in proportion to their current number (with
+      //   constant 1).
+      // - (P$2_D$) Ignoring all else, host numbers decrease in proportion to the number of parasites
+      //   (with constant 2 $"kilo dog"/"mega flea"$).
+      //   #slides_only(colbreak())
+      // - (P$1_c$) Anti-flea collars remove 2 million fleas per year.
+      // - (P$2_c$) Constant dog breeding adds 1 thousand dogs per year.
+
+      + Write a system of differential equations for the *FD* model.
+        #solution[
+          $
+            F' & = underbrace(-F, "P"_"fleas 1") & underbrace(+D, "P"_"fleas 2") quad & underbrace(-2, "P"_"collar") \
+            D' & = underbrace(-2F, "P"_"dogs 2") quad & underbrace(+D, "P"_"dogs 1") quad & underbrace(+1, "P"_"breeding")
+          $
+        ]
+      + Can you rewrite the system in matrix form $arrow(r)' = M arrow(r)$? What about in _affine_
+        form $arrow(r)' = M arrow(r) + arrow(b)$?
+        #solution[
+          The constant terms $-2$ and $+1$ prevent a pure matrix form. However, the system can be
+          written in affine form:
+          $
+            mat(F; D)' = underbrace(mat(-1, 1; -2, 1), M) mat(F; D) + underbrace(mat(-2; 1), arrow(b)).
+          $
+        ]
+      + #label_question_part(<ex:fd_phase_portrait>) Make a phase portrait for your model.
+        #solution[
+          #{
+            set align(center)
+            vector_field(
+              ((F, D) => (-F + D - 2, -2 * F + D + 1)),
+              xlim: (-1, 7),
+              ylim: (0, 10),
+              spacing: (.7, .7),
+              scale_segments: 18,
+              width: 5cm,
+              height: 5cm,
+              xaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+              yaxis: (position: 0, tip: tiptoe.stealth, ticks: none, subticks: none),
+            )
+          }
+        ]
+      + #label_question_part(<ex:fd_solution_shape>) What should solutions to the system look like
+        in the phase plane? What are the equilibrium solution(s)?
+        #solution[
+          The equilibrium is found by solving $M arrow(E) + arrow(b) = arrow(0)$:
+          $
+              -E_F + E_D & = 2 \
+            -2 E_F + E_D & = -1
+          $
+          Subtracting gives $E_F = 3$ and then $E_D = 5$, so the unique equilibrium is
+          $(F, D) = (3, 5)$.
+
+          From the phase portrait, it looks like non-equilibrium solutions circle clockwise around
+          the equilibrium. However, we cannot be sure that the equilibrium is not subtly attracting
+          or repelling, which would make the solutions spiral towards or away from the equilibrium.
+        ]
 
 
     ]
@@ -494,13 +523,16 @@
       $ arrow(s)'(t) = M arrow(s)(t) wide "where" wide M = mat(-1, 1; -2, 1). $
 
       Some research is being done on a shampoo for the dogs. It affects flea and dog reproduction:
-      - (P$S_F$) Ignoring all else, the number of parasites decays in proportion to its population
-        with constant $a$.
-      - (P$S_D$) Ignoring all else, hosts numbers grow in proportion to their current number with
-        constant $2 - a$.
+
+      #aligned_terms(
+        terms.item($("P"_"shampoo 1")$, [Ignoring all else, the number of parasites decays in
+          proportion to its population with constant $a$.]),
+        terms.item($("P"_"shampoo 2")$, [Ignoring all else, hosts numbers grow in proportion to
+          their current number with constant $2 - a$.]),
+      )
       - $0 <= a <= 2$.
 
-      _These premises replace (P$1_F$) and (P$1_D$)._
+      _These premises replace $("P"_"fleas 1")$ and $("P"_"dogs 1")$._
 
       + Modify the previous *FD* model to incorporate the effects of the shampoo.
         #solution[
