@@ -37,7 +37,7 @@
   ),
   (
     statement: [
-      For the following eigenvalues and their respective eigenvectors, find the general solution, and classify the stability of equilibrium.
+      For the following eigenvalues and their respective eigenvectors, find the complex general solution, and classify the stability of equilibrium.
 
       + $lambda_1=2+i, lambda_2=2-i$, $arrow(v)_1=vec(1,i), arrow(v)_2=vec(1,-i)$
 
@@ -50,7 +50,7 @@
     solution: [
       + $arrow(r)(t)=A vec(1,i)e^((2+i)t)+B vec(1,-i)e^((2-i)t)$, where $A,B$ are parameters. Unstable and Repelling spiral.
 
-      + $arrow(r)(t)=A vec(1,i)e^(-73i t)+ B vec(1,-i)e^(73i t)$, where $A,B$ are parameters. Stable but not Attracting (closed loops).
+      + $arrow(r)(t)=A vec(1,i)e^(-73i t)+ B vec(1,-i)e^(73i t)$, where $A,B$ are parameters. Stable but not Attracting (periodic solutions).
 
       + $arrow(r)(t)=A vec(1-i,2+i)e^((5-i)t)+ B vec(1+i,2-i)e^((5+i)t)$, where $A,B$ are parameters. Unstable and Repelling spiral.
 
@@ -76,7 +76,7 @@
     ],
     solution: [
       + $lambda_1=1,lambda_2=2, arrow(v)_1=vec(1,0), arrow(v)_2=vec(0,1)$. Equilibrium solution is located at $(x,y)=(0,0)$ and is Unstable and Repelling.#{
-        let F(x,y)=(x, y)
+        let F(x,y)=(x, 2*y)
         vector_field(
                       F,
                       xlim: (-2, 2.5),
@@ -180,11 +180,12 @@
   (
     statement: [
       For each of the following systems: 
-      - Write it in the matrix form.
-      - The equilibrium solution(s) and classifications.
-      - The corresponding eigenvalues and eigenvectors.
-      - The general real solution.
-      - Determine whether or not the solution spiral about an equilibrium solution. If so, could you tell if it is clockwise or counter-clockwise?
+      - Write it in matrix form.
+      - Find the equilibrium solution(s).
+      - Find the corresponding eigenvalues and eigenvectors.
+      - Classify the equilibrium solution(s).
+      - Find the general solution.
+      - Determine whether or not the solutions spirals about an equilibrium solution. If it does, do solutions spiral clockwise or counter-clockwise?
 
       + $cases(x'=-y, y'=x)$
 
@@ -218,8 +219,8 @@
       
       $arrow(r)'=mat(alpha, -5;5,alpha)arrow(r)$
 
-      + Find the eigenvalues and eigenvectors in terms of $alpha$.
       + Find the equilibrium solution(s)
+      + Find the eigenvalues and eigenvectors in terms of $alpha$.
       + Determine the possible classifications of the equilibrium solution(s) based on the value(s) of $alpha$.
       + Find the general solution.
       + Find the general real solution.
@@ -261,7 +262,7 @@
   ),
   (
     statement: [
-      Construct a $2 times 2$ linear system with the following behaviour, or explain why no such system exists:
+      Construct a $2 times 2$ system of differential equations with the following behaviour, or explain why no such system exists:
 
       + 1 stable and attracting equilibrium solution at $(x,y)=(0,0)$, spirals clockwise, has angular frequency 5, and decays like $e^(-2t)$.
 
