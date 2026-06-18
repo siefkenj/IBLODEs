@@ -73,6 +73,8 @@
       + $D= mat(-1,-1;5,-2)$
 
       + $E= mat(-1,-50;5,2)$
+
+      + $F= mat(1,0;0,-2)$
     ],
     solution: [
       + $lambda_1=1,lambda_2=2, arrow(v)_1=vec(1,0), arrow(v)_2=vec(0,1)$. Equilibrium solution is located at $(x,y)=(0,0)$ and is Unstable and Repelling.#{
@@ -90,7 +92,7 @@
                     )
       }
 
-      + $lambda_1=(5 + sqrt(33))/2,lambda_2=(5 - sqrt(33))/2, arrow(v)_1=vec(-3+sqrt(33),6), arrow(v)_2=vec(-3-sqrt(33),6)$. Equilibrium solution is at $(x,y)=(0,0)$ and is Unstable.#{
+      + $lambda_1=(5 + sqrt(33))/2,lambda_2=(5 - sqrt(33))/2, arrow(v)_1=vec(-3+sqrt(33),6), arrow(v)_2=vec(-3-sqrt(33),6)$. Equilibrium solution is at $(x,y)=(0,0)$ and is Unstable but not Repelling.#{
         let F(x,y)=(x+2*y, 3*x+4*y)
         vector_field(
                       F,
@@ -149,6 +151,21 @@
                       yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
                     )
       }
+
+      + $lambda_1=-2, lambda_2=1, arrow(v)_1=vec(0,1), arrow(v)_2=vec(1,0)$. Equilibrium is at $(x,y)=(0,0)$ and is Unstable but not Repelling. #{
+        let F(x,y)=(x, -2*y)
+        vector_field(
+                      F,
+                      xlim: (-2, 2),
+                      ylim: (-2, 2),
+                      spacing: (.25, .25),
+                      scale_segments: 20.0,
+                      width: 6cm,
+                      height: 5cm,
+                      xaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+                      yaxis: (position: 0, tip: tiptoe.stealth, subticks: none, ticks: none),
+                    )
+      }
     ]
   ),
   (
@@ -184,7 +201,7 @@
       - Find the equilibrium solution(s).
       - Find the corresponding eigenvalues and eigenvectors.
       - Classify the equilibrium solution(s).
-      - Find the general solution.
+      - Find the complex and real general solution.
       - Determine whether or not the solutions spirals about an equilibrium solution. If it does, do solutions spiral clockwise or counter-clockwise?
 
       + $cases(x'=-y, y'=x)$
