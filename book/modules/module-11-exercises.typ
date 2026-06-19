@@ -47,7 +47,7 @@
           }
           The matrix $mat(0, 1; -1, 0)$ has characteristic polynomial $lambda^2 + 1 = 0$, so
           eigenvalues $lambda = plus.minus i$ (pure imaginary). The phase portrait shows closed
-          circles centred at the origin: all solutions are periodic.
+          circles centered at the origin: all solutions are periodic.
         ]
       + In the _Options Euler_ on Desmos, adjust $Delta$ and the number of steps so that simulated
         solutions are only shown for $t in [0, 1]$.

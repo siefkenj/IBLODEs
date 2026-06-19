@@ -67,25 +67,25 @@
 //   include "modules/module-06-exercises.typ"
 // }
 
-#{
-  module(
-    title: [Linear Systems with Constant Coefficients (Affine Solutions)],
-    label: <mod:affine>,
-  )[
-    #include "modules/module-07-body.typ"
-  ]
-  include "modules/module-07-exercises.typ"
-}
+// #{
+//   module(
+//     title: [Linear Systems with Constant Coefficients (Affine Solutions)],
+//     label: <mod:affine>,
+//   )[
+//     #include "modules/module-07-body.typ"
+//   ]
+//   include "modules/module-07-exercises.typ"
+// }
 
-#{
-  module(
-    title: [Linear Systems with Constant Coefficients (Complex Solutions)],
-    label: <mod:complex>,
-  )[
-    #include "modules/module-08-body.typ"
-  ]
-  include "modules/module-08-exercises.typ"
-}
+// #{
+//   module(
+//     title: [Linear Systems with Constant Coefficients (Complex Solutions)],
+//     label: <mod:complex>,
+//   )[
+//     #include "modules/module-08-body.typ"
+//   ]
+//   include "modules/module-08-exercises.typ"
+// }
 
 #{
   module(title: [Quantitative Analysis: Linearization])[
@@ -118,11 +118,11 @@
   include "modules/module-12-exercises.typ"
 }
 
-#{
-  module(title: [Famous ODEs], label: <mod:famous_odes>)[
-  ]
-  include "modules/famous_odes-exercises.typ"
-}
+// #{
+//   module(title: [Famous ODEs], label: <mod:famous_odes>)[
+//   ]
+//   include "modules/famous_odes-exercises.typ"
+// }
 
 #lessons_end()
 // Appendices Start Here

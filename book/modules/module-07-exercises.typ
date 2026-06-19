@@ -28,28 +28,31 @@
       $
 
       // The units here are actually correct, but you have to think about it...
-      - (P$1_P$) Ignoring all else, each year posts decay proportionally to the current number of
-        posts with proportionality constant 1.
-      - (P$2_P$) Ignoring all else (independent of decay), posts grow by a constant amount of 2
-        million posts every year.
-      - (P$1_U$) Ignoring all else, social media users increase/decrease in proportion to the number
-        of posts.
-      - (P$2_U$) Ignoring all else, social media users increase/decrease in proportion to the number
-        of users.
-      - (P$3_U$) Ignoring all else, 1 million people stop using the platform every year.
+      #aligned_terms(
+        terms.item($("P"_"posts 1")$, [Ignoring all else, each year posts decay proportionally to
+          the current number of posts with proportionality constant 1.]),
+        terms.item($("P"_"posts 2")$, [Ignoring all else (independent of decay), posts grow by a
+          constant amount of 2 million posts every year.]),
+        terms.item($("P"_"users 1")$, [Ignoring all else, social media users increase/decrease in
+          proportion to the number of posts.]),
+        terms.item($("P"_"users 2")$, [Ignoring all else, social media users increase/decrease in
+          proportion to the number of users.]),
+        terms.item($("P"_"users 3")$, [Ignoring all else, 1 million people stop using the platform
+          every year.]),
+      )
 
 
       A school intervention is described by the parameter $a in [-1/2, 1]$:
-      - After the intervention, the proportionality constant for (P$1_U$) is $1 - a$.
-      - After the intervention, the proportionality constant for (P$2_U$) is $a$.
+      - After the intervention, the proportionality constant for ($"P"_"users 1"$) is $1 - a$.
+      - After the intervention, the proportionality constant for ($"P"_"users 2"$) is $a$.
 
       + Model this situation using a system of differential equations. Explain which parts of your
         model correspond to which premise(s).
 
         #solution[
           $
-            P' &= underbrace(-P, "P1"_(P)) & &underbrace(+2, "P2"_(P)) \
-            U' &= underbrace((1 - a) P, "P1"_(U)) &+ underbrace(a U, "P2"_(U)) wide &underbrace(-1, "P3"_(U))
+            P' &= underbrace(-P, "P"_"posts 1") & &underbrace(+2, "P"_"posts 2") \
+            U' &= underbrace((1 - a) P, "P"_"users 1") &+ underbrace(a U, "P"_"users 2") wide &underbrace(-1, "P"_"users 3")
           $
         ]
 
@@ -363,9 +366,20 @@
   book_only(pagebreak())
   question({
     learning_objectives(
-      [???],
+      (
+        [From statements about the behaviour of specific solutions, infer the value of a parameter
+          in a model and/or initial conditions.],
+      ),
     )
-    notes[???]
+    notes[
+      This exercise is open-ended. Most values of the parameter $a$ work if you are specific enough
+      about the initial conditions.
+
+      This *can be skipped* if short on time.
+
+      - Encourage students to use Desmos to explore the model first and algebraic manipulation of
+        the equations only after they have a conjecture.
+    ]
     slide[
       The *SM* model of Social Media Usage is
       $
@@ -388,9 +402,9 @@
         #set enum(numbering: "1.")
 
         + _The model shows the number of posts will always be increasing. SAD!_
-        + _I see the number of social media users always increases. That's not what we want!_
         + _It looks like social media is just a fad. Although users initially increase, they
           eventually settle down._
+        + _I see the number of social media users always increases. That's not what we want!_
         + _I have a dream! That one day there will be social media posts, but eventually there will
           be no social media users!_
       ]
@@ -402,15 +416,15 @@
           + *"Posts always increasing."* For any parameter $a$, as long as $P < 2$, we will have
             $P'>0$, so posts will be increasing.
 
-          + *"Users always increase."* This could happen in lots of ways! We need $U'>0$, which
-            happens whenever $P$ and $U$ satisfy $(1-a)P+a U>1$.
-
-            However, if the politician is claiming that users substantially increase forever, this
-            means there cannot be an attracting equilibrium, and so $a >= 0$.
-
           + *"Social media is a fad; users settle down."* This politician is likely observing an
             attracting equilibrium in the phase portrait, so $a < 0$. Since users initially
             increase, this means the initial conditions satisfy $(1-a)P+a U>1$.
+
+          + *"Users always increase."* This could happen in lots of ways! We need $U'>0$, which
+            happens whenever $P$ and $U$ satisfy $(1-a)P+a U>1$. For example, $a=-1/2$ and $(P, U)$
+            are within the triangle with vertices ${(2/3,0),(2,0), (2,4)}$. However, if the
+            politician is claiming that users substantially increase forever, this means there
+            cannot be an attracting equilibrium, and so $a >= 0$.
 
           + *"Posts persist but eventually no users."* This politician might be looking at the case
             where $a >= 1/2$ and $(1-a)P+a U<1$. In this case, users will decrease until they hit
