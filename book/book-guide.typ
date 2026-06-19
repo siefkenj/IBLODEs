@@ -87,19 +87,19 @@
 //   include "modules/module-08-exercises.typ"
 // }
 
-#{
-  module(title: [Quantitative Analysis: Linearization])[
-    #include "modules/module-09-body.typ"
-  ]
-  include "modules/module-09-exercises.typ"
-}
+// #{
+//   module(title: [Quantitative Analysis: Linearization])[
+//     #include "modules/module-09-body.typ"
+//   ]
+//   include "modules/module-09-exercises.typ"
+// }
 
-#{
-  module(title: [Higher Order Differential Equations], label: <mod:higher_order>)[
-    #include "modules/module-10-body.typ"
-  ]
-  include "modules/module-10-exercises.typ"
-}
+// #{
+//   module(title: [Higher Order Differential Equations], label: <mod:higher_order>)[
+//     #include "modules/module-10-body.typ"
+//   ]
+//   include "modules/module-10-exercises.typ"
+// }
 
 #{
   module(title: [Introduction to Boundary Value Problems], label: <mod:boundary_value_problems>)[
