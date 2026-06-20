@@ -484,7 +484,7 @@
         A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
       $
 
-      and $0 lt.eq b lt.eq 2$.
+      and $0 < b lt.eq 2$.
 
       #slides_only(colbreak())
 
@@ -500,7 +500,7 @@
             X(x,y)=0.3 dot y - b dot x \
             Y(x,y)=-0.3 dot x^2 + y
           $
-          and set the bounds of the slider for $b$ to be $0 <= b <= 2$.
+          and set the bounds of the slider for $b$ to be $0 < b <= 2$.
         ]
       + What do equilibrium solutions mean in terms of tree growth?
         #solution[
@@ -555,7 +555,7 @@
             A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
           $
 
-          and $0 lt.eq b lt.eq 2$.
+          and $0 < b lt.eq 2$.
         ],
       )
 
@@ -632,7 +632,7 @@
           the phase portrait, we see that the leaf area will decrease to $0$ (and then the tree will
           die).
 
-          This happens no matter the value of $b in [0,2]$.
+          This happens no matter the value of $b in (0,2]$.
         ]
       + #label_question_part(<ex:sim_tree_10_10>) What will happen to a tree with
         $(H(0), A(0))=(10,10)$? Does this depend on $b$?
@@ -761,7 +761,7 @@
         A'(t) & = -0.3 dot.c (H(t))^2 + A(t)
       $
 
-      + Find all equilibrium solutions for $0 lt.eq b lt.eq 2$.
+      + Find all equilibrium solutions for $0 < b <= 2$.
         #solution[
           Solving
           $

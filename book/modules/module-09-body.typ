@@ -406,7 +406,7 @@ and more closely to the solution to the original system (the dashed curve).#foot
 For nice differential equations, linearization can be used to classify equilibrium solutions when
 the linearized system has an equilibrium that is *unstable or attracting*.
 
-#theorem(title: [Classification via Linearization], [
+#theorem(label: <thm:classification_via_linearization>, title: [Classification via Linearization], [
   Suppose $arrow(G): RR^n arrow RR^n$ is differentiable and consider the system of differential
   equations defined by #math.equation(
     block: true,
