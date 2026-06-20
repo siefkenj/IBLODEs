@@ -1,5 +1,8 @@
 #import "../libs/lib.typ": *
 
+// XXX: add a practice problem where you prove that when converting 2nd order to first order, you only need to compute eigenvalues and not eigenvectors of the matrix (provided the eigenvalues are distinct) because we can always pre-multiply the eigenvector by a scalar to make its first coordinate 1.
+// This can be mostly generalized, since the matrix we get will look like mat(0,1;a,b). If a=b=0, we know how to solve the original equation. If a=0 and b!=0, we have distinct eigenvalues. If a!=-b^2/4 we have a basis of eigenvectors. so a=-b^2/4 is the only case we're unsure about.
+
 #let questions = (
   (
     statement: [
