@@ -3,7 +3,7 @@
 #show: e.prepare(question)
 
 #{
-  lesson(title: [Systems of ODEs], include "lesson-week-03.typ")
+  lesson(title: [Systems of ODEs], include "lesson-week-03.typ", label: <lesson:3>)
   question({
     learning_objectives(
       ([Generalize an existing model to account for more-inclusive assumptions.],),

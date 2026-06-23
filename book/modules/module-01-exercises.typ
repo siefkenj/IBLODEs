@@ -7,7 +7,7 @@
 #let infty = math.infinity
 
 #{
-  lesson(title: [The Introduction], include "lesson-week-01.typ")
+  lesson(title: [The Introduction], include "lesson-week-01.typ", label: <lesson:1>)
   question(label: <ex:intro_modelling>, {
     learning_objectives(
       [Recognize that modelling is an imperfect process and one must make choices when modelling.],
@@ -309,7 +309,11 @@
     ]
   })
 
-  lesson(title: [Differential Equations & Euler's Method], include "lesson-week-02.typ")
+  lesson(
+    title: [Differential Equations & Euler's Method],
+    include "lesson-week-02.typ",
+    label: <lesson:2>,
+  )
   book_only(pagebreak())
   question({
     learning_objectives(

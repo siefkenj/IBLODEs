@@ -2,7 +2,7 @@
 #show: e.prepare(question)
 
 #{
-  lesson(title: [Boundary Value Problems], include "lesson-week-11.typ")
+  lesson(title: [Boundary Value Problems], include "lesson-week-11.typ", label: <lesson:11>)
   question({
     learning_objectives(
       [Simulate a solution to a differential equation over a fixed time interval.],

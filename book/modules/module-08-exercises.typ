@@ -2,7 +2,7 @@
 #show: e.prepare(question)
 
 #{
-  lesson(title: [Complex Solutions], include "lesson-week-08.typ")
+  lesson(title: [Complex Solutions], include "lesson-week-08.typ", label: <lesson:8>)
   question({
     learning_objectives(
       [From a list of premises, model a situation with differential-equations.],

@@ -4,7 +4,7 @@
 
 
 #{
-  lesson(title: [Linearization], include "lesson-week-09.typ")
+  lesson(title: [Linearization], include "lesson-week-09.typ", label: <lesson:9>)
   question({
     learning_objectives(
       ([Conjecture the stability of an equilibrium solution by looking at a phase portrait.],),
@@ -619,7 +619,7 @@
 
 
   book_only(pagebreak())
-  lesson(title: [Linearization II & Higher Order Equations], include "lesson-week-10.typ")
+  lesson(title: [Linearization II & Higher Order Equations], include "lesson-week-10.typ", label: <lesson:10>)
   question(label: <ex:linearization_practice>, {
     learning_objectives(
       (
