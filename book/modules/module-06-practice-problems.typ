@@ -3,6 +3,7 @@
 // XXX: add a continuation to @ex:general_eigen_solution_with_initial_values[] that asks students for interpretations in component space of what it means to "pass through any initial condition".
 
 
+
 #let questions = (
   (
     statement: [Let $A$ be a $3 times 3$ matrix with eigenvalue of $3$ and a corresponding
