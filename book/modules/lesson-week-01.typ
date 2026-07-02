@@ -12,6 +12,7 @@ The first week is about:
     course
 - Offloading simulation arithmetic to spreadsheets
 
+
 // Explain a bit about not using full DeXABAR
 // Emphasize students need to be told that the DAR processes is not linear. They may revisit definitions and assumptions after they try writing down relationships, etc.
 

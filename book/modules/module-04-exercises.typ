@@ -6,7 +6,7 @@
 #let OO = $upright(bold("O"))$
 
 #{
-  lesson(title: [Introduction to Equilibria & Stability], include "lesson-week-04.typ")
+  lesson(title: [Introduction to Equilibria & Stability], include "lesson-week-04.typ", label: <lesson:4>)
   question(label: <ex:LV_equilibrium>, {
     learning_objectives(
       [Find equilibrium solutions to a system of differential equations by numerical and graphical

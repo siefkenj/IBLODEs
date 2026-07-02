@@ -137,12 +137,13 @@
 ]
 
 #module[]
-#lesson[
+#lesson(label: <lesson>)[
   This is the third lesson
 ]
 #question[some question]
 #question[some question]
 
+See @lesson
 // #{
 //   let a = (1,2,3,4,5)
 

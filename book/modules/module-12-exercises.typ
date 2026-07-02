@@ -2,11 +2,37 @@
 #show: e.prepare(question)
 
 #{
-  question({
+  question(label: <ex:existence_uniqueness>, {
     learning_objectives(
-      [???],
+      [Rewrite a differential equation as a level set of some function $F$.],
+      [Recognize that there is a class of theorems broadly labeled as "existence and uniqueness
+        theorems" relevant to the study of differential equations.],
+      [Apply the Existence and Uniqueness Theorem for first-order linear ODEs.],
     )
-    notes[???]
+    notes[
+      The purpose of this question is to give students some of the vocabulary commonly used when
+      discussing differential equations. We have not needed to talk about differential equations in
+      terms of level sets of functions, nor have we needed a fully-powered existence and uniqueness
+      theorem.
+
+      They have not had much practice in this course applying precise theorems. Based on how much
+      weight you put on this learning goal, spend more or less time on this question.
+
+      - @ex:rephrase_as_level_sets[] will be very easy for them.
+
+      - In your wrap-up, contextualize this problem:
+        + If differential equations can be rephrased as level set problems, then tools from
+          multivariable calculus can be brought into the study of differential equations.
+        + General theorems about differential equations are _hard_. Over the last few hundred years,
+          mathematicians have developed many theorems that apply to specific types of differential
+          equations (usually those that arise in physics) about whether they have solutions and
+          whether those solutions are unique. Since most differential equations don't have
+          closed-form solutions, these theorems inform whether numerical methods have a hope of
+          success.
+
+          To a mathematician, existence and uniqueness is a "first question" to ask about a
+          differential equation.
+    ]
     slide(force_scale: 0.89em)[
 
       #slides_only([*Existence and Uniqueness*])
@@ -33,8 +59,9 @@
 
 
 
-      + The theorem expresses differential equations in the form $F(t, x, x', x'', dots) = 0$ (i.e.
-        as a level set of some function $F$).
+      + #label_question_part(<ex:rephrase_as_level_sets>) The theorem expresses differential
+        equations in the form $F(t, x, x', x'', dots) = 0$ (i.e. as a level set of some function
+        $F$).
 
         Rewrite the following differential equations in the form $F(t, x, x', x'', dots) = 0$:
         + $x'' = -k x$
@@ -52,35 +79,29 @@
 
       + Which of the following does the theorem say _must_ have a unique solution on an interval
         containing $0$?
-        + $y' = frac(3, 2) y^(1/3)$ with $y(0) = 0$
+        + $y' = -frac(3, 2) y^(1/3)$ with $y(0) = 0$
           #solution[
-            The theorem requires $F(t, x, x') = x'(t) + p(t) x(t) + g(t)$, i.e., the equation must
-            be *first-order and linear* in $x$. Here $F = y' - frac(3, 2) y^(1/3)$; the term
-            $y^(1/3)$ is not of the form $p(t) y$. The theorem does *not* apply.
+            Since the differential equation cannot be rewritten as
+            $F(t, y, y') = y'(t) + p(t) y(t) + g(t)=0$, the theorem does not apply.
+
+            However, this equation is separable. Solving it we find that there are infinitely many
+            solutions on any open interval containing $0$.
           ]
         + $x'(t) = floor(t) x(t)$ with $x(0) = 0$
           #solution[
-            Here $F = x' - floor(t) x$, which is $x' + p(t) x + g(t) = 0$ with $p(t) = -floor(t)$
-            and $g(t) = 0$. However, $floor(t)$ has a jump discontinuity at $t = 0$ (it equals $-1$
-            for $t in (-1, 0)$ and $0$ for $t in [0, 1)$), so $p$ is *not continuous* on any open
-            interval containing $t_0 = 0$. The theorem does *not* apply.
+            We can rewrite the differential equation as
+            $F(t, x, x') = x' - floor(t) x = x' + p(t)x + g(t) = 0$. However, in this case
+            $p(t) = -floor(t)$ is not continuous on any open interval containing $0$, so the theorem
+            does not apply. However, by guessing and checking, we see that $x(t)=0$ is a solution.
+            Arguing by other means, this solution is unique.
           ]
         + $x'(t) = floor(t - frac(1, 2)) x(t) + t^2$ with $x(0) = 0$
           #solution[
-            Here $F = x' - floor(t - 1\/2) x - t^2$, giving $p(t) = -floor(t - 1\/2)$ and
-            $g(t) = -t^2$.
-
-            The jump discontinuities of $floor(t - 1\/2)$ occur where $t - 1\/2$ is an integer,
-            i.e., at $t = dots, -1\/2, 1\/2, 3\/2, dots$. The nearest jumps to $t_0 = 0$ are at
-            $t = -1\/2$ and $t = 1\/2$.
-
-            On the open interval $(-1\/2, 1\/2)$ containing $t_0 = 0$:
-            $
-              t - 1\/2 in (-1, 0) wide arrow.r wide floor(t - 1\/2) = -1 wide "(constant)".
-            $
-            So $p(t) = -(-1) = 1$ and $g(t) = -t^2$ are both continuous on $(-1\/2, 1\/2)$.
-
-            The theorem *does* apply: the IVP has a unique solution on $(-1\/2, 1\/2)$.
+            We can rewrite the differential equation as
+            $F(t, x, x') = x' - floor(t - 1/2) x - t^2 = x' + p(t)x + g(t) = 0$. Here,
+            $p(t) = -floor(t - 1/2)$ and $g(t) = -t^2$, both of which are continuous on the interval
+            $(-1/2,1/2)$, and so the theorem applies: there is a unique solution satisfying $x(0)=0$
+            on the interval $(-1/2,1/2)$.
           ]
 
         Note: $floor(x)$ is the _floor_ of $x$, i.e., the largest integer less than or equal to $x$.

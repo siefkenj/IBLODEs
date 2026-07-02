@@ -2,7 +2,7 @@
 #show: e.prepare(question)
 
 #{
-  lesson(title: [Matrix Systems], include "lesson-week-06.typ")
+  lesson(title: [Matrix Systems], include "lesson-week-06.typ", label: <lesson:6>)
   question.with(label: <ex:basic_system>)({
     learning_objectives(
       [Solve a system of differential equations that can be expressed as multiple separable
@@ -1033,7 +1033,7 @@
     ]
   })
 
-  lesson(title: [Matrix Systems Continued], include "lesson-week-07.typ")
+  lesson(title: [Matrix Systems Continued], include "lesson-week-07.typ", label: <lesson:7>)
   book_only(pagebreak())
   question({
     learning_objectives(

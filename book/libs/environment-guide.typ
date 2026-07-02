@@ -379,6 +379,16 @@
     it.ref_label = [Lesson #count]
     it
   },
+  reference: (
+    custom: it => {
+      let label = it.at("label", default: none)
+      if label == none {
+        return
+      }
+      show: link.with(label)
+      link(label, it.ref_label)
+    },
+  ),
   fields: (
     e.field(
       "body",

@@ -6,7 +6,7 @@
 #let OO = $upright(bold("O"))$
 
 #{
-  lesson(title: [Phase Portraits], include "lesson-week-05.typ")
+  lesson(title: [Phase Portraits], include "lesson-week-05.typ", label: <lesson:5>)
   book_only(pagebreak())
   question({
     learning_objectives(
