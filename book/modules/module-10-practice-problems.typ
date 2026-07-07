@@ -15,12 +15,14 @@
 
       + Wouldn't higher-order differential equations be non-linear? How are we able to find the eigenvalues?
 
-      + Would the stability of equilibrium solution(s) change after convertion of higher-order to first-order differential equation?
+      + Would the stability of equilibrium solution(s) change after conversion of higher-order to first-order differential equation?
     ],
     solution: [
       + Yes. For a differential equation involving only functions $y,y'$ it is a first-order differential equation. Whereas for one involving functions $y,y',dots,y^((n))$, it is a higher-order differential equation.
 
-      + For a two-dimensional phase portrait, the axis depends on the base function and the temporary new function we define. In the module example solving $f''=-f$, the axis are $f$ and $g=f'$.
+      + For an $n$-th order differential equation, we need to transform it to a $n times n$ system of first-order differential equations, so the phase portrait will have as axes, the unknown function and all its derivatives up to order $n−1$ (which are the auxiliary functions).
+      
+        We often use phase portrait to gain insight into the behaviour of solutions. This is especially useful when the phase space is two-dimensional, so this will be especially useful for 2nd-order differential equations, where the phase portrait will have the unknown function $u$ as the horizontal axis and its first derivative $u′$ as the vertical axis.
 
       + Order and linearity are different ideas. It is very helpful to convert higher-order differential equations into first-order differential equations. Then we can apply the eigenvalue approach. Linearization near an equilibrium can also help with dealing with non-linear expressions.
 
@@ -44,7 +46,7 @@
   ),
   (
     statement: [
-      For the following second-order differential equations, simulate the solution to the initial conditions using Euler's methods.
+      For the following second-order differential equations, simulate the solution to the initial conditions using Euler's method.
 
       + $y''=-4y-y'$, with $y(0)=1,y'(0)=0$ and a step size of $Delta=0.1$.
       + $x''-5x'+2x+6=0$, with $x(0)=2,x'(0)=1$, and a step size of $Delta=0.05$.
@@ -91,7 +93,16 @@
       $ cases(u'=v_1, v_1'=v_2, v_2'=v_1^2-2v_1-e^u+cos(t)) $
 
       Then follow @mod:simulation to simulate this third-order differential equation using Euler's Method.
-      //XXX Is there an equivalent of 2d_ivp for 3 variables? Or Manually input the table.
+
+      //XXX Manual values to be checked later
+      #let values = (0, 1, 0, -1, 0.1, 1, -0.1, -1.171828183, 0.2, 0.99, -0.217182818, -1.323155949, 0.3, 0.968281718, -0.349498413, -1.446119337, 0.4, 0.933331877, -0.494110347, -1.531812654, 0.5, 0.883920842, -0.647291612, -1.570766775)
+      #align(center, simple_table(headers: ($t$, $u(t)$, $v_1(t)=u'(t)$, $v_2(t)=u''(t)$), content: values.map(
+          v => [#calc.round(
+              v,
+              digits: 2,
+            )
+          ],
+        )))
     ]
   ),
   (
@@ -123,7 +134,7 @@
       + $x''+x^2+1=0$
     ],
     solution: [
-      Note: for all of these following questions, you should strongly consider the limitations of equilibrium classification using Linearization. //XXX Add a reference to linearization module?
+      Note: for all of these following questions, you should strongly consider the limitations of equilibrium classification using Linearization, see @mod:linearization.
 
       + Let $y=x'$, then $cases(x'=y,y'=-x-x^3)$. The equilibrium is located at $(0,0)$. Following linearization, we obtain the Jacobian $ D_(arrow(F))(x,y)=mat(0,1;-1-3x^2,0) $ evaluated at the equilibrium, the Jacobian is $D_(arrow(F))(arrow(E))= mat(0,1;-1,0)$, which has eigenvalues $lambda=plus.minus i$. This is a periodic solution (stable but not attracting).
       + Let $phi=theta'$, then $cases(theta'=phi,phi'=-sin(theta))$. The equilibrium is located at $(n pi,0), n in ZZ$. The Jacobian is $ D_(arrow(F))(theta,phi)=mat(0,1;-cos(theta),0) $
@@ -174,6 +185,8 @@
       this is possible if and only if $alpha=beta=0$ for all values of $x$.
 
       The general solution is therefore $ y(x)=C_1 x^2+C_2 $ for some parameters $C_1,C_2$.
+
+      Note: this type of ODEs is called Cauchy-Euler differential equations.
     ],
     citation: [_Notes on Diffy Q's_ by Jiří Lebl 2.6.5],
   ),
@@ -265,10 +278,10 @@
 
       They claim that:
       + The equation is of the form $r^3+3r^2+3r+1$, so we can solve for this because $r^3+3r^2+3r+1=(r+1)^3=0$.
-      + The system of first-order differential equation and the matrix is
-        $ cases(y'=y_1,y_1'=y_2,y_2'=3y_2+3y_1+y) arrow.l.r.double mat(0,1,0;0,0,1;3,3,1) $
+      + The corresponding system of first-order differential equations is
+        $ cases(y'=y_1,y_1'=y_2,y_2'=3y_2+3y_1+y) $and its matrix is $ mat(0,1,0;0,0,1;3,3,1) $
       + The equilibrium solution is along the line $y'(t)=1/3 y(t)$.
-      + Since the eigenvalues are $lambda approx 2.5987, -0.7993 plus.minus 0.7180i$, so the equilibrium solution is unstable but repelling.
+      + The eigenvalues are $lambda approx 2.5987, -0.7993 plus.minus 0.7180i$, so the equilibrium solution is unstable but repelling.
       + The general solution is $ y(t)= e^(2.5987t)+e^(-0.7993 + 0.7180i t)+e^(-0.7993- 0.7180i t) $
 
       Do you agree with their response? If not, justify your answer.
@@ -276,7 +289,7 @@
     solution: [
       + The characteristic polynomial is valid.
       + The error lies with the coefficients and their signs. Also, the student should first define $y_1(t)=y'(t)$, and $y_2(t)=y'_1(t)=y''(t)$. Then we get
-        $ cases(y'=y_1,y_1'=y_2,y_2'=-3y_2 -3y_1-y) arrow.l.r.double mat(0,1,0;0,0,1;-1,-3,-3) $
+        $ cases(y'=y_1,y_1'=y_2,y_2'=-3y_2 -3y_1-y) $and the corresponding matrix is $ mat(0,1,0;0,0,1;-1,-3,-3) $
       + Equilibrium is at $(0,0,0)$.
       + The eigenvalue is $lambda=-1$ with multiplicity 3. It is stable and attracting.
       + The general solution is $y(t)=(C_1+C_2 t+C_3 t^2)e^(-t)$ where $C_1,C_2,C_3$ are parameters. Evaluated at the given initial conditions, we get $C_1=1,C_2=1,C_3=3/2$. Hence we have $ y(t)=(1+t+3/2 t^2)e^(-t) $
@@ -284,31 +297,17 @@
   ),
   (
     statement: [
-      For a second-order differential equation of the form $x''=alpha x+beta x'$, where $alpha, beta$ are parameters. Prove that when converting this to a system of first-order differential equations, you only need to compute eigenvalues and not eigenvectors of the matrix (assuming the eigenvalues are distinct).
+      For a second-order differential equation of the form $x''=alpha x+beta x'$, where $alpha, beta$ are parameters.
 
-      What happens for the following values of the parameters:
-      - $alpha=beta=0$
-      - $alpha=0,beta!=0$
-      - $alpha=-beta^2/4$
+      + Convert to a system of first-order differential equations.
+      + Show that to classify the equilibrium solution, you only need to compute the eigenvalues (assuming they are distinct) of the matrix. You don't need to compute the eigenvectors.
+      + What happens for the following values of the parameters:
+        - $alpha=beta=0$
+        - $alpha=0,beta!=0$
+        - $alpha=-beta^2/4$
     ],
     solution: [
-      By introducing a new function $y$, where $y=x'$, we can convert this to a system of first-order differential equations and obtain the matrix $M$
-      $ cases(x'=y,y'=alpha x+beta y) arrow.l.r.double M=mat(0,1;alpha,beta) $
-
-      Assuming that the eigenvalues are distinct. Take eigenvalue $lambda$, let $arrow(v)=(v_1,v_2)$ be a corresponding eigenvector of the above matrix. This implies that 
-      $ (M-lambda I)arrow(v)=arrow(0) arrow.l.r.double mat(-lambda,1;alpha,beta-lambda)vec(v_1,v_2)=vec(0,0) $
-
-      The first row gives $lambda v_1=v_2$. If $v_1=0$ then $v_2=0$, so $arrow(v)=arrow(0)$. But this is not possible for eigenvectors. Therefore, $v_1!=0$. So we can always rescale the eigenvector by multiplying by a nonzero scalar to obtain
-      $ arrow(v)=vec(1,lambda) $
-      this applies to either of the distinct eigenvalues and their corresponding eigenvectors.
-
-      Therefore, the eigenvectors strictly depend on the eigenvalues. We only need to compute the eigenvalues, and can automatically obtain the eigenvectors.
-
-      To check what happens under different values for the parameters $alpha,beta$, observe that the eigenvalues are $lambda_1=(beta+sqrt(beta^2+4alpha))/2$, and $lambda_2=(beta-sqrt(beta^2+4alpha))/2$. Then:
-      
-      - If $alpha=beta=0$, we obtain that $lambda_1=lambda_2=0$. Our second-order differential equation would also become $x''=0$, leading to a linear function $x(t)=C_1t+C_2$, where $C_1,C_2$ are parameters.
-      - If $alpha=0,beta!=0$, we obtain distinct eigenvalues $lambda_(1,2)=beta,0$, as well as distinct eigenvectors. The second-order differential equation becomes $x''=beta x'$, with solution $x(t)=C_1e^(beta t)+C_2$, where $C_1,C_2$ are parameters.
-      - If $alpha!=-beta^2/4$, we have a basis of eigenvectors.However, if $alpha=-beta^2/4$, this is a special case as it causes the square-root to vanish. The eigenvalue is repeated with $lambda=beta/2$, so we can no longer use the eigenvalue-only argument as it does not give two independent eigenvectors. The repeated-root general solution is $x(t)=(C_1+C_2 t)e^((beta t)/2)$, where $C_1,C_2$ are parameters.
+      + By introducing a new function $y$, where $y=x'$, we can convert this to a system of first-order differential equations $ cases(x'=y,y'=alpha x+beta y) $and the corresponding matrix is $ M=mat(0,1;alpha,beta) $
     ]
   ),
 )
