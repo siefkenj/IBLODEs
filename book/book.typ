@@ -150,7 +150,7 @@
 }
 
 #{
-  module(title: [Quantitative Analysis: Linearization])[
+  module(title: [Quantitative Analysis: Linearization], label: <mod:linearization>)[
     #include "modules/module-09-body.typ"
     #import "modules/module-09-practice-problems.typ": questions
     #set text(size: 0.85em)
