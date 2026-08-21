@@ -786,4 +786,267 @@
         ]
     ]
   })
+
+  book_only(pagebreak())
+  let springmass = {
+    let ts = lq.linspace(1.5, 30, num: 150)
+    let thickness = 1.5pt
+
+    align(
+      center,
+      {
+        show: lq.set-grid(stroke: none)
+        lq.diagram(
+          width: 5cm,
+          height: 0.875cm,
+          yaxis: none,
+          xaxis: none,
+          lq.rect(
+            -1,
+            -1,
+            width: 1,
+            height: 2,
+            stroke: none,
+            fill: color.rgb("#8B4513"), // brown
+          ),
+          lq.line(
+            (0, -1),
+            (0, 1),
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.plot(
+            ts.map(t => 0.6 + 1.2 * (0.3 * t - calc.sin(t))),
+            ts.map(t => 1.2 * (1 - calc.cos(t)) - 1),
+            mark: none,
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.ellipse(
+            0.6 + 1.2 * (0.3 * 30 - calc.sin(30)) - 1,
+            1.2 * (1 - calc.cos(30)) - 2,
+            height: 2,
+            width: 2,
+            fill: color.rgb("#bbbbbb"), // gray
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.place(0.6 + 1.2 * (0.3 * 30 - calc.sin(30)), 1.2 * (1 - calc.cos(30)) - 1)[M],
+        )
+      },
+    )
+  }
+
+  let springmass_push = {
+    let ts = lq.linspace(1.5, 30, num: 150)
+    let thickness = 1.5pt
+    let x0 = 0.6 + 1.2 * (0.3 * 30 - calc.sin(30)) - 1
+    let y0 = 1.2 * (1 - calc.cos(30)) - 2
+
+    align(
+      center,
+      {
+        show: lq.set-grid(stroke: none)
+        lq.diagram(
+          width: 5.5cm,
+          height: 0.875cm,
+          yaxis: none,
+          xaxis: none,
+          lq.rect(
+            -1,
+            -1,
+            width: 1,
+            height: 2,
+            stroke: none,
+            fill: color.rgb("#8B4513"), // brown
+          ),
+          lq.line(
+            (0, -1),
+            (0, 1),
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.plot(
+            ts.map(t => 0.6 + 1.2 * (0.3 * t - calc.sin(t))),
+            ts.map(t => 1.2 * (1 - calc.cos(t)) - 1),
+            mark: none,
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.ellipse(
+            x0,
+            y0,
+            height: 2,
+            width: 2,
+            fill: color.rgb("#bbbbbb"), // gray
+            stroke: (paint: black, thickness: thickness),
+          ),
+          lq.path(
+            (x0 - 0.5, y0 + 1),
+            (x0 - 2.2, y0 + 1),
+            stroke: (paint: purple),
+            tip: tiptoe.stealth,
+          ),
+          lq.path(
+            (x0 + 2.5, y0 + 1),
+            (x0 + 4.2, y0 + 1),
+            stroke: (paint: purple),
+            tip: tiptoe.stealth,
+          ),
+          lq.place(x0 + 1, y0 + 1)[M],
+        )
+      },
+    )
+  }
+
+  question(label: <ex:resonance>, {
+    learning_objectives(
+      ([Model a periodically forced spring--mass system and explain the role of frequency matching.],
+      [Study the effect of resonance in a spring--mass system.]),
+    )
+    notes[
+      This exercise revisits the spring--mass model from @ex:spring_mass[] and asks what changes when
+      a periodic external push is added. The main point is that forcing is most effective when its
+      frequency matches a natural frequency already present in the system.
+    ]
+    slide(force_scale: 0.82em)[
+
+      We have seen that a spring--mass system can oscillate periodically. In this activity, we
+      investigate what happens when we periodically push an oscillator such as the spring-mass system.
+
+      Recall the spring--mass model from @ex:spring_mass[]:
+
+      #springmass
+
+      $ x''(t) = -x(t), $
+
+      where $x(t)$ is the displacement of the mass from equilibrium.
+
+      + Convert the equation $x'' = -x$
+        to a first-order system:
+        $
+          cases(
+            x' = y,
+            y' = -x
+          )
+        $
+        where $y = x'$.
+        We previously found that the eigenvalues of this system are $lambda = plus.minus i$.
+
+        What does this tell us about the motion of the mass? In particular, what is the period of
+        its natural oscillation?
+        #solution[
+          The eigenvalues are purely imaginary, so the system oscillates sinusoidally. Since the
+          eigenvalues are $plus.minus i$, the natural angular frequency is $1$, and the period is
+          $2pi$.
+        ]
+
+      + Suppose that, in addition to the spring force, someone pushes the mass back and forth as in
+        the figure below.
+
+        #springmass_push
+
+        Assume that the push is periodic and can be modeled by
+
+        $ F(t) = a cos(omega t), $
+
+        where $a$ is the strength of the push and $omega$ is the frequency of the push. The resulting
+        model is
+
+        $ x'' = -x + a cos(omega t). $
+
+        Convert this equation into a first-order system.
+        #solution[
+          Let $y = x'$. Then the system is
+          $
+            cases(
+              x' = y,
+              y' = -x + a cos(omega t)
+            )
+          $.
+        ]
+
+      + Take
+
+        $ a = 0.1, quad x(0) = 0, quad x'(0) = 0. $
+
+        Use Euler's method to simulate the system for several values of $omega$, such as
+
+        $ omega = 0.5, 0.9, 1.0, 1.1, 1.5. $
+
+        Simulate long enough to see the overall behaviour and record your observations.
+
+        #table(
+          columns: 3,
+          [*$omega$*], [*What happens to $x(t)$?*], [*Largest displacement observed*],
+
+          [0.5], [], [],
+          [0.9], [], [],
+          [1.0], [], [],
+          [1.1], [], [],
+          [1.5], [], [],
+        )
+
+      + Compare your simulations for $omega = 0.9$, $1.0$, and $1.1$. For $omega = 0.9$ and
+        $omega = 1.1$, the solution appears to oscillate with a changing amplitude. For $omega = 1$,
+        what happens to the amplitude as time increases? Describe what you see without using the word
+        *resonance*.
+        #solution[
+          At $omega = 1$, the amplitude grows noticeably and the oscillations become much larger.
+          The near-matching frequency strengthens the motion rather than merely adjusting the
+          oscillation.
+        ]
+
+      + We found earlier that the unforced system has eigenvalues
+        $lambda = plus.minus i$,
+        so its natural angular frequency is
+        $omega_"natural" = 1$.
+
+        Compare this with your simulations. What relationship between the forcing frequency and the
+        natural frequency seems to produce the unusually large oscillations?
+        #solution[
+          The largest oscillations occur when the forcing frequency is close to the natural
+          frequency. In this model, forcing at $omega = 1$ produces the largest amplitude.
+        ]
+
+      + Suppose $omega != 1$. Someone suggests that perhaps the solution should have the form
+
+        $ x_p(t) = C cos(omega t) $
+
+        for some constant $C$. Substitute this into the differential equation and find $C$ in terms
+        of $a$ and $omega$.
+        #solution[
+          Since $x_p'' = -omega^2 C cos(omega t)$,
+          $ (-omega^2 + 1) C cos(omega t) = a cos(omega t) $,
+          so
+          $ C = a / (1 - omega^2) $,
+          provided $omega != 1$.
+        ]
+        What happens to $C$ as $omega$ gets closer and closer to $1$? How does this explain your
+        simulations?
+        #solution[
+          As $omega -> 1$, the denominator $1 - omega^2$ becomes very small, so $|C|$ gets very
+          large. This explains why forcing close to the natural frequency creates much larger
+          oscillations while forcing far from the natural frequency does not.
+        ]
+
+      + At $omega = 1$, the equation becomes
+        $ x'' + x = a cos(t) $.
+
+        What goes wrong in the previous calculation? Why does this not mean that the equation has no
+        solution?
+        #solution[
+          The formula for $C$ requires division by $1 - omega^2$, which is zero at $omega = 1$. This
+          means the forcing frequency matches a frequency already present in the homogeneous equation
+          $x'' + x = 0$. The solution is no longer of the simple form $C cos(omega t)$; instead, a
+          term with the same natural frequency is needed, and this causes the amplitude to grow.
+        ]
+
+      + The spring--mass system is an idealization: there is no friction. What do you think would
+        happen if we added friction and changed the model to
+        $ x'' = -c x' - x + a cos(omega t), $
+        where $c > 0$? Would you still expect arbitrarily large oscillations at $omega = 1$?
+        Explain your prediction using ideas from the course.
+        #solution[
+          Friction introduces damping, so the system loses energy over time. The amplitude will still
+          be largest near the natural frequency, but it will no longer grow without bound. The force is
+          still most effective near resonance, but damping prevents arbitrarily large oscillations.
+        ]
+    ]
+  })
 }

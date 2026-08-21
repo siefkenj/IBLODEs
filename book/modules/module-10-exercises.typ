@@ -52,7 +52,7 @@
   }
 
 
-  question({
+  question(label:<ex:spring_mass>, {
     learning_objectives(
       [Create a model using a second-order differential equation based on premises.],
       [Modify Euler's method to approximate solutions to second-order equations.],
